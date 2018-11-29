@@ -1,0 +1,252 @@
+﻿ ol, ul {
+            list-style: none;
+        }
+
+        body, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .search-bd {
+            z-index: 30;
+            position: relative;
+            transform: translateZ(0);
+        }
+
+            .search-bd .search-triggers-top {
+                height: 29px;
+                overflow: hidden;
+                border: 1px solid #E5E5E5;
+                background-color: #F6F6F6;
+                width: 73px;
+                position: absolute;
+                left: 3px;
+                top: 3px;
+                z-index: 200;
+            }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        .search-bd .search-triggers-top .active {
+            color: #3C3C3C;
+            font-weight: 400;
+        }
+
+        .search-bd .search-triggers-top li {
+            line-height: 29px;
+            float: none;
+            background-color: #F6F6F6 !important;
+            width: 73px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .search-bd .search-triggers-top li {
+            color: #F40;
+            text-align: center;
+            float: left;
+            width: 73px;
+            height: 29px;
+            line-height: 29px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .search-bd .search-tab-icon {
+            position: absolute;
+            top: 9px;
+            right: 8px;
+            padding: 4px 3px 3px;
+            width: 6px;
+            height: 5px;
+        }
+
+            .search-bd .search-tab-icon i {
+                position: relative;
+                position: absolute;
+                width: 6px;
+                height: 3px;
+                -webkit-transition: .2s ease-in;
+                -webkit-transform-origin: 50% 60%;
+                -moz-transition: .2s ease-in;
+                -moz-transform-origin: 50% 60%;
+            }
+
+
+        .search-bd .search-panel .search-button-fixed {
+            position: absolute;
+            right: 0;
+            height: 35px;
+            top: 0;
+            z-index: 100;
+            width: 15%;
+            overflow: hidden;
+            text-align: center;
+        }
+
+            .search-bd .search-panel .search-button-fixed .btn-search {
+                font-size: 14px;
+                color: #FFF;
+                background-color: @styleColors;
+                cursor: pointer;
+                height: 100%;
+                border: none;
+                width: 100%;
+            }
+        .search-bd .search-panel .search-common-panel {
+            /*padding: 3px 0 3px 3px;*/
+            height: 35px;
+            /*background: #F50;*/
+            border: 2px solid @styleColors;
+        }
+
+            .search-bd .search-panel .search-common-panel label {
+                top: 9px;
+                left: 104px;
+            }
+
+            .search-bd .search-panel .search-common-panel label {
+                z-index: 2;
+                position: absolute;
+                top: 36px;
+                left: 34px;
+                color: #9C9C9C;
+                cursor: text;
+                touch-action: none;
+                -ms-touch-action: none;
+                pointer-events: none;
+                -ms-pointer-events: none;
+                -webkit-user-select: none;
+            }
+
+            .search-bd .search-panel .search-common-panel .search-combobox {
+                background: #FFF;
+            }
+
+        .search-combobox {
+            font-size: 12px;
+        }
+
+        .search-bd .search-panel .search-common-panel .search-combobox-input-wrap {
+            height: 29px;
+            padding-left: 73px;
+            width: 85%;
+            overflow: hidden;
+        }
+
+
+
+        .search-combobox-input-wrap {
+            vertical-align: middle;
+            position: relative;
+        }
+
+        .search-bd .search-panel .search-common-panel #search-fixed-input {
+            /*padding: 6px 0;*/
+            text-indent: 10px;
+            height: 29px;
+            line-height: 29px;
+            width: 100%;
+            border: none;
+            outline: 0;
+            background: #FFF;
+        }
+        .search-combobox-input {
+            line-height: 18px;
+            height: 18px;
+            overflow-y: visible;
+            font-size: 100%;
+        }
+
+        .search-combobox-input {
+            font-size: 12px;
+            width: 100%;
+            vertical-align: middle;
+            background-color: #fff;
+            border: 0;
+            color: #000;
+        }
+
+        .search-bd .search-panel .search-common-panel i {
+            position: absolute;
+            top: 6px;
+            left: 84px;
+        }
+
+        .search-bd .search-panel .search-common-panel i {
+            z-index: 2;
+            font-size: 16px;
+            position: absolute;
+            top: 35px;
+            left: 15px;
+            color: #CCC;
+        }
+
+        .iconfont, .tb-icon {
+            font-family: iconfont !important;
+            font-size: 14px;
+            font-style: normal;
+            display: inline-block;
+            text-decoration: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .tbh-search {
+            background-color: transparent;
+        }
+
+        .search-fix-top {
+           margin-left: 30%;
+           margin-right: 30%;
+        }
+.search-triggers-top:hover {
+    overflow: visible;
+}
+
+
+.tbh-logo {
+    float: left;
+    width: 160px;
+}
+.tb-pass {
+    background-color: transparent;
+}
+.J_Module {
+    min-height: 0;
+    background-color: #FFF;
+    margin-left: 12%;
+}
+.logo {
+    height: 35px;
+    width: 100px;
+    margin-top: 0;
+}
+div[data-type="search_fixed"] {
+    background-color: #FFF; 
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /*border-bottom: 2px solid #FF4200;*/ 
+}
+.search-bd .search-tab-icon i em {
+    top: 1px;
+    border-top-color: #666 !important;
+}
+.search-bd .search-tab-icon i span {
+    border-top-color: #f6f6f6 !important;
+}
+.search-bd .search-tab-icon i em, .search-bd .search-tab-icon i span {
+    border-width: 3px 3px 0;
+}
+.search-bd .search-tab-icon i em, .search-bd .search-tab-icon i span {
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-color: transparent;
+    border-style: solid;
+}

@@ -1,0 +1,80 @@
+﻿.tuanList{
+    li{
+        .tuan-img{
+            position: relative;
+            img{
+                width: 100%;
+                 height: 185px;
+            }
+            .tuan-text{
+                position: absolute;
+                height: 32px;
+                line-height: 32px;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,.32);
+                color: #FFF;
+//              padding: 0 15px;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                -webkit-justify-content: space-between;
+                justify-content: space-between;
+                span{
+                    display: block;
+                    margin: 0 15px;
+                }
+            }
+        }
+        .tuan-content{
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+             margin: 15px 10px;
+             .tuan-title{
+                 .title{
+                     font-size: 16px;
+                     color: #505050;
+                     line-height: 21px;
+                    position: relative;
+                    overflow: hidden;
+                    height: 42px;
+                    text-overflow: ellipsis;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    display: -webkit-box;
+                 }
+                 .price{
+                     color: #999;
+                     span{
+                         color: #f0514d;
+                         em{
+                             font-style: normal;
+                             font-size: 24px;
+                         }
+                     }
+                     del{
+                         color: #999;
+                     }
+                 }
+             } 
+             .tuan-after{
+                 color: #999;
+                 margin-left: 20px;
+                 p{
+                     margin-top: 0;
+                 }
+             }  
+                
+        }
+    }
+}
