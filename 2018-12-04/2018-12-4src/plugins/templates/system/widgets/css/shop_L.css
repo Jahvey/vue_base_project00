@@ -1,0 +1,13 @@
+﻿  *{margin: 0;padding: 0}
+        .enter-shop-1{border: 1px solid #eee;}
+        .enter-shop-1 dt{background:#fafafa;line-height: 39px;border-bottom: 1px solid #eee;padding:0 15px;font-size: 14px; color: #464646}
+        .enter-shop-1 dd{padding: 24px 0 15px;text-align: center}
+        .enter-shop-1 ul li{display: inline-block;text-align: center;line-height: 24px;width:48%;}
+        .enter-shop-1 ul li h6{font-size: 16px; font-weight: normal;color: #464646}
+        .enter-shop-1 ul li p{font-size: 12px; color: #999;margin: 0 0 14px;}
+        .enter-shop-1 ul li a{display: inline-block;font-size:12px; color:#464646;line-height: 34px; padding: 0 5px;background: #fafafa;border: 1px solid #ddd;}
+        .icon-enter-shop-1{background: url("../images/icon-enter-shop-1.png") no-repeat center}
+        .icon-enter-shop-2{background: url("../images/collect-icon-no.png") no-repeat center}
+        .icon-enter-shop-2.active{background: url("../images/icon-enter-shop-2.png") no-repeat center}
+        .icon-enter-shop-1,.icon-enter-shop-2{width: 16px; height: 14px;display: inline-block;vertical-align: middle}
+        .enter-shop-1 ul li i{margin-right: 3px;margin-bottom: 2px;}
