@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scim.loan.dao.TbAccFinanceBillAccountMapper">
+  <resultMap id="BaseResultMap" type="scim.loan.domain.TbAccFinanceBillAccount">
+    <id column="BILL_ACCOUNT_ID" jdbcType="VARCHAR" property="billAccountId" />
+    <result column="FINANCE_ID" jdbcType="VARCHAR" property="financeId" />
+    <result column="BILL_KHH" jdbcType="VARCHAR" property="billKhh" />
+    <result column="BILL_ZHMC" jdbcType="VARCHAR" property="billZhmc" />
+    <result column="BILL_ZH" jdbcType="VARCHAR" property="billZh" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BILL_ACCOUNT_ID, FINANCE_ID, BILL_KHH, BILL_ZHMC, BILL_ZH
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_ACC_FINANCE_BILL_ACCOUNT
+    where BILL_ACCOUNT_ID = #{billAccountId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_ACC_FINANCE_BILL_ACCOUNT
+    where BILL_ACCOUNT_ID = #{billAccountId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="scim.loan.domain.TbAccFinanceBillAccount">
+    insert into CRMS.TB_ACC_FINANCE_BILL_ACCOUNT (BILL_ACCOUNT_ID, FINANCE_ID, BILL_KHH, 
+      BILL_ZHMC, BILL_ZH)
+    values (#{billAccountId,jdbcType=VARCHAR}, #{financeId,jdbcType=VARCHAR}, #{billKhh,jdbcType=VARCHAR}, 
+      #{billZhmc,jdbcType=VARCHAR}, #{billZh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="scim.loan.domain.TbAccFinanceBillAccount">
+    insert into CRMS.TB_ACC_FINANCE_BILL_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billAccountId != null">
+        BILL_ACCOUNT_ID,
+      </if>
+      <if test="financeId != null">
+        FINANCE_ID,
+      </if>
+      <if test="billKhh != null">
+        BILL_KHH,
+      </if>
+      <if test="billZhmc != null">
+        BILL_ZHMC,
+      </if>
+      <if test="billZh != null">
+        BILL_ZH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billAccountId != null">
+        #{billAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null">
+        #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="billKhh != null">
+        #{billKhh,jdbcType=VARCHAR},
+      </if>
+      <if test="billZhmc != null">
+        #{billZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="billZh != null">
+        #{billZh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="scim.loan.domain.TbAccFinanceBillAccount">
+    update CRMS.TB_ACC_FINANCE_BILL_ACCOUNT
+    <set>
+      <if test="financeId != null">
+        FINANCE_ID = #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="billKhh != null">
+        BILL_KHH = #{billKhh,jdbcType=VARCHAR},
+      </if>
+      <if test="billZhmc != null">
+        BILL_ZHMC = #{billZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="billZh != null">
+        BILL_ZH = #{billZh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BILL_ACCOUNT_ID = #{billAccountId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="scim.loan.domain.TbAccFinanceBillAccount">
+    update CRMS.TB_ACC_FINANCE_BILL_ACCOUNT
+    set FINANCE_ID = #{financeId,jdbcType=VARCHAR},
+      BILL_KHH = #{billKhh,jdbcType=VARCHAR},
+      BILL_ZHMC = #{billZhmc,jdbcType=VARCHAR},
+      BILL_ZH = #{billZh,jdbcType=VARCHAR}
+    where BILL_ACCOUNT_ID = #{billAccountId,jdbcType=VARCHAR}
+  </update>
+</mapper>
