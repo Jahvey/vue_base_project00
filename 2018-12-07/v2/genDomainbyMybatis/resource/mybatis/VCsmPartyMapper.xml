@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scim.loan.dao.VCsmPartyMapper">
+  <resultMap id="BaseResultMap" type="scim.loan.domain.VCsmParty">
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+    <result column="IS_POTENTIAL_CUST" jdbcType="VARCHAR" property="isPotentialCust" />
+    <result column="EXAMINE_STATE" jdbcType="VARCHAR" property="examineState" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="MIDDLE_CODE" jdbcType="VARCHAR" property="middleCode" />
+    <result column="ORG_REGISTER_CD" jdbcType="VARCHAR" property="orgRegisterCd" />
+    <result column="REGISTR_CD" jdbcType="VARCHAR" property="registrCd" />
+    <result column="UNIFY_SOCIETY_CREDIT_NUM" jdbcType="VARCHAR" property="unifySocietyCreditNum" />
+    <result column="LINKMAN_NAME" jdbcType="VARCHAR" property="linkmanName" />
+    <result column="LINKMAN_PHONE" jdbcType="VARCHAR" property="linkmanPhone" />
+    <result column="IS_THIRD_CUST" jdbcType="VARCHAR" property="isThirdCust" />
+    <result column="THIRD_CUST_TYPE_CD" jdbcType="VARCHAR" property="thirdCustTypeCd" />
+    <result column="CLA_CUST_TYPE" jdbcType="VARCHAR" property="claCustType" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="ECIF_PARTY_NUM" jdbcType="VARCHAR" property="ecifPartyNum" />
+  </resultMap>
+  <insert id="insert" parameterType="scim.loan.domain.VCsmParty">
+    insert into CRMS.V_CSM_PARTY (PARTY_ID, PARTY_NUM, PARTY_NAME, 
+      PARTY_TYPE_CD, IS_POTENTIAL_CUST, EXAMINE_STATE, 
+      CERT_TYPE, CERT_NUM, MIDDLE_CODE, 
+      ORG_REGISTER_CD, REGISTR_CD, UNIFY_SOCIETY_CREDIT_NUM, 
+      LINKMAN_NAME, LINKMAN_PHONE, IS_THIRD_CUST, 
+      THIRD_CUST_TYPE_CD, CLA_CUST_TYPE, USER_NUM, 
+      ORG_NUM, ECIF_PARTY_NUM)
+    values (#{partyId,jdbcType=VARCHAR}, #{partyNum,jdbcType=VARCHAR}, #{partyName,jdbcType=VARCHAR}, 
+      #{partyTypeCd,jdbcType=VARCHAR}, #{isPotentialCust,jdbcType=VARCHAR}, #{examineState,jdbcType=VARCHAR}, 
+      #{certType,jdbcType=VARCHAR}, #{certNum,jdbcType=VARCHAR}, #{middleCode,jdbcType=VARCHAR}, 
+      #{orgRegisterCd,jdbcType=VARCHAR}, #{registrCd,jdbcType=VARCHAR}, #{unifySocietyCreditNum,jdbcType=VARCHAR}, 
+      #{linkmanName,jdbcType=VARCHAR}, #{linkmanPhone,jdbcType=VARCHAR}, #{isThirdCust,jdbcType=VARCHAR}, 
+      #{thirdCustTypeCd,jdbcType=VARCHAR}, #{claCustType,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, 
+      #{orgNum,jdbcType=VARCHAR}, #{ecifPartyNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="scim.loan.domain.VCsmParty">
+    insert into CRMS.V_CSM_PARTY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="partyNum != null">
+        PARTY_NUM,
+      </if>
+      <if test="partyName != null">
+        PARTY_NAME,
+      </if>
+      <if test="partyTypeCd != null">
+        PARTY_TYPE_CD,
+      </if>
+      <if test="isPotentialCust != null">
+        IS_POTENTIAL_CUST,
+      </if>
+      <if test="examineState != null">
+        EXAMINE_STATE,
+      </if>
+      <if test="certType != null">
+        CERT_TYPE,
+      </if>
+      <if test="certNum != null">
+        CERT_NUM,
+      </if>
+      <if test="middleCode != null">
+        MIDDLE_CODE,
+      </if>
+      <if test="orgRegisterCd != null">
+        ORG_REGISTER_CD,
+      </if>
+      <if test="registrCd != null">
+        REGISTR_CD,
+      </if>
+      <if test="unifySocietyCreditNum != null">
+        UNIFY_SOCIETY_CREDIT_NUM,
+      </if>
+      <if test="linkmanName != null">
+        LINKMAN_NAME,
+      </if>
+      <if test="linkmanPhone != null">
+        LINKMAN_PHONE,
+      </if>
+      <if test="isThirdCust != null">
+        IS_THIRD_CUST,
+      </if>
+      <if test="thirdCustTypeCd != null">
+        THIRD_CUST_TYPE_CD,
+      </if>
+      <if test="claCustType != null">
+        CLA_CUST_TYPE,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="ecifPartyNum != null">
+        ECIF_PARTY_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyNum != null">
+        #{partyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null">
+        #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="partyTypeCd != null">
+        #{partyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="isPotentialCust != null">
+        #{isPotentialCust,jdbcType=VARCHAR},
+      </if>
+      <if test="examineState != null">
+        #{examineState,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNum != null">
+        #{certNum,jdbcType=VARCHAR},
+      </if>
+      <if test="middleCode != null">
+        #{middleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterCd != null">
+        #{orgRegisterCd,jdbcType=VARCHAR},
+      </if>
+      <if test="registrCd != null">
+        #{registrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="unifySocietyCreditNum != null">
+        #{unifySocietyCreditNum,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanName != null">
+        #{linkmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanPhone != null">
+        #{linkmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isThirdCust != null">
+        #{isThirdCust,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCustTypeCd != null">
+        #{thirdCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="claCustType != null">
+        #{claCustType,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ecifPartyNum != null">
+        #{ecifPartyNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
