@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.user.mapper.TbCsmBankScaleMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.TbCsmBankScale">
+    <id column="ID" jdbcType="VARCHAR" property="ID" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="ORG_NUM" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="USER_NUM" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="PARTY_ID" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="CREATE_TIME" />
+    <result column="COUNT_BORE_ENTER_SCALE" jdbcType="VARCHAR" property="COUNT_BORE_ENTER_SCALE" />
+    <result column="OLD_COUNT_BORE_ENTER_SCALE" jdbcType="VARCHAR" property="OLD_COUNT_BORE_ENTER_SCALE" />
+    <result column="BANK_SCALE1" jdbcType="VARCHAR" property="BANK_SCALE1" />
+    <result column="BANK_SCALE2" jdbcType="VARCHAR" property="BANK_SCALE2" />
+    <result column="BANK_SCALE3" jdbcType="VARCHAR" property="BANK_SCALE3" />
+    <result column="BANK_SCALE4" jdbcType="VARCHAR" property="BANK_SCALE4" />
+    <result column="BANK_SCALE5" jdbcType="VARCHAR" property="BANK_SCALE5" />
+    <result column="BANK_SCALE6" jdbcType="VARCHAR" property="BANK_SCALE6" />
+    <result column="BANK_SCALE7" jdbcType="VARCHAR" property="BANK_SCALE7" />
+    <result column="BANK_SCALE8" jdbcType="VARCHAR" property="BANK_SCALE8" />
+    <result column="BANK_SCALE9" jdbcType="VARCHAR" property="BANK_SCALE9" />
+    <result column="BANK_SCALE10" jdbcType="VARCHAR" property="BANK_SCALE10" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ORG_NUM, USER_NUM, PARTY_ID, CREATE_TIME, COUNT_BORE_ENTER_SCALE, OLD_COUNT_BORE_ENTER_SCALE, 
+    BANK_SCALE1, BANK_SCALE2, BANK_SCALE3, BANK_SCALE4, BANK_SCALE5, BANK_SCALE6, BANK_SCALE7, 
+    BANK_SCALE8, BANK_SCALE9, BANK_SCALE10
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_BANK_SCALE
+    where ID = #{ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_BANK_SCALE
+    where ID = #{ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.user.bean.TbCsmBankScale">
+    insert into TB_CSM_BANK_SCALE (ID, ORG_NUM, USER_NUM, 
+      PARTY_ID, CREATE_TIME, COUNT_BORE_ENTER_SCALE, 
+      OLD_COUNT_BORE_ENTER_SCALE, BANK_SCALE1, 
+      BANK_SCALE2, BANK_SCALE3, BANK_SCALE4, 
+      BANK_SCALE5, BANK_SCALE6, BANK_SCALE7, 
+      BANK_SCALE8, BANK_SCALE9, BANK_SCALE10
+      )
+    values (#{ID,jdbcType=VARCHAR}, #{ORG_NUM,jdbcType=VARCHAR}, #{USER_NUM,jdbcType=VARCHAR}, 
+      #{PARTY_ID,jdbcType=VARCHAR}, #{CREATE_TIME,jdbcType=TIMESTAMP}, #{COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR}, 
+      #{OLD_COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR}, #{BANK_SCALE1,jdbcType=VARCHAR}, 
+      #{BANK_SCALE2,jdbcType=VARCHAR}, #{BANK_SCALE3,jdbcType=VARCHAR}, #{BANK_SCALE4,jdbcType=VARCHAR}, 
+      #{BANK_SCALE5,jdbcType=VARCHAR}, #{BANK_SCALE6,jdbcType=VARCHAR}, #{BANK_SCALE7,jdbcType=VARCHAR}, 
+      #{BANK_SCALE8,jdbcType=VARCHAR}, #{BANK_SCALE9,jdbcType=VARCHAR}, #{BANK_SCALE10,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.user.bean.TbCsmBankScale">
+    insert into TB_CSM_BANK_SCALE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="ORG_NUM != null">
+        ORG_NUM,
+      </if>
+      <if test="USER_NUM != null">
+        USER_NUM,
+      </if>
+      <if test="PARTY_ID != null">
+        PARTY_ID,
+      </if>
+      <if test="CREATE_TIME != null">
+        CREATE_TIME,
+      </if>
+      <if test="COUNT_BORE_ENTER_SCALE != null">
+        COUNT_BORE_ENTER_SCALE,
+      </if>
+      <if test="OLD_COUNT_BORE_ENTER_SCALE != null">
+        OLD_COUNT_BORE_ENTER_SCALE,
+      </if>
+      <if test="BANK_SCALE1 != null">
+        BANK_SCALE1,
+      </if>
+      <if test="BANK_SCALE2 != null">
+        BANK_SCALE2,
+      </if>
+      <if test="BANK_SCALE3 != null">
+        BANK_SCALE3,
+      </if>
+      <if test="BANK_SCALE4 != null">
+        BANK_SCALE4,
+      </if>
+      <if test="BANK_SCALE5 != null">
+        BANK_SCALE5,
+      </if>
+      <if test="BANK_SCALE6 != null">
+        BANK_SCALE6,
+      </if>
+      <if test="BANK_SCALE7 != null">
+        BANK_SCALE7,
+      </if>
+      <if test="BANK_SCALE8 != null">
+        BANK_SCALE8,
+      </if>
+      <if test="BANK_SCALE9 != null">
+        BANK_SCALE9,
+      </if>
+      <if test="BANK_SCALE10 != null">
+        BANK_SCALE10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=VARCHAR},
+      </if>
+      <if test="ORG_NUM != null">
+        #{ORG_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="USER_NUM != null">
+        #{USER_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="PARTY_ID != null">
+        #{PARTY_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="CREATE_TIME != null">
+        #{CREATE_TIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="COUNT_BORE_ENTER_SCALE != null">
+        #{COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      </if>
+      <if test="OLD_COUNT_BORE_ENTER_SCALE != null">
+        #{OLD_COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE1 != null">
+        #{BANK_SCALE1,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE2 != null">
+        #{BANK_SCALE2,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE3 != null">
+        #{BANK_SCALE3,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE4 != null">
+        #{BANK_SCALE4,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE5 != null">
+        #{BANK_SCALE5,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE6 != null">
+        #{BANK_SCALE6,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE7 != null">
+        #{BANK_SCALE7,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE8 != null">
+        #{BANK_SCALE8,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE9 != null">
+        #{BANK_SCALE9,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE10 != null">
+        #{BANK_SCALE10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.user.bean.TbCsmBankScale">
+    update TB_CSM_BANK_SCALE
+    <set>
+      <if test="ORG_NUM != null">
+        ORG_NUM = #{ORG_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="USER_NUM != null">
+        USER_NUM = #{USER_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="PARTY_ID != null">
+        PARTY_ID = #{PARTY_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="CREATE_TIME != null">
+        CREATE_TIME = #{CREATE_TIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="COUNT_BORE_ENTER_SCALE != null">
+        COUNT_BORE_ENTER_SCALE = #{COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      </if>
+      <if test="OLD_COUNT_BORE_ENTER_SCALE != null">
+        OLD_COUNT_BORE_ENTER_SCALE = #{OLD_COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE1 != null">
+        BANK_SCALE1 = #{BANK_SCALE1,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE2 != null">
+        BANK_SCALE2 = #{BANK_SCALE2,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE3 != null">
+        BANK_SCALE3 = #{BANK_SCALE3,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE4 != null">
+        BANK_SCALE4 = #{BANK_SCALE4,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE5 != null">
+        BANK_SCALE5 = #{BANK_SCALE5,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE6 != null">
+        BANK_SCALE6 = #{BANK_SCALE6,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE7 != null">
+        BANK_SCALE7 = #{BANK_SCALE7,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE8 != null">
+        BANK_SCALE8 = #{BANK_SCALE8,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE9 != null">
+        BANK_SCALE9 = #{BANK_SCALE9,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE10 != null">
+        BANK_SCALE10 = #{BANK_SCALE10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.user.bean.TbCsmBankScale">
+    update TB_CSM_BANK_SCALE
+    set ORG_NUM = #{ORG_NUM,jdbcType=VARCHAR},
+      USER_NUM = #{USER_NUM,jdbcType=VARCHAR},
+      PARTY_ID = #{PARTY_ID,jdbcType=VARCHAR},
+      CREATE_TIME = #{CREATE_TIME,jdbcType=TIMESTAMP},
+      COUNT_BORE_ENTER_SCALE = #{COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      OLD_COUNT_BORE_ENTER_SCALE = #{OLD_COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      BANK_SCALE1 = #{BANK_SCALE1,jdbcType=VARCHAR},
+      BANK_SCALE2 = #{BANK_SCALE2,jdbcType=VARCHAR},
+      BANK_SCALE3 = #{BANK_SCALE3,jdbcType=VARCHAR},
+      BANK_SCALE4 = #{BANK_SCALE4,jdbcType=VARCHAR},
+      BANK_SCALE5 = #{BANK_SCALE5,jdbcType=VARCHAR},
+      BANK_SCALE6 = #{BANK_SCALE6,jdbcType=VARCHAR},
+      BANK_SCALE7 = #{BANK_SCALE7,jdbcType=VARCHAR},
+      BANK_SCALE8 = #{BANK_SCALE8,jdbcType=VARCHAR},
+      BANK_SCALE9 = #{BANK_SCALE9,jdbcType=VARCHAR},
+      BANK_SCALE10 = #{BANK_SCALE10,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.TbCsmBankScale">
+    <id column="ID" jdbcType="VARCHAR" property="ID" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="ORG_NUM" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="USER_NUM" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="PARTY_ID" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="CREATE_TIME" />
+    <result column="COUNT_BORE_ENTER_SCALE" jdbcType="VARCHAR" property="COUNT_BORE_ENTER_SCALE" />
+    <result column="OLD_COUNT_BORE_ENTER_SCALE" jdbcType="VARCHAR" property="OLD_COUNT_BORE_ENTER_SCALE" />
+    <result column="BANK_SCALE1" jdbcType="VARCHAR" property="BANK_SCALE1" />
+    <result column="BANK_SCALE2" jdbcType="VARCHAR" property="BANK_SCALE2" />
+    <result column="BANK_SCALE3" jdbcType="VARCHAR" property="BANK_SCALE3" />
+    <result column="BANK_SCALE4" jdbcType="VARCHAR" property="BANK_SCALE4" />
+    <result column="BANK_SCALE5" jdbcType="VARCHAR" property="BANK_SCALE5" />
+    <result column="BANK_SCALE6" jdbcType="VARCHAR" property="BANK_SCALE6" />
+    <result column="BANK_SCALE7" jdbcType="VARCHAR" property="BANK_SCALE7" />
+    <result column="BANK_SCALE8" jdbcType="VARCHAR" property="BANK_SCALE8" />
+    <result column="BANK_SCALE9" jdbcType="VARCHAR" property="BANK_SCALE9" />
+    <result column="BANK_SCALE10" jdbcType="VARCHAR" property="BANK_SCALE10" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ORG_NUM, USER_NUM, PARTY_ID, CREATE_TIME, COUNT_BORE_ENTER_SCALE, OLD_COUNT_BORE_ENTER_SCALE, 
+    BANK_SCALE1, BANK_SCALE2, BANK_SCALE3, BANK_SCALE4, BANK_SCALE5, BANK_SCALE6, BANK_SCALE7, 
+    BANK_SCALE8, BANK_SCALE9, BANK_SCALE10
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_BANK_SCALE
+    where ID = #{ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_BANK_SCALE
+    where ID = #{ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.user.bean.TbCsmBankScale">
+    insert into TB_CSM_BANK_SCALE (ID, ORG_NUM, USER_NUM, 
+      PARTY_ID, CREATE_TIME, COUNT_BORE_ENTER_SCALE, 
+      OLD_COUNT_BORE_ENTER_SCALE, BANK_SCALE1, 
+      BANK_SCALE2, BANK_SCALE3, BANK_SCALE4, 
+      BANK_SCALE5, BANK_SCALE6, BANK_SCALE7, 
+      BANK_SCALE8, BANK_SCALE9, BANK_SCALE10
+      )
+    values (#{ID,jdbcType=VARCHAR}, #{ORG_NUM,jdbcType=VARCHAR}, #{USER_NUM,jdbcType=VARCHAR}, 
+      #{PARTY_ID,jdbcType=VARCHAR}, #{CREATE_TIME,jdbcType=TIMESTAMP}, #{COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR}, 
+      #{OLD_COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR}, #{BANK_SCALE1,jdbcType=VARCHAR}, 
+      #{BANK_SCALE2,jdbcType=VARCHAR}, #{BANK_SCALE3,jdbcType=VARCHAR}, #{BANK_SCALE4,jdbcType=VARCHAR}, 
+      #{BANK_SCALE5,jdbcType=VARCHAR}, #{BANK_SCALE6,jdbcType=VARCHAR}, #{BANK_SCALE7,jdbcType=VARCHAR}, 
+      #{BANK_SCALE8,jdbcType=VARCHAR}, #{BANK_SCALE9,jdbcType=VARCHAR}, #{BANK_SCALE10,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.user.bean.TbCsmBankScale">
+    insert into TB_CSM_BANK_SCALE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="ORG_NUM != null">
+        ORG_NUM,
+      </if>
+      <if test="USER_NUM != null">
+        USER_NUM,
+      </if>
+      <if test="PARTY_ID != null">
+        PARTY_ID,
+      </if>
+      <if test="CREATE_TIME != null">
+        CREATE_TIME,
+      </if>
+      <if test="COUNT_BORE_ENTER_SCALE != null">
+        COUNT_BORE_ENTER_SCALE,
+      </if>
+      <if test="OLD_COUNT_BORE_ENTER_SCALE != null">
+        OLD_COUNT_BORE_ENTER_SCALE,
+      </if>
+      <if test="BANK_SCALE1 != null">
+        BANK_SCALE1,
+      </if>
+      <if test="BANK_SCALE2 != null">
+        BANK_SCALE2,
+      </if>
+      <if test="BANK_SCALE3 != null">
+        BANK_SCALE3,
+      </if>
+      <if test="BANK_SCALE4 != null">
+        BANK_SCALE4,
+      </if>
+      <if test="BANK_SCALE5 != null">
+        BANK_SCALE5,
+      </if>
+      <if test="BANK_SCALE6 != null">
+        BANK_SCALE6,
+      </if>
+      <if test="BANK_SCALE7 != null">
+        BANK_SCALE7,
+      </if>
+      <if test="BANK_SCALE8 != null">
+        BANK_SCALE8,
+      </if>
+      <if test="BANK_SCALE9 != null">
+        BANK_SCALE9,
+      </if>
+      <if test="BANK_SCALE10 != null">
+        BANK_SCALE10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=VARCHAR},
+      </if>
+      <if test="ORG_NUM != null">
+        #{ORG_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="USER_NUM != null">
+        #{USER_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="PARTY_ID != null">
+        #{PARTY_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="CREATE_TIME != null">
+        #{CREATE_TIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="COUNT_BORE_ENTER_SCALE != null">
+        #{COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      </if>
+      <if test="OLD_COUNT_BORE_ENTER_SCALE != null">
+        #{OLD_COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE1 != null">
+        #{BANK_SCALE1,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE2 != null">
+        #{BANK_SCALE2,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE3 != null">
+        #{BANK_SCALE3,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE4 != null">
+        #{BANK_SCALE4,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE5 != null">
+        #{BANK_SCALE5,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE6 != null">
+        #{BANK_SCALE6,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE7 != null">
+        #{BANK_SCALE7,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE8 != null">
+        #{BANK_SCALE8,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE9 != null">
+        #{BANK_SCALE9,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE10 != null">
+        #{BANK_SCALE10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.user.bean.TbCsmBankScale">
+    update TB_CSM_BANK_SCALE
+    <set>
+      <if test="ORG_NUM != null">
+        ORG_NUM = #{ORG_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="USER_NUM != null">
+        USER_NUM = #{USER_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="PARTY_ID != null">
+        PARTY_ID = #{PARTY_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="CREATE_TIME != null">
+        CREATE_TIME = #{CREATE_TIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="COUNT_BORE_ENTER_SCALE != null">
+        COUNT_BORE_ENTER_SCALE = #{COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      </if>
+      <if test="OLD_COUNT_BORE_ENTER_SCALE != null">
+        OLD_COUNT_BORE_ENTER_SCALE = #{OLD_COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE1 != null">
+        BANK_SCALE1 = #{BANK_SCALE1,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE2 != null">
+        BANK_SCALE2 = #{BANK_SCALE2,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE3 != null">
+        BANK_SCALE3 = #{BANK_SCALE3,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE4 != null">
+        BANK_SCALE4 = #{BANK_SCALE4,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE5 != null">
+        BANK_SCALE5 = #{BANK_SCALE5,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE6 != null">
+        BANK_SCALE6 = #{BANK_SCALE6,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE7 != null">
+        BANK_SCALE7 = #{BANK_SCALE7,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE8 != null">
+        BANK_SCALE8 = #{BANK_SCALE8,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE9 != null">
+        BANK_SCALE9 = #{BANK_SCALE9,jdbcType=VARCHAR},
+      </if>
+      <if test="BANK_SCALE10 != null">
+        BANK_SCALE10 = #{BANK_SCALE10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.user.bean.TbCsmBankScale">
+    update TB_CSM_BANK_SCALE
+    set ORG_NUM = #{ORG_NUM,jdbcType=VARCHAR},
+      USER_NUM = #{USER_NUM,jdbcType=VARCHAR},
+      PARTY_ID = #{PARTY_ID,jdbcType=VARCHAR},
+      CREATE_TIME = #{CREATE_TIME,jdbcType=TIMESTAMP},
+      COUNT_BORE_ENTER_SCALE = #{COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      OLD_COUNT_BORE_ENTER_SCALE = #{OLD_COUNT_BORE_ENTER_SCALE,jdbcType=VARCHAR},
+      BANK_SCALE1 = #{BANK_SCALE1,jdbcType=VARCHAR},
+      BANK_SCALE2 = #{BANK_SCALE2,jdbcType=VARCHAR},
+      BANK_SCALE3 = #{BANK_SCALE3,jdbcType=VARCHAR},
+      BANK_SCALE4 = #{BANK_SCALE4,jdbcType=VARCHAR},
+      BANK_SCALE5 = #{BANK_SCALE5,jdbcType=VARCHAR},
+      BANK_SCALE6 = #{BANK_SCALE6,jdbcType=VARCHAR},
+      BANK_SCALE7 = #{BANK_SCALE7,jdbcType=VARCHAR},
+      BANK_SCALE8 = #{BANK_SCALE8,jdbcType=VARCHAR},
+      BANK_SCALE9 = #{BANK_SCALE9,jdbcType=VARCHAR},
+      BANK_SCALE10 = #{BANK_SCALE10,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

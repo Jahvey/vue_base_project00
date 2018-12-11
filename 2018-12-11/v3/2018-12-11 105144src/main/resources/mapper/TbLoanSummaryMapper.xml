@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.TbLoanSummaryMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.TbLoanSummary">
+    <id column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="SUMMARY_AMT" jdbcType="DECIMAL" property="summaryAmt" />
+    <result column="SUMMARY_CURRENCY_CD" jdbcType="VARCHAR" property="summaryCurrencyCd" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="SUMMARY_TERM" jdbcType="DECIMAL" property="summaryTerm" />
+    <result column="CYCLE_UNIT" jdbcType="VARCHAR" property="cycleUnit" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="SUMMARY_STATUS_CD" jdbcType="VARCHAR" property="summaryStatusCd" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="NFT_NO" jdbcType="VARCHAR" property="nftNo" />
+    <result column="JJYE" jdbcType="DECIMAL" property="jjye" />
+    <result column="YQTS" jdbcType="DECIMAL" property="yqts" />
+    <result column="FLJG" jdbcType="VARCHAR" property="fljg" />
+    <result column="EXCHANGE_RATE" jdbcType="DECIMAL" property="exchangeRate" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="DFT_ITR" jdbcType="DECIMAL" property="dftItr" />
+    <result column="DFT_ITR_IN" jdbcType="DECIMAL" property="dftItrIn" />
+    <result column="DFT_ITR_OUT" jdbcType="DECIMAL" property="dftItrOut" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="LJYQCS" jdbcType="DECIMAL" property="ljyqcs" />
+    <result column="LXYQCS" jdbcType="DECIMAL" property="lxyqcs" />
+    <result column="TIEXI_STATUS" jdbcType="VARCHAR" property="tiexiStatus" />
+    <result column="TINGXI_STATUS" jdbcType="VARCHAR" property="tingxiStatus" />
+    <result column="JJYQBJ" jdbcType="DECIMAL" property="jjyqbj" />
+    <result column="LJFX" jdbcType="DECIMAL" property="ljfx" />
+    <result column="BYJEZD" jdbcType="DECIMAL" property="byjezd" />
+    <result column="BYDMZD" jdbcType="VARCHAR" property="bydmzd" />
+    <result column="NORMAL_ITR" jdbcType="DECIMAL" property="normalItr" />
+    <result column="ARREAR_ITR" jdbcType="DECIMAL" property="arrearItr" />
+    <result column="PUNISH_ITR" jdbcType="DECIMAL" property="punishItr" />
+    <result column="DEAV_STS" jdbcType="CHAR" property="deavSts" />
+    <result column="ENTRUST_RETURN_PRINCIPAL_ACC" jdbcType="VARCHAR" property="entrustReturnPrincipalAcc" />
+    <result column="ENTRUST_RETURN_INTEREST_ACC" jdbcType="VARCHAR" property="entrustReturnInterestAcc" />
+    <result column="RCN_STAN" jdbcType="VARCHAR" property="rcnStan" />
+    <result column="YWBH" jdbcType="VARCHAR" property="ywbh" />
+    <result column="BACK_CD" jdbcType="VARCHAR" property="backCd" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="IF_DATA_MOVE1" jdbcType="VARCHAR" property="ifDataMove1" />
+    <result column="PERIOD_FLAG" jdbcType="VARCHAR" property="periodFlag" />
+    <result column="PERIOD_NUM" jdbcType="VARCHAR" property="periodNum" />
+    <result column="EXEXT_FLG" jdbcType="VARCHAR" property="exextFlg" />
+    <result column="BZJBL" jdbcType="DECIMAL" property="bzjbl" />
+    <result column="BZJJE" jdbcType="DECIMAL" property="bzjje" />
+    <result column="NEW_PNS_ITR" jdbcType="DECIMAL" property="newPnsItr" />
+    <result column="NEW_FL_ITR" jdbcType="DECIMAL" property="newFlItr" />
+    <result column="AUTO_FLJG" jdbcType="VARCHAR" property="autoFljg" />
+    <result column="ADJUST_FLG" jdbcType="VARCHAR" property="adjustFlg" />
+    <result column="SETTLE_DATE" jdbcType="TIMESTAMP" property="settleDate" />
+    <result column="LAST_PAY_DATE" jdbcType="TIMESTAMP" property="lastPayDate" />
+    <result column="BJ_YQTS" jdbcType="DECIMAL" property="bjYqts" />
+    <result column="LX_YQTS" jdbcType="DECIMAL" property="lxYqts" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SUMMARY_ID, LOAN_ID, PARTY_ID, SUMMARY_AMT, SUMMARY_CURRENCY_CD, BEGIN_DATE, END_DATE, 
+    SUMMARY_TERM, CYCLE_UNIT, USER_NUM, ORG_NUM, CREATE_TIME, UPDATE_TIME, SUMMARY_STATUS_CD, 
+    SUMMARY_NUM, NFT_NO, JJYE, YQTS, FLJG, EXCHANGE_RATE, RMB_AMT, GUARANTY_TYPE, DFT_ITR, 
+    DFT_ITR_IN, DFT_ITR_OUT, CONTRACT_ID, LJYQCS, LXYQCS, TIEXI_STATUS, TINGXI_STATUS, 
+    JJYQBJ, LJFX, BYJEZD, BYDMZD, NORMAL_ITR, ARREAR_ITR, PUNISH_ITR, DEAV_STS, ENTRUST_RETURN_PRINCIPAL_ACC, 
+    ENTRUST_RETURN_INTEREST_ACC, RCN_STAN, YWBH, BACK_CD, IF_DATA_MOVE, IF_DATA_MOVE1, 
+    PERIOD_FLAG, PERIOD_NUM, EXEXT_FLG, BZJBL, BZJJE, NEW_PNS_ITR, NEW_FL_ITR, AUTO_FLJG, 
+    ADJUST_FLG, SETTLE_DATE, LAST_PAY_DATE, BJ_YQTS, LX_YQTS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_SUMMARY
+    where SUMMARY_ID = #{summaryId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_LOAN_SUMMARY
+    where SUMMARY_ID = #{summaryId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.contract.bean.TbLoanSummary">
+    insert into CRMS.TB_LOAN_SUMMARY (SUMMARY_ID, LOAN_ID, PARTY_ID, 
+      SUMMARY_AMT, SUMMARY_CURRENCY_CD, BEGIN_DATE, 
+      END_DATE, SUMMARY_TERM, CYCLE_UNIT, 
+      USER_NUM, ORG_NUM, CREATE_TIME, 
+      UPDATE_TIME, SUMMARY_STATUS_CD, SUMMARY_NUM, 
+      NFT_NO, JJYE, YQTS, 
+      FLJG, EXCHANGE_RATE, RMB_AMT, 
+      GUARANTY_TYPE, DFT_ITR, DFT_ITR_IN, 
+      DFT_ITR_OUT, CONTRACT_ID, LJYQCS, 
+      LXYQCS, TIEXI_STATUS, TINGXI_STATUS, 
+      JJYQBJ, LJFX, BYJEZD, 
+      BYDMZD, NORMAL_ITR, ARREAR_ITR, 
+      PUNISH_ITR, DEAV_STS, ENTRUST_RETURN_PRINCIPAL_ACC, 
+      ENTRUST_RETURN_INTEREST_ACC, RCN_STAN, YWBH, 
+      BACK_CD, IF_DATA_MOVE, IF_DATA_MOVE1, 
+      PERIOD_FLAG, PERIOD_NUM, EXEXT_FLG, 
+      BZJBL, BZJJE, NEW_PNS_ITR, 
+      NEW_FL_ITR, AUTO_FLJG, ADJUST_FLG, 
+      SETTLE_DATE, LAST_PAY_DATE, BJ_YQTS, 
+      LX_YQTS)
+    values (#{summaryId,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, 
+      #{summaryAmt,jdbcType=DECIMAL}, #{summaryCurrencyCd,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{summaryTerm,jdbcType=DECIMAL}, #{cycleUnit,jdbcType=VARCHAR}, 
+      #{userNum,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{summaryStatusCd,jdbcType=VARCHAR}, #{summaryNum,jdbcType=VARCHAR}, 
+      #{nftNo,jdbcType=VARCHAR}, #{jjye,jdbcType=DECIMAL}, #{yqts,jdbcType=DECIMAL}, 
+      #{fljg,jdbcType=VARCHAR}, #{exchangeRate,jdbcType=DECIMAL}, #{rmbAmt,jdbcType=DECIMAL}, 
+      #{guarantyType,jdbcType=VARCHAR}, #{dftItr,jdbcType=DECIMAL}, #{dftItrIn,jdbcType=DECIMAL}, 
+      #{dftItrOut,jdbcType=DECIMAL}, #{contractId,jdbcType=VARCHAR}, #{ljyqcs,jdbcType=DECIMAL}, 
+      #{lxyqcs,jdbcType=DECIMAL}, #{tiexiStatus,jdbcType=VARCHAR}, #{tingxiStatus,jdbcType=VARCHAR}, 
+      #{jjyqbj,jdbcType=DECIMAL}, #{ljfx,jdbcType=DECIMAL}, #{byjezd,jdbcType=DECIMAL}, 
+      #{bydmzd,jdbcType=VARCHAR}, #{normalItr,jdbcType=DECIMAL}, #{arrearItr,jdbcType=DECIMAL}, 
+      #{punishItr,jdbcType=DECIMAL}, #{deavSts,jdbcType=CHAR}, #{entrustReturnPrincipalAcc,jdbcType=VARCHAR}, 
+      #{entrustReturnInterestAcc,jdbcType=VARCHAR}, #{rcnStan,jdbcType=VARCHAR}, #{ywbh,jdbcType=VARCHAR}, 
+      #{backCd,jdbcType=VARCHAR}, #{ifDataMove,jdbcType=VARCHAR}, #{ifDataMove1,jdbcType=VARCHAR}, 
+      #{periodFlag,jdbcType=VARCHAR}, #{periodNum,jdbcType=VARCHAR}, #{exextFlg,jdbcType=VARCHAR}, 
+      #{bzjbl,jdbcType=DECIMAL}, #{bzjje,jdbcType=DECIMAL}, #{newPnsItr,jdbcType=DECIMAL}, 
+      #{newFlItr,jdbcType=DECIMAL}, #{autoFljg,jdbcType=VARCHAR}, #{adjustFlg,jdbcType=VARCHAR}, 
+      #{settleDate,jdbcType=TIMESTAMP}, #{lastPayDate,jdbcType=TIMESTAMP}, #{bjYqts,jdbcType=DECIMAL}, 
+      #{lxYqts,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.contract.bean.TbLoanSummary">
+    insert into CRMS.TB_LOAN_SUMMARY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="summaryId != null">
+        SUMMARY_ID,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="summaryAmt != null">
+        SUMMARY_AMT,
+      </if>
+      <if test="summaryCurrencyCd != null">
+        SUMMARY_CURRENCY_CD,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="summaryTerm != null">
+        SUMMARY_TERM,
+      </if>
+      <if test="cycleUnit != null">
+        CYCLE_UNIT,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="summaryStatusCd != null">
+        SUMMARY_STATUS_CD,
+      </if>
+      <if test="summaryNum != null">
+        SUMMARY_NUM,
+      </if>
+      <if test="nftNo != null">
+        NFT_NO,
+      </if>
+      <if test="jjye != null">
+        JJYE,
+      </if>
+      <if test="yqts != null">
+        YQTS,
+      </if>
+      <if test="fljg != null">
+        FLJG,
+      </if>
+      <if test="exchangeRate != null">
+        EXCHANGE_RATE,
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT,
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE,
+      </if>
+      <if test="dftItr != null">
+        DFT_ITR,
+      </if>
+      <if test="dftItrIn != null">
+        DFT_ITR_IN,
+      </if>
+      <if test="dftItrOut != null">
+        DFT_ITR_OUT,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="ljyqcs != null">
+        LJYQCS,
+      </if>
+      <if test="lxyqcs != null">
+        LXYQCS,
+      </if>
+      <if test="tiexiStatus != null">
+        TIEXI_STATUS,
+      </if>
+      <if test="tingxiStatus != null">
+        TINGXI_STATUS,
+      </if>
+      <if test="jjyqbj != null">
+        JJYQBJ,
+      </if>
+      <if test="ljfx != null">
+        LJFX,
+      </if>
+      <if test="byjezd != null">
+        BYJEZD,
+      </if>
+      <if test="bydmzd != null">
+        BYDMZD,
+      </if>
+      <if test="normalItr != null">
+        NORMAL_ITR,
+      </if>
+      <if test="arrearItr != null">
+        ARREAR_ITR,
+      </if>
+      <if test="punishItr != null">
+        PUNISH_ITR,
+      </if>
+      <if test="deavSts != null">
+        DEAV_STS,
+      </if>
+      <if test="entrustReturnPrincipalAcc != null">
+        ENTRUST_RETURN_PRINCIPAL_ACC,
+      </if>
+      <if test="entrustReturnInterestAcc != null">
+        ENTRUST_RETURN_INTEREST_ACC,
+      </if>
+      <if test="rcnStan != null">
+        RCN_STAN,
+      </if>
+      <if test="ywbh != null">
+        YWBH,
+      </if>
+      <if test="backCd != null">
+        BACK_CD,
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE,
+      </if>
+      <if test="ifDataMove1 != null">
+        IF_DATA_MOVE1,
+      </if>
+      <if test="periodFlag != null">
+        PERIOD_FLAG,
+      </if>
+      <if test="periodNum != null">
+        PERIOD_NUM,
+      </if>
+      <if test="exextFlg != null">
+        EXEXT_FLG,
+      </if>
+      <if test="bzjbl != null">
+        BZJBL,
+      </if>
+      <if test="bzjje != null">
+        BZJJE,
+      </if>
+      <if test="newPnsItr != null">
+        NEW_PNS_ITR,
+      </if>
+      <if test="newFlItr != null">
+        NEW_FL_ITR,
+      </if>
+      <if test="autoFljg != null">
+        AUTO_FLJG,
+      </if>
+      <if test="adjustFlg != null">
+        ADJUST_FLG,
+      </if>
+      <if test="settleDate != null">
+        SETTLE_DATE,
+      </if>
+      <if test="lastPayDate != null">
+        LAST_PAY_DATE,
+      </if>
+      <if test="bjYqts != null">
+        BJ_YQTS,
+      </if>
+      <if test="lxYqts != null">
+        LX_YQTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="summaryId != null">
+        #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryAmt != null">
+        #{summaryAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="summaryCurrencyCd != null">
+        #{summaryCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summaryTerm != null">
+        #{summaryTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="cycleUnit != null">
+        #{cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summaryStatusCd != null">
+        #{summaryStatusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryNum != null">
+        #{summaryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="nftNo != null">
+        #{nftNo,jdbcType=VARCHAR},
+      </if>
+      <if test="jjye != null">
+        #{jjye,jdbcType=DECIMAL},
+      </if>
+      <if test="yqts != null">
+        #{yqts,jdbcType=DECIMAL},
+      </if>
+      <if test="fljg != null">
+        #{fljg,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeRate != null">
+        #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="rmbAmt != null">
+        #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="guarantyType != null">
+        #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="dftItr != null">
+        #{dftItr,jdbcType=DECIMAL},
+      </if>
+      <if test="dftItrIn != null">
+        #{dftItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="dftItrOut != null">
+        #{dftItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="ljyqcs != null">
+        #{ljyqcs,jdbcType=DECIMAL},
+      </if>
+      <if test="lxyqcs != null">
+        #{lxyqcs,jdbcType=DECIMAL},
+      </if>
+      <if test="tiexiStatus != null">
+        #{tiexiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tingxiStatus != null">
+        #{tingxiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="jjyqbj != null">
+        #{jjyqbj,jdbcType=DECIMAL},
+      </if>
+      <if test="ljfx != null">
+        #{ljfx,jdbcType=DECIMAL},
+      </if>
+      <if test="byjezd != null">
+        #{byjezd,jdbcType=DECIMAL},
+      </if>
+      <if test="bydmzd != null">
+        #{bydmzd,jdbcType=VARCHAR},
+      </if>
+      <if test="normalItr != null">
+        #{normalItr,jdbcType=DECIMAL},
+      </if>
+      <if test="arrearItr != null">
+        #{arrearItr,jdbcType=DECIMAL},
+      </if>
+      <if test="punishItr != null">
+        #{punishItr,jdbcType=DECIMAL},
+      </if>
+      <if test="deavSts != null">
+        #{deavSts,jdbcType=CHAR},
+      </if>
+      <if test="entrustReturnPrincipalAcc != null">
+        #{entrustReturnPrincipalAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustReturnInterestAcc != null">
+        #{entrustReturnInterestAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="rcnStan != null">
+        #{rcnStan,jdbcType=VARCHAR},
+      </if>
+      <if test="ywbh != null">
+        #{ywbh,jdbcType=VARCHAR},
+      </if>
+      <if test="backCd != null">
+        #{backCd,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove1 != null">
+        #{ifDataMove1,jdbcType=VARCHAR},
+      </if>
+      <if test="periodFlag != null">
+        #{periodFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="periodNum != null">
+        #{periodNum,jdbcType=VARCHAR},
+      </if>
+      <if test="exextFlg != null">
+        #{exextFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="bzjbl != null">
+        #{bzjbl,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjje != null">
+        #{bzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="newPnsItr != null">
+        #{newPnsItr,jdbcType=DECIMAL},
+      </if>
+      <if test="newFlItr != null">
+        #{newFlItr,jdbcType=DECIMAL},
+      </if>
+      <if test="autoFljg != null">
+        #{autoFljg,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustFlg != null">
+        #{adjustFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null">
+        #{settleDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastPayDate != null">
+        #{lastPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bjYqts != null">
+        #{bjYqts,jdbcType=DECIMAL},
+      </if>
+      <if test="lxYqts != null">
+        #{lxYqts,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.contract.bean.TbLoanSummary">
+    update CRMS.TB_LOAN_SUMMARY
+    <set>
+      <if test="loanId != null">
+        LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryAmt != null">
+        SUMMARY_AMT = #{summaryAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="summaryCurrencyCd != null">
+        SUMMARY_CURRENCY_CD = #{summaryCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summaryTerm != null">
+        SUMMARY_TERM = #{summaryTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="cycleUnit != null">
+        CYCLE_UNIT = #{cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summaryStatusCd != null">
+        SUMMARY_STATUS_CD = #{summaryStatusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryNum != null">
+        SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="nftNo != null">
+        NFT_NO = #{nftNo,jdbcType=VARCHAR},
+      </if>
+      <if test="jjye != null">
+        JJYE = #{jjye,jdbcType=DECIMAL},
+      </if>
+      <if test="yqts != null">
+        YQTS = #{yqts,jdbcType=DECIMAL},
+      </if>
+      <if test="fljg != null">
+        FLJG = #{fljg,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeRate != null">
+        EXCHANGE_RATE = #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="dftItr != null">
+        DFT_ITR = #{dftItr,jdbcType=DECIMAL},
+      </if>
+      <if test="dftItrIn != null">
+        DFT_ITR_IN = #{dftItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="dftItrOut != null">
+        DFT_ITR_OUT = #{dftItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="ljyqcs != null">
+        LJYQCS = #{ljyqcs,jdbcType=DECIMAL},
+      </if>
+      <if test="lxyqcs != null">
+        LXYQCS = #{lxyqcs,jdbcType=DECIMAL},
+      </if>
+      <if test="tiexiStatus != null">
+        TIEXI_STATUS = #{tiexiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tingxiStatus != null">
+        TINGXI_STATUS = #{tingxiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="jjyqbj != null">
+        JJYQBJ = #{jjyqbj,jdbcType=DECIMAL},
+      </if>
+      <if test="ljfx != null">
+        LJFX = #{ljfx,jdbcType=DECIMAL},
+      </if>
+      <if test="byjezd != null">
+        BYJEZD = #{byjezd,jdbcType=DECIMAL},
+      </if>
+      <if test="bydmzd != null">
+        BYDMZD = #{bydmzd,jdbcType=VARCHAR},
+      </if>
+      <if test="normalItr != null">
+        NORMAL_ITR = #{normalItr,jdbcType=DECIMAL},
+      </if>
+      <if test="arrearItr != null">
+        ARREAR_ITR = #{arrearItr,jdbcType=DECIMAL},
+      </if>
+      <if test="punishItr != null">
+        PUNISH_ITR = #{punishItr,jdbcType=DECIMAL},
+      </if>
+      <if test="deavSts != null">
+        DEAV_STS = #{deavSts,jdbcType=CHAR},
+      </if>
+      <if test="entrustReturnPrincipalAcc != null">
+        ENTRUST_RETURN_PRINCIPAL_ACC = #{entrustReturnPrincipalAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustReturnInterestAcc != null">
+        ENTRUST_RETURN_INTEREST_ACC = #{entrustReturnInterestAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="rcnStan != null">
+        RCN_STAN = #{rcnStan,jdbcType=VARCHAR},
+      </if>
+      <if test="ywbh != null">
+        YWBH = #{ywbh,jdbcType=VARCHAR},
+      </if>
+      <if test="backCd != null">
+        BACK_CD = #{backCd,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove1 != null">
+        IF_DATA_MOVE1 = #{ifDataMove1,jdbcType=VARCHAR},
+      </if>
+      <if test="periodFlag != null">
+        PERIOD_FLAG = #{periodFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="periodNum != null">
+        PERIOD_NUM = #{periodNum,jdbcType=VARCHAR},
+      </if>
+      <if test="exextFlg != null">
+        EXEXT_FLG = #{exextFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="bzjbl != null">
+        BZJBL = #{bzjbl,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjje != null">
+        BZJJE = #{bzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="newPnsItr != null">
+        NEW_PNS_ITR = #{newPnsItr,jdbcType=DECIMAL},
+      </if>
+      <if test="newFlItr != null">
+        NEW_FL_ITR = #{newFlItr,jdbcType=DECIMAL},
+      </if>
+      <if test="autoFljg != null">
+        AUTO_FLJG = #{autoFljg,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustFlg != null">
+        ADJUST_FLG = #{adjustFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null">
+        SETTLE_DATE = #{settleDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastPayDate != null">
+        LAST_PAY_DATE = #{lastPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bjYqts != null">
+        BJ_YQTS = #{bjYqts,jdbcType=DECIMAL},
+      </if>
+      <if test="lxYqts != null">
+        LX_YQTS = #{lxYqts,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SUMMARY_ID = #{summaryId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.contract.bean.TbLoanSummary">
+    update CRMS.TB_LOAN_SUMMARY
+    set LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      SUMMARY_AMT = #{summaryAmt,jdbcType=DECIMAL},
+      SUMMARY_CURRENCY_CD = #{summaryCurrencyCd,jdbcType=VARCHAR},
+      BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      SUMMARY_TERM = #{summaryTerm,jdbcType=DECIMAL},
+      CYCLE_UNIT = #{cycleUnit,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      SUMMARY_STATUS_CD = #{summaryStatusCd,jdbcType=VARCHAR},
+      SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR},
+      NFT_NO = #{nftNo,jdbcType=VARCHAR},
+      JJYE = #{jjye,jdbcType=DECIMAL},
+      YQTS = #{yqts,jdbcType=DECIMAL},
+      FLJG = #{fljg,jdbcType=VARCHAR},
+      EXCHANGE_RATE = #{exchangeRate,jdbcType=DECIMAL},
+      RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      DFT_ITR = #{dftItr,jdbcType=DECIMAL},
+      DFT_ITR_IN = #{dftItrIn,jdbcType=DECIMAL},
+      DFT_ITR_OUT = #{dftItrOut,jdbcType=DECIMAL},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      LJYQCS = #{ljyqcs,jdbcType=DECIMAL},
+      LXYQCS = #{lxyqcs,jdbcType=DECIMAL},
+      TIEXI_STATUS = #{tiexiStatus,jdbcType=VARCHAR},
+      TINGXI_STATUS = #{tingxiStatus,jdbcType=VARCHAR},
+      JJYQBJ = #{jjyqbj,jdbcType=DECIMAL},
+      LJFX = #{ljfx,jdbcType=DECIMAL},
+      BYJEZD = #{byjezd,jdbcType=DECIMAL},
+      BYDMZD = #{bydmzd,jdbcType=VARCHAR},
+      NORMAL_ITR = #{normalItr,jdbcType=DECIMAL},
+      ARREAR_ITR = #{arrearItr,jdbcType=DECIMAL},
+      PUNISH_ITR = #{punishItr,jdbcType=DECIMAL},
+      DEAV_STS = #{deavSts,jdbcType=CHAR},
+      ENTRUST_RETURN_PRINCIPAL_ACC = #{entrustReturnPrincipalAcc,jdbcType=VARCHAR},
+      ENTRUST_RETURN_INTEREST_ACC = #{entrustReturnInterestAcc,jdbcType=VARCHAR},
+      RCN_STAN = #{rcnStan,jdbcType=VARCHAR},
+      YWBH = #{ywbh,jdbcType=VARCHAR},
+      BACK_CD = #{backCd,jdbcType=VARCHAR},
+      IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      IF_DATA_MOVE1 = #{ifDataMove1,jdbcType=VARCHAR},
+      PERIOD_FLAG = #{periodFlag,jdbcType=VARCHAR},
+      PERIOD_NUM = #{periodNum,jdbcType=VARCHAR},
+      EXEXT_FLG = #{exextFlg,jdbcType=VARCHAR},
+      BZJBL = #{bzjbl,jdbcType=DECIMAL},
+      BZJJE = #{bzjje,jdbcType=DECIMAL},
+      NEW_PNS_ITR = #{newPnsItr,jdbcType=DECIMAL},
+      NEW_FL_ITR = #{newFlItr,jdbcType=DECIMAL},
+      AUTO_FLJG = #{autoFljg,jdbcType=VARCHAR},
+      ADJUST_FLG = #{adjustFlg,jdbcType=VARCHAR},
+      SETTLE_DATE = #{settleDate,jdbcType=TIMESTAMP},
+      LAST_PAY_DATE = #{lastPayDate,jdbcType=TIMESTAMP},
+      BJ_YQTS = #{bjYqts,jdbcType=DECIMAL},
+      LX_YQTS = #{lxYqts,jdbcType=DECIMAL}
+    where SUMMARY_ID = #{summaryId,jdbcType=VARCHAR}
+  </update>
+</mapper>

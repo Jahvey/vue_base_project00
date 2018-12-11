@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+ 
+<generatorConfiguration>
+    <!-- 配置文件路径 -->
+    <properties resource="generatorConfig.properties"/>
+ 
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+ 
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+ 		 <!-- 设置不生成注释  suppressAllComments ：When the property is true, no comments will be added to any generated element.  false 生成注释-->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+            <property name="javaFileEncoding" value="UTF-8"/>
+        </commentGenerator>
+ 
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+ 
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        
+ 		<!-- 指定JavaBean生成的位置，.\src表示直接在项目的src目录下生成 -->  
+        <javaModelGenerator targetPackage="${model.package}" targetProject="${target.project}">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="javaExampleTargetPackage" value="${model.package}"/>
+            <property name="javaExampleTargetProject" value="${target.project}"/>
+        </javaModelGenerator>
+ 
+ 		 <!-- 指定sql映射文件生成的位置 --> 
+        <sqlMapGenerator targetPackage="${xml.package}"  targetProject="${xml.target.project}">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+ 
+ 		<!-- 指定dao接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="${mapper.package}"
+                             targetProject="${target.project}">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+  		<!-- 指定每个table表生成的策略     tableName="%"   默认生成所有的表名 -->  
+        <!-- domainObjectName可省略 -->  
+        <!-- <table tableName="tb_csm_corporation" domainObjectName="TbCsmCorporation">
+        	需要插入时返回主键值，请将此属性打开，column值为主键的列明
+            <generatedKey column="party_id" sqlStatement="oracle" type="post" identity="true"/>
+        </table>
+ 		
+ 		<table tableName="tb_csm_bond_info" domainObjectName="TbCsmBondInfo"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+        </table>  
+ 		
+ 		<table tableName="tb_csm_investment_info" domainObjectName="TbCsmInvestmentInfo"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+        </table>
+ 		
+ 		<table tableName="tb_csm_bank_scale" domainObjectName="TbCsmBankScale"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="true" />
+        </table>
+ 		
+ 		<table tableName="tb_csm_party" domainObjectName="TbCsmParty"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+        </table>
+        
+        <table tableName="TB_CSM_MANAGEMENT_TEAM" domainObjectName="TbCsmManagementTeam"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="true" />
+        </table>
+ 		
+ 		<table tableName="tb_csm_natural_person" domainObjectName="TbCsmNaturalPerson"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+        </table>
+        
+        <table tableName="v_crd_party_limit" domainObjectName="VCrdPartyLimit"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="true" />
+        </table>
+        
+ 		<table tableName="TB_IRM_INTERNAL_RATING_APPLY" domainObjectName="TbIrmInternalRatingApply"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table> -->
+        
+       <table tableName="TB_BIZ_APPROVE" domainObjectName="TbBizApprove"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+ 		
+ 		<table tableName="TB_BIZ_AMOUNT_APPLY" domainObjectName="TbBizAmountApply"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+ 		
+ 		<table tableName="TB_BIZ_AMOUNT_APPROVE" domainObjectName="TbBizAmountApprove"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+ 		
+ 		<table tableName="TB_BIZ_AMOUNT_DETAIL_APPLY" domainObjectName="TbBizAmountDetailApply"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+
+		<table tableName="TB_BIZ_AMOUNT_DETAIL_APPROVE" domainObjectName="TbBizAmountDetailApprove"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+			
+		<table tableName="TB_BIZ_AMOUNT_LOANRATE_APPLY" domainObjectName="TbBizAmountLoanrateApply"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+
+			
+		<table tableName="TB_BIZ_AMOUNT_LOANRATE_APPROVE" domainObjectName="TbBizAmountLoanrateApprove"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+			
+		<table tableName="TB_BIZ_APPLY" domainObjectName="TbBizApply"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+
+		<table tableName="TB_BIZ_ATTACHED" domainObjectName="TbBizAttached"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+
+		<table tableName="TB_BIZ_BANK_MEMBER_APPLY" domainObjectName="TbBizBankMemberApply"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+		
+		<table tableName="TB_BIZ_BANK_STRUCT_APPLY" domainObjectName="TbBizBankStructApply"
+            enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"  selectByExampleQueryId="false">
+            <property
+                name="useActualColumnNames"
+                value="false" />
+        </table>
+
+
+    </context>
+</generatorConfiguration>
