@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.loan.mycustomer.mapper.MyCustomerMapper">
+    
+    <resultMap id="resultMap" type="com.example.loan.user.bean.NaturealInfo">
+    <result column="PARTY_ID" javaType="string" property="partyId"/>
+    <result column="PARTY_NUM" javaType="string" property="partyNum"/>
+    <result column="PARTY_NAME" javaType="string" property="partyName"/>
+    <result column="CERT_TYPE" javaType="string" property="certType"/>
+    <result column="CERT_NUM" javaType="string" property="certNum"/>
+    <result column="MIDDLE_CODE" javaType="string" property="middelCode"/>
+    <result column="XF_CREDIT_RATING_CD" javaType="string" property="xfCreditRatingCd"/>
+    <result column="JY_CREDIT_RATING_CD" javaType="string" property="jyCreditRatingCd"/>
+    <result column="PARTY_TYPE_CD" javaType="string" property="partyTypeCd"/>
+    <result column="USER_NUM" javaType="string" property="mainUserNum"/>
+    <result column="ORG_NUM" javaType="string" property="mainOrgNum"/>
+    <result column="PF_AMT" javaType="string" property="pfAmt"/>
+    <result column="PF_BALANCE" javaType="string" property="pfBalance"/>
+	</resultMap>
+
+	<resultMap id="BaseResultMap" type="com.example.loan.user.bean.TbCsmParty">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="PARTY_ID" />
+    <result column="PARTY_NUM" jdbcType="VARCHAR" property="PARTY_NUM" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="PARTY_TYPE_CD" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="PARTY_NAME" />
+    <result column="ECIF_PARTY_NUM" jdbcType="VARCHAR" property="ECIF_PARTY_NUM" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="CREATE_TIME" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="UPDATE_TIME" />
+    <result column="EXAMINE_STATE" jdbcType="VARCHAR" property="EXAMINE_STATE" />
+    <result column="CUST_PROPERTY_STATUS" jdbcType="VARCHAR" property="CUST_PROPERTY_STATUS" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="IF_DATA_MOVE" />
+    <result column="IS_POTENTIAL_CUST" jdbcType="VARCHAR" property="IS_POTENTIAL_CUST" />
+    <result column="LEG_ORG" jdbcType="VARCHAR" property="LEG_ORG" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PARTY_ID, PARTY_NUM, PARTY_TYPE_CD, PARTY_NAME, ECIF_PARTY_NUM, CREATE_TIME, UPDATE_TIME, 
+    EXAMINE_STATE, CUST_PROPERTY_STATUS, IF_DATA_MOVE, IS_POTENTIAL_CUST, LEG_ORG
+  </sql>
+  <select id="getTbCsmPartyById" parameterType="com.example.loan.user.bean.NaturealInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_PARTY
+    where PARTY_ID = #{PARTY_ID,jdbcType=VARCHAR}
+  </select>
+
+	<select id="getTbCsmParty" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_PARTY
+    where PARTY_ID = #{PARTY_ID,jdbcType=VARCHAR}
+  </select>
+
+	 <resultMap id="BaseNaturalResultMap" type="com.example.loan.user.bean.TbCsmNaturalPerson">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="PARTY_ID" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="PARTY_NAME" />
+    <result column="ENGLISH_NAME" jdbcType="VARCHAR" property="ENGLISH_NAME" />
+    <result column="CHINESE_SHORT_NAME" jdbcType="VARCHAR" property="CHINESE_SHORT_NAME" />
+    <result column="ENGLISH_SHORT_NAME" jdbcType="VARCHAR" property="ENGLISH_SHORT_NAME" />
+    <result column="GENDER_CD" jdbcType="VARCHAR" property="GENDER_CD" />
+    <result column="MARRIAGE_CD" jdbcType="VARCHAR" property="MARRIAGE_CD" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="BIRTHDAY" />
+    <result column="DEGREE_CD" jdbcType="VARCHAR" property="DEGREE_CD" />
+    <result column="EDUCATION_BACKGROUD_CD" jdbcType="VARCHAR" property="EDUCATION_BACKGROUD_CD" />
+    <result column="NATION" jdbcType="VARCHAR" property="NATION" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="CREATE_TIME" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="UPDATE_TIME" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="UPDATE_USER_NUM" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="UPDATE_ORG_NUM" />
+    <result column="NATURAL_PERSON_TYPE_CD" jdbcType="VARCHAR" property="NATURAL_PERSON_TYPE_CD" />
+    <result column="WORK_UNIT" jdbcType="VARCHAR" property="WORK_UNIT" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="CERT_TYPE" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="CERT_NUM" />
+    <result column="HUKOU_PROPERTY" jdbcType="VARCHAR" property="HUKOU_PROPERTY" />
+    <result column="IS_FARMER" jdbcType="VARCHAR" property="IS_FARMER" />
+    <result column="HUKOU_REGISTED" jdbcType="VARCHAR" property="HUKOU_REGISTED" />
+    <result column="STREET_POLICE_STATION" jdbcType="VARCHAR" property="STREET_POLICE_STATION" />
+    <result column="HEALTH_STATE" jdbcType="VARCHAR" property="HEALTH_STATE" />
+    <result column="PROFESSION" jdbcType="VARCHAR" property="PROFESSION" />
+    <result column="PROFESSIONAL_TITLE" jdbcType="VARCHAR" property="PROFESSIONAL_TITLE" />
+    <result column="ACCOUNTING_ASSISTANT" jdbcType="VARCHAR" property="ACCOUNTING_ASSISTANT" />
+    <result column="POSITION_PROPERTY" jdbcType="VARCHAR" property="POSITION_PROPERTY" />
+    <result column="WORK_YEARS" jdbcType="VARCHAR" property="WORK_YEARS" />
+    <result column="FAMILY_NUMBER" jdbcType="VARCHAR" property="FAMILY_NUMBER" />
+    <result column="PROVIDE_FOR_NUMBER" jdbcType="VARCHAR" property="PROVIDE_FOR_NUMBER" />
+    <result column="FAMILY_ADDRESS" jdbcType="VARCHAR" property="FAMILY_ADDRESS" />
+    <result column="HOUSE_PROPERTY" jdbcType="VARCHAR" property="HOUSE_PROPERTY" />
+    <result column="FAMILY_PHONE" jdbcType="VARCHAR" property="FAMILY_PHONE" />
+    <result column="PHONE_NUMBER" jdbcType="VARCHAR" property="PHONE_NUMBER" />
+    <result column="UNIT_ADRESS" jdbcType="VARCHAR" property="UNIT_ADRESS" />
+    <result column="UNIT_PHONE" jdbcType="VARCHAR" property="UNIT_PHONE" />
+    <result column="INDUSTRY" jdbcType="VARCHAR" property="INDUSTRY" />
+    <result column="INDUSTRY_DESC" jdbcType="VARCHAR" property="INDUSTRY_DESC" />
+    <result column="JOINT_GUARANTEE" jdbcType="VARCHAR" property="JOINT_GUARANTEE" />
+    <result column="STOCKHOLDER_OF_BANK" jdbcType="VARCHAR" property="STOCKHOLDER_OF_BANK" />
+    <result column="WHETHER_BLACK_LIST" jdbcType="VARCHAR" property="WHETHER_BLACK_LIST" />
+    <result column="BLACK_LIST_REASON" jdbcType="VARCHAR" property="BLACK_LIST_REASON" />
+    <result column="IS_BANK_EMPLOYEE" jdbcType="VARCHAR" property="IS_BANK_EMPLOYEE" />
+    <result column="EMPLOYEE_GRADE" jdbcType="VARCHAR" property="EMPLOYEE_GRADE" />
+    <result column="IS_SAMLL_LOAND_EMP" jdbcType="VARCHAR" property="IS_SAMLL_LOAND_EMP" />
+    <result column="COUNTRY_SIGN" jdbcType="VARCHAR" property="COUNTRY_SIGN" />
+    <result column="IS_BASEBANK_RELA_CUST" jdbcType="VARCHAR" property="IS_BASEBANK_RELA_CUST" />
+    <result column="IS_THIRD_CUST" jdbcType="VARCHAR" property="IS_THIRD_CUST" />
+    <result column="THIRD_CUST_TYPE_CD" jdbcType="VARCHAR" property="THIRD_CUST_TYPE_CD" />
+    <result column="MIDDLE_CODE" jdbcType="VARCHAR" property="MIDDLE_CODE" />
+    <result column="WEIXIN_NUM" jdbcType="VARCHAR" property="WEIXIN_NUM" />
+    <result column="COMMUNICATION_ADDRESS" jdbcType="VARCHAR" property="COMMUNICATION_ADDRESS" />
+    <result column="COMMUNICATION_ADDRESS_CODE" jdbcType="VARCHAR" property="COMMUNICATION_ADDRESS_CODE" />
+    <result column="LIVE_ADDRESS_CODE" jdbcType="VARCHAR" property="LIVE_ADDRESS_CODE" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="EMAIL" />
+    <result column="UNIT_ADDRESS_CODE" jdbcType="VARCHAR" property="UNIT_ADDRESS_CODE" />
+    <result column="ANNUALSALARY" jdbcType="VARCHAR" property="ANNUALSALARY" />
+    <result column="RESDNT_CHAR_CD" jdbcType="VARCHAR" property="RESDNT_CHAR_CD" />
+    <result column="SCH_NAME" jdbcType="VARCHAR" property="SCH_NAME" />
+    <result column="CERT_CREATE_DATE" jdbcType="TIMESTAMP" property="CERT_CREATE_DATE" />
+    <result column="CERT_END_DATE" jdbcType="TIMESTAMP" property="CERT_END_DATE" />
+    <result column="IFCERTIFICATE" jdbcType="VARCHAR" property="IFCERTIFICATE" />
+    <result column="NATIFLAG" jdbcType="VARCHAR" property="NATIFLAG" />
+    <result column="NATURE_OF_UNIT" jdbcType="VARCHAR" property="NATURE_OF_UNIT" />
+    <result column="SCALE_OF_UNIT" jdbcType="VARCHAR" property="SCALE_OF_UNIT" />
+    <result column="FLG_SMS" jdbcType="VARCHAR" property="FLG_SMS" />
+    <result column="CUST_TYPE" jdbcType="VARCHAR" property="CUST_TYPE" />
+  </resultMap>
+  <sql id="Base_Natural_Column_List">
+    PARTY_ID, PARTY_NAME, ENGLISH_NAME, CHINESE_SHORT_NAME, ENGLISH_SHORT_NAME, GENDER_CD, 
+    MARRIAGE_CD, BIRTHDAY, DEGREE_CD, EDUCATION_BACKGROUD_CD, NATION, REMARK, CREATE_TIME, 
+    UPDATE_TIME, UPDATE_USER_NUM, UPDATE_ORG_NUM, NATURAL_PERSON_TYPE_CD, WORK_UNIT, 
+    CERT_TYPE, CERT_NUM, HUKOU_PROPERTY, IS_FARMER, HUKOU_REGISTED, STREET_POLICE_STATION, 
+    HEALTH_STATE, PROFESSION, PROFESSIONAL_TITLE, ACCOUNTING_ASSISTANT, POSITION_PROPERTY, 
+    WORK_YEARS, FAMILY_NUMBER, PROVIDE_FOR_NUMBER, FAMILY_ADDRESS, HOUSE_PROPERTY, FAMILY_PHONE, 
+    PHONE_NUMBER, UNIT_ADRESS, UNIT_PHONE, INDUSTRY, INDUSTRY_DESC, JOINT_GUARANTEE, 
+    STOCKHOLDER_OF_BANK, WHETHER_BLACK_LIST, BLACK_LIST_REASON, IS_BANK_EMPLOYEE, EMPLOYEE_GRADE, 
+    IS_SAMLL_LOAND_EMP, COUNTRY_SIGN, IS_BASEBANK_RELA_CUST, IS_THIRD_CUST, THIRD_CUST_TYPE_CD, 
+    MIDDLE_CODE, WEIXIN_NUM, COMMUNICATION_ADDRESS, COMMUNICATION_ADDRESS_CODE, LIVE_ADDRESS_CODE, 
+    EMAIL, UNIT_ADDRESS_CODE, ANNUALSALARY, RESDNT_CHAR_CD, SCH_NAME, CERT_CREATE_DATE, 
+    CERT_END_DATE, IFCERTIFICATE, NATIFLAG, NATURE_OF_UNIT, SCALE_OF_UNIT, FLG_SMS, CUST_TYPE
+  </sql>
+  
+  <select id="getTbCsmNaturalPersonById" parameterType="java.lang.String" resultMap="BaseNaturalResultMap">
+    select 
+    <include refid="Base_Natural_Column_List" />
+     from TB_CSM_NATURAL_PERSON
+    where PARTY_ID = #{PARTY_ID,jdbcType=VARCHAR}
+  </select>
+
+	<select id="getTbCsmNaturalPerson" parameterType="com.example.loan.user.bean.NaturealInfo" resultMap="BaseNaturalResultMap">
+    select 
+    <include refid="Base_Natural_Column_List" />
+     from TB_CSM_NATURAL_PERSON
+    where PARTY_ID = #{PARTY_ID,jdbcType=VARCHAR}
+  </select>
+
+	<sql id="Base_Party_Column_List" >
+        id, user_name, password, user_sex, nick_name,state
+    </sql>
+
+	<sql id="Base_Natureal_Person_Column_List" >
+        CERT_TYPE,
+        CERT_NUM,
+        MIDDLE_CODE
+    </sql>
+
+	<select id="getAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+       FROM users
+    </select>
+
+	<select id="queryNaturalForDesk" parameterType="java.util.HashMap" resultMap="resultMap">
+		SELECT t1.PARTY_ID,
+         t1.PARTY_NUM,
+         t1.PARTY_NAME,
+         np.CERT_TYPE,
+         np.CERT_NUM,
+         np.MIDDLE_CODE,
+         t5.GENERAL_ADJUST_RATING_CD XF_CREDIT_RATING_CD,
+         t6.GENERAL_ADJUST_RATING_CD JY_CREDIT_RATING_CD,
+         t1.PARTY_TYPE_CD,
+         t1.USER_NUM,
+         t1.org_num,
+         biz.credit_amt pf_amt,
+       	biz.used_amt_real pf_balance
+    FROM TB_CSM_NATURAL_PERSON np
+      left join TB_IRM_INTERNAL_RATING_APPLY t5 on np.party_id = t5.party_id and t5.RATING_STATE = '03' and t5.rating_type='1'
+      left join TB_IRM_INTERNAL_RATING_APPLY t6 on np.party_id = t6.party_id and t6.RATING_STATE = '03' and t6.rating_type='2'
+      left join v_crd_party_limit biz on biz.party_id=np.party_id and biz.limit_type='02'
+      left join TB_LST_INFO T  on np.party_id = T.party_id
+      left join V_CSM_PARTY t1 on np.party_id = t1.party_id
+      left join tb_csm_management_team t3 on t1.party_id=t3.party_id
+    where 
+       t3.user_num=#curUserNum# 
+       and t3.org_num=#orgcode#
+       and t1.examine_state='3'
+       and t1.is_potential_cust = '1'
+       
+       and( T.LIST_STATUS != '2' or T.LIST_STATUS is null)
+       
+       <if test="certType !=null and certType !='' ">
+        and np.CERT_TYPE =#certType#
+       </if>
+       
+       <if test="certNum !=null and certNum !='' ">
+         and np.CERT_NUM =#certNum#
+       </if>
+       
+       <if test="middelCode !=null and middelCode !='' ">
+          and np.MIDDLE_CODE =#middelCode#
+       </if>
+       
+       <if test="partyName !=null and partyName !='' ">
+          and t1.PARTY_NAME like '%$partyName$%'
+       </if>
+       
+       
+ </select>
+ 
+ 
+ <select id="acquireNaturalList" parameterType="java.util.HashMap" resultMap="resultMap">
+ SELECT distinct t1.PARTY_ID,
+         t1.PARTY_NUM,
+         t1.PARTY_NAME,
+         np.CERT_TYPE,
+         np.CERT_NUM,
+         np.MIDDLE_CODE,
+         t5.GENERAL_ADJUST_RATING_CD as XF_CREDIT_RATING_CD,
+         t6.GENERAL_ADJUST_RATING_CD as JY_CREDIT_RATING_CD,
+         t1.PARTY_TYPE_CD,
+         t1.USER_NUM,
+         t1.org_num,
+         biz.credit_amt  as pf_amt,
+         biz.used_amt_real as pf_balance,
+         oo.leg_org
+    FROM TB_CSM_NATURAL_PERSON np
+      left join TB_IRM_INTERNAL_RATING_APPLY t5 on np.party_id = t5.party_id and t5.RATING_STATE = '03' and t5.rating_type='1'
+      left join TB_IRM_INTERNAL_RATING_APPLY t6 on np.party_id = t6.party_id and t6.RATING_STATE = '03' and t6.rating_type='2'
+      left join v_crd_party_limit biz on biz.party_id=np.party_id
+      , V_CSM_PARTY t1,om_organization oo
+    where t1.party_id = np.party_id 
+       and t1.is_potential_cust = '1' 
+       and t1.examine_state='3' 
+       and t1.party_id not in (select t.party_id from tb_csm_management_team t where t.user_num =#userNum#  and t.org_num=#orgNum#)
+       and oo.leg_org = ( select  leg_org  from om_organization where orgcode=#orgNum#)
+      
+       <if test="partyNname !=null and partyName !=''">
+         	and t1.PARTY_NAME like '%$partyName$%'
+       </if>
+       <if test="certType !=null and certType !=''">
+         	  and np.CERT_TYPE =#certType#
+       </if>
+       <if test="certNum !=null and certNum !=''">
+         	  and np.CERT_NUM =#certNum#
+       </if>
+       <if test="middelCode !=null and middelCode !=''">
+         	  and np.CERT_NUM =#middelCode#
+       </if>
+       
+ </select>
+ 
+ <select id="queryPrivateForDesk" parameterType="java.util.HashMap" resultMap="resultMap">
+SELECT t1.PARTY_ID,
+         t1.PARTY_NUM,
+         t1.PARTY_NAME,
+         np.CERT_TYPE,
+         np.CERT_NUM,
+         np.MIDDLE_CODE,
+         t5.GENERAL_ADJUST_RATING_CD as CREDIT_RATING_CD,
+         t1.PARTY_TYPE_CD,
+         ct.USER_NUM,
+         biz.pf_amt,
+       biz.pf_balance
+    FROM TB_CSM_NATURAL_PERSON np
+      left join TB_IRM_INTERNAL_RATING_APPLY t5 on np.party_id = t5.party_id and t5.RATING_STATE = '03'
+      left join tb_csm_management_team ct on np.party_id = ct.party_id and ct.user_placing_cd='01' 
+       left join (select tb.party_id,
+       sum(tb.CREDIT_AMOUNT) as pf_amt, 
+       sum(tb.CREDIT_AVI) as pf_balance 
+  	from
+       tb_biz_approve  ta,
+       tb_biz_amount_approve tb
+ where
+    ta.APPROVE_ID = tb.APPROVE_ID
+   and ta.become_effective_mark in ('03', '05')
+   and ta.approve_conclusion in ('1', '3')
+   group by tb.party_id)biz on biz.party_id=np.party_id
+      , TB_CSM_PARTY t1
+    where t1.party_id = np.party_id 
+       and np.natural_person_type_cd in ('2', '3')
+       and t1.is_potential_cust = '1' 
+       and t1.examine_state='3'
+       
+       <if test="curUserNum != null and curUserNum !='' ">
+       and t1.PARTY_ID in 
+		(select party_id from tb_csm_management_team where user_num=#curUserNum# and org_num=#orgcode# ) 
+       </if>
+       
+       <if test="partyName != null and partyName !='' ">
+       and t1.PARTY_NAME like '%$partyName$%'
+       </if>
+      
+       <if test="certType != null and certType !='' ">
+       and np.CERT_TYPE =#certType#
+       </if>
+      
+	  <if test="certNum != null and certNum !='' ">
+       and np.CERT_NUM =#certNum#
+       </if>
+	 
+	  <if test="middelCode != null and middelCode !='' ">
+       and np.CERT_NUM =#middelCode#
+       </if>
+
+ </select>
+
+<select id="queryNaturalTeamPage" parameterType="java.util.HashMap" resultType="com.bos.csm.naturaler.naturalperson.TbCsmNaturalTeamView">
+  Select
+           p.party_id as partyId,
+	       p.party_num as partyNum,
+	       p.party_name as partyName,
+	        
+	       n.certificate_type_cd as certificateTypeCd,
+	       n.certificate_num as certificateNum    
+  From tb_csm_natural_person n left
+  Join tb_csm_party p on p.party_id = n.party_id
+		
+		<if test="partyName != null and partyName != '' ">
+		and p.party_name like '%$partyName$%'
+		</if>
+		
+		<if test="partyNum != null and partyNum != '' ">
+		and p.party_num = #partyNum#
+		</if>
+		
+	   <if test="corePartyNum != null and corePartyNum != '' ">
+		and p.core_party_num = #corePartyNum#
+		</if>
+	            
+</select>
+    
+    
+<select id="queryNaturalContactPage" parameterType="java.util.HashMap" resultType="com.bos.csm.naturaler.naturalperson.TbCsmNaturalContactView">
+  select 
+    p.party_id as partyId,     
+    p.party_name as partyName,
+    a.address_type_cd as addressTypeCd,
+    a.nationality_cd as nationalityCd,
+    a.telephone as telephone,
+    a.email as email,
+    a.mobile_phone as mobilePhone,
+    a.update_time as updateTime,
+  a.address_id as addressId,
+   a.linkman_name as linkmanName
+from tb_csm_natural_person p
+join tb_csm_address a ON p.party_id = a.party_id
+	   
+	   <if test="partyId !=null and partyId !='' ">
+	   and p.party_id = #partyId#
+	   </if>
+             
+</select>
+    
+</mapper>
