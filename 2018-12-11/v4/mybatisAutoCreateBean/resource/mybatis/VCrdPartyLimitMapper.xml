@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.VCrdPartyLimitMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.VCrdPartyLimit">
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="LIMIT_ID" jdbcType="VARCHAR" property="limitId" />
+    <result column="LIMIT_TYPE" jdbcType="VARCHAR" property="limitType" />
+    <result column="CREDIT_AMT" jdbcType="DECIMAL" property="creditAmt" />
+    <result column="USED_AMT" jdbcType="DECIMAL" property="usedAmt" />
+    <result column="USED_AMT_REAL" jdbcType="DECIMAL" property="usedAmtReal" />
+    <result column="AVAILABLE_AMT" jdbcType="DECIMAL" property="availableAmt" />
+    <result column="AVAILABLE_AMT_REAL" jdbcType="DECIMAL" property="availableAmtReal" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.VCrdPartyLimit">
+    insert into CRMS.V_CRD_PARTY_LIMIT (PARTY_ID, LIMIT_ID, LIMIT_TYPE, 
+      CREDIT_AMT, USED_AMT, USED_AMT_REAL, 
+      AVAILABLE_AMT, AVAILABLE_AMT_REAL, PARTY_NAME, 
+      CERT_TYPE, CERT_NUM, USER_NUM, 
+      ORG_NUM, BEGIN_DATE, END_DATE
+      )
+    values (#{partyId,jdbcType=VARCHAR}, #{limitId,jdbcType=VARCHAR}, #{limitType,jdbcType=VARCHAR}, 
+      #{creditAmt,jdbcType=DECIMAL}, #{usedAmt,jdbcType=DECIMAL}, #{usedAmtReal,jdbcType=DECIMAL}, 
+      #{availableAmt,jdbcType=DECIMAL}, #{availableAmtReal,jdbcType=DECIMAL}, #{partyName,jdbcType=VARCHAR}, 
+      #{certType,jdbcType=VARCHAR}, #{certNum,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, 
+      #{orgNum,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.VCrdPartyLimit">
+    insert into CRMS.V_CRD_PARTY_LIMIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="limitId != null">
+        LIMIT_ID,
+      </if>
+      <if test="limitType != null">
+        LIMIT_TYPE,
+      </if>
+      <if test="creditAmt != null">
+        CREDIT_AMT,
+      </if>
+      <if test="usedAmt != null">
+        USED_AMT,
+      </if>
+      <if test="usedAmtReal != null">
+        USED_AMT_REAL,
+      </if>
+      <if test="availableAmt != null">
+        AVAILABLE_AMT,
+      </if>
+      <if test="availableAmtReal != null">
+        AVAILABLE_AMT_REAL,
+      </if>
+      <if test="partyName != null">
+        PARTY_NAME,
+      </if>
+      <if test="certType != null">
+        CERT_TYPE,
+      </if>
+      <if test="certNum != null">
+        CERT_NUM,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="limitId != null">
+        #{limitId,jdbcType=VARCHAR},
+      </if>
+      <if test="limitType != null">
+        #{limitType,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmt != null">
+        #{creditAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="usedAmt != null">
+        #{usedAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="usedAmtReal != null">
+        #{usedAmtReal,jdbcType=DECIMAL},
+      </if>
+      <if test="availableAmt != null">
+        #{availableAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="availableAmtReal != null">
+        #{availableAmtReal,jdbcType=DECIMAL},
+      </if>
+      <if test="partyName != null">
+        #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNum != null">
+        #{certNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="scim.loan.domain.VCrdPartyLimit">
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="LIMIT_ID" jdbcType="VARCHAR" property="limitId" />
+    <result column="LIMIT_TYPE" jdbcType="VARCHAR" property="limitType" />
+    <result column="CREDIT_AMT" jdbcType="DECIMAL" property="creditAmt" />
+    <result column="USED_AMT" jdbcType="DECIMAL" property="usedAmt" />
+    <result column="USED_AMT_REAL" jdbcType="DECIMAL" property="usedAmtReal" />
+    <result column="AVAILABLE_AMT" jdbcType="DECIMAL" property="availableAmt" />
+    <result column="AVAILABLE_AMT_REAL" jdbcType="DECIMAL" property="availableAmtReal" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+  </resultMap>
+  <insert id="insert" parameterType="scim.loan.domain.VCrdPartyLimit">
+    insert into CRMS.V_CRD_PARTY_LIMIT (PARTY_ID, LIMIT_ID, LIMIT_TYPE, 
+      CREDIT_AMT, USED_AMT, USED_AMT_REAL, 
+      AVAILABLE_AMT, AVAILABLE_AMT_REAL, PARTY_NAME, 
+      CERT_TYPE, CERT_NUM, USER_NUM, 
+      ORG_NUM, BEGIN_DATE, END_DATE
+      )
+    values (#{partyId,jdbcType=VARCHAR}, #{limitId,jdbcType=VARCHAR}, #{limitType,jdbcType=VARCHAR}, 
+      #{creditAmt,jdbcType=DECIMAL}, #{usedAmt,jdbcType=DECIMAL}, #{usedAmtReal,jdbcType=DECIMAL}, 
+      #{availableAmt,jdbcType=DECIMAL}, #{availableAmtReal,jdbcType=DECIMAL}, #{partyName,jdbcType=VARCHAR}, 
+      #{certType,jdbcType=VARCHAR}, #{certNum,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, 
+      #{orgNum,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="scim.loan.domain.VCrdPartyLimit">
+    insert into CRMS.V_CRD_PARTY_LIMIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="limitId != null">
+        LIMIT_ID,
+      </if>
+      <if test="limitType != null">
+        LIMIT_TYPE,
+      </if>
+      <if test="creditAmt != null">
+        CREDIT_AMT,
+      </if>
+      <if test="usedAmt != null">
+        USED_AMT,
+      </if>
+      <if test="usedAmtReal != null">
+        USED_AMT_REAL,
+      </if>
+      <if test="availableAmt != null">
+        AVAILABLE_AMT,
+      </if>
+      <if test="availableAmtReal != null">
+        AVAILABLE_AMT_REAL,
+      </if>
+      <if test="partyName != null">
+        PARTY_NAME,
+      </if>
+      <if test="certType != null">
+        CERT_TYPE,
+      </if>
+      <if test="certNum != null">
+        CERT_NUM,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="limitId != null">
+        #{limitId,jdbcType=VARCHAR},
+      </if>
+      <if test="limitType != null">
+        #{limitType,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmt != null">
+        #{creditAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="usedAmt != null">
+        #{usedAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="usedAmtReal != null">
+        #{usedAmtReal,jdbcType=DECIMAL},
+      </if>
+      <if test="availableAmt != null">
+        #{availableAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="availableAmtReal != null">
+        #{availableAmtReal,jdbcType=DECIMAL},
+      </if>
+      <if test="partyName != null">
+        #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNum != null">
+        #{certNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

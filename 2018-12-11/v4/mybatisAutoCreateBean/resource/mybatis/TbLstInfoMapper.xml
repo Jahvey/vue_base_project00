@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.TbLstInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.TbLstInfo">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="LIST_STATUS" jdbcType="VARCHAR" property="listStatus" />
+    <result column="APPROVE_STATUS" jdbcType="VARCHAR" property="approveStatus" />
+    <result column="OPER_USERID" jdbcType="VARCHAR" property="operUserid" />
+    <result column="OPER_ORGCODE" jdbcType="VARCHAR" property="operOrgcode" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="PD_YJ" jdbcType="VARCHAR" property="pdYj" />
+    <result column="NEW_STATUS" jdbcType="VARCHAR" property="newStatus" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PARTY_ID, LIST_STATUS, APPROVE_STATUS, OPER_USERID, OPER_ORGCODE, CREATE_DATE, PD_YJ, 
+    NEW_STATUS, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LST_INFO
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_LST_INFO
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.TbLstInfo">
+    insert into CRMS.TB_LST_INFO (PARTY_ID, LIST_STATUS, APPROVE_STATUS, 
+      OPER_USERID, OPER_ORGCODE, CREATE_DATE, 
+      PD_YJ, NEW_STATUS, UPDATE_TIME
+      )
+    values (#{partyId,jdbcType=VARCHAR}, #{listStatus,jdbcType=VARCHAR}, #{approveStatus,jdbcType=VARCHAR}, 
+      #{operUserid,jdbcType=VARCHAR}, #{operOrgcode,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{pdYj,jdbcType=VARCHAR}, #{newStatus,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.TbLstInfo">
+    insert into CRMS.TB_LST_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="listStatus != null">
+        LIST_STATUS,
+      </if>
+      <if test="approveStatus != null">
+        APPROVE_STATUS,
+      </if>
+      <if test="operUserid != null">
+        OPER_USERID,
+      </if>
+      <if test="operOrgcode != null">
+        OPER_ORGCODE,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="pdYj != null">
+        PD_YJ,
+      </if>
+      <if test="newStatus != null">
+        NEW_STATUS,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="listStatus != null">
+        #{listStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approveStatus != null">
+        #{approveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operUserid != null">
+        #{operUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operOrgcode != null">
+        #{operOrgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdYj != null">
+        #{pdYj,jdbcType=VARCHAR},
+      </if>
+      <if test="newStatus != null">
+        #{newStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.TbLstInfo">
+    update CRMS.TB_LST_INFO
+    <set>
+      <if test="listStatus != null">
+        LIST_STATUS = #{listStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approveStatus != null">
+        APPROVE_STATUS = #{approveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operUserid != null">
+        OPER_USERID = #{operUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operOrgcode != null">
+        OPER_ORGCODE = #{operOrgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdYj != null">
+        PD_YJ = #{pdYj,jdbcType=VARCHAR},
+      </if>
+      <if test="newStatus != null">
+        NEW_STATUS = #{newStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.TbLstInfo">
+    update CRMS.TB_LST_INFO
+    set LIST_STATUS = #{listStatus,jdbcType=VARCHAR},
+      APPROVE_STATUS = #{approveStatus,jdbcType=VARCHAR},
+      OPER_USERID = #{operUserid,jdbcType=VARCHAR},
+      OPER_ORGCODE = #{operOrgcode,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      PD_YJ = #{pdYj,jdbcType=VARCHAR},
+      NEW_STATUS = #{newStatus,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="scim.loan.domain.TbLstInfo">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="LIST_STATUS" jdbcType="VARCHAR" property="listStatus" />
+    <result column="APPROVE_STATUS" jdbcType="VARCHAR" property="approveStatus" />
+    <result column="OPER_USERID" jdbcType="VARCHAR" property="operUserid" />
+    <result column="OPER_ORGCODE" jdbcType="VARCHAR" property="operOrgcode" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="PD_YJ" jdbcType="VARCHAR" property="pdYj" />
+    <result column="NEW_STATUS" jdbcType="VARCHAR" property="newStatus" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PARTY_ID, LIST_STATUS, APPROVE_STATUS, OPER_USERID, OPER_ORGCODE, CREATE_DATE, PD_YJ, 
+    NEW_STATUS, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LST_INFO
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_LST_INFO
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="scim.loan.domain.TbLstInfo">
+    insert into CRMS.TB_LST_INFO (PARTY_ID, LIST_STATUS, APPROVE_STATUS, 
+      OPER_USERID, OPER_ORGCODE, CREATE_DATE, 
+      PD_YJ, NEW_STATUS, UPDATE_TIME
+      )
+    values (#{partyId,jdbcType=VARCHAR}, #{listStatus,jdbcType=VARCHAR}, #{approveStatus,jdbcType=VARCHAR}, 
+      #{operUserid,jdbcType=VARCHAR}, #{operOrgcode,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{pdYj,jdbcType=VARCHAR}, #{newStatus,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="scim.loan.domain.TbLstInfo">
+    insert into CRMS.TB_LST_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="listStatus != null">
+        LIST_STATUS,
+      </if>
+      <if test="approveStatus != null">
+        APPROVE_STATUS,
+      </if>
+      <if test="operUserid != null">
+        OPER_USERID,
+      </if>
+      <if test="operOrgcode != null">
+        OPER_ORGCODE,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="pdYj != null">
+        PD_YJ,
+      </if>
+      <if test="newStatus != null">
+        NEW_STATUS,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="listStatus != null">
+        #{listStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approveStatus != null">
+        #{approveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operUserid != null">
+        #{operUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operOrgcode != null">
+        #{operOrgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdYj != null">
+        #{pdYj,jdbcType=VARCHAR},
+      </if>
+      <if test="newStatus != null">
+        #{newStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="scim.loan.domain.TbLstInfo">
+    update CRMS.TB_LST_INFO
+    <set>
+      <if test="listStatus != null">
+        LIST_STATUS = #{listStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approveStatus != null">
+        APPROVE_STATUS = #{approveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="operUserid != null">
+        OPER_USERID = #{operUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operOrgcode != null">
+        OPER_ORGCODE = #{operOrgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdYj != null">
+        PD_YJ = #{pdYj,jdbcType=VARCHAR},
+      </if>
+      <if test="newStatus != null">
+        NEW_STATUS = #{newStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="scim.loan.domain.TbLstInfo">
+    update CRMS.TB_LST_INFO
+    set LIST_STATUS = #{listStatus,jdbcType=VARCHAR},
+      APPROVE_STATUS = #{approveStatus,jdbcType=VARCHAR},
+      OPER_USERID = #{operUserid,jdbcType=VARCHAR},
+      OPER_ORGCODE = #{operOrgcode,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      PD_YJ = #{pdYj,jdbcType=VARCHAR},
+      NEW_STATUS = #{newStatus,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+</mapper>
