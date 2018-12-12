@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.loan.user.mapper.TbBizAttachedMapper">
+  <resultMap id="BaseResultMap" type="com.example.loan.user.bean.TbBizAttached">
+    <id column="ATTACHED_ID" jdbcType="VARCHAR" property="attachedId" />
+    <result column="ATTACHED_TYPE" jdbcType="VARCHAR" property="attachedType" />
+    <result column="ATTACHED_DESC" jdbcType="VARCHAR" property="attachedDesc" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ATTACHED_ID, ATTACHED_TYPE, ATTACHED_DESC, USER_NUM, ORG_NUM, CREATE_TIME, APPLY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_ATTACHED
+    where ATTACHED_ID = #{attachedId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_ATTACHED
+    where ATTACHED_ID = #{attachedId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.loan.user.bean.TbBizAttached">
+    insert into TB_BIZ_ATTACHED (ATTACHED_ID, ATTACHED_TYPE, ATTACHED_DESC, 
+      USER_NUM, ORG_NUM, CREATE_TIME, 
+      APPLY_ID)
+    values (#{attachedId,jdbcType=VARCHAR}, #{attachedType,jdbcType=VARCHAR}, #{attachedDesc,jdbcType=VARCHAR}, 
+      #{userNum,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{applyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.loan.user.bean.TbBizAttached">
+    insert into TB_BIZ_ATTACHED
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attachedId != null">
+        ATTACHED_ID,
+      </if>
+      <if test="attachedType != null">
+        ATTACHED_TYPE,
+      </if>
+      <if test="attachedDesc != null">
+        ATTACHED_DESC,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attachedId != null">
+        #{attachedId,jdbcType=VARCHAR},
+      </if>
+      <if test="attachedType != null">
+        #{attachedType,jdbcType=VARCHAR},
+      </if>
+      <if test="attachedDesc != null">
+        #{attachedDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.loan.user.bean.TbBizAttached">
+    update TB_BIZ_ATTACHED
+    <set>
+      <if test="attachedType != null">
+        ATTACHED_TYPE = #{attachedType,jdbcType=VARCHAR},
+      </if>
+      <if test="attachedDesc != null">
+        ATTACHED_DESC = #{attachedDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ATTACHED_ID = #{attachedId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.loan.user.bean.TbBizAttached">
+    update TB_BIZ_ATTACHED
+    set ATTACHED_TYPE = #{attachedType,jdbcType=VARCHAR},
+      ATTACHED_DESC = #{attachedDesc,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    where ATTACHED_ID = #{attachedId,jdbcType=VARCHAR}
+  </update>
+</mapper>

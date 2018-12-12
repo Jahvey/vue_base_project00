@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.ConApplyMapper">
+
+  <resultMap id="ApproveConsVo" type="com.cdgit.loan.csm.bean.ApproveConsVo">
+  
+<!--   	<result column="BIZ_TYPE" jdbcType="VARCHAR" property="bizType" />
+  	<result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+  	<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+  	<result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+  	<result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+  	<result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+  	<result column="CONTRACT_AMT" jdbcType="DECIMAL" property="contractAmt" />
+  	<result column="CON_BALANCE" jdbcType="VARCHAR" property="conBalance" />
+  	<result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+  	<result column="CON_YU_E" jdbcType="VARCHAR" property="conYuE" />
+  	<result column="CONRRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+  	<result column="BEGIN_DATE" jdbcType="DATE" property="beginDate" />
+  	<result column="END_DATE" jdbcType="DATE" property="endDate" /> -->
+  	 <result column="BIZ_TYPE" javaType="String" property="bizType" />
+  	<result column="PRODUCT_TYPE" javaType="String" property="productType" />
+  	<result column="APPLY_ID" javaType="String" property="applyId" />
+  	<result column="AMOUNT_DETAIL_ID" javaType="String" property="amountDetailId" />
+  	<result column="CONTRACT_ID" javaType="String" property="contractId" />
+  	<result column="CONTRACT_NUM" javaType="String" property="contractNum" />
+  	<result column="CONTRACT_AMT" javaType="String" property="contractAmt" />
+  	<result column="CON_BALANCE" javaType="String" property="conBalance" />
+  	<result column="CREDIT_MODE" javaType="String" property="creditMode" />
+  	<result column="CON_YU_E" javaType="String" property="conYuE" />
+  	<result column="CURRENCY_CD" javaType="String" property="currencyCd" />
+  	<result column="BEGIN_DATE" javaType="String" property="beginDate" />
+  	<result column="END_DATE" javaType="String" property="endDate" />
+
+
+  </resultMap>
+  
+  
+
+  <select id="getApproveCons" parameterType="java.util.HashMap" resultMap="ApproveConsVo">
+
+	select '业务合同' biz_type,
+				 	 t.product_type,
+				 	 '' apply_id,
+				 	 t.amount_detail_id,
+		             t.CONTRACT_ID,
+		             t.CONTRACT_NUM,
+		             t.CONTRACT_AMT,
+		             t.CON_BALANCE,
+		             t.CREDIT_MODE,
+		             nvl(tls.con_yu_e,0) as con_yu_e,
+		             t.CURRENCY_CD as CURRENCY_CD,
+		             to_char(t.BEGIN_DATE, 'yyyy-mm-dd') as BEGIN_DATE,
+		             to_char(t.END_DATE, 'yyyy-mm-dd') as END_DATE
+		        from tb_con_contract_info t
+		        left join (select sum(nvl(jjye,0)) as con_yu_e,CONTRACT_ID from tb_loan_summary where summary_status_cd!='09'  group by CONTRACT_ID) tls on t.CONTRACT_ID=tls.CONTRACT_ID
+		       where t.CON_STATUS = '03'
+		        <!-- and t.user_num= #{userId} -->  		
+		         <include refid="query_ApproveConsVo" />
+
+  </select>
+
+
+
+	<sql id="query_ApproveConsVo">
+	
+		<if test="userNum !=null and userNum !='' ">
+		
+			and t.user_num= #{userNum}
+		</if>
+		<if test="partyId !=null and partyId !='' ">
+			and t.PARTY_ID =#{partyId}
+		</if>
+
+		<if test="contractNum !=null and contractNum !='' "><!-- 合同数量 -->
+			and t.CONTRACT_NUM like '%'||#{contractNum}||'%'
+		</if>
+		
+		
+	</sql>
+</mapper>
