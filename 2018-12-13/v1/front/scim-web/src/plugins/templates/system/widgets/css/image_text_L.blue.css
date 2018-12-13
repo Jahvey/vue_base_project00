@@ -1,0 +1,47 @@
+.floor-title {
+  margin-top: 25px;
+  height: 42px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.floor-title h3 {
+  font-size: 24px;
+  display: inline-block;
+  line-height: 38px;
+  vertical-align: middle;
+}
+.floor-title .more {
+  color: #03bfff;
+  line-height: 42px;
+  font-size: 12px;
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+.floor-title span.floor {
+  background: url(../images/floor-bg-1.png) no-repeat;
+  width: 32px;
+  height: 42px;
+  display: inline-block;
+  color: #fff;
+  font-size: 18px;
+  line-height: 31px;
+  padding-left: 5px;
+  margin-right: 5px;
+}
+.floor-title.first-floor {
+  border-bottom-color: #caa076;
+  color: #caa076;
+}
+.floor-title.first-floor span.floor {
+  background-position: left 2px;
+}
+.floor-title.second-floor {
+  border-bottom-color: #d4224c;
+  color: #d4224c;
+}
+.floor-title.second-floor span.floor {
+  background-position: left -38px;
+}

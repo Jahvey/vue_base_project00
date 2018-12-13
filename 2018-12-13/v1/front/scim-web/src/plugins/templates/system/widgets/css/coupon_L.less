@@ -1,0 +1,255 @@
+.stamp {
+	padding: 0 10px;
+	position: relative;
+	overflow: hidden;
+	background-image:url(../images/coupon.png) !important;
+	background-position: left top;
+	height: 114px !important;
+}
+
+.stamp:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 10px;
+	right: 10px;
+	z-index: -1;
+}
+
+.stamp:after {
+	content: '';
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	right: 10px;
+	bottom: 10px;
+	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+	z-index: -2;
+}
+
+.stamp i {
+	position: absolute;
+	left: 20%;
+	top: 45px;
+	height: 190px;
+	width: 390px;
+	background-color: rgba(255, 255, 255, .15);
+	transform: rotate(-30deg);
+}
+
+.stamp .par {
+	float: left;
+	padding: 16px 15px;
+}
+
+.stamp .par p {
+	color: #fff;
+}
+
+.stamp .par span {
+	font-size: 48px;
+	color: #fff;
+	margin-right: 5px;
+}
+
+.stamp .par .sign {
+	font-size: 30px;
+}
+
+.stamp .par a {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.stamp .par sub {
+	position: relative;
+	top: -5px;
+	color: rgba(255, 255, 255, .8);
+}
+
+.stamp .copy {
+	display: inline-block;
+	padding: 21px 14px;
+	width: 100px;
+	vertical-align: text-bottom;
+	font-size: 30px;
+	color: rgb(255, 255, 255);
+}
+
+.stamp .copy p {
+	font-size: 16px;
+	margin-top: 15px;
+}
+.sendCoupon{
+	cursor:pointer;
+	padding-left: 3px;
+	padding-right: 3px;
+	background-image:url(../images/coupon-bg.png) !important;
+    background-position: left top;
+    background-repeat: repeat;
+}
+#SendCouponModal {
+	display: block;
+	position: fixed;
+	top: 15%;
+	left: 26%;
+	width: 48%;
+	min-height: 200px;
+	padding: 70px 100px;
+	/*border: 4px solid rgb(232, 233, 247);*/
+	z-index: 5002;
+	background:url(../images/coupon-bg.jpg) no-repeat center #ffffff;
+	background-size: 100%;
+	box-shadow: 3px 3px 10px #eee;
+}
+#SendCouponModal p{
+	font-size: 14px;
+	color: #666666;
+	&.title{
+		font-size: 16px;
+		color: @styleColors;
+	}
+}
+.Coupon{
+   width: 100%;
+    overflow: hidden;
+    margin: 10px; 
+}
+.stamp{
+    position: relative;
+    padding: 0 ;
+    background: 
+                url(../images/coupon.png) left center no-repeat;
+    min-height: 124px;
+    box-sizing: border-box;
+    &.stamp01{
+         background-color: #fb635a;
+    }
+    &.stamp02{
+         background-color: #fba65a;
+    }
+    &.stamp03{
+         background-color: #4ac6ff;
+    }
+    &.stamp04{
+         background-color: #ffcd54;
+    }
+    &:before{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background: url(../images/conpon-left-bg.png) repeat-y;
+        z-index: 15;
+        right: auto;
+    }
+    &:after{
+        content: "";
+        position: absolute;
+        right: 0px;
+        width: 4px;
+        top: 0;
+        height: 100%;
+        z-index: 15;
+        box-shadow: none;
+        left: auto;
+        background: url(../images/conpon-right-bg.png) repeat-y;
+    }
+   
+    .par {
+        margin: 0 10px;
+        height: 100%;
+        vertical-align: middle;
+        padding: 10px 0;
+         color: #FFF;
+         overflow: hidden;
+         width: 100%;
+        .pirce{
+           padding-top: 20px;
+            float: left;
+            width: 55%;
+            text-align: left;
+            padding-left: 15px;
+            .sign {
+                font-size: 28px;
+                bottom: 0;
+            }
+            span{
+                font-size: 32px;
+                white-space: nowrap;
+                &.big{
+                    font-size: 48px;
+                }
+            }
+            p{
+                font-size: 12px;
+            }
+        }
+        .info{
+            float: left;
+            width: 45%;
+            text-align: left;
+            color: #FFF;
+            margin-top: 30px;
+            a{
+                color: #FFF;
+                font-size: 16px;
+            }
+            p{
+                font-size: 12px;
+                color: #FFFFFF !important;
+            }
+            .stamp-btn{
+                background: #FFFFFF;
+                box-shadow: none;
+                border: none;
+                color: @styleColors;
+                height: 30px;
+                padding: 0 16px;
+                line-height: 30px;
+                margin-top: 15px;
+                
+            }
+            p+.stamp-btn{
+                margin-top: 0;
+            }
+        }
+    }
+}
+.no-conpon{
+	height: 100%;
+	.icon{
+		float: left;
+		width: 172px;
+		height: 147px;
+		background: url(../images/icon-coupon-no.png) no-repeat center;
+		
+	}
+	p{
+		margin-left: 170px;
+		font-size: 14px !important;
+		color: #636262 !important;
+		line-height: 147px;
+		white-space: nowrap;
+	}
+}
+.closeMOodal:before{
+  background: transparent;
+  border-radius: 3px;
+  color: #bbb;
+  content: '\00D7';
+  font-size: 26px;
+  font-weight: 400;
+  height: 30px;
+  line-height: 26px;
+  position: absolute;
+  right: 3px;
+  text-align: center;
+  top: 3px;
+  width: 30px;
+  cursor:pointer;
+}

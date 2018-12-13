@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.TbConSubcontractRelMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.TbConSubcontractRel">
+    <id column="CON_SUBCON_ID" jdbcType="VARCHAR" property="conSubconId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="SUBCONTRACT_ID" jdbcType="VARCHAR" property="subcontractId" />
+    <result column="IF_EFFECTIVE" jdbcType="VARCHAR" property="ifEffective" />
+    <result column="SURETY_AMT" jdbcType="DECIMAL" property="suretyAmt" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="OPERATION_TYPE" jdbcType="VARCHAR" property="operationType" />
+    <result column="SUBCONTRACT_ID_BACKUPS" jdbcType="VARCHAR" property="subcontractIdBackups" />
+    <result column="SUBCONTRACT_AMT" jdbcType="DECIMAL" property="subcontractAmt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CON_SUBCON_ID, CONTRACT_ID, SUBCONTRACT_ID, IF_EFFECTIVE, SURETY_AMT, CREATE_TIME, 
+    UPDATE_TIME, OPERATION_TYPE, SUBCONTRACT_ID_BACKUPS, SUBCONTRACT_AMT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_SUBCONTRACT_REL
+    where CON_SUBCON_ID = #{conSubconId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_SUBCONTRACT_REL
+    where CON_SUBCON_ID = #{conSubconId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.TbConSubcontractRel">
+    insert into CRMS.TB_CON_SUBCONTRACT_REL (CON_SUBCON_ID, CONTRACT_ID, SUBCONTRACT_ID, 
+      IF_EFFECTIVE, SURETY_AMT, CREATE_TIME, 
+      UPDATE_TIME, OPERATION_TYPE, SUBCONTRACT_ID_BACKUPS, 
+      SUBCONTRACT_AMT)
+    values (#{conSubconId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{subcontractId,jdbcType=VARCHAR}, 
+      #{ifEffective,jdbcType=VARCHAR}, #{suretyAmt,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{operationType,jdbcType=VARCHAR}, #{subcontractIdBackups,jdbcType=VARCHAR}, 
+      #{subcontractAmt,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.TbConSubcontractRel">
+    insert into CRMS.TB_CON_SUBCONTRACT_REL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="conSubconId != null">
+        CON_SUBCON_ID,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="subcontractId != null">
+        SUBCONTRACT_ID,
+      </if>
+      <if test="ifEffective != null">
+        IF_EFFECTIVE,
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="operationType != null">
+        OPERATION_TYPE,
+      </if>
+      <if test="subcontractIdBackups != null">
+        SUBCONTRACT_ID_BACKUPS,
+      </if>
+      <if test="subcontractAmt != null">
+        SUBCONTRACT_AMT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="conSubconId != null">
+        #{conSubconId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractId != null">
+        #{subcontractId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifEffective != null">
+        #{ifEffective,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyAmt != null">
+        #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractIdBackups != null">
+        #{subcontractIdBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractAmt != null">
+        #{subcontractAmt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.TbConSubcontractRel">
+    update CRMS.TB_CON_SUBCONTRACT_REL
+    <set>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractId != null">
+        SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifEffective != null">
+        IF_EFFECTIVE = #{ifEffective,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationType != null">
+        OPERATION_TYPE = #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractIdBackups != null">
+        SUBCONTRACT_ID_BACKUPS = #{subcontractIdBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractAmt != null">
+        SUBCONTRACT_AMT = #{subcontractAmt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CON_SUBCON_ID = #{conSubconId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.TbConSubcontractRel">
+    update CRMS.TB_CON_SUBCONTRACT_REL
+    set CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR},
+      IF_EFFECTIVE = #{ifEffective,jdbcType=VARCHAR},
+      SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      OPERATION_TYPE = #{operationType,jdbcType=VARCHAR},
+      SUBCONTRACT_ID_BACKUPS = #{subcontractIdBackups,jdbcType=VARCHAR},
+      SUBCONTRACT_AMT = #{subcontractAmt,jdbcType=DECIMAL}
+    where CON_SUBCON_ID = #{conSubconId,jdbcType=VARCHAR}
+  </update>
+</mapper>

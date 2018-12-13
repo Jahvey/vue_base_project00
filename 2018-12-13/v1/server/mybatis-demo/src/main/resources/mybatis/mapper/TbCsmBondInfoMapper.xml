@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.user.mapper.TbCsmBondInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.TbCsmBondInfo">
+    <id column="BOND_ID" jdbcType="VARCHAR" property="bondId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="ISSUE_DATE" jdbcType="TIMESTAMP" property="issueDate" />
+    <result column="BOND_TYPE_CD" jdbcType="VARCHAR" property="bondTypeCd" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="ISSUE_AMT" jdbcType="DECIMAL" property="issueAmt" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="PURCHASE_DATE" jdbcType="TIMESTAMP" property="purchaseDate" />
+    <result column="BOND_NAME" jdbcType="VARCHAR" property="bondName" />
+    <result column="BOND_STATUS_CD" jdbcType="VARCHAR" property="bondStatusCd" />
+    <result column="RATE_WAY_STATE" jdbcType="VARCHAR" property="rateWayState" />
+    <result column="IF_MARKETED" jdbcType="VARCHAR" property="ifMarketed" />
+    <result column="BOND_TERM" jdbcType="DECIMAL" property="bondTerm" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BOND_ID, PARTY_ID, ISSUE_DATE, BOND_TYPE_CD, CURRENCY_CD, ISSUE_AMT, REMARK, PURCHASE_DATE, 
+    BOND_NAME, BOND_STATUS_CD, RATE_WAY_STATE, IF_MARKETED, BOND_TERM, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_BOND_INFO
+    where BOND_ID = #{bondId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_BOND_INFO
+    where BOND_ID = #{bondId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.user.bean.TbCsmBondInfo">
+    insert into TB_CSM_BOND_INFO (BOND_ID, PARTY_ID, ISSUE_DATE, 
+      BOND_TYPE_CD, CURRENCY_CD, ISSUE_AMT, 
+      REMARK, PURCHASE_DATE, BOND_NAME, 
+      BOND_STATUS_CD, RATE_WAY_STATE, IF_MARKETED, 
+      BOND_TERM, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{bondId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{issueDate,jdbcType=TIMESTAMP}, 
+      #{bondTypeCd,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, #{issueAmt,jdbcType=DECIMAL}, 
+      #{remark,jdbcType=VARCHAR}, #{purchaseDate,jdbcType=TIMESTAMP}, #{bondName,jdbcType=VARCHAR}, 
+      #{bondStatusCd,jdbcType=VARCHAR}, #{rateWayState,jdbcType=VARCHAR}, #{ifMarketed,jdbcType=VARCHAR}, 
+      #{bondTerm,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.user.bean.TbCsmBondInfo">
+    insert into TB_CSM_BOND_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bondId != null">
+        BOND_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="issueDate != null">
+        ISSUE_DATE,
+      </if>
+      <if test="bondTypeCd != null">
+        BOND_TYPE_CD,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="issueAmt != null">
+        ISSUE_AMT,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="purchaseDate != null">
+        PURCHASE_DATE,
+      </if>
+      <if test="bondName != null">
+        BOND_NAME,
+      </if>
+      <if test="bondStatusCd != null">
+        BOND_STATUS_CD,
+      </if>
+      <if test="rateWayState != null">
+        RATE_WAY_STATE,
+      </if>
+      <if test="ifMarketed != null">
+        IF_MARKETED,
+      </if>
+      <if test="bondTerm != null">
+        BOND_TERM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bondId != null">
+        #{bondId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="issueDate != null">
+        #{issueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bondTypeCd != null">
+        #{bondTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="issueAmt != null">
+        #{issueAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null">
+        #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bondName != null">
+        #{bondName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondStatusCd != null">
+        #{bondStatusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="rateWayState != null">
+        #{rateWayState,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMarketed != null">
+        #{ifMarketed,jdbcType=VARCHAR},
+      </if>
+      <if test="bondTerm != null">
+        #{bondTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.user.bean.TbCsmBondInfo">
+    update TB_CSM_BOND_INFO
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="issueDate != null">
+        ISSUE_DATE = #{issueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bondTypeCd != null">
+        BOND_TYPE_CD = #{bondTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="issueAmt != null">
+        ISSUE_AMT = #{issueAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null">
+        PURCHASE_DATE = #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bondName != null">
+        BOND_NAME = #{bondName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondStatusCd != null">
+        BOND_STATUS_CD = #{bondStatusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="rateWayState != null">
+        RATE_WAY_STATE = #{rateWayState,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMarketed != null">
+        IF_MARKETED = #{ifMarketed,jdbcType=VARCHAR},
+      </if>
+      <if test="bondTerm != null">
+        BOND_TERM = #{bondTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BOND_ID = #{bondId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.user.bean.TbCsmBondInfo">
+    update TB_CSM_BOND_INFO
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      ISSUE_DATE = #{issueDate,jdbcType=TIMESTAMP},
+      BOND_TYPE_CD = #{bondTypeCd,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      ISSUE_AMT = #{issueAmt,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      PURCHASE_DATE = #{purchaseDate,jdbcType=TIMESTAMP},
+      BOND_NAME = #{bondName,jdbcType=VARCHAR},
+      BOND_STATUS_CD = #{bondStatusCd,jdbcType=VARCHAR},
+      RATE_WAY_STATE = #{rateWayState,jdbcType=VARCHAR},
+      IF_MARKETED = #{ifMarketed,jdbcType=VARCHAR},
+      BOND_TERM = #{bondTerm,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where BOND_ID = #{bondId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.TbCsmBondInfo">
+    <id column="BOND_ID" jdbcType="VARCHAR" property="bondId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="ISSUE_DATE" jdbcType="TIMESTAMP" property="issueDate" />
+    <result column="BOND_TYPE_CD" jdbcType="VARCHAR" property="bondTypeCd" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="ISSUE_AMT" jdbcType="DECIMAL" property="issueAmt" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="PURCHASE_DATE" jdbcType="TIMESTAMP" property="purchaseDate" />
+    <result column="BOND_NAME" jdbcType="VARCHAR" property="bondName" />
+    <result column="BOND_STATUS_CD" jdbcType="VARCHAR" property="bondStatusCd" />
+    <result column="RATE_WAY_STATE" jdbcType="VARCHAR" property="rateWayState" />
+    <result column="IF_MARKETED" jdbcType="VARCHAR" property="ifMarketed" />
+    <result column="BOND_TERM" jdbcType="DECIMAL" property="bondTerm" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BOND_ID, PARTY_ID, ISSUE_DATE, BOND_TYPE_CD, CURRENCY_CD, ISSUE_AMT, REMARK, PURCHASE_DATE, 
+    BOND_NAME, BOND_STATUS_CD, RATE_WAY_STATE, IF_MARKETED, BOND_TERM, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_BOND_INFO
+    where BOND_ID = #{bondId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_BOND_INFO
+    where BOND_ID = #{bondId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.user.bean.TbCsmBondInfo">
+    insert into TB_CSM_BOND_INFO (BOND_ID, PARTY_ID, ISSUE_DATE, 
+      BOND_TYPE_CD, CURRENCY_CD, ISSUE_AMT, 
+      REMARK, PURCHASE_DATE, BOND_NAME, 
+      BOND_STATUS_CD, RATE_WAY_STATE, IF_MARKETED, 
+      BOND_TERM, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{bondId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{issueDate,jdbcType=TIMESTAMP}, 
+      #{bondTypeCd,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, #{issueAmt,jdbcType=DECIMAL}, 
+      #{remark,jdbcType=VARCHAR}, #{purchaseDate,jdbcType=TIMESTAMP}, #{bondName,jdbcType=VARCHAR}, 
+      #{bondStatusCd,jdbcType=VARCHAR}, #{rateWayState,jdbcType=VARCHAR}, #{ifMarketed,jdbcType=VARCHAR}, 
+      #{bondTerm,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.user.bean.TbCsmBondInfo">
+    insert into TB_CSM_BOND_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bondId != null">
+        BOND_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="issueDate != null">
+        ISSUE_DATE,
+      </if>
+      <if test="bondTypeCd != null">
+        BOND_TYPE_CD,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="issueAmt != null">
+        ISSUE_AMT,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="purchaseDate != null">
+        PURCHASE_DATE,
+      </if>
+      <if test="bondName != null">
+        BOND_NAME,
+      </if>
+      <if test="bondStatusCd != null">
+        BOND_STATUS_CD,
+      </if>
+      <if test="rateWayState != null">
+        RATE_WAY_STATE,
+      </if>
+      <if test="ifMarketed != null">
+        IF_MARKETED,
+      </if>
+      <if test="bondTerm != null">
+        BOND_TERM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bondId != null">
+        #{bondId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="issueDate != null">
+        #{issueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bondTypeCd != null">
+        #{bondTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="issueAmt != null">
+        #{issueAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null">
+        #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bondName != null">
+        #{bondName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondStatusCd != null">
+        #{bondStatusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="rateWayState != null">
+        #{rateWayState,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMarketed != null">
+        #{ifMarketed,jdbcType=VARCHAR},
+      </if>
+      <if test="bondTerm != null">
+        #{bondTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.user.bean.TbCsmBondInfo">
+    update TB_CSM_BOND_INFO
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="issueDate != null">
+        ISSUE_DATE = #{issueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bondTypeCd != null">
+        BOND_TYPE_CD = #{bondTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="issueAmt != null">
+        ISSUE_AMT = #{issueAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDate != null">
+        PURCHASE_DATE = #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bondName != null">
+        BOND_NAME = #{bondName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondStatusCd != null">
+        BOND_STATUS_CD = #{bondStatusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="rateWayState != null">
+        RATE_WAY_STATE = #{rateWayState,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMarketed != null">
+        IF_MARKETED = #{ifMarketed,jdbcType=VARCHAR},
+      </if>
+      <if test="bondTerm != null">
+        BOND_TERM = #{bondTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BOND_ID = #{bondId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.user.bean.TbCsmBondInfo">
+    update TB_CSM_BOND_INFO
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      ISSUE_DATE = #{issueDate,jdbcType=TIMESTAMP},
+      BOND_TYPE_CD = #{bondTypeCd,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      ISSUE_AMT = #{issueAmt,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      PURCHASE_DATE = #{purchaseDate,jdbcType=TIMESTAMP},
+      BOND_NAME = #{bondName,jdbcType=VARCHAR},
+      BOND_STATUS_CD = #{bondStatusCd,jdbcType=VARCHAR},
+      RATE_WAY_STATE = #{rateWayState,jdbcType=VARCHAR},
+      IF_MARKETED = #{ifMarketed,jdbcType=VARCHAR},
+      BOND_TERM = #{bondTerm,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where BOND_ID = #{bondId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.TbAdjustMargincallsMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.TbAdjustMargincalls">
+    <id column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="SUBCONTRACT_ID" jdbcType="VARCHAR" property="subcontractId" />
+    <result column="SUBCONTRACT_NUM" jdbcType="VARCHAR" property="subcontractNum" />
+    <result column="MARGIN_STATUS" jdbcType="VARCHAR" property="marginStatus" />
+    <result column="APPEND_FLAG" jdbcType="VARCHAR" property="appendFlag" />
+    <result column="APPEND_AMT" jdbcType="DECIMAL" property="appendAmt" />
+    <result column="MAGIN_SCALE" jdbcType="DECIMAL" property="maginScale" />
+    <result column="MARGIN_ACCOUNT" jdbcType="VARCHAR" property="marginAccount" />
+    <result column="MARGIN_SORT" jdbcType="VARCHAR" property="marginSort" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="ACC_BALANCE" jdbcType="DECIMAL" property="accBalance" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="OPEN_BANK" jdbcType="VARCHAR" property="openBank" />
+    <result column="ACCT_NAME" jdbcType="VARCHAR" property="acctName" />
+    <result column="IS_JIXI" jdbcType="VARCHAR" property="isJixi" />
+    <result column="MARGIN_RATE" jdbcType="DECIMAL" property="marginRate" />
+    <result column="FULL_STATUS" jdbcType="VARCHAR" property="fullStatus" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SURETY_ID, PARTY_ID, LOAN_ID, CONTRACT_ID, CONTRACT_NUM, SUBCONTRACT_ID, SUBCONTRACT_NUM, 
+    MARGIN_STATUS, APPEND_FLAG, APPEND_AMT, MAGIN_SCALE, MARGIN_ACCOUNT, MARGIN_SORT, 
+    CURRENCY_CD, ACC_BALANCE, BEGIN_DATE, END_DATE, OPEN_BANK, ACCT_NAME, IS_JIXI, MARGIN_RATE, 
+    FULL_STATUS, ORG_NUM, USER_NUM, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_ADJUST_MARGINCALLS
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_ADJUST_MARGINCALLS
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.TbAdjustMargincalls">
+    insert into CRMS.TB_ADJUST_MARGINCALLS (SURETY_ID, PARTY_ID, LOAN_ID, 
+      CONTRACT_ID, CONTRACT_NUM, SUBCONTRACT_ID, 
+      SUBCONTRACT_NUM, MARGIN_STATUS, APPEND_FLAG, 
+      APPEND_AMT, MAGIN_SCALE, MARGIN_ACCOUNT, 
+      MARGIN_SORT, CURRENCY_CD, ACC_BALANCE, 
+      BEGIN_DATE, END_DATE, OPEN_BANK, 
+      ACCT_NAME, IS_JIXI, MARGIN_RATE, 
+      FULL_STATUS, ORG_NUM, USER_NUM, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{suretyId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR}, 
+      #{contractId,jdbcType=VARCHAR}, #{contractNum,jdbcType=VARCHAR}, #{subcontractId,jdbcType=VARCHAR}, 
+      #{subcontractNum,jdbcType=VARCHAR}, #{marginStatus,jdbcType=VARCHAR}, #{appendFlag,jdbcType=VARCHAR}, 
+      #{appendAmt,jdbcType=DECIMAL}, #{maginScale,jdbcType=DECIMAL}, #{marginAccount,jdbcType=VARCHAR}, 
+      #{marginSort,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, #{accBalance,jdbcType=DECIMAL}, 
+      #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{openBank,jdbcType=VARCHAR}, 
+      #{acctName,jdbcType=VARCHAR}, #{isJixi,jdbcType=VARCHAR}, #{marginRate,jdbcType=DECIMAL}, 
+      #{fullStatus,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.TbAdjustMargincalls">
+    insert into CRMS.TB_ADJUST_MARGINCALLS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="suretyId != null">
+        SURETY_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="contractNum != null">
+        CONTRACT_NUM,
+      </if>
+      <if test="subcontractId != null">
+        SUBCONTRACT_ID,
+      </if>
+      <if test="subcontractNum != null">
+        SUBCONTRACT_NUM,
+      </if>
+      <if test="marginStatus != null">
+        MARGIN_STATUS,
+      </if>
+      <if test="appendFlag != null">
+        APPEND_FLAG,
+      </if>
+      <if test="appendAmt != null">
+        APPEND_AMT,
+      </if>
+      <if test="maginScale != null">
+        MAGIN_SCALE,
+      </if>
+      <if test="marginAccount != null">
+        MARGIN_ACCOUNT,
+      </if>
+      <if test="marginSort != null">
+        MARGIN_SORT,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="accBalance != null">
+        ACC_BALANCE,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="openBank != null">
+        OPEN_BANK,
+      </if>
+      <if test="acctName != null">
+        ACCT_NAME,
+      </if>
+      <if test="isJixi != null">
+        IS_JIXI,
+      </if>
+      <if test="marginRate != null">
+        MARGIN_RATE,
+      </if>
+      <if test="fullStatus != null">
+        FULL_STATUS,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="suretyId != null">
+        #{suretyId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNum != null">
+        #{contractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractId != null">
+        #{subcontractId,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractNum != null">
+        #{subcontractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="marginStatus != null">
+        #{marginStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="appendFlag != null">
+        #{appendFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="appendAmt != null">
+        #{appendAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="maginScale != null">
+        #{maginScale,jdbcType=DECIMAL},
+      </if>
+      <if test="marginAccount != null">
+        #{marginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="marginSort != null">
+        #{marginSort,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="accBalance != null">
+        #{accBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openBank != null">
+        #{openBank,jdbcType=VARCHAR},
+      </if>
+      <if test="acctName != null">
+        #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="isJixi != null">
+        #{isJixi,jdbcType=VARCHAR},
+      </if>
+      <if test="marginRate != null">
+        #{marginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fullStatus != null">
+        #{fullStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.TbAdjustMargincalls">
+    update CRMS.TB_ADJUST_MARGINCALLS
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNum != null">
+        CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractId != null">
+        SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractNum != null">
+        SUBCONTRACT_NUM = #{subcontractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="marginStatus != null">
+        MARGIN_STATUS = #{marginStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="appendFlag != null">
+        APPEND_FLAG = #{appendFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="appendAmt != null">
+        APPEND_AMT = #{appendAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="maginScale != null">
+        MAGIN_SCALE = #{maginScale,jdbcType=DECIMAL},
+      </if>
+      <if test="marginAccount != null">
+        MARGIN_ACCOUNT = #{marginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="marginSort != null">
+        MARGIN_SORT = #{marginSort,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="accBalance != null">
+        ACC_BALANCE = #{accBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openBank != null">
+        OPEN_BANK = #{openBank,jdbcType=VARCHAR},
+      </if>
+      <if test="acctName != null">
+        ACCT_NAME = #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="isJixi != null">
+        IS_JIXI = #{isJixi,jdbcType=VARCHAR},
+      </if>
+      <if test="marginRate != null">
+        MARGIN_RATE = #{marginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fullStatus != null">
+        FULL_STATUS = #{fullStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.TbAdjustMargincalls">
+    update CRMS.TB_ADJUST_MARGINCALLS
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR},
+      SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR},
+      SUBCONTRACT_NUM = #{subcontractNum,jdbcType=VARCHAR},
+      MARGIN_STATUS = #{marginStatus,jdbcType=VARCHAR},
+      APPEND_FLAG = #{appendFlag,jdbcType=VARCHAR},
+      APPEND_AMT = #{appendAmt,jdbcType=DECIMAL},
+      MAGIN_SCALE = #{maginScale,jdbcType=DECIMAL},
+      MARGIN_ACCOUNT = #{marginAccount,jdbcType=VARCHAR},
+      MARGIN_SORT = #{marginSort,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      ACC_BALANCE = #{accBalance,jdbcType=DECIMAL},
+      BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      OPEN_BANK = #{openBank,jdbcType=VARCHAR},
+      ACCT_NAME = #{acctName,jdbcType=VARCHAR},
+      IS_JIXI = #{isJixi,jdbcType=VARCHAR},
+      MARGIN_RATE = #{marginRate,jdbcType=DECIMAL},
+      FULL_STATUS = #{fullStatus,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

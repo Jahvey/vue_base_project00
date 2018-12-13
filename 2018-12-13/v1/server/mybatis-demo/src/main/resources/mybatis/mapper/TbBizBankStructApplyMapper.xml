@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.loan.user.mapper.TbBizBankStructApplyMapper">
+  <resultMap id="BaseResultMap" type="com.example.loan.user.bean.TbBizBankStructApply">
+    <id column="SYNDICATED_STRUCT_ID" jdbcType="VARCHAR" property="syndicatedStructId" />
+    <result column="MYSELF_ROLE_CD" jdbcType="VARCHAR" property="myselfRoleCd" />
+    <result column="SYNDICATED_OBJECT_CD" jdbcType="VARCHAR" property="syndicatedObjectCd" />
+    <result column="SYNDICATED_WAY_CD" jdbcType="VARCHAR" property="syndicatedWayCd" />
+    <result column="SYNDICATED_LOAN_AMT" jdbcType="DECIMAL" property="syndicatedLoanAmt" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="SYNDICATED_PROJECT_NAME" jdbcType="VARCHAR" property="syndicatedProjectName" />
+    <result column="PROJECT_ADDRESS" jdbcType="VARCHAR" property="projectAddress" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CUSTOMER_GROUP_NAME" jdbcType="VARCHAR" property="customerGroupName" />
+    <result column="GROUP_CUSTOMER" jdbcType="VARCHAR" property="groupCustomer" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SYNDICATED_STRUCT_ID, MYSELF_ROLE_CD, SYNDICATED_OBJECT_CD, SYNDICATED_WAY_CD, SYNDICATED_LOAN_AMT, 
+    CURRENCY_CD, SYNDICATED_PROJECT_NAME, PROJECT_ADDRESS, CREATE_TIME, UPDATE_TIME, 
+    CUSTOMER_GROUP_NAME, GROUP_CUSTOMER, APPLY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_BANK_STRUCT_APPLY
+    where SYNDICATED_STRUCT_ID = #{syndicatedStructId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_BANK_STRUCT_APPLY
+    where SYNDICATED_STRUCT_ID = #{syndicatedStructId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.loan.user.bean.TbBizBankStructApply">
+    insert into TB_BIZ_BANK_STRUCT_APPLY (SYNDICATED_STRUCT_ID, MYSELF_ROLE_CD, 
+      SYNDICATED_OBJECT_CD, SYNDICATED_WAY_CD, SYNDICATED_LOAN_AMT, 
+      CURRENCY_CD, SYNDICATED_PROJECT_NAME, PROJECT_ADDRESS, 
+      CREATE_TIME, UPDATE_TIME, CUSTOMER_GROUP_NAME, 
+      GROUP_CUSTOMER, APPLY_ID)
+    values (#{syndicatedStructId,jdbcType=VARCHAR}, #{myselfRoleCd,jdbcType=VARCHAR}, 
+      #{syndicatedObjectCd,jdbcType=VARCHAR}, #{syndicatedWayCd,jdbcType=VARCHAR}, #{syndicatedLoanAmt,jdbcType=DECIMAL}, 
+      #{currencyCd,jdbcType=VARCHAR}, #{syndicatedProjectName,jdbcType=VARCHAR}, #{projectAddress,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{customerGroupName,jdbcType=VARCHAR}, 
+      #{groupCustomer,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.loan.user.bean.TbBizBankStructApply">
+    insert into TB_BIZ_BANK_STRUCT_APPLY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="syndicatedStructId != null">
+        SYNDICATED_STRUCT_ID,
+      </if>
+      <if test="myselfRoleCd != null">
+        MYSELF_ROLE_CD,
+      </if>
+      <if test="syndicatedObjectCd != null">
+        SYNDICATED_OBJECT_CD,
+      </if>
+      <if test="syndicatedWayCd != null">
+        SYNDICATED_WAY_CD,
+      </if>
+      <if test="syndicatedLoanAmt != null">
+        SYNDICATED_LOAN_AMT,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="syndicatedProjectName != null">
+        SYNDICATED_PROJECT_NAME,
+      </if>
+      <if test="projectAddress != null">
+        PROJECT_ADDRESS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="customerGroupName != null">
+        CUSTOMER_GROUP_NAME,
+      </if>
+      <if test="groupCustomer != null">
+        GROUP_CUSTOMER,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="syndicatedStructId != null">
+        #{syndicatedStructId,jdbcType=VARCHAR},
+      </if>
+      <if test="myselfRoleCd != null">
+        #{myselfRoleCd,jdbcType=VARCHAR},
+      </if>
+      <if test="syndicatedObjectCd != null">
+        #{syndicatedObjectCd,jdbcType=VARCHAR},
+      </if>
+      <if test="syndicatedWayCd != null">
+        #{syndicatedWayCd,jdbcType=VARCHAR},
+      </if>
+      <if test="syndicatedLoanAmt != null">
+        #{syndicatedLoanAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="syndicatedProjectName != null">
+        #{syndicatedProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAddress != null">
+        #{projectAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerGroupName != null">
+        #{customerGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCustomer != null">
+        #{groupCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.loan.user.bean.TbBizBankStructApply">
+    update TB_BIZ_BANK_STRUCT_APPLY
+    <set>
+      <if test="myselfRoleCd != null">
+        MYSELF_ROLE_CD = #{myselfRoleCd,jdbcType=VARCHAR},
+      </if>
+      <if test="syndicatedObjectCd != null">
+        SYNDICATED_OBJECT_CD = #{syndicatedObjectCd,jdbcType=VARCHAR},
+      </if>
+      <if test="syndicatedWayCd != null">
+        SYNDICATED_WAY_CD = #{syndicatedWayCd,jdbcType=VARCHAR},
+      </if>
+      <if test="syndicatedLoanAmt != null">
+        SYNDICATED_LOAN_AMT = #{syndicatedLoanAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="syndicatedProjectName != null">
+        SYNDICATED_PROJECT_NAME = #{syndicatedProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAddress != null">
+        PROJECT_ADDRESS = #{projectAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerGroupName != null">
+        CUSTOMER_GROUP_NAME = #{customerGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCustomer != null">
+        GROUP_CUSTOMER = #{groupCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SYNDICATED_STRUCT_ID = #{syndicatedStructId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.loan.user.bean.TbBizBankStructApply">
+    update TB_BIZ_BANK_STRUCT_APPLY
+    set MYSELF_ROLE_CD = #{myselfRoleCd,jdbcType=VARCHAR},
+      SYNDICATED_OBJECT_CD = #{syndicatedObjectCd,jdbcType=VARCHAR},
+      SYNDICATED_WAY_CD = #{syndicatedWayCd,jdbcType=VARCHAR},
+      SYNDICATED_LOAN_AMT = #{syndicatedLoanAmt,jdbcType=DECIMAL},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      SYNDICATED_PROJECT_NAME = #{syndicatedProjectName,jdbcType=VARCHAR},
+      PROJECT_ADDRESS = #{projectAddress,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CUSTOMER_GROUP_NAME = #{customerGroupName,jdbcType=VARCHAR},
+      GROUP_CUSTOMER = #{groupCustomer,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    where SYNDICATED_STRUCT_ID = #{syndicatedStructId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,2058 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.TbConLoanChangeMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.TbConLoanChange">
+    <id column="CHANGE_ID" jdbcType="VARCHAR" property="changeId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="CON_CHANGE_TYPE" jdbcType="VARCHAR" property="conChangeType" />
+    <result column="LOAN_CHANGE_TYPE" jdbcType="VARCHAR" property="loanChangeType" />
+    <result column="CHANGE_REASON" jdbcType="VARCHAR" property="changeReason" />
+    <result column="CHANGE_DATE" jdbcType="TIMESTAMP" property="changeDate" />
+    <result column="CHANGE_STATUS" jdbcType="VARCHAR" property="changeStatus" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="OLD_RATE_TYPE" jdbcType="VARCHAR" property="oldRateType" />
+    <result column="OLD_FLOAT_TYPE" jdbcType="VARCHAR" property="oldFloatType" />
+    <result column="OLD_FLOAT_WAY" jdbcType="VARCHAR" property="oldFloatWay" />
+    <result column="OLD_BASE_RATE_VALUE" jdbcType="DECIMAL" property="oldBaseRateValue" />
+    <result column="OLD_RATE_FLOAT_PROPORTION" jdbcType="DECIMAL" property="oldRateFloatProportion" />
+    <result column="OLD_YEAR_RATE" jdbcType="DECIMAL" property="oldYearRate" />
+    <result column="OLD_IR_UPDATE_FREQUENCY" jdbcType="VARCHAR" property="oldIrUpdateFrequency" />
+    <result column="OLD_INTEREST_COLLECT_TYPE" jdbcType="VARCHAR" property="oldInterestCollectType" />
+    <result column="NEW_RATE_TYPE" jdbcType="VARCHAR" property="newRateType" />
+    <result column="NEW_FLOAT_TYPE" jdbcType="VARCHAR" property="newFloatType" />
+    <result column="NEW_FLOAT_WAY" jdbcType="VARCHAR" property="newFloatWay" />
+    <result column="NEW_BASE_RATE_VALUE" jdbcType="DECIMAL" property="newBaseRateValue" />
+    <result column="NEW_RATE_FLOAT_PROPORTION" jdbcType="DECIMAL" property="newRateFloatProportion" />
+    <result column="NEW_YEAR_RATE" jdbcType="DECIMAL" property="newYearRate" />
+    <result column="NEW_IR_UPDATE_FREQUENCY" jdbcType="VARCHAR" property="newIrUpdateFrequency" />
+    <result column="NEW_INTEREST_COLLECT_TYPE" jdbcType="VARCHAR" property="newInterestCollectType" />
+    <result column="OLD_TERM" jdbcType="DECIMAL" property="oldTerm" />
+    <result column="OLD_END_DATE" jdbcType="TIMESTAMP" property="oldEndDate" />
+    <result column="TERM_CHANGE_WAY" jdbcType="VARCHAR" property="termChangeWay" />
+    <result column="NEW_TERM" jdbcType="DECIMAL" property="newTerm" />
+    <result column="NEW_END_DATE" jdbcType="TIMESTAMP" property="newEndDate" />
+    <result column="OLD_REPAY_WAY" jdbcType="VARCHAR" property="oldRepayWay" />
+    <result column="NEW_REPAY_WAY" jdbcType="VARCHAR" property="newRepayWay" />
+    <result column="OLD_REPAY_DAY" jdbcType="DECIMAL" property="oldRepayDay" />
+    <result column="NEW_REPAY_DAY" jdbcType="DECIMAL" property="newRepayDay" />
+    <result column="OLD_REPAY_ACCOUNT" jdbcType="VARCHAR" property="oldRepayAccount" />
+    <result column="NEW_REPAY_ACCOUNT" jdbcType="VARCHAR" property="newRepayAccount" />
+    <result column="OLD_GUARANTY_TYPE" jdbcType="VARCHAR" property="oldGuarantyType" />
+    <result column="NEW_GUARANTY_TYPE" jdbcType="VARCHAR" property="newGuarantyType" />
+    <result column="IS_SETTLE" jdbcType="VARCHAR" property="isSettle" />
+    <result column="REPAY_AMT" jdbcType="DECIMAL" property="repayAmt" />
+    <result column="REPAY_CAPITAL" jdbcType="DECIMAL" property="repayCapital" />
+    <result column="DEAL_WAY" jdbcType="VARCHAR" property="dealWay" />
+    <result column="IS_MODIFY_PLAN" jdbcType="VARCHAR" property="isModifyPlan" />
+    <result column="OLD_SUMMARYAMT" jdbcType="DECIMAL" property="oldSummaryamt" />
+    <result column="NEW_SUMMARYAMT" jdbcType="DECIMAL" property="newSummaryamt" />
+    <result column="OLD_RATE_UP" jdbcType="DECIMAL" property="oldRateUp" />
+    <result column="NEW_RATE_UP" jdbcType="DECIMAL" property="newRateUp" />
+    <result column="OLD_RATE_DOWN" jdbcType="DECIMAL" property="oldRateDown" />
+    <result column="NEW_RATE_DOWN" jdbcType="DECIMAL" property="newRateDown" />
+    <result column="IS_SMALL" jdbcType="VARCHAR" property="isSmall" />
+    <result column="REPAY_TYPE" jdbcType="VARCHAR" property="repayType" />
+    <result column="YHZCLX" jdbcType="DECIMAL" property="yhzclx" />
+    <result column="YHTQLX" jdbcType="DECIMAL" property="yhtqlx" />
+    <result column="YHFX" jdbcType="DECIMAL" property="yhfx" />
+    <result column="OLD_TIEXI_STATUS" jdbcType="VARCHAR" property="oldTiexiStatus" />
+    <result column="NEW_TIEXI_STATUS" jdbcType="VARCHAR" property="newTiexiStatus" />
+    <result column="OLD_TINGXI_STATUS" jdbcType="VARCHAR" property="oldTingxiStatus" />
+    <result column="NEW_TINGXI_STATUS" jdbcType="VARCHAR" property="newTingxiStatus" />
+    <result column="REPAY_ORDER" jdbcType="VARCHAR" property="repayOrder" />
+    <result column="CHANGE_NUM" jdbcType="VARCHAR" property="changeNum" />
+    <result column="STOP_RATE_TYPE" jdbcType="VARCHAR" property="stopRateType" />
+    <result column="STOP_ZC_RATE" jdbcType="DECIMAL" property="stopZcRate" />
+    <result column="STOP_TQ_RATE" jdbcType="DECIMAL" property="stopTqRate" />
+    <result column="STOP_FX" jdbcType="DECIMAL" property="stopFx" />
+    <result column="STOP_ZC_RATE_OUT" jdbcType="DECIMAL" property="stopZcRateOut" />
+    <result column="STOP_TQ_RATE_OUT" jdbcType="DECIMAL" property="stopTqRateOut" />
+    <result column="STOP_FX_OUT" jdbcType="DECIMAL" property="stopFxOut" />
+    <result column="OLD_ZHMC" jdbcType="VARCHAR" property="oldZhmc" />
+    <result column="OLD_KZBS" jdbcType="VARCHAR" property="oldKzbs" />
+    <result column="OLD_ZHKHJG" jdbcType="VARCHAR" property="oldZhkhjg" />
+    <result column="OLD_ZHBS" jdbcType="VARCHAR" property="oldZhbs" />
+    <result column="NEW_ZHMC" jdbcType="VARCHAR" property="newZhmc" />
+    <result column="NEW_KZBS" jdbcType="VARCHAR" property="newKzbs" />
+    <result column="NEW_ZHKHJG" jdbcType="VARCHAR" property="newZhkhjg" />
+    <result column="NEW_ZHBS" jdbcType="VARCHAR" property="newZhbs" />
+    <result column="FIRST_PERIODS" jdbcType="DECIMAL" property="firstPeriods" />
+    <result column="YHBJ" jdbcType="DECIMAL" property="yhbj" />
+    <result column="YHZE" jdbcType="DECIMAL" property="yhze" />
+    <result column="NEW_WTRHBZH" jdbcType="VARCHAR" property="newWtrhbzh" />
+    <result column="NEW_WTRHXZH" jdbcType="VARCHAR" property="newWtrhxzh" />
+    <result column="WTRNM" jdbcType="VARCHAR" property="wtrnm" />
+    <result column="HZSNM" jdbcType="VARCHAR" property="hzsnm" />
+    <result column="HZSZH" jdbcType="VARCHAR" property="hzszh" />
+    <result column="ADJ_ITR_FLG" jdbcType="VARCHAR" property="adjItrFlg" />
+    <result column="NOR_ITR_IN" jdbcType="DECIMAL" property="norItrIn" />
+    <result column="DFT_ITR_IN" jdbcType="DECIMAL" property="dftItrIn" />
+    <result column="PNS_ITR_IN" jdbcType="DECIMAL" property="pnsItrIn" />
+    <result column="NOR_OTD_ITR" jdbcType="DECIMAL" property="norOtdItr" />
+    <result column="PNS_OTD_ITR" jdbcType="DECIMAL" property="pnsOtdItr" />
+    <result column="BE_NOR_ITR_IN" jdbcType="DECIMAL" property="beNorItrIn" />
+    <result column="BE_DFT_ITR_IN" jdbcType="DECIMAL" property="beDftItrIn" />
+    <result column="BE_PNS_ITR_IN" jdbcType="DECIMAL" property="bePnsItrIn" />
+    <result column="BE_NOR_OTD_ITR" jdbcType="DECIMAL" property="beNorOtdItr" />
+    <result column="BE_PNS_OTD_ITR" jdbcType="DECIMAL" property="bePnsOtdItr" />
+    <result column="OLD_WTRHBZH" jdbcType="VARCHAR" property="oldWtrhbzh" />
+    <result column="OLD_WTRHXZH" jdbcType="VARCHAR" property="oldWtrhxzh" />
+    <result column="NOR_ITR_OUT" jdbcType="DECIMAL" property="norItrOut" />
+    <result column="DFT_ITR_OUT" jdbcType="DECIMAL" property="dftItrOut" />
+    <result column="PNS_ITR_OUT" jdbcType="DECIMAL" property="pnsItrOut" />
+    <result column="CPD_ITR_OUT" jdbcType="DECIMAL" property="cpdItrOut" />
+    <result column="BE_NOR_ITR_OUT" jdbcType="DECIMAL" property="beNorItrOut" />
+    <result column="BE_DFT_ITR_OUT" jdbcType="DECIMAL" property="beDftItrOut" />
+    <result column="BE_PNS_ITR_OUT" jdbcType="DECIMAL" property="bePnsItrOut" />
+    <result column="BE_CPD_ITR_OUT" jdbcType="DECIMAL" property="beCpdItrOut" />
+    <result column="CPD_ITR_IN" jdbcType="DECIMAL" property="cpdItrIn" />
+    <result column="BE_CPD_ITR_IN" jdbcType="DECIMAL" property="beCpdItrIn" />
+    <result column="OTD_CPD" jdbcType="DECIMAL" property="otdCpd" />
+    <result column="BE_OTD_CPD" jdbcType="DECIMAL" property="beOtdCpd" />
+    <result column="OTD_ITR_IN" jdbcType="DECIMAL" property="otdItrIn" />
+    <result column="BE_OTD_ITR_IN" jdbcType="DECIMAL" property="beOtdItrIn" />
+    <result column="STOP_FL" jdbcType="DECIMAL" property="stopFl" />
+    <result column="OLD_OVERDUE_RATE" jdbcType="DECIMAL" property="oldOverdueRate" />
+    <result column="NEW_OVERDUE_RATE" jdbcType="DECIMAL" property="newOverdueRate" />
+    <result column="OLD_BZJBLBDY" jdbcType="DECIMAL" property="oldBzjblbdy" />
+    <result column="NEW_BZJBLBDY" jdbcType="DECIMAL" property="newBzjblbdy" />
+    <result column="OLD_BZJJE" jdbcType="DECIMAL" property="oldBzjje" />
+    <result column="NEW_BZJJE" jdbcType="DECIMAL" property="newBzjje" />
+    <result column="OLD_XYZ_DQRQ" jdbcType="TIMESTAMP" property="oldXyzDqrq" />
+    <result column="NEW_XYZ_DQRQ" jdbcType="TIMESTAMP" property="newXyzDqrq" />
+    <result column="OLD_BH_DQRQ" jdbcType="TIMESTAMP" property="oldBhDqrq" />
+    <result column="NEW_BH_DQRQ" jdbcType="TIMESTAMP" property="newBhDqrq" />
+    <result column="OLD_BH_BZJBLBDY" jdbcType="DECIMAL" property="oldBhBzjblbdy" />
+    <result column="NEW_BH_BZJBLBDY" jdbcType="DECIMAL" property="newBhBzjblbdy" />
+    <result column="OLD_BH_BZJJE" jdbcType="DECIMAL" property="oldBhBzjje" />
+    <result column="NEW_BH_BZJJE" jdbcType="DECIMAL" property="newBhBzjje" />
+    <result column="OLD_XYZ_JYQ" jdbcType="VARCHAR" property="oldXyzJyq" />
+    <result column="NEW_XYZ_JYQ" jdbcType="VARCHAR" property="newXyzJyq" />
+    <result column="OLD_XYZ_YQTS" jdbcType="VARCHAR" property="oldXyzYqts" />
+    <result column="NEW_XYZ_YQTS" jdbcType="VARCHAR" property="newXyzYqts" />
+    <result column="OLD_BH_BHLX" jdbcType="VARCHAR" property="oldBhBhlx" />
+    <result column="NEW_BH_BHLX" jdbcType="VARCHAR" property="newBhBhlx" />
+    <result column="GJ_FLOW_NO" jdbcType="VARCHAR" property="gjFlowNo" />
+    <result column="YHFL" jdbcType="DECIMAL" property="yhfl" />
+    <result column="OLD_KZJE" jdbcType="DECIMAL" property="oldKzje" />
+    <result column="NEW_KZJE" jdbcType="DECIMAL" property="newKzje" />
+    <result column="PERIOD_NUM" jdbcType="VARCHAR" property="periodNum" />
+    <result column="PERIOD_STATE" jdbcType="VARCHAR" property="periodState" />
+    <result column="SHBJ" jdbcType="DECIMAL" property="shbj" />
+    <result column="SHZCLX" jdbcType="DECIMAL" property="shzclx" />
+    <result column="SHTQLX" jdbcType="DECIMAL" property="shtqlx" />
+    <result column="SHFX" jdbcType="DECIMAL" property="shfx" />
+    <result column="SHFL" jdbcType="DECIMAL" property="shfl" />
+    <result column="ADJ_OTD_PNS" jdbcType="DECIMAL" property="adjOtdPns" />
+    <result column="ADJ_OTD_CPD" jdbcType="DECIMAL" property="adjOtdCpd" />
+    <result column="PAD_UP_ADJ_OTD_ITR" jdbcType="DECIMAL" property="padUpAdjOtdItr" />
+    <result column="PAD_UP_ADJ_OTD_PNS" jdbcType="DECIMAL" property="padUpAdjOtdPns" />
+    <result column="PAD_UP_ADJ_OTD_CPD" jdbcType="DECIMAL" property="padUpAdjOtdCpd" />
+    <result column="PAD_UP_ADJ_OTD_ITR_PRE" jdbcType="DECIMAL" property="padUpAdjOtdItrPre" />
+    <result column="OLD_SECOND_REPAY_ACCOUNT" jdbcType="VARCHAR" property="oldSecondRepayAccount" />
+    <result column="OLD_SECOND_ZHMC" jdbcType="VARCHAR" property="oldSecondZhmc" />
+    <result column="OLD_SECOND_KZBS" jdbcType="VARCHAR" property="oldSecondKzbs" />
+    <result column="OLD_SECOND_ZHKHJG" jdbcType="VARCHAR" property="oldSecondZhkhjg" />
+    <result column="OLD_SECOND_ZHBS" jdbcType="VARCHAR" property="oldSecondZhbs" />
+    <result column="NEW_SECOND_REPAY_ACCOUNT" jdbcType="VARCHAR" property="newSecondRepayAccount" />
+    <result column="NEW_SECOND_ZHMC" jdbcType="VARCHAR" property="newSecondZhmc" />
+    <result column="NEW_SECOND_KZBS" jdbcType="VARCHAR" property="newSecondKzbs" />
+    <result column="NEW_SECOND_ZHKHJG" jdbcType="VARCHAR" property="newSecondZhkhjg" />
+    <result column="NEW_SECOND_ZHBS" jdbcType="VARCHAR" property="newSecondZhbs" />
+    <result column="OLD_THIRD_REPAY_ACCOUNT" jdbcType="VARCHAR" property="oldThirdRepayAccount" />
+    <result column="OLD_THIRD_ZHMC" jdbcType="VARCHAR" property="oldThirdZhmc" />
+    <result column="OLD_THIRD_KZBS" jdbcType="VARCHAR" property="oldThirdKzbs" />
+    <result column="OLD_THIRD_ZHKHJG" jdbcType="VARCHAR" property="oldThirdZhkhjg" />
+    <result column="OLD_THIRD_ZHBS" jdbcType="VARCHAR" property="oldThirdZhbs" />
+    <result column="NEW_THIRD_REPAY_ACCOUNT" jdbcType="VARCHAR" property="newThirdRepayAccount" />
+    <result column="NEW_THIRD_ZHMC" jdbcType="VARCHAR" property="newThirdZhmc" />
+    <result column="NEW_THIRD_KZBS" jdbcType="VARCHAR" property="newThirdKzbs" />
+    <result column="NEW_THIRD_ZHKHJG" jdbcType="VARCHAR" property="newThirdZhkhjg" />
+    <result column="NEW_THIRD_ZHBS" jdbcType="VARCHAR" property="newThirdZhbs" />
+    <result column="IS_CREDIT" jdbcType="VARCHAR" property="isCredit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CHANGE_ID, CONTRACT_ID, SUMMARY_ID, PARTY_ID, CON_CHANGE_TYPE, LOAN_CHANGE_TYPE, 
+    CHANGE_REASON, CHANGE_DATE, CHANGE_STATUS, USER_NUM, ORG_NUM, OLD_RATE_TYPE, OLD_FLOAT_TYPE, 
+    OLD_FLOAT_WAY, OLD_BASE_RATE_VALUE, OLD_RATE_FLOAT_PROPORTION, OLD_YEAR_RATE, OLD_IR_UPDATE_FREQUENCY, 
+    OLD_INTEREST_COLLECT_TYPE, NEW_RATE_TYPE, NEW_FLOAT_TYPE, NEW_FLOAT_WAY, NEW_BASE_RATE_VALUE, 
+    NEW_RATE_FLOAT_PROPORTION, NEW_YEAR_RATE, NEW_IR_UPDATE_FREQUENCY, NEW_INTEREST_COLLECT_TYPE, 
+    OLD_TERM, OLD_END_DATE, TERM_CHANGE_WAY, NEW_TERM, NEW_END_DATE, OLD_REPAY_WAY, NEW_REPAY_WAY, 
+    OLD_REPAY_DAY, NEW_REPAY_DAY, OLD_REPAY_ACCOUNT, NEW_REPAY_ACCOUNT, OLD_GUARANTY_TYPE, 
+    NEW_GUARANTY_TYPE, IS_SETTLE, REPAY_AMT, REPAY_CAPITAL, DEAL_WAY, IS_MODIFY_PLAN, 
+    OLD_SUMMARYAMT, NEW_SUMMARYAMT, OLD_RATE_UP, NEW_RATE_UP, OLD_RATE_DOWN, NEW_RATE_DOWN, 
+    IS_SMALL, REPAY_TYPE, YHZCLX, YHTQLX, YHFX, OLD_TIEXI_STATUS, NEW_TIEXI_STATUS, OLD_TINGXI_STATUS, 
+    NEW_TINGXI_STATUS, REPAY_ORDER, CHANGE_NUM, STOP_RATE_TYPE, STOP_ZC_RATE, STOP_TQ_RATE, 
+    STOP_FX, STOP_ZC_RATE_OUT, STOP_TQ_RATE_OUT, STOP_FX_OUT, OLD_ZHMC, OLD_KZBS, OLD_ZHKHJG, 
+    OLD_ZHBS, NEW_ZHMC, NEW_KZBS, NEW_ZHKHJG, NEW_ZHBS, FIRST_PERIODS, YHBJ, YHZE, NEW_WTRHBZH, 
+    NEW_WTRHXZH, WTRNM, HZSNM, HZSZH, ADJ_ITR_FLG, NOR_ITR_IN, DFT_ITR_IN, PNS_ITR_IN, 
+    NOR_OTD_ITR, PNS_OTD_ITR, BE_NOR_ITR_IN, BE_DFT_ITR_IN, BE_PNS_ITR_IN, BE_NOR_OTD_ITR, 
+    BE_PNS_OTD_ITR, OLD_WTRHBZH, OLD_WTRHXZH, NOR_ITR_OUT, DFT_ITR_OUT, PNS_ITR_OUT, 
+    CPD_ITR_OUT, BE_NOR_ITR_OUT, BE_DFT_ITR_OUT, BE_PNS_ITR_OUT, BE_CPD_ITR_OUT, CPD_ITR_IN, 
+    BE_CPD_ITR_IN, OTD_CPD, BE_OTD_CPD, OTD_ITR_IN, BE_OTD_ITR_IN, STOP_FL, OLD_OVERDUE_RATE, 
+    NEW_OVERDUE_RATE, OLD_BZJBLBDY, NEW_BZJBLBDY, OLD_BZJJE, NEW_BZJJE, OLD_XYZ_DQRQ, 
+    NEW_XYZ_DQRQ, OLD_BH_DQRQ, NEW_BH_DQRQ, OLD_BH_BZJBLBDY, NEW_BH_BZJBLBDY, OLD_BH_BZJJE, 
+    NEW_BH_BZJJE, OLD_XYZ_JYQ, NEW_XYZ_JYQ, OLD_XYZ_YQTS, NEW_XYZ_YQTS, OLD_BH_BHLX, 
+    NEW_BH_BHLX, GJ_FLOW_NO, YHFL, OLD_KZJE, NEW_KZJE, PERIOD_NUM, PERIOD_STATE, SHBJ, 
+    SHZCLX, SHTQLX, SHFX, SHFL, ADJ_OTD_PNS, ADJ_OTD_CPD, PAD_UP_ADJ_OTD_ITR, PAD_UP_ADJ_OTD_PNS, 
+    PAD_UP_ADJ_OTD_CPD, PAD_UP_ADJ_OTD_ITR_PRE, OLD_SECOND_REPAY_ACCOUNT, OLD_SECOND_ZHMC, 
+    OLD_SECOND_KZBS, OLD_SECOND_ZHKHJG, OLD_SECOND_ZHBS, NEW_SECOND_REPAY_ACCOUNT, NEW_SECOND_ZHMC, 
+    NEW_SECOND_KZBS, NEW_SECOND_ZHKHJG, NEW_SECOND_ZHBS, OLD_THIRD_REPAY_ACCOUNT, OLD_THIRD_ZHMC, 
+    OLD_THIRD_KZBS, OLD_THIRD_ZHKHJG, OLD_THIRD_ZHBS, NEW_THIRD_REPAY_ACCOUNT, NEW_THIRD_ZHMC, 
+    NEW_THIRD_KZBS, NEW_THIRD_ZHKHJG, NEW_THIRD_ZHBS, IS_CREDIT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_LOAN_CHANGE
+    where CHANGE_ID = #{changeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_LOAN_CHANGE
+    where CHANGE_ID = #{changeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.TbConLoanChange">
+    insert into CRMS.TB_CON_LOAN_CHANGE (CHANGE_ID, CONTRACT_ID, SUMMARY_ID, 
+      PARTY_ID, CON_CHANGE_TYPE, LOAN_CHANGE_TYPE, 
+      CHANGE_REASON, CHANGE_DATE, CHANGE_STATUS, 
+      USER_NUM, ORG_NUM, OLD_RATE_TYPE, 
+      OLD_FLOAT_TYPE, OLD_FLOAT_WAY, OLD_BASE_RATE_VALUE, 
+      OLD_RATE_FLOAT_PROPORTION, OLD_YEAR_RATE, OLD_IR_UPDATE_FREQUENCY, 
+      OLD_INTEREST_COLLECT_TYPE, NEW_RATE_TYPE, NEW_FLOAT_TYPE, 
+      NEW_FLOAT_WAY, NEW_BASE_RATE_VALUE, NEW_RATE_FLOAT_PROPORTION, 
+      NEW_YEAR_RATE, NEW_IR_UPDATE_FREQUENCY, NEW_INTEREST_COLLECT_TYPE, 
+      OLD_TERM, OLD_END_DATE, TERM_CHANGE_WAY, 
+      NEW_TERM, NEW_END_DATE, OLD_REPAY_WAY, 
+      NEW_REPAY_WAY, OLD_REPAY_DAY, NEW_REPAY_DAY, 
+      OLD_REPAY_ACCOUNT, NEW_REPAY_ACCOUNT, OLD_GUARANTY_TYPE, 
+      NEW_GUARANTY_TYPE, IS_SETTLE, REPAY_AMT, 
+      REPAY_CAPITAL, DEAL_WAY, IS_MODIFY_PLAN, 
+      OLD_SUMMARYAMT, NEW_SUMMARYAMT, OLD_RATE_UP, 
+      NEW_RATE_UP, OLD_RATE_DOWN, NEW_RATE_DOWN, 
+      IS_SMALL, REPAY_TYPE, YHZCLX, 
+      YHTQLX, YHFX, OLD_TIEXI_STATUS, 
+      NEW_TIEXI_STATUS, OLD_TINGXI_STATUS, NEW_TINGXI_STATUS, 
+      REPAY_ORDER, CHANGE_NUM, STOP_RATE_TYPE, 
+      STOP_ZC_RATE, STOP_TQ_RATE, STOP_FX, 
+      STOP_ZC_RATE_OUT, STOP_TQ_RATE_OUT, STOP_FX_OUT, 
+      OLD_ZHMC, OLD_KZBS, OLD_ZHKHJG, 
+      OLD_ZHBS, NEW_ZHMC, NEW_KZBS, 
+      NEW_ZHKHJG, NEW_ZHBS, FIRST_PERIODS, 
+      YHBJ, YHZE, NEW_WTRHBZH, 
+      NEW_WTRHXZH, WTRNM, HZSNM, 
+      HZSZH, ADJ_ITR_FLG, NOR_ITR_IN, 
+      DFT_ITR_IN, PNS_ITR_IN, NOR_OTD_ITR, 
+      PNS_OTD_ITR, BE_NOR_ITR_IN, BE_DFT_ITR_IN, 
+      BE_PNS_ITR_IN, BE_NOR_OTD_ITR, BE_PNS_OTD_ITR, 
+      OLD_WTRHBZH, OLD_WTRHXZH, NOR_ITR_OUT, 
+      DFT_ITR_OUT, PNS_ITR_OUT, CPD_ITR_OUT, 
+      BE_NOR_ITR_OUT, BE_DFT_ITR_OUT, BE_PNS_ITR_OUT, 
+      BE_CPD_ITR_OUT, CPD_ITR_IN, BE_CPD_ITR_IN, 
+      OTD_CPD, BE_OTD_CPD, OTD_ITR_IN, 
+      BE_OTD_ITR_IN, STOP_FL, OLD_OVERDUE_RATE, 
+      NEW_OVERDUE_RATE, OLD_BZJBLBDY, NEW_BZJBLBDY, 
+      OLD_BZJJE, NEW_BZJJE, OLD_XYZ_DQRQ, 
+      NEW_XYZ_DQRQ, OLD_BH_DQRQ, NEW_BH_DQRQ, 
+      OLD_BH_BZJBLBDY, NEW_BH_BZJBLBDY, OLD_BH_BZJJE, 
+      NEW_BH_BZJJE, OLD_XYZ_JYQ, NEW_XYZ_JYQ, 
+      OLD_XYZ_YQTS, NEW_XYZ_YQTS, OLD_BH_BHLX, 
+      NEW_BH_BHLX, GJ_FLOW_NO, YHFL, 
+      OLD_KZJE, NEW_KZJE, PERIOD_NUM, 
+      PERIOD_STATE, SHBJ, SHZCLX, 
+      SHTQLX, SHFX, SHFL, 
+      ADJ_OTD_PNS, ADJ_OTD_CPD, PAD_UP_ADJ_OTD_ITR, 
+      PAD_UP_ADJ_OTD_PNS, PAD_UP_ADJ_OTD_CPD, PAD_UP_ADJ_OTD_ITR_PRE, 
+      OLD_SECOND_REPAY_ACCOUNT, OLD_SECOND_ZHMC, OLD_SECOND_KZBS, 
+      OLD_SECOND_ZHKHJG, OLD_SECOND_ZHBS, NEW_SECOND_REPAY_ACCOUNT, 
+      NEW_SECOND_ZHMC, NEW_SECOND_KZBS, NEW_SECOND_ZHKHJG, 
+      NEW_SECOND_ZHBS, OLD_THIRD_REPAY_ACCOUNT, OLD_THIRD_ZHMC, 
+      OLD_THIRD_KZBS, OLD_THIRD_ZHKHJG, OLD_THIRD_ZHBS, 
+      NEW_THIRD_REPAY_ACCOUNT, NEW_THIRD_ZHMC, NEW_THIRD_KZBS, 
+      NEW_THIRD_ZHKHJG, NEW_THIRD_ZHBS, IS_CREDIT
+      )
+    values (#{changeId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{summaryId,jdbcType=VARCHAR}, 
+      #{partyId,jdbcType=VARCHAR}, #{conChangeType,jdbcType=VARCHAR}, #{loanChangeType,jdbcType=VARCHAR}, 
+      #{changeReason,jdbcType=VARCHAR}, #{changeDate,jdbcType=TIMESTAMP}, #{changeStatus,jdbcType=VARCHAR}, 
+      #{userNum,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, #{oldRateType,jdbcType=VARCHAR}, 
+      #{oldFloatType,jdbcType=VARCHAR}, #{oldFloatWay,jdbcType=VARCHAR}, #{oldBaseRateValue,jdbcType=DECIMAL}, 
+      #{oldRateFloatProportion,jdbcType=DECIMAL}, #{oldYearRate,jdbcType=DECIMAL}, #{oldIrUpdateFrequency,jdbcType=VARCHAR}, 
+      #{oldInterestCollectType,jdbcType=VARCHAR}, #{newRateType,jdbcType=VARCHAR}, #{newFloatType,jdbcType=VARCHAR}, 
+      #{newFloatWay,jdbcType=VARCHAR}, #{newBaseRateValue,jdbcType=DECIMAL}, #{newRateFloatProportion,jdbcType=DECIMAL}, 
+      #{newYearRate,jdbcType=DECIMAL}, #{newIrUpdateFrequency,jdbcType=VARCHAR}, #{newInterestCollectType,jdbcType=VARCHAR}, 
+      #{oldTerm,jdbcType=DECIMAL}, #{oldEndDate,jdbcType=TIMESTAMP}, #{termChangeWay,jdbcType=VARCHAR}, 
+      #{newTerm,jdbcType=DECIMAL}, #{newEndDate,jdbcType=TIMESTAMP}, #{oldRepayWay,jdbcType=VARCHAR}, 
+      #{newRepayWay,jdbcType=VARCHAR}, #{oldRepayDay,jdbcType=DECIMAL}, #{newRepayDay,jdbcType=DECIMAL}, 
+      #{oldRepayAccount,jdbcType=VARCHAR}, #{newRepayAccount,jdbcType=VARCHAR}, #{oldGuarantyType,jdbcType=VARCHAR}, 
+      #{newGuarantyType,jdbcType=VARCHAR}, #{isSettle,jdbcType=VARCHAR}, #{repayAmt,jdbcType=DECIMAL}, 
+      #{repayCapital,jdbcType=DECIMAL}, #{dealWay,jdbcType=VARCHAR}, #{isModifyPlan,jdbcType=VARCHAR}, 
+      #{oldSummaryamt,jdbcType=DECIMAL}, #{newSummaryamt,jdbcType=DECIMAL}, #{oldRateUp,jdbcType=DECIMAL}, 
+      #{newRateUp,jdbcType=DECIMAL}, #{oldRateDown,jdbcType=DECIMAL}, #{newRateDown,jdbcType=DECIMAL}, 
+      #{isSmall,jdbcType=VARCHAR}, #{repayType,jdbcType=VARCHAR}, #{yhzclx,jdbcType=DECIMAL}, 
+      #{yhtqlx,jdbcType=DECIMAL}, #{yhfx,jdbcType=DECIMAL}, #{oldTiexiStatus,jdbcType=VARCHAR}, 
+      #{newTiexiStatus,jdbcType=VARCHAR}, #{oldTingxiStatus,jdbcType=VARCHAR}, #{newTingxiStatus,jdbcType=VARCHAR}, 
+      #{repayOrder,jdbcType=VARCHAR}, #{changeNum,jdbcType=VARCHAR}, #{stopRateType,jdbcType=VARCHAR}, 
+      #{stopZcRate,jdbcType=DECIMAL}, #{stopTqRate,jdbcType=DECIMAL}, #{stopFx,jdbcType=DECIMAL}, 
+      #{stopZcRateOut,jdbcType=DECIMAL}, #{stopTqRateOut,jdbcType=DECIMAL}, #{stopFxOut,jdbcType=DECIMAL}, 
+      #{oldZhmc,jdbcType=VARCHAR}, #{oldKzbs,jdbcType=VARCHAR}, #{oldZhkhjg,jdbcType=VARCHAR}, 
+      #{oldZhbs,jdbcType=VARCHAR}, #{newZhmc,jdbcType=VARCHAR}, #{newKzbs,jdbcType=VARCHAR}, 
+      #{newZhkhjg,jdbcType=VARCHAR}, #{newZhbs,jdbcType=VARCHAR}, #{firstPeriods,jdbcType=DECIMAL}, 
+      #{yhbj,jdbcType=DECIMAL}, #{yhze,jdbcType=DECIMAL}, #{newWtrhbzh,jdbcType=VARCHAR}, 
+      #{newWtrhxzh,jdbcType=VARCHAR}, #{wtrnm,jdbcType=VARCHAR}, #{hzsnm,jdbcType=VARCHAR}, 
+      #{hzszh,jdbcType=VARCHAR}, #{adjItrFlg,jdbcType=VARCHAR}, #{norItrIn,jdbcType=DECIMAL}, 
+      #{dftItrIn,jdbcType=DECIMAL}, #{pnsItrIn,jdbcType=DECIMAL}, #{norOtdItr,jdbcType=DECIMAL}, 
+      #{pnsOtdItr,jdbcType=DECIMAL}, #{beNorItrIn,jdbcType=DECIMAL}, #{beDftItrIn,jdbcType=DECIMAL}, 
+      #{bePnsItrIn,jdbcType=DECIMAL}, #{beNorOtdItr,jdbcType=DECIMAL}, #{bePnsOtdItr,jdbcType=DECIMAL}, 
+      #{oldWtrhbzh,jdbcType=VARCHAR}, #{oldWtrhxzh,jdbcType=VARCHAR}, #{norItrOut,jdbcType=DECIMAL}, 
+      #{dftItrOut,jdbcType=DECIMAL}, #{pnsItrOut,jdbcType=DECIMAL}, #{cpdItrOut,jdbcType=DECIMAL}, 
+      #{beNorItrOut,jdbcType=DECIMAL}, #{beDftItrOut,jdbcType=DECIMAL}, #{bePnsItrOut,jdbcType=DECIMAL}, 
+      #{beCpdItrOut,jdbcType=DECIMAL}, #{cpdItrIn,jdbcType=DECIMAL}, #{beCpdItrIn,jdbcType=DECIMAL}, 
+      #{otdCpd,jdbcType=DECIMAL}, #{beOtdCpd,jdbcType=DECIMAL}, #{otdItrIn,jdbcType=DECIMAL}, 
+      #{beOtdItrIn,jdbcType=DECIMAL}, #{stopFl,jdbcType=DECIMAL}, #{oldOverdueRate,jdbcType=DECIMAL}, 
+      #{newOverdueRate,jdbcType=DECIMAL}, #{oldBzjblbdy,jdbcType=DECIMAL}, #{newBzjblbdy,jdbcType=DECIMAL}, 
+      #{oldBzjje,jdbcType=DECIMAL}, #{newBzjje,jdbcType=DECIMAL}, #{oldXyzDqrq,jdbcType=TIMESTAMP}, 
+      #{newXyzDqrq,jdbcType=TIMESTAMP}, #{oldBhDqrq,jdbcType=TIMESTAMP}, #{newBhDqrq,jdbcType=TIMESTAMP}, 
+      #{oldBhBzjblbdy,jdbcType=DECIMAL}, #{newBhBzjblbdy,jdbcType=DECIMAL}, #{oldBhBzjje,jdbcType=DECIMAL}, 
+      #{newBhBzjje,jdbcType=DECIMAL}, #{oldXyzJyq,jdbcType=VARCHAR}, #{newXyzJyq,jdbcType=VARCHAR}, 
+      #{oldXyzYqts,jdbcType=VARCHAR}, #{newXyzYqts,jdbcType=VARCHAR}, #{oldBhBhlx,jdbcType=VARCHAR}, 
+      #{newBhBhlx,jdbcType=VARCHAR}, #{gjFlowNo,jdbcType=VARCHAR}, #{yhfl,jdbcType=DECIMAL}, 
+      #{oldKzje,jdbcType=DECIMAL}, #{newKzje,jdbcType=DECIMAL}, #{periodNum,jdbcType=VARCHAR}, 
+      #{periodState,jdbcType=VARCHAR}, #{shbj,jdbcType=DECIMAL}, #{shzclx,jdbcType=DECIMAL}, 
+      #{shtqlx,jdbcType=DECIMAL}, #{shfx,jdbcType=DECIMAL}, #{shfl,jdbcType=DECIMAL}, 
+      #{adjOtdPns,jdbcType=DECIMAL}, #{adjOtdCpd,jdbcType=DECIMAL}, #{padUpAdjOtdItr,jdbcType=DECIMAL}, 
+      #{padUpAdjOtdPns,jdbcType=DECIMAL}, #{padUpAdjOtdCpd,jdbcType=DECIMAL}, #{padUpAdjOtdItrPre,jdbcType=DECIMAL}, 
+      #{oldSecondRepayAccount,jdbcType=VARCHAR}, #{oldSecondZhmc,jdbcType=VARCHAR}, #{oldSecondKzbs,jdbcType=VARCHAR}, 
+      #{oldSecondZhkhjg,jdbcType=VARCHAR}, #{oldSecondZhbs,jdbcType=VARCHAR}, #{newSecondRepayAccount,jdbcType=VARCHAR}, 
+      #{newSecondZhmc,jdbcType=VARCHAR}, #{newSecondKzbs,jdbcType=VARCHAR}, #{newSecondZhkhjg,jdbcType=VARCHAR}, 
+      #{newSecondZhbs,jdbcType=VARCHAR}, #{oldThirdRepayAccount,jdbcType=VARCHAR}, #{oldThirdZhmc,jdbcType=VARCHAR}, 
+      #{oldThirdKzbs,jdbcType=VARCHAR}, #{oldThirdZhkhjg,jdbcType=VARCHAR}, #{oldThirdZhbs,jdbcType=VARCHAR}, 
+      #{newThirdRepayAccount,jdbcType=VARCHAR}, #{newThirdZhmc,jdbcType=VARCHAR}, #{newThirdKzbs,jdbcType=VARCHAR}, 
+      #{newThirdZhkhjg,jdbcType=VARCHAR}, #{newThirdZhbs,jdbcType=VARCHAR}, #{isCredit,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.TbConLoanChange">
+    insert into CRMS.TB_CON_LOAN_CHANGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="changeId != null">
+        CHANGE_ID,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="summaryId != null">
+        SUMMARY_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="conChangeType != null">
+        CON_CHANGE_TYPE,
+      </if>
+      <if test="loanChangeType != null">
+        LOAN_CHANGE_TYPE,
+      </if>
+      <if test="changeReason != null">
+        CHANGE_REASON,
+      </if>
+      <if test="changeDate != null">
+        CHANGE_DATE,
+      </if>
+      <if test="changeStatus != null">
+        CHANGE_STATUS,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="oldRateType != null">
+        OLD_RATE_TYPE,
+      </if>
+      <if test="oldFloatType != null">
+        OLD_FLOAT_TYPE,
+      </if>
+      <if test="oldFloatWay != null">
+        OLD_FLOAT_WAY,
+      </if>
+      <if test="oldBaseRateValue != null">
+        OLD_BASE_RATE_VALUE,
+      </if>
+      <if test="oldRateFloatProportion != null">
+        OLD_RATE_FLOAT_PROPORTION,
+      </if>
+      <if test="oldYearRate != null">
+        OLD_YEAR_RATE,
+      </if>
+      <if test="oldIrUpdateFrequency != null">
+        OLD_IR_UPDATE_FREQUENCY,
+      </if>
+      <if test="oldInterestCollectType != null">
+        OLD_INTEREST_COLLECT_TYPE,
+      </if>
+      <if test="newRateType != null">
+        NEW_RATE_TYPE,
+      </if>
+      <if test="newFloatType != null">
+        NEW_FLOAT_TYPE,
+      </if>
+      <if test="newFloatWay != null">
+        NEW_FLOAT_WAY,
+      </if>
+      <if test="newBaseRateValue != null">
+        NEW_BASE_RATE_VALUE,
+      </if>
+      <if test="newRateFloatProportion != null">
+        NEW_RATE_FLOAT_PROPORTION,
+      </if>
+      <if test="newYearRate != null">
+        NEW_YEAR_RATE,
+      </if>
+      <if test="newIrUpdateFrequency != null">
+        NEW_IR_UPDATE_FREQUENCY,
+      </if>
+      <if test="newInterestCollectType != null">
+        NEW_INTEREST_COLLECT_TYPE,
+      </if>
+      <if test="oldTerm != null">
+        OLD_TERM,
+      </if>
+      <if test="oldEndDate != null">
+        OLD_END_DATE,
+      </if>
+      <if test="termChangeWay != null">
+        TERM_CHANGE_WAY,
+      </if>
+      <if test="newTerm != null">
+        NEW_TERM,
+      </if>
+      <if test="newEndDate != null">
+        NEW_END_DATE,
+      </if>
+      <if test="oldRepayWay != null">
+        OLD_REPAY_WAY,
+      </if>
+      <if test="newRepayWay != null">
+        NEW_REPAY_WAY,
+      </if>
+      <if test="oldRepayDay != null">
+        OLD_REPAY_DAY,
+      </if>
+      <if test="newRepayDay != null">
+        NEW_REPAY_DAY,
+      </if>
+      <if test="oldRepayAccount != null">
+        OLD_REPAY_ACCOUNT,
+      </if>
+      <if test="newRepayAccount != null">
+        NEW_REPAY_ACCOUNT,
+      </if>
+      <if test="oldGuarantyType != null">
+        OLD_GUARANTY_TYPE,
+      </if>
+      <if test="newGuarantyType != null">
+        NEW_GUARANTY_TYPE,
+      </if>
+      <if test="isSettle != null">
+        IS_SETTLE,
+      </if>
+      <if test="repayAmt != null">
+        REPAY_AMT,
+      </if>
+      <if test="repayCapital != null">
+        REPAY_CAPITAL,
+      </if>
+      <if test="dealWay != null">
+        DEAL_WAY,
+      </if>
+      <if test="isModifyPlan != null">
+        IS_MODIFY_PLAN,
+      </if>
+      <if test="oldSummaryamt != null">
+        OLD_SUMMARYAMT,
+      </if>
+      <if test="newSummaryamt != null">
+        NEW_SUMMARYAMT,
+      </if>
+      <if test="oldRateUp != null">
+        OLD_RATE_UP,
+      </if>
+      <if test="newRateUp != null">
+        NEW_RATE_UP,
+      </if>
+      <if test="oldRateDown != null">
+        OLD_RATE_DOWN,
+      </if>
+      <if test="newRateDown != null">
+        NEW_RATE_DOWN,
+      </if>
+      <if test="isSmall != null">
+        IS_SMALL,
+      </if>
+      <if test="repayType != null">
+        REPAY_TYPE,
+      </if>
+      <if test="yhzclx != null">
+        YHZCLX,
+      </if>
+      <if test="yhtqlx != null">
+        YHTQLX,
+      </if>
+      <if test="yhfx != null">
+        YHFX,
+      </if>
+      <if test="oldTiexiStatus != null">
+        OLD_TIEXI_STATUS,
+      </if>
+      <if test="newTiexiStatus != null">
+        NEW_TIEXI_STATUS,
+      </if>
+      <if test="oldTingxiStatus != null">
+        OLD_TINGXI_STATUS,
+      </if>
+      <if test="newTingxiStatus != null">
+        NEW_TINGXI_STATUS,
+      </if>
+      <if test="repayOrder != null">
+        REPAY_ORDER,
+      </if>
+      <if test="changeNum != null">
+        CHANGE_NUM,
+      </if>
+      <if test="stopRateType != null">
+        STOP_RATE_TYPE,
+      </if>
+      <if test="stopZcRate != null">
+        STOP_ZC_RATE,
+      </if>
+      <if test="stopTqRate != null">
+        STOP_TQ_RATE,
+      </if>
+      <if test="stopFx != null">
+        STOP_FX,
+      </if>
+      <if test="stopZcRateOut != null">
+        STOP_ZC_RATE_OUT,
+      </if>
+      <if test="stopTqRateOut != null">
+        STOP_TQ_RATE_OUT,
+      </if>
+      <if test="stopFxOut != null">
+        STOP_FX_OUT,
+      </if>
+      <if test="oldZhmc != null">
+        OLD_ZHMC,
+      </if>
+      <if test="oldKzbs != null">
+        OLD_KZBS,
+      </if>
+      <if test="oldZhkhjg != null">
+        OLD_ZHKHJG,
+      </if>
+      <if test="oldZhbs != null">
+        OLD_ZHBS,
+      </if>
+      <if test="newZhmc != null">
+        NEW_ZHMC,
+      </if>
+      <if test="newKzbs != null">
+        NEW_KZBS,
+      </if>
+      <if test="newZhkhjg != null">
+        NEW_ZHKHJG,
+      </if>
+      <if test="newZhbs != null">
+        NEW_ZHBS,
+      </if>
+      <if test="firstPeriods != null">
+        FIRST_PERIODS,
+      </if>
+      <if test="yhbj != null">
+        YHBJ,
+      </if>
+      <if test="yhze != null">
+        YHZE,
+      </if>
+      <if test="newWtrhbzh != null">
+        NEW_WTRHBZH,
+      </if>
+      <if test="newWtrhxzh != null">
+        NEW_WTRHXZH,
+      </if>
+      <if test="wtrnm != null">
+        WTRNM,
+      </if>
+      <if test="hzsnm != null">
+        HZSNM,
+      </if>
+      <if test="hzszh != null">
+        HZSZH,
+      </if>
+      <if test="adjItrFlg != null">
+        ADJ_ITR_FLG,
+      </if>
+      <if test="norItrIn != null">
+        NOR_ITR_IN,
+      </if>
+      <if test="dftItrIn != null">
+        DFT_ITR_IN,
+      </if>
+      <if test="pnsItrIn != null">
+        PNS_ITR_IN,
+      </if>
+      <if test="norOtdItr != null">
+        NOR_OTD_ITR,
+      </if>
+      <if test="pnsOtdItr != null">
+        PNS_OTD_ITR,
+      </if>
+      <if test="beNorItrIn != null">
+        BE_NOR_ITR_IN,
+      </if>
+      <if test="beDftItrIn != null">
+        BE_DFT_ITR_IN,
+      </if>
+      <if test="bePnsItrIn != null">
+        BE_PNS_ITR_IN,
+      </if>
+      <if test="beNorOtdItr != null">
+        BE_NOR_OTD_ITR,
+      </if>
+      <if test="bePnsOtdItr != null">
+        BE_PNS_OTD_ITR,
+      </if>
+      <if test="oldWtrhbzh != null">
+        OLD_WTRHBZH,
+      </if>
+      <if test="oldWtrhxzh != null">
+        OLD_WTRHXZH,
+      </if>
+      <if test="norItrOut != null">
+        NOR_ITR_OUT,
+      </if>
+      <if test="dftItrOut != null">
+        DFT_ITR_OUT,
+      </if>
+      <if test="pnsItrOut != null">
+        PNS_ITR_OUT,
+      </if>
+      <if test="cpdItrOut != null">
+        CPD_ITR_OUT,
+      </if>
+      <if test="beNorItrOut != null">
+        BE_NOR_ITR_OUT,
+      </if>
+      <if test="beDftItrOut != null">
+        BE_DFT_ITR_OUT,
+      </if>
+      <if test="bePnsItrOut != null">
+        BE_PNS_ITR_OUT,
+      </if>
+      <if test="beCpdItrOut != null">
+        BE_CPD_ITR_OUT,
+      </if>
+      <if test="cpdItrIn != null">
+        CPD_ITR_IN,
+      </if>
+      <if test="beCpdItrIn != null">
+        BE_CPD_ITR_IN,
+      </if>
+      <if test="otdCpd != null">
+        OTD_CPD,
+      </if>
+      <if test="beOtdCpd != null">
+        BE_OTD_CPD,
+      </if>
+      <if test="otdItrIn != null">
+        OTD_ITR_IN,
+      </if>
+      <if test="beOtdItrIn != null">
+        BE_OTD_ITR_IN,
+      </if>
+      <if test="stopFl != null">
+        STOP_FL,
+      </if>
+      <if test="oldOverdueRate != null">
+        OLD_OVERDUE_RATE,
+      </if>
+      <if test="newOverdueRate != null">
+        NEW_OVERDUE_RATE,
+      </if>
+      <if test="oldBzjblbdy != null">
+        OLD_BZJBLBDY,
+      </if>
+      <if test="newBzjblbdy != null">
+        NEW_BZJBLBDY,
+      </if>
+      <if test="oldBzjje != null">
+        OLD_BZJJE,
+      </if>
+      <if test="newBzjje != null">
+        NEW_BZJJE,
+      </if>
+      <if test="oldXyzDqrq != null">
+        OLD_XYZ_DQRQ,
+      </if>
+      <if test="newXyzDqrq != null">
+        NEW_XYZ_DQRQ,
+      </if>
+      <if test="oldBhDqrq != null">
+        OLD_BH_DQRQ,
+      </if>
+      <if test="newBhDqrq != null">
+        NEW_BH_DQRQ,
+      </if>
+      <if test="oldBhBzjblbdy != null">
+        OLD_BH_BZJBLBDY,
+      </if>
+      <if test="newBhBzjblbdy != null">
+        NEW_BH_BZJBLBDY,
+      </if>
+      <if test="oldBhBzjje != null">
+        OLD_BH_BZJJE,
+      </if>
+      <if test="newBhBzjje != null">
+        NEW_BH_BZJJE,
+      </if>
+      <if test="oldXyzJyq != null">
+        OLD_XYZ_JYQ,
+      </if>
+      <if test="newXyzJyq != null">
+        NEW_XYZ_JYQ,
+      </if>
+      <if test="oldXyzYqts != null">
+        OLD_XYZ_YQTS,
+      </if>
+      <if test="newXyzYqts != null">
+        NEW_XYZ_YQTS,
+      </if>
+      <if test="oldBhBhlx != null">
+        OLD_BH_BHLX,
+      </if>
+      <if test="newBhBhlx != null">
+        NEW_BH_BHLX,
+      </if>
+      <if test="gjFlowNo != null">
+        GJ_FLOW_NO,
+      </if>
+      <if test="yhfl != null">
+        YHFL,
+      </if>
+      <if test="oldKzje != null">
+        OLD_KZJE,
+      </if>
+      <if test="newKzje != null">
+        NEW_KZJE,
+      </if>
+      <if test="periodNum != null">
+        PERIOD_NUM,
+      </if>
+      <if test="periodState != null">
+        PERIOD_STATE,
+      </if>
+      <if test="shbj != null">
+        SHBJ,
+      </if>
+      <if test="shzclx != null">
+        SHZCLX,
+      </if>
+      <if test="shtqlx != null">
+        SHTQLX,
+      </if>
+      <if test="shfx != null">
+        SHFX,
+      </if>
+      <if test="shfl != null">
+        SHFL,
+      </if>
+      <if test="adjOtdPns != null">
+        ADJ_OTD_PNS,
+      </if>
+      <if test="adjOtdCpd != null">
+        ADJ_OTD_CPD,
+      </if>
+      <if test="padUpAdjOtdItr != null">
+        PAD_UP_ADJ_OTD_ITR,
+      </if>
+      <if test="padUpAdjOtdPns != null">
+        PAD_UP_ADJ_OTD_PNS,
+      </if>
+      <if test="padUpAdjOtdCpd != null">
+        PAD_UP_ADJ_OTD_CPD,
+      </if>
+      <if test="padUpAdjOtdItrPre != null">
+        PAD_UP_ADJ_OTD_ITR_PRE,
+      </if>
+      <if test="oldSecondRepayAccount != null">
+        OLD_SECOND_REPAY_ACCOUNT,
+      </if>
+      <if test="oldSecondZhmc != null">
+        OLD_SECOND_ZHMC,
+      </if>
+      <if test="oldSecondKzbs != null">
+        OLD_SECOND_KZBS,
+      </if>
+      <if test="oldSecondZhkhjg != null">
+        OLD_SECOND_ZHKHJG,
+      </if>
+      <if test="oldSecondZhbs != null">
+        OLD_SECOND_ZHBS,
+      </if>
+      <if test="newSecondRepayAccount != null">
+        NEW_SECOND_REPAY_ACCOUNT,
+      </if>
+      <if test="newSecondZhmc != null">
+        NEW_SECOND_ZHMC,
+      </if>
+      <if test="newSecondKzbs != null">
+        NEW_SECOND_KZBS,
+      </if>
+      <if test="newSecondZhkhjg != null">
+        NEW_SECOND_ZHKHJG,
+      </if>
+      <if test="newSecondZhbs != null">
+        NEW_SECOND_ZHBS,
+      </if>
+      <if test="oldThirdRepayAccount != null">
+        OLD_THIRD_REPAY_ACCOUNT,
+      </if>
+      <if test="oldThirdZhmc != null">
+        OLD_THIRD_ZHMC,
+      </if>
+      <if test="oldThirdKzbs != null">
+        OLD_THIRD_KZBS,
+      </if>
+      <if test="oldThirdZhkhjg != null">
+        OLD_THIRD_ZHKHJG,
+      </if>
+      <if test="oldThirdZhbs != null">
+        OLD_THIRD_ZHBS,
+      </if>
+      <if test="newThirdRepayAccount != null">
+        NEW_THIRD_REPAY_ACCOUNT,
+      </if>
+      <if test="newThirdZhmc != null">
+        NEW_THIRD_ZHMC,
+      </if>
+      <if test="newThirdKzbs != null">
+        NEW_THIRD_KZBS,
+      </if>
+      <if test="newThirdZhkhjg != null">
+        NEW_THIRD_ZHKHJG,
+      </if>
+      <if test="newThirdZhbs != null">
+        NEW_THIRD_ZHBS,
+      </if>
+      <if test="isCredit != null">
+        IS_CREDIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="changeId != null">
+        #{changeId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null">
+        #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="conChangeType != null">
+        #{conChangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanChangeType != null">
+        #{loanChangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="changeReason != null">
+        #{changeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null">
+        #{changeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeStatus != null">
+        #{changeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="oldRateType != null">
+        #{oldRateType,jdbcType=VARCHAR},
+      </if>
+      <if test="oldFloatType != null">
+        #{oldFloatType,jdbcType=VARCHAR},
+      </if>
+      <if test="oldFloatWay != null">
+        #{oldFloatWay,jdbcType=VARCHAR},
+      </if>
+      <if test="oldBaseRateValue != null">
+        #{oldBaseRateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="oldRateFloatProportion != null">
+        #{oldRateFloatProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="oldYearRate != null">
+        #{oldYearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="oldIrUpdateFrequency != null">
+        #{oldIrUpdateFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="oldInterestCollectType != null">
+        #{oldInterestCollectType,jdbcType=VARCHAR},
+      </if>
+      <if test="newRateType != null">
+        #{newRateType,jdbcType=VARCHAR},
+      </if>
+      <if test="newFloatType != null">
+        #{newFloatType,jdbcType=VARCHAR},
+      </if>
+      <if test="newFloatWay != null">
+        #{newFloatWay,jdbcType=VARCHAR},
+      </if>
+      <if test="newBaseRateValue != null">
+        #{newBaseRateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="newRateFloatProportion != null">
+        #{newRateFloatProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="newYearRate != null">
+        #{newYearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="newIrUpdateFrequency != null">
+        #{newIrUpdateFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="newInterestCollectType != null">
+        #{newInterestCollectType,jdbcType=VARCHAR},
+      </if>
+      <if test="oldTerm != null">
+        #{oldTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="oldEndDate != null">
+        #{oldEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="termChangeWay != null">
+        #{termChangeWay,jdbcType=VARCHAR},
+      </if>
+      <if test="newTerm != null">
+        #{newTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="newEndDate != null">
+        #{newEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oldRepayWay != null">
+        #{oldRepayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="newRepayWay != null">
+        #{newRepayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="oldRepayDay != null">
+        #{oldRepayDay,jdbcType=DECIMAL},
+      </if>
+      <if test="newRepayDay != null">
+        #{newRepayDay,jdbcType=DECIMAL},
+      </if>
+      <if test="oldRepayAccount != null">
+        #{oldRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="newRepayAccount != null">
+        #{newRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="oldGuarantyType != null">
+        #{oldGuarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="newGuarantyType != null">
+        #{newGuarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="isSettle != null">
+        #{isSettle,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAmt != null">
+        #{repayAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="repayCapital != null">
+        #{repayCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="dealWay != null">
+        #{dealWay,jdbcType=VARCHAR},
+      </if>
+      <if test="isModifyPlan != null">
+        #{isModifyPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSummaryamt != null">
+        #{oldSummaryamt,jdbcType=DECIMAL},
+      </if>
+      <if test="newSummaryamt != null">
+        #{newSummaryamt,jdbcType=DECIMAL},
+      </if>
+      <if test="oldRateUp != null">
+        #{oldRateUp,jdbcType=DECIMAL},
+      </if>
+      <if test="newRateUp != null">
+        #{newRateUp,jdbcType=DECIMAL},
+      </if>
+      <if test="oldRateDown != null">
+        #{oldRateDown,jdbcType=DECIMAL},
+      </if>
+      <if test="newRateDown != null">
+        #{newRateDown,jdbcType=DECIMAL},
+      </if>
+      <if test="isSmall != null">
+        #{isSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null">
+        #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="yhzclx != null">
+        #{yhzclx,jdbcType=DECIMAL},
+      </if>
+      <if test="yhtqlx != null">
+        #{yhtqlx,jdbcType=DECIMAL},
+      </if>
+      <if test="yhfx != null">
+        #{yhfx,jdbcType=DECIMAL},
+      </if>
+      <if test="oldTiexiStatus != null">
+        #{oldTiexiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="newTiexiStatus != null">
+        #{newTiexiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="oldTingxiStatus != null">
+        #{oldTingxiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="newTingxiStatus != null">
+        #{newTingxiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="repayOrder != null">
+        #{repayOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="changeNum != null">
+        #{changeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="stopRateType != null">
+        #{stopRateType,jdbcType=VARCHAR},
+      </if>
+      <if test="stopZcRate != null">
+        #{stopZcRate,jdbcType=DECIMAL},
+      </if>
+      <if test="stopTqRate != null">
+        #{stopTqRate,jdbcType=DECIMAL},
+      </if>
+      <if test="stopFx != null">
+        #{stopFx,jdbcType=DECIMAL},
+      </if>
+      <if test="stopZcRateOut != null">
+        #{stopZcRateOut,jdbcType=DECIMAL},
+      </if>
+      <if test="stopTqRateOut != null">
+        #{stopTqRateOut,jdbcType=DECIMAL},
+      </if>
+      <if test="stopFxOut != null">
+        #{stopFxOut,jdbcType=DECIMAL},
+      </if>
+      <if test="oldZhmc != null">
+        #{oldZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="oldKzbs != null">
+        #{oldKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="oldZhkhjg != null">
+        #{oldZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="oldZhbs != null">
+        #{oldZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newZhmc != null">
+        #{newZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="newKzbs != null">
+        #{newKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newZhkhjg != null">
+        #{newZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="newZhbs != null">
+        #{newZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPeriods != null">
+        #{firstPeriods,jdbcType=DECIMAL},
+      </if>
+      <if test="yhbj != null">
+        #{yhbj,jdbcType=DECIMAL},
+      </if>
+      <if test="yhze != null">
+        #{yhze,jdbcType=DECIMAL},
+      </if>
+      <if test="newWtrhbzh != null">
+        #{newWtrhbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="newWtrhxzh != null">
+        #{newWtrhxzh,jdbcType=VARCHAR},
+      </if>
+      <if test="wtrnm != null">
+        #{wtrnm,jdbcType=VARCHAR},
+      </if>
+      <if test="hzsnm != null">
+        #{hzsnm,jdbcType=VARCHAR},
+      </if>
+      <if test="hzszh != null">
+        #{hzszh,jdbcType=VARCHAR},
+      </if>
+      <if test="adjItrFlg != null">
+        #{adjItrFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="norItrIn != null">
+        #{norItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="dftItrIn != null">
+        #{dftItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="pnsItrIn != null">
+        #{pnsItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="norOtdItr != null">
+        #{norOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="pnsOtdItr != null">
+        #{pnsOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="beNorItrIn != null">
+        #{beNorItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="beDftItrIn != null">
+        #{beDftItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="bePnsItrIn != null">
+        #{bePnsItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="beNorOtdItr != null">
+        #{beNorOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="bePnsOtdItr != null">
+        #{bePnsOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="oldWtrhbzh != null">
+        #{oldWtrhbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="oldWtrhxzh != null">
+        #{oldWtrhxzh,jdbcType=VARCHAR},
+      </if>
+      <if test="norItrOut != null">
+        #{norItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="dftItrOut != null">
+        #{dftItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="pnsItrOut != null">
+        #{pnsItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="cpdItrOut != null">
+        #{cpdItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="beNorItrOut != null">
+        #{beNorItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="beDftItrOut != null">
+        #{beDftItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="bePnsItrOut != null">
+        #{bePnsItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="beCpdItrOut != null">
+        #{beCpdItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="cpdItrIn != null">
+        #{cpdItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="beCpdItrIn != null">
+        #{beCpdItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="otdCpd != null">
+        #{otdCpd,jdbcType=DECIMAL},
+      </if>
+      <if test="beOtdCpd != null">
+        #{beOtdCpd,jdbcType=DECIMAL},
+      </if>
+      <if test="otdItrIn != null">
+        #{otdItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="beOtdItrIn != null">
+        #{beOtdItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="stopFl != null">
+        #{stopFl,jdbcType=DECIMAL},
+      </if>
+      <if test="oldOverdueRate != null">
+        #{oldOverdueRate,jdbcType=DECIMAL},
+      </if>
+      <if test="newOverdueRate != null">
+        #{newOverdueRate,jdbcType=DECIMAL},
+      </if>
+      <if test="oldBzjblbdy != null">
+        #{oldBzjblbdy,jdbcType=DECIMAL},
+      </if>
+      <if test="newBzjblbdy != null">
+        #{newBzjblbdy,jdbcType=DECIMAL},
+      </if>
+      <if test="oldBzjje != null">
+        #{oldBzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="newBzjje != null">
+        #{newBzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="oldXyzDqrq != null">
+        #{oldXyzDqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newXyzDqrq != null">
+        #{newXyzDqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oldBhDqrq != null">
+        #{oldBhDqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newBhDqrq != null">
+        #{newBhDqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oldBhBzjblbdy != null">
+        #{oldBhBzjblbdy,jdbcType=DECIMAL},
+      </if>
+      <if test="newBhBzjblbdy != null">
+        #{newBhBzjblbdy,jdbcType=DECIMAL},
+      </if>
+      <if test="oldBhBzjje != null">
+        #{oldBhBzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="newBhBzjje != null">
+        #{newBhBzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="oldXyzJyq != null">
+        #{oldXyzJyq,jdbcType=VARCHAR},
+      </if>
+      <if test="newXyzJyq != null">
+        #{newXyzJyq,jdbcType=VARCHAR},
+      </if>
+      <if test="oldXyzYqts != null">
+        #{oldXyzYqts,jdbcType=VARCHAR},
+      </if>
+      <if test="newXyzYqts != null">
+        #{newXyzYqts,jdbcType=VARCHAR},
+      </if>
+      <if test="oldBhBhlx != null">
+        #{oldBhBhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="newBhBhlx != null">
+        #{newBhBhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="gjFlowNo != null">
+        #{gjFlowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="yhfl != null">
+        #{yhfl,jdbcType=DECIMAL},
+      </if>
+      <if test="oldKzje != null">
+        #{oldKzje,jdbcType=DECIMAL},
+      </if>
+      <if test="newKzje != null">
+        #{newKzje,jdbcType=DECIMAL},
+      </if>
+      <if test="periodNum != null">
+        #{periodNum,jdbcType=VARCHAR},
+      </if>
+      <if test="periodState != null">
+        #{periodState,jdbcType=VARCHAR},
+      </if>
+      <if test="shbj != null">
+        #{shbj,jdbcType=DECIMAL},
+      </if>
+      <if test="shzclx != null">
+        #{shzclx,jdbcType=DECIMAL},
+      </if>
+      <if test="shtqlx != null">
+        #{shtqlx,jdbcType=DECIMAL},
+      </if>
+      <if test="shfx != null">
+        #{shfx,jdbcType=DECIMAL},
+      </if>
+      <if test="shfl != null">
+        #{shfl,jdbcType=DECIMAL},
+      </if>
+      <if test="adjOtdPns != null">
+        #{adjOtdPns,jdbcType=DECIMAL},
+      </if>
+      <if test="adjOtdCpd != null">
+        #{adjOtdCpd,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpAdjOtdItr != null">
+        #{padUpAdjOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpAdjOtdPns != null">
+        #{padUpAdjOtdPns,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpAdjOtdCpd != null">
+        #{padUpAdjOtdCpd,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpAdjOtdItrPre != null">
+        #{padUpAdjOtdItrPre,jdbcType=DECIMAL},
+      </if>
+      <if test="oldSecondRepayAccount != null">
+        #{oldSecondRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSecondZhmc != null">
+        #{oldSecondZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSecondKzbs != null">
+        #{oldSecondKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSecondZhkhjg != null">
+        #{oldSecondZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSecondZhbs != null">
+        #{oldSecondZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newSecondRepayAccount != null">
+        #{newSecondRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="newSecondZhmc != null">
+        #{newSecondZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="newSecondKzbs != null">
+        #{newSecondKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newSecondZhkhjg != null">
+        #{newSecondZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="newSecondZhbs != null">
+        #{newSecondZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="oldThirdRepayAccount != null">
+        #{oldThirdRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="oldThirdZhmc != null">
+        #{oldThirdZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="oldThirdKzbs != null">
+        #{oldThirdKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="oldThirdZhkhjg != null">
+        #{oldThirdZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="oldThirdZhbs != null">
+        #{oldThirdZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newThirdRepayAccount != null">
+        #{newThirdRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="newThirdZhmc != null">
+        #{newThirdZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="newThirdKzbs != null">
+        #{newThirdKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newThirdZhkhjg != null">
+        #{newThirdZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="newThirdZhbs != null">
+        #{newThirdZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="isCredit != null">
+        #{isCredit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.TbConLoanChange">
+    update CRMS.TB_CON_LOAN_CHANGE
+    <set>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null">
+        SUMMARY_ID = #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="conChangeType != null">
+        CON_CHANGE_TYPE = #{conChangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanChangeType != null">
+        LOAN_CHANGE_TYPE = #{loanChangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="changeReason != null">
+        CHANGE_REASON = #{changeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null">
+        CHANGE_DATE = #{changeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeStatus != null">
+        CHANGE_STATUS = #{changeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="oldRateType != null">
+        OLD_RATE_TYPE = #{oldRateType,jdbcType=VARCHAR},
+      </if>
+      <if test="oldFloatType != null">
+        OLD_FLOAT_TYPE = #{oldFloatType,jdbcType=VARCHAR},
+      </if>
+      <if test="oldFloatWay != null">
+        OLD_FLOAT_WAY = #{oldFloatWay,jdbcType=VARCHAR},
+      </if>
+      <if test="oldBaseRateValue != null">
+        OLD_BASE_RATE_VALUE = #{oldBaseRateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="oldRateFloatProportion != null">
+        OLD_RATE_FLOAT_PROPORTION = #{oldRateFloatProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="oldYearRate != null">
+        OLD_YEAR_RATE = #{oldYearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="oldIrUpdateFrequency != null">
+        OLD_IR_UPDATE_FREQUENCY = #{oldIrUpdateFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="oldInterestCollectType != null">
+        OLD_INTEREST_COLLECT_TYPE = #{oldInterestCollectType,jdbcType=VARCHAR},
+      </if>
+      <if test="newRateType != null">
+        NEW_RATE_TYPE = #{newRateType,jdbcType=VARCHAR},
+      </if>
+      <if test="newFloatType != null">
+        NEW_FLOAT_TYPE = #{newFloatType,jdbcType=VARCHAR},
+      </if>
+      <if test="newFloatWay != null">
+        NEW_FLOAT_WAY = #{newFloatWay,jdbcType=VARCHAR},
+      </if>
+      <if test="newBaseRateValue != null">
+        NEW_BASE_RATE_VALUE = #{newBaseRateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="newRateFloatProportion != null">
+        NEW_RATE_FLOAT_PROPORTION = #{newRateFloatProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="newYearRate != null">
+        NEW_YEAR_RATE = #{newYearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="newIrUpdateFrequency != null">
+        NEW_IR_UPDATE_FREQUENCY = #{newIrUpdateFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="newInterestCollectType != null">
+        NEW_INTEREST_COLLECT_TYPE = #{newInterestCollectType,jdbcType=VARCHAR},
+      </if>
+      <if test="oldTerm != null">
+        OLD_TERM = #{oldTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="oldEndDate != null">
+        OLD_END_DATE = #{oldEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="termChangeWay != null">
+        TERM_CHANGE_WAY = #{termChangeWay,jdbcType=VARCHAR},
+      </if>
+      <if test="newTerm != null">
+        NEW_TERM = #{newTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="newEndDate != null">
+        NEW_END_DATE = #{newEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oldRepayWay != null">
+        OLD_REPAY_WAY = #{oldRepayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="newRepayWay != null">
+        NEW_REPAY_WAY = #{newRepayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="oldRepayDay != null">
+        OLD_REPAY_DAY = #{oldRepayDay,jdbcType=DECIMAL},
+      </if>
+      <if test="newRepayDay != null">
+        NEW_REPAY_DAY = #{newRepayDay,jdbcType=DECIMAL},
+      </if>
+      <if test="oldRepayAccount != null">
+        OLD_REPAY_ACCOUNT = #{oldRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="newRepayAccount != null">
+        NEW_REPAY_ACCOUNT = #{newRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="oldGuarantyType != null">
+        OLD_GUARANTY_TYPE = #{oldGuarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="newGuarantyType != null">
+        NEW_GUARANTY_TYPE = #{newGuarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="isSettle != null">
+        IS_SETTLE = #{isSettle,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAmt != null">
+        REPAY_AMT = #{repayAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="repayCapital != null">
+        REPAY_CAPITAL = #{repayCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="dealWay != null">
+        DEAL_WAY = #{dealWay,jdbcType=VARCHAR},
+      </if>
+      <if test="isModifyPlan != null">
+        IS_MODIFY_PLAN = #{isModifyPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSummaryamt != null">
+        OLD_SUMMARYAMT = #{oldSummaryamt,jdbcType=DECIMAL},
+      </if>
+      <if test="newSummaryamt != null">
+        NEW_SUMMARYAMT = #{newSummaryamt,jdbcType=DECIMAL},
+      </if>
+      <if test="oldRateUp != null">
+        OLD_RATE_UP = #{oldRateUp,jdbcType=DECIMAL},
+      </if>
+      <if test="newRateUp != null">
+        NEW_RATE_UP = #{newRateUp,jdbcType=DECIMAL},
+      </if>
+      <if test="oldRateDown != null">
+        OLD_RATE_DOWN = #{oldRateDown,jdbcType=DECIMAL},
+      </if>
+      <if test="newRateDown != null">
+        NEW_RATE_DOWN = #{newRateDown,jdbcType=DECIMAL},
+      </if>
+      <if test="isSmall != null">
+        IS_SMALL = #{isSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null">
+        REPAY_TYPE = #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="yhzclx != null">
+        YHZCLX = #{yhzclx,jdbcType=DECIMAL},
+      </if>
+      <if test="yhtqlx != null">
+        YHTQLX = #{yhtqlx,jdbcType=DECIMAL},
+      </if>
+      <if test="yhfx != null">
+        YHFX = #{yhfx,jdbcType=DECIMAL},
+      </if>
+      <if test="oldTiexiStatus != null">
+        OLD_TIEXI_STATUS = #{oldTiexiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="newTiexiStatus != null">
+        NEW_TIEXI_STATUS = #{newTiexiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="oldTingxiStatus != null">
+        OLD_TINGXI_STATUS = #{oldTingxiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="newTingxiStatus != null">
+        NEW_TINGXI_STATUS = #{newTingxiStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="repayOrder != null">
+        REPAY_ORDER = #{repayOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="changeNum != null">
+        CHANGE_NUM = #{changeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="stopRateType != null">
+        STOP_RATE_TYPE = #{stopRateType,jdbcType=VARCHAR},
+      </if>
+      <if test="stopZcRate != null">
+        STOP_ZC_RATE = #{stopZcRate,jdbcType=DECIMAL},
+      </if>
+      <if test="stopTqRate != null">
+        STOP_TQ_RATE = #{stopTqRate,jdbcType=DECIMAL},
+      </if>
+      <if test="stopFx != null">
+        STOP_FX = #{stopFx,jdbcType=DECIMAL},
+      </if>
+      <if test="stopZcRateOut != null">
+        STOP_ZC_RATE_OUT = #{stopZcRateOut,jdbcType=DECIMAL},
+      </if>
+      <if test="stopTqRateOut != null">
+        STOP_TQ_RATE_OUT = #{stopTqRateOut,jdbcType=DECIMAL},
+      </if>
+      <if test="stopFxOut != null">
+        STOP_FX_OUT = #{stopFxOut,jdbcType=DECIMAL},
+      </if>
+      <if test="oldZhmc != null">
+        OLD_ZHMC = #{oldZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="oldKzbs != null">
+        OLD_KZBS = #{oldKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="oldZhkhjg != null">
+        OLD_ZHKHJG = #{oldZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="oldZhbs != null">
+        OLD_ZHBS = #{oldZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newZhmc != null">
+        NEW_ZHMC = #{newZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="newKzbs != null">
+        NEW_KZBS = #{newKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newZhkhjg != null">
+        NEW_ZHKHJG = #{newZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="newZhbs != null">
+        NEW_ZHBS = #{newZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPeriods != null">
+        FIRST_PERIODS = #{firstPeriods,jdbcType=DECIMAL},
+      </if>
+      <if test="yhbj != null">
+        YHBJ = #{yhbj,jdbcType=DECIMAL},
+      </if>
+      <if test="yhze != null">
+        YHZE = #{yhze,jdbcType=DECIMAL},
+      </if>
+      <if test="newWtrhbzh != null">
+        NEW_WTRHBZH = #{newWtrhbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="newWtrhxzh != null">
+        NEW_WTRHXZH = #{newWtrhxzh,jdbcType=VARCHAR},
+      </if>
+      <if test="wtrnm != null">
+        WTRNM = #{wtrnm,jdbcType=VARCHAR},
+      </if>
+      <if test="hzsnm != null">
+        HZSNM = #{hzsnm,jdbcType=VARCHAR},
+      </if>
+      <if test="hzszh != null">
+        HZSZH = #{hzszh,jdbcType=VARCHAR},
+      </if>
+      <if test="adjItrFlg != null">
+        ADJ_ITR_FLG = #{adjItrFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="norItrIn != null">
+        NOR_ITR_IN = #{norItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="dftItrIn != null">
+        DFT_ITR_IN = #{dftItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="pnsItrIn != null">
+        PNS_ITR_IN = #{pnsItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="norOtdItr != null">
+        NOR_OTD_ITR = #{norOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="pnsOtdItr != null">
+        PNS_OTD_ITR = #{pnsOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="beNorItrIn != null">
+        BE_NOR_ITR_IN = #{beNorItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="beDftItrIn != null">
+        BE_DFT_ITR_IN = #{beDftItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="bePnsItrIn != null">
+        BE_PNS_ITR_IN = #{bePnsItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="beNorOtdItr != null">
+        BE_NOR_OTD_ITR = #{beNorOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="bePnsOtdItr != null">
+        BE_PNS_OTD_ITR = #{bePnsOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="oldWtrhbzh != null">
+        OLD_WTRHBZH = #{oldWtrhbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="oldWtrhxzh != null">
+        OLD_WTRHXZH = #{oldWtrhxzh,jdbcType=VARCHAR},
+      </if>
+      <if test="norItrOut != null">
+        NOR_ITR_OUT = #{norItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="dftItrOut != null">
+        DFT_ITR_OUT = #{dftItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="pnsItrOut != null">
+        PNS_ITR_OUT = #{pnsItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="cpdItrOut != null">
+        CPD_ITR_OUT = #{cpdItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="beNorItrOut != null">
+        BE_NOR_ITR_OUT = #{beNorItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="beDftItrOut != null">
+        BE_DFT_ITR_OUT = #{beDftItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="bePnsItrOut != null">
+        BE_PNS_ITR_OUT = #{bePnsItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="beCpdItrOut != null">
+        BE_CPD_ITR_OUT = #{beCpdItrOut,jdbcType=DECIMAL},
+      </if>
+      <if test="cpdItrIn != null">
+        CPD_ITR_IN = #{cpdItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="beCpdItrIn != null">
+        BE_CPD_ITR_IN = #{beCpdItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="otdCpd != null">
+        OTD_CPD = #{otdCpd,jdbcType=DECIMAL},
+      </if>
+      <if test="beOtdCpd != null">
+        BE_OTD_CPD = #{beOtdCpd,jdbcType=DECIMAL},
+      </if>
+      <if test="otdItrIn != null">
+        OTD_ITR_IN = #{otdItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="beOtdItrIn != null">
+        BE_OTD_ITR_IN = #{beOtdItrIn,jdbcType=DECIMAL},
+      </if>
+      <if test="stopFl != null">
+        STOP_FL = #{stopFl,jdbcType=DECIMAL},
+      </if>
+      <if test="oldOverdueRate != null">
+        OLD_OVERDUE_RATE = #{oldOverdueRate,jdbcType=DECIMAL},
+      </if>
+      <if test="newOverdueRate != null">
+        NEW_OVERDUE_RATE = #{newOverdueRate,jdbcType=DECIMAL},
+      </if>
+      <if test="oldBzjblbdy != null">
+        OLD_BZJBLBDY = #{oldBzjblbdy,jdbcType=DECIMAL},
+      </if>
+      <if test="newBzjblbdy != null">
+        NEW_BZJBLBDY = #{newBzjblbdy,jdbcType=DECIMAL},
+      </if>
+      <if test="oldBzjje != null">
+        OLD_BZJJE = #{oldBzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="newBzjje != null">
+        NEW_BZJJE = #{newBzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="oldXyzDqrq != null">
+        OLD_XYZ_DQRQ = #{oldXyzDqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newXyzDqrq != null">
+        NEW_XYZ_DQRQ = #{newXyzDqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oldBhDqrq != null">
+        OLD_BH_DQRQ = #{oldBhDqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newBhDqrq != null">
+        NEW_BH_DQRQ = #{newBhDqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oldBhBzjblbdy != null">
+        OLD_BH_BZJBLBDY = #{oldBhBzjblbdy,jdbcType=DECIMAL},
+      </if>
+      <if test="newBhBzjblbdy != null">
+        NEW_BH_BZJBLBDY = #{newBhBzjblbdy,jdbcType=DECIMAL},
+      </if>
+      <if test="oldBhBzjje != null">
+        OLD_BH_BZJJE = #{oldBhBzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="newBhBzjje != null">
+        NEW_BH_BZJJE = #{newBhBzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="oldXyzJyq != null">
+        OLD_XYZ_JYQ = #{oldXyzJyq,jdbcType=VARCHAR},
+      </if>
+      <if test="newXyzJyq != null">
+        NEW_XYZ_JYQ = #{newXyzJyq,jdbcType=VARCHAR},
+      </if>
+      <if test="oldXyzYqts != null">
+        OLD_XYZ_YQTS = #{oldXyzYqts,jdbcType=VARCHAR},
+      </if>
+      <if test="newXyzYqts != null">
+        NEW_XYZ_YQTS = #{newXyzYqts,jdbcType=VARCHAR},
+      </if>
+      <if test="oldBhBhlx != null">
+        OLD_BH_BHLX = #{oldBhBhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="newBhBhlx != null">
+        NEW_BH_BHLX = #{newBhBhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="gjFlowNo != null">
+        GJ_FLOW_NO = #{gjFlowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="yhfl != null">
+        YHFL = #{yhfl,jdbcType=DECIMAL},
+      </if>
+      <if test="oldKzje != null">
+        OLD_KZJE = #{oldKzje,jdbcType=DECIMAL},
+      </if>
+      <if test="newKzje != null">
+        NEW_KZJE = #{newKzje,jdbcType=DECIMAL},
+      </if>
+      <if test="periodNum != null">
+        PERIOD_NUM = #{periodNum,jdbcType=VARCHAR},
+      </if>
+      <if test="periodState != null">
+        PERIOD_STATE = #{periodState,jdbcType=VARCHAR},
+      </if>
+      <if test="shbj != null">
+        SHBJ = #{shbj,jdbcType=DECIMAL},
+      </if>
+      <if test="shzclx != null">
+        SHZCLX = #{shzclx,jdbcType=DECIMAL},
+      </if>
+      <if test="shtqlx != null">
+        SHTQLX = #{shtqlx,jdbcType=DECIMAL},
+      </if>
+      <if test="shfx != null">
+        SHFX = #{shfx,jdbcType=DECIMAL},
+      </if>
+      <if test="shfl != null">
+        SHFL = #{shfl,jdbcType=DECIMAL},
+      </if>
+      <if test="adjOtdPns != null">
+        ADJ_OTD_PNS = #{adjOtdPns,jdbcType=DECIMAL},
+      </if>
+      <if test="adjOtdCpd != null">
+        ADJ_OTD_CPD = #{adjOtdCpd,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpAdjOtdItr != null">
+        PAD_UP_ADJ_OTD_ITR = #{padUpAdjOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpAdjOtdPns != null">
+        PAD_UP_ADJ_OTD_PNS = #{padUpAdjOtdPns,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpAdjOtdCpd != null">
+        PAD_UP_ADJ_OTD_CPD = #{padUpAdjOtdCpd,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpAdjOtdItrPre != null">
+        PAD_UP_ADJ_OTD_ITR_PRE = #{padUpAdjOtdItrPre,jdbcType=DECIMAL},
+      </if>
+      <if test="oldSecondRepayAccount != null">
+        OLD_SECOND_REPAY_ACCOUNT = #{oldSecondRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSecondZhmc != null">
+        OLD_SECOND_ZHMC = #{oldSecondZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSecondKzbs != null">
+        OLD_SECOND_KZBS = #{oldSecondKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSecondZhkhjg != null">
+        OLD_SECOND_ZHKHJG = #{oldSecondZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSecondZhbs != null">
+        OLD_SECOND_ZHBS = #{oldSecondZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newSecondRepayAccount != null">
+        NEW_SECOND_REPAY_ACCOUNT = #{newSecondRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="newSecondZhmc != null">
+        NEW_SECOND_ZHMC = #{newSecondZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="newSecondKzbs != null">
+        NEW_SECOND_KZBS = #{newSecondKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newSecondZhkhjg != null">
+        NEW_SECOND_ZHKHJG = #{newSecondZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="newSecondZhbs != null">
+        NEW_SECOND_ZHBS = #{newSecondZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="oldThirdRepayAccount != null">
+        OLD_THIRD_REPAY_ACCOUNT = #{oldThirdRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="oldThirdZhmc != null">
+        OLD_THIRD_ZHMC = #{oldThirdZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="oldThirdKzbs != null">
+        OLD_THIRD_KZBS = #{oldThirdKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="oldThirdZhkhjg != null">
+        OLD_THIRD_ZHKHJG = #{oldThirdZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="oldThirdZhbs != null">
+        OLD_THIRD_ZHBS = #{oldThirdZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newThirdRepayAccount != null">
+        NEW_THIRD_REPAY_ACCOUNT = #{newThirdRepayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="newThirdZhmc != null">
+        NEW_THIRD_ZHMC = #{newThirdZhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="newThirdKzbs != null">
+        NEW_THIRD_KZBS = #{newThirdKzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="newThirdZhkhjg != null">
+        NEW_THIRD_ZHKHJG = #{newThirdZhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="newThirdZhbs != null">
+        NEW_THIRD_ZHBS = #{newThirdZhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="isCredit != null">
+        IS_CREDIT = #{isCredit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CHANGE_ID = #{changeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.TbConLoanChange">
+    update CRMS.TB_CON_LOAN_CHANGE
+    set CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      SUMMARY_ID = #{summaryId,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      CON_CHANGE_TYPE = #{conChangeType,jdbcType=VARCHAR},
+      LOAN_CHANGE_TYPE = #{loanChangeType,jdbcType=VARCHAR},
+      CHANGE_REASON = #{changeReason,jdbcType=VARCHAR},
+      CHANGE_DATE = #{changeDate,jdbcType=TIMESTAMP},
+      CHANGE_STATUS = #{changeStatus,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      OLD_RATE_TYPE = #{oldRateType,jdbcType=VARCHAR},
+      OLD_FLOAT_TYPE = #{oldFloatType,jdbcType=VARCHAR},
+      OLD_FLOAT_WAY = #{oldFloatWay,jdbcType=VARCHAR},
+      OLD_BASE_RATE_VALUE = #{oldBaseRateValue,jdbcType=DECIMAL},
+      OLD_RATE_FLOAT_PROPORTION = #{oldRateFloatProportion,jdbcType=DECIMAL},
+      OLD_YEAR_RATE = #{oldYearRate,jdbcType=DECIMAL},
+      OLD_IR_UPDATE_FREQUENCY = #{oldIrUpdateFrequency,jdbcType=VARCHAR},
+      OLD_INTEREST_COLLECT_TYPE = #{oldInterestCollectType,jdbcType=VARCHAR},
+      NEW_RATE_TYPE = #{newRateType,jdbcType=VARCHAR},
+      NEW_FLOAT_TYPE = #{newFloatType,jdbcType=VARCHAR},
+      NEW_FLOAT_WAY = #{newFloatWay,jdbcType=VARCHAR},
+      NEW_BASE_RATE_VALUE = #{newBaseRateValue,jdbcType=DECIMAL},
+      NEW_RATE_FLOAT_PROPORTION = #{newRateFloatProportion,jdbcType=DECIMAL},
+      NEW_YEAR_RATE = #{newYearRate,jdbcType=DECIMAL},
+      NEW_IR_UPDATE_FREQUENCY = #{newIrUpdateFrequency,jdbcType=VARCHAR},
+      NEW_INTEREST_COLLECT_TYPE = #{newInterestCollectType,jdbcType=VARCHAR},
+      OLD_TERM = #{oldTerm,jdbcType=DECIMAL},
+      OLD_END_DATE = #{oldEndDate,jdbcType=TIMESTAMP},
+      TERM_CHANGE_WAY = #{termChangeWay,jdbcType=VARCHAR},
+      NEW_TERM = #{newTerm,jdbcType=DECIMAL},
+      NEW_END_DATE = #{newEndDate,jdbcType=TIMESTAMP},
+      OLD_REPAY_WAY = #{oldRepayWay,jdbcType=VARCHAR},
+      NEW_REPAY_WAY = #{newRepayWay,jdbcType=VARCHAR},
+      OLD_REPAY_DAY = #{oldRepayDay,jdbcType=DECIMAL},
+      NEW_REPAY_DAY = #{newRepayDay,jdbcType=DECIMAL},
+      OLD_REPAY_ACCOUNT = #{oldRepayAccount,jdbcType=VARCHAR},
+      NEW_REPAY_ACCOUNT = #{newRepayAccount,jdbcType=VARCHAR},
+      OLD_GUARANTY_TYPE = #{oldGuarantyType,jdbcType=VARCHAR},
+      NEW_GUARANTY_TYPE = #{newGuarantyType,jdbcType=VARCHAR},
+      IS_SETTLE = #{isSettle,jdbcType=VARCHAR},
+      REPAY_AMT = #{repayAmt,jdbcType=DECIMAL},
+      REPAY_CAPITAL = #{repayCapital,jdbcType=DECIMAL},
+      DEAL_WAY = #{dealWay,jdbcType=VARCHAR},
+      IS_MODIFY_PLAN = #{isModifyPlan,jdbcType=VARCHAR},
+      OLD_SUMMARYAMT = #{oldSummaryamt,jdbcType=DECIMAL},
+      NEW_SUMMARYAMT = #{newSummaryamt,jdbcType=DECIMAL},
+      OLD_RATE_UP = #{oldRateUp,jdbcType=DECIMAL},
+      NEW_RATE_UP = #{newRateUp,jdbcType=DECIMAL},
+      OLD_RATE_DOWN = #{oldRateDown,jdbcType=DECIMAL},
+      NEW_RATE_DOWN = #{newRateDown,jdbcType=DECIMAL},
+      IS_SMALL = #{isSmall,jdbcType=VARCHAR},
+      REPAY_TYPE = #{repayType,jdbcType=VARCHAR},
+      YHZCLX = #{yhzclx,jdbcType=DECIMAL},
+      YHTQLX = #{yhtqlx,jdbcType=DECIMAL},
+      YHFX = #{yhfx,jdbcType=DECIMAL},
+      OLD_TIEXI_STATUS = #{oldTiexiStatus,jdbcType=VARCHAR},
+      NEW_TIEXI_STATUS = #{newTiexiStatus,jdbcType=VARCHAR},
+      OLD_TINGXI_STATUS = #{oldTingxiStatus,jdbcType=VARCHAR},
+      NEW_TINGXI_STATUS = #{newTingxiStatus,jdbcType=VARCHAR},
+      REPAY_ORDER = #{repayOrder,jdbcType=VARCHAR},
+      CHANGE_NUM = #{changeNum,jdbcType=VARCHAR},
+      STOP_RATE_TYPE = #{stopRateType,jdbcType=VARCHAR},
+      STOP_ZC_RATE = #{stopZcRate,jdbcType=DECIMAL},
+      STOP_TQ_RATE = #{stopTqRate,jdbcType=DECIMAL},
+      STOP_FX = #{stopFx,jdbcType=DECIMAL},
+      STOP_ZC_RATE_OUT = #{stopZcRateOut,jdbcType=DECIMAL},
+      STOP_TQ_RATE_OUT = #{stopTqRateOut,jdbcType=DECIMAL},
+      STOP_FX_OUT = #{stopFxOut,jdbcType=DECIMAL},
+      OLD_ZHMC = #{oldZhmc,jdbcType=VARCHAR},
+      OLD_KZBS = #{oldKzbs,jdbcType=VARCHAR},
+      OLD_ZHKHJG = #{oldZhkhjg,jdbcType=VARCHAR},
+      OLD_ZHBS = #{oldZhbs,jdbcType=VARCHAR},
+      NEW_ZHMC = #{newZhmc,jdbcType=VARCHAR},
+      NEW_KZBS = #{newKzbs,jdbcType=VARCHAR},
+      NEW_ZHKHJG = #{newZhkhjg,jdbcType=VARCHAR},
+      NEW_ZHBS = #{newZhbs,jdbcType=VARCHAR},
+      FIRST_PERIODS = #{firstPeriods,jdbcType=DECIMAL},
+      YHBJ = #{yhbj,jdbcType=DECIMAL},
+      YHZE = #{yhze,jdbcType=DECIMAL},
+      NEW_WTRHBZH = #{newWtrhbzh,jdbcType=VARCHAR},
+      NEW_WTRHXZH = #{newWtrhxzh,jdbcType=VARCHAR},
+      WTRNM = #{wtrnm,jdbcType=VARCHAR},
+      HZSNM = #{hzsnm,jdbcType=VARCHAR},
+      HZSZH = #{hzszh,jdbcType=VARCHAR},
+      ADJ_ITR_FLG = #{adjItrFlg,jdbcType=VARCHAR},
+      NOR_ITR_IN = #{norItrIn,jdbcType=DECIMAL},
+      DFT_ITR_IN = #{dftItrIn,jdbcType=DECIMAL},
+      PNS_ITR_IN = #{pnsItrIn,jdbcType=DECIMAL},
+      NOR_OTD_ITR = #{norOtdItr,jdbcType=DECIMAL},
+      PNS_OTD_ITR = #{pnsOtdItr,jdbcType=DECIMAL},
+      BE_NOR_ITR_IN = #{beNorItrIn,jdbcType=DECIMAL},
+      BE_DFT_ITR_IN = #{beDftItrIn,jdbcType=DECIMAL},
+      BE_PNS_ITR_IN = #{bePnsItrIn,jdbcType=DECIMAL},
+      BE_NOR_OTD_ITR = #{beNorOtdItr,jdbcType=DECIMAL},
+      BE_PNS_OTD_ITR = #{bePnsOtdItr,jdbcType=DECIMAL},
+      OLD_WTRHBZH = #{oldWtrhbzh,jdbcType=VARCHAR},
+      OLD_WTRHXZH = #{oldWtrhxzh,jdbcType=VARCHAR},
+      NOR_ITR_OUT = #{norItrOut,jdbcType=DECIMAL},
+      DFT_ITR_OUT = #{dftItrOut,jdbcType=DECIMAL},
+      PNS_ITR_OUT = #{pnsItrOut,jdbcType=DECIMAL},
+      CPD_ITR_OUT = #{cpdItrOut,jdbcType=DECIMAL},
+      BE_NOR_ITR_OUT = #{beNorItrOut,jdbcType=DECIMAL},
+      BE_DFT_ITR_OUT = #{beDftItrOut,jdbcType=DECIMAL},
+      BE_PNS_ITR_OUT = #{bePnsItrOut,jdbcType=DECIMAL},
+      BE_CPD_ITR_OUT = #{beCpdItrOut,jdbcType=DECIMAL},
+      CPD_ITR_IN = #{cpdItrIn,jdbcType=DECIMAL},
+      BE_CPD_ITR_IN = #{beCpdItrIn,jdbcType=DECIMAL},
+      OTD_CPD = #{otdCpd,jdbcType=DECIMAL},
+      BE_OTD_CPD = #{beOtdCpd,jdbcType=DECIMAL},
+      OTD_ITR_IN = #{otdItrIn,jdbcType=DECIMAL},
+      BE_OTD_ITR_IN = #{beOtdItrIn,jdbcType=DECIMAL},
+      STOP_FL = #{stopFl,jdbcType=DECIMAL},
+      OLD_OVERDUE_RATE = #{oldOverdueRate,jdbcType=DECIMAL},
+      NEW_OVERDUE_RATE = #{newOverdueRate,jdbcType=DECIMAL},
+      OLD_BZJBLBDY = #{oldBzjblbdy,jdbcType=DECIMAL},
+      NEW_BZJBLBDY = #{newBzjblbdy,jdbcType=DECIMAL},
+      OLD_BZJJE = #{oldBzjje,jdbcType=DECIMAL},
+      NEW_BZJJE = #{newBzjje,jdbcType=DECIMAL},
+      OLD_XYZ_DQRQ = #{oldXyzDqrq,jdbcType=TIMESTAMP},
+      NEW_XYZ_DQRQ = #{newXyzDqrq,jdbcType=TIMESTAMP},
+      OLD_BH_DQRQ = #{oldBhDqrq,jdbcType=TIMESTAMP},
+      NEW_BH_DQRQ = #{newBhDqrq,jdbcType=TIMESTAMP},
+      OLD_BH_BZJBLBDY = #{oldBhBzjblbdy,jdbcType=DECIMAL},
+      NEW_BH_BZJBLBDY = #{newBhBzjblbdy,jdbcType=DECIMAL},
+      OLD_BH_BZJJE = #{oldBhBzjje,jdbcType=DECIMAL},
+      NEW_BH_BZJJE = #{newBhBzjje,jdbcType=DECIMAL},
+      OLD_XYZ_JYQ = #{oldXyzJyq,jdbcType=VARCHAR},
+      NEW_XYZ_JYQ = #{newXyzJyq,jdbcType=VARCHAR},
+      OLD_XYZ_YQTS = #{oldXyzYqts,jdbcType=VARCHAR},
+      NEW_XYZ_YQTS = #{newXyzYqts,jdbcType=VARCHAR},
+      OLD_BH_BHLX = #{oldBhBhlx,jdbcType=VARCHAR},
+      NEW_BH_BHLX = #{newBhBhlx,jdbcType=VARCHAR},
+      GJ_FLOW_NO = #{gjFlowNo,jdbcType=VARCHAR},
+      YHFL = #{yhfl,jdbcType=DECIMAL},
+      OLD_KZJE = #{oldKzje,jdbcType=DECIMAL},
+      NEW_KZJE = #{newKzje,jdbcType=DECIMAL},
+      PERIOD_NUM = #{periodNum,jdbcType=VARCHAR},
+      PERIOD_STATE = #{periodState,jdbcType=VARCHAR},
+      SHBJ = #{shbj,jdbcType=DECIMAL},
+      SHZCLX = #{shzclx,jdbcType=DECIMAL},
+      SHTQLX = #{shtqlx,jdbcType=DECIMAL},
+      SHFX = #{shfx,jdbcType=DECIMAL},
+      SHFL = #{shfl,jdbcType=DECIMAL},
+      ADJ_OTD_PNS = #{adjOtdPns,jdbcType=DECIMAL},
+      ADJ_OTD_CPD = #{adjOtdCpd,jdbcType=DECIMAL},
+      PAD_UP_ADJ_OTD_ITR = #{padUpAdjOtdItr,jdbcType=DECIMAL},
+      PAD_UP_ADJ_OTD_PNS = #{padUpAdjOtdPns,jdbcType=DECIMAL},
+      PAD_UP_ADJ_OTD_CPD = #{padUpAdjOtdCpd,jdbcType=DECIMAL},
+      PAD_UP_ADJ_OTD_ITR_PRE = #{padUpAdjOtdItrPre,jdbcType=DECIMAL},
+      OLD_SECOND_REPAY_ACCOUNT = #{oldSecondRepayAccount,jdbcType=VARCHAR},
+      OLD_SECOND_ZHMC = #{oldSecondZhmc,jdbcType=VARCHAR},
+      OLD_SECOND_KZBS = #{oldSecondKzbs,jdbcType=VARCHAR},
+      OLD_SECOND_ZHKHJG = #{oldSecondZhkhjg,jdbcType=VARCHAR},
+      OLD_SECOND_ZHBS = #{oldSecondZhbs,jdbcType=VARCHAR},
+      NEW_SECOND_REPAY_ACCOUNT = #{newSecondRepayAccount,jdbcType=VARCHAR},
+      NEW_SECOND_ZHMC = #{newSecondZhmc,jdbcType=VARCHAR},
+      NEW_SECOND_KZBS = #{newSecondKzbs,jdbcType=VARCHAR},
+      NEW_SECOND_ZHKHJG = #{newSecondZhkhjg,jdbcType=VARCHAR},
+      NEW_SECOND_ZHBS = #{newSecondZhbs,jdbcType=VARCHAR},
+      OLD_THIRD_REPAY_ACCOUNT = #{oldThirdRepayAccount,jdbcType=VARCHAR},
+      OLD_THIRD_ZHMC = #{oldThirdZhmc,jdbcType=VARCHAR},
+      OLD_THIRD_KZBS = #{oldThirdKzbs,jdbcType=VARCHAR},
+      OLD_THIRD_ZHKHJG = #{oldThirdZhkhjg,jdbcType=VARCHAR},
+      OLD_THIRD_ZHBS = #{oldThirdZhbs,jdbcType=VARCHAR},
+      NEW_THIRD_REPAY_ACCOUNT = #{newThirdRepayAccount,jdbcType=VARCHAR},
+      NEW_THIRD_ZHMC = #{newThirdZhmc,jdbcType=VARCHAR},
+      NEW_THIRD_KZBS = #{newThirdKzbs,jdbcType=VARCHAR},
+      NEW_THIRD_ZHKHJG = #{newThirdZhkhjg,jdbcType=VARCHAR},
+      NEW_THIRD_ZHBS = #{newThirdZhbs,jdbcType=VARCHAR},
+      IS_CREDIT = #{isCredit,jdbcType=VARCHAR}
+    where CHANGE_ID = #{changeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

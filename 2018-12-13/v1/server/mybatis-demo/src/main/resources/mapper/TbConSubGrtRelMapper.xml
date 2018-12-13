@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.TbConSubGrtRelMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.TbConSubGrtRel">
+    <id column="RELATION_ID" jdbcType="VARCHAR" property="relationId" />
+    <result column="SUBCONTRACT_ID" jdbcType="VARCHAR" property="subcontractId" />
+    <result column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+    <result column="SURETY_AMT" jdbcType="DECIMAL" property="suretyAmt" />
+    <result column="GRT_STATUS" jdbcType="VARCHAR" property="grtStatus" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="SURETY_ID_BACKUPS" jdbcType="VARCHAR" property="suretyIdBackups" />
+    <result column="GRT_AMT" jdbcType="DECIMAL" property="grtAmt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RELATION_ID, SUBCONTRACT_ID, SURETY_ID, SURETY_AMT, GRT_STATUS, PARTY_ID, CREATE_TIME, 
+    UPDATE_TIME, SURETY_ID_BACKUPS, GRT_AMT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_SUB_GRT_REL
+    where RELATION_ID = #{relationId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_SUB_GRT_REL
+    where RELATION_ID = #{relationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.TbConSubGrtRel">
+    insert into CRMS.TB_CON_SUB_GRT_REL (RELATION_ID, SUBCONTRACT_ID, SURETY_ID, 
+      SURETY_AMT, GRT_STATUS, PARTY_ID, 
+      CREATE_TIME, UPDATE_TIME, SURETY_ID_BACKUPS, 
+      GRT_AMT)
+    values (#{relationId,jdbcType=VARCHAR}, #{subcontractId,jdbcType=VARCHAR}, #{suretyId,jdbcType=VARCHAR}, 
+      #{suretyAmt,jdbcType=DECIMAL}, #{grtStatus,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{suretyIdBackups,jdbcType=VARCHAR}, 
+      #{grtAmt,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.TbConSubGrtRel">
+    insert into CRMS.TB_CON_SUB_GRT_REL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="relationId != null">
+        RELATION_ID,
+      </if>
+      <if test="subcontractId != null">
+        SUBCONTRACT_ID,
+      </if>
+      <if test="suretyId != null">
+        SURETY_ID,
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT,
+      </if>
+      <if test="grtStatus != null">
+        GRT_STATUS,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="suretyIdBackups != null">
+        SURETY_ID_BACKUPS,
+      </if>
+      <if test="grtAmt != null">
+        GRT_AMT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="relationId != null">
+        #{relationId,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractId != null">
+        #{subcontractId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyId != null">
+        #{suretyId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyAmt != null">
+        #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="grtStatus != null">
+        #{grtStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suretyIdBackups != null">
+        #{suretyIdBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="grtAmt != null">
+        #{grtAmt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.TbConSubGrtRel">
+    update CRMS.TB_CON_SUB_GRT_REL
+    <set>
+      <if test="subcontractId != null">
+        SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyId != null">
+        SURETY_ID = #{suretyId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="grtStatus != null">
+        GRT_STATUS = #{grtStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suretyIdBackups != null">
+        SURETY_ID_BACKUPS = #{suretyIdBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="grtAmt != null">
+        GRT_AMT = #{grtAmt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where RELATION_ID = #{relationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.TbConSubGrtRel">
+    update CRMS.TB_CON_SUB_GRT_REL
+    set SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR},
+      SURETY_ID = #{suretyId,jdbcType=VARCHAR},
+      SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      GRT_STATUS = #{grtStatus,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      SURETY_ID_BACKUPS = #{suretyIdBackups,jdbcType=VARCHAR},
+      GRT_AMT = #{grtAmt,jdbcType=DECIMAL}
+    where RELATION_ID = #{relationId,jdbcType=VARCHAR}
+  </update>
+</mapper>
