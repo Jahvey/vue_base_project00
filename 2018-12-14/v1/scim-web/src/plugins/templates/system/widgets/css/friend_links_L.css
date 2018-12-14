@@ -1,0 +1,11 @@
+.friend-links{
+	margin: 10px auto;
+	font-family: "microsoft yahei";
+}
+.friend-links a img{
+	width: 108px;
+	height: 40px;
+	background: #fff;
+	border: 1px solid #bfbfbf;
+	margin: auto 7px;
+}
