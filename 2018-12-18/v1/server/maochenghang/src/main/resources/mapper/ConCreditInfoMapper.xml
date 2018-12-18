@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.ConCreditInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.ConCreditInfo">
+    <id column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CONTRACT_DATE" jdbcType="TIMESTAMP" property="contractDate" />
+    <result column="CONTRACT_ADDRESS" jdbcType="VARCHAR" property="contractAddress" />
+    <result column="OLD_CONTRACT_ID" jdbcType="VARCHAR" property="oldContractId" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CON_STATUS" jdbcType="VARCHAR" property="conStatus" />
+    <result column="PAPER_CON_NUM" jdbcType="VARCHAR" property="paperConNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CONTRACT_ID, APPLY_ID, PARTY_ID, CONTRACT_NUM, CONTRACT_DATE, CONTRACT_ADDRESS, OLD_CONTRACT_ID, 
+    USER_NUM, ORG_NUM, CREATE_TIME, UPDATE_TIME, CON_STATUS, PAPER_CON_NUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_CREDIT_INFO
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

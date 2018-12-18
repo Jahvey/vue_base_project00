@@ -1,0 +1,37 @@
+.news-notice {
+  /*display: none;*/
+  border: 1px solid #dadada;
+  /*margin-right: -15px;*/
+  overflow: hidden;
+}
+.news-notice .notice-titles {
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  border-bottom: 1px solid #dadada;
+  color: #383838;
+  padding-left: 12px;
+  margin: auto 2px;
+}
+.news-notice .notice-content {
+  padding: 6px 0;
+}
+.news-notice .notice-content .notice-tree-item {
+  height: 38px;
+  line-height: 38px;
+  padding-left: 10px;
+  width: 240px;
+  overflow: hidden;
+  clear: both;
+  font-size: 12px;
+}
+.news-notice .notice-content .notice-tree-item a {
+  color: #898888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.news-notice .notice-content .notice-tree-item a:hover {
+  color: #03bfff;
+  text-decoration: none;
+}

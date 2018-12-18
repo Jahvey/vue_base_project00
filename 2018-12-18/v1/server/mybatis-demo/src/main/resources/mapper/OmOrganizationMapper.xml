@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.sysManage.orgManage.mapper.OmOrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.sysManage.orgManage.bean.OmOrganization">
+    <id column="ORGID" jdbcType="DECIMAL" property="orgid" />
+    <result column="ORGCODE" jdbcType="VARCHAR" property="orgcode" />
+    <result column="ORGNAME" jdbcType="VARCHAR" property="orgname" />
+    <result column="ORGLEVEL" jdbcType="DECIMAL" property="orglevel" />
+    <result column="ORGDEGREE" jdbcType="VARCHAR" property="orgdegree" />
+    <result column="PARENTORGID" jdbcType="DECIMAL" property="parentorgid" />
+    <result column="ORGSEQ" jdbcType="VARCHAR" property="orgseq" />
+    <result column="ORGTYPE" jdbcType="VARCHAR" property="orgtype" />
+    <result column="ORGADDR" jdbcType="VARCHAR" property="orgaddr" />
+    <result column="ZIPCODE" jdbcType="VARCHAR" property="zipcode" />
+    <result column="MANAPOSITION" jdbcType="DECIMAL" property="manaposition" />
+    <result column="MANAGERID" jdbcType="DECIMAL" property="managerid" />
+    <result column="ORGMANAGER" jdbcType="VARCHAR" property="orgmanager" />
+    <result column="LINKMAN" jdbcType="VARCHAR" property="linkman" />
+    <result column="LINKTEL" jdbcType="VARCHAR" property="linktel" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="WEBURL" jdbcType="VARCHAR" property="weburl" />
+    <result column="STARTDATE" jdbcType="TIMESTAMP" property="startdate" />
+    <result column="ENDDATE" jdbcType="TIMESTAMP" property="enddate" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="AREA" jdbcType="VARCHAR" property="area" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="LASTUPDATE" jdbcType="TIMESTAMP" property="lastupdate" />
+    <result column="UPDATOR" jdbcType="DECIMAL" property="updator" />
+    <result column="SORTNO" jdbcType="DECIMAL" property="sortno" />
+    <result column="ISLEAF" jdbcType="VARCHAR" property="isleaf" />
+    <result column="SUBCOUNT" jdbcType="VARCHAR" property="subcount" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="BUNO" jdbcType="VARCHAR" property="buno" />
+    <result column="AUDITBANKNO" jdbcType="VARCHAR" property="auditbankno" />
+    <result column="PAYMENTSYSNO" jdbcType="VARCHAR" property="paymentsysno" />
+    <result column="PARENTORGCODE" jdbcType="VARCHAR" property="parentorgcode" />
+    <result column="ISTEAM" jdbcType="VARCHAR" property="isteam" />
+    <result column="IS_TRADE_AREA" jdbcType="VARCHAR" property="isTradeArea" />
+    <result column="LEG_ORG" jdbcType="VARCHAR" property="legOrg" />
+    <result column="FINANCIALNUM" jdbcType="VARCHAR" property="financialnum" />
+    <result column="FINANCIALORGCODE" jdbcType="VARCHAR" property="financialorgcode" />
+    <result column="NONLOCALCODE" jdbcType="VARCHAR" property="nonlocalcode" />
+    <result column="ORGCREDITCODE" jdbcType="VARCHAR" property="orgcreditcode" />
+    <result column="BANKNO" jdbcType="VARCHAR" property="bankno" />
+    <result column="NATIONALITY_CD" jdbcType="VARCHAR" property="nationalityCd" />
+    <result column="PROVINCE_CD" jdbcType="VARCHAR" property="provinceCd" />
+    <result column="CITY_CD" jdbcType="VARCHAR" property="cityCd" />
+    <result column="DISTRICT" jdbcType="VARCHAR" property="district" />
+    <result column="STREET_ADDRESS" jdbcType="VARCHAR" property="streetAddress" />
+    <result column="REG_ADMINISTRATIVE_DIVISIONS" jdbcType="VARCHAR" property="regAdministrativeDivisions" />
+    <result column="ORG_SEAL" jdbcType="VARCHAR" property="orgSeal" />
+    <result column="PARENTORGNAME" jdbcType="VARCHAR" property="parentorgname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ORGID, ORGCODE, ORGNAME, ORGLEVEL, ORGDEGREE, PARENTORGID, ORGSEQ, ORGTYPE, ORGADDR, 
+    ZIPCODE, MANAPOSITION, MANAGERID, ORGMANAGER, LINKMAN, LINKTEL, EMAIL, WEBURL, STARTDATE, 
+    ENDDATE, STATUS, AREA, CREATETIME, LASTUPDATE, UPDATOR, SORTNO, ISLEAF, SUBCOUNT, 
+    REMARK, BUNO, AUDITBANKNO, PAYMENTSYSNO, PARENTORGCODE, ISTEAM, IS_TRADE_AREA, LEG_ORG, 
+    FINANCIALNUM, FINANCIALORGCODE, NONLOCALCODE, ORGCREDITCODE, BANKNO, NATIONALITY_CD, 
+    PROVINCE_CD, CITY_CD, DISTRICT, STREET_ADDRESS, REG_ADMINISTRATIVE_DIVISIONS, ORG_SEAL, 
+    PARENTORGNAME
+  </sql>
+  <select id="selectOrgByOrgcode" parameterType="java.lang.String" resultMap="BaseResultMap" >
+       SELECT 
+       *
+       FROM OM_ORGANIZATION WHERE ORGCODE =  #{orgcode}
+  </select>
+  <select id="queryOrgWithParams" parameterType="java.lang.String" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+       FROM OM_ORGANIZATION WHERE 1=1
+       <if test="orgcode != null and orgcode != '' " > 
+       AND ORGCODE LIKE  '%'||#{orgcode}||'%'
+       </if>
+       <if test="orgname != null and orgname != '' "> 
+       AND ORGNAME LIKE  '%'||#{orgname}||'%'
+       </if>
+  </select>	
+  <select id="queryOrg" parameterType="java.lang.String" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+       FROM OM_ORGANIZATION 
+       <choose>
+          <when test="parentId != null and parentId != ''">
+            START WITH ORGID = #{parentId}
+          </when>
+          <otherwise>
+            START WITH ORGID = '9999'
+          </otherwise>
+       </choose>
+       CONNECT BY PRIOR ORGID = PARENTORGID
+  </select>	
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from OM_ORGANIZATION
+    where ORGID = #{orgid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from OM_ORGANIZATION
+    where ORGID = #{orgid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.sysManage.orgManage.bean.OmOrganization">
+    insert into OM_ORGANIZATION (ORGID, ORGCODE, ORGNAME, 
+      ORGLEVEL, ORGDEGREE, PARENTORGID, 
+      ORGSEQ, ORGTYPE, ORGADDR, 
+      ZIPCODE, MANAPOSITION, MANAGERID, 
+      ORGMANAGER, LINKMAN, LINKTEL, 
+      EMAIL, WEBURL, STARTDATE, 
+      ENDDATE, STATUS, AREA, 
+      CREATETIME, LASTUPDATE, UPDATOR, 
+      SORTNO, ISLEAF, SUBCOUNT, 
+      REMARK, BUNO, AUDITBANKNO, 
+      PAYMENTSYSNO, PARENTORGCODE, ISTEAM, 
+      IS_TRADE_AREA, LEG_ORG, FINANCIALNUM, 
+      FINANCIALORGCODE, NONLOCALCODE, ORGCREDITCODE, 
+      BANKNO, NATIONALITY_CD, PROVINCE_CD, 
+      CITY_CD, DISTRICT, STREET_ADDRESS, 
+      REG_ADMINISTRATIVE_DIVISIONS, ORG_SEAL, PARENTORGNAME
+      )
+    values (#{orgid,jdbcType=DECIMAL}, #{orgcode,jdbcType=VARCHAR}, #{orgname,jdbcType=VARCHAR}, 
+      #{orglevel,jdbcType=DECIMAL}, #{orgdegree,jdbcType=VARCHAR}, #{parentorgid,jdbcType=DECIMAL}, 
+      #{orgseq,jdbcType=VARCHAR}, #{orgtype,jdbcType=VARCHAR}, #{orgaddr,jdbcType=VARCHAR}, 
+      #{zipcode,jdbcType=VARCHAR}, #{manaposition,jdbcType=DECIMAL}, #{managerid,jdbcType=DECIMAL}, 
+      #{orgmanager,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{linktel,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{weburl,jdbcType=VARCHAR}, #{startdate,jdbcType=TIMESTAMP}, 
+      #{enddate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{lastupdate,jdbcType=TIMESTAMP}, #{updator,jdbcType=DECIMAL}, 
+      #{sortno,jdbcType=DECIMAL}, #{isleaf,jdbcType=VARCHAR}, #{subcount,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{buno,jdbcType=VARCHAR}, #{auditbankno,jdbcType=VARCHAR}, 
+      #{paymentsysno,jdbcType=VARCHAR}, #{parentorgcode,jdbcType=VARCHAR}, #{isteam,jdbcType=VARCHAR}, 
+      #{isTradeArea,jdbcType=VARCHAR}, #{legOrg,jdbcType=VARCHAR}, #{financialnum,jdbcType=VARCHAR}, 
+      #{financialorgcode,jdbcType=VARCHAR}, #{nonlocalcode,jdbcType=VARCHAR}, #{orgcreditcode,jdbcType=VARCHAR}, 
+      #{bankno,jdbcType=VARCHAR}, #{nationalityCd,jdbcType=VARCHAR}, #{provinceCd,jdbcType=VARCHAR}, 
+      #{cityCd,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{streetAddress,jdbcType=VARCHAR}, 
+      #{regAdministrativeDivisions,jdbcType=VARCHAR}, #{orgSeal,jdbcType=VARCHAR}, #{parentorgname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.sysManage.orgManage.bean.OmOrganization">
+    insert into OM_ORGANIZATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        ORGID,
+      <if test="orgcode != null">
+        ORGCODE,
+      </if>
+      <if test="orgname != null">
+        ORGNAME,
+      </if>
+      <if test="orglevel != null">
+        ORGLEVEL,
+      </if>
+      <if test="orgdegree != null">
+        ORGDEGREE,
+      </if>
+      <if test="parentorgid != null">
+        PARENTORGID,
+      </if>
+      <if test="orgseq != null">
+        ORGSEQ,
+      </if>
+      <if test="orgtype != null">
+        ORGTYPE,
+      </if>
+      <if test="orgaddr != null">
+        ORGADDR,
+      </if>
+      <if test="zipcode != null">
+        ZIPCODE,
+      </if>
+      <if test="manaposition != null">
+        MANAPOSITION,
+      </if>
+      <if test="managerid != null">
+        MANAGERID,
+      </if>
+      <if test="orgmanager != null">
+        ORGMANAGER,
+      </if>
+      <if test="linkman != null">
+        LINKMAN,
+      </if>
+      <if test="linktel != null">
+        LINKTEL,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="weburl != null">
+        WEBURL,
+      </if>
+      <if test="startdate != null">
+        STARTDATE,
+      </if>
+      <if test="enddate != null">
+        ENDDATE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="area != null">
+        AREA,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="lastupdate != null">
+        LASTUPDATE,
+      </if>
+      <if test="updator != null">
+        UPDATOR,
+      </if>
+      <if test="sortno != null">
+        SORTNO,
+      </if>
+      <if test="isleaf != null">
+        ISLEAF,
+      </if>
+      <if test="subcount != null">
+        SUBCOUNT,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="buno != null">
+        BUNO,
+      </if>
+      <if test="auditbankno != null">
+        AUDITBANKNO,
+      </if>
+      <if test="paymentsysno != null">
+        PAYMENTSYSNO,
+      </if>
+      <if test="parentorgcode != null">
+        PARENTORGCODE,
+      </if>
+      <if test="isteam != null">
+        ISTEAM,
+      </if>
+      <if test="isTradeArea != null">
+        IS_TRADE_AREA,
+      </if>
+      <if test="legOrg != null">
+        LEG_ORG,
+      </if>
+      <if test="financialnum != null">
+        FINANCIALNUM,
+      </if>
+      <if test="financialorgcode != null">
+        FINANCIALORGCODE,
+      </if>
+      <if test="nonlocalcode != null">
+        NONLOCALCODE,
+      </if>
+      <if test="orgcreditcode != null">
+        ORGCREDITCODE,
+      </if>
+      <if test="bankno != null">
+        BANKNO,
+      </if>
+      <if test="nationalityCd != null">
+        NATIONALITY_CD,
+      </if>
+      <if test="provinceCd != null">
+        PROVINCE_CD,
+      </if>
+      <if test="cityCd != null">
+        CITY_CD,
+      </if>
+      <if test="district != null">
+        DISTRICT,
+      </if>
+      <if test="streetAddress != null">
+        STREET_ADDRESS,
+      </if>
+      <if test="regAdministrativeDivisions != null">
+        REG_ADMINISTRATIVE_DIVISIONS,
+      </if>
+      <if test="orgSeal != null">
+        ORG_SEAL,
+      </if>
+      <if test="parentorgname != null">
+        PARENTORGNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      SEQ_OM_ORGANIZATION.NEXTVAL,
+      <if test="orgcode != null">
+        #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgname != null">
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orglevel != null">
+        #{orglevel,jdbcType=DECIMAL},
+      </if>
+      <if test="orgdegree != null">
+        #{orgdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="parentorgid != null">
+        #{parentorgid,jdbcType=DECIMAL},
+      </if>
+      <if test="orgseq != null">
+        #{orgseq,jdbcType=VARCHAR},
+      </if>
+      <if test="orgtype != null">
+        #{orgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="orgaddr != null">
+        #{orgaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="manaposition != null">
+        #{manaposition,jdbcType=DECIMAL},
+      </if>
+      <if test="managerid != null">
+        #{managerid,jdbcType=DECIMAL},
+      </if>
+      <if test="orgmanager != null">
+        #{orgmanager,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null">
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="linktel != null">
+        #{linktel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null">
+        #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdate != null">
+        #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=DECIMAL},
+      </if>
+      <if test="sortno != null">
+        #{sortno,jdbcType=DECIMAL},
+      </if>
+      <if test="isleaf != null">
+        #{isleaf,jdbcType=VARCHAR},
+      </if>
+      <if test="subcount != null">
+        #{subcount,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="buno != null">
+        #{buno,jdbcType=VARCHAR},
+      </if>
+      <if test="auditbankno != null">
+        #{auditbankno,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentsysno != null">
+        #{paymentsysno,jdbcType=VARCHAR},
+      </if>
+      <if test="parentorgcode != null">
+        #{parentorgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="isteam != null">
+        #{isteam,jdbcType=VARCHAR},
+      </if>
+      <if test="isTradeArea != null">
+        #{isTradeArea,jdbcType=VARCHAR},
+      </if>
+      <if test="legOrg != null">
+        #{legOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="financialnum != null">
+        #{financialnum,jdbcType=VARCHAR},
+      </if>
+      <if test="financialorgcode != null">
+        #{financialorgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="nonlocalcode != null">
+        #{nonlocalcode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcreditcode != null">
+        #{orgcreditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankno != null">
+        #{bankno,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityCd != null">
+        #{nationalityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCd != null">
+        #{provinceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCd != null">
+        #{cityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="streetAddress != null">
+        #{streetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="regAdministrativeDivisions != null">
+        #{regAdministrativeDivisions,jdbcType=VARCHAR},
+      </if>
+      <if test="orgSeal != null">
+        #{orgSeal,jdbcType=VARCHAR},
+      </if>
+      <if test="parentorgname != null">
+        #{parentorgname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.sysManage.orgManage.bean.OmOrganization">
+    update OM_ORGANIZATION
+    <set>
+      <if test="orgcode != null">
+        ORGCODE = #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgname != null">
+        ORGNAME = #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orglevel != null">
+        ORGLEVEL = #{orglevel,jdbcType=DECIMAL},
+      </if>
+      <if test="orgdegree != null">
+        ORGDEGREE = #{orgdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="parentorgid != null">
+        PARENTORGID = #{parentorgid,jdbcType=DECIMAL},
+      </if>
+      <if test="orgseq != null">
+        ORGSEQ = #{orgseq,jdbcType=VARCHAR},
+      </if>
+      <if test="orgtype != null">
+        ORGTYPE = #{orgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="orgaddr != null">
+        ORGADDR = #{orgaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        ZIPCODE = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="manaposition != null">
+        MANAPOSITION = #{manaposition,jdbcType=DECIMAL},
+      </if>
+      <if test="managerid != null">
+        MANAGERID = #{managerid,jdbcType=DECIMAL},
+      </if>
+      <if test="orgmanager != null">
+        ORGMANAGER = #{orgmanager,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null">
+        LINKMAN = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="linktel != null">
+        LINKTEL = #{linktel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null">
+        WEBURL = #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        STARTDATE = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null">
+        ENDDATE = #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        AREA = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdate != null">
+        LASTUPDATE = #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        UPDATOR = #{updator,jdbcType=DECIMAL},
+      </if>
+      <if test="sortno != null">
+        SORTNO = #{sortno,jdbcType=DECIMAL},
+      </if>
+      <if test="isleaf != null">
+        ISLEAF = #{isleaf,jdbcType=VARCHAR},
+      </if>
+      <if test="subcount != null">
+        SUBCOUNT = #{subcount,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="buno != null">
+        BUNO = #{buno,jdbcType=VARCHAR},
+      </if>
+      <if test="auditbankno != null">
+        AUDITBANKNO = #{auditbankno,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentsysno != null">
+        PAYMENTSYSNO = #{paymentsysno,jdbcType=VARCHAR},
+      </if>
+      <if test="parentorgcode != null">
+        PARENTORGCODE = #{parentorgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="isteam != null">
+        ISTEAM = #{isteam,jdbcType=VARCHAR},
+      </if>
+      <if test="isTradeArea != null">
+        IS_TRADE_AREA = #{isTradeArea,jdbcType=VARCHAR},
+      </if>
+      <if test="legOrg != null">
+        LEG_ORG = #{legOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="financialnum != null">
+        FINANCIALNUM = #{financialnum,jdbcType=VARCHAR},
+      </if>
+      <if test="financialorgcode != null">
+        FINANCIALORGCODE = #{financialorgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="nonlocalcode != null">
+        NONLOCALCODE = #{nonlocalcode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcreditcode != null">
+        ORGCREDITCODE = #{orgcreditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankno != null">
+        BANKNO = #{bankno,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityCd != null">
+        NATIONALITY_CD = #{nationalityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCd != null">
+        PROVINCE_CD = #{provinceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCd != null">
+        CITY_CD = #{cityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        DISTRICT = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="streetAddress != null">
+        STREET_ADDRESS = #{streetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="regAdministrativeDivisions != null">
+        REG_ADMINISTRATIVE_DIVISIONS = #{regAdministrativeDivisions,jdbcType=VARCHAR},
+      </if>
+      <if test="orgSeal != null">
+        ORG_SEAL = #{orgSeal,jdbcType=VARCHAR},
+      </if>
+      <if test="parentorgname != null">
+        PARENTORGNAME = #{parentorgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORGID = #{orgid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.sysManage.orgManage.bean.OmOrganization">
+    update OM_ORGANIZATION
+    set ORGCODE = #{orgcode,jdbcType=VARCHAR},
+      ORGNAME = #{orgname,jdbcType=VARCHAR},
+      ORGLEVEL = #{orglevel,jdbcType=DECIMAL},
+      ORGDEGREE = #{orgdegree,jdbcType=VARCHAR},
+      PARENTORGID = #{parentorgid,jdbcType=DECIMAL},
+      ORGSEQ = #{orgseq,jdbcType=VARCHAR},
+      ORGTYPE = #{orgtype,jdbcType=VARCHAR},
+      ORGADDR = #{orgaddr,jdbcType=VARCHAR},
+      ZIPCODE = #{zipcode,jdbcType=VARCHAR},
+      MANAPOSITION = #{manaposition,jdbcType=DECIMAL},
+      MANAGERID = #{managerid,jdbcType=DECIMAL},
+      ORGMANAGER = #{orgmanager,jdbcType=VARCHAR},
+      LINKMAN = #{linkman,jdbcType=VARCHAR},
+      LINKTEL = #{linktel,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      WEBURL = #{weburl,jdbcType=VARCHAR},
+      STARTDATE = #{startdate,jdbcType=TIMESTAMP},
+      ENDDATE = #{enddate,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      LASTUPDATE = #{lastupdate,jdbcType=TIMESTAMP},
+      UPDATOR = #{updator,jdbcType=DECIMAL},
+      SORTNO = #{sortno,jdbcType=DECIMAL},
+      ISLEAF = #{isleaf,jdbcType=VARCHAR},
+      SUBCOUNT = #{subcount,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      BUNO = #{buno,jdbcType=VARCHAR},
+      AUDITBANKNO = #{auditbankno,jdbcType=VARCHAR},
+      PAYMENTSYSNO = #{paymentsysno,jdbcType=VARCHAR},
+      PARENTORGCODE = #{parentorgcode,jdbcType=VARCHAR},
+      ISTEAM = #{isteam,jdbcType=VARCHAR},
+      IS_TRADE_AREA = #{isTradeArea,jdbcType=VARCHAR},
+      LEG_ORG = #{legOrg,jdbcType=VARCHAR},
+      FINANCIALNUM = #{financialnum,jdbcType=VARCHAR},
+      FINANCIALORGCODE = #{financialorgcode,jdbcType=VARCHAR},
+      NONLOCALCODE = #{nonlocalcode,jdbcType=VARCHAR},
+      ORGCREDITCODE = #{orgcreditcode,jdbcType=VARCHAR},
+      BANKNO = #{bankno,jdbcType=VARCHAR},
+      NATIONALITY_CD = #{nationalityCd,jdbcType=VARCHAR},
+      PROVINCE_CD = #{provinceCd,jdbcType=VARCHAR},
+      CITY_CD = #{cityCd,jdbcType=VARCHAR},
+      DISTRICT = #{district,jdbcType=VARCHAR},
+      STREET_ADDRESS = #{streetAddress,jdbcType=VARCHAR},
+      REG_ADMINISTRATIVE_DIVISIONS = #{regAdministrativeDivisions,jdbcType=VARCHAR},
+      ORG_SEAL = #{orgSeal,jdbcType=VARCHAR},
+      PARENTORGNAME = #{parentorgname,jdbcType=VARCHAR}
+    where ORGID = #{orgid,jdbcType=DECIMAL}
+  </update>
+</mapper>

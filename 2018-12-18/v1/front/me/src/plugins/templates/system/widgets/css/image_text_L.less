@@ -1,0 +1,50 @@
+.floor-title {
+    @h-l:42px;
+     // border-bottom: 2px solid;
+    margin-top: 25px;
+    height:  @h-l;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    h3 {
+        font-size: 24px;
+        display: inline-block;
+        line-height: 38px;
+        vertical-align: middle;
+    }
+    .more {
+        color: @styleColors;
+//      float: right;
+        line-height:  @h-l;
+        font-size: 12px;
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 0;
+    }
+    span.floor {
+        background: url(../images/floor-bg-1.png) no-repeat;
+        width: 32px;
+        height: 42px;
+        display: inline-block;
+        color: #fff;
+        font-size: 18px;
+        line-height: 31px;
+        padding-left: 5px;
+        margin-right: 5px;
+    }
+    &.first-floor {
+        border-bottom-color: #caa076;
+        color: #caa076;
+        span.floor {
+            background-position: left 2px;
+        }
+    }
+    &.second-floor {
+        border-bottom-color: #d4224c;
+        color: #d4224c;
+        span.floor {
+            background-position: left -38px;
+        }
+    }
+}

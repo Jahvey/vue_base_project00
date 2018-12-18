@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.user.mapper.TbCsmInvestmentInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.TbCsmInvestmentInfo">
+    <id column="INVESTMENT_ID" jdbcType="VARCHAR" property="investmentId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="INVESTIMENT_METHOD_CD" jdbcType="VARCHAR" property="investimentMethodCd" />
+    <result column="CURRECY_CD" jdbcType="VARCHAR" property="currecyCd" />
+    <result column="INVESTMENT_AMT" jdbcType="DECIMAL" property="investmentAmt" />
+    <result column="SHAREHOLDING_RATIO" jdbcType="DECIMAL" property="shareholdingRatio" />
+    <result column="INVESTMENT_DATE" jdbcType="TIMESTAMP" property="investmentDate" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="INVEST_CUST_ID" jdbcType="VARCHAR" property="investCustId" />
+    <result column="INVEST_CUST_TYPE" jdbcType="VARCHAR" property="investCustType" />
+    <result column="INVEST_CUST_NAME" jdbcType="VARCHAR" property="investCustName" />
+    <result column="REGISTER_NUM" jdbcType="VARCHAR" property="registerNum" />
+    <result column="ORG_REGISTER_NUM" jdbcType="VARCHAR" property="orgRegisterNum" />
+    <result column="MIDDLE_NUM" jdbcType="VARCHAR" property="middleNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    INVESTMENT_ID, PARTY_ID, INVESTIMENT_METHOD_CD, CURRECY_CD, INVESTMENT_AMT, SHAREHOLDING_RATIO, 
+    INVESTMENT_DATE, CREATE_TIME, UPDATE_TIME, UPDATE_USER_NUM, UPDATE_ORG_NUM, INVEST_CUST_ID, 
+    INVEST_CUST_TYPE, INVEST_CUST_NAME, REGISTER_NUM, ORG_REGISTER_NUM, MIDDLE_NUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_INVESTMENT_INFO
+    where INVESTMENT_ID = #{investmentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_INVESTMENT_INFO
+    where INVESTMENT_ID = #{investmentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.user.bean.TbCsmInvestmentInfo">
+    insert into TB_CSM_INVESTMENT_INFO (INVESTMENT_ID, PARTY_ID, INVESTIMENT_METHOD_CD, 
+      CURRECY_CD, INVESTMENT_AMT, SHAREHOLDING_RATIO, 
+      INVESTMENT_DATE, CREATE_TIME, UPDATE_TIME, 
+      UPDATE_USER_NUM, UPDATE_ORG_NUM, INVEST_CUST_ID, 
+      INVEST_CUST_TYPE, INVEST_CUST_NAME, REGISTER_NUM, 
+      ORG_REGISTER_NUM, MIDDLE_NUM)
+    values (#{investmentId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{investimentMethodCd,jdbcType=VARCHAR}, 
+      #{currecyCd,jdbcType=VARCHAR}, #{investmentAmt,jdbcType=DECIMAL}, #{shareholdingRatio,jdbcType=DECIMAL}, 
+      #{investmentDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUserNum,jdbcType=VARCHAR}, #{updateOrgNum,jdbcType=VARCHAR}, #{investCustId,jdbcType=VARCHAR}, 
+      #{investCustType,jdbcType=VARCHAR}, #{investCustName,jdbcType=VARCHAR}, #{registerNum,jdbcType=VARCHAR}, 
+      #{orgRegisterNum,jdbcType=VARCHAR}, #{middleNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.user.bean.TbCsmInvestmentInfo">
+    insert into TB_CSM_INVESTMENT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="investmentId != null">
+        INVESTMENT_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="investimentMethodCd != null">
+        INVESTIMENT_METHOD_CD,
+      </if>
+      <if test="currecyCd != null">
+        CURRECY_CD,
+      </if>
+      <if test="investmentAmt != null">
+        INVESTMENT_AMT,
+      </if>
+      <if test="shareholdingRatio != null">
+        SHAREHOLDING_RATIO,
+      </if>
+      <if test="investmentDate != null">
+        INVESTMENT_DATE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM,
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM,
+      </if>
+      <if test="investCustId != null">
+        INVEST_CUST_ID,
+      </if>
+      <if test="investCustType != null">
+        INVEST_CUST_TYPE,
+      </if>
+      <if test="investCustName != null">
+        INVEST_CUST_NAME,
+      </if>
+      <if test="registerNum != null">
+        REGISTER_NUM,
+      </if>
+      <if test="orgRegisterNum != null">
+        ORG_REGISTER_NUM,
+      </if>
+      <if test="middleNum != null">
+        MIDDLE_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="investmentId != null">
+        #{investmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="investimentMethodCd != null">
+        #{investimentMethodCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currecyCd != null">
+        #{currecyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="investmentAmt != null">
+        #{investmentAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="shareholdingRatio != null">
+        #{shareholdingRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="investmentDate != null">
+        #{investmentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserNum != null">
+        #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustId != null">
+        #{investCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustType != null">
+        #{investCustType,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustName != null">
+        #{investCustName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerNum != null">
+        #{registerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterNum != null">
+        #{orgRegisterNum,jdbcType=VARCHAR},
+      </if>
+      <if test="middleNum != null">
+        #{middleNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.user.bean.TbCsmInvestmentInfo">
+    update TB_CSM_INVESTMENT_INFO
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="investimentMethodCd != null">
+        INVESTIMENT_METHOD_CD = #{investimentMethodCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currecyCd != null">
+        CURRECY_CD = #{currecyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="investmentAmt != null">
+        INVESTMENT_AMT = #{investmentAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="shareholdingRatio != null">
+        SHAREHOLDING_RATIO = #{shareholdingRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="investmentDate != null">
+        INVESTMENT_DATE = #{investmentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustId != null">
+        INVEST_CUST_ID = #{investCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustType != null">
+        INVEST_CUST_TYPE = #{investCustType,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustName != null">
+        INVEST_CUST_NAME = #{investCustName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerNum != null">
+        REGISTER_NUM = #{registerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterNum != null">
+        ORG_REGISTER_NUM = #{orgRegisterNum,jdbcType=VARCHAR},
+      </if>
+      <if test="middleNum != null">
+        MIDDLE_NUM = #{middleNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INVESTMENT_ID = #{investmentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.user.bean.TbCsmInvestmentInfo">
+    update TB_CSM_INVESTMENT_INFO
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      INVESTIMENT_METHOD_CD = #{investimentMethodCd,jdbcType=VARCHAR},
+      CURRECY_CD = #{currecyCd,jdbcType=VARCHAR},
+      INVESTMENT_AMT = #{investmentAmt,jdbcType=DECIMAL},
+      SHAREHOLDING_RATIO = #{shareholdingRatio,jdbcType=DECIMAL},
+      INVESTMENT_DATE = #{investmentDate,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      INVEST_CUST_ID = #{investCustId,jdbcType=VARCHAR},
+      INVEST_CUST_TYPE = #{investCustType,jdbcType=VARCHAR},
+      INVEST_CUST_NAME = #{investCustName,jdbcType=VARCHAR},
+      REGISTER_NUM = #{registerNum,jdbcType=VARCHAR},
+      ORG_REGISTER_NUM = #{orgRegisterNum,jdbcType=VARCHAR},
+      MIDDLE_NUM = #{middleNum,jdbcType=VARCHAR}
+    where INVESTMENT_ID = #{investmentId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.TbCsmInvestmentInfo">
+    <id column="INVESTMENT_ID" jdbcType="VARCHAR" property="investmentId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="INVESTIMENT_METHOD_CD" jdbcType="VARCHAR" property="investimentMethodCd" />
+    <result column="CURRECY_CD" jdbcType="VARCHAR" property="currecyCd" />
+    <result column="INVESTMENT_AMT" jdbcType="DECIMAL" property="investmentAmt" />
+    <result column="SHAREHOLDING_RATIO" jdbcType="DECIMAL" property="shareholdingRatio" />
+    <result column="INVESTMENT_DATE" jdbcType="TIMESTAMP" property="investmentDate" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="INVEST_CUST_ID" jdbcType="VARCHAR" property="investCustId" />
+    <result column="INVEST_CUST_TYPE" jdbcType="VARCHAR" property="investCustType" />
+    <result column="INVEST_CUST_NAME" jdbcType="VARCHAR" property="investCustName" />
+    <result column="REGISTER_NUM" jdbcType="VARCHAR" property="registerNum" />
+    <result column="ORG_REGISTER_NUM" jdbcType="VARCHAR" property="orgRegisterNum" />
+    <result column="MIDDLE_NUM" jdbcType="VARCHAR" property="middleNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    INVESTMENT_ID, PARTY_ID, INVESTIMENT_METHOD_CD, CURRECY_CD, INVESTMENT_AMT, SHAREHOLDING_RATIO, 
+    INVESTMENT_DATE, CREATE_TIME, UPDATE_TIME, UPDATE_USER_NUM, UPDATE_ORG_NUM, INVEST_CUST_ID, 
+    INVEST_CUST_TYPE, INVEST_CUST_NAME, REGISTER_NUM, ORG_REGISTER_NUM, MIDDLE_NUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_INVESTMENT_INFO
+    where INVESTMENT_ID = #{investmentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_INVESTMENT_INFO
+    where INVESTMENT_ID = #{investmentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.user.bean.TbCsmInvestmentInfo">
+    insert into TB_CSM_INVESTMENT_INFO (INVESTMENT_ID, PARTY_ID, INVESTIMENT_METHOD_CD, 
+      CURRECY_CD, INVESTMENT_AMT, SHAREHOLDING_RATIO, 
+      INVESTMENT_DATE, CREATE_TIME, UPDATE_TIME, 
+      UPDATE_USER_NUM, UPDATE_ORG_NUM, INVEST_CUST_ID, 
+      INVEST_CUST_TYPE, INVEST_CUST_NAME, REGISTER_NUM, 
+      ORG_REGISTER_NUM, MIDDLE_NUM)
+    values (#{investmentId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{investimentMethodCd,jdbcType=VARCHAR}, 
+      #{currecyCd,jdbcType=VARCHAR}, #{investmentAmt,jdbcType=DECIMAL}, #{shareholdingRatio,jdbcType=DECIMAL}, 
+      #{investmentDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUserNum,jdbcType=VARCHAR}, #{updateOrgNum,jdbcType=VARCHAR}, #{investCustId,jdbcType=VARCHAR}, 
+      #{investCustType,jdbcType=VARCHAR}, #{investCustName,jdbcType=VARCHAR}, #{registerNum,jdbcType=VARCHAR}, 
+      #{orgRegisterNum,jdbcType=VARCHAR}, #{middleNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.user.bean.TbCsmInvestmentInfo">
+    insert into TB_CSM_INVESTMENT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="investmentId != null">
+        INVESTMENT_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="investimentMethodCd != null">
+        INVESTIMENT_METHOD_CD,
+      </if>
+      <if test="currecyCd != null">
+        CURRECY_CD,
+      </if>
+      <if test="investmentAmt != null">
+        INVESTMENT_AMT,
+      </if>
+      <if test="shareholdingRatio != null">
+        SHAREHOLDING_RATIO,
+      </if>
+      <if test="investmentDate != null">
+        INVESTMENT_DATE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM,
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM,
+      </if>
+      <if test="investCustId != null">
+        INVEST_CUST_ID,
+      </if>
+      <if test="investCustType != null">
+        INVEST_CUST_TYPE,
+      </if>
+      <if test="investCustName != null">
+        INVEST_CUST_NAME,
+      </if>
+      <if test="registerNum != null">
+        REGISTER_NUM,
+      </if>
+      <if test="orgRegisterNum != null">
+        ORG_REGISTER_NUM,
+      </if>
+      <if test="middleNum != null">
+        MIDDLE_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="investmentId != null">
+        #{investmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="investimentMethodCd != null">
+        #{investimentMethodCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currecyCd != null">
+        #{currecyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="investmentAmt != null">
+        #{investmentAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="shareholdingRatio != null">
+        #{shareholdingRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="investmentDate != null">
+        #{investmentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserNum != null">
+        #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustId != null">
+        #{investCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustType != null">
+        #{investCustType,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustName != null">
+        #{investCustName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerNum != null">
+        #{registerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterNum != null">
+        #{orgRegisterNum,jdbcType=VARCHAR},
+      </if>
+      <if test="middleNum != null">
+        #{middleNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.user.bean.TbCsmInvestmentInfo">
+    update TB_CSM_INVESTMENT_INFO
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="investimentMethodCd != null">
+        INVESTIMENT_METHOD_CD = #{investimentMethodCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currecyCd != null">
+        CURRECY_CD = #{currecyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="investmentAmt != null">
+        INVESTMENT_AMT = #{investmentAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="shareholdingRatio != null">
+        SHAREHOLDING_RATIO = #{shareholdingRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="investmentDate != null">
+        INVESTMENT_DATE = #{investmentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustId != null">
+        INVEST_CUST_ID = #{investCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustType != null">
+        INVEST_CUST_TYPE = #{investCustType,jdbcType=VARCHAR},
+      </if>
+      <if test="investCustName != null">
+        INVEST_CUST_NAME = #{investCustName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerNum != null">
+        REGISTER_NUM = #{registerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterNum != null">
+        ORG_REGISTER_NUM = #{orgRegisterNum,jdbcType=VARCHAR},
+      </if>
+      <if test="middleNum != null">
+        MIDDLE_NUM = #{middleNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INVESTMENT_ID = #{investmentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.user.bean.TbCsmInvestmentInfo">
+    update TB_CSM_INVESTMENT_INFO
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      INVESTIMENT_METHOD_CD = #{investimentMethodCd,jdbcType=VARCHAR},
+      CURRECY_CD = #{currecyCd,jdbcType=VARCHAR},
+      INVESTMENT_AMT = #{investmentAmt,jdbcType=DECIMAL},
+      SHAREHOLDING_RATIO = #{shareholdingRatio,jdbcType=DECIMAL},
+      INVESTMENT_DATE = #{investmentDate,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      INVEST_CUST_ID = #{investCustId,jdbcType=VARCHAR},
+      INVEST_CUST_TYPE = #{investCustType,jdbcType=VARCHAR},
+      INVEST_CUST_NAME = #{investCustName,jdbcType=VARCHAR},
+      REGISTER_NUM = #{registerNum,jdbcType=VARCHAR},
+      ORG_REGISTER_NUM = #{orgRegisterNum,jdbcType=VARCHAR},
+      MIDDLE_NUM = #{middleNum,jdbcType=VARCHAR}
+    where INVESTMENT_ID = #{investmentId,jdbcType=VARCHAR}
+  </update>
+</mapper>

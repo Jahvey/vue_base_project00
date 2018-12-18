@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.ConFlagInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.ConFlagInfo">
+    <id column="FLAG_ID" jdbcType="VARCHAR" property="flagId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="LOAN_TURN" jdbcType="VARCHAR" property="loanTurn" />
+    <result column="GREEN_LOAN" jdbcType="VARCHAR" property="greenLoan" />
+    <result column="EMPHASIS_TURN" jdbcType="VARCHAR" property="emphasisTurn" />
+    <result column="RHBZFFL" jdbcType="VARCHAR" property="rhbzffl" />
+    <result column="YJBZFFL" jdbcType="VARCHAR" property="yjbzffl" />
+    <result column="RISK_INFO" jdbcType="VARCHAR" property="riskInfo" />
+    <result column="ACT" jdbcType="VARCHAR" property="act" />
+    <result column="SERVICE_TYPE" jdbcType="VARCHAR" property="serviceType" />
+    <result column="REDUCE_AMOUNT" jdbcType="VARCHAR" property="reduceAmount" />
+    <result column="FOCUS_TYPE" jdbcType="VARCHAR" property="focusType" />
+    <result column="AJUST_TYPE" jdbcType="VARCHAR" property="ajustType" />
+    <result column="UPGRADE_TYPE" jdbcType="VARCHAR" property="upgradeType" />
+    <result column="NEW_PRODUCT_TYPE" jdbcType="VARCHAR" property="newProductType" />
+    <result column="WHETHER_ARG_RELATED" jdbcType="VARCHAR" property="whetherArgRelated" />
+    <result column="SUP_ARG_TYPE" jdbcType="VARCHAR" property="supArgType" />
+    <result column="ARG_TYPE" jdbcType="VARCHAR" property="argType" />
+    <result column="GREEN_LOAN_USE" jdbcType="VARCHAR" property="greenLoanUse" />
+    <result column="GREEN_RISK_TYPE" jdbcType="VARCHAR" property="greenRiskType" />
+    <result column="GREEN_RISK_DETAIL" jdbcType="VARCHAR" property="greenRiskDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    FLAG_ID, CONTRACT_ID, LOAN_TURN, GREEN_LOAN, EMPHASIS_TURN, RHBZFFL, YJBZFFL, RISK_INFO, 
+    ACT, SERVICE_TYPE, REDUCE_AMOUNT, FOCUS_TYPE, AJUST_TYPE, UPGRADE_TYPE, NEW_PRODUCT_TYPE, 
+    WHETHER_ARG_RELATED, SUP_ARG_TYPE, ARG_TYPE, GREEN_LOAN_USE, GREEN_RISK_TYPE, GREEN_RISK_DETAIL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_FLAG_INFO
+    where FLAG_ID = #{flagId,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

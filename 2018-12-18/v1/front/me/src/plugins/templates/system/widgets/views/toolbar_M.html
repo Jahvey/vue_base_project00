@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="/static/js/toolbar_M.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="toolbar tabbar tabbar-labels homeNavBar" data-name="<%=name%>" data-config="<%=config%>" data-type="Toolbar" id="toolbar">
+    <%if(designer){%>
+        <div class="toolbar-inner"></div>
+        <script type="text/template7">
+            {{#each icons}}
+                <a href="#{{this.toolbar_url}}" class="tab-link {{#if oddcenter}} oddcenter {{/if}}">
+                    <i class="icon" style='background:url({{this.toolbar_icon}}) no-repeat;background-size: 24px 24px;'></i>
+                    <span class="tabbar-label">{{this.toolbar_name}}</span>
+                </a>
+            {{/each}}
+        </script>
+        
+    <%}else{%>
+        <div class="toolbar-inner">
+            <%for(i = 0; i < configs.icons.length; i ++) {%>
+                <style> 
+                <%if(configs.icons[i].isSystemToolbar == true){%>
+                    .footer-icon-<%=configs.icons[i].toolbar_type%> {
+                        background:url(<%=configs.icons[i].toolbar_icon%>) no-repeat;
+                        background-size: 24px 24px;
+                    }
+                    .active .footer-icon-<%=configs.icons[i].toolbar_type%> {
+                        background:url(<%=configs.icons[i].toolbar_icon_active%>) no-repeat;
+                        background-size: 24px 24px;
+                    }
+
+                <%}%>
+                </style>
+                <%if(configs.icons[i].toolbar_type == 'share'){%>
+                    <%if(mode==='wechat'&& distribution){%>
+                    	<%if(configs.icons[i].isSystemToolbar == true){%>
+	                        <a href="<%=getYiLianServerUrl()%>/app/shop.php/Shop/Distributor/portal.php" class="tab-link external">
+	                            <i class="icon footer-icon-<%=configs.icons[i].toolbar_type%>" ></i>
+	                            <span class="tabbar-label" ><%=configs.icons[i].toolbar_name%></span>
+	                        </a>
+                        <%}else{%>
+                        	 <a href="#<%=configs.icons[i].toolbar_url%>" class="tab-link external">
+	                            <i class="icon style="background: url(<%=configs.icons[i].toolbar_icon%>) no-repeat; background-size: 24px 24px;"" ></i>
+	                            <span class="tabbar-label" ><%=configs.icons[i].toolbar_name%></span>
+	                        </a>
+                        <%}%>
+                    <%}%>
+                <%}else{%>
+                    <%if(configs.icons[i].isSystemToolbar == true){%>
+                    	<%if(configs.icons[i].toolbar_type == 'list'){%>
+                    		<a href="#<%=configs.icons[i].toolbar_url%>" class="tab-link <%if(configs.icons[i].oddcenter){%> oddcenter <%}%> ">
+                            	<i class="icon footer-icon-<%=configs.icons[i].toolbar_type%>"></i>
+                            	<span class="tabbar-label" data-list='<%=configs.icons[i].listViewUrl%>'><%=configs.icons[i].toolbar_name%></span>
+                        	</a>
+                    	<%}else if(configs.icons[i].toolbar_type == 'channel'){%>
+                    		<a href="#channelView" class="tab-link <%if(configs.icons[i].oddcenter){%> oddcenter <%}%> " data-url="<%=configs.icons[i].toolbar_url%>">
+                            	<i class="icon" style="background: url(<%=configs.icons[i].toolbar_icon%>) no-repeat; background-size: 24px 24px;"></i>
+                            	<span class="tabbar-label"><%=configs.icons[i].toolbar_name%></span>
+                            	
+                        	</a>
+                        <%}else if(configs.icons[i].toolbar_type == 'shoplist'){%>
+                    		<a href="#shopView" class="tab-link <%if(configs.icons[i].oddcenter){%> oddcenter <%}%> " data-url="<%=configs.icons[i].toolbar_url%>">
+                            	<i class="icon footer-icon-<%=configs.icons[i].toolbar_type%>"></i>
+                            	<span class="tabbar-label"><%=configs.icons[i].toolbar_name%></span>
+                            	
+                        	</a>
+                    	<%}else if(configs.icons[i].toolbar_type == 'freebuy'){%>
+                            <%if(freebuy){%>
+                                <a href="#freebuyView" class="tab-link <%if(configs.icons[i].oddcenter){%> oddcenter <%}%> " data-url="<%=configs.icons[i].toolbar_url%>">
+                            	<i class="icon footer-icon-<%=configs.icons[i].toolbar_type%>"></i>
+                            	<span class="tabbar-label"><%=configs.icons[i].toolbar_name%></span>
+                        	    </a>
+                            <%}%>
+                         <%}else if(configs.icons[i].toolbar_type == 'user'){%>
+                           <%if(configs.icons[i].isPersonalCenter){%>
+                           <a href="<%=getYiLianServerUrl()%>/app/mm.php/MM/PersonalCenter/portal?from=umall" class="tab-link external">
+                               <i class="icon" style="background: url(<%=configs.icons[i].toolbar_icon%>) no-repeat; background-size: 24px 24px;"></i>
+                               <span class="tabbar-label"><%=configs.icons[i].toolbar_name%></span>
+                           </a>
+                           <%}else{%>
+                           <a href="#<%=configs.icons[i].toolbar_url%>" class="tab-link <%if(configs.icons[i].oddcenter){%> oddcenter <%}%> ">
+                               <i class="icon footer-icon-<%=configs.icons[i].toolbar_type%>"></i>
+                               <span class="tabbar-label"><%=configs.icons[i].toolbar_name%></span>
+                           </a>
+                           <%}%>
+                        <%}else{%>
+                    		<a href="#<%=configs.icons[i].toolbar_url%>" class="tab-link <%if(configs.icons[i].oddcenter){%> oddcenter <%}%> ">
+                                <%if(configs.icons[i].toolbar_type == 'cart'){%>
+                            	<i class="icon footer-icon-<%=configs.icons[i].toolbar_type%>"><span class="badge bg-red shoppingCartCount" style="display: block;">0</span></i>
+                            	<span class="tabbar-label"><%=configs.icons[i].toolbar_name%></span>
+                                <%}else{%>
+                                <i class="icon footer-icon-<%=configs.icons[i].toolbar_type%>"></i>
+                            	<span class="tabbar-label"><%=configs.icons[i].toolbar_name%></span>
+                                <%}%> 
+                        	</a>
+                    	<%}%>                       
+                    <%}else{%>
+                        <a href="<%=webDomain%><%=configs.icons[i].toolbar_url%>" class="tab-link <%if(configs.icons[i].oddcenter){%> oddcenter <%}%>" target="_system">
+                            <i class="icon" style="background: url(<%=configs.icons[i].toolbar_icon%>) no-repeat; background-size: 24px 24px;"></i>
+                            <span class="tabbar-label"><%=configs.icons[i].toolbar_name%></span>
+                        </a>
+                    <%}%>
+                <%}%>
+            <%}%>
+        </div>
+    <%}%> 
+    </div>
+</body>
+</html>

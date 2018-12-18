@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.sysManage.position.mapper.OmPositionMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.sysManage.position.bean.OmPosition">
+    <id column="POSITIONID" jdbcType="DECIMAL" property="positionid" />
+    <result column="POSICODE" jdbcType="VARCHAR" property="posicode" />
+    <result column="POSINAME" jdbcType="VARCHAR" property="posiname" />
+    <result column="POSILEVEL" jdbcType="DECIMAL" property="posilevel" />
+    <result column="MANAPOSI" jdbcType="DECIMAL" property="manaposi" />
+    <result column="DUTYID" jdbcType="DECIMAL" property="dutyid" />
+    <result column="ORGID" jdbcType="DECIMAL" property="orgid" />
+    <result column="POSITIONSEQ" jdbcType="VARCHAR" property="positionseq" />
+    <result column="POSITYPE" jdbcType="VARCHAR" property="positype" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="LASTUPDATE" jdbcType="TIMESTAMP" property="lastupdate" />
+    <result column="UPDATOR" jdbcType="DECIMAL" property="updator" />
+    <result column="STARTDATE" jdbcType="TIMESTAMP" property="startdate" />
+    <result column="ENDDATE" jdbcType="TIMESTAMP" property="enddate" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="ISLEAF" jdbcType="CHAR" property="isleaf" />
+    <result column="SUBCOUNT" jdbcType="DECIMAL" property="subcount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    POSITIONID, POSICODE, POSINAME, POSILEVEL, MANAPOSI, DUTYID, ORGID, POSITIONSEQ, 
+    POSITYPE, CREATETIME, LASTUPDATE, UPDATOR, STARTDATE, ENDDATE, STATUS, ISLEAF, SUBCOUNT
+  </sql>
+  <resultMap type="com.cdgit.loan.sysManage.position.bean.OmPosition" id="PositionInfo">
+    <result property="posicode" column="POSICODE" jdbcType="VARCHAR"/>
+	<result property="posiname" column="POSINAME" jdbcType="VARCHAR"/>
+	<result property="positionid" column="POSITIONID" jdbcType="DECIMAL"/>
+	<result property="posistate" column="POSISTATE" jdbcType="VARCHAR"/>
+   </resultMap>
+  <select id="queryPositionInfo" parameterType="java.lang.String" resultMap="PositionInfo">
+      select posicode,posiname,positionid,posistate from om_position where 1=1 
+	  <if test="posiname != null and posiname != '' " > 
+          and posiname like '%'||#{posiname}||'%'
+      </if>
+	  <!-- <isNotNull property="superadmin">
+		  and (leg_org=#{legorg} or leg_org is null)
+      </isNotNull> -->
+      order by posicode
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from OM_POSITION
+    where POSITIONID = #{positionid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from OM_POSITION
+    where POSITIONID = #{positionid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.sysManage.position.bean.OmPosition">
+    insert into OM_POSITION (POSITIONID, POSICODE, POSINAME, 
+      POSILEVEL, MANAPOSI, DUTYID, 
+      ORGID, POSITIONSEQ, POSITYPE, 
+      CREATETIME, LASTUPDATE, UPDATOR, 
+      STARTDATE, ENDDATE, STATUS, 
+      ISLEAF, SUBCOUNT)
+    values (#{positionid,jdbcType=DECIMAL}, #{posicode,jdbcType=VARCHAR}, #{posiname,jdbcType=VARCHAR}, 
+      #{posilevel,jdbcType=DECIMAL}, #{manaposi,jdbcType=DECIMAL}, #{dutyid,jdbcType=DECIMAL}, 
+      #{orgid,jdbcType=DECIMAL}, #{positionseq,jdbcType=VARCHAR}, #{positype,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{lastupdate,jdbcType=TIMESTAMP}, #{updator,jdbcType=DECIMAL}, 
+      #{startdate,jdbcType=TIMESTAMP}, #{enddate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{isleaf,jdbcType=CHAR}, #{subcount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.sysManage.position.bean.OmPosition">
+    insert into OM_POSITION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        POSITIONID,
+      <if test="posicode != null">
+        POSICODE,
+      </if>
+      <if test="posiname != null">
+        POSINAME,
+      </if>
+      <if test="posilevel != null">
+        POSILEVEL,
+      </if>
+      <if test="manaposi != null">
+        MANAPOSI,
+      </if>
+      <if test="dutyid != null">
+        DUTYID,
+      </if>
+      <if test="orgid != null">
+        ORGID,
+      </if>
+      <if test="positionseq != null">
+        POSITIONSEQ,
+      </if>
+      <if test="positype != null">
+        POSITYPE,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="lastupdate != null">
+        LASTUPDATE,
+      </if>
+      <if test="updator != null">
+        UPDATOR,
+      </if>
+      <if test="startdate != null">
+        STARTDATE,
+      </if>
+      <if test="enddate != null">
+        ENDDATE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="isleaf != null">
+        ISLEAF,
+      </if>
+      <if test="subcount != null">
+        SUBCOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      SEQ_OM_POSITION.NEXTVAL,
+      <if test="posicode != null">
+        #{posicode,jdbcType=VARCHAR},
+      </if>
+      <if test="posiname != null">
+        #{posiname,jdbcType=VARCHAR},
+      </if>
+      <if test="posilevel != null">
+        #{posilevel,jdbcType=DECIMAL},
+      </if>
+      <if test="manaposi != null">
+        #{manaposi,jdbcType=DECIMAL},
+      </if>
+      <if test="dutyid != null">
+        #{dutyid,jdbcType=DECIMAL},
+      </if>
+      <if test="orgid != null">
+        #{orgid,jdbcType=DECIMAL},
+      </if>
+      <if test="positionseq != null">
+        #{positionseq,jdbcType=VARCHAR},
+      </if>
+      <if test="positype != null">
+        #{positype,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdate != null">
+        #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="isleaf != null">
+        #{isleaf,jdbcType=CHAR},
+      </if>
+      <if test="subcount != null">
+        #{subcount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.sysManage.position.bean.OmPosition">
+    update OM_POSITION
+    <set>
+      <if test="posicode != null">
+        POSICODE = #{posicode,jdbcType=VARCHAR},
+      </if>
+      <if test="posiname != null">
+        POSINAME = #{posiname,jdbcType=VARCHAR},
+      </if>
+      <if test="posilevel != null">
+        POSILEVEL = #{posilevel,jdbcType=DECIMAL},
+      </if>
+      <if test="manaposi != null">
+        MANAPOSI = #{manaposi,jdbcType=DECIMAL},
+      </if>
+      <if test="dutyid != null">
+        DUTYID = #{dutyid,jdbcType=DECIMAL},
+      </if>
+      <if test="orgid != null">
+        ORGID = #{orgid,jdbcType=DECIMAL},
+      </if>
+      <if test="positionseq != null">
+        POSITIONSEQ = #{positionseq,jdbcType=VARCHAR},
+      </if>
+      <if test="positype != null">
+        POSITYPE = #{positype,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdate != null">
+        LASTUPDATE = #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        UPDATOR = #{updator,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null">
+        STARTDATE = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null">
+        ENDDATE = #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="isleaf != null">
+        ISLEAF = #{isleaf,jdbcType=CHAR},
+      </if>
+      <if test="subcount != null">
+        SUBCOUNT = #{subcount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where POSITIONID = #{positionid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.sysManage.position.bean.OmPosition">
+    update OM_POSITION
+    set POSICODE = #{posicode,jdbcType=VARCHAR},
+      POSINAME = #{posiname,jdbcType=VARCHAR},
+      POSILEVEL = #{posilevel,jdbcType=DECIMAL},
+      MANAPOSI = #{manaposi,jdbcType=DECIMAL},
+      DUTYID = #{dutyid,jdbcType=DECIMAL},
+      ORGID = #{orgid,jdbcType=DECIMAL},
+      POSITIONSEQ = #{positionseq,jdbcType=VARCHAR},
+      POSITYPE = #{positype,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      LASTUPDATE = #{lastupdate,jdbcType=TIMESTAMP},
+      UPDATOR = #{updator,jdbcType=DECIMAL},
+      STARTDATE = #{startdate,jdbcType=TIMESTAMP},
+      ENDDATE = #{enddate,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      ISLEAF = #{isleaf,jdbcType=CHAR},
+      SUBCOUNT = #{subcount,jdbcType=DECIMAL}
+    where POSITIONID = #{positionid,jdbcType=DECIMAL}
+  </update>
+</mapper>

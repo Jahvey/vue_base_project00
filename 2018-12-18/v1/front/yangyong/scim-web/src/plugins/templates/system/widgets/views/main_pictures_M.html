@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="/static/js/main_pictures_M.js" type="text/javascript"></script>
+    <script src="/static/js/carousel/carousel.js" type="text/javascript"></script>
+    <link href="/static/js/carousel/carousel.css" rel="stylesheet">
+</head>
+<body>
+    <div data-name="<%=name%>" data-config="<%=config%>" data-type="MainPhoto">
+			<ul class="row MainPhoto owl-carousel"></ul>
+			<script type="text/template7">
+				{{#each photos}}				
+				<li class="col-{{this.configNum}} mainPhotoLi">
+					<div data-link="{{this.isExternal}}">
+						{{#if this.link}}
+							<a href="{{this.link}}" target="_blank">
+								<img src="{{adjustImgSrc this.url}}"/>
+							</a>
+						{{else}}
+						       <img src="{{adjustImgSrc this.url}}"/>
+						{{/if}}
+					</div>
+				</li>
+				{{/each}}
+			</script>
+		</div>
+</body>
+</html>
