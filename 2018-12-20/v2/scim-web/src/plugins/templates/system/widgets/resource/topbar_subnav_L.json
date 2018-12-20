@@ -1,0 +1,9 @@
+﻿{
+	"zh-CN": {
+		"links": [
+			{ "text": "我的消息", "href": "/member/mymessage" },
+			{ "text": "会员中心", "href": "/member" },
+			{ "text": "帮助中心", "href": "/helpcenter/classification?typeId=-1&wigetType=帮助中心" }
+		]
+	}
+}
