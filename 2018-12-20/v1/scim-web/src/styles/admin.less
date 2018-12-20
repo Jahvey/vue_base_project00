@@ -1,0 +1,283 @@
+/* 全局 */
+body { font-size: 12px; color: #222; line-height: 1.5; }
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+#app, .wrap {
+  width: 100%;
+  min-width: 1200px;
+  height: 100%;
+  min-height: 500px;
+}
+
+/* 后台框架 */
+.page-header {
+  width: 100%;
+  height: 54px;
+}
+.page-body{
+  width: 100%;
+  height:-moz-calc(~"100vh - 54px");
+  height:-webkit-calc(~"100vh - 54px");
+  height: calc(~"100vh - 54px");
+  overflow: auto;
+  .page-sidebar {
+    .fl;
+    width: 240px;
+    height: 100%;
+    overflow: hidden;
+    transition: width .3s ease-in-out;
+  }
+  .page-main{
+    .fm;
+    height: 100%;
+    overflow: auto;
+  }
+}
+
+
+/* 后台框架-头部 */
+.page-header{
+  background: @header-bg;
+  .logo{
+    .fl;
+    width: 220px;
+    height: 40px;
+    margin: 7px auto 7px 20px;
+    overflow: hidden;
+    img { height: 40px; }
+  }
+  .top-nav {
+    float: left;
+  }
+  .top-right{
+    .fr;
+    .mr20;
+    color: #fff;
+    .message{
+      margin:22px 20px 0 0;
+      cursor: pointer;
+      .el-icon-bell{ font-size: 20px; }
+      .el-badge{
+        .el-badge__content{
+          height: 14px;
+          line-height: 14px;
+          padding: 0 4px 0 4px;
+          border: 0;
+          border-radius: 7px;
+          font-size: 10px;
+        }
+      }
+    }
+    .avatar{
+      width: 28px;
+      height: 28px;
+      margin: 16px 5px 0 0;
+      background: #ccc;
+      border-radius: 50%;
+      overflow: hidden;
+      img{ width: 100%; height: 100%; }
+    }
+    .el-dropdown{
+      margin-top: 15px;
+      color: #fff;
+      cursor: pointer;
+      .dropdown-title{
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+  }
+}
+
+
+/* 后台框架-侧边 */
+.page-sidebar{
+  border-right: solid 1px @sidebar-bd;
+  background: @sidebar-bg;
+  &.narrow{
+    width: 64px;
+  }
+  .page-siderbar-ctrl{
+    overflow: hidden;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #eaecf0;
+    cursor: pointer;
+    &:hover { background: #dce6fa; .text-blue; }
+    i { transform: rotate(90deg); }
+    &.narrow{
+      i { transform: rotate(0deg); }
+    }
+  }
+}
+
+
+/* 后台框架-侧边-导航 */
+.page-sidebar-content{
+  overflow: hidden;
+  overflow-y: scroll;
+  width: 260px;
+  height: calc(~'100% - 20px');
+  .customer-sidebar{
+    &.abso{
+      position: absolute;
+    }
+    border: 0;
+    &:not(.el-menu--collapse) {
+      width: 240px;
+    }
+  }
+  .el-menu,.el-menu--horizontal .el-menu-item:focus,.el-menu--horizontal .el-menu-item:hover,.el-menu--horizontal .el-submenu .el-submenu__title:hover,.el-menu--horizontal .el-submenu>.el-menu {
+    background-color: @sidebar-bg;
+  }
+  .el-menu {
+    border-bottom: solid 1px @sidebar-menu-bd;
+    margin-bottom: -1px;
+  }
+  .el-menu-item, .el-submenu .el-submenu__title {
+    /*一级*/
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid @sidebar-menu-bd;
+    font-size: 15px;
+    background: none;
+    &:hover {
+      background: @sidebar-bg-hover;
+    }
+  }
+  .el-menu-item.is-active {
+    background: @sidebar-bg-active;
+    color: @sidebar-bg-active-text;
+    span { color: @sidebar-bg-active-text; }
+  }
+
+  /*二级*/
+  .el-submenu .el-menu {
+    .el-menu-item, .el-submenu__title {
+      height: 36px;
+      border-top: 0;
+      color: #333;
+      line-height: 36px;
+      clear: both;
+      span { padding-left: 14px}
+    }
+  }
+}
+
+
+
+
+
+.main-content {
+  .border-box;
+  .p20;
+  width: 100%;
+  min-height: 100%;
+}
+
+
+
+
+
+
+//自定义-标题栏
+.bar-title {
+  height: 30px;
+  padding: 5px 0 5px 0;
+  border-bottom: 1px solid @bd-base;
+  .fl {
+    height: 20px;
+    padding-left: 10px;
+    margin-top: 5px;
+    border-left: 3px solid @title-primary;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+  }
+  .fr {
+
+  }
+}
+
+
+
+//自定义-工具栏
+.bar-tool {
+  .pt20;
+  .pb15;
+  .clear;
+}
+
+
+
+//自定义-面板
+.panel {
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ced2d9;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.panel-head {
+  padding: 6px 15px 6px 15px;
+  height: 28px;
+  line-height: 28px;
+  border-top: 1px solid #ced2d9;
+  border-bottom: 1px solid #ddd;
+  background: #e1ebfa;
+  overflow: hidden;
+  margin-top: -1px;
+  em {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+.panel-body {
+  padding: 10px;
+}
+
+.panel-foot {
+  padding: 10px;
+  margin-top: -1px;
+  border-top: 1px solid #e1e6f0;
+  background: #fff;
+  overflow: hidden;
+}
+
+
+
+//自定义-表格分页}
+.table-pages {
+  padding: 12px 10px 10px 10px;
+  height: 28px;
+  line-height: 28px;
+  margin-top: -1px;
+  border: 1px solid #e1e6f0;
+  background: #fff;
+  overflow: hidden;
+}
+
+//自定义-表格分页
+.panel-pages {
+  padding: 12px 10px 10px 10px;
+  background: #f0f1f5;
+  overflow: hidden;
+}
+
+//自定义-表格分页
+.bar-pages {
+  padding: 12px 10px 10px 10px;
+  overflow: hidden;
+}
+
+
+
