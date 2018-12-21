@@ -1,0 +1,13 @@
+[data-type="Cart"]{
+	height: 46px;
+	background: url(../images/buy_cart.jpg) no-repeat;
+	/*background-origin: content-box;
+	margin: 14px -0px 0 0;*/
+}
+[data-type="Cart"] .cart_box{
+	
+}  
+[data-type="Cart"] .cart_box>div{
+	padding: 14px 0 0 72px;
+  font-size: 12px;
+} 

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="templatedesigner/setting/index_goods_M.js" type="text/javascript"></script>
+    <script src="jquery/jquery.page.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="templatedesigner/css/designer.css"/>
+</head>
+<body>
+<div class="page" data-page="index_goods">
+	<div></div>
+	<script type="text/template7" id="pageDataTpl1">
+	<div class="content-block-title" style="font-size:18px;">商品列表编辑</div>
+	<div class="list-block">
+		<ul>
+			<li id="displayPhoto">
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+					  	<div class="item-title label">显示样式：</div>
+					  	<div class="item-input">
+							<select id="showstyle">
+							  <option value="bigphoto" >大图片</option>
+							  <option value="smallphoto" >小图片</option>
+							  <option value="bigphotolist">大图列表</option>
+							  <option value="smallphotolist">小图列表</option>
+							</select>
+					  </div>
+					</div>
+			    </div>
+			</li>
+			<li>
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+					  <div class="item-title label">显示个数：</div>
+					  <div class="item-input" >
+						<input id= "shownumber" type="number" min="1" placeholder="请输入显示商品个数" value={{configs[0].configs.cols}}>
+					  </div>
+					</div>
+			    </div>
+			</li>
+			<li>
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+					  <div class="item-title label">展现样式：</div>
+					  <div class="item-input" >
+					      <select id="productStyle">
+					          <option value="0">普通商品</option>
+					          <option value ="1">团购商品</option>
+					          <option value ="2">秒杀商品</option>
+					      </select>
+					  </div>
+					</div>
+			    </div>
+			</li>
+			<li class="bShowGoodClass">
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+					  	<div class="item-title label">销售方式：</div>
+					  	<div class="item-input">
+							<select class="goodClass">
+							  <option value="general" >现金购买</option>
+							  <option value="points" >积分换购</option>
+							</select>
+					  </div>
+					</div>
+			    </div>
+			</li>
+		</ul>
+	</div>
+	{{#each configs}}
+	<div class = 'tab_page' id='{{this.configs.id}}'>
+	<div class="list-block selectGroup" style="margin-top: 25px;">
+		<ul>
+			<li>
+				<button class='addNext'>添加</button>  
+				<button class='deleteTabPage'>删除</button>
+			</li>
+			<li>
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+						<div class="item-title label">页签名称：</div>
+						<div class="item-input">
+							<input class="tabName" type="text" placeholder="页签名称">
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+						<div class="item-title label">筛选条件：</div>
+						<div class="item-input">
+							<label>
+    						<input type="radio" name="groupselect{{this.configs.id}}" value="0" class="selectCondition">按条件选择活动商品
+  							</label>
+  							<label>
+    						<input type="radio" name="groupselect{{this.configs.id}}" value="1" class="selectPrecise">指定活动商品   						
+  							</label>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li style="display: none;" class="secondKillShowStyle">
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+						<div class="item-title label">展现方式：</div>
+						<div class="item-input">
+							<label>
+    						<input type="radio" name="showStyle{{this.configs.id}}" class='showStyle showStyle_list' checked="checked" value="0" >列表
+  							</label>
+  							<label>
+    						<input type="radio" name="showStyle{{this.configs.id}}" class='showStyle showStyle_enter' value="1" >入口(显示个数最多3个) 						
+  							</label>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li style="display: none;">
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+						<div class="item-title label">更多链接：</div>
+						<div class="item-input moreLink">
+  							<!--<label>
+    						<input type="text" name="moreLink"  id="moreLink"> 						
+  							</label>-->
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="timecondition">
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+						<div class="item-title label">时间条件：</div>
+						<div class="item-input vertical">
+							<label>
+    						<input type="radio" name="timecondition{{this.configs.id}}" class="startTimecondition" value="1">未开始且开始时间在
+    						<input type="text" class="sm-input inputstart" >
+    						<select class="starttimeselect sm-select"  style="border:1px solid">
+    							<option value="1">天</option>
+    							<option value="2">周</option>
+    							<option value="3">月</option>
+    						</select>
+    						<span>内</span>
+  							</label>
+    						<label>
+    						<input type="radio" name="timecondition{{this.configs.id}}" class="endTimecondition" value="2">未结束且结束时间在
+    						<input type="text" class="sm-input inputend" >
+    						<select class="endtimeselect sm-select" >
+    							<option value="1">天</option>
+    							<option value="2">周</option>
+    							<option value="3">月</option>
+    						</select>
+    						<span>内</span>
+  							</label>
+  							<input type="radio" name="timecondition{{this.configs.id}}" value="3" class="ending">进行中 <br>
+  							<input type="radio" name="timecondition{{this.configs.id}}" value="4" class="allgroup">全部
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="peoplecondition">
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+						<div class="item-title label">成团条件：</div>
+						<div class="item-input ">
+  							<label><input type="radio" name="peoplecondition{{this.configs.id}}" value="0" class="fullpeople">满人数 </label>
+  							<label><input type="radio" name="peoplecondition{{this.configs.id}}" value="1" class="fullnumber">满数量 </label>
+  							<label><input type="radio" name="peoplecondition{{this.configs.id}}" value="2" class="fullAll">全部 </label>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="classifyProduct">
+	<div class="list-block showParameter">
+		<ul>
+			<li>
+				<button class='addNext'>添加</button>  
+				<button class='deleteTabPage'>删除</button>
+			</li>
+			<li>
+				<div class="item-content">
+					<div class="item-media"></div>
+					<div class="item-inner">
+						<div class="item-title label">页签名称：</div>
+						<div class="item-input">
+							<input class="tabName" type="text" placeholder="页签名称">
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="item-title label" style="left:30px;">显示参数：</div>
+			</li>
+		    <li>
+		    	<label class="label-checkbox item-content">
+			    	<input type="checkbox" name="name" value="name" checked="{{#if this.configs.showname}}checked{{/if}}">
+			    	<div class="item-media">
+			      		<i class="icon icon-form-checkbox"></i>
+			    	</div>
+			    	<div class="item-inner">
+			      		<div class="item-title">显示商品名称</div>
+			    	</div>
+			  	</label>
+			</li>
+		    <li>
+		      <label class="label-checkbox item-content">
+		        <input type="checkbox" name="price" value="price" checked="{{#if this.configs.showprice}}checked{{/if}}">
+		        <div class="item-media">
+		          <i class="icon icon-form-checkbox"></i>
+		        </div>
+		        <div class="item-inner">
+		          <div class="item-title">显示商品价格</div>
+		        </div>
+		      </label>
+		    </li>
+ 			<li>
+		      <label class="label-checkbox item-content">
+		        <input type="checkbox" name="sale" value="sale" checked="{{#if this.configs.showsale}}checked{{/if}}">
+		        <div class="item-media">
+		          <i class="icon icon-form-checkbox"></i>
+		        </div>
+		        <div class="item-inner">
+		          <div class="item-title">显示商品销量</div>
+		        </div>
+		      </label>
+		    </li>
+		</ul>
+	</div>
+	<div class="views" id="selectProduct">
+	  <div class="view view-main" style="top:-50px;">
+		<div class="navbar">
+		  <div class="navbar-inner">
+			<!-- Sub navbar -->
+			<div class="subnavbar">
+			  <div class="buttons-row goodSelect">
+				<a href="#tab1{{this.configs.id}}" data-type = "range" class="button tab-link {{#if this.configs.isAccurate}}{{else}}active{{/if}}">范围选择商品</a>
+				<a href="#tab2{{this.configs.id}}" data-type = "accurate" class="button tab-link {{#if this.configs.isAccurate}}active{{/if}}">精确选择商品</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="pages navbar-through">
+		  <div data-page="home" class="page with-subnavbar">
+			<div class="page-content hide-bars-on-scroll">
+			  <div class="tabs">
+				<div id="tab1{{this.configs.id}}" class="tab range1 {{#if this.configs.isAccurate}}{{else}}active{{/if}}">
+					<div class="list-block">
+					  <ul>
+						<li class="general">
+							<div class="item-content">
+								<div class="item-media"></div>
+								<div class="item-inner">
+									<div class="item-title label">价格区间：</div>
+									<div class="item-input">
+										<input class="saleprice_from" type="number" placeholder="价格" value="{{#if this.configs.isAccurate}}{{else}}{{this.configs.filter[1].valuefrom}}{{/if}}" style="float:left;width:40%;">-<input class="saleprice_to" type="number" placeholder="价格" value="{{#if this.configs.isAccurate}}{{else}}{{this.configs.filter[1].valueto}}{{/if}}" style="float:right;width:40%;">
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="points" style="display:none;">
+							<div class="item-content">
+								<div class="item-media"></div>
+								<div class="item-inner">
+									<div class="item-title label">积分区间：</div>
+									<div class="item-input">
+										<input class="salepoints_from" type="number" placeholder="积分" value="{{#if this.configs.isAccurate}}{{else}}{{this.configs.filter[6].valuefrom}}{{/if}}" style="float:left;width:40%;">-<input class="salepoints_to" type="number" placeholder="积分" value="{{#if this.configs.isAccurate}}{{else}}{{this.configs.filter[6].valueto}}{{/if}}" style="float:right;width:40%;">
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-media"></div>
+								<div class="item-inner">
+									<div class="item-title label">关键词筛选：</div>
+									<div class="item-input">
+										<input class="keyword" type="text" placeholder="商品名称或关键词" value="{{#if this.configs.filter[2]}}{{this.configs.filter[2].valuefrom}}{{/if}}">
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+						  <div class="item-content">
+							<div class="item-media"></div>
+							<div class="item-inner">
+							  <div class="item-title label">按类型筛选：</div>
+							  <div class="item-input">
+								<select class="type">
+								  <option value="" >请选择</option>
+								{{#each this.configs.type}}
+								  <option value='{{this.id}}'>{{this.cName}}</option>
+								{{/each}}
+								</select>
+							  </div>
+							</div>
+						  </div>
+						</li>
+
+						<li>
+						  <div class="item-content">
+							<div class="item-media"></div>
+							<div class="item-inner">
+							  <div class="item-title label">按分类筛选：</div>
+							  <div class="item-input">
+								<select class="category">
+								<option value="">请选择</option>
+								{{#each this.configs.category}}
+								  <option value='{{this.id}}'>{{this.cName}}</option>
+								{{/each}}
+								</select>
+							  </div>
+							</div>
+						  </div>
+						</li>
+						<li>
+						<li>
+						  <div class="item-content">
+							<div class="item-media"></div>
+							<div class="item-inner">
+							  <div class="item-title label">按标签筛选：</div>
+							  <div class="item-input">
+								<select class="tag">
+								<option value="">请选择</option>
+								{{#each this.configs.tag}}
+								  <option value={{this.id}}>{{this.tag_name}}</option>
+								{{/each}}
+								</select>
+							  </div>
+							</div>
+						  </div>
+						</li>
+						<li>
+
+						<li>
+						  <div class="item-content">
+							<div class="item-media"></div>
+							<div class="item-inner">
+							  <div class="item-title label">按品牌筛选：</div>
+							  <div class="item-input">
+								<select class="brand">
+								<option value="">请选择</option>
+								{{#each this.configs.brand}}
+								  <option value={{this.id}}>{{this.brand_name}}</option>
+								{{/each}}
+								</select>
+							  </div>
+							</div>
+						  </div>
+						</li>
+						<li>
+							
+						<li>
+						  <div class="item-content">
+							<div class="item-media"></div>
+							<div class="item-inner">
+							  <div class="item-title label">按区域筛选：</div>
+							  <div class="item-input">
+								<select class="area">
+								<option value="">请选择</option>
+								{{#each this.configs.arealist}}
+								  <option value={{this.id}}>{{this.name}}</option>
+								{{/each}}
+								</select>
+							  </div>
+							</div>
+						  </div>
+						</li>
+						<li>
+
+						<li>
+						  <div class="item-content">
+							<div class="item-media"></div>
+							<div class="item-inner">
+							  <div class="item-title label">排序规则：</div>
+							  <div class="item-input">
+								<select class="iorder">
+								  <option value="iOrder">综合</option>
+								  <option value="iSales7">按七天销量</option>
+								  <option value="iSales30">按一个月销量</option>
+								  <option class="general0" value="fSalePrice">销售价</option>
+								  <option class="points0" value="salePoints">销售积分</option>
+								</select>
+							  </div>
+							</div>
+						  </div>
+						</li>
+						<li>
+						  <div class="item-content">
+							<div class="item-media"></div>
+							<div class="item-inner">
+							  <div class="item-title label">升序降序：</div>
+							  <div class="item-input">
+								<select class="adesc">
+								  <option value="asc">升序</option>
+								  <option value="desc">降序</option>
+								</select>
+							  </div>
+							</div>
+						  </div>
+						</li>
+					  </ul>
+					</div>
+				</div>
+				<div id="tab2{{this.configs.id}}" class="tab accurate1 {{#if this.configs.isAccurate}}active{{/if}}">
+					<div class="row m-t-20">
+					  	<div class="col-50">
+					    	<a href="#"  class="button button-fill button-red selectproducts">请选择商品</a>
+					  	</div>
+					  	<div class="col-50 m-t-10">
+					    	共选择<span class="goodsnum"></span>件商品
+					  	</div>
+					</div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	</div>
+	</div>
+	{{/each}}
+	<div class="row m-t-10">
+		<div class="col-50">
+			<a href="#" class="button  button-fill color-blue addNewTab" name = {{widgetname}} id="addNewTab">添加页签</a>
+		</div>
+		<div class="col-50">
+			<a href="#" class="button  button-fill color-blue submit" name = {{widgetname}} id="submit">确定</a>
+		</div>
+	</div>
+	<div class="popup-overlay modal-overlay-visible" id="popupsection" style="display:none">
+		<div class="" style="background:#fff; ">
+			<h3 class="list-block">*请选择商品</h3>
+		    <div class="list-block">
+			  	<ul>
+				    <li>
+				      <div class="item-content">
+				        <div class="item-inner">
+							<div class="item-input">
+								<select id="selectBy">
+								  <option value="all" ng-selected="selected">请选择</option>{{#each type}}
+								  <option value='type'>商品类型</option>
+								  <option value='category'>商品分类</option>
+								  <option value='brand'>商品品牌</option>
+								  <option value='area'>商品区域</option>
+								</select>
+						    </div>
+							<div class="item-input" id="flitertype">
+								<select id="filterValue">
+								  <option value="all" ng-selected="selected">请选择</option>
+								</select>
+						    </div>
+							<div class="item-input" style="width:600px;">
+								<input id="productkeyword" type="text" placeholder="请输入商品名称">
+						    </div>
+							<div class="item-input">
+								<div class="row" style="min-height:auto;">
+				                  <div class="col-100"><a href="#" class="button button-fill color-red" id="searchProList">查询</a></div>
+				                  <!--<div class="col-50"><a href="#" class="button button-fill color-green">全选</a></div>-->
+				                </div>
+						    </div>
+				        </div>
+				      </div>
+				    </li>
+				</ul>
+			</div>
+			<div class="list-block media-list" id = "list_data">
+			  	<ul id="pageData"></ul>
+			</div>
+			<div class="list-block">
+				<div class="pagenation" id="pagenation"></div>
+			</div>
+			<div class="list-block">
+				<div class="row  m-l-10">
+					<div class="col-50"></div>
+					<div class="col-50">
+						<a href="#" class="button button-fill " id="confirmproduct">确定</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup-overlay modal-overlay-visible" id="group_popupsection" style="display:none">
+		<div class="" style="background:#fff; ">
+			<h3 class="list-block">*请选择团购活动商品</h3>
+		    <div class="list-block">
+			  	<ul>
+				    <li>
+				      <div class="item-content">
+				        <div class="item-inner">
+							<div class="item-input" style="width:600px;">
+								<input id="groupkeyword" type="text" placeholder="请输入活动名称">
+						    </div>
+							<div class="item-input">
+								<div style="min-height:auto;">
+				                  <div class="col-100"><a href="#" class="button button-fill color-red" id="searchGroupList">查询</a></div>
+				                </div>
+						    </div>
+				        </div>
+				      </div>
+				    </li>
+				</ul>
+			</div>
+			<div class="list-block media-list" id = "list_data">
+			  	<ul id="group_pageData"></ul>
+			</div>
+			<div class="list-block">
+				<div class="pagenation" id="group_pagenation"></div>
+			</div>
+			<div class="list-block">
+				<div class="row  m-l-10">
+					<div class="col-50"></div>
+					<div class="col-50">
+						<a href="#" class="button button-fill " id="group_confirmproduct">确定</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--秒杀弹出商品列表-->
+	<div class="popup-overlay modal-overlay-visible" id="secKill_popupsection" style="display:none">
+	  <div class="" style="background:#fff; ">
+		<h3 class="list-block">*请选择秒杀活动商品</h3>
+	    <div class="list-block">
+		  	<ul>
+			    <li>
+			      <div class="item-content">
+			        <div class="item-inner">
+						<div class="item-input" style="width:600px;">
+							<input id="secKillkeyword" type="text" placeholder="请输入活动名称">
+					    </div>
+						<div class="item-input">
+							<div style="min-height:auto;">
+			                  <div class="col-100"><a href="#" class="button button-fill color-red" id="searchSecKillList">查询</a></div>
+			                </div>
+					   </div>
+			        </div>
+			      </div>
+			    </li>
+			</ul>
+		</div>
+		<div class="list-block media-list" id = "list_data">
+		  	<ul id="secKill_pageData"></ul>
+		</div>
+		<div class="list-block">
+			<div class="pagenation" id="secKill_pagenation"></div>
+		</div>
+		<div class="list-block">
+			<div class="row  m-l-10">
+				<div class="col-50"></div>
+				<div class="col-50">
+					<a href="#" class="button button-fill " id="secKill_confirmproduct">确定</a>
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>
+	</script>
+	<script type="text/template7" id="pageDataTpl">
+		{{#each productlist}}
+	    <li>
+	    	<label class="label-checkbox item-content">
+		    	<input type="checkbox" id="{{this.pid}}" class="listData">
+		    	<div class="item-media">
+		      		<i class="icon icon-form-checkbox"></i>
+		      		<img width="60" height="60" data-src="{{this.defaultAlbum}}" class="lazy-fadeIn lazy-loaded" onerror="this.onerror=null;this.src='./img/nopic.jpg'" src="{{this.defaultAlbum}}">
+		    	</div>
+		    	<div class="item-inner">
+                        <div class="item-title-row">
+                          <div class="item-text">{{this.pName}}</div>
+                        </div>
+                       {{#js_compare "this.productAttribute===1"}}
+                        <div class="item-subtitle"><em>销售价￥</em>{{this.fSalePrice}}  {{#if this.fMarkPrice}}<em>市场价￥</em>{{this.fMarkPrice}}{{/if}}</div>
+                         {{else}}
+                         <div class="item-subtitle"><em>销售积分</em>{{this.salePoints}}  {{#if this.fMarkPrice}}<em>市场价￥</em>{{this.fMarkPrice}}{{/if}}</div>
+                         {{/js_compare}}
+		    	</div>
+		  	</label>
+		</li>
+        {{/each}}
+	</script>
+	<script type="text/template7" id="group_pageDataTpl">
+		{{#each grouplist}}
+	    <li>
+	    	<label class="label-checkbox item-content">
+		    	<input type="checkbox" id="{{this.id}}" class="grouplistData">
+		    	<div class="item-media">
+		      		<i class="icon icon-form-checkbox"></i>
+		      		<img width="60" height="60" data-src="{{this.productPicUrl}}" class="lazy-fadeIn lazy-loaded" onerror="this.onerror=null;this.src='./img/nopic.jpg'" src="{{this.productPicUrl}}">
+		    	</div>
+		    	<div class="item-inner">
+                        <div class="item-title-row">
+                          <div>{{this.name}}</div>
+                        </div>
+                        <div class="item-title-row">
+                          <div>{{this.productName}}</div>
+                        </div>
+                        <div class="item-title-row">
+                          <div>{{this.startTime}}</div>
+                        </div>
+                        <div class="item-title-row">
+                          <div>{{this.endTime}}</div>
+                        </div>
+		    	</div>
+		  	</label>
+		</li>
+        {{/each}}
+	</script>
+    <!--秒杀移动端单个商品-->
+	<script type="text/template7" id="secKill_pageDataTpl">
+		{{#each secKilllist}}
+	    <li>
+	    	<label class="label-checkbox item-content">
+		    	<input type="checkbox" id="{{this.promotionProId}}"  class="secKilllistData">
+		    	<div class="item-media">
+		      		<i class="icon icon-form-checkbox"></i>
+		      		<img width="60" height="60" data-src="{{this.defaultAlbum}}" class="lazy-fadeIn lazy-loaded" onerror="this.onerror=null;this.src='./img/nopic.jpg'" src="{{this.defaultAlbum}}">
+		    	</div>
+		    	<div class="item-inner">
+		    		    <div class="item-title-row">
+                          <div>{{this.promotionName}}</div>
+                        </div>
+                        <div class="item-title-row">
+                          <div>{{this.cName}}</div>
+                        </div>
+                        <div class="item-title-row">
+                          <div>{{this.pStartDate}}</div>
+                        </div>
+                        <div class="item-title-row">
+                          <div>{{this.pEndDate}}</div>
+                        </div>
+		    	</div>
+		  	</label>
+		</li>
+        {{/each}}
+	</script>
+	
+	<script type="text/template7" id="brandDataTpl">
+		<select id="brand">
+			<option value=""></option>
+			{{#each brand}}
+			  <option value={{this.id}}>{{this.brand_name}}</option>
+			{{/each}}
+		</select>
+	</script>
+	<script type="text/template7" id="brandDataTpl1">
+		<select id="filterValue">
+			<option value="" ng-selected="selected">请选择</option>
+			{{#each brand}}
+			  <option value={{this.id}}>{{this.brand_name}}</option>
+			{{/each}}
+		</select>
+	</script>
+	<script type="text/template7" id="typeDataTpl">
+		<select id="filterValue">
+            <option value="" ng-selected="selected">请选择</option>
+			{{#each type}}
+			  <option value={{this.id}}>{{this.cName}}</option>
+			{{/each}}
+		</select>
+	</script>
+	<script type="text/template7" id="categoryDataTpl">
+		<select id="filterValue">
+			<option value="" ng-selected="selected">请选择</option>
+			{{#each category}}
+			  <option value={{this.id}}>{{this.cName}}</option>
+			{{/each}}
+		</select>
+	</script>
+	<script type="text/template7" id="areaDataTpl">
+		<select id="filterValue">
+			<option value="" ng-selected="selected">请选择</option>
+			{{#each arealist}}
+			  <option value={{this.id}}>{{this.name}}</option>
+			{{/each}}
+		</select>
+	</script>
+    <script type="text/template7" id="chanelDataTpl">
+		<select class="chanelValue">
+			{{#each chanelListData}}
+            {{#if @first}}
+			  <option value={{this.Pagehtml}} selected="selected">{{this.cpagename}}</option>
+            {{else}}
+            <option value={{this.Pagehtml}}>{{this.cpagename}}</option>
+            {{/if}}
+			{{/each}}
+		</select>
+	</script>
+</div>
+
+</body>
+</html>

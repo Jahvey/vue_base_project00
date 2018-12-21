@@ -1,0 +1,98 @@
+{
+	"view": {
+		"$": {
+			"controller": "HomeViewController",
+			"name": "homeView",
+			"title": "主页"
+		},
+		"widget": [
+			{
+				"$": {
+					"name": "toolbar",
+					"type": "toolbar"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "icons"
+						},
+						"item": [
+							{
+								"$": {
+									"isSystemToolbar": true,
+									"toolbar_type": "home",
+									"toolbar_name": "首页",
+									"toolbar_icon": "static/images/img/footer-1.png",
+									"toolbar_icon_active": "static/images/img/footer-1-a.png",
+									"toolbar_url": "homeView",
+									"id": 1,
+									"oddcenter": false
+								}
+							},
+							{
+								"$": {
+									"isSystemToolbar": true,
+									"toolbar_type": "classify",
+									"toolbar_name": "分类",
+									"toolbar_icon": "static/images/img/footer-2.png",
+									"toolbar_icon_active": "static/images/img/footer-2-a.png",
+									"toolbar_url": "categoryView",
+									"id": 2,
+									"oddcenter": false
+								}
+							},
+							{
+								"$": {
+									"isSystemToolbar": true,
+									"toolbar_type": "cart",
+									"toolbar_name": "购物车",
+									"toolbar_icon": "static/images/img/footer-3.png",
+									"toolbar_icon_active": "static/images/img/footer-3-a.png",
+									"toolbar_url": "cartView",
+									"id": 3,
+									"oddcenter": false
+								}
+							},
+							{
+								"$": {
+									"isSystemToolbar": true,
+									"toolbar_type": "user",
+									"toolbar_name": "我的",
+									"toolbar_icon": "static/images/img/footer-4.png",
+									"toolbar_icon_active": "static/images/img/footer-4-a.png",
+									"toolbar_url": "memberView",
+									"id": 4,
+									"oddcenter": false
+								}
+							},
+							{
+								"$": {
+									"isSystemToolbar": true,
+									"toolbar_type": "freebuy",
+									"toolbar_name": "自由购",
+									"toolbar_icon": "static/images/img/footer-8.png",
+									"toolbar_icon_active": "static/images/img/footer-8-a.png",
+									"toolbar_url": "freebuyView",
+									"id": 5,
+									"oddcenter": false
+								}
+							}
+						]
+					},
+					{
+						"$": {
+							"key": "style"
+						},
+						"item": [
+							{
+								"$": {
+									"style": "line"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

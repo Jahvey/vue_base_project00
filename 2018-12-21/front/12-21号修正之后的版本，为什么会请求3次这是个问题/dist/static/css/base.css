@@ -1,0 +1,535 @@
+﻿/*基础样式*/
+
+html {
+	-webkit-text-size-adjust: none;
+}
+
+.m-t-0 {
+	margin-top: 0 !important;
+}
+
+.m-b-0 {
+	margin-bottom: 0 !important;
+}
+
+.m-b-5 {
+	margin-bottom: 5px !important;
+}
+
+.m-t-5 {
+	margin-top: 5px;
+}
+
+.m-t-10 {
+	margin-top: 10px !important;
+}
+
+.m-t-15 {
+	margin-top: 15px !important;
+}
+
+.m-t-20 {
+	margin-top: 20px;
+}
+
+.m-t-25 {
+	margin-top: 25px;
+}
+
+.m-t-35 {
+	margin-top: 35px;
+}
+
+.m-l-0 {
+	margin-left: 0 !important;
+}
+
+.m-l-5 {
+	margin-left: 5px;
+}
+
+.m-r-5 {
+	margin-right: 5px;
+}
+
+.m-r-10 {
+	margin-right: 10px;
+}
+
+.p-t-0 {
+	padding-top: 0px;
+}
+div[data-page=home] .p-t-0 {
+    padding-bottom: 50px !important;
+}
+.p-t-5 {
+	padding-top: 5px;
+}
+
+.p-r-0 {
+	padding-right: 0 !important;
+}
+
+.p-r-5 {
+	padding-right: 5px !important;
+}
+
+.p-l-0 {
+	padding-left: 0 !important;
+}
+
+.p-0 {
+	padding: 0;
+}
+
+.p-lr-25 {
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.height-auto {
+	height: auto !important;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
+
+/**/
+
+
+/*html,body{
+	font-family:Helvetica,"microsoft yahei";
+}*/
+
+
+/*字体颜色*/
+
+..color-orange {
+	color: #f4b224 !important;
+}
+
+.color-orange-u {
+	color: #ff5400 !important;
+}
+
+.color-red {
+	color: #ff0000;
+}
+
+.color-green-u {
+	color: #03bfff;
+}
+
+.color-gray-u {
+	color: #1a1a1a;
+}
+
+.color-lightgray-u {
+	color: #505050;
+}
+
+.color-lightergray-u {
+	color: #9f9e9e !important;
+}
+
+.color-lightestgray-u {
+	color: #999;
+}
+
+.color-2b {
+	color: #2b2b2b;
+}
+
+
+/*边框颜色*/
+
+.border-lightergray-u {
+	border: 1px solid #666;
+}
+
+.border-orange-u {
+	border: 1px solid #ff5400;
+}
+
+.border-lightestgray-u {
+	border: 1px solid #e1e1e1;
+}
+
+.border-green-u {
+	border: 1px solid #03bfff;
+}
+
+.border-none {
+	border: 0 !important;
+}
+
+
+/*背景颜色*/
+
+.bg-orange-u {
+	background: #ff5400 !important;
+	color: #FFFFFF;
+}
+
+.bg-green-u {
+	background: #06c1ae !important;
+}
+
+
+/*字体大小*/
+
+.font-18 {
+	font-size: 18px;
+}
+
+.font-16 {
+	font-size: 16px!important;
+}
+
+.font-15 {
+	font-size: 15px!important;
+}
+
+.font-14 {
+	font-size: 14px;
+}
+
+.font-12 {
+	font-size: 12px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+
+/*底部按钮区域*/
+
+.bottom-bar {
+	position: fixed;
+	bottom: 0;
+	height: 49px;
+	line-height: 49px;
+	background: #fff;
+	width: 100%;
+	border-top: 1px solid #e9e9e9;
+	font-size: 14px;
+	color: #666666;
+	z-index: 99;
+}
+
+.bottom-bar label div {
+	display: inline-block;
+	font-size: 18px;
+	margin-left: 10px;
+	color: #2b2b2b;
+}
+
+.bottom-bar label div + div {
+	margin-left: 0px;
+}
+
+.bottom-bar .button {
+	margin: 7px auto;
+}
+
+
+/*统一调整底部导航颜色*/
+
+
+/*.navbar{
+	background: #32a075;
+	color: #FFFFFF;
+}*/
+
+
+/*统一修改单选多选框背景颜色为红色*/
+
+label.label-checkbox input[type=checkbox]:checked + .item-media i.icon-form-checkbox,
+label.label-checkbox input[type=radio]:checked + .item-media i.icon-form-checkbox {
+	background-color: #ff0000;
+}
+
+.welcome {
+	width: 100%;
+	height: 100%;
+	background: #fff url(../img/welcome-bg.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.welcome .footerTitle {
+	position: fixed;
+	bottom: 15px;
+	left: 0;
+	width: 100%;
+	color: #a1a1a1;
+	font-size: 10px;
+	text-align: center;
+}
+
+.list-block.media-list .item-link .item-title-row {
+	background-image: none;
+}
+
+.page-content img {
+	max-width: 100%;
+	display: block;
+}
+
+
+/*==========================new 10-20=================================*/
+
+.m-t-42 {
+	margin-top: 42px;
+}
+
+.p-t-10 {
+	padding-top: 10px !important;
+}
+
+.font-13 {
+	font-size: 13px;
+}
+
+.none-border {
+	border: none !important;
+}
+
+.no-border:after,
+.no-border:before {
+	height: 0 !important;
+}
+
+.p-b-42 {
+	padding-bottom: 42px;
+}
+.p-b-0 {
+	padding-bottom: 0 !important;
+}
+.color-999 {
+	color: #999999 !important;
+}
+
+.col-orange {
+	color: #fc9503 !important;
+}
+
+.m-l-10 {
+	margin-left: 10px !important;
+}
+
+.p-lr-10 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+/*换行显示*/
+
+.wordBreak {
+	-ms-word-break: break-all;
+	word-break: break-all;
+	-ms-text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	/*兼容opera*/
+	text-overflow: ellipsis;
+	/*这就是省略号喽*/
+	overflow: hidden;
+	/*设置超过的隐藏*/
+}
+
+.m-l-70 {
+	margin-left: 70px !important;
+}
+
+.m-l-90 {
+	margin-left: 90px !important;
+}
+
+.font-8 {
+	color: #808080;
+	font-size: 14px;
+}
+
+
+/*通用导航右上角链接颜色*/
+
+.navbar .right a {
+	color: #505050;
+	font-size: 15px;
+}
+
+.color-red2 {
+	color: #f15b5c;
+}
+
+.invoice_save,
+.baseInfo-submit,
+.newAddr-button,
+.payment_save,
+.bankManage-btn-submit,
+.serBaseInfo-btn-save,
+.couponChoose_save {
+	background-color: #ef524d !important;
+	width: 85%;
+	height: 36px;
+	line-height: 36px;
+}
+
+.btn-div {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0;
+	padding: 12px;
+	background-color: #f7f7f8;
+	z-index: 20;
+	border-top: 1px solid #e5e5e5;
+}
+
+.btn-div .btn-red {
+	display: block;
+	width: 100%;
+	background: #ef524d;
+	height: 46px;
+	line-height: 46px;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 16px;
+	border: none;
+	text-align: center;
+}
+
+
+/*统一修改navbar背景颜色，无下边线请加no-border*/
+
+.navbar {
+	background-color: #fff !important;
+}
+
+.navbar:after {
+	background-color: #ececec;
+	bottom: -1px !important;
+}
+
+
+/*搜索框样式 开始*/
+
+.search {
+	background-color: #eeeeee;
+	border: none;
+	padding: 7px 30px 7px 6px;
+	width: 100%;
+	/*height: 30px;
+	line-height: 30px;*/
+	border-left: none;
+	border-right: none;
+	box-sizing: border-box;
+	font-size: 14px;
+	border-radius: 5px;
+	padding-left: 30px;
+	background-image: url("../img/icon/search-red.png");
+	background-size: 25px 25px;
+	background-position: 3px center;
+	background-repeat: no-repeat;
+	display: block;
+	position: relative;
+}
+/*.search:after{
+	content: "";
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	background-image: url("../img/icon/icon-clear-search.png");
+	background-size: 14px 14px;
+	background-position: 3px center;
+	background-repeat: no-repeat;
+	right: 15px;
+	top: 0;
+}*/
+.search +.icon{
+	position: absolute;
+	right: 3px;
+	top: 3px;
+}
+.input-group-addon {
+	background-color: #eeeeee;
+	/*color: rgba(255, 255, 255, 0.6);*/
+	padding: 3px 12px;
+	height: 30px;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+.searchbar-cancel{
+    margin-right:10px;
+}
+.input-group-addon:first-child {
+	border-right: none;
+	font-size: 12px;
+	line-height: 1;
+	border-radius: 5px 0 0 5px;
+	border-right: 0;
+	padding-right: 6px;
+}
+
+.input-group-addon:last-child {
+	border-left: none;
+	border-radius: 0 5px 5px 0;
+	border-left: 0;
+}
+
+
+/*搜索框样式 结束*/
+
+
+/*子导航背景颜色*/
+
+.subnavbar {
+	background-color: #FFFFFF;
+}
+
+
+/*页面背景颜色*/
+
+.page {
+	background-color: #F5F5F5 !important;
+}
+
+.navbar .center {
+	color: #505050 !important;
+}
+
+
+/*颜色块小标签*/
+
+.promo-type {
+	display: inline-block;
+	min-width: 15px;
+	height: 15px;
+	border-radius: 1px;
+	color: #fff;
+	font-size: 11px;
+	text-align: center;
+	line-height: 15px;
+	margin: auto 3px;
+}
+
+.promo-type.col-1 {
+	background-color: #f4b96c;
+	/*黄色*/
+}
+
+.promo-type.col-2 {
+	background-color: #f4706c;
+	/*红色*/
+}
+
+.promo-type.col-3 {
+	background-color: #ff9900;
+}

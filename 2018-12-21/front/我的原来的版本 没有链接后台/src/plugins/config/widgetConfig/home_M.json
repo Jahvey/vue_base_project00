@@ -1,0 +1,163 @@
+{
+	"view": {
+		"$": "",
+		"widget": [
+			{
+				"$": {
+					"name": "main_pictures_1514186143541",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/static/images/20171225151549.jpg",
+									"link": "",
+									"selectedNum": "4",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1514188029165",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/static/images/20171225154718.jpg",
+									"link": "",
+									"selectedNum": "3",
+									"isExternal": false,
+									"configNum": 50,
+									"isNotFile": true
+								}
+							},
+							{
+								"$": {
+									"id": 1,
+									"url": "/static/images/20171225171108.jpg",
+									"link": "",
+									"selectedNum": "3",
+									"isExternal": false,
+									"configNum": 50
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1514188140769",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 2,
+									"nY": 1,
+									"id": "0_0_2_1",
+									"isNotFile": true,
+									"url": "/static/images/20171225154915.jpg",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 2,
+									"startY": 2,
+									"nX": 3,
+									"nY": 4,
+									"id": "2_2_3_4",
+									"isNotFile": true,
+									"url": "/static/images/20171225171201.jpg",
+									"href": ""
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_slide_1514193081384",
+					"type": "main_slide"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "data"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "slide1",
+									"cMemo": "",
+									"iOrder": "",
+									"cRedirectUrl": "",
+									"cAdImageUrl": "/static/images/20171225171125.jpg",
+									"iHeight": "",
+									"isNotFile": true,
+									"url": "",
+									"isExternal": false
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "image_text_1514193266385",
+					"type": "image_text"
+				},
+				"config": [
+					{
+						"_": "<p>请添加文字或图片!</p>",
+						"$": {
+							"key": "content"
+						}
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "image_text_1514204726301",
+					"type": "image_text"
+				},
+				"config": [
+					{
+						"_": "<p style=\"text-align: center;\" class=\"\">请添加文字或图片!</p><p style=\"text-align: center;\" class=\"\"><br/></p><p style=\"text-align: center;\" class=\"\"><br/></p><p style=\"text-align: center;\" class=\"\"><br/></p><p class=\"\" style=\"text-align: right;\"><img src=\"http://img.baidu.com/hi/jx2/j_0023.gif\" _src=\"http://img.baidu.com/hi/jx2/j_0023.gif\" class=\"\"/></p>",
+						"$": {
+							"key": "content"
+						}
+					}
+				]
+			}
+		]
+	}
+}

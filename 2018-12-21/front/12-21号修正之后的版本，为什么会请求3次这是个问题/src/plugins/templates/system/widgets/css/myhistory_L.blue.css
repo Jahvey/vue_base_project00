@@ -1,0 +1,42 @@
+div[data-type="MyHistory"] .isShowFooter {
+  padding: 30px;
+}
+div[data-type="MyHistory"] .isShowFooter .nav-tabs {
+  border: 1px solid #e6e6e6;
+  background: #fafafa;
+  font-size: 14px;
+  color: #333333;
+}
+div[data-type="MyHistory"] .isShowFooter .nav-tabs > li > a,
+div[data-type="MyHistory"] .isShowFooter .nav-tabs > li > a:focus,
+div[data-type="MyHistory"] .isShowFooter .nav-tabs > li > a:hover {
+  border-radius: 0;
+  font-size: 14px;
+}
+div[data-type="MyHistory"] .isShowFooter .nav-tabs > li.active > a,
+div[data-type="MyHistory"] .isShowFooter .nav-tabs > li.active > a:focus,
+div[data-type="MyHistory"] .isShowFooter .nav-tabs > li.active > a:hover {
+  border: 1px solid #e6e6e6;
+  border-bottom-color: transparent;
+  border-top: 2px solid #03bfff;
+  border-radius: 0;
+  color: #03bfff;
+  margin-top: -1px;
+}
+div[data-type="MyHistory"] .isShowFooter .tab-content ul {
+  padding: 15px;
+  border: 1px solid #e6e6e6;
+  border-top: none;
+  float: left;
+  min-height: 145px;
+  overflow: hidden;
+}
+div[data-type="MyHistory"] .isShowFooter .tab-content ul li {
+  float: left;
+  width: 100px;
+  margin-right: 15px;
+}
+div[data-type="MyHistory"] .isShowFooter .tab-content ul li p {
+  text-align: center;
+  color: #03bfff;
+}

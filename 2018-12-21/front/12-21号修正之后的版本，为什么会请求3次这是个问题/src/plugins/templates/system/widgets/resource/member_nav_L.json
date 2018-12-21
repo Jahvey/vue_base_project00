@@ -1,0 +1,95 @@
+﻿{
+	"zh-CN": {
+		"data": [
+			{
+				"title": "会员中心首页",
+				"children": [],
+				"url": "/member"
+			}, {
+				"title": "我的消息",
+				"url": "/member/mymessage",
+				"children": []
+			}, {
+				"title": "我的购物车",
+				"url": "/cart",
+				"children": []
+			}, {
+				"title": "订单中心",
+				"url": "/member/myorder",
+				"children": [
+					{
+						"title": "我的订单",
+						"url": "/member/myorder",
+						"children": []
+					}, {
+						"title": "我的退换货",
+						"url": "/member/changing_or_returning",
+						"children": []
+					}, {
+						"title": "我的评价",
+						"url": "/member/myevaluation",
+						"children": []
+					}
+				]
+			}, {
+				"title": "我的资产",
+				"url": "/member/myintegral",
+				"children": [
+					{
+						"title": "我的积分",
+						"url": "/member/myintegral",
+						"children": []
+					}, {
+						"title": "我的卡券",
+						"url": "/member/mycoupon",
+						"children": []
+					}, {
+						"title": "我的储值卡",
+						"url": "/member/myStorageCard",
+						"children": []
+					}, {
+						"title": "我的礼品卡",
+						"url": "/member/myGiftcard",
+						"children": []
+					}
+				]
+			}, {
+				"title": "我的关注",
+				"url": "/member/my_collection",
+				"children": [
+					{
+						"title": "我的收藏",
+						"url": "/member/my_collection",
+						"children": []
+					}, {
+						"title": "我的咨询",
+						"url": "/member/myconsulting",
+						"children": []
+					}, {
+						"title": "我的足迹",
+						"url": "/member/myhistory",
+						"children": []
+					}
+				]
+			}, {
+				"title": "会员信息",
+				"url": "/member/my_information",
+				"children": [
+					{
+						"title": "个人信息",
+						"url": "/member/my_information",
+						"children": []
+					}, {
+						"title": "收货地址",
+						"url": "/member/address",
+						"children": []
+					}, {
+						"title": "安全中心",
+						"url": "/member/security_center",
+						"children": []
+					}
+				]
+			}
+		]
+	}
+}
