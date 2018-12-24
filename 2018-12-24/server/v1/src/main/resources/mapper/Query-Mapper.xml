@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.business.mapper.QueryMapper">
+   
+	<resultMap id="BaseResultMap" type="com.cdgit.loan.business.bean.TbBizApprove">
+    <id column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+    <result column="BIZ_NUM" jdbcType="VARCHAR" property="bizNum" />
+    <result column="BIZ_TYPE" jdbcType="VARCHAR" property="bizType" />
+    <result column="LOW_RISK_BIZ_TYPE" jdbcType="VARCHAR" property="lowRiskBizType" />
+    <result column="APPLY_MODE_TYPE" jdbcType="VARCHAR" property="applyModeType" />
+    <result column="BIZ_HAPPEN_TYPE" jdbcType="VARCHAR" property="bizHappenType" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="BUSINESS_PRODUCT" jdbcType="VARCHAR" property="businessProduct" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="HANDING_DATE" jdbcType="TIMESTAMP" property="handingDate" />
+    <result column="AMOUNT_TYPE" jdbcType="VARCHAR" property="amountType" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CSM_CRD_LEVEL" jdbcType="VARCHAR" property="csmCrdLevel" />
+    <result column="APPROVAL_NUM" jdbcType="VARCHAR" property="approvalNum" />
+    <result column="BECOME_EFFECTIVE_MARK" jdbcType="VARCHAR" property="becomeEffectiveMark" />
+    <result column="ORIGINAL_APPROVE_ID" jdbcType="VARCHAR" property="originalApproveId" />
+    <result column="IS_BANK_TEAM_LOAN" jdbcType="VARCHAR" property="isBankTeamLoan" />
+    <result column="LOAN_INSPECTION_FRE" jdbcType="DECIMAL" property="loanInspectionFre" />
+    <result column="POLICY_DECISION_IDEA" jdbcType="VARCHAR" property="policyDecisionIdea" />
+    <result column="VALID_DATE" jdbcType="TIMESTAMP" property="validDate" />
+    <result column="POLICY_DECISION_NUM" jdbcType="VARCHAR" property="policyDecisionNum" />
+    <result column="APPLY_TYPE_MARK" jdbcType="VARCHAR" property="applyTypeMark" />
+    <result column="APPROVE_CONCLUSION" jdbcType="VARCHAR" property="approveConclusion" />
+    <result column="END_ORG_NUM" jdbcType="VARCHAR" property="endOrgNum" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="BIZ_HAPPEN_NATURE" jdbcType="VARCHAR" property="bizHappenNature" />
+    <result column="IS_GREEN_LOAN" jdbcType="VARCHAR" property="isGreenLoan" />
+    <result column="LOAN_TYPE" jdbcType="VARCHAR" property="loanType" />
+    <result column="BIZ_TYPE_FLAG" jdbcType="VARCHAR" property="bizTypeFlag" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="TERM_NUM" jdbcType="DECIMAL" property="termNum" />
+    <result column="TERM_UNIT" jdbcType="VARCHAR" property="termUnit" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="BO_USE" jdbcType="DECIMAL" property="boUse" />
+    <result column="NO_USE" jdbcType="DECIMAL" property="noUse" />
+    <result column="CRD_ID" jdbcType="VARCHAR" property="crdId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+  </resultMap>
+  
+  <resultMap id="BizBaseResultMap" type="com.cdgit.loan.business.bean.TbBizInfo">
+    <result column="BIZ_NUM" jdbcType="VARCHAR" property="bizNum" />
+    <result column="BIZ_TYPE" jdbcType="VARCHAR" property="bizType" />
+    <result column="BIZ_HAPPEN_TYPE" jdbcType="VARCHAR" property="bizHappenType" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="IS_BANK_TEAM_LOAN" jdbcType="VARCHAR" property="isBankTeamLoan" />
+    <result column="VALID_DATE" jdbcType="TIMESTAMP" property="validDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="BIZ_TYPE_FLAG" jdbcType="VARCHAR" property="bizTypeFlag" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="BO_USE" jdbcType="DECIMAL" property="boUse" />
+   <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    APPROVE_ID, BIZ_NUM, BIZ_TYPE, LOW_RISK_BIZ_TYPE, APPLY_MODE_TYPE, BIZ_HAPPEN_TYPE, 
+    ORG_NUM, USER_NUM, PARTY_ID, BUSINESS_PRODUCT, PRODUCT_TYPE, APPLY_DATE, HANDING_DATE, 
+    AMOUNT_TYPE, CREATE_TIME, UPDATE_TIME, CSM_CRD_LEVEL, APPROVAL_NUM, BECOME_EFFECTIVE_MARK, 
+    ORIGINAL_APPROVE_ID, IS_BANK_TEAM_LOAN, LOAN_INSPECTION_FRE, POLICY_DECISION_IDEA, 
+    VALID_DATE, POLICY_DECISION_NUM, APPLY_TYPE_MARK, APPROVE_CONCLUSION, END_ORG_NUM, 
+    END_DATE, IF_DATA_MOVE, APPLY_ID, BIZ_HAPPEN_NATURE, IS_GREEN_LOAN, LOAN_TYPE, BIZ_TYPE_FLAG, 
+    GUARANTY_TYPE, TERM_NUM, TERM_UNIT, RMB_AMT, BO_USE, NO_USE, CRD_ID, CREDIT_MODE
+  </sql>
+
+
+	<!-- 2018-12-05 少查询一次 查询流程创建岗位  可否直接登录时获取登录用户信息 包括岗位 -->
+    <!-- <select id="queryStartPsotion" parameterType="java.lang.String" resultMap="resultMap">
+		select op.posiname, w.post_num
+		  from tb_wfm_processmapping p, tb_wfm_workitemmapping w, om_position op
+		 where p.process_mapping_id = w.process_mapping_id
+		   and w.post_num = op.posicode
+		   and p.template_name = #{processDefName,jdbcType=VARCHAR}
+		   and p.version_status = '1'
+		   and w.re_target = 'S'
+		   
+	</select> -->
+	
+	
+	<!-- 2018-12-05  根据参与人id查询批复列表-->
+    <select id="queryTbBizApproveList" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select approve_id from tb_biz_approve where party_id=#{partyId,jdbcType=VARCHAR}
+	</select>
+    
+    <!-- 我的客户  我的业务 查询  业务列表 -->
+    <select id="getBizList1" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT P.PARTY_NUM,P.PARTY_NAME,T.* FROM (
+			SELECT A.APPROVE_ID,A.BIZ_HAPPEN_TYPE,A.BIZ_TYPE,A.PARTY_ID,
+			A.BIZ_TYPE_FLAG,a.RMB_AMT,a.BO_USE,a.PRODUCT_TYPE,
+			TO_CHAR( A.VALID_DATE, 'YYYY-MM-DD' ) AS VALID_DATE,
+			TO_CHAR( A.END_DATE, 'YYYY-MM-DD' ) AS END_DATE,
+			A.USER_NUM,A.ORG_NUM,A.CREDIT_MODE,A.BIZ_NUM,
+			A.IS_BANK_TEAM_LOAN
+		FROM TB_BIZ_APPROVE A
+		WHERE 1=1
+		<if test="partyId != '' and partyId != null">
+		 AND a.PARTY_ID = #{partyId,jdbcType=VARCHAR} 
+		</if>
+		AND A.BECOME_EFFECTIVE_MARK = '03'
+		AND a.CREDIT_MODE != '02'
+		)t
+		INNER JOIN TB_CSM_PARTY p ON p.PARTY_ID=t.party_id
+    </select>
+    
+    <select id="getNextVal" parameterType="java.lang.String"  resultType="java.lang.Integer">
+       SELECT 
+       #{tableName}
+       FROM from dual
+    </select>
+    
+     <!-- 我的客户  我的业务 查询  业务列表 -->
+    <select id="getBizList" parameterType="java.util.HashMap" resultMap="BizBaseResultMap">
+		SELECT P.PARTY_NUM,P.PARTY_NAME,T.* FROM (
+			SELECT A.APPROVE_ID,A.BIZ_HAPPEN_TYPE,A.BIZ_TYPE,A.PARTY_ID,
+			A.BIZ_TYPE_FLAG,a.RMB_AMT,a.BO_USE,a.PRODUCT_TYPE,
+			TO_CHAR( A.VALID_DATE, 'YYYY-MM-DD' ) AS VALID_DATE,
+			TO_CHAR( A.END_DATE, 'YYYY-MM-DD' ) AS END_DATE,
+			A.USER_NUM,A.ORG_NUM,A.CREDIT_MODE,A.BIZ_NUM,
+			A.IS_BANK_TEAM_LOAN
+		FROM TB_BIZ_APPROVE A
+		WHERE 1=1
+		<if test="partyId != '' and partyId != null">
+		 AND a.PARTY_ID = #{partyId,jdbcType=VARCHAR} 
+		</if>
+		AND A.BECOME_EFFECTIVE_MARK = '03'
+		AND a.CREDIT_MODE != '02'
+		)t
+		INNER JOIN TB_CSM_PARTY p ON p.PARTY_ID=t.party_id
+    </select>
+    
+</mapper>

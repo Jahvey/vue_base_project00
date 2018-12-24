@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.sysManage.acMenu.mapper.AcMenuMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.sysManage.acMenu.bean.AcMenu">
+    <id column="MENUID" jdbcType="VARCHAR" property="menuid" />
+    <result column="MENUNAME" jdbcType="VARCHAR" property="menuname" />
+    <result column="MENULABEL" jdbcType="VARCHAR" property="menulabel" />
+    <result column="MENUCODE" jdbcType="VARCHAR" property="menucode" />
+    <result column="ISLEAF" jdbcType="VARCHAR" property="isleaf" />
+    <result column="MENUACTION" jdbcType="VARCHAR" property="menuaction" />
+    <result column="PARAMETER" jdbcType="VARCHAR" property="parameter" />
+    <result column="UIENTRY" jdbcType="VARCHAR" property="uientry" />
+    <result column="MENULEVEL" jdbcType="DECIMAL" property="menulevel" />
+    <result column="ROOTID" jdbcType="VARCHAR" property="rootid" />
+    <result column="PARENTSID" jdbcType="VARCHAR" property="parentsid" />
+    <result column="DISPLAYORDER" jdbcType="DECIMAL" property="displayorder" />
+    <result column="IMAGEPATH" jdbcType="VARCHAR" property="imagepath" />
+    <result column="EXPANDPATH" jdbcType="VARCHAR" property="expandpath" />
+    <result column="MENUSEQ" jdbcType="VARCHAR" property="menuseq" />
+    <result column="OPENMODE" jdbcType="VARCHAR" property="openmode" />
+    <result column="SUBCOUNT" jdbcType="DECIMAL" property="subcount" />
+    <result column="APPID" jdbcType="DECIMAL" property="appid" />
+    <result column="FUNCCODE" jdbcType="VARCHAR" property="funccode" />
+    <result column="PARENTNAME" jdbcType="VARCHAR" property="parentname" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MENUID, MENUNAME, MENULABEL, MENUCODE, ISLEAF, MENUACTION, PARAMETER, UIENTRY, MENULEVEL, 
+    ROOTID, PARENTSID, DISPLAYORDER, IMAGEPATH, EXPANDPATH, MENUSEQ, OPENMODE, SUBCOUNT, 
+    APPID, FUNCCODE,PARENTNAME,TYPE
+  </sql>
+  <select id="queryMenuTree" parameterType="java.lang.String" resultMap="BaseResultMap"  >
+       SELECT 
+       		a.menuid,a.menuname,a.isleaf,a.menuaction,a.parentsid,a.imagepath,a.displayorder,a.menulevel,a.type,b.menuname as parentname
+       FROM 
+       		AC_MENU a
+       LEFT JOIN 
+       		AC_MENU b 
+       ON 
+       		a.parentsid = b.menuid
+       START WITH a.MENULEVEL = '1' AND a.MENUID &gt; 10000
+       CONNECT BY PRIOR a.MENUID = a.PARENTSID
+  </select>	
+  <select id="queryMenuByParentsid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from AC_MENU
+    <choose>
+       <when test="_parameter  != null and _parameter != ''">
+          where PARENTSID = #{parentsid,jdbcType=VARCHAR}
+       </when>
+       <otherwise>
+          where PARENTSID is null
+       </otherwise>
+    </choose>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from AC_MENU
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from AC_MENU
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.sysManage.acMenu.bean.AcMenu">
+    insert into AC_MENU (MENUID, MENUNAME, MENULABEL, 
+      MENUCODE, ISLEAF, MENUACTION, 
+      PARAMETER, UIENTRY, MENULEVEL, 
+      ROOTID, PARENTSID, DISPLAYORDER, 
+      IMAGEPATH, EXPANDPATH, MENUSEQ, 
+      OPENMODE, SUBCOUNT, APPID, 
+      FUNCCODE)
+    values (#{menuid,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, #{menulabel,jdbcType=VARCHAR}, 
+      #{menucode,jdbcType=VARCHAR}, #{isleaf,jdbcType=VARCHAR}, #{menuaction,jdbcType=VARCHAR}, 
+      #{parameter,jdbcType=VARCHAR}, #{uientry,jdbcType=VARCHAR}, #{menulevel,jdbcType=DECIMAL}, 
+      #{rootid,jdbcType=VARCHAR}, #{parentsid,jdbcType=VARCHAR}, #{displayorder,jdbcType=DECIMAL}, 
+      #{imagepath,jdbcType=VARCHAR}, #{expandpath,jdbcType=VARCHAR}, #{menuseq,jdbcType=VARCHAR}, 
+      #{openmode,jdbcType=VARCHAR}, #{subcount,jdbcType=DECIMAL}, #{appid,jdbcType=DECIMAL}, 
+      #{funccode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.sysManage.acMenu.bean.AcMenu">
+    insert into AC_MENU
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        MENUID,
+      <if test="menuname != null">
+        MENUNAME,
+      </if>
+      <if test="menulabel != null">
+        MENULABEL,
+      </if>
+      <if test="menucode != null">
+        MENUCODE,
+      </if>
+      <if test="isleaf != null">
+        ISLEAF,
+      </if>
+      <if test="menuaction != null">
+        MENUACTION,
+      </if>
+      <if test="parameter != null">
+        PARAMETER,
+      </if>
+      <if test="uientry != null">
+        UIENTRY,
+      </if>
+      <if test="menulevel != null">
+        MENULEVEL,
+      </if>
+      <if test="rootid != null">
+        ROOTID,
+      </if>
+      <if test="parentsid != null">
+        PARENTSID,
+      </if>
+      <if test="displayorder != null">
+        DISPLAYORDER,
+      </if>
+      <if test="imagepath != null">
+        IMAGEPATH,
+      </if>
+      <if test="expandpath != null">
+        EXPANDPATH,
+      </if>
+      <if test="menuseq != null">
+        MENUSEQ,
+      </if>
+      <if test="openmode != null">
+        OPENMODE,
+      </if>
+      <if test="subcount != null">
+        SUBCOUNT,
+      </if>
+      <if test="appid != null">
+        APPID,
+      </if>
+      <if test="funccode != null">
+        FUNCCODE,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      SEQ_AC_MENU.NEXTVAL,
+      <if test="menuname != null">
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="menulabel != null">
+        #{menulabel,jdbcType=VARCHAR},
+      </if>
+      <if test="menucode != null">
+        #{menucode,jdbcType=VARCHAR},
+      </if>
+      <if test="isleaf != null">
+        #{isleaf,jdbcType=VARCHAR},
+      </if>
+      <if test="menuaction != null">
+        #{menuaction,jdbcType=VARCHAR},
+      </if>
+      <if test="parameter != null">
+        #{parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="uientry != null">
+        #{uientry,jdbcType=VARCHAR},
+      </if>
+      <if test="menulevel != null">
+        #{menulevel,jdbcType=DECIMAL},
+      </if>
+      <if test="rootid != null">
+        #{rootid,jdbcType=VARCHAR},
+      </if>
+      <if test="parentsid != null">
+        #{parentsid,jdbcType=VARCHAR},
+      </if>
+      <if test="displayorder != null">
+        #{displayorder,jdbcType=DECIMAL},
+      </if>
+      <if test="imagepath != null">
+        #{imagepath,jdbcType=VARCHAR},
+      </if>
+      <if test="expandpath != null">
+        #{expandpath,jdbcType=VARCHAR},
+      </if>
+      <if test="menuseq != null">
+        #{menuseq,jdbcType=VARCHAR},
+      </if>
+      <if test="openmode != null">
+        #{openmode,jdbcType=VARCHAR},
+      </if>
+      <if test="subcount != null">
+        #{subcount,jdbcType=DECIMAL},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=DECIMAL},
+      </if>
+      <if test="funccode != null">
+        #{funccode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.sysManage.acMenu.bean.AcMenu">
+    update AC_MENU
+    <set>
+      <if test="menuname != null">
+        MENUNAME = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="menulabel != null">
+        MENULABEL = #{menulabel,jdbcType=VARCHAR},
+      </if>
+      <if test="menucode != null">
+        MENUCODE = #{menucode,jdbcType=VARCHAR},
+      </if>
+      <if test="isleaf != null">
+        ISLEAF = #{isleaf,jdbcType=VARCHAR},
+      </if>
+      <if test="menuaction != null">
+        MENUACTION = #{menuaction,jdbcType=VARCHAR},
+      </if>
+      <if test="parameter != null">
+        PARAMETER = #{parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="uientry != null">
+        UIENTRY = #{uientry,jdbcType=VARCHAR},
+      </if>
+      <if test="menulevel != null">
+        MENULEVEL = #{menulevel,jdbcType=DECIMAL},
+      </if>
+      <if test="rootid != null">
+        ROOTID = #{rootid,jdbcType=VARCHAR},
+      </if>
+      <if test="parentsid != null">
+        PARENTSID = #{parentsid,jdbcType=VARCHAR},
+      </if>
+      <if test="displayorder != null">
+        DISPLAYORDER = #{displayorder,jdbcType=DECIMAL},
+      </if>
+      <if test="imagepath != null">
+        IMAGEPATH = #{imagepath,jdbcType=VARCHAR},
+      </if>
+      <if test="expandpath != null">
+        EXPANDPATH = #{expandpath,jdbcType=VARCHAR},
+      </if>
+      <if test="menuseq != null">
+        MENUSEQ = #{menuseq,jdbcType=VARCHAR},
+      </if>
+      <if test="openmode != null">
+        OPENMODE = #{openmode,jdbcType=VARCHAR},
+      </if>
+      <if test="subcount != null">
+        SUBCOUNT = #{subcount,jdbcType=DECIMAL},
+      </if>
+      <if test="appid != null">
+        APPID = #{appid,jdbcType=DECIMAL},
+      </if>
+      <if test="funccode != null">
+        FUNCCODE = #{funccode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.sysManage.acMenu.bean.AcMenu">
+    update AC_MENU
+    set MENUNAME = #{menuname,jdbcType=VARCHAR},
+      MENULABEL = #{menulabel,jdbcType=VARCHAR},
+      MENUCODE = #{menucode,jdbcType=VARCHAR},
+      ISLEAF = #{isleaf,jdbcType=VARCHAR},
+      MENUACTION = #{menuaction,jdbcType=VARCHAR},
+      PARAMETER = #{parameter,jdbcType=VARCHAR},
+      UIENTRY = #{uientry,jdbcType=VARCHAR},
+      MENULEVEL = #{menulevel,jdbcType=DECIMAL},
+      ROOTID = #{rootid,jdbcType=VARCHAR},
+      PARENTSID = #{parentsid,jdbcType=VARCHAR},
+      DISPLAYORDER = #{displayorder,jdbcType=DECIMAL},
+      IMAGEPATH = #{imagepath,jdbcType=VARCHAR},
+      EXPANDPATH = #{expandpath,jdbcType=VARCHAR},
+      MENUSEQ = #{menuseq,jdbcType=VARCHAR},
+      OPENMODE = #{openmode,jdbcType=VARCHAR},
+      SUBCOUNT = #{subcount,jdbcType=DECIMAL},
+      APPID = #{appid,jdbcType=DECIMAL},
+      FUNCCODE = #{funccode,jdbcType=VARCHAR}
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

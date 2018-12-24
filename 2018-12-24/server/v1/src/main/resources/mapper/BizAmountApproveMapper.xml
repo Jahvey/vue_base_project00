@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.BizAmountApproveMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.BizAmountApprove">
+    <id column="AMOUNT_ID" jdbcType="VARCHAR" property="amountId" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="AMOUNT_CLASSIFY" jdbcType="VARCHAR" property="amountClassify" />
+    <result column="CREDIT_TYPE" jdbcType="VARCHAR" property="creditType" />
+    <result column="CREDIT_AMOUNT" jdbcType="DECIMAL" property="creditAmount" />
+    <result column="CREDIT_TERM" jdbcType="DECIMAL" property="creditTerm" />
+    <result column="APPLY_DESC" jdbcType="VARCHAR" property="applyDesc" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CYCLE_UNIT" jdbcType="VARCHAR" property="cycleUnit" />
+    <result column="STATUS_CD" jdbcType="VARCHAR" property="statusCd" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="MAIN_GUARANTY_TYPE" jdbcType="VARCHAR" property="mainGuarantyType" />
+    <result column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+    <result column="CREDIT_AVI" jdbcType="DECIMAL" property="creditAvi" />
+    <result column="CREDIT_USED" jdbcType="DECIMAL" property="creditUsed" />
+    <result column="FRZ_NUM" jdbcType="VARCHAR" property="frzNum" />
+    <result column="FRZ_AMT" jdbcType="DECIMAL" property="frzAmt" />
+    <result column="OPER_FLAG" jdbcType="VARCHAR" property="operFlag" />
+    <result column="FRZ_END_DATE" jdbcType="VARCHAR" property="frzEndDate" />
+    <result column="FRZ_TYPE" jdbcType="VARCHAR" property="frzType" />
+    <result column="FRZ_STATUS" jdbcType="VARCHAR" property="frzStatus" />
+    <result column="FRZ_REASON" jdbcType="VARCHAR" property="frzReason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    AMOUNT_ID, GUARANTY_TYPE, PARTY_ID, AMOUNT_CLASSIFY, CREDIT_TYPE, CREDIT_AMOUNT, 
+    CREDIT_TERM, APPLY_DESC, CREATE_TIME, UPDATE_TIME, CYCLE_UNIT, STATUS_CD, CURRENCY_CD, 
+    MAIN_GUARANTY_TYPE, APPROVE_ID, CREDIT_AVI, CREDIT_USED, FRZ_NUM, FRZ_AMT, OPER_FLAG, 
+    FRZ_END_DATE, FRZ_TYPE, FRZ_STATUS, FRZ_REASON
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_BIZ_AMOUNT_APPROVE
+    where AMOUNT_ID = #{amountId,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

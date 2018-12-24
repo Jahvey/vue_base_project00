@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConContractInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbConContractInfo">
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CONTRACT_ADDRESS" jdbcType="VARCHAR" property="contractAddress" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="OLD_CONTRACT_ID" jdbcType="VARCHAR" property="oldContractId" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="CONTRACT_AMT" jdbcType="DECIMAL" property="contractAmt" />
+    <result column="CONTRACT_TERM" jdbcType="VARCHAR" property="contractTerm" />
+    <result column="CYCLE_UNIT" jdbcType="VARCHAR" property="cycleUnit" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="CONTRACT_DATE" jdbcType="TIMESTAMP" property="contractDate" />
+    <result column="LOAN_USE" jdbcType="VARCHAR" property="loanUse" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="LOAN_TURN" jdbcType="VARCHAR" property="loanTurn" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="CON_STATUS" jdbcType="VARCHAR" property="conStatus" />
+    <result column="TRUS_TO_PAY_FLG" jdbcType="VARCHAR" property="trusToPayFlg" />
+    <result column="STOP_PAY_FLG" jdbcType="VARCHAR" property="stopPayFlg" />
+    <result column="SPEC_PAYMENT_DATE" jdbcType="DECIMAL" property="specPaymentDate" />
+    <result column="EXCHANGE_RATE" jdbcType="DECIMAL" property="exchangeRate" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="CON_BALANCE" jdbcType="DECIMAL" property="conBalance" />
+    <result column="CYCLE_IND_CON" jdbcType="VARCHAR" property="cycleIndCon" />
+    <result column="REPAYMENT_TYPE" jdbcType="VARCHAR" property="repaymentType" />
+    <result column="TK_DATE" jdbcType="TIMESTAMP" property="tkDate" />
+    <result column="HOLIDAY_FLG" jdbcType="VARCHAR" property="holidayFlg" />
+    <result column="MAIN_GUARANTY_TYPE" jdbcType="VARCHAR" property="mainGuarantyType" />
+    <result column="XY_ID" jdbcType="VARCHAR" property="xyId" />
+    <result column="PAPER_CON_NUM" jdbcType="VARCHAR" property="paperConNum" />
+    <result column="INTERNAL_DAYS" jdbcType="DECIMAL" property="internalDays" />
+    <result column="CLS_RESULT" jdbcType="VARCHAR" property="clsResult" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="FIRST_REPAY_TERM" jdbcType="VARCHAR" property="firstRepayTerm" />
+    <result column="CON_YU_E" jdbcType="DECIMAL" property="conYuE" />
+    <result column="PAY_WAY" jdbcType="VARCHAR" property="payWay" />
+    <result column="PAY_DEPEND1" jdbcType="VARCHAR" property="payDepend1" />
+    <result column="PAY_DEPEND2" jdbcType="VARCHAR" property="payDepend2" />
+    <result column="PAY_DEPEND3" jdbcType="VARCHAR" property="payDepend3" />
+    <result column="PREPAYMENT_PENALTY" jdbcType="VARCHAR" property="prepaymentPenalty" />
+    <result column="PREPAY_MAKEUP_RATE" jdbcType="DECIMAL" property="prepayMakeupRate" />
+    <result column="LEAST_PREPAY_AMOUNT" jdbcType="DECIMAL" property="leastPrepayAmount" />
+    <result column="PREPAY_JS" jdbcType="DECIMAL" property="prepayJs" />
+    <result column="BZJBL" jdbcType="DECIMAL" property="bzjbl" />
+    <result column="CRD_CENT" jdbcType="VARCHAR" property="crdCent" />
+    <result column="APPLY_MODE_TYPE" jdbcType="VARCHAR" property="applyModeType" />
+    <result column="LOW_RISK_BIZ_TYPE" jdbcType="VARCHAR" property="lowRiskBizType" />
+    <result column="AGRICUL_LOANS" jdbcType="VARCHAR" property="agriculLoans" />
+    <result column="CON_OCCUPY" jdbcType="DECIMAL" property="conOccupy" />
+    <result column="CRD_DTL_ID" jdbcType="VARCHAR" property="crdDtlId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+    <result column="CREDIT_STATUS" jdbcType="VARCHAR" property="creditStatus" />
+    <result column="JXHJ_ID" jdbcType="VARCHAR" property="jxhjId" />
+  </resultMap>
+  
+
+  
+  
+  
+  
+  
+  
+</mapper>

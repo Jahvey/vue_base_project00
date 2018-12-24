@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.loan.user.mapper.TbBizBankMemberApplyMapper">
+  <resultMap id="BaseResultMap" type="com.example.loan.user.bean.TbBizBankMemberApply">
+    <id column="SYNDICATED_MEMBER_ID" jdbcType="VARCHAR" property="syndicatedMemberId" />
+    <result column="IF_MYSELF_BANK" jdbcType="VARCHAR" property="ifMyselfBank" />
+    <result column="MEMBER_BANK_NAME" jdbcType="VARCHAR" property="memberBankName" />
+    <result column="MEMBER_ROLE_CD" jdbcType="VARCHAR" property="memberRoleCd" />
+    <result column="PROMISE_AMOUNT" jdbcType="DECIMAL" property="promiseAmount" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="PROMISE_SHARE" jdbcType="DECIMAL" property="promiseShare" />
+    <result column="MEMBERS_BANK_NUM" jdbcType="VARCHAR" property="membersBankNum" />
+    <result column="MEMBERS_USER_NUM" jdbcType="VARCHAR" property="membersUserNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="SYNDICATED_STRUCT_ID" jdbcType="VARCHAR" property="syndicatedStructId" />
+    <result column="PROMISE_RATIO" jdbcType="DECIMAL" property="promiseRatio" />
+    <result column="SYNDICATED_OBJECT_CD" jdbcType="VARCHAR" property="syndicatedObjectCd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SYNDICATED_MEMBER_ID, IF_MYSELF_BANK, MEMBER_BANK_NAME, MEMBER_ROLE_CD, PROMISE_AMOUNT, 
+    CURRENCY_CD, PROMISE_SHARE, MEMBERS_BANK_NUM, MEMBERS_USER_NUM, CREATE_TIME, UPDATE_TIME, 
+    SYNDICATED_STRUCT_ID, PROMISE_RATIO, SYNDICATED_OBJECT_CD
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_BANK_MEMBER_APPLY
+    where SYNDICATED_MEMBER_ID = #{syndicatedMemberId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_BANK_MEMBER_APPLY
+    where SYNDICATED_MEMBER_ID = #{syndicatedMemberId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.loan.user.bean.TbBizBankMemberApply">
+    insert into TB_BIZ_BANK_MEMBER_APPLY (SYNDICATED_MEMBER_ID, IF_MYSELF_BANK, 
+      MEMBER_BANK_NAME, MEMBER_ROLE_CD, PROMISE_AMOUNT, 
+      CURRENCY_CD, PROMISE_SHARE, MEMBERS_BANK_NUM, 
+      MEMBERS_USER_NUM, CREATE_TIME, UPDATE_TIME, 
+      SYNDICATED_STRUCT_ID, PROMISE_RATIO, SYNDICATED_OBJECT_CD
+      )
+    values (#{syndicatedMemberId,jdbcType=VARCHAR}, #{ifMyselfBank,jdbcType=VARCHAR}, 
+      #{memberBankName,jdbcType=VARCHAR}, #{memberRoleCd,jdbcType=VARCHAR}, #{promiseAmount,jdbcType=DECIMAL}, 
+      #{currencyCd,jdbcType=VARCHAR}, #{promiseShare,jdbcType=DECIMAL}, #{membersBankNum,jdbcType=VARCHAR}, 
+      #{membersUserNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{syndicatedStructId,jdbcType=VARCHAR}, #{promiseRatio,jdbcType=DECIMAL}, #{syndicatedObjectCd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.loan.user.bean.TbBizBankMemberApply">
+    insert into TB_BIZ_BANK_MEMBER_APPLY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="syndicatedMemberId != null">
+        SYNDICATED_MEMBER_ID,
+      </if>
+      <if test="ifMyselfBank != null">
+        IF_MYSELF_BANK,
+      </if>
+      <if test="memberBankName != null">
+        MEMBER_BANK_NAME,
+      </if>
+      <if test="memberRoleCd != null">
+        MEMBER_ROLE_CD,
+      </if>
+      <if test="promiseAmount != null">
+        PROMISE_AMOUNT,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="promiseShare != null">
+        PROMISE_SHARE,
+      </if>
+      <if test="membersBankNum != null">
+        MEMBERS_BANK_NUM,
+      </if>
+      <if test="membersUserNum != null">
+        MEMBERS_USER_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="syndicatedStructId != null">
+        SYNDICATED_STRUCT_ID,
+      </if>
+      <if test="promiseRatio != null">
+        PROMISE_RATIO,
+      </if>
+      <if test="syndicatedObjectCd != null">
+        SYNDICATED_OBJECT_CD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="syndicatedMemberId != null">
+        #{syndicatedMemberId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMyselfBank != null">
+        #{ifMyselfBank,jdbcType=VARCHAR},
+      </if>
+      <if test="memberBankName != null">
+        #{memberBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberRoleCd != null">
+        #{memberRoleCd,jdbcType=VARCHAR},
+      </if>
+      <if test="promiseAmount != null">
+        #{promiseAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="promiseShare != null">
+        #{promiseShare,jdbcType=DECIMAL},
+      </if>
+      <if test="membersBankNum != null">
+        #{membersBankNum,jdbcType=VARCHAR},
+      </if>
+      <if test="membersUserNum != null">
+        #{membersUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syndicatedStructId != null">
+        #{syndicatedStructId,jdbcType=VARCHAR},
+      </if>
+      <if test="promiseRatio != null">
+        #{promiseRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="syndicatedObjectCd != null">
+        #{syndicatedObjectCd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.loan.user.bean.TbBizBankMemberApply">
+    update TB_BIZ_BANK_MEMBER_APPLY
+    <set>
+      <if test="ifMyselfBank != null">
+        IF_MYSELF_BANK = #{ifMyselfBank,jdbcType=VARCHAR},
+      </if>
+      <if test="memberBankName != null">
+        MEMBER_BANK_NAME = #{memberBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberRoleCd != null">
+        MEMBER_ROLE_CD = #{memberRoleCd,jdbcType=VARCHAR},
+      </if>
+      <if test="promiseAmount != null">
+        PROMISE_AMOUNT = #{promiseAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="promiseShare != null">
+        PROMISE_SHARE = #{promiseShare,jdbcType=DECIMAL},
+      </if>
+      <if test="membersBankNum != null">
+        MEMBERS_BANK_NUM = #{membersBankNum,jdbcType=VARCHAR},
+      </if>
+      <if test="membersUserNum != null">
+        MEMBERS_USER_NUM = #{membersUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syndicatedStructId != null">
+        SYNDICATED_STRUCT_ID = #{syndicatedStructId,jdbcType=VARCHAR},
+      </if>
+      <if test="promiseRatio != null">
+        PROMISE_RATIO = #{promiseRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="syndicatedObjectCd != null">
+        SYNDICATED_OBJECT_CD = #{syndicatedObjectCd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SYNDICATED_MEMBER_ID = #{syndicatedMemberId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.loan.user.bean.TbBizBankMemberApply">
+    update TB_BIZ_BANK_MEMBER_APPLY
+    set IF_MYSELF_BANK = #{ifMyselfBank,jdbcType=VARCHAR},
+      MEMBER_BANK_NAME = #{memberBankName,jdbcType=VARCHAR},
+      MEMBER_ROLE_CD = #{memberRoleCd,jdbcType=VARCHAR},
+      PROMISE_AMOUNT = #{promiseAmount,jdbcType=DECIMAL},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      PROMISE_SHARE = #{promiseShare,jdbcType=DECIMAL},
+      MEMBERS_BANK_NUM = #{membersBankNum,jdbcType=VARCHAR},
+      MEMBERS_USER_NUM = #{membersUserNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      SYNDICATED_STRUCT_ID = #{syndicatedStructId,jdbcType=VARCHAR},
+      PROMISE_RATIO = #{promiseRatio,jdbcType=DECIMAL},
+      SYNDICATED_OBJECT_CD = #{syndicatedObjectCd,jdbcType=VARCHAR}
+    where SYNDICATED_MEMBER_ID = #{syndicatedMemberId,jdbcType=VARCHAR}
+  </update>
+</mapper>
