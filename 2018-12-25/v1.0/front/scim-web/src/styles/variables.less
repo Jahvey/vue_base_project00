@@ -1,0 +1,162 @@
+/** 布局与浮动 **/
+.fl {float:left }
+.fr { float:right }
+.fm { display:block; overflow:hidden }
+.clear { display:block; overflow: hidden; clear:both }
+
+.p5 { padding: 5px;}
+.pl5 { padding-left: 5px;}
+.pr5 { padding-right: 5px;}
+.pt5 { padding-top: 5px;}
+.pb5 { padding-bottom: 5px;}
+
+.p10 { padding: 10px;}
+.pl10 { padding-left: 10px;}
+.pr10 { padding-right: 10px;}
+.pt10 { padding-top: 10px;}
+.pb10 { padding-bottom: 10px;}
+
+.p15 { padding: 15px;}
+.pl15 { padding-left: 15px;}
+.pr15 { padding-right: 15px;}
+.pt15 { padding-top: 15px;}
+.pb15 { padding-bottom: 15px;}
+
+.p20 {padding: 20px;}
+.pl20 { padding-left: 20px;}
+.pr20 { padding-right: 20px;}
+.pt20 { padding-top: 20px;}
+.pb20 { padding-bottom: 20px;}
+
+.m5 { margin: 5px;}
+.ml5 { margin-left: 5px;}
+.mr5 { margin-right: 5px}
+.mt5 { margin-top: 5px}
+.mb5 { margin-bottom: 5px;}
+
+.m10 { margin: 10px;}
+.ml10 { margin-left: 10px;}
+.mr10 { margin-right: 10px}
+.mt10 { margin-top: 10px}
+.mb10 { margin-bottom: 10px;}
+
+.m15 { margin: 15px;}
+.ml15 { margin-left: 15px;}
+.mr15 { margin-right: 15px}
+.mt15 { margin-top: 15px}
+.mb15 { margin-bottom: 15px;}
+
+.m20 { margin: 20px;}
+.ml20 { margin-left: 20px;}
+.mr20 { margin-right: 20px}
+.mt20 { margin-top: 20px}
+.mb20 { margin-bottom: 20px;}
+
+/** 文字与链接 **/
+.h1 { font-size: 22px }
+.h2 { font-size: 18px }
+.h3 { font-size: 16px }
+.h4 { font-size: 14px }
+.h5 { font-size: 12px }
+.h6 { font-size: 10px }
+.bold { font-weight: bold }
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right }
+
+/* 补白 */
+.border-box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* 圆角 */
+.radius(@rad: 5px) {
+  -webkit-border-radius: @rad;
+  -moz-border-radius: @rad;
+  border-radius: @rad;
+}
+
+/* 边框 */
+.border (@color: @bd-light) {
+  border: solid 1px @color;
+}
+.border-t (@color: @bd-light) {
+  border-top: solid 1px @color;
+}
+.border-b (@color: @bd-light) {
+  border-bottom: solid 1px @color;
+}
+.border-l (@color: @bd-light) {
+  border-left: solid 1px @color;
+}
+.border-r (@color: @bd-light) {
+  border-right: solid 1px @color;
+}
+
+
+
+//***框架颜色规则变量
+@header-bg: #2d62b3;
+@header-menu-bd: #265499;
+@header-menu-bg-active: #2970cc;
+
+@sidebar-bg: #f7f9fc;
+@sidebar-bg-hover: #f0f2f5;
+@sidebar-bg-active: #dfe9f7;
+@sidebar-bg-active-text: #2d62b3;
+@sidebar-bd: #d3d5db;
+@sidebar-menu-bd: #e1e2e5;
+
+
+/** 标题颜色规则变量 **/
+@title-primary: #217dd9; /** 主要文字 **/
+@title-regular: #606266; /** 常规文字 **/
+@title-secondary: #909399; /** 次要文字 **/
+@title-placeholder: #C0C4CC; /** 占位文字 **/
+
+/** 链接与文字 **/
+.text-blue{color:#2d62b3;}
+.text-cyan{color:#00bfe5;}
+.text-green{color:#008000;}
+.text-orange{color:#e56700;}
+.text-red{color:#cc0000;}
+.text-gray{color:#bbb;}
+.text-white{color:#fff;}
+
+a, .link {
+  cursor: pointer;
+  .text-blue;
+  &:hover ,&:focus{ .text-red; }
+}
+
+
+//***按钮颜色规则变量
+@btn-primary: #3668b3; /** 主要、主题 **/
+@btn-success: #67C23A; /** 成功 **/
+@btn-warning: #E6A23C; /** 警告 **/
+@btn-danger: #F56C6C; /** 危险 **/
+@btn-info: #909399; /** 信息 **/
+
+//***边框颜色规则变量
+@bd-base: #d3d5db; /** 一级边框 **/
+@bd-light: #ddd; /** 二级边框 **/
+@bd-lighter: #e5e5e5; /** 三级边框 **/
+@bd-extra-light: #f0f0f0; /** 四级边框 **/
+
+
+//***继承、变量、混合
+
+
+.flex {
+  .border-box;
+  .border;
+  height: 100%;
+  .fl, .fr, .fm { height: 100%;}
+  .fl{  width: 240px; .border-r }
+  .fr{  width: 240px; .border-l }
+}
+
+
+

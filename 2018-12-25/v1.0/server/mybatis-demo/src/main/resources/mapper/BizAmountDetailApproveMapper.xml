@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.BizAmountDetailApproveMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.BizAmountDetailApprove">
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="EXCHANGE_RATE" jdbcType="DECIMAL" property="exchangeRate" />
+    <result column="CYCLE_UNIT" jdbcType="VARCHAR" property="cycleUnit" />
+    <result column="CREDIT_TERM" jdbcType="DECIMAL" property="creditTerm" />
+    <result column="LOAN_USE" jdbcType="VARCHAR" property="loanUse" />
+    <result column="REPAYMENT_TYPE" jdbcType="VARCHAR" property="repaymentType" />
+    <result column="CYCLE_IND" jdbcType="VARCHAR" property="cycleInd" />
+    <result column="BROAD_CYCLE" jdbcType="DECIMAL" property="broadCycle" />
+    <result column="BROAD_CYCLE_UNIT" jdbcType="VARCHAR" property="broadCycleUnit" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="EXCHANGE_RATE_DATE" jdbcType="TIMESTAMP" property="exchangeRateDate" />
+    <result column="OLD_DETAIL_ID" jdbcType="VARCHAR" property="oldDetailId" />
+    <result column="DETAIL_AMT" jdbcType="DECIMAL" property="detailAmt" />
+    <result column="AMOUNT_ID" jdbcType="VARCHAR" property="amountId" />
+    <result column="PAYMENT" jdbcType="VARCHAR" property="payment" />
+    <result column="PREPAYMENT_PENALTY" jdbcType="VARCHAR" property="prepaymentPenalty" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="CYCLE_IND_CON" jdbcType="VARCHAR" property="cycleIndCon" />
+    <result column="HOLIDAY_FLG" jdbcType="VARCHAR" property="holidayFlg" />
+    <result column="FIRST_REPAY_TERM" jdbcType="VARCHAR" property="firstRepayTerm" />
+    <result column="DETAIL_BALANCE" jdbcType="DECIMAL" property="detailBalance" />
+    <result column="DETAIL_USED" jdbcType="DECIMAL" property="detailUsed" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+    <result column="NO_USE" jdbcType="DECIMAL" property="noUse" />
+    <result column="BO_USE" jdbcType="DECIMAL" property="boUse" />
+    <result column="CRD_DTL_ID" jdbcType="VARCHAR" property="crdDtlId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="CREDIT_STATUS" jdbcType="VARCHAR" property="creditStatus" />
+    <result column="ASSURE_PER" jdbcType="DECIMAL" property="assurePer" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cdgit.loan.contract.bean.BizAmountDetailApprove">
+    insert into CRMS.TB_BIZ_AMOUNT_DETAIL_APPROVE (PRODUCT_TYPE, CURRENCY_CD, EXCHANGE_RATE, 
+      CYCLE_UNIT, CREDIT_TERM, LOAN_USE, 
+      REPAYMENT_TYPE, CYCLE_IND, BROAD_CYCLE, 
+      BROAD_CYCLE_UNIT, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, EXCHANGE_RATE_DATE, OLD_DETAIL_ID, 
+      DETAIL_AMT, AMOUNT_ID, PAYMENT, 
+      PREPAYMENT_PENALTY, RMB_AMT, CYCLE_IND_CON, 
+      HOLIDAY_FLG, FIRST_REPAY_TERM, DETAIL_BALANCE, 
+      DETAIL_USED, END_DATE, APPROVE_ID, 
+      NO_USE, BO_USE, CRD_DTL_ID, 
+      CREDIT_MODE, BEGIN_DATE, CREDIT_STATUS, 
+      ASSURE_PER)
+    values (#{productType,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, #{exchangeRate,jdbcType=DECIMAL}, 
+      #{cycleUnit,jdbcType=VARCHAR}, #{creditTerm,jdbcType=DECIMAL}, #{loanUse,jdbcType=VARCHAR}, 
+      #{repaymentType,jdbcType=VARCHAR}, #{cycleInd,jdbcType=VARCHAR}, #{broadCycle,jdbcType=DECIMAL}, 
+      #{broadCycleUnit,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{exchangeRateDate,jdbcType=TIMESTAMP}, #{oldDetailId,jdbcType=VARCHAR}, 
+      #{detailAmt,jdbcType=DECIMAL}, #{amountId,jdbcType=VARCHAR}, #{payment,jdbcType=VARCHAR}, 
+      #{prepaymentPenalty,jdbcType=VARCHAR}, #{rmbAmt,jdbcType=DECIMAL}, #{cycleIndCon,jdbcType=VARCHAR}, 
+      #{holidayFlg,jdbcType=VARCHAR}, #{firstRepayTerm,jdbcType=VARCHAR}, #{detailBalance,jdbcType=DECIMAL}, 
+      #{detailUsed,jdbcType=DECIMAL}, #{endDate,jdbcType=TIMESTAMP}, #{approveId,jdbcType=VARCHAR}, 
+      #{noUse,jdbcType=DECIMAL}, #{boUse,jdbcType=DECIMAL}, #{crdDtlId,jdbcType=VARCHAR}, 
+      #{creditMode,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, #{creditStatus,jdbcType=VARCHAR}, 
+      #{assurePer,jdbcType=DECIMAL})
+  </insert>
+  
+  <sql id="Base_Column_List">
+  	PRODUCT_TYPE,CURRENCY_CD,EXCHANGE_RATE,CYCLE_UNIT,CREDIT_TERM,LOAN_USE,REPAYMENT_TYPE,
+	CYCLE_IND,BROAD_CYCLE,BROAD_CYCLE_UNIT,CREATE_TIME,UPDATE_TIME,AMOUNT_DETAIL_ID,EXCHANGE_RATE_DATE,
+	OLD_DETAIL_ID,DETAIL_AMT,AMOUNT_ID,PAYMENT,PREPAYMENT_PENALTY,RMB_AMT,CYCLE_IND_CON,
+	HOLIDAY_FLG,FIRST_REPAY_TERM,DETAIL_BALANCE,DETAIL_USED,END_DATE,APPROVE_ID,NO_USE,
+	BO_USE,CRD_DTL_ID,CREDIT_MODE,BEGIN_DATE,CREDIT_STATUS,ASSURE_PER
+  </sql>
+  
+  <select id="getBizAmountDetailApproveById" parameterType="java.lang.String"
+   resultMap="BaseResultMap">
+
+  	select 
+  	<include refid="Base_Column_List" />
+  	from tb_biz_amount_detail_approve 
+  	where approve_id=#{approveId,jdbcType=VARCHAR}
+  </select>
+</mapper>

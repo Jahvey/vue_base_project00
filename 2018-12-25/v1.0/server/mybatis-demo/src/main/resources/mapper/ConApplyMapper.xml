@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.ConApplyMapper">
+
+  <resultMap id="ApproveConsVo" type="com.cdgit.loan.csm.bean.ApproveConsVo">
+	
+  	 <result column="BIZ_TYPE" javaType="String" property="bizType" />
+  	<result column="PRODUCT_TYPE" javaType="String" property="productType" />
+  	<result column="APPLY_ID" javaType="String" property="applyId" />
+  	<result column="AMOUNT_DETAIL_ID" javaType="String" property="amountDetailId" />
+  	<result column="CONTRACT_ID" javaType="String" property="contractId" />
+  	<result column="CONTRACT_NUM" javaType="String" property="contractNum" />
+  	<result column="CONTRACT_AMT" javaType="String" property="contractAmt" />
+  	<result column="CON_BALANCE" javaType="String" property="conBalance" />
+  	<result column="CREDIT_MODE" javaType="String" property="creditMode" />
+  	<result column="CON_YU_E" javaType="String" property="conYuE" />
+  	<result column="CURRENCY_CD" javaType="String" property="currencyCd" />
+  	<result column="BEGIN_DATE" javaType="String" property="beginDate" />
+  	<result column="END_DATE" javaType="String" property="endDate" />
+
+  </resultMap>
+  
+  
+    <resultMap id="PrintConsVo" type="com.cdgit.loan.csm.bean.PrintConsVo">
+
+  	 
+  	<result column="NUM" javaType="String" property="contractNum" />
+  	<result column="PARTY_NAME" javaType="String" property="partyName" />
+  	<result column="CON_TYPE" javaType="String" property="conTypeCn" />
+  	<result column="PRODUCT_TYPE" javaType="String" property="productType"/> 
+  	<result column="AMT" javaType="String" property="contractAmt" />
+  	
+  	<result column="PERIOD_NUM" javaType="String" property="periodNum" />
+  	<result column="BEGIN_DATE" javaType="String" property="beginDate" />
+  	<result column="END_DATE" javaType="String" property="endDate" />
+  	
+  	<result column="CURRENCY_CD" javaType="String" property="currencyCd" />
+  	<result column="CONTRACT_DATE" javaType="String" property="contractDate" />
+  	
+  	
+
+  </resultMap>
+  
+  
+  
+    <select id="getPrintCons" parameterType="java.util.HashMap" resultMap="PrintConsVo">
+SELECT * FROM (
+
+  SELECT 
+    '' PERIOD_NUM,
+    CONTRACT_NUM num,
+    '00' con_type,
+    PRODUCT_TYPE,
+    CONTRACT_AMT amt,
+    TO_CHAR( BEGIN_DATE, 'yyyy-MM-dd' ) BEGIN_DATE,
+    TO_CHAR( END_DATE, 'yyyy-MM-dd' ) END_DATE,
+    contract.currency_cd,
+    contract.CONTRACT_DATE,
+    tcp.party_name
+  FROM
+    tb_con_contract_info contract
+    LEFT JOIN tb_csm_party tcp ON contract.party_id = tcp.party_id
+  WHERE
+    contract.CON_STATUS = '03'
+    
+    <!-- 当用户管理写完之后，系统联调的时候放开partyId -->
+   <!--  AND contract.PARTY_ID = #{partyId} -->
+    
+  UNION ALL 
+   SELECT DISTINCT 
+     '' PERIOD_NUM,
+     a.subcontract_num num,
+     a.subcontract_type con_type,
+    '' product_type,
+    DECODE( a.if_top_subcon, '1', a.zgbjxe, DECODE( a.subcontract_type, '03', a.bzjje, a.subcontract_amt )) amt,
+    TO_CHAR( DECODE( a.if_top_subcon, '1', a.begin_date, c.begin_date ), 'yyyy-mm-dd' ) begin_date,
+    TO_CHAR( DECODE( a.if_top_subcon, '1', a.end_date, c.end_date ), 'yyyy-mm-dd' ) end_date,
+    a.bz currency_cd,
+    c.contract_date,
+    tcp.party_name 
+  FROM
+    tb_con_subcontract a
+  INNER JOIN tb_con_subcontract_rel b ON a.subcontract_id = b.subcontract_id
+  LEFT JOIN tb_con_contract_info c ON b.contract_id = c.contract_id
+  LEFT JOIN tb_csm_party tcp ON a.party_id = tcp.party_id 
+  
+  <!-- WHERE  a.CON_PARTY_ID = #{partyId} -->
+  
+  AND a.subcontract_status = '03' 
+  and a.subcontract_type !='04'
+  union all
+  SELECT DISTINCT 
+     '' PERIOD_NUM,
+     a.subcontract_num num,
+     a.subcontract_type con_type,
+    '' product_type,
+    DECODE( a.if_top_subcon, '1', a.zgbjxe, DECODE( a.subcontract_type, '03', a.bzjje, a.subcontract_amt )) amt,
+    TO_CHAR( DECODE( a.if_top_subcon, '1', a.begin_date, c.begin_date ), 'yyyy-mm-dd' ) begin_date,
+    TO_CHAR( DECODE( a.if_top_subcon, '1', a.end_date, c.end_date ), 'yyyy-mm-dd' ) end_date,
+    a.bz currency_cd,
+    c.contract_date,
+    tc.party_name
+  FROM
+    tb_con_subcontract a
+  INNER JOIN tb_con_subcontract_rel b ON a.subcontract_id = b.subcontract_id
+  LEFT JOIN tb_con_contract_info c ON b.contract_id = c.contract_id
+  LEFT JOIN (select listagg(tx.party_name,',') within group(order by party_name) as party_name,
+                listagg(tx.party_id,',') within group(order by party_name) as party_id, ty.subcontract_id   
+            from tb_grt_guarantee_basic tz,
+            tb_con_sub_grt_rel ty,tb_csm_party tx
+            where tz.surety_id=ty.surety_id
+            and tz.party_id=tx.party_id
+            and (ty.grt_status !='04' or ty.grt_status is null)
+            group by ty.subcontract_id
+            ) tc on a.subcontract_id=tc.subcontract_id
+            
+  <!-- WHERE  a.CON_PARTY_ID = #{partyId} -->
+  
+  AND a.subcontract_status = '03' 
+  and a.subcontract_type ='04' 
+  UNION ALL 
+  SELECT 
+    clc.PERIOD_NUM,
+    CONTRACT_NUM num,
+    clc.LOAN_CHANGE_TYPE con_type,
+    ci.PRODUCT_TYPE PRODUCT_TYPE,
+    ci.RMB_AMT amt,
+    TO_CHAR( ci.BEGIN_DATE, 'yyyy-MM-dd' ) BEGIN_DATE,
+    TO_CHAR( ci.END_DATE, 'yyyy-MM-dd' ) END_DATE,
+    ci.CURRENCY_CD,
+    ci.contract_date,
+    tcp.party_name
+  FROM
+    TB_CON_LOAN_CHANGE clc
+  INNER JOIN TB_CON_CONTRACT_INFO ci ON clc.CONTRACT_ID = ci.CONTRACT_ID
+  LEFT JOIN tb_csm_party tcp ON ci.party_id = tcp.party_id 
+  
+  <!-- WHERE ci.PARTY_ID = #{partyId} -->
+  
+  AND clc.CHANGE_STATUS in ('02','03') 
+  AND ci.CON_STATUS = '03'
+  AND clc.LOAN_CHANGE_TYPE='06'
+  UNION ALL
+  SELECT 
+    '' PERIOD_NUM,
+    ci.CONTRACT_NUM num,
+      '07' con_type,
+      ci.PRODUCT_TYPE PRODUCT_TYPE,
+      ci.RMB_AMT amt,
+      TO_CHAR( ci.BEGIN_DATE, 'yyyy-MM-dd' ) BEGIN_DATE,
+      TO_CHAR( ci.END_DATE, 'yyyy-MM-dd' ) END_DATE,
+      ci.CURRENCY_CD,
+      ci.contract_date,
+      tcp.party_name
+    FROM
+      tb_Adjust_Margincalls tam
+    INNER JOIN TB_CON_CONTRACT_INFO ci ON tam.CONTRACT_ID = ci.CONTRACT_ID
+    LEFT JOIN tb_csm_party tcp ON ci.party_id = tcp.party_id 
+
+  <!-- WHERE ci.PARTY_ID = #{partyId} -->
+  
+  AND tam.MARGIN_STATUS = '03'     
+) t WHERE 1 = 1 
+
+		<include refid="query_PrintConsVo" />
+		
+		<!-- 由于数据库中的contract_date相关数据是一大部分是空的，
+		所以在排序时候会造成前端页面总是一个页面的情况，取消排序后排序正常显示 -->
+		<!-- order by contract_date desc -->  
+			
+		         
+
+  </select>
+  
+  
+
+  <select id="getApproveCons" parameterType="java.util.HashMap" resultMap="ApproveConsVo">
+
+	select '业务合同' biz_type,
+				 	 t.product_type,
+				 	 '' apply_id,
+				 	 t.amount_detail_id,
+		             t.CONTRACT_ID,
+		             t.CONTRACT_NUM,
+		             t.CONTRACT_AMT,
+		             t.CON_BALANCE,
+		             t.CREDIT_MODE,
+		             nvl(tls.con_yu_e,0) as con_yu_e,
+		             t.CURRENCY_CD as CURRENCY_CD,
+		             to_char(t.BEGIN_DATE, 'yyyy-mm-dd') as BEGIN_DATE,
+		             to_char(t.END_DATE, 'yyyy-mm-dd') as END_DATE
+		        from tb_con_contract_info t
+		        left join (select sum(nvl(jjye,0)) as con_yu_e,CONTRACT_ID from tb_loan_summary where summary_status_cd!='09'  group by CONTRACT_ID) tls on t.CONTRACT_ID=tls.CONTRACT_ID
+		       where t.CON_STATUS = '03'
+		        <!-- and t.user_num= #{userId} -->  		
+		         <include refid="query_ApproveConsVo" />
+
+  </select>
+  
+  
+  
+  <select id="getApproveAndSxxy" parameterType="java.util.HashMap" resultMap="ApproveConsVo">
+	SELECT
+	tb.biz_num,
+	te.party_name,
+	tb.biz_type,
+	tb.biz_type_flag,
+	tb.biz_happen_nature,
+	tb.biz_happen_type,
+	td.detail_amt,
+	td.currency_cd,
+	td.credit_term,
+	td.cycle_unit,
+	tb.valid_date,
+	td.end_date,
+	td.amount_detail_id,
+	tb.approve_id,
+	tb.apply_id,
+	td.product_type,
+	te.party_id,
+	td.credit_mode,
+	td.bo_use 
+FROM
+	tb_biz_approve tb,
+	TB_BIZ_AMOUNT_DETAIL_APPROVE td,
+	tb_csm_party te 
+WHERE
+	tb.APPROVE_ID = td.APPROVE_ID 
+	AND tb.party_id = te.party_id 
+	AND td.bo_use>0
+AND tb.PARTY_ID = #{partyId}
+
+
+  </select>
+  
+
+
+
+
+
+
+	<sql id="query_PrintConsVo">
+		<if test="conTypeCn !=null and conTypeCn !='' ">
+			and t.con_type=#{conTypeCn}
+		</if>
+
+		<if test="contractNum !=null and contractNum !='' "><!-- 合同编号 -->
+			and t.NUM=#{contractNum}
+		</if>
+	
+	</sql>
+	<sql id="query_ApproveConsVo">
+	
+		<if test="userNum !=null and userNum !='' ">
+		
+			and t.user_num= #{userNum}
+		</if>
+		<if test="partyId !=null and partyId !='' ">
+			and t.PARTY_ID =#{partyId}
+		</if>
+
+		<if test="contractNum !=null and contractNum !='' "><!-- 合同编号 -->
+			and t.CONTRACT_NUM like '%'||#{contractNum}||'%'
+		</if>
+		
+		
+	</sql>
+</mapper>

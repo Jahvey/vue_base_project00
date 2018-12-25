@@ -1,0 +1,164 @@
+.instation_info{
+	font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
+	margin-left: 10px;
+	padding: 0 6px;
+    /*height: 35px;*/
+    position: relative;
+    left: 0;
+    top: 0;
+}
+.instation_info .list_bg {
+    background: url("../images/bg_list.png") top left no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+}
+.instation_info .order_r3_c6 {
+    line-height: 14px;
+    padding-left: 20px;
+    background-position: -10px -383px;
+    margin-top: 2px;
+    vertical-align: text-top;
+    font-size: 14px;
+    color: #222;
+}
+.instation_info .order_r3_c6 :hover{
+	color:#0055AA
+}
+.instation_info .newMsg {
+  width: 340px !important;
+  min-height: 100px;
+  height: auto !important;
+}
+.instation_info:hover .caret {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -moz-transition: transform 0.5s ease-in-out;
+    -o-transition: transform 0.5s ease-in-out;
+    -webkit-transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+}
+.msg > .massageList {
+  margin: 0;
+  padding-left: 15px;
+}
+.massageList {
+  border-bottom: 1px solid #eaeaea;
+  margin: auto 20px;
+}
+.instation_info .userMsgDiv {
+    display: none;
+}
+
+.massageList dd {
+  display: block;
+  clear: both;
+  padding-bottom: 10px;
+}
+.massageList dd a.bigImgTop {
+  display: inline-block;
+  position: relative;
+}
+.instation_info:hover {
+        box-shadow: 0px 10px 25px #AEAEAE;
+        border-bottom: none;
+        background-color: #fff;
+        z-index: 21;
+        float: left;
+    }
+.instation_info:hover .userMsgDiv {
+    display: block;
+    position: absolute;
+    top: 19px;
+    left: 0px;
+    box-shadow: 0px 10px 15px #AEAEAE;
+   /* height: 90px;*/
+    width: 340px;
+    background-color: #fff;
+    z-index: 3;
+    font-size: 12px;
+}
+.massageList dd div {
+  display: inline-block;
+  margin-left: 20px;
+}
+.massageList dd div a {
+  color: #0075c6;
+}
+.massageList dd a.bigImgTop > span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: block;
+  width: 37px;
+  height: 21px;
+  line-height: 21px;
+  background: #f56b27;
+  color: #fff;
+  text-align: center;
+}
+.instation_info .border_b {
+  border-bottom: 1px solid #dddddd;
+}
+.instation_info .p-b-10 {
+  padding-bottom: 10px;
+}
+.instation_info .p-b-6 {
+  padding-bottom: 6px;
+}
+.instation_info .p-t-8{
+	padding-top: 8px;
+}
+.instation_info .m-l-10{
+	margin-left: 10px;
+}
+.instation_info .noMsg {
+    background: url("../images/noMsg.png") no-repeat center 10px;
+    padding-top: 120px;
+}
+.instation_info .m-t-15{
+	margin-top: 15px;
+}
+.instation_info .btn-view {
+    display: block;
+    background: #ffeadf;
+    border: #fdb08e solid 1px;
+    width: 114px;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+    color: #f55732;
+    margin: 10px auto;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+.instation_info .colorgray {
+  color: #555555 !important;
+}
+.instation_info .viewAll {
+    padding-right: 10px;
+    border-top: 1px solid #eaeaea;
+}
+
+.instation_info .msg > .massageList {
+    margin: 0;
+    padding-left: 15px;
+}
+
+.instation_info .msg > .massageList:last-child {
+    border: none;
+}
+
+.instation_info .msg > .massageList dd a.bigImgTop > img {
+    width: 60px;
+    height: 60px;
+   /* float: left;*/
+}
+
+.instation_info .msg > .massageList dt {
+    margin: 3px auto !important;
+    line-height: 24px;
+}
