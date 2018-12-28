@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.product.mapper.TbSysProductMapper">
+  
+  
+  <resultMap  id="tbSysProduct" type="com.cdgit.loan.product.bean.TbSysProduct">
+        <result column="PRODUCT_CD" javaType="string" property="productCd"/>
+        <result column="PRODUCT_ID" javaType="string" property="productId"/>
+        <result column="PRODUCT_NAME" javaType="string" property="productName"/>
+        <result column="SUPERIOR_ID" javaType="string" property="superiorId"/>
+        <result column="PRODUCT_DEPARTMENT" javaType="string" property="department" />
+        <result column="YWLB" javaType="string" property="ywlb" />
+        <result column="LEG_ORG" javaType="string" property="legOrg" />
+        <result column="PRODUCT_LEVEL" javaType="string" property="productLevel"/>
+    </resultMap>
+  
+
+  
+  
+  <!--查询带有权限控的产品树  移植业务申请 新增产品树选择 2018-12-25 -->
+    <select id="queryProductByAuth" parameterType="java.util.HashMap" resultMap="tbSysProduct">
+    select * from(
+    with sup_pros as
+		 (select *
+		    from tb_sys_product t
+		    <if test="productCd != null and productCd !='' ">
+		     start with t.product_cd = #{productCd}
+		    </if>
+		  connect by prior t.product_cd = t.superior_id)
+		select sp.product_id,
+		       sp.product_cd,
+		       sp.product_name,
+		       sp.product_level,
+		       sp.discount_ind,
+		       sp.superior_id,
+		       sp.product_type,
+		       sp.product_department,
+		       sp.leg_org,
+		       sp.sort_no,
+		       sp.ywlb
+		  from tb_sys_product sp
+		  <if test=" productCd != null and productCd !='' ">
+			   where sp.product_id = #{productCd}
+		  </if>
+		union
+		select s.product_id,
+		       s.product_cd,
+		       s.product_name,
+		       s.product_level,
+		       s.discount_ind,
+		       s.superior_id,
+		       s.product_type,
+		       s.product_department,
+		       s.leg_org,
+		       s.sort_no,
+		       s.ywlb
+		  from sup_pros s
+		 where s.discount_ind = '1' and exists(
+		
+		 with sup_orgs as (select *
+		                     from OM_ORGANIZATION o
+		                    start with o.orgcode = #{orgcode}
+		                   connect by prior o.parentorgid = o.orgid)
+		  select pr.product_id
+		    from tb_sys_operate_authorization oa,
+		   tb_sys_product_operate_rela  pr
+		   where oa.org_operate_authorization_id =
+		         pr.org_operate_authorization_id
+		     and oa.is_used = '1'
+		     
+		      <if test=" roleId != null and roleId !='' ">
+			  and oa.role_id=#{roleId}
+		  </if>
+		     
+		     and oa.auth_org_num in (select orgcode from sup_orgs)
+		     and s.product_id = pr.product_id)
+    ) WHERE 1=1
+    
+    
+    <if test=" superadmin != null and superadmin !='' ">
+			  AND (leg_org=#{legorg} or leg_org is null)
+		  </if>
+    
+    <if test=" searchMode != null and searchMode !='' ">
+    	<if test="searchMode == 'crd00' "> 
+              and product_level != '3' 
+     	</if>
+	AND PRODUCT_CD NOT IN ('01006','01013','01013010','01013001')
+	</if>
+   
+    order by sort_no
+    </select>
+  
+</mapper>

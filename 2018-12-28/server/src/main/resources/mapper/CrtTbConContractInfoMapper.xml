@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.TbConContractInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.cdgit.loan.contract.bean.TbConContractInfo">
+		<result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+		<result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+		<result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+		<result column="CONTRACT_ADDRESS" jdbcType="VARCHAR" property="contractAddress" />
+		<result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+		<result column="OLD_CONTRACT_ID" jdbcType="VARCHAR" property="oldContractId" />
+		<result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+		<result column="CONTRACT_AMT" jdbcType="DECIMAL" property="contractAmt" />
+		<result column="CONTRACT_TERM" jdbcType="VARCHAR" property="contractTerm" />
+		<result column="CYCLE_UNIT" jdbcType="VARCHAR" property="cycleUnit" />
+		<result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+		<result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+		<result column="CONTRACT_DATE" jdbcType="TIMESTAMP" property="contractDate" />
+		<result column="LOAN_USE" jdbcType="VARCHAR" property="loanUse" />
+		<result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+		<result column="LOAN_TURN" jdbcType="VARCHAR" property="loanTurn" />
+		<result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+		<result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+		<result column="CON_STATUS" jdbcType="VARCHAR" property="conStatus" />
+		<result column="TRUS_TO_PAY_FLG" jdbcType="VARCHAR" property="trusToPayFlg" />
+		<result column="STOP_PAY_FLG" jdbcType="VARCHAR" property="stopPayFlg" />
+		<result column="SPEC_PAYMENT_DATE" jdbcType="DECIMAL" property="specPaymentDate" />
+		<result column="EXCHANGE_RATE" jdbcType="DECIMAL" property="exchangeRate" />
+		<result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+		<result column="CON_BALANCE" jdbcType="DECIMAL" property="conBalance" />
+		<result column="CYCLE_IND_CON" jdbcType="VARCHAR" property="cycleIndCon" />
+		<result column="REPAYMENT_TYPE" jdbcType="VARCHAR" property="repaymentType" />
+		<result column="TK_DATE" jdbcType="TIMESTAMP" property="tkDate" />
+		<result column="HOLIDAY_FLG" jdbcType="VARCHAR" property="holidayFlg" />
+		<result column="MAIN_GUARANTY_TYPE" jdbcType="VARCHAR"
+			property="mainGuarantyType" />
+		<result column="XY_ID" jdbcType="VARCHAR" property="xyId" />
+		<result column="PAPER_CON_NUM" jdbcType="VARCHAR" property="paperConNum" />
+		<result column="INTERNAL_DAYS" jdbcType="DECIMAL" property="internalDays" />
+		<result column="CLS_RESULT" jdbcType="VARCHAR" property="clsResult" />
+		<result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+		<result column="FIRST_REPAY_TERM" jdbcType="VARCHAR" property="firstRepayTerm" />
+		<result column="CON_YU_E" jdbcType="DECIMAL" property="conYuE" />
+		<result column="PAY_WAY" jdbcType="VARCHAR" property="payWay" />
+		<result column="PAY_DEPEND1" jdbcType="VARCHAR" property="payDepend1" />
+		<result column="PAY_DEPEND2" jdbcType="VARCHAR" property="payDepend2" />
+		<result column="PAY_DEPEND3" jdbcType="VARCHAR" property="payDepend3" />
+		<result column="PREPAYMENT_PENALTY" jdbcType="VARCHAR"
+			property="prepaymentPenalty" />
+		<result column="PREPAY_MAKEUP_RATE" jdbcType="DECIMAL"
+			property="prepayMakeupRate" />
+		<result column="LEAST_PREPAY_AMOUNT" jdbcType="DECIMAL"
+			property="leastPrepayAmount" />
+		<result column="PREPAY_JS" jdbcType="DECIMAL" property="prepayJs" />
+		<result column="BZJBL" jdbcType="DECIMAL" property="bzjbl" />
+		<result column="CRD_CENT" jdbcType="VARCHAR" property="crdCent" />
+		<result column="APPLY_MODE_TYPE" jdbcType="VARCHAR" property="applyModeType" />
+		<result column="LOW_RISK_BIZ_TYPE" jdbcType="VARCHAR" property="lowRiskBizType" />
+		<result column="AGRICUL_LOANS" jdbcType="VARCHAR" property="agriculLoans" />
+		<result column="CON_OCCUPY" jdbcType="DECIMAL" property="conOccupy" />
+		<result column="CRD_DTL_ID" jdbcType="VARCHAR" property="crdDtlId" />
+		<result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+		<result column="CREDIT_STATUS" jdbcType="VARCHAR" property="creditStatus" />
+		<result column="JXHJ_ID" jdbcType="VARCHAR" property="jxhjId" />
+	</resultMap>
+	<!-- 自己封装的查询条件的bean，查询主合同初始页面 -->
+	<resultMap id="resultMap1" type="com.cdgit.loan.contract.bean.ConApvList">
+		<result column="contract_id" javaType="string" property="contractId" />
+		<result column="biz_type" javaType="string" property="bizType" />
+		<result column="biz_type_flag" javaType="string" property="bizTypeFlag" />
+		<result column="party_id" javaType="string" property="partyId" />
+		<result column="party_name" javaType="string" property="partyName" />
+		<result column="contract_num" javaType="string" property="contractNum" />
+		<result column="product_type" javaType="string" property="productType" />
+		<result column="cert_type" javaType="string" property="certType" />
+		<result column="cert_num" javaType="string" property="certNum" />
+		<result column="con_status" javaType="string" property="conStatus" />
+		<result column="begin_date" javaType="string" property="beginDate" />
+		<result column="end_date" javaType="string" property="endDate" />
+		<result column="currency_cd" javaType="string" property="currencyCd" />
+		<result column="contract_amt" javaType="string" property="contractAmt" />
+		<result column="con_balance" javaType="string" property="conBalance" />
+		<result column="con_yu_e" javaType="string" property="conYuE" />
+		<result column="ocup_amt" javaType="string" property="ocupAmt" />
+
+	</resultMap>
+
+	<!-- 查询主合同基本信息 -->
+	<resultMap id="getConInfoByContractNum"
+		type="com.cdgit.loan.contract.query.ConInfoHtXwQuery">
+		<result column="party_num" javaType="string" property="partyNum" />
+		<result column="party_name" javaType="string" property="partyName" />
+		<result column="product_type" javaType="string" property="productType" />
+		<result column="contract_num" javaType="string" property="contractNum" />
+		<result column="paper_con_num" javaType="string" property="paperConNum" />
+		<!-- 查询旧合同编号：这个数据库列字段我该怎么写？如何映射？拿id暂时凑合？oldContractId -->
+		<result column="contract_num" javaType="string" property="oldContractNum" />
+		<result column="old_contract_id" javaType="string" property="oldContractId" />
+		<!-- <result column="old_contract_id" javaType="string" property="oldContractNum" /> -->
+		<result column="currency_cd" javaType="string" property="currencyCd" />
+		<result column="contract_amt" javaType="string" property="contractAmt" />
+		<result column="begin_date" javaType="string" property="beginDate" />
+		<result column="contract_term" javaType="string" property="contractTerm" />
+		<result column="cycle_unit" javaType="string" property="cycleUnit" />
+		<result column="end_date" javaType="string" property="endDate" />
+		<result column="repayment_type" javaType="string" property="repaymentType" />
+		<result column="first_repay_term" javaType="string" property="firstRepayTerm" />
+		<result column="cycle_ind_con" javaType="string" property="cycleIndCon" />
+		<result column="contract_date" javaType="string" property="contractDate" />
+		<result column="contract_address" javaType="string" property="contractAddress" />
+		<result column="spec_payment_date" javaType="string" property="specPaymentDate" />
+		<result column="internal_days" javaType="string" property="internalDays" />
+		<result column="loan_use" javaType="string" property="loanUse" />
+		<result column="guaranty_type" javaType="string" property="guarantyType" />
+		<result column="main_guaranty_type" javaType="string" property="mainGuarantyType" />
+		<result column="loan_turn" javaType="string" property="loanTurn" />
+		<result column="risk_info" javaType="string" property="riskInfo" />
+		<result column="act" javaType="string" property="act" />
+		<result column="service_type" javaType="string" property="serviceType" />
+		<result column="reduce_amount" javaType="string" property="reduceAmount" />
+		<result column="ajust_type" javaType="string" property="ajustType" />
+		<result column="upgrade_type" javaType="string" property="upgradeType" />
+		<result column="new_product_type" javaType="string" property="newProductType" />
+		<result column="whether_arg_related" javaType="string" property="whetherArgRelated" />
+		<result column="arg_type" javaType="string" property="argType" />
+		<result column="sup_arg_type" javaType="string" property="supArgType" />
+		<result column="green_loan" javaType="string" property="greenLoan" />
+		<result column="green_loan_use" javaType="string" property="greenLoanUse" />
+		<result column="green_risk_type" javaType="string" property="greenRiskType" />
+		<result column="green_risk_detail" javaType="string" property="greenRiskDetail" />
+		<result column="con_status" javaType="string" property="conStatus" />
+		<!-- userNum对应的是userId -->
+		<result column="user_num" javaType="string" property="userId" />
+		<result column="org_num" javaType="string" property="orgNum" />
+	</resultMap>
+	<!-- 查询主合同基本信息 -->
+	<select id="getConInfoByContractNum" parameterType="java.util.HashMap"
+		resultMap="getConInfoByContractNum">
+		select
+			cp.party_num,
+			cp.party_name,
+			con.user_num,
+      		con.org_num,
+      		con.con_status,
+			con.product_type,
+			con.contract_num,
+			con.paper_con_num,
+			con.old_contract_id,
+			con.currency_cd,
+			<!-- con.contract_amt,to_char(110.110,'000,000,000.000') -->
+			to_char(con.contract_amt, '999,999,999.99') as contract_amt,
+			to_char(con.begin_date, 'yyyy-mm-dd') as begin_date,
+			con.contract_term,
+			con.cycle_unit,
+			to_char(con.end_date, 'yyyy-mm-dd') as end_date,
+			con.repayment_type,
+			con.first_repay_term,
+			con.cycle_ind_con,
+			to_char(con.contract_date, 'yyyy-mm-dd') as contract_date,
+			con.contract_address,
+			con.spec_payment_date,
+			con.internal_days,
+			con.loan_use,
+			con.guaranty_type,
+			con.main_guaranty_type,
+			cfi.loan_turn,
+			cfi.risk_info,
+			cfi.act,
+			cfi.service_type,
+			cfi.reduce_amount,
+			cfi.ajust_type,
+			cfi.upgrade_type,
+			cfi.new_product_type,
+			cfi.whether_arg_related,
+			cfi.arg_type,
+			cfi.sup_arg_type,
+			cfi.green_loan,
+			cfi.green_loan_use,
+			cfi.green_risk_type,
+			cfi.green_risk_detail
+		from
+			TB_CON_CONTRACT_INFO con
+		left join tb_csm_party cp on cp.party_id=con.party_id
+		left join tb_con_flag_info cfi on cfi.contract_id=con.contract_id
+		where
+			con.contract_num=#{contractNum,jdbcType=VARCHAR} 
+			and con.user_num = '200555'
+			and con.org_num = '0700'
+			<if test="conStatus !=null and conStatus !='' ">
+				and con.con_status = #{conStatus,jdbcType=VARCHAR}
+			</if>
+<!--	登录人id和组织号是必填信息，是必要条件，这里先写死，后面处理 		
+<if test="userId !=null and userId !='' ">
+			and t.USER_NUM =#{userId}
+		</if>
+		<if test="orgNum !=null and orgNum !='' ">
+			and t.ORG_NUM =#{orgNum}
+		</if> -->
+	</select>
+
+	<!-- 查询旧合同编号 -->
+	<select id="getOldContractNum" parameterType="java.lang.String" resultType="java.lang.String">
+		select contract_num from tb_con_contract_info where contract_id=#{oldContractId}
+	</select>
+	<!-- 连表组合查询 ： t:合同表 f:视图v_csm_party apv:tb_biz_approve 明细 tls:tb_loan_summary -->
+	<select id="queryConApvList" parameterType="java.util.HashMap"
+		resultMap="resultMap1">
+		select
+		t.contract_id,
+		apv.biz_type biz_type,
+		apv.biz_type_flag
+		biz_type_flag,
+		t.party_id,
+		f.party_name,
+		t.contract_num,
+		t.product_type,
+		f.cert_type,
+		f.cert_num,
+		t.con_status,
+		to_char(t.begin_date, 'yyyy-mm-dd') as begin_date,
+		to_char(t.end_date, 'yyyy-mm-dd') as
+		end_date,
+		t.currency_cd,
+		<!-- t.contract_amt, -->
+		to_char(t.contract_amt, '999,999,999.99') as contract_amt,
+		t.con_balance,
+		tls.con_yu_e,
+		(nvl(t.contract_amt, 0) - nvl(t.con_balance, 0)) as ocup_amt
+		from
+		tb_con_contract_info t
+		left join (select sum(nvl(jjye,0)) as
+		con_yu_e,CONTRACT_ID from
+		tb_loan_summary where summary_status_cd
+		!='06' and summary_status_cd
+		!='09' group by CONTRACT_ID)
+		tls on
+		t.contract_id = tls.CONTRACT_ID
+		INNER JOIN v_csm_party f ON
+		t.party_id=f.party_id
+		LEFT JOIN tb_biz_amount_detail_approve ap ON
+		t.amount_detail_id =
+		ap.amount_detail_id
+		LEFT JOIN tb_biz_approve apv ON
+		apv.approve_id = ap.approve_id
+		where 
+			apv.apply_id not in (select
+			apply_id from tb_biz_bank_struct_apply
+			t where t.SYNDICATED_OBJECT_CD='02')
+		<!-- 先写死登录人和组织机构编号 -->
+		and t.user_num = '200555'
+		and t.org_num = '0700'
+		<include refid="query_con_apv_List" />
+		order by t.begin_date desc
+	</select>
+
+
+	<select id="getTbConContractInfoById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_con_contract_Column_List" />
+		from tb_con_contract_info
+		where contract_id = #{contractId}
+	</select>
+
+	<sql id="Base_con_contract_Column_List">
+		CONTRACT_ID,AMOUNT_DETAIL_ID,CONTRACT_NUM,CONTRACT_ADDRESS,PARTY_ID,OLD_CONTRACT_ID,CURRENCY_CD,
+		CONTRACT_AMT,CONTRACT_TERM,CYCLE_UNIT,BEGIN_DATE,END_DATE,CONTRACT_DATE,LOAN_USE,GUARANTY_TYPE,
+		LOAN_TURN,USER_NUM,ORG_NUM,CREATE_TIME,UPDATE_TIME,PRODUCT_TYPE,CON_STATUS,TRUS_TO_PAY_FLG,STOP_PAY_FLG,
+		SPEC_PAYMENT_DATE,EXCHANGE_RATE,RMB_AMT,CON_BALANCE,CYCLE_IND_CON,REPAYMENT_TYPE,TK_DATE,HOLIDAY_FLG,
+		MAIN_GUARANTY_TYPE,XY_ID,PAPER_CON_NUM,INTERNAL_DAYS,CLS_RESULT,IF_DATA_MOVE,FIRST_REPAY_TERM,CON_YU_E,
+		PAY_WAY,PAY_DEPEND1,PAY_DEPEND2,PAY_DEPEND3,PREPAYMENT_PENALTY,PREPAY_MAKEUP_RATE,LEAST_PREPAY_AMOUNT,
+		PREPAY_JS,BZJBL
+	</sql>
+
+	<sql id="query_con_apv_List">
+<!-- 		<if test="userId !=null and userId !='' ">
+			and t.USER_NUM =#{userId}
+		</if>
+		<if test="orgNum !=null and orgNum !='' ">
+			and t.ORG_NUM =#{orgNum}
+		</if> -->
+
+
+		<if test="conStatus !=null and conStatus !='' "><!-- 合同状态 -->
+			and t.CON_STATUS =#{conStatus}
+		</if>
+		<if test="partyName !=null and partyName !='' "><!-- 客户名称 -->
+			and f.party_name like '%'||#{partyName}||'%'
+		</if>
+		<if test="contractNum !=null and contractNum !='' "><!-- 合同编号 -->
+			and t.contract_Num like '%'||#{contractNum}||'%'
+		</if>
+		<if test="certType !=null and certType !='' "><!-- 证件类型 -->
+			and f.cert_type =#{certType}
+		</if>
+		<if test="certNum !=null and certNum !='' "><!-- 证件号码 -->
+			and f.cert_Num =#{certNum}
+		</if>
+		<if test="productType !=null and productType !='' "><!-- 业务品种 -->
+			and t.product_type =#{productType}
+		</if>
+	</sql>
+
+</mapper>

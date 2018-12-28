@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConSubcontractMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbConSubcontract">
+    <id column="SUBCONTRACT_ID" jdbcType="VARCHAR" property="subcontractId" />
+    <result column="SUBCONTRACT_NUM" jdbcType="VARCHAR" property="subcontractNum" />
+    <result column="SUBCONTRACT_MANUAL_NUM" jdbcType="VARCHAR" property="subcontractManualNum" />
+    <result column="SUBCONTRACT_TYPE" jdbcType="VARCHAR" property="subcontractType" />
+    <result column="SUBCONTRACT_STATUS" jdbcType="VARCHAR" property="subcontractStatus" />
+    <result column="IF_TOP_SUBCON" jdbcType="VARCHAR" property="ifTopSubcon" />
+    <result column="SIGN_DATE" jdbcType="TIMESTAMP" property="signDate" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="SUBCONTRACT_AMT" jdbcType="DECIMAL" property="subcontractAmt" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="ZGBJXE" jdbcType="DECIMAL" property="zgbjxe" />
+    <result column="JGGZRBLDJ" jdbcType="DECIMAL" property="jggzrbldj" />
+    <result column="ZFWYJBL" jdbcType="DECIMAL" property="zfwyjbl" />
+    <result column="CHANGE_PERCENT" jdbcType="DECIMAL" property="changePercent" />
+    <result column="JRNCRBZJ" jdbcType="DECIMAL" property="jrncrbzj" />
+    <result column="BZJJE" jdbcType="DECIMAL" property="bzjje" />
+    <result column="BZJBL" jdbcType="DECIMAL" property="bzjbl" />
+    <result column="BZJLX" jdbcType="VARCHAR" property="bzjlx" />
+    <result column="AYLLJX" jdbcType="DECIMAL" property="aylljx" />
+    <result column="ANLLJX" jdbcType="DECIMAL" property="anlljx" />
+    <result column="JRTZKH" jdbcType="DECIMAL" property="jrtzkh" />
+    <result column="AVI_AMT" jdbcType="DECIMAL" property="aviAmt" />
+    <result column="TOTAL_AMT" jdbcType="DECIMAL" property="totalAmt" />
+    <result column="PAPER_CON_NUM" jdbcType="VARCHAR" property="paperConNum" />
+    <result column="BZJJXZQ" jdbcType="VARCHAR" property="bzjjxzq" />
+    <result column="CON_PARTY_ID" jdbcType="VARCHAR" property="conPartyId" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="QTJSXFS" jdbcType="VARCHAR" property="qtjsxfs" />
+    <result column="PROGUARANTY_WAY" jdbcType="VARCHAR" property="proguarantyWay" />
+    <result column="PROGUARANTY_TYPE" jdbcType="VARCHAR" property="proguarantyType" />
+    <result column="PROGUARANTY_FORM" jdbcType="VARCHAR" property="proguarantyForm" />
+    <result column="SUB_SCOPE" jdbcType="VARCHAR" property="subScope" />
+    <result column="DB_RATE" jdbcType="DECIMAL" property="dbRate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SUBCONTRACT_ID, SUBCONTRACT_NUM, SUBCONTRACT_MANUAL_NUM, SUBCONTRACT_TYPE, SUBCONTRACT_STATUS, 
+    IF_TOP_SUBCON, SIGN_DATE, BEGIN_DATE, END_DATE, SUBCONTRACT_AMT, USER_NUM, ORG_NUM, 
+    CREATE_TIME, UPDATE_TIME, PARTY_ID, BZ, ZGBJXE, JGGZRBLDJ, ZFWYJBL, CHANGE_PERCENT, 
+    JRNCRBZJ, BZJJE, BZJBL, BZJLX, AYLLJX, ANLLJX, JRTZKH, AVI_AMT, TOTAL_AMT, PAPER_CON_NUM, 
+    BZJJXZQ, CON_PARTY_ID, IF_DATA_MOVE, QTJSXFS, PROGUARANTY_WAY, PROGUARANTY_TYPE, 
+    PROGUARANTY_FORM, SUB_SCOPE, DB_RATE
+  </sql>
+  
+</mapper>

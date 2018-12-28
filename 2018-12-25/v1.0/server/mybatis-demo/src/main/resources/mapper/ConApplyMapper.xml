@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+
+/y 8-
+890/<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cdgit.loan.csm.mapper.ConApplyMapper">
-
+、、、、、、、、、、、、、、、、、、、/.,m;nbv c54e3=[poiuy/.n cs ]
   <resultMap id="ApproveConsVo" type="com.cdgit.loan.csm.bean.ApproveConsVo">
 	
   	 <result column="BIZ_TYPE" javaType="String" property="bizType" />

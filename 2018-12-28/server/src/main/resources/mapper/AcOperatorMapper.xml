@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.sysManage.empManage.mapper.AcOperatorMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.sysManage.empManage.bean.AcOperator">
+    <id column="OPERATORID" jdbcType="DECIMAL" property="operatorid" />
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="INVALDATE" jdbcType="TIMESTAMP" property="invaldate" />
+    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+    <result column="AUTHMODE" jdbcType="VARCHAR" property="authmode" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="UNLOCKTIME" jdbcType="TIMESTAMP" property="unlocktime" />
+    <result column="MENUTYPE" jdbcType="VARCHAR" property="menutype" />
+    <result column="LASTLOGIN" jdbcType="TIMESTAMP" property="lastlogin" />
+    <result column="ERRCOUNT" jdbcType="DECIMAL" property="errcount" />
+    <result column="STARTDATE" jdbcType="TIMESTAMP" property="startdate" />
+    <result column="ENDDATE" jdbcType="TIMESTAMP" property="enddate" />
+    <result column="VALIDTIME" jdbcType="VARCHAR" property="validtime" />
+    <result column="MACCODE" jdbcType="VARCHAR" property="maccode" />
+    <result column="IPADDRESS" jdbcType="VARCHAR" property="ipaddress" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="PASSWORD1" jdbcType="VARCHAR" property="password1" />
+    <result column="USERIDMAP" jdbcType="VARCHAR" property="useridmap" />
+    <result column="DYNAMICSWITCH" jdbcType="VARCHAR" property="dynamicswitch" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    OPERATORID, USERID, PASSWORD, INVALDATE, OPERATORNAME, AUTHMODE, STATUS, UNLOCKTIME, 
+    MENUTYPE, LASTLOGIN, ERRCOUNT, STARTDATE, ENDDATE, VALIDTIME, MACCODE, IPADDRESS, 
+    EMAIL, PASSWORD1, USERIDMAP, DYNAMICSWITCH
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from AC_OPERATOR
+    where OPERATORID = #{operatorid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from AC_OPERATOR
+    where OPERATORID = #{operatorid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.sysManage.empManage.bean.AcOperator">
+    insert into AC_OPERATOR (OPERATORID, USERID, PASSWORD, 
+      INVALDATE, OPERATORNAME, AUTHMODE, 
+      STATUS, UNLOCKTIME, MENUTYPE, 
+      LASTLOGIN, ERRCOUNT, STARTDATE, 
+      ENDDATE, VALIDTIME, MACCODE, 
+      IPADDRESS, EMAIL, PASSWORD1, 
+      USERIDMAP, DYNAMICSWITCH)
+    values (#{operatorid,jdbcType=DECIMAL}, #{userid,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{invaldate,jdbcType=TIMESTAMP}, #{operatorname,jdbcType=VARCHAR}, #{authmode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{unlocktime,jdbcType=TIMESTAMP}, #{menutype,jdbcType=VARCHAR}, 
+      #{lastlogin,jdbcType=TIMESTAMP}, #{errcount,jdbcType=DECIMAL}, #{startdate,jdbcType=TIMESTAMP}, 
+      #{enddate,jdbcType=TIMESTAMP}, #{validtime,jdbcType=VARCHAR}, #{maccode,jdbcType=VARCHAR}, 
+      #{ipaddress,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{password1,jdbcType=VARCHAR}, 
+      #{useridmap,jdbcType=VARCHAR}, #{dynamicswitch,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.sysManage.empManage.bean.AcOperator">
+    insert into AC_OPERATOR
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operatorid != null">
+        OPERATORID,
+      </if>
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="invaldate != null">
+        INVALDATE,
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME,
+      </if>
+      <if test="authmode != null">
+        AUTHMODE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="unlocktime != null">
+        UNLOCKTIME,
+      </if>
+      <if test="menutype != null">
+        MENUTYPE,
+      </if>
+      <if test="lastlogin != null">
+        LASTLOGIN,
+      </if>
+      <if test="errcount != null">
+        ERRCOUNT,
+      </if>
+      <if test="startdate != null">
+        STARTDATE,
+      </if>
+      <if test="enddate != null">
+        ENDDATE,
+      </if>
+      <if test="validtime != null">
+        VALIDTIME,
+      </if>
+      <if test="maccode != null">
+        MACCODE,
+      </if>
+      <if test="ipaddress != null">
+        IPADDRESS,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="password1 != null">
+        PASSWORD1,
+      </if>
+      <if test="useridmap != null">
+        USERIDMAP,
+      </if>
+      <if test="dynamicswitch != null">
+        DYNAMICSWITCH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operatorid != null">
+        #{operatorid,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="invaldate != null">
+        #{invaldate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorname != null">
+        #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="authmode != null">
+        #{authmode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="unlocktime != null">
+        #{unlocktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menutype != null">
+        #{menutype,jdbcType=VARCHAR},
+      </if>
+      <if test="lastlogin != null">
+        #{lastlogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errcount != null">
+        #{errcount,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validtime != null">
+        #{validtime,jdbcType=VARCHAR},
+      </if>
+      <if test="maccode != null">
+        #{maccode,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null">
+        #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password1 != null">
+        #{password1,jdbcType=VARCHAR},
+      </if>
+      <if test="useridmap != null">
+        #{useridmap,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicswitch != null">
+        #{dynamicswitch,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.sysManage.empManage.bean.AcOperator">
+    update AC_OPERATOR
+    <set>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="invaldate != null">
+        INVALDATE = #{invaldate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="authmode != null">
+        AUTHMODE = #{authmode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="unlocktime != null">
+        UNLOCKTIME = #{unlocktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menutype != null">
+        MENUTYPE = #{menutype,jdbcType=VARCHAR},
+      </if>
+      <if test="lastlogin != null">
+        LASTLOGIN = #{lastlogin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errcount != null">
+        ERRCOUNT = #{errcount,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null">
+        STARTDATE = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null">
+        ENDDATE = #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validtime != null">
+        VALIDTIME = #{validtime,jdbcType=VARCHAR},
+      </if>
+      <if test="maccode != null">
+        MACCODE = #{maccode,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null">
+        IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password1 != null">
+        PASSWORD1 = #{password1,jdbcType=VARCHAR},
+      </if>
+      <if test="useridmap != null">
+        USERIDMAP = #{useridmap,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicswitch != null">
+        DYNAMICSWITCH = #{dynamicswitch,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OPERATORID = #{operatorid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.sysManage.empManage.bean.AcOperator">
+    update AC_OPERATOR
+    set USERID = #{userid,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      INVALDATE = #{invaldate,jdbcType=TIMESTAMP},
+      OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      AUTHMODE = #{authmode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      UNLOCKTIME = #{unlocktime,jdbcType=TIMESTAMP},
+      MENUTYPE = #{menutype,jdbcType=VARCHAR},
+      LASTLOGIN = #{lastlogin,jdbcType=TIMESTAMP},
+      ERRCOUNT = #{errcount,jdbcType=DECIMAL},
+      STARTDATE = #{startdate,jdbcType=TIMESTAMP},
+      ENDDATE = #{enddate,jdbcType=TIMESTAMP},
+      VALIDTIME = #{validtime,jdbcType=VARCHAR},
+      MACCODE = #{maccode,jdbcType=VARCHAR},
+      IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      PASSWORD1 = #{password1,jdbcType=VARCHAR},
+      USERIDMAP = #{useridmap,jdbcType=VARCHAR},
+      DYNAMICSWITCH = #{dynamicswitch,jdbcType=VARCHAR}
+    where OPERATORID = #{operatorid,jdbcType=DECIMAL}
+  </update>
+</mapper>

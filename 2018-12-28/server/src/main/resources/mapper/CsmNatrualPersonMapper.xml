@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmNatrualPersonMapper"><!-- mapper要记得该过来 -->
+
+  <resultMap id="CsmNatrualPersonVo" type="com.cdgit.loan.csm.bean.CsmNatrualPersonVo">
+
+	<result column="PARTY_ID" javaType="String" property="partyId" />
+	<result column="PARTY_NUM" javaType="String" property="partyNum" /> 
+	
+	<result column="PARTY_NAME" javaType="String" property="partyName" />
+  	<result column="CERT_TYPE" javaType="String" property="certType" />
+  	<result column="CERT_NUM" javaType="String" property="certNum" />
+
+  	<result column="MIDDLE_CODE" javaType="String" property="middelCode" />
+  	<result column="XF_CREDIT_RATING_CD" javaType="String" property="xfCreditRatingCd" />
+  	<result column="JY_CREDIT_RATING_CD" javaType="String" property="jyCreditRatingCd" />
+  	<result column="PARTY_TYPE_CD" javaType="String" property="partyTypeCd" />
+  	<result column="USER_NUM" javaType="String" property="mainUserNum" />
+  	<result column="ORG_NUM" javaType="String" property="mainOrgNum" />
+  	<result column="PF_AMT" javaType="String" property="pfAmt" />
+  	<result column="PF_BALANCE" javaType="String" property="pfBalance" />
+
+
+  </resultMap>
+  
+  
+  
+  <select id="queryNaturalForDesk" parameterType="java.util.HashMap" resultMap="CsmNatrualPersonVo">
+
+	SELECT t1.PARTY_ID,
+         t1.PARTY_NUM,
+         t1.PARTY_NAME,
+         np.CERT_TYPE,
+         np.CERT_NUM,
+         np.MIDDLE_CODE,
+         t5.GENERAL_ADJUST_RATING_CD XF_CREDIT_RATING_CD,
+         t6.GENERAL_ADJUST_RATING_CD JY_CREDIT_RATING_CD,
+         t1.PARTY_TYPE_CD,
+         t1.USER_NUM,
+         t1.org_num,
+         biz.credit_amt pf_amt,
+       	biz.used_amt_real pf_balance
+    FROM TB_CSM_NATURAL_PERSON np
+      left join TB_IRM_INTERNAL_RATING_APPLY t5 on np.party_id = t5.party_id and t5.RATING_STATE = '03' and t5.rating_type='1'
+      left join TB_IRM_INTERNAL_RATING_APPLY t6 on np.party_id = t6.party_id and t6.RATING_STATE = '03' and t6.rating_type='2'
+      left join v_crd_party_limit biz on biz.party_id=np.party_id and biz.limit_type='02'
+      left join TB_LST_INFO T  on np.party_id = T.party_id
+      left join V_CSM_PARTY t1 on np.party_id = t1.party_id
+      left join tb_csm_management_team t3 on t1.party_id=t3.party_id
+    where 
+<!--        
+	   t3.user_num=#{curUserNum} 
+       and t3.org_num=#{orgcode}
+        -->
+       t3.user_num='200555'
+       and t3.org_num='0700'
+       and t1.examine_state='3'
+       and t1.is_potential_cust = '1'  
+
+       and( T.LIST_STATUS != '2' or T.LIST_STATUS is null)
+	  <include refid="query_NaturalForDesk"></include>
+
+		
+
+  </select>
+
+  
+
+
+  
+  
+  
+  
+  <sql id="query_NaturalForDesk">
+
+  		<if test="certType !=null and certType !='' ">
+			 and np.CERT_TYPE=#{certType}
+			
+		</if>
+		<if test="certNum !=null and certNum !='' ">
+			  and np.CERT_NUM =#{certNum}
+			
+		</if>
+		<if test="middelCode !=null and middelCode !='' ">
+			 and np.MIDDLE_CODE =#{middelCode}
+			
+		</if>
+		<if test="partyName !=null and partyName !='' ">
+			 and t1.PARTY_NAME like   '%'||#{partyName}||'%'
+			
+		</if>
+
+  	</sql>
+  
+
+
+
+</mapper>
