@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmNatrualMapper"><!-- mapper要记得该过来 -->
+
+  <resultMap id="CsmNaturalInfoVo" type="com.cdgit.loan.csm.bean.CsmNaturalInfoVo">
+
+	
+	<result column="PARTY_NUM" javaType="String" property="partyNum" /> 
+	<result column="ecif_party_num" javaType="String" property="ecifPartyNum" />
+	<result column="PARTY_NAME" javaType="String" property="partyName" />
+  	<result column="CERT_TYPE" javaType="String" property="certType" />
+  	<result column="CERT_NUM" javaType="String" property="certNum" />
+  	<result column="MIDDLE_CODE" javaType="String" property="middelCode" />
+  	
+  	<result column="is_potential_cust" javaType="String" property="isPotentialCust" />
+  	<result column="cust_type" javaType="String" property="custType" />
+  	<result column="is_third_cust" javaType="String" property="isThirdCust" />
+  	<result column="third_cust_type_cd" javaType="String" property="thirdCustTypeCd" />
+  	<result column="cert_create_date" javaType="String" property="certCreateDate" />
+  	<result column="cert_end_date" javaType="String" property="certEndDate" />
+  	<!-- checkDate没有 -->
+  	<!-- <result column="CHECK_DATE" javaType="String" property="checkDate" /> -->
+  	<result column="resdnt_char_cd" javaType="String" property="resdntCharCd" />
+  	<result column="gender_cd" javaType="String" property="genderCd" />
+  	<result column="birthday" javaType="String" property="birthday" />
+  	<result column="country_sign" javaType="String" property="countrySign" />
+  	<result column="nation" javaType="String" property="nation" />
+  	<result column="marriage_cd" javaType="String" property="marriageCd" />
+  	<result column="is_farmer" javaType="String" property="isFarmer" />
+  	<result column="hukou_registed" javaType="String" property="hukouRegisted" />
+  	<result column="sch_name" javaType="String" property="schName" />
+  	<result column="education_backgroud_cd" javaType="String" property="educationBackgroudCd" />
+  	<result column="degree_cd" javaType="String" property="degreeCd" />
+  	<result column="profession" javaType="String" property="profession" />
+  	<result column="professional_title" javaType="String" property="professionalTitle" />
+  	<result column="accounting_assistant" javaType="String" property="accountingAssistant" />
+  	<result column="position_property" javaType="String" property="positionProperty" />
+  	<result column="nature_of_unit" javaType="String" property="natureOfUnit" />
+  	<result column="scale_of_unit" javaType="String" property="scaleOfUnit" />
+  	<result column="work_years" javaType="String" property="workYears" />
+  	<result column="family_number" javaType="String" property="familyNumber" />
+  	<result column="family_address" javaType="String" property="familyAddress" />
+  	<result column="house_property" javaType="String" property="houseProperty" />
+  	<result column="family_phone" javaType="String" property="familyPhone" />
+  	<result column="communication_address" javaType="String" property="communicationAddress" />
+  	<result column="communication_address_code" javaType="String" property="communicationAddressCode" />
+  	<result column="live_address_code" javaType="String" property="liveAddressCode" />
+  	<result column="industry" javaType="String" property="industry" />
+  	
+  	<result column="phone_number" javaType="String" property="phoneNumber" />
+  	<result column="flg_sms" javaType="String" property="flgSms" />
+  	<result column="weixin_num" javaType="String" property="weixinNum" />
+  	<result column="email" javaType="String" property="email" />
+  	<result column="work_unit" javaType="String" property="workUnit" />
+  	<result column="unit_adress" javaType="String" property="unitAdress" />
+  	<result column="annualsalary" javaType="String" property="annualsalary" />
+  	<result column="unit_phone" javaType="String" property="unitPhone" />
+  	<result column="unit_address_code" javaType="String" property="unitAddressCode" />
+  	<result column="industry_desc" javaType="String" property="industryDesc" />
+  	<result column="joint_guarantee" javaType="String" property="jointGuarantee" />
+  	<result column="stockholder_of_bank" javaType="String" property="stockholderOfBank" />
+  	<result column="is_basebank_rela_cust" javaType="String" property="isBasebankRelaCust" />
+<!--   	<result column="PF_BALANCE" javaType="String" property="isGroupCust" />
+  	<result column="PF_BALANCE" javaType="String" property="attachGroupName" /> -->
+  	<result column="whether_black_list" javaType="String" property="whetherBlackList" />
+  	<result column="black_list_reason" javaType="String" property="blackListReason" />
+  	<result column="is_bank_employee" javaType="String" property="isBankEmployee" />
+  	<result column="ifcertificate" javaType="String" property="ifcertificate" />
+  	<result column="natiflag" javaType="String" property="natiflag" />
+  	
+  	
+  	
+  	<result column="org_num" javaType="String" property="orgNum" />
+  	<result column="user_num" javaType="String" property="userNum" />
+  	<result column="create_time" javaType="String" property="createTime" />
+  	
+  	
+  	
+
+
+  </resultMap>
+  
+  
+  
+  <select id="getNaturalInfo" parameterType="java.util.HashMap" resultMap="CsmNaturalInfoVo">
+SELECT
+	t2.party_num,
+	t2.ecif_party_num,
+	t2.party_name,
+	t1.cert_type,
+	t1.cert_num,
+	t1.middle_code,
+	t2.is_potential_cust,
+	t1.cust_type,
+	t1.is_third_cust,
+	t1.third_cust_type_cd,
+	t1.cert_create_date,
+	t1.cert_end_date,
+<!-- 这里有一个checkDate的属性值 -->
+	t1.resdnt_char_cd,
+	t1.gender_cd,
+	t1.birthday,
+	t1.country_sign,
+	t1.nation,
+	t1.marriage_cd,
+	t1.is_farmer,
+	t1.hukou_registed,
+	t1.sch_name,
+	t1.education_backgroud_cd,
+	t1.degree_cd,
+	t1.profession,
+	t1.professional_title,
+	t1.accounting_assistant,
+	t1.position_property,
+	t1.nature_of_unit,
+	t1.scale_of_unit,
+	t1.work_years,
+	t1.family_number,
+	t1.family_address,
+	t1.house_property,
+	t1.family_phone,
+	t1.communication_address,
+	t1.communication_address_code,
+	t1.live_address_code,
+	t1.industry,
+	t1.phone_number,
+	t1.flg_sms,
+	t1.weixin_num,
+	t1.email,
+	t1.work_unit,
+	t1.unit_adress,
+	t1.annualsalary,
+	t1.unit_phone,
+	t1.unit_address_code,
+	t1.industry_desc,
+	t1.joint_guarantee,
+	t1.stockholder_of_bank,
+	t1.is_basebank_rela_cust,
+<!-- 没有是否集团成员  isGroupCust
+没有attachGroupName -->
+	t1.whether_black_list,
+	t1.black_list_reason,
+	t1.is_bank_employee,
+	t1.ifcertificate,
+	t1.natiflag,
+	t4.org_num,
+	t4.user_num,
+	t1.create_time 
+FROM
+	Tb_Csm_Natural_Person t1,
+	tb_csm_party t2,
+	tb_csm_family_affairs t3,
+	V_CSM_PARTY t4 
+WHERE
+	t1.party_id = t2.party_id 
+	AND t1.party_name = t2.party_name 
+	AND t1.party_id = t3.party_id 
+	AND t1.party_id = t4.party_id 
+<!-- 	and t4.ORG_NUM='0700'
+	and t4.USER_NUM='200555' -->
+	  <include refid="query_getNaturalInfo"></include>
+
+		
+
+  </select>
+
+  
+
+
+  
+  
+  
+  
+  <sql id="query_getNaturalInfo">
+
+  
+		<if test="partyId !=null and partyId !='' ">
+			 and t1.PARTY_ID =#{partyId}
+			
+		</if>
+		<if test="partyName !=null and partyName !='' ">
+			 and t1.PARTY_NAME like   '%'||#{partyName}||'%'
+			
+		</if>
+
+  	</sql>
+  
+
+
+
+</mapper>

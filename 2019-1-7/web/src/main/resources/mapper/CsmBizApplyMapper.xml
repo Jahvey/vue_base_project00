@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmBizApplyMapper">
+
+  <resultMap id="ApplyJxhjBizInfoVo" type="com.cdgit.loan.csm.bean.ApplyJxhjBizInfoVo">
+	<result column="CURRENCY_CD" javaType="String" property="currencyCd" />
+	<result column="BIZ_TYPE" javaType="String" property="bizType" />
+	<result column="AMOUNT_DETAIL_ID" javaType="String" property="amountDetailId" />
+	<result column="SUMMARY_ID" javaType="String" property="summaryId" />
+	<result column="LOAD_ID" javaType="String" property="loanId" />
+	<result column="APPROVE_ID" javaType="String" property="approveId" />
+	<result column="APPLY_ID" javaType="String" property="applyId" />
+	<result column="PARTY_ID" javaType="String" property="partyId" />
+	<result column="PARTY_NAME" javaType="String" property="partyName" />
+	<result column="CONTRACT_NUM" javaType="String" property="contractNum" />
+	<result column="SUMMARY_NUM" javaType="String" property="summaryNum" />
+	<result column="SUMMARY_CURRENCY_CD" javaType="String" property="summaryCurrencyCd" />
+
+  	<result column="SUMMARY_AMT" javaType="String" property="summaryAmt" />
+
+  	
+  	<result column="SUMMARY_STATUS_CD" javaType="String" property="summaryStatusCd" />
+  	<result column="END_DATE" javaType="String" property="endDate" />
+  	<result column="JJYE" javaType="String" property="jjYe" />
+  	<result column="CREDIT_MODE" javaType="String" property="creditMode" />
+
+  </resultMap>
+  
+
+  
+  
+  <!--借新还旧(循环通/续借贷)-->
+    <select id="getApplyJxhjBizInfo" parameterType="java.util.HashMap" resultMap="ApplyJxhjBizInfoVo">
+	    	select 
+    			t.CURRENCY_CD,
+    			b.biz_type,
+    			t.amount_detail_id,
+		       r.summary_id,
+		       r.loan_id,
+		       b.approve_id,
+		       b.apply_id,
+		       p.party_id,
+		       p.party_name,
+		       c.contract_num,
+		       r.summary_num,
+		       r.summary_currency_cd,
+		       r.summary_amt,
+		       r.summary_status_cd,
+		       TO_CHAR(r.end_date, 'YYYY-MM-DD') AS end_date,
+               r.JJYE,
+               t.CREDIT_MODE
+		  from tb_biz_amount_detail_approve t,
+		       tb_loan_summary              r,
+		       tb_loan_info                 w,
+		       tb_con_contract_info         c,
+		       tb_biz_amount_approve        a,
+		       tb_biz_approve               b,
+		       tb_csm_party                 p
+		 where r.loan_id = w.loan_id
+		   and w.contract_id = c.contract_id
+		   and c.amount_detail_id = t.amount_detail_id
+		   and t.amount_id = a.amount_id
+		   and b.approve_id = a.approve_id
+		   and p.party_id = b.party_id
+		   and (c.product_type like '01001%' or c.product_Type like '02001%')
+		   and r.JJYE != 0
+		   
+		<include refid="query_getApplyJxhjBizInfo"></include>
+		         
+
+  </select>
+  
+  
+
+  
+	<sql id="query_getApplyJxhjBizInfo">
+
+		<if test="partyId !=null and partyId !='' ">
+			 and p.PARTY_ID = #{partyId}
+		</if>
+		<if test="bizNum !=null and bizNum !='' ">
+			 and b.biz_num = #{bizNum}
+		</if>
+		<if test="summaryNum !=null and summaryNum !='' ">
+			 and r.summary_num = #{summaryNum}
+		</if>
+
+	</sql>
+</mapper>

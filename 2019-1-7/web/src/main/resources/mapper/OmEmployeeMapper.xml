@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.sysManage.empManage.mapper.OmEmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.sysManage.empManage.bean.OmEmployee">
+    <id column="EMPID" jdbcType="DECIMAL" property="empid" />
+    <result column="EMPCODE" jdbcType="VARCHAR" property="empcode" />
+    <result column="OPERATORID" jdbcType="DECIMAL" property="operatorid" />
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="EMPNAME" jdbcType="VARCHAR" property="empname" />
+    <result column="REALNAME" jdbcType="VARCHAR" property="realname" />
+    <result column="GENDER" jdbcType="VARCHAR" property="gender" />
+    <result column="BIRTHDATE" jdbcType="TIMESTAMP" property="birthdate" />
+    <result column="POSITION" jdbcType="DECIMAL" property="position" />
+    <result column="EMPSTATUS" jdbcType="VARCHAR" property="empstatus" />
+    <result column="CARDTYPE" jdbcType="VARCHAR" property="cardtype" />
+    <result column="CARDNO" jdbcType="VARCHAR" property="cardno" />
+    <result column="INDATE" jdbcType="TIMESTAMP" property="indate" />
+    <result column="OUTDATE" jdbcType="TIMESTAMP" property="outdate" />
+    <result column="OTEL" jdbcType="VARCHAR" property="otel" />
+    <result column="OADDRESS" jdbcType="VARCHAR" property="oaddress" />
+    <result column="OZIPCODE" jdbcType="VARCHAR" property="ozipcode" />
+    <result column="OEMAIL" jdbcType="VARCHAR" property="oemail" />
+    <result column="FAXNO" jdbcType="VARCHAR" property="faxno" />
+    <result column="MOBILENO" jdbcType="VARCHAR" property="mobileno" />
+    <result column="MSN" jdbcType="VARCHAR" property="msn" />
+    <result column="HTEL" jdbcType="VARCHAR" property="htel" />
+    <result column="HADDRESS" jdbcType="VARCHAR" property="haddress" />
+    <result column="HZIPCODE" jdbcType="VARCHAR" property="hzipcode" />
+    <result column="PEMAIL" jdbcType="VARCHAR" property="pemail" />
+    <result column="PARTY" jdbcType="VARCHAR" property="party" />
+    <result column="DEGREE" jdbcType="VARCHAR" property="degree" />
+    <result column="MAJOR" jdbcType="DECIMAL" property="major" />
+    <result column="SPECIALTY" jdbcType="VARCHAR" property="specialty" />
+    <result column="WORKEXP" jdbcType="VARCHAR" property="workexp" />
+    <result column="REGDATE" jdbcType="TIMESTAMP" property="regdate" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="LASTMODYTIME" jdbcType="TIMESTAMP" property="lastmodytime" />
+    <result column="ORGIDLIST" jdbcType="VARCHAR" property="orgidlist" />
+    <result column="ORGID" jdbcType="DECIMAL" property="orgid" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+    <result column="LICENSENO" jdbcType="VARCHAR" property="licenseno" />
+    <result column="INTOTRADEDATE" jdbcType="TIMESTAMP" property="intotradedate" />
+    <result column="RUNMARKDATE" jdbcType="TIMESTAMP" property="runmarkdate" />
+    <result column="EMPLEVEL" jdbcType="VARCHAR" property="emplevel" />
+    <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId" />
+    <result column="INORGID" jdbcType="NUMERIC" property="inorgid" />
+    <result column="INORGNAME" jdbcType="VARCHAR" property="inorgname" />
+    <result column="ORGLEVEL" jdbcType="NUMERIC" property="orglevel" />
+    <result column="ORGCODE" jdbcType="VARCHAR" property="orgcode" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="LASTLOGIN" jdbcType="VARCHAR" property="lastlogin" />
+  </resultMap>
+  <resultMap id="AcOperatorMap" type="com.cdgit.loan.sysManage.empManage.bean.AcOperator">
+    <id column="OPERATORID" jdbcType="DECIMAL" property="operatorid" />
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="INVALDATE" jdbcType="TIMESTAMP" property="invaldate" />
+    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+    <result column="AUTHMODE" jdbcType="VARCHAR" property="authmode" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="UNLOCKTIME" jdbcType="TIMESTAMP" property="unlocktime" />
+    <result column="MENUTYPE" jdbcType="VARCHAR" property="menutype" />
+    <result column="LASTLOGIN" jdbcType="TIMESTAMP" property="lastlogin" />
+    <result column="ERRCOUNT" jdbcType="DECIMAL" property="errcount" />
+    <result column="STARTDATE" jdbcType="TIMESTAMP" property="startdate" />
+    <result column="ENDDATE" jdbcType="TIMESTAMP" property="enddate" />
+    <result column="VALIDTIME" jdbcType="VARCHAR" property="validtime" />
+    <result column="MACCODE" jdbcType="VARCHAR" property="maccode" />
+    <result column="IPADDRESS" jdbcType="VARCHAR" property="ipaddress" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="PASSWORD1" jdbcType="VARCHAR" property="password1" />
+    <result column="USERIDMAP" jdbcType="VARCHAR" property="useridmap" />
+    <result column="DYNAMICSWITCH" jdbcType="VARCHAR" property="dynamicswitch" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EMPID, EMPCODE, OPERATORID, USERID, EMPNAME, REALNAME, GENDER, BIRTHDATE, POSITION, 
+    EMPSTATUS, CARDTYPE, CARDNO, INDATE, OUTDATE, OTEL, OADDRESS, OZIPCODE, OEMAIL, FAXNO, 
+    MOBILENO, MSN, HTEL, HADDRESS, HZIPCODE, PEMAIL, PARTY, DEGREE, MAJOR, SPECIALTY, 
+    WORKEXP, REGDATE, CREATETIME, LASTMODYTIME, ORGIDLIST, ORGID, REMARK, EDUCATION, 
+    LICENSENO, INTOTRADEDATE, RUNMARKDATE, EMPLEVEL, DEPARTMENT_ID
+  </sql>
+ <!--  <select id="queryEmployee" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+       FROM OM_EMPLOYEE WHERE 1=1
+       <if test="empcode != null and empname != '' " > 
+       AND EMPCODE LIKE  '%'||#{empcode}||'%'
+       </if>
+       <if test="empname != null and empname != '' "> 
+       AND EMPNAME LIKE  '%'||#{empname}||'%'
+       </if>
+       <if test="orgid != null and orgid != '' "> 
+       AND ORGID LIKE  '%'||#{orgid}||'%'
+       </if>
+  </select>	 -->
+  <select id="selectEmployeeByEmpcode" parameterType="java.lang.String" resultMap="BaseResultMap" >
+       SELECT 
+       *
+       FROM OM_EMPLOYEE WHERE EMPCODE =  #{empcode}
+  </select>
+  <select id="queryEmployeeByTemp" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    	select eo.orgid as inorgid,
+	       o.orgname as inorgname,
+	       o.orglevel as orglevel,
+	       o.orgcode as orgcode,
+	       e.*,
+	       opr.status as status,
+	       to_Char(opr.lastlogin , 'YYYY-MM-DD HH24:MI:SS') as lastlogin
+		from om_emporg eo 
+		  inner join om_employee e on eo.empid=e.empid
+		  inner join om_organization o on eo.orgid=o.orgid
+		  left outer join ac_operator opr on e.operatorid=opr.operatorid
+        where 1=1
+        <if test="inorgid != null and inorgid != '' " > 
+             and o.orgid = #{inorgid}
+        </if>
+        <if test="empcode != null and empcode != '' " > 
+             and e.empcode = #{empcode}
+        </if>
+        <if test="empname != null and empname != '' " > 
+             and e.empname like '%'||#{empname}||'%'
+        </if>
+        <if test="orgname != null and orgname != '' " > 
+             and o.orgname like '%'||#{orgname}||'%'
+        </if>
+        <if test="status != null and status != '' " > 
+             and opr.status =  #{status}
+        </if>
+        <!-- <if test="orgseq != null and orgseq != '' " > 
+             o.orgseq like '%'||#{orgseq}||'%'
+        </if>
+        <if test="empstatus != null and empstatus != '' " > 
+             e.empstatus = #{empstatus} 
+        </if>
+        <if test="departmentId != null and departmentId != '' " > 
+             e.department_Id = #{departmentId}
+        </if> -->
+        order by o.orglevel
+  </select>
+  <!-- 更新操作者状态  参数： user_id 用户号  status  用户状态  -->
+  <update id="updateOperatorStatus"  parameterType="java.util.Map">
+      UPDATE AC_OPERATOR T SET T.STATUS = #{status} WHERE T.USERID = #{userid}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from OM_EMPLOYEE
+    where EMPID = #{empid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from OM_EMPLOYEE
+    where EMPID = #{empid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="addEmporg" parameterType="com.cdgit.loan.sysManage.empManage.bean.OmEmpOrg">
+   insert into om_emporg  select t1.orgid,t1.empid,'1' from om_employee t1 where t1.empcode = #{empcode}
+  </insert>
+  <insert id="insert" parameterType="com.cdgit.loan.sysManage.empManage.bean.OmEmployee">
+    insert into OM_EMPLOYEE (EMPID, EMPCODE, OPERATORID, 
+      USERID, EMPNAME, REALNAME, 
+      GENDER, BIRTHDATE, POSITION, 
+      EMPSTATUS, CARDTYPE, CARDNO, 
+      INDATE, OUTDATE, OTEL, 
+      OADDRESS, OZIPCODE, OEMAIL, 
+      FAXNO, MOBILENO, MSN, 
+      HTEL, HADDRESS, HZIPCODE, 
+      PEMAIL, PARTY, DEGREE, 
+      MAJOR, SPECIALTY, WORKEXP, 
+      REGDATE, CREATETIME, LASTMODYTIME, 
+      ORGIDLIST, ORGID, REMARK, 
+      EDUCATION, LICENSENO, INTOTRADEDATE, 
+      RUNMARKDATE, EMPLEVEL, DEPARTMENT_ID
+      )
+    values (#{empid,jdbcType=DECIMAL}, #{empcode,jdbcType=VARCHAR}, #{operatorid,jdbcType=DECIMAL}, 
+      #{userid,jdbcType=VARCHAR}, #{empname,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{birthdate,jdbcType=TIMESTAMP}, #{position,jdbcType=DECIMAL}, 
+      #{empstatus,jdbcType=VARCHAR}, #{cardtype,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, 
+      #{indate,jdbcType=TIMESTAMP}, #{outdate,jdbcType=TIMESTAMP}, #{otel,jdbcType=VARCHAR}, 
+      #{oaddress,jdbcType=VARCHAR}, #{ozipcode,jdbcType=VARCHAR}, #{oemail,jdbcType=VARCHAR}, 
+      #{faxno,jdbcType=VARCHAR}, #{mobileno,jdbcType=VARCHAR}, #{msn,jdbcType=VARCHAR}, 
+      #{htel,jdbcType=VARCHAR}, #{haddress,jdbcType=VARCHAR}, #{hzipcode,jdbcType=VARCHAR}, 
+      #{pemail,jdbcType=VARCHAR}, #{party,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
+      #{major,jdbcType=DECIMAL}, #{specialty,jdbcType=VARCHAR}, #{workexp,jdbcType=VARCHAR}, 
+      #{regdate,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{lastmodytime,jdbcType=TIMESTAMP}, 
+      #{orgidlist,jdbcType=VARCHAR}, #{orgid,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{licenseno,jdbcType=VARCHAR}, #{intotradedate,jdbcType=TIMESTAMP}, 
+      #{runmarkdate,jdbcType=TIMESTAMP}, #{emplevel,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.sysManage.empManage.bean.OmEmployee">
+    insert into OM_EMPLOYEE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        EMPID,
+      <if test="empcode != null">
+        EMPCODE,
+      </if>
+      <if test="operatorid != null">
+        OPERATORID,
+      </if>
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="empname != null">
+        EMPNAME,
+      </if>
+      <if test="realname != null">
+        REALNAME,
+      </if>
+      <if test="gender != null">
+        GENDER,
+      </if>
+      <if test="birthdate != null">
+        BIRTHDATE,
+      </if>
+      <if test="position != null">
+        POSITION,
+      </if>
+      <if test="empstatus != null">
+        EMPSTATUS,
+      </if>
+      <if test="cardtype != null">
+        CARDTYPE,
+      </if>
+      <if test="cardno != null">
+        CARDNO,
+      </if>
+      <if test="indate != null">
+        INDATE,
+      </if>
+      <if test="outdate != null">
+        OUTDATE,
+      </if>
+      <if test="otel != null">
+        OTEL,
+      </if>
+      <if test="oaddress != null">
+        OADDRESS,
+      </if>
+      <if test="ozipcode != null">
+        OZIPCODE,
+      </if>
+      <if test="oemail != null">
+        OEMAIL,
+      </if>
+      <if test="faxno != null">
+        FAXNO,
+      </if>
+      <if test="mobileno != null">
+        MOBILENO,
+      </if>
+      <if test="msn != null">
+        MSN,
+      </if>
+      <if test="htel != null">
+        HTEL,
+      </if>
+      <if test="haddress != null">
+        HADDRESS,
+      </if>
+      <if test="hzipcode != null">
+        HZIPCODE,
+      </if>
+      <if test="pemail != null">
+        PEMAIL,
+      </if>
+      <if test="party != null">
+        PARTY,
+      </if>
+      <if test="degree != null">
+        DEGREE,
+      </if>
+      <if test="major != null">
+        MAJOR,
+      </if>
+      <if test="specialty != null">
+        SPECIALTY,
+      </if>
+      <if test="workexp != null">
+        WORKEXP,
+      </if>
+      <if test="regdate != null">
+        REGDATE,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="lastmodytime != null">
+        LASTMODYTIME,
+      </if>
+      <if test="orgidlist != null">
+        ORGIDLIST,
+      </if>
+      <if test="orgid != null">
+        ORGID,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="education != null">
+        EDUCATION,
+      </if>
+      <if test="licenseno != null">
+        LICENSENO,
+      </if>
+      <if test="intotradedate != null">
+        INTOTRADEDATE,
+      </if>
+      <if test="runmarkdate != null">
+        RUNMARKDATE,
+      </if>
+      <if test="emplevel != null">
+        EMPLEVEL,
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+        SEQ_OM_EMPLOYEE.NEXTVAL,
+      <if test="empcode != null">
+        #{empcode,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorid != null">
+        #{operatorid,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="empname != null">
+        #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null">
+        #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=DECIMAL},
+      </if>
+      <if test="empstatus != null">
+        #{empstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null">
+        #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null">
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="indate != null">
+        #{indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outdate != null">
+        #{outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otel != null">
+        #{otel,jdbcType=VARCHAR},
+      </if>
+      <if test="oaddress != null">
+        #{oaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ozipcode != null">
+        #{ozipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="oemail != null">
+        #{oemail,jdbcType=VARCHAR},
+      </if>
+      <if test="faxno != null">
+        #{faxno,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="msn != null">
+        #{msn,jdbcType=VARCHAR},
+      </if>
+      <if test="htel != null">
+        #{htel,jdbcType=VARCHAR},
+      </if>
+      <if test="haddress != null">
+        #{haddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hzipcode != null">
+        #{hzipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pemail != null">
+        #{pemail,jdbcType=VARCHAR},
+      </if>
+      <if test="party != null">
+        #{party,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null">
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=DECIMAL},
+      </if>
+      <if test="specialty != null">
+        #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="workexp != null">
+        #{workexp,jdbcType=VARCHAR},
+      </if>
+      <if test="regdate != null">
+        #{regdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodytime != null">
+        #{lastmodytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgidlist != null">
+        #{orgidlist,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null">
+        #{orgid,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseno != null">
+        #{licenseno,jdbcType=VARCHAR},
+      </if>
+      <if test="intotradedate != null">
+        #{intotradedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="runmarkdate != null">
+        #{runmarkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emplevel != null">
+        #{emplevel,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.sysManage.empManage.bean.OmEmployee">
+    update OM_EMPLOYEE
+    <set>
+      <if test="empcode != null">
+        EMPCODE = #{empcode,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorid != null">
+        OPERATORID = #{operatorid,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="empname != null">
+        EMPNAME = #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        REALNAME = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        GENDER = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null">
+        BIRTHDATE = #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null">
+        POSITION = #{position,jdbcType=DECIMAL},
+      </if>
+      <if test="empstatus != null">
+        EMPSTATUS = #{empstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null">
+        CARDTYPE = #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null">
+        CARDNO = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="indate != null">
+        INDATE = #{indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outdate != null">
+        OUTDATE = #{outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otel != null">
+        OTEL = #{otel,jdbcType=VARCHAR},
+      </if>
+      <if test="oaddress != null">
+        OADDRESS = #{oaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ozipcode != null">
+        OZIPCODE = #{ozipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="oemail != null">
+        OEMAIL = #{oemail,jdbcType=VARCHAR},
+      </if>
+      <if test="faxno != null">
+        FAXNO = #{faxno,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileno != null">
+        MOBILENO = #{mobileno,jdbcType=VARCHAR},
+      </if>
+      <if test="msn != null">
+        MSN = #{msn,jdbcType=VARCHAR},
+      </if>
+      <if test="htel != null">
+        HTEL = #{htel,jdbcType=VARCHAR},
+      </if>
+      <if test="haddress != null">
+        HADDRESS = #{haddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hzipcode != null">
+        HZIPCODE = #{hzipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pemail != null">
+        PEMAIL = #{pemail,jdbcType=VARCHAR},
+      </if>
+      <if test="party != null">
+        PARTY = #{party,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null">
+        DEGREE = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        MAJOR = #{major,jdbcType=DECIMAL},
+      </if>
+      <if test="specialty != null">
+        SPECIALTY = #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="workexp != null">
+        WORKEXP = #{workexp,jdbcType=VARCHAR},
+      </if>
+      <if test="regdate != null">
+        REGDATE = #{regdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodytime != null">
+        LASTMODYTIME = #{lastmodytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgidlist != null">
+        ORGIDLIST = #{orgidlist,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null">
+        ORGID = #{orgid,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        EDUCATION = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseno != null">
+        LICENSENO = #{licenseno,jdbcType=VARCHAR},
+      </if>
+      <if test="intotradedate != null">
+        INTOTRADEDATE = #{intotradedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="runmarkdate != null">
+        RUNMARKDATE = #{runmarkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emplevel != null">
+        EMPLEVEL = #{emplevel,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EMPID = #{empid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.sysManage.empManage.bean.OmEmployee">
+    update OM_EMPLOYEE
+    set EMPCODE = #{empcode,jdbcType=VARCHAR},
+      OPERATORID = #{operatorid,jdbcType=DECIMAL},
+      USERID = #{userid,jdbcType=VARCHAR},
+      EMPNAME = #{empname,jdbcType=VARCHAR},
+      REALNAME = #{realname,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=VARCHAR},
+      BIRTHDATE = #{birthdate,jdbcType=TIMESTAMP},
+      POSITION = #{position,jdbcType=DECIMAL},
+      EMPSTATUS = #{empstatus,jdbcType=VARCHAR},
+      CARDTYPE = #{cardtype,jdbcType=VARCHAR},
+      CARDNO = #{cardno,jdbcType=VARCHAR},
+      INDATE = #{indate,jdbcType=TIMESTAMP},
+      OUTDATE = #{outdate,jdbcType=TIMESTAMP},
+      OTEL = #{otel,jdbcType=VARCHAR},
+      OADDRESS = #{oaddress,jdbcType=VARCHAR},
+      OZIPCODE = #{ozipcode,jdbcType=VARCHAR},
+      OEMAIL = #{oemail,jdbcType=VARCHAR},
+      FAXNO = #{faxno,jdbcType=VARCHAR},
+      MOBILENO = #{mobileno,jdbcType=VARCHAR},
+      MSN = #{msn,jdbcType=VARCHAR},
+      HTEL = #{htel,jdbcType=VARCHAR},
+      HADDRESS = #{haddress,jdbcType=VARCHAR},
+      HZIPCODE = #{hzipcode,jdbcType=VARCHAR},
+      PEMAIL = #{pemail,jdbcType=VARCHAR},
+      PARTY = #{party,jdbcType=VARCHAR},
+      DEGREE = #{degree,jdbcType=VARCHAR},
+      MAJOR = #{major,jdbcType=DECIMAL},
+      SPECIALTY = #{specialty,jdbcType=VARCHAR},
+      WORKEXP = #{workexp,jdbcType=VARCHAR},
+      REGDATE = #{regdate,jdbcType=TIMESTAMP},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      LASTMODYTIME = #{lastmodytime,jdbcType=TIMESTAMP},
+      ORGIDLIST = #{orgidlist,jdbcType=VARCHAR},
+      ORGID = #{orgid,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      EDUCATION = #{education,jdbcType=VARCHAR},
+      LICENSENO = #{licenseno,jdbcType=VARCHAR},
+      INTOTRADEDATE = #{intotradedate,jdbcType=TIMESTAMP},
+      RUNMARKDATE = #{runmarkdate,jdbcType=TIMESTAMP},
+      EMPLEVEL = #{emplevel,jdbcType=VARCHAR},
+      DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR}
+    where EMPID = #{empid,jdbcType=DECIMAL}
+  </update>
+</mapper>
