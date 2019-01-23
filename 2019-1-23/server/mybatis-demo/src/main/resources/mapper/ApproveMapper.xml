@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.approve.mapper.ApproveMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.approve.bean.Approve">
+    <id column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+    <result column="BIZ_NUM" jdbcType="VARCHAR" property="bizNum" />
+    <result column="BIZ_TYPE" jdbcType="VARCHAR" property="bizType" />
+    <result column="LOW_RISK_BIZ_TYPE" jdbcType="VARCHAR" property="lowRiskBizType" />
+    <result column="APPLY_MODE_TYPE" jdbcType="VARCHAR" property="applyModeType" />
+    <result column="BIZ_HAPPEN_TYPE" jdbcType="VARCHAR" property="bizHappenType" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="BUSINESS_PRODUCT" jdbcType="VARCHAR" property="businessProduct" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="HANDING_DATE" jdbcType="TIMESTAMP" property="handingDate" />
+    <result column="AMOUNT_TYPE" jdbcType="VARCHAR" property="amountType" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CSM_CRD_LEVEL" jdbcType="VARCHAR" property="csmCrdLevel" />
+    <result column="APPROVAL_NUM" jdbcType="VARCHAR" property="approvalNum" />
+    <result column="BECOME_EFFECTIVE_MARK" jdbcType="VARCHAR" property="becomeEffectiveMark" />
+    <result column="ORIGINAL_APPROVE_ID" jdbcType="VARCHAR" property="originalApproveId" />
+    <result column="IS_BANK_TEAM_LOAN" jdbcType="VARCHAR" property="isBankTeamLoan" />
+    <result column="LOAN_INSPECTION_FRE" jdbcType="DECIMAL" property="loanInspectionFre" />
+    <result column="POLICY_DECISION_IDEA" jdbcType="VARCHAR" property="policyDecisionIdea" />
+    <result column="VALID_DATE" jdbcType="TIMESTAMP" property="validDate" />
+    <result column="POLICY_DECISION_NUM" jdbcType="VARCHAR" property="policyDecisionNum" />
+    <result column="APPLY_TYPE_MARK" jdbcType="VARCHAR" property="applyTypeMark" />
+    <result column="APPROVE_CONCLUSION" jdbcType="VARCHAR" property="approveConclusion" />
+    <result column="END_ORG_NUM" jdbcType="VARCHAR" property="endOrgNum" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="BIZ_HAPPEN_NATURE" jdbcType="VARCHAR" property="bizHappenNature" />
+    <result column="IS_GREEN_LOAN" jdbcType="VARCHAR" property="isGreenLoan" />
+    <result column="LOAN_TYPE" jdbcType="VARCHAR" property="loanType" />
+    <result column="BIZ_TYPE_FLAG" jdbcType="VARCHAR" property="bizTypeFlag" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="TERM_NUM" jdbcType="DECIMAL" property="termNum" />
+    <result column="TERM_UNIT" jdbcType="VARCHAR" property="termUnit" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="BO_USE" jdbcType="DECIMAL" property="boUse" />
+    <result column="NO_USE" jdbcType="DECIMAL" property="noUse" />
+    <result column="CRD_ID" jdbcType="VARCHAR" property="crdId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPROVE_ID, BIZ_NUM, BIZ_TYPE, LOW_RISK_BIZ_TYPE, APPLY_MODE_TYPE, BIZ_HAPPEN_TYPE, 
+    ORG_NUM, USER_NUM, PARTY_ID, BUSINESS_PRODUCT, PRODUCT_TYPE, APPLY_DATE, HANDING_DATE, 
+    AMOUNT_TYPE, CREATE_TIME, UPDATE_TIME, CSM_CRD_LEVEL, APPROVAL_NUM, BECOME_EFFECTIVE_MARK, 
+    ORIGINAL_APPROVE_ID, IS_BANK_TEAM_LOAN, LOAN_INSPECTION_FRE, POLICY_DECISION_IDEA, 
+    VALID_DATE, POLICY_DECISION_NUM, APPLY_TYPE_MARK, APPROVE_CONCLUSION, END_ORG_NUM, 
+    END_DATE, IF_DATA_MOVE, APPLY_ID, BIZ_HAPPEN_NATURE, IS_GREEN_LOAN, LOAN_TYPE, BIZ_TYPE_FLAG, 
+    GUARANTY_TYPE, TERM_NUM, TERM_UNIT, RMB_AMT, BO_USE, NO_USE, CRD_ID, CREDIT_MODE
+  </sql>
+  <!-- 1.1	本行融资情况  批复-->
+  <select id="financingList" parameterType="java.lang.String" resultMap="BaseResultMap">
+		  SELECT DISTINCT V.PARTY_ID partyId,
+           V.PARTY_NUM partyNum,
+           V.PARTY_NAME partyName,
+           T.APPROVAL_NUM,
+           T.BIZ_TYPE,
+           'CNY' AS BZ,
+           TA.Credit_Amount AS creditAmount,
+           TA.Credit_Amount-TA.Credit_Avi AS availableAmt,
+           T.Valid_Date as startDate,
+           T.End_Date,
+           T.USER_NUM,
+           T.ORG_NUM
+      FROM TB_BIZ_APPROVE T, Tb_Biz_Amount_Approve TA, V_CSM_PARTY V
+     WHERE T.Approve_Id = TA.Approve_Id
+       AND T.PARTY_ID = V.PARTY_ID
+       AND T.BECOME_EFFECTIVE_MARK = '03'
+       AND T.APPROVE_CONCLUSION IN('1','3')
+		AND T.PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_APPROVE
+    where APPROVE_ID = #{approveId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_APPROVE
+    where APPROVE_ID = #{approveId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.approve.bean.Approve">
+    insert into TB_BIZ_APPROVE (APPROVE_ID, BIZ_NUM, BIZ_TYPE, 
+      LOW_RISK_BIZ_TYPE, APPLY_MODE_TYPE, BIZ_HAPPEN_TYPE, 
+      ORG_NUM, USER_NUM, PARTY_ID, 
+      BUSINESS_PRODUCT, PRODUCT_TYPE, APPLY_DATE, 
+      HANDING_DATE, AMOUNT_TYPE, CREATE_TIME, 
+      UPDATE_TIME, CSM_CRD_LEVEL, APPROVAL_NUM, 
+      BECOME_EFFECTIVE_MARK, ORIGINAL_APPROVE_ID, 
+      IS_BANK_TEAM_LOAN, LOAN_INSPECTION_FRE, POLICY_DECISION_IDEA, 
+      VALID_DATE, POLICY_DECISION_NUM, APPLY_TYPE_MARK, 
+      APPROVE_CONCLUSION, END_ORG_NUM, END_DATE, 
+      IF_DATA_MOVE, APPLY_ID, BIZ_HAPPEN_NATURE, 
+      IS_GREEN_LOAN, LOAN_TYPE, BIZ_TYPE_FLAG, 
+      GUARANTY_TYPE, TERM_NUM, TERM_UNIT, 
+      RMB_AMT, BO_USE, NO_USE, 
+      CRD_ID, CREDIT_MODE)
+    values (#{approveId,jdbcType=VARCHAR}, #{bizNum,jdbcType=VARCHAR}, #{bizType,jdbcType=VARCHAR}, 
+      #{lowRiskBizType,jdbcType=VARCHAR}, #{applyModeType,jdbcType=VARCHAR}, #{bizHappenType,jdbcType=VARCHAR}, 
+      #{orgNum,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, 
+      #{businessProduct,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, 
+      #{handingDate,jdbcType=TIMESTAMP}, #{amountType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{csmCrdLevel,jdbcType=VARCHAR}, #{approvalNum,jdbcType=VARCHAR}, 
+      #{becomeEffectiveMark,jdbcType=VARCHAR}, #{originalApproveId,jdbcType=VARCHAR}, 
+      #{isBankTeamLoan,jdbcType=VARCHAR}, #{loanInspectionFre,jdbcType=DECIMAL}, #{policyDecisionIdea,jdbcType=VARCHAR}, 
+      #{validDate,jdbcType=TIMESTAMP}, #{policyDecisionNum,jdbcType=VARCHAR}, #{applyTypeMark,jdbcType=VARCHAR}, 
+      #{approveConclusion,jdbcType=VARCHAR}, #{endOrgNum,jdbcType=VARCHAR}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{ifDataMove,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{bizHappenNature,jdbcType=VARCHAR}, 
+      #{isGreenLoan,jdbcType=VARCHAR}, #{loanType,jdbcType=VARCHAR}, #{bizTypeFlag,jdbcType=VARCHAR}, 
+      #{guarantyType,jdbcType=VARCHAR}, #{termNum,jdbcType=DECIMAL}, #{termUnit,jdbcType=VARCHAR}, 
+      #{rmbAmt,jdbcType=DECIMAL}, #{boUse,jdbcType=DECIMAL}, #{noUse,jdbcType=DECIMAL}, 
+      #{crdId,jdbcType=VARCHAR}, #{creditMode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.approve.bean.Approve">
+    insert into TB_BIZ_APPROVE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="approveId != null">
+        APPROVE_ID,
+      </if>
+      <if test="bizNum != null">
+        BIZ_NUM,
+      </if>
+      <if test="bizType != null">
+        BIZ_TYPE,
+      </if>
+      <if test="lowRiskBizType != null">
+        LOW_RISK_BIZ_TYPE,
+      </if>
+      <if test="applyModeType != null">
+        APPLY_MODE_TYPE,
+      </if>
+      <if test="bizHappenType != null">
+        BIZ_HAPPEN_TYPE,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="businessProduct != null">
+        BUSINESS_PRODUCT,
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE,
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE,
+      </if>
+      <if test="handingDate != null">
+        HANDING_DATE,
+      </if>
+      <if test="amountType != null">
+        AMOUNT_TYPE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="csmCrdLevel != null">
+        CSM_CRD_LEVEL,
+      </if>
+      <if test="approvalNum != null">
+        APPROVAL_NUM,
+      </if>
+      <if test="becomeEffectiveMark != null">
+        BECOME_EFFECTIVE_MARK,
+      </if>
+      <if test="originalApproveId != null">
+        ORIGINAL_APPROVE_ID,
+      </if>
+      <if test="isBankTeamLoan != null">
+        IS_BANK_TEAM_LOAN,
+      </if>
+      <if test="loanInspectionFre != null">
+        LOAN_INSPECTION_FRE,
+      </if>
+      <if test="policyDecisionIdea != null">
+        POLICY_DECISION_IDEA,
+      </if>
+      <if test="validDate != null">
+        VALID_DATE,
+      </if>
+      <if test="policyDecisionNum != null">
+        POLICY_DECISION_NUM,
+      </if>
+      <if test="applyTypeMark != null">
+        APPLY_TYPE_MARK,
+      </if>
+      <if test="approveConclusion != null">
+        APPROVE_CONCLUSION,
+      </if>
+      <if test="endOrgNum != null">
+        END_ORG_NUM,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="bizHappenNature != null">
+        BIZ_HAPPEN_NATURE,
+      </if>
+      <if test="isGreenLoan != null">
+        IS_GREEN_LOAN,
+      </if>
+      <if test="loanType != null">
+        LOAN_TYPE,
+      </if>
+      <if test="bizTypeFlag != null">
+        BIZ_TYPE_FLAG,
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE,
+      </if>
+      <if test="termNum != null">
+        TERM_NUM,
+      </if>
+      <if test="termUnit != null">
+        TERM_UNIT,
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT,
+      </if>
+      <if test="boUse != null">
+        BO_USE,
+      </if>
+      <if test="noUse != null">
+        NO_USE,
+      </if>
+      <if test="crdId != null">
+        CRD_ID,
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="approveId != null">
+        #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizNum != null">
+        #{bizNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bizType != null">
+        #{bizType,jdbcType=VARCHAR},
+      </if>
+      <if test="lowRiskBizType != null">
+        #{lowRiskBizType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyModeType != null">
+        #{applyModeType,jdbcType=VARCHAR},
+      </if>
+      <if test="bizHappenType != null">
+        #{bizHappenType,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProduct != null">
+        #{businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handingDate != null">
+        #{handingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountType != null">
+        #{amountType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="csmCrdLevel != null">
+        #{csmCrdLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalNum != null">
+        #{approvalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="becomeEffectiveMark != null">
+        #{becomeEffectiveMark,jdbcType=VARCHAR},
+      </if>
+      <if test="originalApproveId != null">
+        #{originalApproveId,jdbcType=VARCHAR},
+      </if>
+      <if test="isBankTeamLoan != null">
+        #{isBankTeamLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInspectionFre != null">
+        #{loanInspectionFre,jdbcType=DECIMAL},
+      </if>
+      <if test="policyDecisionIdea != null">
+        #{policyDecisionIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null">
+        #{validDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="policyDecisionNum != null">
+        #{policyDecisionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTypeMark != null">
+        #{applyTypeMark,jdbcType=VARCHAR},
+      </if>
+      <if test="approveConclusion != null">
+        #{approveConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="endOrgNum != null">
+        #{endOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifDataMove != null">
+        #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizHappenNature != null">
+        #{bizHappenNature,jdbcType=VARCHAR},
+      </if>
+      <if test="isGreenLoan != null">
+        #{isGreenLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="loanType != null">
+        #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="bizTypeFlag != null">
+        #{bizTypeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyType != null">
+        #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="termNum != null">
+        #{termNum,jdbcType=DECIMAL},
+      </if>
+      <if test="termUnit != null">
+        #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="rmbAmt != null">
+        #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="boUse != null">
+        #{boUse,jdbcType=DECIMAL},
+      </if>
+      <if test="noUse != null">
+        #{noUse,jdbcType=DECIMAL},
+      </if>
+      <if test="crdId != null">
+        #{crdId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        #{creditMode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.approve.bean.Approve">
+    update TB_BIZ_APPROVE
+    <set>
+      <if test="bizNum != null">
+        BIZ_NUM = #{bizNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bizType != null">
+        BIZ_TYPE = #{bizType,jdbcType=VARCHAR},
+      </if>
+      <if test="lowRiskBizType != null">
+        LOW_RISK_BIZ_TYPE = #{lowRiskBizType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyModeType != null">
+        APPLY_MODE_TYPE = #{applyModeType,jdbcType=VARCHAR},
+      </if>
+      <if test="bizHappenType != null">
+        BIZ_HAPPEN_TYPE = #{bizHappenType,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessProduct != null">
+        BUSINESS_PRODUCT = #{businessProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handingDate != null">
+        HANDING_DATE = #{handingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountType != null">
+        AMOUNT_TYPE = #{amountType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="csmCrdLevel != null">
+        CSM_CRD_LEVEL = #{csmCrdLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalNum != null">
+        APPROVAL_NUM = #{approvalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="becomeEffectiveMark != null">
+        BECOME_EFFECTIVE_MARK = #{becomeEffectiveMark,jdbcType=VARCHAR},
+      </if>
+      <if test="originalApproveId != null">
+        ORIGINAL_APPROVE_ID = #{originalApproveId,jdbcType=VARCHAR},
+      </if>
+      <if test="isBankTeamLoan != null">
+        IS_BANK_TEAM_LOAN = #{isBankTeamLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInspectionFre != null">
+        LOAN_INSPECTION_FRE = #{loanInspectionFre,jdbcType=DECIMAL},
+      </if>
+      <if test="policyDecisionIdea != null">
+        POLICY_DECISION_IDEA = #{policyDecisionIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null">
+        VALID_DATE = #{validDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="policyDecisionNum != null">
+        POLICY_DECISION_NUM = #{policyDecisionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTypeMark != null">
+        APPLY_TYPE_MARK = #{applyTypeMark,jdbcType=VARCHAR},
+      </if>
+      <if test="approveConclusion != null">
+        APPROVE_CONCLUSION = #{approveConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="endOrgNum != null">
+        END_ORG_NUM = #{endOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizHappenNature != null">
+        BIZ_HAPPEN_NATURE = #{bizHappenNature,jdbcType=VARCHAR},
+      </if>
+      <if test="isGreenLoan != null">
+        IS_GREEN_LOAN = #{isGreenLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="loanType != null">
+        LOAN_TYPE = #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="bizTypeFlag != null">
+        BIZ_TYPE_FLAG = #{bizTypeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="termNum != null">
+        TERM_NUM = #{termNum,jdbcType=DECIMAL},
+      </if>
+      <if test="termUnit != null">
+        TERM_UNIT = #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="boUse != null">
+        BO_USE = #{boUse,jdbcType=DECIMAL},
+      </if>
+      <if test="noUse != null">
+        NO_USE = #{noUse,jdbcType=DECIMAL},
+      </if>
+      <if test="crdId != null">
+        CRD_ID = #{crdId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE = #{creditMode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPROVE_ID = #{approveId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.approve.bean.Approve">
+    update TB_BIZ_APPROVE
+    set BIZ_NUM = #{bizNum,jdbcType=VARCHAR},
+      BIZ_TYPE = #{bizType,jdbcType=VARCHAR},
+      LOW_RISK_BIZ_TYPE = #{lowRiskBizType,jdbcType=VARCHAR},
+      APPLY_MODE_TYPE = #{applyModeType,jdbcType=VARCHAR},
+      BIZ_HAPPEN_TYPE = #{bizHappenType,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      BUSINESS_PRODUCT = #{businessProduct,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      HANDING_DATE = #{handingDate,jdbcType=TIMESTAMP},
+      AMOUNT_TYPE = #{amountType,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CSM_CRD_LEVEL = #{csmCrdLevel,jdbcType=VARCHAR},
+      APPROVAL_NUM = #{approvalNum,jdbcType=VARCHAR},
+      BECOME_EFFECTIVE_MARK = #{becomeEffectiveMark,jdbcType=VARCHAR},
+      ORIGINAL_APPROVE_ID = #{originalApproveId,jdbcType=VARCHAR},
+      IS_BANK_TEAM_LOAN = #{isBankTeamLoan,jdbcType=VARCHAR},
+      LOAN_INSPECTION_FRE = #{loanInspectionFre,jdbcType=DECIMAL},
+      POLICY_DECISION_IDEA = #{policyDecisionIdea,jdbcType=VARCHAR},
+      VALID_DATE = #{validDate,jdbcType=TIMESTAMP},
+      POLICY_DECISION_NUM = #{policyDecisionNum,jdbcType=VARCHAR},
+      APPLY_TYPE_MARK = #{applyTypeMark,jdbcType=VARCHAR},
+      APPROVE_CONCLUSION = #{approveConclusion,jdbcType=VARCHAR},
+      END_ORG_NUM = #{endOrgNum,jdbcType=VARCHAR},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      BIZ_HAPPEN_NATURE = #{bizHappenNature,jdbcType=VARCHAR},
+      IS_GREEN_LOAN = #{isGreenLoan,jdbcType=VARCHAR},
+      LOAN_TYPE = #{loanType,jdbcType=VARCHAR},
+      BIZ_TYPE_FLAG = #{bizTypeFlag,jdbcType=VARCHAR},
+      GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      TERM_NUM = #{termNum,jdbcType=DECIMAL},
+      TERM_UNIT = #{termUnit,jdbcType=VARCHAR},
+      RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      BO_USE = #{boUse,jdbcType=DECIMAL},
+      NO_USE = #{noUse,jdbcType=DECIMAL},
+      CRD_ID = #{crdId,jdbcType=VARCHAR},
+      CREDIT_MODE = #{creditMode,jdbcType=VARCHAR}
+    where APPROVE_ID = #{approveId,jdbcType=VARCHAR}
+  </update>
+</mapper>

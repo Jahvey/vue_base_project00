@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.ledger.naturalperson.mapper.TbCsmNaturalPersonMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.ledger.naturalperson.bean.TbCsmNaturalPerson">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ENGLISH_NAME" jdbcType="VARCHAR" property="englishName" />
+    <result column="CHINESE_SHORT_NAME" jdbcType="VARCHAR" property="chineseShortName" />
+    <result column="ENGLISH_SHORT_NAME" jdbcType="VARCHAR" property="englishShortName" />
+    <result column="GENDER_CD" jdbcType="VARCHAR" property="genderCd" />
+    <result column="MARRIAGE_CD" jdbcType="VARCHAR" property="marriageCd" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="DEGREE_CD" jdbcType="VARCHAR" property="degreeCd" />
+    <result column="EDUCATION_BACKGROUD_CD" jdbcType="VARCHAR" property="educationBackgroudCd" />
+    <result column="NATION" jdbcType="VARCHAR" property="nation" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="NATURAL_PERSON_TYPE_CD" jdbcType="VARCHAR" property="naturalPersonTypeCd" />
+    <result column="WORK_UNIT" jdbcType="VARCHAR" property="workUnit" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="HUKOU_PROPERTY" jdbcType="VARCHAR" property="hukouProperty" />
+    <result column="IS_FARMER" jdbcType="VARCHAR" property="isFarmer" />
+    <result column="HUKOU_REGISTED" jdbcType="VARCHAR" property="hukouRegisted" />
+    <result column="STREET_POLICE_STATION" jdbcType="VARCHAR" property="streetPoliceStation" />
+    <result column="HEALTH_STATE" jdbcType="VARCHAR" property="healthState" />
+    <result column="PROFESSION" jdbcType="VARCHAR" property="profession" />
+    <result column="PROFESSIONAL_TITLE" jdbcType="VARCHAR" property="professionalTitle" />
+    <result column="ACCOUNTING_ASSISTANT" jdbcType="VARCHAR" property="accountingAssistant" />
+    <result column="POSITION_PROPERTY" jdbcType="VARCHAR" property="positionProperty" />
+    <result column="WORK_YEARS" jdbcType="VARCHAR" property="workYears" />
+    <result column="FAMILY_NUMBER" jdbcType="VARCHAR" property="familyNumber" />
+    <result column="PROVIDE_FOR_NUMBER" jdbcType="VARCHAR" property="provideForNumber" />
+    <result column="FAMILY_ADDRESS" jdbcType="VARCHAR" property="familyAddress" />
+    <result column="HOUSE_PROPERTY" jdbcType="VARCHAR" property="houseProperty" />
+    <result column="FAMILY_PHONE" jdbcType="VARCHAR" property="familyPhone" />
+    <result column="PHONE_NUMBER" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="UNIT_ADRESS" jdbcType="VARCHAR" property="unitAdress" />
+    <result column="UNIT_PHONE" jdbcType="VARCHAR" property="unitPhone" />
+    <result column="INDUSTRY" jdbcType="VARCHAR" property="industry" />
+    <result column="INDUSTRY_DESC" jdbcType="VARCHAR" property="industryDesc" />
+    <result column="JOINT_GUARANTEE" jdbcType="VARCHAR" property="jointGuarantee" />
+    <result column="STOCKHOLDER_OF_BANK" jdbcType="VARCHAR" property="stockholderOfBank" />
+    <result column="WHETHER_BLACK_LIST" jdbcType="VARCHAR" property="whetherBlackList" />
+    <result column="BLACK_LIST_REASON" jdbcType="VARCHAR" property="blackListReason" />
+    <result column="IS_BANK_EMPLOYEE" jdbcType="VARCHAR" property="isBankEmployee" />
+    <result column="EMPLOYEE_GRADE" jdbcType="VARCHAR" property="employeeGrade" />
+    <result column="IS_SAMLL_LOAND_EMP" jdbcType="VARCHAR" property="isSamllLoandEmp" />
+    <result column="COUNTRY_SIGN" jdbcType="VARCHAR" property="countrySign" />
+    <result column="IS_BASEBANK_RELA_CUST" jdbcType="VARCHAR" property="isBasebankRelaCust" />
+    <result column="IS_THIRD_CUST" jdbcType="VARCHAR" property="isThirdCust" />
+    <result column="THIRD_CUST_TYPE_CD" jdbcType="VARCHAR" property="thirdCustTypeCd" />
+    <result column="MIDDLE_CODE" jdbcType="VARCHAR" property="middleCode" />
+    <result column="WEIXIN_NUM" jdbcType="VARCHAR" property="weixinNum" />
+    <result column="COMMUNICATION_ADDRESS" jdbcType="VARCHAR" property="communicationAddress" />
+    <result column="COMMUNICATION_ADDRESS_CODE" jdbcType="VARCHAR" property="communicationAddressCode" />
+    <result column="LIVE_ADDRESS_CODE" jdbcType="VARCHAR" property="liveAddressCode" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="UNIT_ADDRESS_CODE" jdbcType="VARCHAR" property="unitAddressCode" />
+    <result column="ANNUALSALARY" jdbcType="VARCHAR" property="annualsalary" />
+    <result column="RESDNT_CHAR_CD" jdbcType="VARCHAR" property="resdntCharCd" />
+    <result column="SCH_NAME" jdbcType="VARCHAR" property="schName" />
+    <result column="CERT_CREATE_DATE" jdbcType="TIMESTAMP" property="certCreateDate" />
+    <result column="CERT_END_DATE" jdbcType="TIMESTAMP" property="certEndDate" />
+    <result column="IFCERTIFICATE" jdbcType="VARCHAR" property="ifcertificate" />
+    <result column="NATIFLAG" jdbcType="VARCHAR" property="natiflag" />
+    <result column="NATURE_OF_UNIT" jdbcType="VARCHAR" property="natureOfUnit" />
+    <result column="SCALE_OF_UNIT" jdbcType="VARCHAR" property="scaleOfUnit" />
+    <result column="FLG_SMS" jdbcType="VARCHAR" property="flgSms" />
+    <result column="CUST_TYPE" jdbcType="VARCHAR" property="custType" />
+  </resultMap>
+  
+  <!-- 封装结果集 -->
+  <resultMap id="BaseResultMap2" type="com.cdgit.ledger.naturalperson.bean.NaturealCust">
+  	<result column="PARTY_ID" javaType="string" property="partyId" />
+  	<result column="PARTY_NAME" javaType="string" property="partyName" />
+  	<result column="CERT_TYPE" javaType="string" property="certType" />
+  	<result column="CERT_NUM" javaType="string" property="certNum" />
+  	<result column="MIDDEL_CODE" javaType="string" property="middelCode" />
+  	<result column="ORG_NUM" javaType="string" property="orgNum" />
+  	<result column="IS_FARMER" javaType="string" property="isFarmer" />
+  	<result column="USER_NUM" javaType="string" property="userNum" />
+  	<result column="CREDIT_RATING_CD" javaType="string" property="creditRatingCd" />
+    <result column="GENERAL_ADJUST_RATING_CD" javaType="string" property="generalAdjustRatingCd" />
+  </resultMap>
+  
+  <!--自然人客户查询  -->
+  <select id="selectNaturalPerson" parameterType="java.util.HashMap" resultMap="BaseResultMap2">
+    SELECT O.ORGNAME,
+			   P.PARTY_ID,
+		       P.PARTY_NAME,
+		       N.CERT_TYPE,
+		       N.CERT_NUM,
+		       N.MIDDLE_CODE,
+		       N.IS_FARMER,
+		       IIRA.GENERAL_ADJUST_RATING_CD,
+		       MT.USER_NUM,
+		       MT.ORG_NUM
+		  FROM TB_CSM_NATURAL_PERSON N
+		  LEFT JOIN TB_IRM_INTERNAL_RATING_APPLY IIRA
+		    ON IIRA.PARTY_ID = N.PARTY_ID
+		   AND IIRA.RATING_STATE = '03', TB_CSM_MANAGEMENT_TEAM MT,
+		 TB_CSM_PARTY P, OM_ORGANIZATION O
+		 WHERE N.PARTY_ID = P.PARTY_ID
+		   AND MT.PARTY_ID = P.PARTY_ID
+		   AND P.PARTY_TYPE_CD = '02'
+		   AND MT.USER_PLACING_CD='01'
+		   AND N.NATURAL_PERSON_TYPE_CD IN (1,3)
+		   AND MT.ORG_NUM = O.ORGCODE
+		   AND MT.ORG_NUM IN (SELECT O.ORGCODE
+		                        FROM OM_ORGANIZATION O
+		                       WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%') 
+		 <!-- <isNotNull property="partyName">  AND P.PARTY_NAME LIKE '%$partyName$%' </isNotNull>
+		 <isNotNull property="certType">  AND N.CERT_TYPE = #certType# </isNotNull>
+		 <isNotNull property="certNum">  AND N.CERT_NUM = #certNum# </isNotNull>
+		 <isNotNull property="middelCode">  AND N.MIDDLE_CODE = #middelCode# </isNotNull>
+		 <isNotNull property="isFarmer">  AND N.IS_FARMER = #isFarmer# </isNotNull>
+		 <isNotNull property="userNum">  AND MT.USER_NUM = #userNum# </isNotNull> -->
+    	 <if test="orgNum !=null and orgNum !='' ">
+		 	AND MT.ORG_NUM=#{orgNum,jdbcType=VARCHAR} 
+		 </if>
+    	 <if test="partyName !=null and partyName !='' ">
+		 	AND P.PARTY_NAME LIKE '%'||#{partyName}||'%' 
+		 </if>
+    	 <if test="certType !=null and certType !='' ">
+		 	 AND N.CERT_TYPE = #{certType,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="certNum !=null and certNum !='' ">
+		 	 AND N.CERT_NUM = #{certNum,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="isFarmer !=null and isFarmer !='' ">
+		 	 AND N.IS_FARMER = #{isFarmer,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="middleCode !=null and middleCode !='' ">
+		 	 AND N.MIDDLE_CODE = #{middleCode,jdbcType=VARCHAR} 
+		 </if>
+    	 <if test="userNum !=null and userNum !='' ">
+		 	AND MT.USER_NUM=#{userNum,jdbcType=VARCHAR} 
+		 </if>
+    <!--  select                
+    	T1.ORG_NUM, 
+		T1.USER_NUM,
+		T2.PARTY_NAME, 
+		T3.IS_FARMER,
+		T3.CERT_NUM,
+		T3.CERT_TYPE,
+		T3.MIDDLE_CODE	
+    FROM TB_CSM_MANAGEMENT_TEAM T1
+		 JOIN TB_CSM_PARTY T2 ON T1.PARTY_ID = T2.PARTY_ID
+		 JOIN TB_CSM_NATURAL_PERSON T3 ON T1.PARTY_ID = T3.PARTY_ID
+	WHERE T2.PARTY_TYPE_CD='02'
+		    AND t1.user_placing_cd='01'
+		 <if test="orgNum !=null and orgNum !='' ">
+		 	AND T1.ORG_NUM=#{orgNum,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="userNum !=null and userNum !='' ">
+		 	AND T1.USER_NUM=#{userNum,jdbcType=VARCHAR} 
+		 </if>
+		<if test="partyName !=null and partyName !='' ">
+		 	AND T2.PARTY_NAME LIKE '%'||#{partyName}||'%' 
+		 </if>
+		 <if test="certType !=null and certType !='' ">
+		 	 AND T3.CERT_TYPE = #{certType,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="certNum !=null and certNum !='' ">
+		 	 AND T3.CERT_NUM = #{certNum,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="isFarmer !=null and isFarmer !='' ">
+		 	 AND T3.IS_FARMER = #{isFarmer,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="middleCode !=null and middleCode !='' ">
+		 	 AND T3.MIDDLE_CODE = #{middleCode,jdbcType=VARCHAR} 
+		 </if>
+		 order by t3.create_time desc -->  
+  </select>
+  
+  <resultMap id="BaseResultMap3" type="com.cdgit.ledger.naturalperson.bean.TbCsmGuarGroup">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="JOINT_GUARANTEE_TYPE" jdbcType="VARCHAR" property="jointGuaranteeType" />
+    <result column="JOINT_GUARANTEE_STATUS" jdbcType="VARCHAR" property="jointGuaranteeStatus" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+    <result column="IS_DIF_ORG_GUARANTEE" jdbcType="VARCHAR" property="isDifOrgGuarantee" />
+    <result column="MANAGE_WAY" jdbcType="VARCHAR" property="manageWay" />
+  </resultMap>
+  
+   <resultMap id="BaseResultMap4" type="com.cdgit.ledger.naturalperson.bean.GuarCustResult">
+    <id column="ID" jdbcType="VARCHAR" property="Id" />
+    <result column="JOINT_GUARANTEE_TYPE" jdbcType="VARCHAR" property="jointGuaranteeType" />
+    <result column="JOINT_GUARANTEE_STATUS" jdbcType="VARCHAR" property="jointGuaranteeStatus" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="RELATED_CUST_PARTY_ID" jdbcType="VARCHAR" property="relatedCustPartyId" />
+    <result column="UNIFY_SOCIETY_CREDIT_NUM" jdbcType="VARCHAR" property="unifySocietyCreditNum" />
+    <result column="REGISTER_CODE" jdbcType="VARCHAR" property="registerCode" />
+    <result column="ORG_REGISTER_CD" jdbcType="VARCHAR" property="orgRegisterCd" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="MIDDLE_CODE" jdbcType="VARCHAR" property="middleCode" />
+  </resultMap>
+  <!-- 联保客户查询 -->
+  <select id="selectJoinGuarCust" parameterType="java.util.HashMap" resultMap="BaseResultMap4">
+  	select
+	  t1.PARTY_ID,
+	  t2.JOINT_GUARANTEE_TYPE,
+	  t2.JOINT_GUARANTEE_STATUS,
+	  (select count(t1.ID) from TB_CSM_GUAR_MEMEBER t1)
+	from  TB_CSM_GUAR_MEMEBER t1 
+	join  TB_CSM_GUAR_GROUP t2 on t1.PARTY_ID = t2.PARTY_ID
+	join  TB_CSM_MANAGEMENT_TEAM t3 on t2.PARTY_ID = t3.PARTY_ID
+	join  V_CSM_PARTY t4 on t4.PARTY_ID = t1.PARTY_ID	 
+	where t4.PARTY_TYPE_CD='04'
+	and t2.JOINT_GUARANTEE_STATUS not in ('09')
+	<if test="orgNum != null and orgNum != '' ">
+		and t3.ORG_NUM=#{orgNum,jdbcType=VARCHAR}
+	</if>
+	<if test="partyId != null and partyId != '' ">
+		and t1.PARTY_ID LIKE '%'||#{partyId}||'%'
+	</if>
+  	<if test="relatedCustPartyId != null and relatedCustPartyId != '' ">
+		and t1.RELATED_CUST_PARTY_ID LIKE '%'||#{relatedCustPartyId}||'%'
+	</if>
+	<if test="unifySocietyCreditNum != null and unifySocietyCreditNum != '' ">
+		and t4.UNIFY_SOCIETY_CREDIT_NUM LIKE '%'||#{unifySocietyCreditNum}||'%'
+	</if>
+	<if test="certType != null and certType != '' ">
+		and t4.CERT_TYPE LIKE '%'||#{certType}||'%'
+	</if>
+	<if test="certNum != null and certNum != '' ">
+		and t4.CERT_NUM LIKE '%'||#{certNum}||'%'
+	</if>
+	<if test="middleCode != null and middleCode != '' ">
+		and t4.MIDDLE_CODE '%'||#{middleCode}||'%'
+	</if>
+	<if test="registerCode != null and registerCode != '' ">
+		and t4.REGISTER_CODE '%'||#{registerCode}||'%'
+	</if>
+	<if test="orgRegisterCd != null and orgRegisterCd != '' ">
+		and t4.ORG_REGISTER_CD '%'||#{orgRegisterCd}||'%'
+	</if>
+  </select>
+  
+  <resultMap id="BaseResultMap5" type="com.cdgit.ledger.naturalperson.bean.InterbankCustResult">
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="AREA_TYPE" jdbcType="VARCHAR" property="areaType" />
+    <result column="FINANCE_ENTERPRISE_TYPE" jdbcType="VARCHAR" property="financeEnterpriseType" />
+    <result column="UNIFY_SOCIETY_CREDIT_NUM" jdbcType="VARCHAR" property="unifySocietyCreditNum" />
+    <result column="REGISTER_CODE" jdbcType="VARCHAR" property="registerCode" />
+    <result column="ORG_REGISTER_CD" jdbcType="VARCHAR" property="orgRegisterCd" />
+    <result column="SWIFT_BIC_NUM" jdbcType="VARCHAR" property="swiftBicNum" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ENGLISH_CUSTOMER__NAME" jdbcType="VARCHAR" property="englishCustomerName" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+  </resultMap>
+  <!-- 同业客户查询 -->
+  <select id="selectSametradeCust" parameterType="java.util.HashMap" resultMap="BaseResultMap5">
+  	SELECT O.ORGNAME,
+		       FI.AREA_TYPE,
+		       FI.FINANCE_ENTERPRISE_TYPE,
+		       FI.UNIFY_SOCIETY_CREDIT_NUM,
+		       P.PARTY_ID,
+		       P.PARTY_NAME,
+		       FI.ENGLISH_CUSTOMER__NAME,
+		       FI.REGISTER_CODE,
+		       FI.ORG_REGISTER_CD,
+		       FI.SWIFT_BIC_NUM,
+		       MT.USER_NUM
+		  FROM TB_CSM_FINANCIAL_INSTITUTION FI,
+		       TB_CSM_MANAGEMENT_TEAM       MT,
+		       OM_ORGANIZATION              O,
+		       TB_CSM_PARTY                 P
+		 WHERE MT.PARTY_ID = FI.PARTY_ID
+		   AND MT.ORG_NUM = O.ORGCODE
+		   AND MT.USER_PLACING_CD='01'
+		   AND P.PARTY_ID = FI.PARTY_ID
+		   AND MT.ORG_NUM IN (SELECT O.ORGCODE
+		                        FROM OM_ORGANIZATION O
+		                       WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%')
+		 <!-- <isNotNull property="areaType">  AND FI.AREA_TYPE = #areaType# </isNotNull>
+		 <isNotNull property="financeEnterpriseType">  AND  FI.FINANCE_ENTERPRISE_TYPE = #financeEnterpriseType# </isNotNull>
+		 <isNotNull property="partyName">  AND P.PARTY_NAME LIKE '%$partyName$%' </isNotNull>
+		 <isNotNull property="registerCd">  AND FI.REGISTER_CODE = #registerCd# </isNotNull>
+		 <isNotNull property="unifySocietyCreditNum">  AND FI.UNIFY_SOCIETY_CREDIT_NUM = #unifySocietyCreditNum# </isNotNull>
+		 <isNotNull property="orgRegisterCd">  AND FI.ORG_REGISTER_CD = #orgRegisterCd# </isNotNull>
+		 <isNotNull property="swiftBicNum">  AND FI.SWIFT_BIC_NUM = #swiftBicNum# </isNotNull>
+		 <isNotNull property="userNum">  AND MT.USER_NUM = #userNum# </isNotNull> -->
+  	<if test=" userNum != null and userNum != '' ">
+  		and MT.USER_NUM=#{userNum,jdbcType=VARCHAR}
+  	</if>
+  	<if test=" areaType != null and areaType != '' ">
+  		and FI.AREA_TYPE=#{areaType}
+  	</if>
+  	<if test=" financeEnterpriseType != null and financeEnterpriseType != '' ">
+  		and FI.FINANCE_ENTERPRISE_TYPE=#{financeEnterpriseType}
+  	</if>
+  	<if test="partyName != null and partyName != '' ">
+		and P.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+	</if>
+	<if test="unifySocietyCreditNum != null and unifySocietyCreditNum != '' ">
+		and FI.UNIFY_SOCIETY_CREDIT_NUM LIKE '%'||#{unifySocietyCreditNum,jdbcType=VARCHAR}||'%'
+	</if>
+  	<if test="registerCode != null and registerCode != '' ">
+		and FI.REGISTER_CODE LIKE '%'||#{registerCode,jdbcType=VARCHAR}||'%'
+	</if>
+  	<if test="orgRegisterCd != null and orgRegisterCd != '' ">
+		and FI.ORG_REGISTER_CD LIKE '%'||#{orgRegisterCd,jdbcType=VARCHAR}||'%'
+	</if>
+  	<if test="swiftBicNum != null and swiftBicNum != '' ">
+		and FI.SWIFT_BIC_NUM LIKE '%'||#{swiftBicNum,jdbcType=VARCHAR}||'%'
+	</if> 	
+  </select>
+  
+  <resultMap id="BaseResultMap6" type="com.cdgit.ledger.naturalperson.bean.ThirdCustResult">
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="UNIFY_SOCIETY_CREDIT_NUM" jdbcType="VARCHAR" property="unifySocietyCreditNum" />
+    <result column="REGISTR_CD" jdbcType="VARCHAR" property="registrCd" />
+    <result column="ORG_REGISTER_CD" jdbcType="VARCHAR" property="orgRegisterCd" />
+    <result column="MIDDEL_CODE" jdbcType="VARCHAR" property="middelCode" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="CREDIT_TYPE_CD" jdbcType="VARCHAR" property="creditTypeCd" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+ 	<result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="RATING_STATE" jdbcType="VARCHAR" property="ratingState" />
+  </resultMap>
+ 
+   <!-- 合作中介客户查询 -->
+  <select id="selectThirdCust" parameterType="java.util.HashMap" resultMap="BaseResultMap6">
+  	SELECT MT.Org_Num,
+		 		P.PARTY_ID,
+		        P.PARTY_NAME,
+		        T.CORP_CUSTOMER_TYPE_CD,
+		        T.REGISTR_CD,
+		        T.ORG_REGISTER_CD,
+		        T.MIDDEL_CODE,
+		        IIRA.RATING_STATE,
+		        MT.USER_NUM,
+		        T.UNIFY_SOCIETY_CREDIT_NUM 
+		   FROM TB_CSM_THIRD_PARTY T
+		   LEFT JOIN TB_IRM_INTERNAL_RATING_APPLY IIRA
+		     ON IIRA.PARTY_ID = T.PARTY_ID
+		    AND IIRA.GENERAL_ADJUST_RATING_CD = '03', TB_CSM_PARTY P,
+		  TB_CSM_MANAGEMENT_TEAM MT
+		  WHERE T.PARTY_ID = P.PARTY_ID
+		    AND MT.PARTY_ID = P.PARTY_ID
+		    AND MT.USER_PLACING_CD='01'
+		    AND MT.ORG_NUM IN (SELECT O.ORGCODE
+		                         FROM OM_ORGANIZATION O
+									WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%')
+		<!--  <isNotNull property="corpCustomerTypeCd">  AND T.CORP_CUSTOMER_TYPE_CD = #corpCustomerTypeCd# </isNotNull>
+		 <isNotNull property="registerCd">  AND T.REGISTR_CD = #registerCd# </isNotNull>
+		 <isNotNull property="orgRegisterCd">  AND T.ORG_REGISTER_CD = #orgRegisterCd# </isNotNull>
+		 <isNotNull property="middelCode">  AND T.MIDDEL_CODE = #middelCode# </isNotNull>
+		 <isNotNull property="userNum">  AND MT.USER_NUM = #userNum# </isNotNull>
+		 <isNotNull property="unifySocietyCreditNum">  AND T.UNIFY_SOCIETY_CREDIT_NUM = #unifySocietyCreditNum# </isNotNull>
+		 <isNotNull property="partyName">  AND P.PARTY_NAME LIKE '%$partyName$%' </isNotNull> -->
+  	<if test=" userNum != null and userNum != '' ">
+  		and MT.USER_NUM=#{userNum,jdbcType=VARCHAR}
+  	</if>
+  	<if test=" corpCustomerTypeCd != null and corpCustomerTypeCd != '' ">
+  		and T.CORP_CUSTOMER_TYPE_CD=#{corpCustomerTypeCd,jdbcType=VARCHAR}
+  	</if>
+  	<if test="partyName != null and partyName != '' ">
+		and P.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+	</if>
+	<if test="unifySocietyCreditNum != null and unifySocietyCreditNum != '' ">
+		and T.UNIFY_SOCIETY_CREDIT_NUM LIKE '%'||#{unifySocietyCreditNum,jdbcType=VARCHAR}||'%'
+	</if>
+  	<if test="registrCd != null and registrCd != '' ">
+		and T.REGISTR_CD LIKE '%'||#{registrCd,jdbcType=VARCHAR}||'%'
+	</if>
+  	<if test="orgRegisterCd != null and orgRegisterCd != '' ">
+		and T.ORG_REGISTER_CD LIKE '%'||#{orgRegisterCd,jdbcType=VARCHAR}||'%'
+	</if>
+  	<if test="middelCode != null and middelCode != '' ">
+		and T.MIDDEL_CODE LIKE '%'||#{middelCode,jdbcType=VARCHAR}||'%'
+	</if>
+  </select>
+  
+  <!--集团客户查询  -->
+  <resultMap id="groupCorporation" type="com.cdgit.ledger.naturalperson.bean.GroupCorporationResult">
+		 	<result property="partyId" column="PARTY_ID" jdbcType="VARCHAR"/>
+			<result property="partyNum" column="PARTY_NUM" jdbcType="VARCHAR"/>
+			<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="groupManageWayCd" column="GROUP_MANAGE_WAY_CD" jdbcType="VARCHAR"/>
+			<result property="status" column="STATUS" jdbcType="VARCHAR"/>
+			<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+			<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+	</resultMap>
+    <select id="selectGroupCorporation" parameterType="java.util.HashMap" resultMap="groupCorporation">
+		 SELECT P.PARTY_ID,
+		 		P.PARTY_NUM,
+		        P.PARTY_NAME,
+		        GC.GROUP_MANAGE_WAY_CD,
+		        GC.STATUS,
+		        MT.ORG_NUM,
+		        MT.USER_NUM
+		   FROM TB_CSM_GROUP_COMPANY         GC,
+		        TB_CSM_PARTY                 P,
+		        TB_CSM_MANAGEMENT_TEAM MT
+		  WHERE GC.PARTY_ID = P.PARTY_ID
+		    AND MT.PARTY_ID = P.PARTY_ID
+		    AND MT.USER_PLACING_CD='01'
+		    <!-- AND MT.ORG_NUM IN (SELECT O.ORGCODE
+		                         FROM OM_ORGANIZATION O
+									WHERE O.ORGSEQ LIKE '%.$orgId$.%') -->
+		  <!-- <isNotNull property="partyNum">  AND P.PARTY_NUM = #partyNum# </isNotNull> -->
+		  <if test=" partyNum != null and partyNum != '' ">
+  			AND P.PARTY_NUM=#{partyNum,jdbcType=VARCHAR}
+  		  </if>
+		  <if test=" partyName != null and partyName != '' ">
+  			AND P.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+  		  </if>	
+		  <!-- <isNotNull property="partyName">  AND P.PARTY_NAME LIKE '%$partyName$%' </isNotNull> -->					
+		  <!-- <isNotNull property="memberNum">  
+		   AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, TB_CSM_PARTY T6
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND T6.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND T6.PARTY_NUM = #memberNum#) 
+ 		   </isNotNull>	 -->					
+		  
+		   <if test=" memberNum != null and memberNum != '' ">
+		   		AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, TB_CSM_PARTY T6
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND T6.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND T6.PARTY_NUM = #{memberNum,jdbcType=VARCHAR}) 
+  		  </if>
+		  
+		  
+		  <!-- <isNotNull property="memberName">  
+		   AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, TB_CSM_PARTY T6
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND T6.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND T6.PARTY_NAME like '%$memberName$%' ) 
+ 		   </isNotNull> -->
+ 		   
+ 		   <if test=" memberName != null and memberName != '' ">
+		   		AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, TB_CSM_PARTY T6
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND T6.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND T6.PARTY_NAME like '%'||#{memberName,jdbcType=VARCHAR}||'%' ) 
+  		  </if>
+		   
+ 		   <!-- <isNotNull property="memberCertType">  
+		   AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, V_CSM_PARTY V
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND V.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND V.CERT_TYPE = #memberCertType#) 
+ 		   </isNotNull> -->
+ 		   
+ 		    <if test=" memberCertType != null and memberCertType != '' ">
+		   		AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, V_CSM_PARTY V
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND V.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND V.CERT_TYPE = #{memberCertType,jdbcType=VARCHAR})  
+  		  </if>
+ 		  <!--  <isNotNull property="memberCertNum">  
+		   AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, V_CSM_PARTY V
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND V.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND V.CERT_NUM = #memberCertNum#) 
+ 		   </isNotNull> -->
+ 		   <if test=" memberCertNum != null and memberCertNum != '' ">
+		   		AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, V_CSM_PARTY V
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND V.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND V.CERT_NUM = #{memberCertNum,jdbcType=VARCHAR})   
+  		  </if>	   
+ 		   <!-- <isNotNull property="memberMiddelCode">  
+		   AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, V_CSM_PARTY V
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND V.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND V.MIDDLE_CODE = #memberMiddelCode#) 
+ 		   </isNotNull> -->	
+ 		   
+ 		    <if test=" memberMiddelCode != null and memberMiddelCode != '' ">
+		   		AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, V_CSM_PARTY V
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND V.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND V.MIDDLE_CODE = #{memberMiddelCode,jdbcType=VARCHAR})    
+  		    </if>
+		   
+ 		  <!--  <isNotNull property="memberRegistrCd">  
+		   AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, V_CSM_PARTY V
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND V.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND V.REGISTR_CD = #memberRegistrCd#) 
+ 		   </isNotNull> -->
+ 		   
+ 		    <if test=" memberRegistrCd != null and memberRegistrCd != '' ">
+		   		AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, V_CSM_PARTY V
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND V.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND V.REGISTR_CD = #{memberRegistrCd,jdbcType=VARCHAR})    
+  		    </if>
+ 		 
+ 		   <!-- <isNotNull property="memberOrgRegisterCd">  
+		   AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, V_CSM_PARTY V
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND V.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND V.ORG_REGISTER_CD = #memberOrgRegisterCd#) 
+ 		   </isNotNull> -->
+ 		   <if test=" memberOrgRegisterCd != null and memberOrgRegisterCd != '' ">
+		   		AND EXISTS
+ 				(SELECT 1
+		          FROM TB_CSM_GROUP_MEMBER T5, V_CSM_PARTY V
+		         WHERE T5.GROUP_PARTY_ID = P.PARTY_ID
+		           AND V.PARTY_ID = T5.CORPORATION_PARTY_ID
+		           AND V.ORG_REGISTER_CD = #{memberOrgRegisterCd,jdbcType=VARCHAR})    
+  		    </if>	
+ 		   <!-- <isNotNull property="userNum">  AND MT.USER_NUM = #userNum# </isNotNull> -->
+	 		<if test=" userNum != null and userNum != '' ">
+		   		AND MT.USER_NUM = #{userNum,jdbcType=VARCHAR}  
+  		    </if>
+	 
+	 
+	 </select>
+  	  <resultMap id="corporation" type="com.cdgit.ledger.naturalperson.bean.PubCustResult">
+			<result property="orgname" column="ORGNAME" jdbcType="VARCHAR"/>
+			<result property="partyId" column="PARTY_ID" jdbcType="VARCHAR"/>
+			<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="corpCustomerTypeCd" column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR"/>
+			<result property="registrCd" column="REGISTR_CD" jdbcType="VARCHAR"/>
+			<result property="orgRegisterCd" column="ORG_REGISTER_CD" jdbcType="VARCHAR"/>
+			<result property="middelCode" column="MIDDEL_CODE" jdbcType="VARCHAR"/>
+			<result property="industrialTypeCd" column="INDUSTRIAL_TYPE_CD" jdbcType="VARCHAR"/>
+			<result property="enterpriseScaleGx" column="ENTERPRISE_SCALE_GX" jdbcType="VARCHAR"/>
+			<result property="generalAdjustRatingCd" column="GENERAL_ADJUST_RATING_CD" jdbcType="VARCHAR"/>
+			<result property="thirdCustTypeCd" column="THIRD_CUST_TYPE_CD" jdbcType="VARCHAR"/>
+			<result property="unifySocietyCreditNum" column="UNIFY_SOCIETY_CREDIT_NUM" jdbcType="VARCHAR"/>
+			<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+	</resultMap>
+    <select id="selectPubCust" parameterType="java.util.HashMap" resultMap="corporation">
+		SELECT O.ORGNAME,
+			   P.PARTY_ID,
+		       P.PARTY_NAME,
+		       C.UNIFY_SOCIETY_CREDIT_NUM,
+		       C.CORP_CUSTOMER_TYPE_CD,
+		       C.REGISTR_CD,
+		       C.ORG_REGISTER_CD,
+		       C.MIDDEL_CODE,
+		       C.INDUSTRIAL_TYPE_CD,
+		       C.ENTERPRISE_SCALE_GX,
+		       IIRA.GENERAL_ADJUST_RATING_CD,
+		       C.THIRD_CUST_TYPE_CD,
+		       MT.USER_NUM
+		  FROM TB_CSM_CORPORATION C
+		  LEFT JOIN TB_IRM_INTERNAL_RATING_APPLY IIRA
+		    ON IIRA.PARTY_ID = C.PARTY_ID
+		   AND IIRA.RATING_STATE = '03', TB_CSM_MANAGEMENT_TEAM MT,
+		 TB_CSM_PARTY P, OM_ORGANIZATION O
+		 WHERE C.PARTY_ID = P.PARTY_ID
+		   AND MT.PARTY_ID = P.PARTY_ID
+		   AND P.PARTY_TYPE_CD = '01'
+		   AND MT.USER_PLACING_CD='01'
+		   AND MT.ORG_NUM = O.ORGCODE
+		   AND MT.ORG_NUM IN (SELECT O.ORGCODE
+		                        FROM OM_ORGANIZATION O
+		                       WHERE O.ORGSEQ LIKE '%'||#{orgname,jdbcType=VARCHAR}||'%')
+		  <if test=" partyName != null and partyName != '' ">
+		  	AND P.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+		  </if>
+		  <if test=" corpCustomerTypeCd != null and corpCustomerTypeCd != '' ">
+		  	AND C.CORP_CUSTOMER_TYPE_CD = #{corpCustomerTypeCd,jdbcType=VARCHAR}
+		  </if>
+		  <if test=" registerCd != null and registerCd != '' ">
+		  	AND C.REGISTR_CD = #{registerCd,jdbcType=VARCHAR}
+		  </if>
+		  <if test=" unifySocietyCreditNum != null and unifySocietyCreditNum != '' ">
+		  	AND C.UNIFY_SOCIETY_CREDIT_NUM = #{unifySocietyCreditNum,jdbcType=VARCHAR}
+		  </if>
+		  <if test=" orgRegisterCd != null and orgRegisterCd != '' ">
+		  	AND C.ORG_REGISTER_CD = #{orgRegisterCd,jdbcType=VARCHAR}
+		  </if>
+		  <if test=" middelCode != null and middelCode != '' ">
+		  	AND C.MIDDEL_CODE = #{middelCode,jdbcType=VARCHAR}
+		  </if>
+		  <if test=" thirdCustTypeCd != null and thirdCustTypeCd != '' ">
+		  	AND C.THIRD_CUST_TYPE_CD = #{thirdCustTypeCd,jdbcType=VARCHAR}
+		  </if>
+		  <if test=" userNum != null and userNum != '' ">
+		  	AND MT.USER_NUM = #{userNum,jdbcType=VARCHAR}
+		  </if>
+		 <!-- <isNotNull property="partyName">  AND P.PARTY_NAME LIKE '%$partyName$%' </isNotNull>
+		 <isNotNull property="corpCustomerTypeCd">  AND C.CORP_CUSTOMER_TYPE_CD = #corpCustomerTypeCd# </isNotNull>
+		 <isNotNull property="registerCd">  AND C.REGISTR_CD = #registerCd# </isNotNull>
+		 <isNotNull property="unifySocietyCreditNum">  AND C.UNIFY_SOCIETY_CREDIT_NUM = #unifySocietyCreditNum# </isNotNull>
+		 <isNotNull property="orgRegisterCd">  AND C.ORG_REGISTER_CD = #orgRegisterCd# </isNotNull>
+		 <isNotNull property="middelCode">  AND C.MIDDEL_CODE = #middelCode# </isNotNull>
+		 <isNotNull property="thirdCustTypeCd">  AND C.THIRD_CUST_TYPE_CD = #thirdCustTypeCd# </isNotNull>
+		 <isNotNull property="userNum">  AND MT.USER_NUM = #userNum# </isNotNull> -->
+    </select>
+  
+  
+</mapper>

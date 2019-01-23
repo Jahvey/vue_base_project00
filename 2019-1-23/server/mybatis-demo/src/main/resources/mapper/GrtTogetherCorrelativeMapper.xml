@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtTogetherCorrelativeMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtTogetherCorrelative">
+    <id column="TOGETHER_CORRELATIVE_ID" jdbcType="VARCHAR" property="togetherCorrelativeId" />
+    <result column="COLLATERAL_NUM" jdbcType="VARCHAR" property="collateralNum" />
+    <result column="TOGETHER_CORRELATIVE_NAME" jdbcType="VARCHAR" property="togetherCorrelativeName" />
+    <result column="TOGETHER_CERTIFICATE_TYPE" jdbcType="VARCHAR" property="togetherCertificateType" />
+    <result column="TOGETHER_CERTIFICATE_NUM" jdbcType="VARCHAR" property="togetherCertificateNum" />
+    <result column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TOGETHER_CORRELATIVE_ID, COLLATERAL_NUM, TOGETHER_CORRELATIVE_NAME, TOGETHER_CERTIFICATE_TYPE, 
+    TOGETHER_CERTIFICATE_NUM, GUARANTY_ID
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_TOGETHER_CORRELATIVE where 1=1
+     <if test="collateralNum != null and collateralNum != '' "> 
+       AND COLLATERAL_NUM LIKE  '%'||#{collateralNum}||'%'
+     </if>
+     <if test="togetherCorrelativeId != null and togetherCorrelativeId != '' "> 
+       AND TOGETHER_CORRELATIVE_ID LIKE  '%'||#{togetherCorrelativeId}||'%'
+     </if>
+     <if test="togetherCorrelativeName != null and togetherCorrelativeName != '' "> 
+       AND TOGETHER_CORRELATIVE_NAME LIKE  '%'||#{togetherCorrelativeName}||'%'
+     </if>
+     <if test="togetherCertificateType != null and togetherCertificateType != '' "> 
+       AND TOGETHER_CERTIFICATE_TYPE LIKE  '%'||#{togetherCertificateType}||'%'
+     </if>
+     <if test="togetherCertificateNum != null and togetherCertificateNum != '' "> 
+       AND TOGETHER_CERTIFICATE_NUM LIKE  '%'||#{togetherCertificateNum}||'%'
+     </if>
+     <if test="guarantyId != null and guarantyId != '' "> 
+       AND GUARANTY_ID LIKE  '%'||#{guarantyId}||'%'
+     </if>
+  </select>
+  <delete id="deleteBatch" parameterType="java.util.List">
+  	 delete from TB_GRT_TOGETHER_CORRELATIVE where 
+  	 TOGETHER_CORRELATIVE_ID in
+	   <foreach collection="ids" index="index" item="togetherCorrelativeId"
+	         open="(" separator="," close=")">
+	         #{togetherCorrelativeId}
+	   </foreach>
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_TOGETHER_CORRELATIVE
+    where TOGETHER_CORRELATIVE_ID = #{togetherCorrelativeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_TOGETHER_CORRELATIVE
+    where TOGETHER_CORRELATIVE_ID = #{togetherCorrelativeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTogetherCorrelative">
+    insert into TB_GRT_TOGETHER_CORRELATIVE (TOGETHER_CORRELATIVE_ID, COLLATERAL_NUM, 
+      TOGETHER_CORRELATIVE_NAME, TOGETHER_CERTIFICATE_TYPE, 
+      TOGETHER_CERTIFICATE_NUM, GUARANTY_ID)
+    values (#{togetherCorrelativeId,jdbcType=VARCHAR}, #{collateralNum,jdbcType=VARCHAR}, 
+      #{togetherCorrelativeName,jdbcType=VARCHAR}, #{togetherCertificateType,jdbcType=VARCHAR}, 
+      #{togetherCertificateNum,jdbcType=VARCHAR}, #{guarantyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTogetherCorrelative">
+    insert into TB_GRT_TOGETHER_CORRELATIVE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="togetherCorrelativeId != null">
+        TOGETHER_CORRELATIVE_ID,
+      </if>
+      <if test="collateralNum != null">
+        COLLATERAL_NUM,
+      </if>
+      <if test="togetherCorrelativeName != null">
+        TOGETHER_CORRELATIVE_NAME,
+      </if>
+      <if test="togetherCertificateType != null">
+        TOGETHER_CERTIFICATE_TYPE,
+      </if>
+      <if test="togetherCertificateNum != null">
+        TOGETHER_CERTIFICATE_NUM,
+      </if>
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="togetherCorrelativeId != null">
+        #{togetherCorrelativeId,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralNum != null">
+        #{collateralNum,jdbcType=VARCHAR},
+      </if>
+      <if test="togetherCorrelativeName != null">
+        #{togetherCorrelativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="togetherCertificateType != null">
+        #{togetherCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="togetherCertificateNum != null">
+        #{togetherCertificateNum,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTogetherCorrelative">
+    update TB_GRT_TOGETHER_CORRELATIVE
+    <set>
+      <if test="collateralNum != null">
+        COLLATERAL_NUM = #{collateralNum,jdbcType=VARCHAR},
+      </if>
+      <if test="togetherCorrelativeName != null">
+        TOGETHER_CORRELATIVE_NAME = #{togetherCorrelativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="togetherCertificateType != null">
+        TOGETHER_CERTIFICATE_TYPE = #{togetherCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="togetherCertificateNum != null">
+        TOGETHER_CERTIFICATE_NUM = #{togetherCertificateNum,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyId != null">
+        GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TOGETHER_CORRELATIVE_ID = #{togetherCorrelativeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTogetherCorrelative">
+    update TB_GRT_TOGETHER_CORRELATIVE
+    set COLLATERAL_NUM = #{collateralNum,jdbcType=VARCHAR},
+      TOGETHER_CORRELATIVE_NAME = #{togetherCorrelativeName,jdbcType=VARCHAR},
+      TOGETHER_CERTIFICATE_TYPE = #{togetherCertificateType,jdbcType=VARCHAR},
+      TOGETHER_CERTIFICATE_NUM = #{togetherCertificateNum,jdbcType=VARCHAR},
+      GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+    where TOGETHER_CORRELATIVE_ID = #{togetherCorrelativeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

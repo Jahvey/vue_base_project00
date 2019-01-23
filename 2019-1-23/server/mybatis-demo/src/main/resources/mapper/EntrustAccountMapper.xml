@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.entrustAccount.mapper.EntrustAccountMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.entrustAccount.bean.EntrustAccount">
+    <id column="ACC_ID" jdbcType="VARCHAR" property="accId" />
+    <result column="ACC_NAME" jdbcType="VARCHAR" property="accName" />
+    <result column="ENTRUST_ACC" jdbcType="VARCHAR" property="entrustAcc" />
+    <result column="ENTRUST_LOAN_ACC" jdbcType="VARCHAR" property="entrustLoanAcc" />
+    <result column="ENTRUST_RETURN_ACC" jdbcType="VARCHAR" property="entrustReturnAcc" />
+    <result column="ENTRUST_RETURN_PRINCIPAL_ACC" jdbcType="VARCHAR" property="entrustReturnPrincipalAcc" />
+    <result column="ENTRUST_RETURN_INTEREST_ACC" jdbcType="VARCHAR" property="entrustReturnInterestAcc" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="ENTRUST_PROJECT_NAME" jdbcType="VARCHAR" property="entrustProjectName" />
+    <result column="ENTRUST_TYPE" jdbcType="VARCHAR" property="entrustType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ACC_ID, ACC_NAME, ENTRUST_ACC, ENTRUST_LOAN_ACC, ENTRUST_RETURN_ACC, ENTRUST_RETURN_PRINCIPAL_ACC, 
+    ENTRUST_RETURN_INTEREST_ACC, PARTY_ID, ENTRUST_PROJECT_NAME, ENTRUST_TYPE
+  </sql>
+  <select id="selectByPartyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_ENTRUST_ACCOUNT
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_ENTRUST_ACCOUNT
+    where ACC_ID = #{accId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_ENTRUST_ACCOUNT
+    where ACC_ID = #{accId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.entrustAccount.bean.EntrustAccount">
+    insert into TB_CSM_ENTRUST_ACCOUNT (ACC_ID, ACC_NAME, ENTRUST_ACC, 
+      ENTRUST_LOAN_ACC, ENTRUST_RETURN_ACC, ENTRUST_RETURN_PRINCIPAL_ACC, 
+      ENTRUST_RETURN_INTEREST_ACC, PARTY_ID, ENTRUST_PROJECT_NAME, 
+      ENTRUST_TYPE)
+    values (#{accId,jdbcType=VARCHAR}, #{accName,jdbcType=VARCHAR}, #{entrustAcc,jdbcType=VARCHAR}, 
+      #{entrustLoanAcc,jdbcType=VARCHAR}, #{entrustReturnAcc,jdbcType=VARCHAR}, #{entrustReturnPrincipalAcc,jdbcType=VARCHAR}, 
+      #{entrustReturnInterestAcc,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{entrustProjectName,jdbcType=VARCHAR}, 
+      #{entrustType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.entrustAccount.bean.EntrustAccount">
+    insert into TB_CSM_ENTRUST_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accId != null">
+        ACC_ID,
+      </if>
+      <if test="accName != null">
+        ACC_NAME,
+      </if>
+      <if test="entrustAcc != null">
+        ENTRUST_ACC,
+      </if>
+      <if test="entrustLoanAcc != null">
+        ENTRUST_LOAN_ACC,
+      </if>
+      <if test="entrustReturnAcc != null">
+        ENTRUST_RETURN_ACC,
+      </if>
+      <if test="entrustReturnPrincipalAcc != null">
+        ENTRUST_RETURN_PRINCIPAL_ACC,
+      </if>
+      <if test="entrustReturnInterestAcc != null">
+        ENTRUST_RETURN_INTEREST_ACC,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="entrustProjectName != null">
+        ENTRUST_PROJECT_NAME,
+      </if>
+      <if test="entrustType != null">
+        ENTRUST_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accId != null">
+        #{accId,jdbcType=VARCHAR},
+      </if>
+      <if test="accName != null">
+        #{accName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustAcc != null">
+        #{entrustAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustLoanAcc != null">
+        #{entrustLoanAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustReturnAcc != null">
+        #{entrustReturnAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustReturnPrincipalAcc != null">
+        #{entrustReturnPrincipalAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustReturnInterestAcc != null">
+        #{entrustReturnInterestAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustProjectName != null">
+        #{entrustProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustType != null">
+        #{entrustType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.entrustAccount.bean.EntrustAccount">
+    update TB_CSM_ENTRUST_ACCOUNT
+    <set>
+      <if test="accName != null">
+        ACC_NAME = #{accName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustAcc != null">
+        ENTRUST_ACC = #{entrustAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustLoanAcc != null">
+        ENTRUST_LOAN_ACC = #{entrustLoanAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustReturnAcc != null">
+        ENTRUST_RETURN_ACC = #{entrustReturnAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustReturnPrincipalAcc != null">
+        ENTRUST_RETURN_PRINCIPAL_ACC = #{entrustReturnPrincipalAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustReturnInterestAcc != null">
+        ENTRUST_RETURN_INTEREST_ACC = #{entrustReturnInterestAcc,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustProjectName != null">
+        ENTRUST_PROJECT_NAME = #{entrustProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustType != null">
+        ENTRUST_TYPE = #{entrustType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ACC_ID = #{accId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.entrustAccount.bean.EntrustAccount">
+    update TB_CSM_ENTRUST_ACCOUNT
+    set ACC_NAME = #{accName,jdbcType=VARCHAR},
+      ENTRUST_ACC = #{entrustAcc,jdbcType=VARCHAR},
+      ENTRUST_LOAN_ACC = #{entrustLoanAcc,jdbcType=VARCHAR},
+      ENTRUST_RETURN_ACC = #{entrustReturnAcc,jdbcType=VARCHAR},
+      ENTRUST_RETURN_PRINCIPAL_ACC = #{entrustReturnPrincipalAcc,jdbcType=VARCHAR},
+      ENTRUST_RETURN_INTEREST_ACC = #{entrustReturnInterestAcc,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      ENTRUST_PROJECT_NAME = #{entrustProjectName,jdbcType=VARCHAR},
+      ENTRUST_TYPE = #{entrustType,jdbcType=VARCHAR}
+    where ACC_ID = #{accId,jdbcType=VARCHAR}
+  </update>
+</mapper>

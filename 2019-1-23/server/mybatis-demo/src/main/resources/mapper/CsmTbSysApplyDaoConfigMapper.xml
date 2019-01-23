@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbSysApplyDaoConfigMapper">
+
+  <resultMap id="csmTbSysApplyDaoConfigPo" type="com.cdgit.loan.csm.po.TbSysApplyDaoConfigPo">
+    <id column="CONFIG_ID" jdbcType="VARCHAR" property="configId" />
+    <result column="PHASE" jdbcType="VARCHAR" property="phase" />
+    <result column="LEG_ORG" jdbcType="VARCHAR" property="legOrg" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CLASS_NAME" jdbcType="VARCHAR" property="className" />
+    <result column="FLOW_NAME" jdbcType="VARCHAR" property="flowName" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="PARTY_TYPE" jdbcType="VARCHAR" property="partyType" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="PRODUCT_CD" jdbcType="VARCHAR" property="productCd" />
+
+  </resultMap>
+
+
+<select id="queryListTbSysApplyDaoConfigByPhase" parameterType="java.lang.String" resultMap="csmTbSysApplyDaoConfigPo">
+
+select *
+from 
+TB_SYS_APPLY_DAO_CONFIG
+where
+phase=#{phase,jdbcType=VARCHAR}
+
+
+</select>
+
+
+<select id="queryAllListTbSysApplyDaoConfig"  resultMap="csmTbSysApplyDaoConfigPo">
+
+select *
+from 
+TB_SYS_APPLY_DAO_CONFIG
+
+</select>
+
+
+
+  <delete id="deleteCsmTbSysApplyDaoConfig" parameterType="java.lang.String">
+    delete from CRMS.TB_SYS_APPLY_DAO_CONFIG
+    where CONFIG_ID = #{configId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertCsmTbSysApplyDaoConfig" parameterType="com.cdgit.loan.csm.po.TbSysApplyDaoConfigPo">
+    insert into CRMS.TB_SYS_APPLY_DAO_CONFIG (CONFIG_ID, PHASE, LEG_ORG, 
+      ORG_NUM, CLASS_NAME, FLOW_NAME, 
+      CODE, PARTY_TYPE, REMARK, 
+      PRODUCT_CD)
+    values (#{configId,jdbcType=VARCHAR}, #{phase,jdbcType=VARCHAR}, #{legOrg,jdbcType=VARCHAR}, 
+      #{orgNum,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR}, #{flowName,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{partyType,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{productCd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertCsmTbSysApplyDaoConfigSelective" parameterType="com.cdgit.loan.csm.po.TbSysApplyDaoConfigPo">
+    insert into CRMS.TB_SYS_APPLY_DAO_CONFIG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="configId != null">
+        CONFIG_ID,
+      </if>
+      <if test="phase != null">
+        PHASE,
+      </if>
+      <if test="legOrg != null">
+        LEG_ORG,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="className != null">
+        CLASS_NAME,
+      </if>
+      <if test="flowName != null">
+        FLOW_NAME,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="partyType != null">
+        PARTY_TYPE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="productCd != null">
+        PRODUCT_CD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="configId != null">
+        #{configId,jdbcType=VARCHAR},
+      </if>
+      <if test="phase != null">
+        #{phase,jdbcType=VARCHAR},
+      </if>
+      <if test="legOrg != null">
+        #{legOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null">
+        #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="partyType != null">
+        #{partyType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="productCd != null">
+        #{productCd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateCsmTbSysApplyDaoConfigSelective" parameterType="com.cdgit.loan.csm.po.TbSysApplyDaoConfigPo">
+    update CRMS.TB_SYS_APPLY_DAO_CONFIG
+    <set>
+      <if test="phase != null">
+        PHASE = #{phase,jdbcType=VARCHAR},
+      </if>
+      <if test="legOrg != null">
+        LEG_ORG = #{legOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        CLASS_NAME = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="flowName != null">
+        FLOW_NAME = #{flowName,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="partyType != null">
+        PARTY_TYPE = #{partyType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="productCd != null">
+        PRODUCT_CD = #{productCd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CONFIG_ID = #{configId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateCsmTbSysApplyDaoConfig" parameterType="com.cdgit.loan.csm.po.TbSysApplyDaoConfigPo">
+    update CRMS.TB_SYS_APPLY_DAO_CONFIG
+    set PHASE = #{phase,jdbcType=VARCHAR},
+      LEG_ORG = #{legOrg,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      CLASS_NAME = #{className,jdbcType=VARCHAR},
+      FLOW_NAME = #{flowName,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      PARTY_TYPE = #{partyType,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      PRODUCT_CD = #{productCd,jdbcType=VARCHAR}
+    where CONFIG_ID = #{configId,jdbcType=VARCHAR}
+  </update>
+
+
+
+
+</mapper>

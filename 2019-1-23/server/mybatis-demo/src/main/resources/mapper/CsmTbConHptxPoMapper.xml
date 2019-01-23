@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConHptxPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConHptxPo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="TXZJYT" jdbcType="VARCHAR" property="txzjyt" />
+    <result column="HPZL" jdbcType="VARCHAR" property="hpzl" />
+    <result column="SFXYFX" jdbcType="VARCHAR" property="sfxyfx" />
+    <result column="MFCNBL_BUY" jdbcType="DECIMAL" property="mfcnblBuy" />
+    <result column="MFCNBL_SELL" jdbcType="DECIMAL" property="mfcnblSell" />
+    <result column="HPZS" jdbcType="DECIMAL" property="hpzs" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="TXYLL" jdbcType="DECIMAL" property="txyll" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="HPBH" jdbcType="VARCHAR" property="hpbh" />
+    <result column="TXQQ" jdbcType="TIMESTAMP" property="txqq" />
+    <result column="DKLL" jdbcType="DECIMAL" property="dkll" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="HP_TOTAL_AMT" jdbcType="DECIMAL" property="hpTotalAmt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, TXZJYT, HPZL, SFXYFX, 
+    MFCNBL_BUY, MFCNBL_SELL, HPZS, CONTRACT_ID, TXYLL, PRODUCT_TYPE, HPBH, TXQQ, DKLL, 
+    CURRENCY_CD, HP_TOTAL_AMT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_HPTX
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_HPTX
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConHptxPo">
+    insert into CRMS.TB_CON_HPTX (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, TXZJYT, HPZL, 
+      SFXYFX, MFCNBL_BUY, MFCNBL_SELL, 
+      HPZS, CONTRACT_ID, TXYLL, 
+      PRODUCT_TYPE, HPBH, TXQQ, 
+      DKLL, CURRENCY_CD, HP_TOTAL_AMT
+      )
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{txzjyt,jdbcType=VARCHAR}, #{hpzl,jdbcType=VARCHAR}, 
+      #{sfxyfx,jdbcType=VARCHAR}, #{mfcnblBuy,jdbcType=DECIMAL}, #{mfcnblSell,jdbcType=DECIMAL}, 
+      #{hpzs,jdbcType=DECIMAL}, #{contractId,jdbcType=VARCHAR}, #{txyll,jdbcType=DECIMAL}, 
+      #{productType,jdbcType=VARCHAR}, #{hpbh,jdbcType=VARCHAR}, #{txqq,jdbcType=TIMESTAMP}, 
+      #{dkll,jdbcType=DECIMAL}, #{currencyCd,jdbcType=VARCHAR}, #{hpTotalAmt,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConHptxPo">
+    insert into CRMS.TB_CON_HPTX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="txzjyt != null">
+        TXZJYT,
+      </if>
+      <if test="hpzl != null">
+        HPZL,
+      </if>
+      <if test="sfxyfx != null">
+        SFXYFX,
+      </if>
+      <if test="mfcnblBuy != null">
+        MFCNBL_BUY,
+      </if>
+      <if test="mfcnblSell != null">
+        MFCNBL_SELL,
+      </if>
+      <if test="hpzs != null">
+        HPZS,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="txyll != null">
+        TXYLL,
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE,
+      </if>
+      <if test="hpbh != null">
+        HPBH,
+      </if>
+      <if test="txqq != null">
+        TXQQ,
+      </if>
+      <if test="dkll != null">
+        DKLL,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="hpTotalAmt != null">
+        HP_TOTAL_AMT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="txzjyt != null">
+        #{txzjyt,jdbcType=VARCHAR},
+      </if>
+      <if test="hpzl != null">
+        #{hpzl,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxyfx != null">
+        #{sfxyfx,jdbcType=VARCHAR},
+      </if>
+      <if test="mfcnblBuy != null">
+        #{mfcnblBuy,jdbcType=DECIMAL},
+      </if>
+      <if test="mfcnblSell != null">
+        #{mfcnblSell,jdbcType=DECIMAL},
+      </if>
+      <if test="hpzs != null">
+        #{hpzs,jdbcType=DECIMAL},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="txyll != null">
+        #{txyll,jdbcType=DECIMAL},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="hpbh != null">
+        #{hpbh,jdbcType=VARCHAR},
+      </if>
+      <if test="txqq != null">
+        #{txqq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dkll != null">
+        #{dkll,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="hpTotalAmt != null">
+        #{hpTotalAmt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConHptxPo">
+    update CRMS.TB_CON_HPTX
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="txzjyt != null">
+        TXZJYT = #{txzjyt,jdbcType=VARCHAR},
+      </if>
+      <if test="hpzl != null">
+        HPZL = #{hpzl,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxyfx != null">
+        SFXYFX = #{sfxyfx,jdbcType=VARCHAR},
+      </if>
+      <if test="mfcnblBuy != null">
+        MFCNBL_BUY = #{mfcnblBuy,jdbcType=DECIMAL},
+      </if>
+      <if test="mfcnblSell != null">
+        MFCNBL_SELL = #{mfcnblSell,jdbcType=DECIMAL},
+      </if>
+      <if test="hpzs != null">
+        HPZS = #{hpzs,jdbcType=DECIMAL},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="txyll != null">
+        TXYLL = #{txyll,jdbcType=DECIMAL},
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="hpbh != null">
+        HPBH = #{hpbh,jdbcType=VARCHAR},
+      </if>
+      <if test="txqq != null">
+        TXQQ = #{txqq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dkll != null">
+        DKLL = #{dkll,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="hpTotalAmt != null">
+        HP_TOTAL_AMT = #{hpTotalAmt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConHptxPo">
+    update CRMS.TB_CON_HPTX
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      TXZJYT = #{txzjyt,jdbcType=VARCHAR},
+      HPZL = #{hpzl,jdbcType=VARCHAR},
+      SFXYFX = #{sfxyfx,jdbcType=VARCHAR},
+      MFCNBL_BUY = #{mfcnblBuy,jdbcType=DECIMAL},
+      MFCNBL_SELL = #{mfcnblSell,jdbcType=DECIMAL},
+      HPZS = #{hpzs,jdbcType=DECIMAL},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      TXYLL = #{txyll,jdbcType=DECIMAL},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      HPBH = #{hpbh,jdbcType=VARCHAR},
+      TXQQ = #{txqq,jdbcType=TIMESTAMP},
+      DKLL = #{dkll,jdbcType=DECIMAL},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      HP_TOTAL_AMT = #{hpTotalAmt,jdbcType=DECIMAL}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

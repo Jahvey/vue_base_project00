@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbLoanSummaryMapper">
+	<resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.TbLoanSummary">
+		<id column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+		<result column="SUMMARY_AMT" jdbcType="DECIMAL" property="summaryAmt" />
+		<result column="SUMMARY_CURRENCY_CD" jdbcType="VARCHAR"
+			property="summaryCurrencyCd" />
+		<result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+		<result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+		<result column="SUMMARY_TERM" jdbcType="DECIMAL" property="summaryTerm" />
+		<result column="CYCLE_UNIT" jdbcType="VARCHAR" property="cycleUnit" />
+		<result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+		<result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="SUMMARY_STATUS_CD" jdbcType="VARCHAR" property="summaryStatusCd" />
+		<result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+		<result column="NFT_NO" jdbcType="VARCHAR" property="nftNo" />
+		<result column="JJYE" jdbcType="DECIMAL" property="jjye" />
+		<result column="YQTS" jdbcType="DECIMAL" property="yqts" />
+		<result column="FLJG" jdbcType="VARCHAR" property="fljg" />
+		<result column="EXCHANGE_RATE" jdbcType="DECIMAL" property="exchangeRate" />
+		<result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+		<result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+		<result column="DFT_ITR" jdbcType="DECIMAL" property="dftItr" />
+		<result column="DFT_ITR_IN" jdbcType="DECIMAL" property="dftItrIn" />
+		<result column="DFT_ITR_OUT" jdbcType="DECIMAL" property="dftItrOut" />
+		<result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+		<result column="LJYQCS" jdbcType="DECIMAL" property="ljyqcs" />
+		<result column="LXYQCS" jdbcType="DECIMAL" property="lxyqcs" />
+		<result column="TIEXI_STATUS" jdbcType="VARCHAR" property="tiexiStatus" />
+		<result column="TINGXI_STATUS" jdbcType="VARCHAR" property="tingxiStatus" />
+		<result column="JJYQBJ" jdbcType="DECIMAL" property="jjyqbj" />
+		<result column="LJFX" jdbcType="DECIMAL" property="ljfx" />
+		<result column="BYJEZD" jdbcType="DECIMAL" property="byjezd" />
+		<result column="BYDMZD" jdbcType="VARCHAR" property="bydmzd" />
+		<result column="NORMAL_ITR" jdbcType="DECIMAL" property="normalItr" />
+		<result column="ARREAR_ITR" jdbcType="DECIMAL" property="arrearItr" />
+		<result column="PUNISH_ITR" jdbcType="DECIMAL" property="punishItr" />
+		<result column="DEAV_STS" jdbcType="CHAR" property="deavSts" />
+		<result column="ENTRUST_RETURN_PRINCIPAL_ACC" jdbcType="VARCHAR"
+			property="entrustReturnPrincipalAcc" />
+		<result column="ENTRUST_RETURN_INTEREST_ACC" jdbcType="VARCHAR"
+			property="entrustReturnInterestAcc" />
+		<result column="RCN_STAN" jdbcType="VARCHAR" property="rcnStan" />
+		<result column="YWBH" jdbcType="VARCHAR" property="ywbh" />
+		<result column="BACK_CD" jdbcType="VARCHAR" property="backCd" />
+		<result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+		<result column="IF_DATA_MOVE1" jdbcType="VARCHAR" property="ifDataMove1" />
+		<result column="PERIOD_FLAG" jdbcType="VARCHAR" property="periodFlag" />
+		<result column="PERIOD_NUM" jdbcType="VARCHAR" property="periodNum" />
+		<result column="EXEXT_FLG" jdbcType="VARCHAR" property="exextFlg" />
+		<result column="BZJBL" jdbcType="DECIMAL" property="bzjbl" />
+		<result column="BZJJE" jdbcType="DECIMAL" property="bzjje" />
+		<result column="NEW_PNS_ITR" jdbcType="DECIMAL" property="newPnsItr" />
+		<result column="NEW_FL_ITR" jdbcType="DECIMAL" property="newFlItr" />
+		<result column="AUTO_FLJG" jdbcType="VARCHAR" property="autoFljg" />
+		<result column="ADJUST_FLG" jdbcType="VARCHAR" property="adjustFlg" />
+		<result column="SETTLE_DATE" jdbcType="TIMESTAMP" property="settleDate" />
+		<result column="LAST_PAY_DATE" jdbcType="TIMESTAMP" property="lastPayDate" />
+		<result column="BJ_YQTS" jdbcType="DECIMAL" property="bjYqts" />
+		<result column="LX_YQTS" jdbcType="DECIMAL" property="lxYqts" />
+	</resultMap>
+	<!-- 查询出账基本信息的tab -->
+	<resultMap id="queryLoanSummary" type="com.cdgit.loan.contract.query.LoanSummaryInfoQuery">
+		<result column="loan_id" javaType="string" property="loanId" />
+		<result column="summary_id" javaType="string" property="summaryId" />
+		<result column="jjye" javaType="string" property="jjye" />
+		<result column="summary_amt" javaType="string" property="summaryAmt" />
+		<result column="product_type" javaType="string" property="productType" />
+		<result column="summary_currency_cd" javaType="string" property="summaryCurrencyCd" />
+		<result column="summary_status_cd" javaType="string" property="summaryStatusCd" />
+		<result column="summary_num" javaType="string" property="summaryNum" />
+		<result column="org_num" javaType="string" property="orgNum" />
+		<result column="user_num" javaType="string" property="userNum" />
+		<result column="party_id" javaType="string" property="partyId" />
+		<result column="year_rate" javaType="string" property="yearRate" />
+		<result column="begin_date" javaType="string" property="beginDate" />
+		<result column="end_date" javaType="string" property="endDate" />
+		<result column="RCN_STAN" javaType="string" property="rcnStan" />
+		<result column="NFT_NO" javaType="string" property="nftNo" />
+		<result column="trus_to_pay_flg" javaType="string" property="trusToPayFlg" />
+		<!-- <result column="contract_id" javaType="string" property="contractId" /> -->
+	</resultMap>
+	
+	<!-- 根据借据id查询一笔借据详细信息 -->
+	<resultMap id="summaryViewQuery" type="com.cdgit.loan.contract.query.SummaryViewQuery">
+		<result column="summary_num" javaType="string" property="summaryNum" />
+		<result column="bill_no" javaType="string" property="billNo" />
+		<result column="ywbh" javaType="string" property="ywbh" />
+		<result column="loan_num" javaType="string" property="loanNum" />
+		<result column="summary_status_cd" javaType="string" property="summaryStatusCd" />
+		<result column="product_type" javaType="string" property="productType" />
+		<result column="loan_subject1" javaType="string" property="loanSubject1" />
+		<result column="summary_currency_cd" javaType="string" property="summaryCurrencyCd" />
+		<result column="summary_amt" javaType="string" property="summaryAmt" />
+		<result column="begin_date" javaType="string" property="beginDate" />
+		<result column="end_date" javaType="string" property="endDate" />
+		<result column="repay_type" javaType="string" property="repayType" />
+		<result column="spec_payment_date" javaType="string" property="specPaymentDate" />
+		<result column="zh" javaType="string" property="zh" />
+		<result column="rate_type" javaType="string" property="rateType" />
+		<result column="float_way" javaType="string" property="floatWay" />
+		<result column="rate_float_proportion" javaType="string" property="rateFloatProportion" />
+		<result column="year_rate" javaType="string" property="yearRate" />
+		<result column="ir_update_frequency" javaType="string" property="irUpdateFrequency" />
+		<result column="interest_collect_type" javaType="string" property="interestCollectType" />
+		<result column="holiday_flg" javaType="string" property="holidayFlg" />
+		<result column="holiday_int_flg" javaType="string" property="holidayIntFlg" />
+		<result column="loan_org" javaType="string" property="loanOrg" />
+		<result column="user_num" javaType="string" property="userNum" />
+		<result column="org_num" javaType="string" property="orgNum" />
+	</resultMap>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from CRMS.TB_LOAN_SUMMARY
+		where SUMMARY_ID = #{summaryId,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 根据合同信息查询明细信息 -->
+	<select id="selectTbLoanSummaryList" parameterType="java.util.HashMap"  resultMap="queryLoanSummary">
+		select 
+			t.loan_id,
+			ta.summary_id,
+			to_char(ta.jjye, '999,999,999.99') as jjye,
+			to_char(ta.summary_amt, '999,999,999.99') as summary_amt,
+			t.product_type,
+			ta.summary_currency_cd,
+			ta.summary_status_cd,
+			ta.summary_num,
+			ta.org_num,
+			ta.user_num,
+			ta.party_id,
+			to_char(r.year_rate, '999.999999') as year_rate,
+			to_char(ta.begin_date, 'yyyy-mm-dd') as begin_date,
+			to_char(ta.end_date, 'yyyy-mm-dd') as end_date,
+			ta.RCN_STAN,
+			ta.NFT_NO,
+			t.trus_to_pay_flg
+		from 
+			tb_loan_info t, tb_loan_summary ta , tb_loan_loanrate r
+		where 
+			t.LOAN_ID = ta.LOAN_ID
+		and r.loan_id = t.loan_Id
+		and t.loan_status != '06'
+		<if test="contractId !=null and contractId !='' ">
+			and t.CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<!-- 获取变更信息，暂时没有映射 -->
+	<!-- <select id="getChageInfo" parameterType="java.util.HashMap" resultMap="">
+		select 
+		   b.change_date,
+		   b.CHANGE_ID,
+		   b.LOAN_CHANGE_TYPE,
+		   b.CONTRACT_ID,
+		   b.PARTY_ID,
+		   b.SUMMARY_ID,
+		   c.SUMMARY_NUM,
+		   c.LOAN_ID,
+		   to_char(b.change_date,'yyyy-MM-dd') CHANGE_DATE 
+		from 
+		   tb_con_loan_change b,tb_loan_summary c
+		where 
+		   c.summary_id=b.summary_id 
+		and 
+		   b.loan_change_type in('11','15','18') 
+		and
+			b.change_date &gt;= to_date(#{beginDate},'YYYY-MM-DD HH24:mi:ss') 
+		and 
+		  b.change_date &lt;= to_date(#{endDate},'YYYY-MM-DD HH24:mi:ss')
+		and 
+		  c.summary_id = #{summaryId}
+		order by b.change_date desc
+    </select> -->
+    
+    <!-- 根据loanID进行合同变更 -->
+   	<update id="updateSummaryStaus" parameterType="java.util.HashMap" >
+    	update tb_loan_summary a set a.back_cd='10' where a.summary_num=(select b.summary_num from tb_loan_info b where b.loan_id=#{loanId})
+	</update>
+    
+    <!-- 根据借款id：summaryId查看借据信息 -->
+	<select id="querySummaryViewBySummaryId" parameterType="java.lang.String"  resultMap="summaryViewQuery">
+		select 
+		  summary.summary_num,
+		  pjxxInfo.bill_no,
+		  summary.ywbh,
+		  loanInfo.loan_num,
+		  summary.summary_status_cd,
+		  loanInfo.product_type,
+		  loanInfo.loan_subject1,
+		  summary.summary_currency_cd,
+		  summary.summary_amt,
+		  summary.begin_date,
+		  summary.end_date,
+		  loanInfo.repay_type,
+		  loanInfo.spec_payment_date,
+		  zh.zh,
+		  loanRate.rate_type,
+		  loanRate.float_way,
+		  loanRate.rate_float_proportion,
+		  loanRate.year_rate,
+		  loanRate.ir_update_frequency,
+		  loanRate.interest_collect_type,
+		  loanRate.holiday_flg,
+		  loanRate.holiday_int_flg,
+		  loanInfo.loan_org,
+		  loanInfo.user_num,
+		  loanInfo.org_num
+		from 
+		    Tb_Loan_Summary summary
+		left join 
+		    Tb_Loan_Info loanInfo on summary.loan_id = loanInfo.loan_id
+		left join 
+		    Tb_Loan_Loanrate loanRate on loanInfo.loan_id = loanRate.loan_id
+		left join 
+		    Tb_Loan_Zh zh on loanRate.loan_id = zh.loan_id
+		left join 
+		    Tb_Loan_Hp_Amt pjxxInfo on summary.summary_id = pjxxInfo.summary_id
+		where 
+		    zh.zhlx = '1'	<!-- 赋值逻辑流这里设置为1：第一还款账户，先写死 -->
+		    and summary.summary_id=#{summaryId}
+    </select>
+    
+	<sql id="Base_Column_List">
+		SUMMARY_ID, LOAN_ID, PARTY_ID, SUMMARY_AMT, SUMMARY_CURRENCY_CD, BEGIN_DATE,
+		END_DATE,
+		SUMMARY_TERM, CYCLE_UNIT, USER_NUM, ORG_NUM, CREATE_TIME, UPDATE_TIME,
+		SUMMARY_STATUS_CD,
+		SUMMARY_NUM, NFT_NO, JJYE, YQTS, FLJG, EXCHANGE_RATE, RMB_AMT, GUARANTY_TYPE,
+		DFT_ITR,
+		DFT_ITR_IN, DFT_ITR_OUT, CONTRACT_ID, LJYQCS, LXYQCS, TIEXI_STATUS,
+		TINGXI_STATUS,
+		JJYQBJ, LJFX, BYJEZD, BYDMZD, NORMAL_ITR, ARREAR_ITR, PUNISH_ITR, DEAV_STS,
+		ENTRUST_RETURN_PRINCIPAL_ACC,
+		ENTRUST_RETURN_INTEREST_ACC, RCN_STAN, YWBH, BACK_CD, IF_DATA_MOVE, IF_DATA_MOVE1,
+		PERIOD_FLAG, PERIOD_NUM, EXEXT_FLG, BZJBL, BZJJE, NEW_PNS_ITR, NEW_FL_ITR,
+		AUTO_FLJG,
+		ADJUST_FLG, SETTLE_DATE, LAST_PAY_DATE, BJ_YQTS, LX_YQTS
+	</sql>
+</mapper>

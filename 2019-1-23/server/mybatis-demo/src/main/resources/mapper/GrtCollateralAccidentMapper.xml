@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtCollateralAccidentMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtCollateralAccident">
+    <id column="ACCIDENT_ID" jdbcType="VARCHAR" property="accidentId" />
+    <result column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="ACCIDENT_TYPE_CD" jdbcType="VARCHAR" property="accidentTypeCd" />
+    <result column="REASON" jdbcType="VARCHAR" property="reason" />
+    <result column="OCCUR_DATE" jdbcType="TIMESTAMP" property="occurDate" />
+    <result column="PRICE_LOSSES" jdbcType="DECIMAL" property="priceLosses" />
+    <result column="OTHER_NOTE" jdbcType="VARCHAR" property="otherNote" />
+    <result column="PRICES_COMPENSATION" jdbcType="DECIMAL" property="pricesCompensation" />
+    <result column="SYS_UPDATE_TIME" jdbcType="TIMESTAMP" property="sysUpdateTime" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ACCIDENT_ID, GUARANTY_ID, ACCIDENT_TYPE_CD, REASON, OCCUR_DATE, PRICE_LOSSES, OTHER_NOTE, 
+    PRICES_COMPENSATION, SYS_UPDATE_TIME, CURRENCY_CD
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_COLLATERAL_ACCIDENT
+    where ACCIDENT_ID = #{accidentId,jdbcType=VARCHAR}
+  </select>
+    <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_COLLATERAL_ACCIDENT where 1=1
+     <if test="accidentTypeCd != null and accidentTypeCd != '' "> 
+       AND ACCIDENT_TYPE_CD LIKE  '%'||#{accidentTypeCd}||'%'
+     </if>
+     <if test="currencyCd != null and currencyCd != '' "> 
+       AND CURRENCY_CD LIKE  '%'||#{currencyCd}||'%'
+     </if>
+     <if test="guarantyId != null and guarantyId != '' "> 
+       AND GUARANTY_ID LIKE  '%'||#{guarantyId}||'%'
+     </if>
+  </select>
+      <delete id="deleteBatch" parameterType="java.util.List">
+  	 delete from TB_GRT_COLLATERAL_ACCIDENT where 
+  	 ACCIDENT_ID in
+	   <foreach collection="ids" index="index" item="item"
+	         open="(" separator="," close=")">
+	         #{item}
+	   </foreach>
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_COLLATERAL_ACCIDENT
+    where ACCIDENT_ID = #{accidentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralAccident">
+    insert into TB_GRT_COLLATERAL_ACCIDENT (ACCIDENT_ID, GUARANTY_ID, ACCIDENT_TYPE_CD, 
+      REASON, OCCUR_DATE, PRICE_LOSSES, 
+      OTHER_NOTE, PRICES_COMPENSATION, SYS_UPDATE_TIME, 
+      CURRENCY_CD)
+    values (#{accidentId,jdbcType=VARCHAR}, #{guarantyId,jdbcType=VARCHAR}, #{accidentTypeCd,jdbcType=VARCHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{occurDate,jdbcType=TIMESTAMP}, #{priceLosses,jdbcType=DECIMAL}, 
+      #{otherNote,jdbcType=VARCHAR}, #{pricesCompensation,jdbcType=DECIMAL}, #{sysUpdateTime,jdbcType=TIMESTAMP}, 
+      #{currencyCd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralAccident">
+    insert into TB_GRT_COLLATERAL_ACCIDENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accidentId != null">
+        ACCIDENT_ID,
+      </if>
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="accidentTypeCd != null">
+        ACCIDENT_TYPE_CD,
+      </if>
+      <if test="reason != null">
+        REASON,
+      </if>
+      <if test="occurDate != null">
+        OCCUR_DATE,
+      </if>
+      <if test="priceLosses != null">
+        PRICE_LOSSES,
+      </if>
+      <if test="otherNote != null">
+        OTHER_NOTE,
+      </if>
+      <if test="pricesCompensation != null">
+        PRICES_COMPENSATION,
+      </if>
+      <if test="sysUpdateTime != null">
+        SYS_UPDATE_TIME,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accidentId != null">
+        #{accidentId,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentTypeCd != null">
+        #{accidentTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="occurDate != null">
+        #{occurDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priceLosses != null">
+        #{priceLosses,jdbcType=DECIMAL},
+      </if>
+      <if test="otherNote != null">
+        #{otherNote,jdbcType=VARCHAR},
+      </if>
+      <if test="pricesCompensation != null">
+        #{pricesCompensation,jdbcType=DECIMAL},
+      </if>
+      <if test="sysUpdateTime != null">
+        #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralAccident">
+    update TB_GRT_COLLATERAL_ACCIDENT
+    <set>
+      <if test="guarantyId != null">
+        GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentTypeCd != null">
+        ACCIDENT_TYPE_CD = #{accidentTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        REASON = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="occurDate != null">
+        OCCUR_DATE = #{occurDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priceLosses != null">
+        PRICE_LOSSES = #{priceLosses,jdbcType=DECIMAL},
+      </if>
+      <if test="otherNote != null">
+        OTHER_NOTE = #{otherNote,jdbcType=VARCHAR},
+      </if>
+      <if test="pricesCompensation != null">
+        PRICES_COMPENSATION = #{pricesCompensation,jdbcType=DECIMAL},
+      </if>
+      <if test="sysUpdateTime != null">
+        SYS_UPDATE_TIME = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ACCIDENT_ID = #{accidentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralAccident">
+    update TB_GRT_COLLATERAL_ACCIDENT
+    set GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR},
+      ACCIDENT_TYPE_CD = #{accidentTypeCd,jdbcType=VARCHAR},
+      REASON = #{reason,jdbcType=VARCHAR},
+      OCCUR_DATE = #{occurDate,jdbcType=TIMESTAMP},
+      PRICE_LOSSES = #{priceLosses,jdbcType=DECIMAL},
+      OTHER_NOTE = #{otherNote,jdbcType=VARCHAR},
+      PRICES_COMPENSATION = #{pricesCompensation,jdbcType=DECIMAL},
+      SYS_UPDATE_TIME = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR}
+    where ACCIDENT_ID = #{accidentId,jdbcType=VARCHAR}
+  </update>
+</mapper>

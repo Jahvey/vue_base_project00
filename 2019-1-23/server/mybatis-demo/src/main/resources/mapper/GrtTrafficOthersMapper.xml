@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtTrafficOthersMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtTrafficOthers">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="AMOUNT_UNIT_CD" jdbcType="VARCHAR" property="amountUnitCd" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="DESTROY_YEARS" jdbcType="VARCHAR" property="destroyYears" />
+    <result column="ORI_PURCHASE_PRICE" jdbcType="DECIMAL" property="oriPurchasePrice" />
+    <result column="PRODUCED_DATE" jdbcType="TIMESTAMP" property="producedDate" />
+    <result column="OWNER_LICENSE_IND" jdbcType="CHAR" property="ownerLicenseInd" />
+    <result column="OWNER_LICENSE_NUM" jdbcType="VARCHAR" property="ownerLicenseNum" />
+    <result column="OWNER_NAME" jdbcType="VARCHAR" property="ownerName" />
+    <result column="INSURANCE_DATE" jdbcType="TIMESTAMP" property="insuranceDate" />
+    <result column="PURPOSE_REMARK" jdbcType="VARCHAR" property="purposeRemark" />
+    <result column="USE_TYPE" jdbcType="VARCHAR" property="useType" />
+    <result column="NUMBER_PLATE" jdbcType="VARCHAR" property="numberPlate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, AMOUNT_UNIT_CD, AMOUNT, DESTROY_YEARS, ORI_PURCHASE_PRICE, PRODUCED_DATE, 
+    OWNER_LICENSE_IND, OWNER_LICENSE_NUM, OWNER_NAME, INSURANCE_DATE, PURPOSE_REMARK, 
+    USE_TYPE, NUMBER_PLATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_TRAFFIC_OTHERS
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_TRAFFIC_OTHERS
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficOthers">
+    insert into TB_GRT_TRAFFIC_OTHERS (GUARANTY_ID, AMOUNT_UNIT_CD, AMOUNT, 
+      DESTROY_YEARS, ORI_PURCHASE_PRICE, PRODUCED_DATE, 
+      OWNER_LICENSE_IND, OWNER_LICENSE_NUM, OWNER_NAME, 
+      INSURANCE_DATE, PURPOSE_REMARK, USE_TYPE, 
+      NUMBER_PLATE)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{amountUnitCd,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{destroyYears,jdbcType=VARCHAR}, #{oriPurchasePrice,jdbcType=DECIMAL}, #{producedDate,jdbcType=TIMESTAMP}, 
+      #{ownerLicenseInd,jdbcType=CHAR}, #{ownerLicenseNum,jdbcType=VARCHAR}, #{ownerName,jdbcType=VARCHAR}, 
+      #{insuranceDate,jdbcType=TIMESTAMP}, #{purposeRemark,jdbcType=VARCHAR}, #{useType,jdbcType=VARCHAR}, 
+      #{numberPlate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficOthers">
+    insert into TB_GRT_TRAFFIC_OTHERS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="amountUnitCd != null">
+        AMOUNT_UNIT_CD,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="destroyYears != null">
+        DESTROY_YEARS,
+      </if>
+      <if test="oriPurchasePrice != null">
+        ORI_PURCHASE_PRICE,
+      </if>
+      <if test="producedDate != null">
+        PRODUCED_DATE,
+      </if>
+      <if test="ownerLicenseInd != null">
+        OWNER_LICENSE_IND,
+      </if>
+      <if test="ownerLicenseNum != null">
+        OWNER_LICENSE_NUM,
+      </if>
+      <if test="ownerName != null">
+        OWNER_NAME,
+      </if>
+      <if test="insuranceDate != null">
+        INSURANCE_DATE,
+      </if>
+      <if test="purposeRemark != null">
+        PURPOSE_REMARK,
+      </if>
+      <if test="useType != null">
+        USE_TYPE,
+      </if>
+      <if test="numberPlate != null">
+        NUMBER_PLATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="amountUnitCd != null">
+        #{amountUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="destroyYears != null">
+        #{destroyYears,jdbcType=VARCHAR},
+      </if>
+      <if test="oriPurchasePrice != null">
+        #{oriPurchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="producedDate != null">
+        #{producedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownerLicenseInd != null">
+        #{ownerLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="ownerLicenseNum != null">
+        #{ownerLicenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null">
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceDate != null">
+        #{insuranceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purposeRemark != null">
+        #{purposeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="useType != null">
+        #{useType,jdbcType=VARCHAR},
+      </if>
+      <if test="numberPlate != null">
+        #{numberPlate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficOthers">
+    update TB_GRT_TRAFFIC_OTHERS
+    <set>
+      <if test="amountUnitCd != null">
+        AMOUNT_UNIT_CD = #{amountUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="destroyYears != null">
+        DESTROY_YEARS = #{destroyYears,jdbcType=VARCHAR},
+      </if>
+      <if test="oriPurchasePrice != null">
+        ORI_PURCHASE_PRICE = #{oriPurchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="producedDate != null">
+        PRODUCED_DATE = #{producedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownerLicenseInd != null">
+        OWNER_LICENSE_IND = #{ownerLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="ownerLicenseNum != null">
+        OWNER_LICENSE_NUM = #{ownerLicenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null">
+        OWNER_NAME = #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceDate != null">
+        INSURANCE_DATE = #{insuranceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purposeRemark != null">
+        PURPOSE_REMARK = #{purposeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="useType != null">
+        USE_TYPE = #{useType,jdbcType=VARCHAR},
+      </if>
+      <if test="numberPlate != null">
+        NUMBER_PLATE = #{numberPlate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficOthers">
+    update TB_GRT_TRAFFIC_OTHERS
+    set AMOUNT_UNIT_CD = #{amountUnitCd,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      DESTROY_YEARS = #{destroyYears,jdbcType=VARCHAR},
+      ORI_PURCHASE_PRICE = #{oriPurchasePrice,jdbcType=DECIMAL},
+      PRODUCED_DATE = #{producedDate,jdbcType=TIMESTAMP},
+      OWNER_LICENSE_IND = #{ownerLicenseInd,jdbcType=CHAR},
+      OWNER_LICENSE_NUM = #{ownerLicenseNum,jdbcType=VARCHAR},
+      OWNER_NAME = #{ownerName,jdbcType=VARCHAR},
+      INSURANCE_DATE = #{insuranceDate,jdbcType=TIMESTAMP},
+      PURPOSE_REMARK = #{purposeRemark,jdbcType=VARCHAR},
+      USE_TYPE = #{useType,jdbcType=VARCHAR},
+      NUMBER_PLATE = #{numberPlate,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

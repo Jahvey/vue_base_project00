@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtBuildingProjectMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtBuildingProject">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="LAND_FOUR" jdbcType="VARCHAR" property="landFour" />
+    <result column="PROJECT_PURPOSE" jdbcType="VARCHAR" property="projectPurpose" />
+    <result column="BUILDED_AREA" jdbcType="DECIMAL" property="buildedArea" />
+    <result column="INVEST_BUDGET" jdbcType="DECIMAL" property="investBudget" />
+    <result column="PRO_ORI_DESIGN_SIZE_CD" jdbcType="VARCHAR" property="proOriDesignSizeCd" />
+    <result column="PRO_PROCESS" jdbcType="VARCHAR" property="proProcess" />
+    <result column="FINISHED_MONEY" jdbcType="DECIMAL" property="finishedMoney" />
+    <result column="PROJECT_PRESENT_STATUS" jdbcType="VARCHAR" property="projectPresentStatus" />
+    <result column="BUILD_UNIT" jdbcType="VARCHAR" property="buildUnit" />
+    <result column="PRO_PLAN_LIC_IND" jdbcType="CHAR" property="proPlanLicInd" />
+    <result column="START_WORK_LIC_IND" jdbcType="CHAR" property="startWorkLicInd" />
+    <result column="PATCH_LAND_MONEY" jdbcType="DECIMAL" property="patchLandMoney" />
+    <result column="K58PWH" jdbcType="VARCHAR" property="k58pwh" />
+    <result column="K58JSXK" jdbcType="VARCHAR" property="k58jsxk" />
+    <result column="K58TDXK" jdbcType="VARCHAR" property="k58tdxk" />
+    <result column="K58KGXKZH" jdbcType="VARCHAR" property="k58kgxkzh" />
+    <result column="K58XMXZYJS" jdbcType="VARCHAR" property="k58xmxzyjs" />
+    <result column="K58YSXKZH" jdbcType="VARCHAR" property="k58ysxkzh" />
+    <result column="K58BEGDATE" jdbcType="TIMESTAMP" property="k58begdate" />
+    <result column="K58ENDDATE" jdbcType="TIMESTAMP" property="k58enddate" />
+    <result column="K58SZD" jdbcType="VARCHAR" property="k58szd" />
+    <result column="K58YDMJ" jdbcType="DECIMAL" property="k58ydmj" />
+    <result column="K58ZYYT" jdbcType="VARCHAR" property="k58zyyt" />
+    <result column="K58BZSM" jdbcType="VARCHAR" property="k58bzsm" />
+    <result column="LAND_USE_NUMBER" jdbcType="VARCHAR" property="landUseNumber" />
+    <result column="COST_OF_BUDGET" jdbcType="DECIMAL" property="costOfBudget" />
+    <result column="MORTGAGE_AREA" jdbcType="DECIMAL" property="mortgageArea" />
+    <result column="IS_PAYMENT_ARREARS" jdbcType="CHAR" property="isPaymentArrears" />
+    <result column="ARREARS_AMT" jdbcType="DECIMAL" property="arrearsAmt" />
+    <result column="IS_PAYMENT_LAND_TRANSFER" jdbcType="CHAR" property="isPaymentLandTransfer" />
+    <result column="IS_HAS_LAND_LICENSE" jdbcType="CHAR" property="isHasLandLicense" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, LAND_FOUR, PROJECT_PURPOSE, BUILDED_AREA, INVEST_BUDGET, PRO_ORI_DESIGN_SIZE_CD, 
+    PRO_PROCESS, FINISHED_MONEY, PROJECT_PRESENT_STATUS, BUILD_UNIT, PRO_PLAN_LIC_IND, 
+    START_WORK_LIC_IND, PATCH_LAND_MONEY, K58PWH, K58JSXK, K58TDXK, K58KGXKZH, K58XMXZYJS, 
+    K58YSXKZH, K58BEGDATE, K58ENDDATE, K58SZD, K58YDMJ, K58ZYYT, K58BZSM, LAND_USE_NUMBER, 
+    COST_OF_BUDGET, MORTGAGE_AREA, IS_PAYMENT_ARREARS, ARREARS_AMT, IS_PAYMENT_LAND_TRANSFER, 
+    IS_HAS_LAND_LICENSE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_BUILDING_PROJECT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_BUILDING_PROJECT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBuildingProject">
+    insert into TB_GRT_BUILDING_PROJECT (GUARANTY_ID, LAND_FOUR, PROJECT_PURPOSE, 
+      BUILDED_AREA, INVEST_BUDGET, PRO_ORI_DESIGN_SIZE_CD, 
+      PRO_PROCESS, FINISHED_MONEY, PROJECT_PRESENT_STATUS, 
+      BUILD_UNIT, PRO_PLAN_LIC_IND, START_WORK_LIC_IND, 
+      PATCH_LAND_MONEY, K58PWH, K58JSXK, 
+      K58TDXK, K58KGXKZH, K58XMXZYJS, 
+      K58YSXKZH, K58BEGDATE, K58ENDDATE, 
+      K58SZD, K58YDMJ, K58ZYYT, 
+      K58BZSM, LAND_USE_NUMBER, COST_OF_BUDGET, 
+      MORTGAGE_AREA, IS_PAYMENT_ARREARS, ARREARS_AMT, 
+      IS_PAYMENT_LAND_TRANSFER, IS_HAS_LAND_LICENSE)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{landFour,jdbcType=VARCHAR}, #{projectPurpose,jdbcType=VARCHAR}, 
+      #{buildedArea,jdbcType=DECIMAL}, #{investBudget,jdbcType=DECIMAL}, #{proOriDesignSizeCd,jdbcType=VARCHAR}, 
+      #{proProcess,jdbcType=VARCHAR}, #{finishedMoney,jdbcType=DECIMAL}, #{projectPresentStatus,jdbcType=VARCHAR}, 
+      #{buildUnit,jdbcType=VARCHAR}, #{proPlanLicInd,jdbcType=CHAR}, #{startWorkLicInd,jdbcType=CHAR}, 
+      #{patchLandMoney,jdbcType=DECIMAL}, #{k58pwh,jdbcType=VARCHAR}, #{k58jsxk,jdbcType=VARCHAR}, 
+      #{k58tdxk,jdbcType=VARCHAR}, #{k58kgxkzh,jdbcType=VARCHAR}, #{k58xmxzyjs,jdbcType=VARCHAR}, 
+      #{k58ysxkzh,jdbcType=VARCHAR}, #{k58begdate,jdbcType=TIMESTAMP}, #{k58enddate,jdbcType=TIMESTAMP}, 
+      #{k58szd,jdbcType=VARCHAR}, #{k58ydmj,jdbcType=DECIMAL}, #{k58zyyt,jdbcType=VARCHAR}, 
+      #{k58bzsm,jdbcType=VARCHAR}, #{landUseNumber,jdbcType=VARCHAR}, #{costOfBudget,jdbcType=DECIMAL}, 
+      #{mortgageArea,jdbcType=DECIMAL}, #{isPaymentArrears,jdbcType=CHAR}, #{arrearsAmt,jdbcType=DECIMAL}, 
+      #{isPaymentLandTransfer,jdbcType=CHAR}, #{isHasLandLicense,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBuildingProject">
+    insert into TB_GRT_BUILDING_PROJECT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="landFour != null">
+        LAND_FOUR,
+      </if>
+      <if test="projectPurpose != null">
+        PROJECT_PURPOSE,
+      </if>
+      <if test="buildedArea != null">
+        BUILDED_AREA,
+      </if>
+      <if test="investBudget != null">
+        INVEST_BUDGET,
+      </if>
+      <if test="proOriDesignSizeCd != null">
+        PRO_ORI_DESIGN_SIZE_CD,
+      </if>
+      <if test="proProcess != null">
+        PRO_PROCESS,
+      </if>
+      <if test="finishedMoney != null">
+        FINISHED_MONEY,
+      </if>
+      <if test="projectPresentStatus != null">
+        PROJECT_PRESENT_STATUS,
+      </if>
+      <if test="buildUnit != null">
+        BUILD_UNIT,
+      </if>
+      <if test="proPlanLicInd != null">
+        PRO_PLAN_LIC_IND,
+      </if>
+      <if test="startWorkLicInd != null">
+        START_WORK_LIC_IND,
+      </if>
+      <if test="patchLandMoney != null">
+        PATCH_LAND_MONEY,
+      </if>
+      <if test="k58pwh != null">
+        K58PWH,
+      </if>
+      <if test="k58jsxk != null">
+        K58JSXK,
+      </if>
+      <if test="k58tdxk != null">
+        K58TDXK,
+      </if>
+      <if test="k58kgxkzh != null">
+        K58KGXKZH,
+      </if>
+      <if test="k58xmxzyjs != null">
+        K58XMXZYJS,
+      </if>
+      <if test="k58ysxkzh != null">
+        K58YSXKZH,
+      </if>
+      <if test="k58begdate != null">
+        K58BEGDATE,
+      </if>
+      <if test="k58enddate != null">
+        K58ENDDATE,
+      </if>
+      <if test="k58szd != null">
+        K58SZD,
+      </if>
+      <if test="k58ydmj != null">
+        K58YDMJ,
+      </if>
+      <if test="k58zyyt != null">
+        K58ZYYT,
+      </if>
+      <if test="k58bzsm != null">
+        K58BZSM,
+      </if>
+      <if test="landUseNumber != null">
+        LAND_USE_NUMBER,
+      </if>
+      <if test="costOfBudget != null">
+        COST_OF_BUDGET,
+      </if>
+      <if test="mortgageArea != null">
+        MORTGAGE_AREA,
+      </if>
+      <if test="isPaymentArrears != null">
+        IS_PAYMENT_ARREARS,
+      </if>
+      <if test="arrearsAmt != null">
+        ARREARS_AMT,
+      </if>
+      <if test="isPaymentLandTransfer != null">
+        IS_PAYMENT_LAND_TRANSFER,
+      </if>
+      <if test="isHasLandLicense != null">
+        IS_HAS_LAND_LICENSE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="landFour != null">
+        #{landFour,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPurpose != null">
+        #{projectPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="buildedArea != null">
+        #{buildedArea,jdbcType=DECIMAL},
+      </if>
+      <if test="investBudget != null">
+        #{investBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="proOriDesignSizeCd != null">
+        #{proOriDesignSizeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="proProcess != null">
+        #{proProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="finishedMoney != null">
+        #{finishedMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="projectPresentStatus != null">
+        #{projectPresentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="buildUnit != null">
+        #{buildUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="proPlanLicInd != null">
+        #{proPlanLicInd,jdbcType=CHAR},
+      </if>
+      <if test="startWorkLicInd != null">
+        #{startWorkLicInd,jdbcType=CHAR},
+      </if>
+      <if test="patchLandMoney != null">
+        #{patchLandMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="k58pwh != null">
+        #{k58pwh,jdbcType=VARCHAR},
+      </if>
+      <if test="k58jsxk != null">
+        #{k58jsxk,jdbcType=VARCHAR},
+      </if>
+      <if test="k58tdxk != null">
+        #{k58tdxk,jdbcType=VARCHAR},
+      </if>
+      <if test="k58kgxkzh != null">
+        #{k58kgxkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="k58xmxzyjs != null">
+        #{k58xmxzyjs,jdbcType=VARCHAR},
+      </if>
+      <if test="k58ysxkzh != null">
+        #{k58ysxkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="k58begdate != null">
+        #{k58begdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="k58enddate != null">
+        #{k58enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="k58szd != null">
+        #{k58szd,jdbcType=VARCHAR},
+      </if>
+      <if test="k58ydmj != null">
+        #{k58ydmj,jdbcType=DECIMAL},
+      </if>
+      <if test="k58zyyt != null">
+        #{k58zyyt,jdbcType=VARCHAR},
+      </if>
+      <if test="k58bzsm != null">
+        #{k58bzsm,jdbcType=VARCHAR},
+      </if>
+      <if test="landUseNumber != null">
+        #{landUseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="costOfBudget != null">
+        #{costOfBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageArea != null">
+        #{mortgageArea,jdbcType=DECIMAL},
+      </if>
+      <if test="isPaymentArrears != null">
+        #{isPaymentArrears,jdbcType=CHAR},
+      </if>
+      <if test="arrearsAmt != null">
+        #{arrearsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="isPaymentLandTransfer != null">
+        #{isPaymentLandTransfer,jdbcType=CHAR},
+      </if>
+      <if test="isHasLandLicense != null">
+        #{isHasLandLicense,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBuildingProject">
+    update TB_GRT_BUILDING_PROJECT
+    <set>
+      <if test="landFour != null">
+        LAND_FOUR = #{landFour,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPurpose != null">
+        PROJECT_PURPOSE = #{projectPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="buildedArea != null">
+        BUILDED_AREA = #{buildedArea,jdbcType=DECIMAL},
+      </if>
+      <if test="investBudget != null">
+        INVEST_BUDGET = #{investBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="proOriDesignSizeCd != null">
+        PRO_ORI_DESIGN_SIZE_CD = #{proOriDesignSizeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="proProcess != null">
+        PRO_PROCESS = #{proProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="finishedMoney != null">
+        FINISHED_MONEY = #{finishedMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="projectPresentStatus != null">
+        PROJECT_PRESENT_STATUS = #{projectPresentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="buildUnit != null">
+        BUILD_UNIT = #{buildUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="proPlanLicInd != null">
+        PRO_PLAN_LIC_IND = #{proPlanLicInd,jdbcType=CHAR},
+      </if>
+      <if test="startWorkLicInd != null">
+        START_WORK_LIC_IND = #{startWorkLicInd,jdbcType=CHAR},
+      </if>
+      <if test="patchLandMoney != null">
+        PATCH_LAND_MONEY = #{patchLandMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="k58pwh != null">
+        K58PWH = #{k58pwh,jdbcType=VARCHAR},
+      </if>
+      <if test="k58jsxk != null">
+        K58JSXK = #{k58jsxk,jdbcType=VARCHAR},
+      </if>
+      <if test="k58tdxk != null">
+        K58TDXK = #{k58tdxk,jdbcType=VARCHAR},
+      </if>
+      <if test="k58kgxkzh != null">
+        K58KGXKZH = #{k58kgxkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="k58xmxzyjs != null">
+        K58XMXZYJS = #{k58xmxzyjs,jdbcType=VARCHAR},
+      </if>
+      <if test="k58ysxkzh != null">
+        K58YSXKZH = #{k58ysxkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="k58begdate != null">
+        K58BEGDATE = #{k58begdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="k58enddate != null">
+        K58ENDDATE = #{k58enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="k58szd != null">
+        K58SZD = #{k58szd,jdbcType=VARCHAR},
+      </if>
+      <if test="k58ydmj != null">
+        K58YDMJ = #{k58ydmj,jdbcType=DECIMAL},
+      </if>
+      <if test="k58zyyt != null">
+        K58ZYYT = #{k58zyyt,jdbcType=VARCHAR},
+      </if>
+      <if test="k58bzsm != null">
+        K58BZSM = #{k58bzsm,jdbcType=VARCHAR},
+      </if>
+      <if test="landUseNumber != null">
+        LAND_USE_NUMBER = #{landUseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="costOfBudget != null">
+        COST_OF_BUDGET = #{costOfBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageArea != null">
+        MORTGAGE_AREA = #{mortgageArea,jdbcType=DECIMAL},
+      </if>
+      <if test="isPaymentArrears != null">
+        IS_PAYMENT_ARREARS = #{isPaymentArrears,jdbcType=CHAR},
+      </if>
+      <if test="arrearsAmt != null">
+        ARREARS_AMT = #{arrearsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="isPaymentLandTransfer != null">
+        IS_PAYMENT_LAND_TRANSFER = #{isPaymentLandTransfer,jdbcType=CHAR},
+      </if>
+      <if test="isHasLandLicense != null">
+        IS_HAS_LAND_LICENSE = #{isHasLandLicense,jdbcType=CHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBuildingProject">
+    update TB_GRT_BUILDING_PROJECT
+    set LAND_FOUR = #{landFour,jdbcType=VARCHAR},
+      PROJECT_PURPOSE = #{projectPurpose,jdbcType=VARCHAR},
+      BUILDED_AREA = #{buildedArea,jdbcType=DECIMAL},
+      INVEST_BUDGET = #{investBudget,jdbcType=DECIMAL},
+      PRO_ORI_DESIGN_SIZE_CD = #{proOriDesignSizeCd,jdbcType=VARCHAR},
+      PRO_PROCESS = #{proProcess,jdbcType=VARCHAR},
+      FINISHED_MONEY = #{finishedMoney,jdbcType=DECIMAL},
+      PROJECT_PRESENT_STATUS = #{projectPresentStatus,jdbcType=VARCHAR},
+      BUILD_UNIT = #{buildUnit,jdbcType=VARCHAR},
+      PRO_PLAN_LIC_IND = #{proPlanLicInd,jdbcType=CHAR},
+      START_WORK_LIC_IND = #{startWorkLicInd,jdbcType=CHAR},
+      PATCH_LAND_MONEY = #{patchLandMoney,jdbcType=DECIMAL},
+      K58PWH = #{k58pwh,jdbcType=VARCHAR},
+      K58JSXK = #{k58jsxk,jdbcType=VARCHAR},
+      K58TDXK = #{k58tdxk,jdbcType=VARCHAR},
+      K58KGXKZH = #{k58kgxkzh,jdbcType=VARCHAR},
+      K58XMXZYJS = #{k58xmxzyjs,jdbcType=VARCHAR},
+      K58YSXKZH = #{k58ysxkzh,jdbcType=VARCHAR},
+      K58BEGDATE = #{k58begdate,jdbcType=TIMESTAMP},
+      K58ENDDATE = #{k58enddate,jdbcType=TIMESTAMP},
+      K58SZD = #{k58szd,jdbcType=VARCHAR},
+      K58YDMJ = #{k58ydmj,jdbcType=DECIMAL},
+      K58ZYYT = #{k58zyyt,jdbcType=VARCHAR},
+      K58BZSM = #{k58bzsm,jdbcType=VARCHAR},
+      LAND_USE_NUMBER = #{landUseNumber,jdbcType=VARCHAR},
+      COST_OF_BUDGET = #{costOfBudget,jdbcType=DECIMAL},
+      MORTGAGE_AREA = #{mortgageArea,jdbcType=DECIMAL},
+      IS_PAYMENT_ARREARS = #{isPaymentArrears,jdbcType=CHAR},
+      ARREARS_AMT = #{arrearsAmt,jdbcType=DECIMAL},
+      IS_PAYMENT_LAND_TRANSFER = #{isPaymentLandTransfer,jdbcType=CHAR},
+      IS_HAS_LAND_LICENSE = #{isHasLandLicense,jdbcType=CHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

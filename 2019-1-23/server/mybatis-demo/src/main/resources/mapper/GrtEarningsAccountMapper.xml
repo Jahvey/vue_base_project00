@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtEarningsAccountMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtEarningsAccount">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="PERSONAL_SETTLEMENT_ACCOUNT" jdbcType="VARCHAR" property="personalSettlementAccount" />
+    <result column="CURRENCY_SPECIES" jdbcType="VARCHAR" property="currencySpecies" />
+    <result column="MONTH_SEND_EARNINGS" jdbcType="DECIMAL" property="monthSendEarnings" />
+    <result column="OPEN_BANK_ACCOUNT" jdbcType="VARCHAR" property="openBankAccount" />
+    <result column="IS_PAYMENT" jdbcType="CHAR" property="isPayment" />
+    <result column="IS_COMMON_PERSON" jdbcType="CHAR" property="isCommonPerson" />
+    <result column="OTHER_EXPLAIN" jdbcType="VARCHAR" property="otherExplain" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, PERSONAL_SETTLEMENT_ACCOUNT, CURRENCY_SPECIES, MONTH_SEND_EARNINGS, 
+    OPEN_BANK_ACCOUNT, IS_PAYMENT, IS_COMMON_PERSON, OTHER_EXPLAIN
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_EARNINGS_ACCOUNT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_EARNINGS_ACCOUNT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtEarningsAccount">
+    insert into TB_GRT_EARNINGS_ACCOUNT (GUARANTY_ID, PERSONAL_SETTLEMENT_ACCOUNT, 
+      CURRENCY_SPECIES, MONTH_SEND_EARNINGS, OPEN_BANK_ACCOUNT, 
+      IS_PAYMENT, IS_COMMON_PERSON, OTHER_EXPLAIN
+      )
+    values (#{guarantyId,jdbcType=VARCHAR}, #{personalSettlementAccount,jdbcType=VARCHAR}, 
+      #{currencySpecies,jdbcType=VARCHAR}, #{monthSendEarnings,jdbcType=DECIMAL}, #{openBankAccount,jdbcType=VARCHAR}, 
+      #{isPayment,jdbcType=CHAR}, #{isCommonPerson,jdbcType=CHAR}, #{otherExplain,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtEarningsAccount">
+    insert into TB_GRT_EARNINGS_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="personalSettlementAccount != null">
+        PERSONAL_SETTLEMENT_ACCOUNT,
+      </if>
+      <if test="currencySpecies != null">
+        CURRENCY_SPECIES,
+      </if>
+      <if test="monthSendEarnings != null">
+        MONTH_SEND_EARNINGS,
+      </if>
+      <if test="openBankAccount != null">
+        OPEN_BANK_ACCOUNT,
+      </if>
+      <if test="isPayment != null">
+        IS_PAYMENT,
+      </if>
+      <if test="isCommonPerson != null">
+        IS_COMMON_PERSON,
+      </if>
+      <if test="otherExplain != null">
+        OTHER_EXPLAIN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="personalSettlementAccount != null">
+        #{personalSettlementAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="currencySpecies != null">
+        #{currencySpecies,jdbcType=VARCHAR},
+      </if>
+      <if test="monthSendEarnings != null">
+        #{monthSendEarnings,jdbcType=DECIMAL},
+      </if>
+      <if test="openBankAccount != null">
+        #{openBankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="isPayment != null">
+        #{isPayment,jdbcType=CHAR},
+      </if>
+      <if test="isCommonPerson != null">
+        #{isCommonPerson,jdbcType=CHAR},
+      </if>
+      <if test="otherExplain != null">
+        #{otherExplain,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtEarningsAccount">
+    update TB_GRT_EARNINGS_ACCOUNT
+    <set>
+      <if test="personalSettlementAccount != null">
+        PERSONAL_SETTLEMENT_ACCOUNT = #{personalSettlementAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="currencySpecies != null">
+        CURRENCY_SPECIES = #{currencySpecies,jdbcType=VARCHAR},
+      </if>
+      <if test="monthSendEarnings != null">
+        MONTH_SEND_EARNINGS = #{monthSendEarnings,jdbcType=DECIMAL},
+      </if>
+      <if test="openBankAccount != null">
+        OPEN_BANK_ACCOUNT = #{openBankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="isPayment != null">
+        IS_PAYMENT = #{isPayment,jdbcType=CHAR},
+      </if>
+      <if test="isCommonPerson != null">
+        IS_COMMON_PERSON = #{isCommonPerson,jdbcType=CHAR},
+      </if>
+      <if test="otherExplain != null">
+        OTHER_EXPLAIN = #{otherExplain,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtEarningsAccount">
+    update TB_GRT_EARNINGS_ACCOUNT
+    set PERSONAL_SETTLEMENT_ACCOUNT = #{personalSettlementAccount,jdbcType=VARCHAR},
+      CURRENCY_SPECIES = #{currencySpecies,jdbcType=VARCHAR},
+      MONTH_SEND_EARNINGS = #{monthSendEarnings,jdbcType=DECIMAL},
+      OPEN_BANK_ACCOUNT = #{openBankAccount,jdbcType=VARCHAR},
+      IS_PAYMENT = #{isPayment,jdbcType=CHAR},
+      IS_COMMON_PERSON = #{isCommonPerson,jdbcType=CHAR},
+      OTHER_EXPLAIN = #{otherExplain,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

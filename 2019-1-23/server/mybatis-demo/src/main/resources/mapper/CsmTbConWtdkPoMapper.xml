@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConWtdkPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConWtdkPo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="WTR" jdbcType="VARCHAR" property="wtr" />
+    <result column="WTRLX" jdbcType="VARCHAR" property="wtrlx" />
+    <result column="WTDKXZ" jdbcType="VARCHAR" property="wtdkxz" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="DKYT" jdbcType="VARCHAR" property="dkyt" />
+    <result column="DKZL" jdbcType="VARCHAR" property="dkzl" />
+    <result column="DKXM" jdbcType="VARCHAR" property="dkxm" />
+    <result column="DZYWJQZBGF" jdbcType="VARCHAR" property="dzywjqzbgf" />
+    <result column="WTXM_ID" jdbcType="VARCHAR" property="wtxmId" />
+    <result column="SXF_PAY_WAY" jdbcType="VARCHAR" property="sxfPayWay" />
+    <result column="QTF_PAY_WAY" jdbcType="VARCHAR" property="qtfPayWay" />
+    <result column="DB_SX_WAY" jdbcType="VARCHAR" property="dbSxWay" />
+    <result column="DK_PAY_WAY" jdbcType="VARCHAR" property="dkPayWay" />
+    <result column="DIS_YT_FX" jdbcType="DECIMAL" property="disYtFx" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, WTR, WTRLX, WTDKXZ, 
+    CONTRACT_ID, DKYT, DKZL, DKXM, DZYWJQZBGF, WTXM_ID, SXF_PAY_WAY, QTF_PAY_WAY, DB_SX_WAY, 
+    DK_PAY_WAY, DIS_YT_FX
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_WTDK
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_WTDK
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConWtdkPo">
+    insert into CRMS.TB_CON_WTDK (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, WTR, WTRLX, 
+      WTDKXZ, CONTRACT_ID, DKYT, 
+      DKZL, DKXM, DZYWJQZBGF, 
+      WTXM_ID, SXF_PAY_WAY, QTF_PAY_WAY, 
+      DB_SX_WAY, DK_PAY_WAY, DIS_YT_FX
+      )
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{wtr,jdbcType=VARCHAR}, #{wtrlx,jdbcType=VARCHAR}, 
+      #{wtdkxz,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{dkyt,jdbcType=VARCHAR}, 
+      #{dkzl,jdbcType=VARCHAR}, #{dkxm,jdbcType=VARCHAR}, #{dzywjqzbgf,jdbcType=VARCHAR}, 
+      #{wtxmId,jdbcType=VARCHAR}, #{sxfPayWay,jdbcType=VARCHAR}, #{qtfPayWay,jdbcType=VARCHAR}, 
+      #{dbSxWay,jdbcType=VARCHAR}, #{dkPayWay,jdbcType=VARCHAR}, #{disYtFx,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConWtdkPo">
+    insert into CRMS.TB_CON_WTDK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="wtr != null">
+        WTR,
+      </if>
+      <if test="wtrlx != null">
+        WTRLX,
+      </if>
+      <if test="wtdkxz != null">
+        WTDKXZ,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="dkyt != null">
+        DKYT,
+      </if>
+      <if test="dkzl != null">
+        DKZL,
+      </if>
+      <if test="dkxm != null">
+        DKXM,
+      </if>
+      <if test="dzywjqzbgf != null">
+        DZYWJQZBGF,
+      </if>
+      <if test="wtxmId != null">
+        WTXM_ID,
+      </if>
+      <if test="sxfPayWay != null">
+        SXF_PAY_WAY,
+      </if>
+      <if test="qtfPayWay != null">
+        QTF_PAY_WAY,
+      </if>
+      <if test="dbSxWay != null">
+        DB_SX_WAY,
+      </if>
+      <if test="dkPayWay != null">
+        DK_PAY_WAY,
+      </if>
+      <if test="disYtFx != null">
+        DIS_YT_FX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="wtr != null">
+        #{wtr,jdbcType=VARCHAR},
+      </if>
+      <if test="wtrlx != null">
+        #{wtrlx,jdbcType=VARCHAR},
+      </if>
+      <if test="wtdkxz != null">
+        #{wtdkxz,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="dkyt != null">
+        #{dkyt,jdbcType=VARCHAR},
+      </if>
+      <if test="dkzl != null">
+        #{dkzl,jdbcType=VARCHAR},
+      </if>
+      <if test="dkxm != null">
+        #{dkxm,jdbcType=VARCHAR},
+      </if>
+      <if test="dzywjqzbgf != null">
+        #{dzywjqzbgf,jdbcType=VARCHAR},
+      </if>
+      <if test="wtxmId != null">
+        #{wtxmId,jdbcType=VARCHAR},
+      </if>
+      <if test="sxfPayWay != null">
+        #{sxfPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="qtfPayWay != null">
+        #{qtfPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="dbSxWay != null">
+        #{dbSxWay,jdbcType=VARCHAR},
+      </if>
+      <if test="dkPayWay != null">
+        #{dkPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="disYtFx != null">
+        #{disYtFx,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConWtdkPo">
+    update CRMS.TB_CON_WTDK
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="wtr != null">
+        WTR = #{wtr,jdbcType=VARCHAR},
+      </if>
+      <if test="wtrlx != null">
+        WTRLX = #{wtrlx,jdbcType=VARCHAR},
+      </if>
+      <if test="wtdkxz != null">
+        WTDKXZ = #{wtdkxz,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="dkyt != null">
+        DKYT = #{dkyt,jdbcType=VARCHAR},
+      </if>
+      <if test="dkzl != null">
+        DKZL = #{dkzl,jdbcType=VARCHAR},
+      </if>
+      <if test="dkxm != null">
+        DKXM = #{dkxm,jdbcType=VARCHAR},
+      </if>
+      <if test="dzywjqzbgf != null">
+        DZYWJQZBGF = #{dzywjqzbgf,jdbcType=VARCHAR},
+      </if>
+      <if test="wtxmId != null">
+        WTXM_ID = #{wtxmId,jdbcType=VARCHAR},
+      </if>
+      <if test="sxfPayWay != null">
+        SXF_PAY_WAY = #{sxfPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="qtfPayWay != null">
+        QTF_PAY_WAY = #{qtfPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="dbSxWay != null">
+        DB_SX_WAY = #{dbSxWay,jdbcType=VARCHAR},
+      </if>
+      <if test="dkPayWay != null">
+        DK_PAY_WAY = #{dkPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="disYtFx != null">
+        DIS_YT_FX = #{disYtFx,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConWtdkPo">
+    update CRMS.TB_CON_WTDK
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      WTR = #{wtr,jdbcType=VARCHAR},
+      WTRLX = #{wtrlx,jdbcType=VARCHAR},
+      WTDKXZ = #{wtdkxz,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      DKYT = #{dkyt,jdbcType=VARCHAR},
+      DKZL = #{dkzl,jdbcType=VARCHAR},
+      DKXM = #{dkxm,jdbcType=VARCHAR},
+      DZYWJQZBGF = #{dzywjqzbgf,jdbcType=VARCHAR},
+      WTXM_ID = #{wtxmId,jdbcType=VARCHAR},
+      SXF_PAY_WAY = #{sxfPayWay,jdbcType=VARCHAR},
+      QTF_PAY_WAY = #{qtfPayWay,jdbcType=VARCHAR},
+      DB_SX_WAY = #{dbSxWay,jdbcType=VARCHAR},
+      DK_PAY_WAY = #{dkPayWay,jdbcType=VARCHAR},
+      DIS_YT_FX = #{disYtFx,jdbcType=DECIMAL}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

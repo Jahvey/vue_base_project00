@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.contractInfo.mapper.ContractInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.contractInfo.bean.ContractInfo">
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CONTRACT_ADDRESS" jdbcType="VARCHAR" property="contractAddress" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="OLD_CONTRACT_ID" jdbcType="VARCHAR" property="oldContractId" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="CONTRACT_AMT" jdbcType="DECIMAL" property="contractAmt" />
+    <result column="CONTRACT_TERM" jdbcType="VARCHAR" property="contractTerm" />
+    <result column="CYCLE_UNIT" jdbcType="VARCHAR" property="cycleUnit" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="CONTRACT_DATE" jdbcType="TIMESTAMP" property="contractDate" />
+    <result column="LOAN_USE" jdbcType="VARCHAR" property="loanUse" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="LOAN_TURN" jdbcType="VARCHAR" property="loanTurn" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="CON_STATUS" jdbcType="VARCHAR" property="conStatus" />
+    <result column="TRUS_TO_PAY_FLG" jdbcType="VARCHAR" property="trusToPayFlg" />
+    <result column="STOP_PAY_FLG" jdbcType="VARCHAR" property="stopPayFlg" />
+    <result column="SPEC_PAYMENT_DATE" jdbcType="DECIMAL" property="specPaymentDate" />
+    <result column="EXCHANGE_RATE" jdbcType="DECIMAL" property="exchangeRate" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="CON_BALANCE" jdbcType="DECIMAL" property="conBalance" />
+    <result column="CYCLE_IND_CON" jdbcType="VARCHAR" property="cycleIndCon" />
+    <result column="REPAYMENT_TYPE" jdbcType="VARCHAR" property="repaymentType" />
+    <result column="TK_DATE" jdbcType="TIMESTAMP" property="tkDate" />
+    <result column="HOLIDAY_FLG" jdbcType="VARCHAR" property="holidayFlg" />
+    <result column="MAIN_GUARANTY_TYPE" jdbcType="VARCHAR" property="mainGuarantyType" />
+    <result column="XY_ID" jdbcType="VARCHAR" property="xyId" />
+    <result column="PAPER_CON_NUM" jdbcType="VARCHAR" property="paperConNum" />
+    <result column="INTERNAL_DAYS" jdbcType="DECIMAL" property="internalDays" />
+    <result column="CLS_RESULT" jdbcType="VARCHAR" property="clsResult" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="FIRST_REPAY_TERM" jdbcType="VARCHAR" property="firstRepayTerm" />
+    <result column="CON_YU_E" jdbcType="DECIMAL" property="conYuE" />
+    <result column="PAY_WAY" jdbcType="VARCHAR" property="payWay" />
+    <result column="PAY_DEPEND1" jdbcType="VARCHAR" property="payDepend1" />
+    <result column="PAY_DEPEND2" jdbcType="VARCHAR" property="payDepend2" />
+    <result column="PAY_DEPEND3" jdbcType="VARCHAR" property="payDepend3" />
+    <result column="PREPAYMENT_PENALTY" jdbcType="VARCHAR" property="prepaymentPenalty" />
+    <result column="PREPAY_MAKEUP_RATE" jdbcType="DECIMAL" property="prepayMakeupRate" />
+    <result column="LEAST_PREPAY_AMOUNT" jdbcType="DECIMAL" property="leastPrepayAmount" />
+    <result column="PREPAY_JS" jdbcType="DECIMAL" property="prepayJs" />
+    <result column="BZJBL" jdbcType="DECIMAL" property="bzjbl" />
+    <result column="CRD_CENT" jdbcType="VARCHAR" property="crdCent" />
+    <result column="APPLY_MODE_TYPE" jdbcType="VARCHAR" property="applyModeType" />
+    <result column="LOW_RISK_BIZ_TYPE" jdbcType="VARCHAR" property="lowRiskBizType" />
+    <result column="AGRICUL_LOANS" jdbcType="VARCHAR" property="agriculLoans" />
+    <result column="CON_OCCUPY" jdbcType="DECIMAL" property="conOccupy" />
+    <result column="CRD_DTL_ID" jdbcType="VARCHAR" property="crdDtlId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+    <result column="CREDIT_STATUS" jdbcType="VARCHAR" property="creditStatus" />
+    <result column="JXHJ_ID" jdbcType="VARCHAR" property="jxhjId" />
+  </resultMap>
+  <!-- 1.1	本行融资情况  业务-->
+  <select id="financingListYW" parameterType="java.lang.String" resultMap="BaseResultMap">
+				select distinct ta.party_id partyId,
+	                tb.product_type,
+	                tc.currency_cd,
+	                tc.contract_num,
+	                decode(ba.biz_type, '02', '综合授信项下单笔', ba.biz_type) bizType,
+	                tc.contract_amt,
+	                tc.con_balance,
+	                tc.con_yu_e,
+	                to_char(tc.begin_date, 'yyyy-MM-dd') as begin_date,
+	                to_char(tc.end_date, 'yyyy-MM-dd') as end_date,
+	                bzj.bzjje bzjje,
+	                tc.org_num,
+	                tc.user_num,
+	                tc.cls_result,
+	                s.yqts yqts,
+	                s.jjyqbj jjyqbj,
+	                s.arrear_itr arrearItr
+	  from tb_biz_approve               ba,
+	       tb_biz_amount_approve        ta,
+	       tb_biz_amount_detail_approve tb,
+	       tb_con_contract_info         tc
+	  left join (select sum(nvl(sub.bzjje, 0)) as bzjje, info.contract_id
+	               from tb_con_subcontract     sub,
+	                    tb_con_subcontract_rel rel,
+	                    tb_con_contract_info   info
+	              where sub.subcontract_id = rel.subcontract_id
+	                and rel.contract_id = info.contract_id
+	                and info.con_status = '03'
+	                and info.product_type in ('01008001','01008002','01008010')
+	              group by info.contract_id) bzj
+	    on bzj.contract_id = tc.contract_id
+	  left join (select s.contract_id,
+	                    max(s.yqts) yqts,
+	                    sum(s.jjyqbj) jjyqbj,
+	                    sum(s.arrear_itr) arrear_itr
+	               from tb_loan_summary s
+	              group by s.contract_id) s
+	    on s.contract_id = tc.contract_id
+	 where ta.approve_id = ba.approve_id
+	   and ta.amount_id = tb.amount_id
+	   and tb.amount_detail_id = tc.amount_detail_id
+	   and tc.con_status = '03'
+	   and ba.party_id = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.contractInfo.bean.ContractInfo">
+    insert into TB_CON_CONTRACT_INFO (CONTRACT_ID, AMOUNT_DETAIL_ID, CONTRACT_NUM, 
+      CONTRACT_ADDRESS, PARTY_ID, OLD_CONTRACT_ID, 
+      CURRENCY_CD, CONTRACT_AMT, CONTRACT_TERM, 
+      CYCLE_UNIT, BEGIN_DATE, END_DATE, 
+      CONTRACT_DATE, LOAN_USE, GUARANTY_TYPE, 
+      LOAN_TURN, USER_NUM, ORG_NUM, 
+      CREATE_TIME, UPDATE_TIME, PRODUCT_TYPE, 
+      CON_STATUS, TRUS_TO_PAY_FLG, STOP_PAY_FLG, 
+      SPEC_PAYMENT_DATE, EXCHANGE_RATE, RMB_AMT, 
+      CON_BALANCE, CYCLE_IND_CON, REPAYMENT_TYPE, 
+      TK_DATE, HOLIDAY_FLG, MAIN_GUARANTY_TYPE, 
+      XY_ID, PAPER_CON_NUM, INTERNAL_DAYS, 
+      CLS_RESULT, IF_DATA_MOVE, FIRST_REPAY_TERM, 
+      CON_YU_E, PAY_WAY, PAY_DEPEND1, 
+      PAY_DEPEND2, PAY_DEPEND3, PREPAYMENT_PENALTY, 
+      PREPAY_MAKEUP_RATE, LEAST_PREPAY_AMOUNT, PREPAY_JS, 
+      BZJBL, CRD_CENT, APPLY_MODE_TYPE, 
+      LOW_RISK_BIZ_TYPE, AGRICUL_LOANS, CON_OCCUPY, 
+      CRD_DTL_ID, CREDIT_MODE, CREDIT_STATUS, 
+      JXHJ_ID)
+    values (#{contractId,jdbcType=VARCHAR}, #{amountDetailId,jdbcType=VARCHAR}, #{contractNum,jdbcType=VARCHAR}, 
+      #{contractAddress,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{oldContractId,jdbcType=VARCHAR}, 
+      #{currencyCd,jdbcType=VARCHAR}, #{contractAmt,jdbcType=DECIMAL}, #{contractTerm,jdbcType=VARCHAR}, 
+      #{cycleUnit,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{contractDate,jdbcType=TIMESTAMP}, #{loanUse,jdbcType=VARCHAR}, #{guarantyType,jdbcType=VARCHAR}, 
+      #{loanTurn,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{productType,jdbcType=VARCHAR}, 
+      #{conStatus,jdbcType=VARCHAR}, #{trusToPayFlg,jdbcType=VARCHAR}, #{stopPayFlg,jdbcType=VARCHAR}, 
+      #{specPaymentDate,jdbcType=DECIMAL}, #{exchangeRate,jdbcType=DECIMAL}, #{rmbAmt,jdbcType=DECIMAL}, 
+      #{conBalance,jdbcType=DECIMAL}, #{cycleIndCon,jdbcType=VARCHAR}, #{repaymentType,jdbcType=VARCHAR}, 
+      #{tkDate,jdbcType=TIMESTAMP}, #{holidayFlg,jdbcType=VARCHAR}, #{mainGuarantyType,jdbcType=VARCHAR}, 
+      #{xyId,jdbcType=VARCHAR}, #{paperConNum,jdbcType=VARCHAR}, #{internalDays,jdbcType=DECIMAL}, 
+      #{clsResult,jdbcType=VARCHAR}, #{ifDataMove,jdbcType=VARCHAR}, #{firstRepayTerm,jdbcType=VARCHAR}, 
+      #{conYuE,jdbcType=DECIMAL}, #{payWay,jdbcType=VARCHAR}, #{payDepend1,jdbcType=VARCHAR}, 
+      #{payDepend2,jdbcType=VARCHAR}, #{payDepend3,jdbcType=VARCHAR}, #{prepaymentPenalty,jdbcType=VARCHAR}, 
+      #{prepayMakeupRate,jdbcType=DECIMAL}, #{leastPrepayAmount,jdbcType=DECIMAL}, #{prepayJs,jdbcType=DECIMAL}, 
+      #{bzjbl,jdbcType=DECIMAL}, #{crdCent,jdbcType=VARCHAR}, #{applyModeType,jdbcType=VARCHAR}, 
+      #{lowRiskBizType,jdbcType=VARCHAR}, #{agriculLoans,jdbcType=VARCHAR}, #{conOccupy,jdbcType=DECIMAL}, 
+      #{crdDtlId,jdbcType=VARCHAR}, #{creditMode,jdbcType=VARCHAR}, #{creditStatus,jdbcType=VARCHAR}, 
+      #{jxhjId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.contractInfo.bean.ContractInfo">
+    insert into TB_CON_CONTRACT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="contractNum != null">
+        CONTRACT_NUM,
+      </if>
+      <if test="contractAddress != null">
+        CONTRACT_ADDRESS,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="oldContractId != null">
+        OLD_CONTRACT_ID,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="contractAmt != null">
+        CONTRACT_AMT,
+      </if>
+      <if test="contractTerm != null">
+        CONTRACT_TERM,
+      </if>
+      <if test="cycleUnit != null">
+        CYCLE_UNIT,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="contractDate != null">
+        CONTRACT_DATE,
+      </if>
+      <if test="loanUse != null">
+        LOAN_USE,
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE,
+      </if>
+      <if test="loanTurn != null">
+        LOAN_TURN,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE,
+      </if>
+      <if test="conStatus != null">
+        CON_STATUS,
+      </if>
+      <if test="trusToPayFlg != null">
+        TRUS_TO_PAY_FLG,
+      </if>
+      <if test="stopPayFlg != null">
+        STOP_PAY_FLG,
+      </if>
+      <if test="specPaymentDate != null">
+        SPEC_PAYMENT_DATE,
+      </if>
+      <if test="exchangeRate != null">
+        EXCHANGE_RATE,
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT,
+      </if>
+      <if test="conBalance != null">
+        CON_BALANCE,
+      </if>
+      <if test="cycleIndCon != null">
+        CYCLE_IND_CON,
+      </if>
+      <if test="repaymentType != null">
+        REPAYMENT_TYPE,
+      </if>
+      <if test="tkDate != null">
+        TK_DATE,
+      </if>
+      <if test="holidayFlg != null">
+        HOLIDAY_FLG,
+      </if>
+      <if test="mainGuarantyType != null">
+        MAIN_GUARANTY_TYPE,
+      </if>
+      <if test="xyId != null">
+        XY_ID,
+      </if>
+      <if test="paperConNum != null">
+        PAPER_CON_NUM,
+      </if>
+      <if test="internalDays != null">
+        INTERNAL_DAYS,
+      </if>
+      <if test="clsResult != null">
+        CLS_RESULT,
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE,
+      </if>
+      <if test="firstRepayTerm != null">
+        FIRST_REPAY_TERM,
+      </if>
+      <if test="conYuE != null">
+        CON_YU_E,
+      </if>
+      <if test="payWay != null">
+        PAY_WAY,
+      </if>
+      <if test="payDepend1 != null">
+        PAY_DEPEND1,
+      </if>
+      <if test="payDepend2 != null">
+        PAY_DEPEND2,
+      </if>
+      <if test="payDepend3 != null">
+        PAY_DEPEND3,
+      </if>
+      <if test="prepaymentPenalty != null">
+        PREPAYMENT_PENALTY,
+      </if>
+      <if test="prepayMakeupRate != null">
+        PREPAY_MAKEUP_RATE,
+      </if>
+      <if test="leastPrepayAmount != null">
+        LEAST_PREPAY_AMOUNT,
+      </if>
+      <if test="prepayJs != null">
+        PREPAY_JS,
+      </if>
+      <if test="bzjbl != null">
+        BZJBL,
+      </if>
+      <if test="crdCent != null">
+        CRD_CENT,
+      </if>
+      <if test="applyModeType != null">
+        APPLY_MODE_TYPE,
+      </if>
+      <if test="lowRiskBizType != null">
+        LOW_RISK_BIZ_TYPE,
+      </if>
+      <if test="agriculLoans != null">
+        AGRICUL_LOANS,
+      </if>
+      <if test="conOccupy != null">
+        CON_OCCUPY,
+      </if>
+      <if test="crdDtlId != null">
+        CRD_DTL_ID,
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE,
+      </if>
+      <if test="creditStatus != null">
+        CREDIT_STATUS,
+      </if>
+      <if test="jxhjId != null">
+        JXHJ_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNum != null">
+        #{contractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="contractAddress != null">
+        #{contractAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="oldContractId != null">
+        #{oldContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="contractAmt != null">
+        #{contractAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="contractTerm != null">
+        #{contractTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleUnit != null">
+        #{cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractDate != null">
+        #{contractDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanUse != null">
+        #{loanUse,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyType != null">
+        #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTurn != null">
+        #{loanTurn,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="conStatus != null">
+        #{conStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="trusToPayFlg != null">
+        #{trusToPayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPayFlg != null">
+        #{stopPayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="specPaymentDate != null">
+        #{specPaymentDate,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeRate != null">
+        #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="rmbAmt != null">
+        #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="conBalance != null">
+        #{conBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="cycleIndCon != null">
+        #{cycleIndCon,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentType != null">
+        #{repaymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="tkDate != null">
+        #{tkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="holidayFlg != null">
+        #{holidayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="mainGuarantyType != null">
+        #{mainGuarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="xyId != null">
+        #{xyId,jdbcType=VARCHAR},
+      </if>
+      <if test="paperConNum != null">
+        #{paperConNum,jdbcType=VARCHAR},
+      </if>
+      <if test="internalDays != null">
+        #{internalDays,jdbcType=DECIMAL},
+      </if>
+      <if test="clsResult != null">
+        #{clsResult,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="firstRepayTerm != null">
+        #{firstRepayTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="conYuE != null">
+        #{conYuE,jdbcType=DECIMAL},
+      </if>
+      <if test="payWay != null">
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend1 != null">
+        #{payDepend1,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend2 != null">
+        #{payDepend2,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend3 != null">
+        #{payDepend3,jdbcType=VARCHAR},
+      </if>
+      <if test="prepaymentPenalty != null">
+        #{prepaymentPenalty,jdbcType=VARCHAR},
+      </if>
+      <if test="prepayMakeupRate != null">
+        #{prepayMakeupRate,jdbcType=DECIMAL},
+      </if>
+      <if test="leastPrepayAmount != null">
+        #{leastPrepayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="prepayJs != null">
+        #{prepayJs,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjbl != null">
+        #{bzjbl,jdbcType=DECIMAL},
+      </if>
+      <if test="crdCent != null">
+        #{crdCent,jdbcType=VARCHAR},
+      </if>
+      <if test="applyModeType != null">
+        #{applyModeType,jdbcType=VARCHAR},
+      </if>
+      <if test="lowRiskBizType != null">
+        #{lowRiskBizType,jdbcType=VARCHAR},
+      </if>
+      <if test="agriculLoans != null">
+        #{agriculLoans,jdbcType=VARCHAR},
+      </if>
+      <if test="conOccupy != null">
+        #{conOccupy,jdbcType=DECIMAL},
+      </if>
+      <if test="crdDtlId != null">
+        #{crdDtlId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="creditStatus != null">
+        #{creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="jxhjId != null">
+        #{jxhjId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

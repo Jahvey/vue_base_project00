@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.loan.user.mapper.TbBizAmountDetailApproveMapper">
+  <resultMap id="BaseResultMap" type="com.example.loan.user.bean.TbBizAmountDetailApprove">
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="EXCHANGE_RATE" jdbcType="DECIMAL" property="exchangeRate" />
+    <result column="CYCLE_UNIT" jdbcType="VARCHAR" property="cycleUnit" />
+    <result column="CREDIT_TERM" jdbcType="DECIMAL" property="creditTerm" />
+    <result column="LOAN_USE" jdbcType="VARCHAR" property="loanUse" />
+    <result column="REPAYMENT_TYPE" jdbcType="VARCHAR" property="repaymentType" />
+    <result column="CYCLE_IND" jdbcType="VARCHAR" property="cycleInd" />
+    <result column="BROAD_CYCLE" jdbcType="DECIMAL" property="broadCycle" />
+    <result column="BROAD_CYCLE_UNIT" jdbcType="VARCHAR" property="broadCycleUnit" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="EXCHANGE_RATE_DATE" jdbcType="TIMESTAMP" property="exchangeRateDate" />
+    <result column="OLD_DETAIL_ID" jdbcType="VARCHAR" property="oldDetailId" />
+    <result column="DETAIL_AMT" jdbcType="DECIMAL" property="detailAmt" />
+    <result column="AMOUNT_ID" jdbcType="VARCHAR" property="amountId" />
+    <result column="PAYMENT" jdbcType="VARCHAR" property="payment" />
+    <result column="PREPAYMENT_PENALTY" jdbcType="VARCHAR" property="prepaymentPenalty" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="CYCLE_IND_CON" jdbcType="VARCHAR" property="cycleIndCon" />
+    <result column="HOLIDAY_FLG" jdbcType="VARCHAR" property="holidayFlg" />
+    <result column="FIRST_REPAY_TERM" jdbcType="VARCHAR" property="firstRepayTerm" />
+    <result column="DETAIL_BALANCE" jdbcType="DECIMAL" property="detailBalance" />
+    <result column="DETAIL_USED" jdbcType="DECIMAL" property="detailUsed" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+    <result column="NO_USE" jdbcType="DECIMAL" property="noUse" />
+    <result column="BO_USE" jdbcType="DECIMAL" property="boUse" />
+    <result column="CRD_DTL_ID" jdbcType="VARCHAR" property="crdDtlId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="CREDIT_STATUS" jdbcType="VARCHAR" property="creditStatus" />
+    <result column="ASSURE_PER" jdbcType="DECIMAL" property="assurePer" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.loan.user.bean.TbBizAmountDetailApprove">
+    insert into TB_BIZ_AMOUNT_DETAIL_APPROVE (PRODUCT_TYPE, CURRENCY_CD, EXCHANGE_RATE, 
+      CYCLE_UNIT, CREDIT_TERM, LOAN_USE, 
+      REPAYMENT_TYPE, CYCLE_IND, BROAD_CYCLE, 
+      BROAD_CYCLE_UNIT, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, EXCHANGE_RATE_DATE, OLD_DETAIL_ID, 
+      DETAIL_AMT, AMOUNT_ID, PAYMENT, 
+      PREPAYMENT_PENALTY, RMB_AMT, CYCLE_IND_CON, 
+      HOLIDAY_FLG, FIRST_REPAY_TERM, DETAIL_BALANCE, 
+      DETAIL_USED, END_DATE, APPROVE_ID, 
+      NO_USE, BO_USE, CRD_DTL_ID, 
+      CREDIT_MODE, BEGIN_DATE, CREDIT_STATUS, 
+      ASSURE_PER)
+    values (#{productType,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, #{exchangeRate,jdbcType=DECIMAL}, 
+      #{cycleUnit,jdbcType=VARCHAR}, #{creditTerm,jdbcType=DECIMAL}, #{loanUse,jdbcType=VARCHAR}, 
+      #{repaymentType,jdbcType=VARCHAR}, #{cycleInd,jdbcType=VARCHAR}, #{broadCycle,jdbcType=DECIMAL}, 
+      #{broadCycleUnit,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{exchangeRateDate,jdbcType=TIMESTAMP}, #{oldDetailId,jdbcType=VARCHAR}, 
+      #{detailAmt,jdbcType=DECIMAL}, #{amountId,jdbcType=VARCHAR}, #{payment,jdbcType=VARCHAR}, 
+      #{prepaymentPenalty,jdbcType=VARCHAR}, #{rmbAmt,jdbcType=DECIMAL}, #{cycleIndCon,jdbcType=VARCHAR}, 
+      #{holidayFlg,jdbcType=VARCHAR}, #{firstRepayTerm,jdbcType=VARCHAR}, #{detailBalance,jdbcType=DECIMAL}, 
+      #{detailUsed,jdbcType=DECIMAL}, #{endDate,jdbcType=TIMESTAMP}, #{approveId,jdbcType=VARCHAR}, 
+      #{noUse,jdbcType=DECIMAL}, #{boUse,jdbcType=DECIMAL}, #{crdDtlId,jdbcType=VARCHAR}, 
+      #{creditMode,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, #{creditStatus,jdbcType=VARCHAR}, 
+      #{assurePer,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.loan.user.bean.TbBizAmountDetailApprove">
+    insert into TB_BIZ_AMOUNT_DETAIL_APPROVE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productType != null">
+        PRODUCT_TYPE,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="exchangeRate != null">
+        EXCHANGE_RATE,
+      </if>
+      <if test="cycleUnit != null">
+        CYCLE_UNIT,
+      </if>
+      <if test="creditTerm != null">
+        CREDIT_TERM,
+      </if>
+      <if test="loanUse != null">
+        LOAN_USE,
+      </if>
+      <if test="repaymentType != null">
+        REPAYMENT_TYPE,
+      </if>
+      <if test="cycleInd != null">
+        CYCLE_IND,
+      </if>
+      <if test="broadCycle != null">
+        BROAD_CYCLE,
+      </if>
+      <if test="broadCycleUnit != null">
+        BROAD_CYCLE_UNIT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="exchangeRateDate != null">
+        EXCHANGE_RATE_DATE,
+      </if>
+      <if test="oldDetailId != null">
+        OLD_DETAIL_ID,
+      </if>
+      <if test="detailAmt != null">
+        DETAIL_AMT,
+      </if>
+      <if test="amountId != null">
+        AMOUNT_ID,
+      </if>
+      <if test="payment != null">
+        PAYMENT,
+      </if>
+      <if test="prepaymentPenalty != null">
+        PREPAYMENT_PENALTY,
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT,
+      </if>
+      <if test="cycleIndCon != null">
+        CYCLE_IND_CON,
+      </if>
+      <if test="holidayFlg != null">
+        HOLIDAY_FLG,
+      </if>
+      <if test="firstRepayTerm != null">
+        FIRST_REPAY_TERM,
+      </if>
+      <if test="detailBalance != null">
+        DETAIL_BALANCE,
+      </if>
+      <if test="detailUsed != null">
+        DETAIL_USED,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="approveId != null">
+        APPROVE_ID,
+      </if>
+      <if test="noUse != null">
+        NO_USE,
+      </if>
+      <if test="boUse != null">
+        BO_USE,
+      </if>
+      <if test="crdDtlId != null">
+        CRD_DTL_ID,
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="creditStatus != null">
+        CREDIT_STATUS,
+      </if>
+      <if test="assurePer != null">
+        ASSURE_PER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeRate != null">
+        #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="cycleUnit != null">
+        #{cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="creditTerm != null">
+        #{creditTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="loanUse != null">
+        #{loanUse,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentType != null">
+        #{repaymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleInd != null">
+        #{cycleInd,jdbcType=VARCHAR},
+      </if>
+      <if test="broadCycle != null">
+        #{broadCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="broadCycleUnit != null">
+        #{broadCycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeRateDate != null">
+        #{exchangeRateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oldDetailId != null">
+        #{oldDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAmt != null">
+        #{detailAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="amountId != null">
+        #{amountId,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="prepaymentPenalty != null">
+        #{prepaymentPenalty,jdbcType=VARCHAR},
+      </if>
+      <if test="rmbAmt != null">
+        #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="cycleIndCon != null">
+        #{cycleIndCon,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayFlg != null">
+        #{holidayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="firstRepayTerm != null">
+        #{firstRepayTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="detailBalance != null">
+        #{detailBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="detailUsed != null">
+        #{detailUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveId != null">
+        #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="noUse != null">
+        #{noUse,jdbcType=DECIMAL},
+      </if>
+      <if test="boUse != null">
+        #{boUse,jdbcType=DECIMAL},
+      </if>
+      <if test="crdDtlId != null">
+        #{crdDtlId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creditStatus != null">
+        #{creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="assurePer != null">
+        #{assurePer,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

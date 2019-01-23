@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.party.mapper.PartyMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.party.bean.Party">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ECIF_PARTY_NUM" jdbcType="VARCHAR" property="ecifPartyNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="EXAMINE_STATE" jdbcType="VARCHAR" property="examineState" />
+    <result column="CUST_PROPERTY_STATUS" jdbcType="VARCHAR" property="custPropertyStatus" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="IS_POTENTIAL_CUST" jdbcType="VARCHAR" property="isPotentialCust" />
+    <result column="LEG_ORG" jdbcType="VARCHAR" property="legOrg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PARTY_ID, PARTY_NUM, PARTY_TYPE_CD, PARTY_NAME, ECIF_PARTY_NUM, CREATE_TIME, UPDATE_TIME, 
+    EXAMINE_STATE, CUST_PROPERTY_STATUS, IF_DATA_MOVE, IS_POTENTIAL_CUST, LEG_ORG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_PARTY
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_PARTY
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.party.bean.Party">
+    insert into TB_CSM_PARTY (PARTY_ID, PARTY_NUM, PARTY_TYPE_CD, 
+      PARTY_NAME, ECIF_PARTY_NUM, CREATE_TIME, 
+      UPDATE_TIME, EXAMINE_STATE, CUST_PROPERTY_STATUS, 
+      IF_DATA_MOVE, IS_POTENTIAL_CUST, LEG_ORG
+      )
+    values (#{partyId,jdbcType=VARCHAR}, #{partyNum,jdbcType=VARCHAR}, #{partyTypeCd,jdbcType=VARCHAR}, 
+      #{partyName,jdbcType=VARCHAR}, #{ecifPartyNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{examineState,jdbcType=VARCHAR}, #{custPropertyStatus,jdbcType=VARCHAR}, 
+      #{ifDataMove,jdbcType=VARCHAR}, #{isPotentialCust,jdbcType=VARCHAR}, #{legOrg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.party.bean.Party">
+    insert into TB_CSM_PARTY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="partyNum != null">
+        PARTY_NUM,
+      </if>
+      <if test="partyTypeCd != null">
+        PARTY_TYPE_CD,
+      </if>
+      <if test="partyName != null">
+        PARTY_NAME,
+      </if>
+      <if test="ecifPartyNum != null">
+        ECIF_PARTY_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="examineState != null">
+        EXAMINE_STATE,
+      </if>
+      <if test="custPropertyStatus != null">
+        CUST_PROPERTY_STATUS,
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE,
+      </if>
+      <if test="isPotentialCust != null">
+        IS_POTENTIAL_CUST,
+      </if>
+      <if test="legOrg != null">
+        LEG_ORG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyNum != null">
+        #{partyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="partyTypeCd != null">
+        #{partyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null">
+        #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="ecifPartyNum != null">
+        #{ecifPartyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examineState != null">
+        #{examineState,jdbcType=VARCHAR},
+      </if>
+      <if test="custPropertyStatus != null">
+        #{custPropertyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="isPotentialCust != null">
+        #{isPotentialCust,jdbcType=VARCHAR},
+      </if>
+      <if test="legOrg != null">
+        #{legOrg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.party.bean.Party">
+    update TB_CSM_PARTY
+    <set>
+      <if test="partyNum != null">
+        PARTY_NUM = #{partyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="partyTypeCd != null">
+        PARTY_TYPE_CD = #{partyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null">
+        PARTY_NAME = #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="ecifPartyNum != null">
+        ECIF_PARTY_NUM = #{ecifPartyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examineState != null">
+        EXAMINE_STATE = #{examineState,jdbcType=VARCHAR},
+      </if>
+      <if test="custPropertyStatus != null">
+        CUST_PROPERTY_STATUS = #{custPropertyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="isPotentialCust != null">
+        IS_POTENTIAL_CUST = #{isPotentialCust,jdbcType=VARCHAR},
+      </if>
+      <if test="legOrg != null">
+        LEG_ORG = #{legOrg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.party.bean.Party">
+    update TB_CSM_PARTY
+    set PARTY_NUM = #{partyNum,jdbcType=VARCHAR},
+      PARTY_TYPE_CD = #{partyTypeCd,jdbcType=VARCHAR},
+      PARTY_NAME = #{partyName,jdbcType=VARCHAR},
+      ECIF_PARTY_NUM = #{ecifPartyNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      EXAMINE_STATE = #{examineState,jdbcType=VARCHAR},
+      CUST_PROPERTY_STATUS = #{custPropertyStatus,jdbcType=VARCHAR},
+      IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      IS_POTENTIAL_CUST = #{isPotentialCust,jdbcType=VARCHAR},
+      LEG_ORG = #{legOrg,jdbcType=VARCHAR}
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

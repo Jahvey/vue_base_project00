@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConFrzhtzPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConFrzhtzPo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="TZZHH" jdbcType="VARCHAR" property="tzzhh" />
+    <result column="TZZHMC" jdbcType="VARCHAR" property="tzzhmc" />
+    <result column="TZCXQX" jdbcType="VARCHAR" property="tzcxqx" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="NORMAL_ACC_NO" jdbcType="VARCHAR" property="normalAccNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, TZZHH, TZZHMC, TZCXQX, 
+    CONTRACT_ID, NORMAL_ACC_NO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_FRZHTZ
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_FRZHTZ
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConFrzhtzPo">
+    insert into CRMS.TB_CON_FRZHTZ (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, TZZHH, TZZHMC, 
+      TZCXQX, CONTRACT_ID, NORMAL_ACC_NO
+      )
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{tzzhh,jdbcType=VARCHAR}, #{tzzhmc,jdbcType=VARCHAR}, 
+      #{tzcxqx,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{normalAccNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConFrzhtzPo">
+    insert into CRMS.TB_CON_FRZHTZ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="tzzhh != null">
+        TZZHH,
+      </if>
+      <if test="tzzhmc != null">
+        TZZHMC,
+      </if>
+      <if test="tzcxqx != null">
+        TZCXQX,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="normalAccNo != null">
+        NORMAL_ACC_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="tzzhh != null">
+        #{tzzhh,jdbcType=VARCHAR},
+      </if>
+      <if test="tzzhmc != null">
+        #{tzzhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="tzcxqx != null">
+        #{tzcxqx,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="normalAccNo != null">
+        #{normalAccNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConFrzhtzPo">
+    update CRMS.TB_CON_FRZHTZ
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="tzzhh != null">
+        TZZHH = #{tzzhh,jdbcType=VARCHAR},
+      </if>
+      <if test="tzzhmc != null">
+        TZZHMC = #{tzzhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="tzcxqx != null">
+        TZCXQX = #{tzcxqx,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="normalAccNo != null">
+        NORMAL_ACC_NO = #{normalAccNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConFrzhtzPo">
+    update CRMS.TB_CON_FRZHTZ
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      TZZHH = #{tzzhh,jdbcType=VARCHAR},
+      TZZHMC = #{tzzhmc,jdbcType=VARCHAR},
+      TZCXQX = #{tzcxqx,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      NORMAL_ACC_NO = #{normalAccNo,jdbcType=VARCHAR}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

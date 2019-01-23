@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbGrtGuaranteeBasicMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbGrtGuaranteeBasic">
+    <id column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="GUARANTEE_TYPE" jdbcType="VARCHAR" property="guaranteeType" />
+    <result column="SURETY_AMT" jdbcType="DECIMAL" property="suretyAmt" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="IS_GUARANTEE_COMPANY" jdbcType="VARCHAR" property="isGuaranteeCompany" />
+    <result column="IF_TOP_AMT" jdbcType="VARCHAR" property="ifTopAmt" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="GUARANTEE_FORM" jdbcType="VARCHAR" property="guaranteeForm" />
+    <result column="GUARANTEE_WAY" jdbcType="VARCHAR" property="guaranteeWay" />
+    <result column="USABLE_GUARANTEE_LIMIT" jdbcType="DECIMAL" property="usableGuaranteeLimit" />
+    <result column="PARTY_NO" jdbcType="VARCHAR" property="partyNo" />
+    <result column="ACCNO_WAY" jdbcType="VARCHAR" property="accnoWay" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SURETY_ID, PARTY_ID, GUARANTEE_TYPE, SURETY_AMT, CURRENCY_CD, USER_NUM, ORG_NUM, 
+    CREATE_TIME, UPDATE_TIME, IS_GUARANTEE_COMPANY, IF_TOP_AMT, IF_DATA_MOVE, GUARANTEE_FORM, 
+    GUARANTEE_WAY, USABLE_GUARANTEE_LIMIT, PARTY_NO, ACCNO_WAY
+  </sql>
+  
+</mapper>

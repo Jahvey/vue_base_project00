@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConXwPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConXwPo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="GTJKR" jdbcType="VARCHAR" property="gtjkr" />
+    <result column="PAY_WAY" jdbcType="VARCHAR" property="payWay" />
+    <result column="CAPITAL_PAY_CONDITION1" jdbcType="VARCHAR" property="capitalPayCondition1" />
+    <result column="CAPITAL_PAY_CONDITION2" jdbcType="VARCHAR" property="capitalPayCondition2" />
+    <result column="CAPITAL_PAY_CONDITION3" jdbcType="VARCHAR" property="capitalPayCondition3" />
+    <result column="SFNHDK" jdbcType="VARCHAR" property="sfnhdk" />
+    <result column="SFCZTX" jdbcType="VARCHAR" property="sfcztx" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="HOUSE_CONTRACT_NUM" jdbcType="VARCHAR" property="houseContractNum" />
+    <result column="NATIONALITY_CD" jdbcType="VARCHAR" property="nationalityCd" />
+    <result column="PROVINCE_CD" jdbcType="VARCHAR" property="provinceCd" />
+    <result column="CITY_CD" jdbcType="VARCHAR" property="cityCd" />
+    <result column="DISTRICT" jdbcType="VARCHAR" property="district" />
+    <result column="STREET_ADDRESS" jdbcType="VARCHAR" property="streetAddress" />
+    <result column="SXF_PAY_WAY" jdbcType="VARCHAR" property="sxfPayWay" />
+    <result column="QTF_PAY_WAY" jdbcType="VARCHAR" property="qtfPayWay" />
+    <result column="DB_SX_WAY" jdbcType="VARCHAR" property="dbSxWay" />
+    <result column="DIS_YT_FX" jdbcType="DECIMAL" property="disYtFx" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, GTJKR, PAY_WAY, CAPITAL_PAY_CONDITION1, 
+    CAPITAL_PAY_CONDITION2, CAPITAL_PAY_CONDITION3, SFNHDK, SFCZTX, CONTRACT_ID, HOUSE_CONTRACT_NUM, 
+    NATIONALITY_CD, PROVINCE_CD, CITY_CD, DISTRICT, STREET_ADDRESS, SXF_PAY_WAY, QTF_PAY_WAY, 
+    DB_SX_WAY, DIS_YT_FX
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_XW
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_XW
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConXwPo">
+    insert into CRMS.TB_CON_XW (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, GTJKR, PAY_WAY, 
+      CAPITAL_PAY_CONDITION1, CAPITAL_PAY_CONDITION2, 
+      CAPITAL_PAY_CONDITION3, SFNHDK, SFCZTX, 
+      CONTRACT_ID, HOUSE_CONTRACT_NUM, NATIONALITY_CD, 
+      PROVINCE_CD, CITY_CD, DISTRICT, 
+      STREET_ADDRESS, SXF_PAY_WAY, QTF_PAY_WAY, 
+      DB_SX_WAY, DIS_YT_FX)
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{gtjkr,jdbcType=VARCHAR}, #{payWay,jdbcType=VARCHAR}, 
+      #{capitalPayCondition1,jdbcType=VARCHAR}, #{capitalPayCondition2,jdbcType=VARCHAR}, 
+      #{capitalPayCondition3,jdbcType=VARCHAR}, #{sfnhdk,jdbcType=VARCHAR}, #{sfcztx,jdbcType=VARCHAR}, 
+      #{contractId,jdbcType=VARCHAR}, #{houseContractNum,jdbcType=VARCHAR}, #{nationalityCd,jdbcType=VARCHAR}, 
+      #{provinceCd,jdbcType=VARCHAR}, #{cityCd,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, 
+      #{streetAddress,jdbcType=VARCHAR}, #{sxfPayWay,jdbcType=VARCHAR}, #{qtfPayWay,jdbcType=VARCHAR}, 
+      #{dbSxWay,jdbcType=VARCHAR}, #{disYtFx,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConXwPo">
+    insert into CRMS.TB_CON_XW
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="gtjkr != null">
+        GTJKR,
+      </if>
+      <if test="payWay != null">
+        PAY_WAY,
+      </if>
+      <if test="capitalPayCondition1 != null">
+        CAPITAL_PAY_CONDITION1,
+      </if>
+      <if test="capitalPayCondition2 != null">
+        CAPITAL_PAY_CONDITION2,
+      </if>
+      <if test="capitalPayCondition3 != null">
+        CAPITAL_PAY_CONDITION3,
+      </if>
+      <if test="sfnhdk != null">
+        SFNHDK,
+      </if>
+      <if test="sfcztx != null">
+        SFCZTX,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="houseContractNum != null">
+        HOUSE_CONTRACT_NUM,
+      </if>
+      <if test="nationalityCd != null">
+        NATIONALITY_CD,
+      </if>
+      <if test="provinceCd != null">
+        PROVINCE_CD,
+      </if>
+      <if test="cityCd != null">
+        CITY_CD,
+      </if>
+      <if test="district != null">
+        DISTRICT,
+      </if>
+      <if test="streetAddress != null">
+        STREET_ADDRESS,
+      </if>
+      <if test="sxfPayWay != null">
+        SXF_PAY_WAY,
+      </if>
+      <if test="qtfPayWay != null">
+        QTF_PAY_WAY,
+      </if>
+      <if test="dbSxWay != null">
+        DB_SX_WAY,
+      </if>
+      <if test="disYtFx != null">
+        DIS_YT_FX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="gtjkr != null">
+        #{gtjkr,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null">
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalPayCondition1 != null">
+        #{capitalPayCondition1,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalPayCondition2 != null">
+        #{capitalPayCondition2,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalPayCondition3 != null">
+        #{capitalPayCondition3,jdbcType=VARCHAR},
+      </if>
+      <if test="sfnhdk != null">
+        #{sfnhdk,jdbcType=VARCHAR},
+      </if>
+      <if test="sfcztx != null">
+        #{sfcztx,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="houseContractNum != null">
+        #{houseContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityCd != null">
+        #{nationalityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCd != null">
+        #{provinceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCd != null">
+        #{cityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="streetAddress != null">
+        #{streetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sxfPayWay != null">
+        #{sxfPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="qtfPayWay != null">
+        #{qtfPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="dbSxWay != null">
+        #{dbSxWay,jdbcType=VARCHAR},
+      </if>
+      <if test="disYtFx != null">
+        #{disYtFx,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConXwPo">
+    update CRMS.TB_CON_XW
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="gtjkr != null">
+        GTJKR = #{gtjkr,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null">
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalPayCondition1 != null">
+        CAPITAL_PAY_CONDITION1 = #{capitalPayCondition1,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalPayCondition2 != null">
+        CAPITAL_PAY_CONDITION2 = #{capitalPayCondition2,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalPayCondition3 != null">
+        CAPITAL_PAY_CONDITION3 = #{capitalPayCondition3,jdbcType=VARCHAR},
+      </if>
+      <if test="sfnhdk != null">
+        SFNHDK = #{sfnhdk,jdbcType=VARCHAR},
+      </if>
+      <if test="sfcztx != null">
+        SFCZTX = #{sfcztx,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="houseContractNum != null">
+        HOUSE_CONTRACT_NUM = #{houseContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityCd != null">
+        NATIONALITY_CD = #{nationalityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCd != null">
+        PROVINCE_CD = #{provinceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCd != null">
+        CITY_CD = #{cityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        DISTRICT = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="streetAddress != null">
+        STREET_ADDRESS = #{streetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sxfPayWay != null">
+        SXF_PAY_WAY = #{sxfPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="qtfPayWay != null">
+        QTF_PAY_WAY = #{qtfPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="dbSxWay != null">
+        DB_SX_WAY = #{dbSxWay,jdbcType=VARCHAR},
+      </if>
+      <if test="disYtFx != null">
+        DIS_YT_FX = #{disYtFx,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConXwPo">
+    update CRMS.TB_CON_XW
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      GTJKR = #{gtjkr,jdbcType=VARCHAR},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      CAPITAL_PAY_CONDITION1 = #{capitalPayCondition1,jdbcType=VARCHAR},
+      CAPITAL_PAY_CONDITION2 = #{capitalPayCondition2,jdbcType=VARCHAR},
+      CAPITAL_PAY_CONDITION3 = #{capitalPayCondition3,jdbcType=VARCHAR},
+      SFNHDK = #{sfnhdk,jdbcType=VARCHAR},
+      SFCZTX = #{sfcztx,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      HOUSE_CONTRACT_NUM = #{houseContractNum,jdbcType=VARCHAR},
+      NATIONALITY_CD = #{nationalityCd,jdbcType=VARCHAR},
+      PROVINCE_CD = #{provinceCd,jdbcType=VARCHAR},
+      CITY_CD = #{cityCd,jdbcType=VARCHAR},
+      DISTRICT = #{district,jdbcType=VARCHAR},
+      STREET_ADDRESS = #{streetAddress,jdbcType=VARCHAR},
+      SXF_PAY_WAY = #{sxfPayWay,jdbcType=VARCHAR},
+      QTF_PAY_WAY = #{qtfPayWay,jdbcType=VARCHAR},
+      DB_SX_WAY = #{dbSxWay,jdbcType=VARCHAR},
+      DIS_YT_FX = #{disYtFx,jdbcType=DECIMAL}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

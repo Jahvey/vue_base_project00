@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.impornantEvent.mapper.ImpornantEventMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.impornantEvent.bean.ImpornantEvent">
+    <id column="IMPORTANT_EVENT_ID" jdbcType="VARCHAR" property="importantEventId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="EVENT_TYPE_CD" jdbcType="VARCHAR" property="eventTypeCd" />
+    <result column="HAPPEN_DATE" jdbcType="TIMESTAMP" property="happenDate" />
+    <result column="EVENT_STATE" jdbcType="VARCHAR" property="eventState" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="EVENT_NUM" jdbcType="VARCHAR" property="eventNum" />
+    <result column="EVENT_NAME" jdbcType="VARCHAR" property="eventName" />
+    <result column="GROUP_IMPORNANT_EVENT" jdbcType="VARCHAR" property="groupImpornantEvent" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    IMPORTANT_EVENT_ID, PARTY_ID, EVENT_TYPE_CD, HAPPEN_DATE, EVENT_STATE, REMARK, EVENT_NUM, 
+    EVENT_NAME, GROUP_IMPORNANT_EVENT, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPartyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_IMPORNANT_EVENT
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_IMPORNANT_EVENT
+    where IMPORTANT_EVENT_ID = #{importantEventId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_IMPORNANT_EVENT
+    where IMPORTANT_EVENT_ID = #{importantEventId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.impornantEvent.bean.ImpornantEvent">
+    insert into TB_CSM_IMPORNANT_EVENT (IMPORTANT_EVENT_ID, PARTY_ID, EVENT_TYPE_CD, 
+      HAPPEN_DATE, EVENT_STATE, REMARK, 
+      EVENT_NUM, EVENT_NAME, GROUP_IMPORNANT_EVENT, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{importantEventId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{eventTypeCd,jdbcType=VARCHAR}, 
+      #{happenDate,jdbcType=TIMESTAMP}, #{eventState,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{eventNum,jdbcType=VARCHAR}, #{eventName,jdbcType=VARCHAR}, #{groupImpornantEvent,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.impornantEvent.bean.ImpornantEvent">
+    insert into TB_CSM_IMPORNANT_EVENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="importantEventId != null">
+        IMPORTANT_EVENT_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="eventTypeCd != null">
+        EVENT_TYPE_CD,
+      </if>
+      <if test="happenDate != null">
+        HAPPEN_DATE,
+      </if>
+      <if test="eventState != null">
+        EVENT_STATE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="eventNum != null">
+        EVENT_NUM,
+      </if>
+      <if test="eventName != null">
+        EVENT_NAME,
+      </if>
+      <if test="groupImpornantEvent != null">
+        GROUP_IMPORNANT_EVENT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="importantEventId != null">
+        #{importantEventId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTypeCd != null">
+        #{eventTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="happenDate != null">
+        #{happenDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventState != null">
+        #{eventState,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="eventNum != null">
+        #{eventNum,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupImpornantEvent != null">
+        #{groupImpornantEvent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.impornantEvent.bean.ImpornantEvent">
+    update TB_CSM_IMPORNANT_EVENT
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTypeCd != null">
+        EVENT_TYPE_CD = #{eventTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="happenDate != null">
+        HAPPEN_DATE = #{happenDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventState != null">
+        EVENT_STATE = #{eventState,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="eventNum != null">
+        EVENT_NUM = #{eventNum,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null">
+        EVENT_NAME = #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupImpornantEvent != null">
+        GROUP_IMPORNANT_EVENT = #{groupImpornantEvent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where IMPORTANT_EVENT_ID = #{importantEventId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.impornantEvent.bean.ImpornantEvent">
+    update TB_CSM_IMPORNANT_EVENT
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      EVENT_TYPE_CD = #{eventTypeCd,jdbcType=VARCHAR},
+      HAPPEN_DATE = #{happenDate,jdbcType=TIMESTAMP},
+      EVENT_STATE = #{eventState,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      EVENT_NUM = #{eventNum,jdbcType=VARCHAR},
+      EVENT_NAME = #{eventName,jdbcType=VARCHAR},
+      GROUP_IMPORNANT_EVENT = #{groupImpornantEvent,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where IMPORTANT_EVENT_ID = #{importantEventId,jdbcType=VARCHAR}
+  </update>
+</mapper>

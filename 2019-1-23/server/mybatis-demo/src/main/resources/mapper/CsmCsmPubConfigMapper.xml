@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmCsmPubConfigMapper">
+<resultMap type="com.cdgit.loan.csm.po.CsmPubConfigPo" id="csmPubConfigPo">
+    <id column="CFG_GROUP" jdbcType="VARCHAR" property="cfgGroup" />
+    <id column="CFG_KEY" jdbcType="VARCHAR" property="cfgKey" />
+    <result column="CFG_VALUE" jdbcType="VARCHAR" property="cfgValue" />
+    <result column="CFG_STATUS" jdbcType="VARCHAR" property="cfgStatus" />
+    <result column="OTHER1" jdbcType="VARCHAR" property="other1" />
+    <result column="OTHER2" jdbcType="VARCHAR" property="other2" />
+    <result column="OTHER3" jdbcType="VARCHAR" property="other3" />
+</resultMap>
+
+<select id="queryCsmPubConfig" parameterType="java.util.HashMap" resultMap="csmPubConfigPo">
+		SELECT 
+			cfg_group, 
+			cfg_key, 
+			cfg_value, 
+			cfg_status
+		FROM 
+			tb_pub_config 
+		WHERE 
+			cfg_status = '1'
+			AND cfg_group = #{cfgGroup} 
+			AND cfg_key = #{cfgKey}
+</select>
+
+<select id="selectCsmPubConfigByKeys" parameterType="com.cdgit.loan.csm.po.CsmPubConfigPoKey" resultMap="csmPubConfigPo">
+    select 
+    *
+    from CRMS.TB_PUB_CONFIG
+    where CFG_GROUP = #{cfgGroup,jdbcType=VARCHAR}
+      and CFG_KEY = #{cfgKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteCsmPubConfigByKeys" parameterType="com.cdgit.loan.csm.po.CsmPubConfigPoKey">
+    delete from CRMS.TB_PUB_CONFIG
+    where CFG_GROUP = #{cfgGroup,jdbcType=VARCHAR}
+      and CFG_KEY = #{cfgKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertCsmPubConfig" parameterType="com.cdgit.loan.csm.po.CsmPubConfigPo">
+    insert into CRMS.TB_PUB_CONFIG (CFG_GROUP, CFG_KEY, CFG_VALUE, 
+      CFG_STATUS, OTHER1, OTHER2, 
+      OTHER3)
+    values (#{cfgGroup,jdbcType=VARCHAR}, #{cfgKey,jdbcType=VARCHAR}, #{cfgValue,jdbcType=VARCHAR}, 
+      #{cfgStatus,jdbcType=VARCHAR}, #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR}, 
+      #{other3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertCsmPubConfigSelective" parameterType="com.cdgit.loan.csm.po.CsmPubConfigPo">
+    insert into CRMS.TB_PUB_CONFIG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cfgGroup != null">
+        CFG_GROUP,
+      </if>
+      <if test="cfgKey != null">
+        CFG_KEY,
+      </if>
+      <if test="cfgValue != null">
+        CFG_VALUE,
+      </if>
+      <if test="cfgStatus != null">
+        CFG_STATUS,
+      </if>
+      <if test="other1 != null">
+        OTHER1,
+      </if>
+      <if test="other2 != null">
+        OTHER2,
+      </if>
+      <if test="other3 != null">
+        OTHER3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cfgGroup != null">
+        #{cfgGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgKey != null">
+        #{cfgKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgValue != null">
+        #{cfgValue,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgStatus != null">
+        #{cfgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null">
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        #{other2,jdbcType=VARCHAR},
+      </if>
+      <if test="other3 != null">
+        #{other3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateCsmPubConfigSelective" parameterType="com.cdgit.loan.csm.po.CsmPubConfigPo">
+    update CRMS.TB_PUB_CONFIG
+    <set>
+      <if test="cfgValue != null">
+        CFG_VALUE = #{cfgValue,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgStatus != null">
+        CFG_STATUS = #{cfgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null">
+        OTHER1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        OTHER2 = #{other2,jdbcType=VARCHAR},
+      </if>
+      <if test="other3 != null">
+        OTHER3 = #{other3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CFG_GROUP = #{cfgGroup,jdbcType=VARCHAR}
+      and CFG_KEY = #{cfgKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateCsmPubConfig" parameterType="com.cdgit.loan.csm.po.CsmPubConfigPo">
+    update CRMS.TB_PUB_CONFIG
+    set CFG_VALUE = #{cfgValue,jdbcType=VARCHAR},
+      CFG_STATUS = #{cfgStatus,jdbcType=VARCHAR},
+      OTHER1 = #{other1,jdbcType=VARCHAR},
+      OTHER2 = #{other2,jdbcType=VARCHAR},
+      OTHER3 = #{other3,jdbcType=VARCHAR}
+    where CFG_GROUP = #{cfgGroup,jdbcType=VARCHAR}
+      and CFG_KEY = #{cfgKey,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

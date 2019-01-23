@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizGdzcdkApprovePoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbBizGdzcdkApprovePo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="JMRHSX" jdbcType="VARCHAR" property="jmrhsx" />
+    <result column="SFJMRHSX" jdbcType="VARCHAR" property="sfjmrhsx" />
+    <result column="APPLY_TYPE" jdbcType="VARCHAR" property="applyType" />
+    <result column="WHETHER_ZFTDCBJGDK" jdbcType="VARCHAR" property="whetherZftdcbjgdk" />
+    <result column="DCKFDK_TYPE" jdbcType="VARCHAR" property="dckfdkType" />
+    <result column="AJGC_TYPE" jdbcType="VARCHAR" property="ajgcType" />
+    <result column="AJGC_DETAIL_TYPE" jdbcType="VARCHAR" property="ajgcDetailType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, JMRHSX, SFJMRHSX, APPLY_TYPE, 
+    WHETHER_ZFTDCBJGDK, DCKFDK_TYPE, AJGC_TYPE, AJGC_DETAIL_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_BIZ_GDZCDK_APPROVE
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_BIZ_GDZCDK_APPROVE
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbBizGdzcdkApprovePo">
+    insert into CRMS.TB_BIZ_GDZCDK_APPROVE (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, JMRHSX, SFJMRHSX, 
+      APPLY_TYPE, WHETHER_ZFTDCBJGDK, DCKFDK_TYPE, 
+      AJGC_TYPE, AJGC_DETAIL_TYPE)
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{jmrhsx,jdbcType=VARCHAR}, #{sfjmrhsx,jdbcType=VARCHAR}, 
+      #{applyType,jdbcType=VARCHAR}, #{whetherZftdcbjgdk,jdbcType=VARCHAR}, #{dckfdkType,jdbcType=VARCHAR}, 
+      #{ajgcType,jdbcType=VARCHAR}, #{ajgcDetailType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbBizGdzcdkApprovePo">
+    insert into CRMS.TB_BIZ_GDZCDK_APPROVE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="jmrhsx != null">
+        JMRHSX,
+      </if>
+      <if test="sfjmrhsx != null">
+        SFJMRHSX,
+      </if>
+      <if test="applyType != null">
+        APPLY_TYPE,
+      </if>
+      <if test="whetherZftdcbjgdk != null">
+        WHETHER_ZFTDCBJGDK,
+      </if>
+      <if test="dckfdkType != null">
+        DCKFDK_TYPE,
+      </if>
+      <if test="ajgcType != null">
+        AJGC_TYPE,
+      </if>
+      <if test="ajgcDetailType != null">
+        AJGC_DETAIL_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="jmrhsx != null">
+        #{jmrhsx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfjmrhsx != null">
+        #{sfjmrhsx,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null">
+        #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherZftdcbjgdk != null">
+        #{whetherZftdcbjgdk,jdbcType=VARCHAR},
+      </if>
+      <if test="dckfdkType != null">
+        #{dckfdkType,jdbcType=VARCHAR},
+      </if>
+      <if test="ajgcType != null">
+        #{ajgcType,jdbcType=VARCHAR},
+      </if>
+      <if test="ajgcDetailType != null">
+        #{ajgcDetailType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbBizGdzcdkApprovePo">
+    update CRMS.TB_BIZ_GDZCDK_APPROVE
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="jmrhsx != null">
+        JMRHSX = #{jmrhsx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfjmrhsx != null">
+        SFJMRHSX = #{sfjmrhsx,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null">
+        APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherZftdcbjgdk != null">
+        WHETHER_ZFTDCBJGDK = #{whetherZftdcbjgdk,jdbcType=VARCHAR},
+      </if>
+      <if test="dckfdkType != null">
+        DCKFDK_TYPE = #{dckfdkType,jdbcType=VARCHAR},
+      </if>
+      <if test="ajgcType != null">
+        AJGC_TYPE = #{ajgcType,jdbcType=VARCHAR},
+      </if>
+      <if test="ajgcDetailType != null">
+        AJGC_DETAIL_TYPE = #{ajgcDetailType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbBizGdzcdkApprovePo">
+    update CRMS.TB_BIZ_GDZCDK_APPROVE
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      JMRHSX = #{jmrhsx,jdbcType=VARCHAR},
+      SFJMRHSX = #{sfjmrhsx,jdbcType=VARCHAR},
+      APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+      WHETHER_ZFTDCBJGDK = #{whetherZftdcbjgdk,jdbcType=VARCHAR},
+      DCKFDK_TYPE = #{dckfdkType,jdbcType=VARCHAR},
+      AJGC_TYPE = #{ajgcType,jdbcType=VARCHAR},
+      AJGC_DETAIL_TYPE = #{ajgcDetailType,jdbcType=VARCHAR}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

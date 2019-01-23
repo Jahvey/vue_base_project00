@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.managementTeam.mapper.ManagementTeamMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.managementTeam.bean.ManagementTeam">
+    <id column="MANAGEMENT_TEAM_ID" jdbcType="VARCHAR" property="managementTeamId" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="USER_PLACING_CD" jdbcType="VARCHAR" property="userPlacingCd" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="PARTY_TYPE" jdbcType="VARCHAR" property="partyType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MANAGEMENT_TEAM_ID, USER_NUM, USER_PLACING_CD, STATUS, PARTY_ID, UPDATE_TIME, ORG_NUM, 
+    CREATE_TIME, PARTY_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_MANAGEMENT_TEAM
+    where MANAGEMENT_TEAM_ID = #{managementTeamId,jdbcType=VARCHAR}
+  </select>
+  <select id="managementTeamList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from TB_CSM_MANAGEMENT_TEAM 
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_MANAGEMENT_TEAM
+    where MANAGEMENT_TEAM_ID = #{managementTeamId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.managementTeam.bean.ManagementTeam">
+    insert into TB_CSM_MANAGEMENT_TEAM (MANAGEMENT_TEAM_ID, USER_NUM, USER_PLACING_CD, 
+      STATUS, PARTY_ID, UPDATE_TIME, 
+      ORG_NUM, CREATE_TIME, PARTY_TYPE
+      )
+    values (#{managementTeamId,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, #{userPlacingCd,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{orgNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{partyType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.managementTeam.bean.ManagementTeam">
+    insert into TB_CSM_MANAGEMENT_TEAM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="managementTeamId != null">
+        MANAGEMENT_TEAM_ID,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="userPlacingCd != null">
+        USER_PLACING_CD,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="partyType != null">
+        PARTY_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="managementTeamId != null">
+        #{managementTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlacingCd != null">
+        #{userPlacingCd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="partyType != null">
+        #{partyType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPartyId" parameterType="com.cdgit.loan.customerManage.managementTeam.bean.ManagementTeam">
+    update TB_CSM_MANAGEMENT_TEAM
+    <set>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlacingCd != null">
+        USER_PLACING_CD = #{userPlacingCd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="partyType != null">
+        PARTY_TYPE = #{partyType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.managementTeam.bean.ManagementTeam">
+    update TB_CSM_MANAGEMENT_TEAM
+    set USER_NUM = #{userNum,jdbcType=VARCHAR},
+      USER_PLACING_CD = #{userPlacingCd,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      PARTY_TYPE = #{partyType,jdbcType=VARCHAR}
+    where MANAGEMENT_TEAM_ID = #{managementTeamId,jdbcType=VARCHAR}
+  </update>
+</mapper>

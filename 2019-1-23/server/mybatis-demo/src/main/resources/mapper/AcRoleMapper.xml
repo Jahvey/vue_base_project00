@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.sysManage.acRole.mapper.AcRoleMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.sysManage.acRole.bean.AcRole">
+    <id column="ROLEID" jdbcType="VARCHAR" property="roleid" />
+    <result column="ROLENAME" jdbcType="VARCHAR" property="rolename" />
+    <result column="ROLETYPE" jdbcType="VARCHAR" property="roletype" />
+    <result column="ROLEDESC" jdbcType="VARCHAR" property="roledesc" />
+    <result column="APPID" jdbcType="DECIMAL" property="appid" />
+    <result column="INITFLAG" jdbcType="VARCHAR" property="initflag" />
+    <result column="LEG_ORG" jdbcType="VARCHAR" property="legOrg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLEID, ROLENAME, ROLETYPE, ROLEDESC, APPID, INITFLAG, LEG_ORG
+  </sql>
+  <select id="queryAllRole" parameterType="java.lang.String" resultMap="BaseResultMap">
+    	SELECT ROLEID,ROLENAME,ROLETYPE FROM AC_ROLE WHERE 1=1
+    	<if test="_parameter != null and _parameter != '' " > 
+             AND ROLENAME LIKE '%'||#{rolename}||'%'
+        </if>
+        <!--<if test="roletype != null and roletype != '' " > 
+             AND ROLETYPE = #{roletype}
+        </if>
+    	<isNotNull prepend="AND" property="roleType">
+        	ROLETYPE = #roleType#
+    	</isNotNull>
+    	 
+    	<isNotNull prepend="AND" property="orgId">
+        	ROLEID IN (SELECT ROLEID FROM OM_PARTYROLE WHERE PARTYTYPE='org' AND PARTYID=#orgId#)
+    	</isNotNull>
+    	zxh 多法人改造时注掉
+    	<isNotNull property="superadmin">
+			and (leg_org=#legorg# or leg_org is null)
+    	</isNotNull>-->
+    	ORDER BY ROLETYPE,ROLEID
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from AC_ROLE
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from AC_ROLE
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.sysManage.acRole.bean.AcRole">
+    insert into AC_ROLE (ROLEID, ROLENAME, ROLETYPE, 
+      ROLEDESC, APPID, INITFLAG, 
+      LEG_ORG)
+    values (#{roleid,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, #{roletype,jdbcType=VARCHAR}, 
+      #{roledesc,jdbcType=VARCHAR}, #{appid,jdbcType=DECIMAL}, #{initflag,jdbcType=VARCHAR}, 
+      #{legOrg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.sysManage.acRole.bean.AcRole">
+    insert into AC_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+      <if test="rolename != null">
+        ROLENAME,
+      </if>
+      <if test="roletype != null">
+        ROLETYPE,
+      </if>
+      <if test="roledesc != null">
+        ROLEDESC,
+      </if>
+      <if test="appid != null">
+        APPID,
+      </if>
+      <if test="initflag != null">
+        INITFLAG,
+      </if>
+      <if test="legOrg != null">
+        LEG_ORG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null">
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roletype != null">
+        #{roletype,jdbcType=VARCHAR},
+      </if>
+      <if test="roledesc != null">
+        #{roledesc,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=DECIMAL},
+      </if>
+      <if test="initflag != null">
+        #{initflag,jdbcType=VARCHAR},
+      </if>
+      <if test="legOrg != null">
+        #{legOrg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.sysManage.acRole.bean.AcRole">
+    update AC_ROLE
+    <set>
+      <if test="rolename != null">
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roletype != null">
+        ROLETYPE = #{roletype,jdbcType=VARCHAR},
+      </if>
+      <if test="roledesc != null">
+        ROLEDESC = #{roledesc,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        APPID = #{appid,jdbcType=DECIMAL},
+      </if>
+      <if test="initflag != null">
+        INITFLAG = #{initflag,jdbcType=VARCHAR},
+      </if>
+      <if test="legOrg != null">
+        LEG_ORG = #{legOrg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.sysManage.acRole.bean.AcRole">
+    update AC_ROLE
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      ROLETYPE = #{roletype,jdbcType=VARCHAR},
+      ROLEDESC = #{roledesc,jdbcType=VARCHAR},
+      APPID = #{appid,jdbcType=DECIMAL},
+      INITFLAG = #{initflag,jdbcType=VARCHAR},
+      LEG_ORG = #{legOrg,jdbcType=VARCHAR}
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </update>
+</mapper>

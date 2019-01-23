@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizXwApprovePoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbBizXwApprovePo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="GTJKR" jdbcType="VARCHAR" property="gtjkr" />
+    <result column="APPLY_XW_AMT" jdbcType="DECIMAL" property="applyXwAmt" />
+    <result column="APPLY_XW_TERM" jdbcType="DECIMAL" property="applyXwTerm" />
+    <result column="CYCLE_UNIT_XW" jdbcType="VARCHAR" property="cycleUnitXw" />
+    <result column="WTR" jdbcType="VARCHAR" property="wtr" />
+    <result column="WTRLX" jdbcType="VARCHAR" property="wtrlx" />
+    <result column="WTDKXZ" jdbcType="VARCHAR" property="wtdkxz" />
+    <result column="WTXM_ID" jdbcType="VARCHAR" property="wtxmId" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, GTJKR, APPLY_XW_AMT, 
+    APPLY_XW_TERM, CYCLE_UNIT_XW, WTR, WTRLX, WTDKXZ, WTXM_ID, APPLY_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_BIZ_XW_APPROVE
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_BIZ_XW_APPROVE
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbBizXwApprovePo">
+    insert into CRMS.TB_BIZ_XW_APPROVE (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, GTJKR, APPLY_XW_AMT, 
+      APPLY_XW_TERM, CYCLE_UNIT_XW, WTR, 
+      WTRLX, WTDKXZ, WTXM_ID, 
+      APPLY_DATE)
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{gtjkr,jdbcType=VARCHAR}, #{applyXwAmt,jdbcType=DECIMAL}, 
+      #{applyXwTerm,jdbcType=DECIMAL}, #{cycleUnitXw,jdbcType=VARCHAR}, #{wtr,jdbcType=VARCHAR}, 
+      #{wtrlx,jdbcType=VARCHAR}, #{wtdkxz,jdbcType=VARCHAR}, #{wtxmId,jdbcType=VARCHAR}, 
+      #{applyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbBizXwApprovePo">
+    insert into CRMS.TB_BIZ_XW_APPROVE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="gtjkr != null">
+        GTJKR,
+      </if>
+      <if test="applyXwAmt != null">
+        APPLY_XW_AMT,
+      </if>
+      <if test="applyXwTerm != null">
+        APPLY_XW_TERM,
+      </if>
+      <if test="cycleUnitXw != null">
+        CYCLE_UNIT_XW,
+      </if>
+      <if test="wtr != null">
+        WTR,
+      </if>
+      <if test="wtrlx != null">
+        WTRLX,
+      </if>
+      <if test="wtdkxz != null">
+        WTDKXZ,
+      </if>
+      <if test="wtxmId != null">
+        WTXM_ID,
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="gtjkr != null">
+        #{gtjkr,jdbcType=VARCHAR},
+      </if>
+      <if test="applyXwAmt != null">
+        #{applyXwAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="applyXwTerm != null">
+        #{applyXwTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="cycleUnitXw != null">
+        #{cycleUnitXw,jdbcType=VARCHAR},
+      </if>
+      <if test="wtr != null">
+        #{wtr,jdbcType=VARCHAR},
+      </if>
+      <if test="wtrlx != null">
+        #{wtrlx,jdbcType=VARCHAR},
+      </if>
+      <if test="wtdkxz != null">
+        #{wtdkxz,jdbcType=VARCHAR},
+      </if>
+      <if test="wtxmId != null">
+        #{wtxmId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbBizXwApprovePo">
+    update CRMS.TB_BIZ_XW_APPROVE
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="gtjkr != null">
+        GTJKR = #{gtjkr,jdbcType=VARCHAR},
+      </if>
+      <if test="applyXwAmt != null">
+        APPLY_XW_AMT = #{applyXwAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="applyXwTerm != null">
+        APPLY_XW_TERM = #{applyXwTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="cycleUnitXw != null">
+        CYCLE_UNIT_XW = #{cycleUnitXw,jdbcType=VARCHAR},
+      </if>
+      <if test="wtr != null">
+        WTR = #{wtr,jdbcType=VARCHAR},
+      </if>
+      <if test="wtrlx != null">
+        WTRLX = #{wtrlx,jdbcType=VARCHAR},
+      </if>
+      <if test="wtdkxz != null">
+        WTDKXZ = #{wtdkxz,jdbcType=VARCHAR},
+      </if>
+      <if test="wtxmId != null">
+        WTXM_ID = #{wtxmId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbBizXwApprovePo">
+    update CRMS.TB_BIZ_XW_APPROVE
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      GTJKR = #{gtjkr,jdbcType=VARCHAR},
+      APPLY_XW_AMT = #{applyXwAmt,jdbcType=DECIMAL},
+      APPLY_XW_TERM = #{applyXwTerm,jdbcType=DECIMAL},
+      CYCLE_UNIT_XW = #{cycleUnitXw,jdbcType=VARCHAR},
+      WTR = #{wtr,jdbcType=VARCHAR},
+      WTRLX = #{wtrlx,jdbcType=VARCHAR},
+      WTDKXZ = #{wtdkxz,jdbcType=VARCHAR},
+      WTXM_ID = #{wtxmId,jdbcType=VARCHAR},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizProductInfoPoMapper">
+  <resultMap id="csmTbBizProductInfoPo" type="com.cdgit.loan.csm.po.TbBizProductInfoPo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PRODUCT_CD" jdbcType="VARCHAR" property="productCd" />
+    <result column="ENTITY_NAME" jdbcType="VARCHAR" property="entityName" />
+    <result column="JSP_NAME" jdbcType="VARCHAR" property="jspName" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName" />
+    <result column="RATE" jdbcType="VARCHAR" property="rate" />
+    <result column="BIZ_DON" jdbcType="VARCHAR" property="bizDon" />
+  </resultMap>
+
+  <select id="queryCsmTbBizProductInfoById" parameterType="java.lang.String" resultMap="csmTbBizProductInfoPo">
+    select 
+    *
+    from CRMS.TB_BIZ_PRODUCT_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteCsmTbBizProductInfoById" parameterType="java.lang.String">
+    delete from CRMS.TB_BIZ_PRODUCT_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertCsmTbBizProductInfo" parameterType="com.cdgit.loan.csm.po.TbBizProductInfoPo">
+    insert into CRMS.TB_BIZ_PRODUCT_INFO (ID, PRODUCT_CD, ENTITY_NAME, 
+      JSP_NAME, PRODUCT_NAME, TABLE_NAME, 
+      RATE, BIZ_DON)
+    values (#{id,jdbcType=VARCHAR}, #{productCd,jdbcType=VARCHAR}, #{entityName,jdbcType=VARCHAR}, 
+      #{jspName,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, 
+      #{rate,jdbcType=VARCHAR}, #{bizDon,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertCsmTbBizProductInfoSelective" parameterType="com.cdgit.loan.csm.po.TbBizProductInfoPo">
+    insert into CRMS.TB_BIZ_PRODUCT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="productCd != null">
+        PRODUCT_CD,
+      </if>
+      <if test="entityName != null">
+        ENTITY_NAME,
+      </if>
+      <if test="jspName != null">
+        JSP_NAME,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="tableName != null">
+        TABLE_NAME,
+      </if>
+      <if test="rate != null">
+        RATE,
+      </if>
+      <if test="bizDon != null">
+        BIZ_DON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="productCd != null">
+        #{productCd,jdbcType=VARCHAR},
+      </if>
+      <if test="entityName != null">
+        #{entityName,jdbcType=VARCHAR},
+      </if>
+      <if test="jspName != null">
+        #{jspName,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="bizDon != null">
+        #{bizDon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateCsmTbBizProductInfoSelective" parameterType="com.cdgit.loan.csm.po.TbBizProductInfoPo">
+    update CRMS.TB_BIZ_PRODUCT_INFO
+    <set>
+      <if test="productCd != null">
+        PRODUCT_CD = #{productCd,jdbcType=VARCHAR},
+      </if>
+      <if test="entityName != null">
+        ENTITY_NAME = #{entityName,jdbcType=VARCHAR},
+      </if>
+      <if test="jspName != null">
+        JSP_NAME = #{jspName,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        RATE = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="bizDon != null">
+        BIZ_DON = #{bizDon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateCsmTbBizProductInfo" parameterType="com.cdgit.loan.csm.po.TbBizProductInfoPo">
+    update CRMS.TB_BIZ_PRODUCT_INFO
+    set PRODUCT_CD = #{productCd,jdbcType=VARCHAR},
+      ENTITY_NAME = #{entityName,jdbcType=VARCHAR},
+      JSP_NAME = #{jspName,jdbcType=VARCHAR},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      RATE = #{rate,jdbcType=VARCHAR},
+      BIZ_DON = #{bizDon,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

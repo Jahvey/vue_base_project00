@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.warningDeal.mapper.WarningDealMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.warningDeal.bean.WarningDeal">
+    <id column="WARN_NO" jdbcType="VARCHAR" property="warnNo" />
+    <result column="RULE_NO" jdbcType="VARCHAR" property="ruleNo" />
+    <result column="ECIF_CUST_NUM" jdbcType="VARCHAR" property="ecifCustNum" />
+    <result column="WARN_TYPE" jdbcType="VARCHAR" property="warnType" />
+    <result column="WARN_DATE" jdbcType="VARCHAR" property="warnDate" />
+    <result column="WARN_INFO" jdbcType="VARCHAR" property="warnInfo" />
+    <result column="WARN_LEVEL" jdbcType="VARCHAR" property="warnLevel" />
+    <result column="WARN_STATUS" jdbcType="VARCHAR" property="warnStatus" />
+    <result column="CLOSE_FLAG" jdbcType="VARCHAR" property="closeFlag" />
+    <result column="CLOSE_REASON" jdbcType="VARCHAR" property="closeReason" />
+    <result column="CLOSE_DATE" jdbcType="TIMESTAMP" property="closeDate" />
+    <result column="CLOSE_USER" jdbcType="VARCHAR" property="closeUser" />
+    <result column="CLOSE_ORG" jdbcType="VARCHAR" property="closeOrg" />
+    <result column="VALID_DATE" jdbcType="TIMESTAMP" property="validDate" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    WARN_NO, RULE_NO, ECIF_CUST_NUM, WARN_TYPE, WARN_DATE, WARN_INFO, WARN_LEVEL, WARN_STATUS, 
+    CLOSE_FLAG, CLOSE_REASON, CLOSE_DATE, CLOSE_USER, CLOSE_ORG, VALID_DATE, REMARK
+  </sql>
+  <select id="queryWarnInfo" parameterType="java.lang.String"  resultMap="BaseResultMap">  
+  	select A.WARN_DATE,A.WARN_INFO,A.WARN_LEVEL,A.CLOSE_FLAG,A.CLOSE_DATE,A.CLOSE_REASON,
+  	B.RULE_ABSTRACT ruleAbstract,B.STOP_FLAG stopFlag
+	from TB_CSM_WARNING_DEAL A,TB_CSM_WARNING B where A.RULE_NO=B.RULE_NO
+	AND A.ECIF_CUST_NUM=#{ecifCustNum,jdbcType=VARCHAR}
+	ORDER BY A.CLOSE_FLAG DESC
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_WARNING_DEAL
+    where WARN_NO = #{warnNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_WARNING_DEAL
+    where WARN_NO = #{warnNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.warningDeal.bean.WarningDeal">
+    insert into TB_CSM_WARNING_DEAL (WARN_NO, RULE_NO, ECIF_CUST_NUM, 
+      WARN_TYPE, WARN_DATE, WARN_INFO, 
+      WARN_LEVEL, WARN_STATUS, CLOSE_FLAG, 
+      CLOSE_REASON, CLOSE_DATE, CLOSE_USER, 
+      CLOSE_ORG, VALID_DATE, REMARK
+      )
+    values (#{warnNo,jdbcType=VARCHAR}, #{ruleNo,jdbcType=VARCHAR}, #{ecifCustNum,jdbcType=VARCHAR}, 
+      #{warnType,jdbcType=VARCHAR}, #{warnDate,jdbcType=VARCHAR}, #{warnInfo,jdbcType=VARCHAR}, 
+      #{warnLevel,jdbcType=VARCHAR}, #{warnStatus,jdbcType=VARCHAR}, #{closeFlag,jdbcType=VARCHAR}, 
+      #{closeReason,jdbcType=VARCHAR}, #{closeDate,jdbcType=TIMESTAMP}, #{closeUser,jdbcType=VARCHAR}, 
+      #{closeOrg,jdbcType=VARCHAR}, #{validDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.warningDeal.bean.WarningDeal">
+    insert into TB_CSM_WARNING_DEAL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="warnNo != null">
+        WARN_NO,
+      </if>
+      <if test="ruleNo != null">
+        RULE_NO,
+      </if>
+      <if test="ecifCustNum != null">
+        ECIF_CUST_NUM,
+      </if>
+      <if test="warnType != null">
+        WARN_TYPE,
+      </if>
+      <if test="warnDate != null">
+        WARN_DATE,
+      </if>
+      <if test="warnInfo != null">
+        WARN_INFO,
+      </if>
+      <if test="warnLevel != null">
+        WARN_LEVEL,
+      </if>
+      <if test="warnStatus != null">
+        WARN_STATUS,
+      </if>
+      <if test="closeFlag != null">
+        CLOSE_FLAG,
+      </if>
+      <if test="closeReason != null">
+        CLOSE_REASON,
+      </if>
+      <if test="closeDate != null">
+        CLOSE_DATE,
+      </if>
+      <if test="closeUser != null">
+        CLOSE_USER,
+      </if>
+      <if test="closeOrg != null">
+        CLOSE_ORG,
+      </if>
+      <if test="validDate != null">
+        VALID_DATE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="warnNo != null">
+        #{warnNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleNo != null">
+        #{ruleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ecifCustNum != null">
+        #{ecifCustNum,jdbcType=VARCHAR},
+      </if>
+      <if test="warnType != null">
+        #{warnType,jdbcType=VARCHAR},
+      </if>
+      <if test="warnDate != null">
+        #{warnDate,jdbcType=VARCHAR},
+      </if>
+      <if test="warnInfo != null">
+        #{warnInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="warnLevel != null">
+        #{warnLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="warnStatus != null">
+        #{warnStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="closeFlag != null">
+        #{closeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="closeReason != null">
+        #{closeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="closeDate != null">
+        #{closeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeUser != null">
+        #{closeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="closeOrg != null">
+        #{closeOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null">
+        #{validDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.warningDeal.bean.WarningDeal">
+    update TB_CSM_WARNING_DEAL
+    <set>
+      <if test="ruleNo != null">
+        RULE_NO = #{ruleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ecifCustNum != null">
+        ECIF_CUST_NUM = #{ecifCustNum,jdbcType=VARCHAR},
+      </if>
+      <if test="warnType != null">
+        WARN_TYPE = #{warnType,jdbcType=VARCHAR},
+      </if>
+      <if test="warnDate != null">
+        WARN_DATE = #{warnDate,jdbcType=VARCHAR},
+      </if>
+      <if test="warnInfo != null">
+        WARN_INFO = #{warnInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="warnLevel != null">
+        WARN_LEVEL = #{warnLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="warnStatus != null">
+        WARN_STATUS = #{warnStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="closeFlag != null">
+        CLOSE_FLAG = #{closeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="closeReason != null">
+        CLOSE_REASON = #{closeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="closeDate != null">
+        CLOSE_DATE = #{closeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeUser != null">
+        CLOSE_USER = #{closeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="closeOrg != null">
+        CLOSE_ORG = #{closeOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null">
+        VALID_DATE = #{validDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WARN_NO = #{warnNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.warningDeal.bean.WarningDeal">
+    update TB_CSM_WARNING_DEAL
+    set RULE_NO = #{ruleNo,jdbcType=VARCHAR},
+      ECIF_CUST_NUM = #{ecifCustNum,jdbcType=VARCHAR},
+      WARN_TYPE = #{warnType,jdbcType=VARCHAR},
+      WARN_DATE = #{warnDate,jdbcType=VARCHAR},
+      WARN_INFO = #{warnInfo,jdbcType=VARCHAR},
+      WARN_LEVEL = #{warnLevel,jdbcType=VARCHAR},
+      WARN_STATUS = #{warnStatus,jdbcType=VARCHAR},
+      CLOSE_FLAG = #{closeFlag,jdbcType=VARCHAR},
+      CLOSE_REASON = #{closeReason,jdbcType=VARCHAR},
+      CLOSE_DATE = #{closeDate,jdbcType=TIMESTAMP},
+      CLOSE_USER = #{closeUser,jdbcType=VARCHAR},
+      CLOSE_ORG = #{closeOrg,jdbcType=VARCHAR},
+      VALID_DATE = #{validDate,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where WARN_NO = #{warnNo,jdbcType=VARCHAR}
+  </update>
+</mapper>
