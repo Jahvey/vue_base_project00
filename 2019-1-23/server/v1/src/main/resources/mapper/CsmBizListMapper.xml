@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmBizListMapper">
+
+  <resultMap id="CsmBizListVo" type="com.cdgit.loan.csm.bean.CsmBizListVo">
+	<result column="PARTY_NUM" javaType="String" property="partyNum" />
+	<result column="PARTY_NAME" javaType="String" property="partyName" />
+	<result column="APPROVE_ID" javaType="String" property="approveId" />
+	<result column="BIZ_HAPPEN_TYPE" javaType="String" property="bizHappenType" />
+	<result column="BIZ_TYPE" javaType="String" property="bizType" />
+	<result column="PARTY_ID" javaType="String" property="partyId" />
+	<result column="BIZ_TYPE_FLAG" javaType="String" property="bizTypeFlag" />
+	<result column="RMB_AMT" javaType="String" property="rmbAmt" />
+	<result column="BO_USE" javaType="String" property="boUse" />
+	<result column="PRODUCT_TYPE" javaType="String" property="productType" />
+	<result column="VALID_DATE" javaType="String" property="validDate" />
+	<result column="END_DATE" javaType="String" property="endDate" />
+
+  	<result column="USER_NUM" javaType="String" property="userNum" />
+  	<result column="ORG_NUM" javaType="String" property="orgNum" />
+ 
+  	<result column="CREDIT_MODE" javaType="String" property="creditMode" />
+  	<result column="BIZ_NUM" javaType="String" property="bizNum" />
+  	<result column="IS_BANK_TEAM_LOAN" javaType="String" property="isBankTeamLoan" />
+
+  </resultMap>
+  
+
+  
+
+  <!--客户业务列表-->
+    <select id="getBizList" parameterType="java.util.HashMap" resultMap="CsmBizListVo">
+	    	SELECT P.PARTY_NUM,P.PARTY_NAME,T.* FROM (
+	SELECT
+		A.APPROVE_ID,
+		A.BIZ_HAPPEN_TYPE,
+		A.BIZ_TYPE,
+		A.PARTY_ID,
+		A.BIZ_TYPE_FLAG,
+		a.RMB_AMT,
+		a.BO_USE,
+		a.PRODUCT_TYPE,
+		TO_CHAR( A.VALID_DATE, 'YYYY-MM-DD' ) AS VALID_DATE,
+    TO_CHAR( A.END_DATE, 'YYYY-MM-DD' ) AS END_DATE,
+    A.USER_NUM,
+    A.ORG_NUM,
+    A.CREDIT_MODE,
+    A.BIZ_NUM,
+    A.IS_BANK_TEAM_LOAN 
+  FROM
+    TB_BIZ_APPROVE A 
+  WHERE
+    1 = 1 
+    <include refid="query_getBizList"></include>
+  
+    AND A.BECOME_EFFECTIVE_MARK = '03' 
+    AND a.CREDIT_MODE != '02' 
+    ) t
+  INNER JOIN TB_CSM_PARTY p ON p.PARTY_ID = t.party_id
+		   
+		
+		         
+
+  </select>
+  
+
+  
+	<sql id="query_getBizList">
+
+		<if test="partyId !=null and partyId !='' ">
+			 AND a.PARTY_ID = #{partyId}
+		</if>
+		<!-- 为了测试使用写死的 -->
+		and   A.USER_NUM='200555'
+        and A.ORG_NUM='0700'
+
+
+	</sql>
+</mapper>

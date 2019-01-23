@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizAmountApproveMapper">
+
+
+  <resultMap id="csmTbBizAmountApprovePo" type="com.cdgit.loan.csm.po.TbBizAmountApprovePo">
+
+	<result column="amount_id" javaType="String" property="amountId" />
+	<result column="guaranty_type" javaType="String" property="guarantyType" />
+	<result column="party_id" javaType="String" property="partyId" />
+	<result column="amount_classify" javaType="String" property="amountClassify" />
+	<result column="credit_type" javaType="String" property="creditType" />
+	<result column="credit_amount" javaType="String" property="creditAmount" />
+	<result column="credit_term" javaType="String" property="creditTerm" />
+	<result column="apply_desc" javaType="String" property="applyDesc" />
+	<result column="create_time" javaType="java.sql.Timestamp" property="createTime" />
+	<result column="update_time" javaType="java.sql.Timestamp" property="updateTime" />
+	<result column="cycle_unit" javaType="String" property="cycleUnit" />
+	<result column="status_cd" javaType="String" property="statusCd" />
+	<result column="currency_cd" javaType="String" property="currencyCd" />
+	<result column="main_guaranty_type" javaType="String" property="mainGuarantyType" />
+	<result column="approve_id" javaType="String" property="approveId" />
+	<result column="credit_avi" javaType="String" property="creditAvi" />
+	<result column="credit_used" javaType="String" property="creditUsed" />
+	<result column="frz_num" javaType="String" property="frzNum" />
+	<result column="frz_amt" javaType="String" property="frzAmt" />
+	<result column="oper_flag" javaType="String" property="operFlag" />
+	<result column="frz_end_date" javaType="String" property="frzEndDate" />
+	<result column="frz_type" javaType="String" property="frzType" />
+	<result column="frz_status" javaType="String" property="frzStatus" />
+	<result column="frz_reason" javaType="String" property="frzReason" />
+
+  </resultMap>
+
+  <select id="queryOneTbBizAmountApproveByAmountId" parameterType="java.lang.String" resultMap="csmTbBizAmountApprovePo">
+	select 
+	*
+	from 
+	TB_BIZ_AMOUNT_APPROVE
+	where 
+	amount_id=#{amountId}
+
+  </select>
+
+
+</mapper>

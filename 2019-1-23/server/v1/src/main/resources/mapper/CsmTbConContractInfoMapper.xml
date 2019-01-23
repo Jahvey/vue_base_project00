@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConContractInfoMapper">
+  <resultMap id="csmTbConContractInfoPo" type="com.cdgit.loan.csm.po.TbConContractInfoPo">
+    <result column="CONTRACT_ID" javaType="String" property="contractId" />
+    <result column="AMOUNT_DETAIL_ID" javaType="String" property="amountDetailId" />
+    <result column="CONTRACT_NUM" javaType="String" property="contractNum" />
+    <result column="CONTRACT_ADDRESS" javaType="String" property="contractAddress" />
+    <result column="PARTY_ID" javaType="String" property="partyId" />
+    <result column="OLD_CONTRACT_ID" javaType="String" property="oldContractId" />
+    <result column="CURRENCY_CD" javaType="String" property="currencyCd" />
+    <result column="CONTRACT_AMT" javaType="String" property="contractAmt" />
+    <result column="CONTRACT_TERM" javaType="String" property="contractTerm" />
+    <result column="CYCLE_UNIT" javaType="String" property="cycleUnit" />
+    <result column="BEGIN_DATE" javaType="java.sql.Timestamp" property="beginDate" />
+    <result column="END_DATE" javaType="java.sql.Timestamp" property="endDate" />
+    <result column="CONTRACT_DATE" javaType="java.sql.Timestamp" property="contractDate" />
+    <result column="LOAN_USE" javaType="String" property="loanUse" />
+    <result column="GUARANTY_TYPE" javaType="String" property="guarantyType" />
+    <result column="LOAN_TURN" javaType="String" property="loanTurn" />
+    <result column="USER_NUM" javaType="String" property="userNum" />
+    <result column="ORG_NUM" javaType="String" property="orgNum" />
+    <result column="CREATE_TIME" javaType="java.sql.Timestamp" property="createTime" />
+    <result column="UPDATE_TIME" javaType="java.sql.Timestamp" property="updateTime" />
+    <result column="PRODUCT_TYPE" javaType="String" property="productType" />
+    <result column="CON_STATUS" javaType="String" property="conStatus" />
+    <result column="TRUS_TO_PAY_FLG" javaType="String" property="trusToPayFlg" />
+    <result column="STOP_PAY_FLG" javaType="String" property="stopPayFlg" />
+    <result column="SPEC_PAYMENT_DATE" javaType="String" property="specPaymentDate" />
+    <result column="EXCHANGE_RATE" javaType="String" property="exchangeRate" />
+    <result column="RMB_AMT" javaType="String" property="rmbAmt" />
+    <result column="CON_BALANCE" javaType="String" property="conBalance" />
+    <result column="CYCLE_IND_CON" javaType="String" property="cycleIndCon" />
+    <result column="REPAYMENT_TYPE" javaType="String" property="repaymentType" />
+    <result column="TK_DATE" javaType="java.sql.Timestamp" property="tkDate" />
+    <result column="HOLIDAY_FLG" javaType="String" property="holidayFlg" />
+    <result column="MAIN_GUARANTY_TYPE" javaType="String" property="mainGuarantyType" />
+    <result column="XY_ID" javaType="String" property="xyId" />
+    <result column="PAPER_CON_NUM" javaType="String" property="paperConNum" />
+    <result column="INTERNAL_DAYS" javaType="String" property="internalDays" />
+    <result column="CLS_RESULT" javaType="String" property="clsResult" />
+    <result column="IF_DATA_MOVE" javaType="String" property="ifDataMove" />
+    <result column="FIRST_REPAY_TERM" javaType="String" property="firstRepayTerm" />
+    <result column="CON_YU_E" javaType="String" property="conYuE" />
+    <result column="PAY_WAY" javaType="String" property="payWay" />
+    <result column="PAY_DEPEND1" javaType="String" property="payDepend1" />
+    <result column="PAY_DEPEND2" javaType="String" property="payDepend2" />
+    <result column="PAY_DEPEND3" javaType="String" property="payDepend3" />
+    <result column="PREPAYMENT_PENALTY" javaType="String" property="prepaymentPenalty" />
+    <result column="PREPAY_MAKEUP_RATE" javaType="String" property="prepayMakeupRate" />
+    <result column="LEAST_PREPAY_AMOUNT" javaType="String" property="leastPrepayAmount" />
+    <result column="PREPAY_JS" javaType="String" property="prepayJs" />
+    <result column="BZJBL" javaType="String" property="bzjbl" />
+    <result column="CRD_CENT" javaType="String" property="crdCent" />
+    <result column="APPLY_MODE_TYPE" javaType="String" property="applyModeType" />
+    <result column="LOW_RISK_BIZ_TYPE" javaType="String" property="lowRiskBizType" />
+    <result column="AGRICUL_LOANS" javaType="String" property="agriculLoans" />
+    <result column="CON_OCCUPY" javaType="String" property="conOccupy" />
+    <result column="CRD_DTL_ID" javaType="String" property="crdDtlId" />
+    <result column="CREDIT_MODE" javaType="String" property="creditMode" />
+    <result column="CREDIT_STATUS" javaType="String" property="creditStatus" />
+    <result column="JXHJ_ID" javaType="String" property="jxhjId" />
+  </resultMap>
+  
+
+  
+  
+  
+  
+  
+  
+</mapper>

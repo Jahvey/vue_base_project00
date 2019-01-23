@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizAmountDetailApproveMapper">
+  <resultMap id="csmTbBizAmountDetailApprovePo" type="com.cdgit.loan.csm.po.TbBizAmountDetailApprovePo">
+		<result column="product_type" javaType="String" property="productType" />
+		<result column="currency_cd" javaType="String" property="currencyCd" />
+		<result column="exchange_rate" javaType="String" property="exchangeRate" />
+		<result column="cycle_unit" javaType="String" property="cycleUnit" />
+		<result column="credit_term" javaType="String" property="creditTerm" />
+		<result column="loan_use" javaType="String" property="loanUse" />
+		<result column="repayment_type" javaType="String" property="repaymentType" />
+		<result column="cycle_ind" javaType="String" property="cycleInd" />
+		<result column="broad_cycle" javaType="String" property="broadCycle" />
+		<result column="broad_cycle_unit" javaType="String" property="broadCycleUnit" />
+		<result column="create_time" javaType="java.sql.Timestamp" property="createTime" />
+		<result column="update_time" javaType="java.sql.Timestamp" property="updateTime" />
+		<result column="amount_detail_id" javaType="String" property="amountDetailId" />
+		<result column="exchange_rate_date" javaType="java.sql.Timestamp" property="exchangeRateDate" />
+		<result column="old_detail_id" javaType="String" property="oldDetailId" />
+		<result column="detail_amt" javaType="String" property="detailAmt" />
+		<result column="amount_id" javaType="String" property="amountId" />
+		<result column="payment" javaType="String" property="payment" />
+		<result column="prepayment_penalty" javaType="String" property="prepaymentPenalty" />
+		<result column="rmb_amt" javaType="String" property="rmbAmt" />
+		<result column="cycle_ind_con" javaType="String" property="cycleIndCon" />
+		<result column="holiday_flg" javaType="String" property="holidayFlg" />
+		<result column="first_repay_term" javaType="String" property="firstRepayTerm" />
+		<result column="detail_balance" javaType="String" property="detailBalance" />
+		<result column="detail_used" javaType="String" property="detailUsed" />
+		<result column="end_date" javaType="java.sql.Timestamp" property="endDate" />
+		<result column="approve_id" javaType="String" property="approveId" />
+		<result column="no_use" javaType="String" property="noUse" />
+		<result column="bo_use" javaType="String" property="boUse" />
+		<result column="crd_dtl_id" javaType="String" property="crdDtlId" />
+		<result column="credit_mode" javaType="String" property="creditMode" />
+		<result column="begin_date" javaType="java.sql.Timestamp" property="beginDate" />
+		<result column="credit_status" javaType="String" property="creditStatus" />
+		<result column="assure_per" javaType="String" property="assurePer" />
+
+  </resultMap>
+  
+  <select id="queryOneTbBizAmountDetailApproveByAmountDetailId"  parameterType="java.lang.String" resultMap="csmTbBizAmountDetailApprovePo">
+  select 
+  *
+  from 
+  TB_BIZ_AMOUNT_DETAIL_APPROVE
+  where 
+  amount_detail_id=#{amountDetailId}
+  
+  
+  
+  
+  </select>
+  
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConSubcontractRelMapper">
+   <resultMap id="tbConSubcontractRelPo" type="com.cdgit.loan.csm.po.TbConSubcontractRelPo">
+    <id column="CON_SUBCON_ID" javaType="String" property="conSubconId" />
+    <result column="CONTRACT_ID" javaType="String" property="contractId" />
+    <result column="SUBCONTRACT_ID" javaType="String" property="subcontractId" />
+    <result column="IF_EFFECTIVE" javaType="String" property="ifEffective" />
+    <result column="SURETY_AMT" javaType="String" property="suretyAmt" />
+    <result column="CREATE_TIME" javaType="java.sql.Timestamp" property="createTime" />
+    <result column="UPDATE_TIME" javaType="java.sql.Timestamp" property="updateTime" />
+    <result column="OPERATION_TYPE" javaType="String" property="operationType" />
+    <result column="SUBCONTRACT_ID_BACKUPS" javaType="String" property="subcontractIdBackups" />
+    <result column="SUBCONTRACT_AMT" javaType="String" property="subcontractAmt" />
+  </resultMap>
+  
+
+  
+  
+  <select id="queryListCsmTbConSubcontractRelPo" parameterType="java.util.HashMap" resultMap="tbConSubcontractRelPo">
+	select 
+	*
+	from 
+		TB_CON_SUBCONTRACT_REL
+	where 
+		contract_id=#{contractId}
+		and if_effective=#{ifEffective}
+		
+		
+  </select>
+  
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbSysApplyDaoConfigMapper">
+
+  <resultMap id="csmTbSysApplyDaoConfigPo" type="com.cdgit.loan.csm.po.TbSysApplyDaoConfigPo">
+	<result column="config_id" javaType="String" property="configId" />
+	<result column="phase" javaType="String" property="phase" />
+	<result column="leg_org" javaType="String" property="legOrg" />
+	<result column="org_num" javaType="String" property="orgNum" />
+	<result column="class_name" javaType="String" property="className" />
+	<result column="flow_name" javaType="String" property="flowName" />
+	<result column="code" javaType="String" property="code" />
+	<result column="party_type" javaType="String" property="partyType" />
+	<result column="remark" javaType="String" property="remark" />
+	<result column="product_cd" javaType="String" property="productCd" />
+
+  </resultMap>
+
+
+<select id="queryListTbSysApplyDaoConfigByPhase" parameterType="java.lang.String" resultMap="csmTbSysApplyDaoConfigPo">
+
+select *
+from 
+TB_SYS_APPLY_DAO_CONFIG
+where
+phase=#{phase}
+
+
+
+</select>
+
+
+<select id="queryAllListTbSysApplyDaoConfig"  resultMap="csmTbSysApplyDaoConfigPo">
+
+select *
+from 
+TB_SYS_APPLY_DAO_CONFIG
+
+</select>
+
+
+
+
+</mapper>

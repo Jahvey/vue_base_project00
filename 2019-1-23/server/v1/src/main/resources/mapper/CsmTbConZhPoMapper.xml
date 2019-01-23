@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConZhPoMapper">
+
+
+  <resultMap id="TbConZhPo" type="com.cdgit.loan.csm.po.TbConZhPo">
+	<id column="id" javaType="String" property="id" />
+	<result column="zhbs" javaType="String" property="zhbs" />
+	<result column="zhlx" javaType="String" property="zhlx" />
+	<result column="kzbs" javaType="String" property="kzbs" />
+	<result column="zh" javaType="String" property="zh" />
+	<result column="zhkhjq" javaType="String" property="zhkhjq" />
+	<result column="zhmc" javaType="String" property="zhmc" />
+ 
+  	<result column="CONTRACT_ID" javaType="String" property="contractId" />
+  	<result column="acc_status" javaType="String" property="accStatus" />
+
+  </resultMap>
+
+    <select id="queryListCsmTbConZhInfo" parameterType="java.lang.String" resultMap="TbConZhPo">
+	select 
+	*
+	from 
+		TB_CON_ZH
+	where 
+		contract_id=#{contractId}
+		
+  </select>
+
+
+</mapper>

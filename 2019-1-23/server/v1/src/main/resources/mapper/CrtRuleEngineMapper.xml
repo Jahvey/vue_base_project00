@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtRuleEngineMapper">
+	
+	<!-- 在途出账校验：RLON_0001 -->
+	<select id="checkRLON_0001" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) as c from tb_loan_info r where r.loan_status in('01','02') and r.contract_id = #{contractId}  
+	</select>
+	<!-- 冻结批复不能发起出账：RCON_0027 -->
+	<select id="checkRCON_0027" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) a
+					  from tb_con_contract_info         r,
+					       tb_biz_amount_detail_approve t,
+					       tb_biz_amount_approve        w,
+					       tb_biz_approve               a
+					 where r.amount_detail_id = t.amount_detail_id
+					   and t.amount_id = w.amount_id
+					   and w.approve_id = a.approve_id
+					   and a.BECOME_EFFECTIVE_MARK ='07'
+					   and r.contract_id = #{contractId}
+	</select>
+	<!-- 移交申请未完成，包含的业务不允许处理：XFE_0004 -->
+	<select id="checkXFE_0004" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT COUNT(1) c FROM TB_CSMXFE_DETAIL xd WHERE  xd.DETAIL_TYPE='C0' AND xd.ACTIVE = '0' and xd.DETAIL_ID=#{contractId}
+	</select>
+	<!-- 担保总金额小于合同金额：RCON_0014 -->
+	<select id="checkRCON_0014" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select sum(surety_amt)-rmb_amt   c   
+			from(
+			     select sum(decode(b.IF_TOP_SUBCON,'1',a.SURETY_AMT,'0',b.SUBCONTRACT_AMT,'0') ) surety_amt,c.rmb_amt,c.CONTRACT_ID
+			     from TB_CON_SUBCONTRACT_REL a,TB_CON_SUBCONTRACT b,TB_CON_CONTRACT_INFO c
+			     where a.SUBCONTRACT_ID=b.SUBCONTRACT_ID 
+			     and c.CONTRACT_ID=a.CONTRACT_ID 
+			     and  b.SUBCONTRACT_TYPE in('01', '02')       
+			    group by c.CONTRACT_ID,c.rmb_amt
+			
+			    union all
+			
+			    select decode(b.IF_TOP_SUBCON,'1',a.SURETY_AMT,'0',c.rmb_amt,'0') surety_amt,c.rmb_amt,c.CONTRACT_ID
+			     from TB_CON_SUBCONTRACT_REL a,TB_CON_SUBCONTRACT b,TB_CON_CONTRACT_INFO c
+			     where a.SUBCONTRACT_ID=b.SUBCONTRACT_ID 
+			     and c.CONTRACT_ID=a.CONTRACT_ID
+			     and b.SUBCONTRACT_TYPE='04'                               
+			
+			    union all
+			
+			    select b.BZJJE surety_amt,c.rmb_amt,c.CONTRACT_ID
+			     from TB_CON_SUBCONTRACT_REL a,TB_CON_SUBCONTRACT b,TB_CON_CONTRACT_INFO c
+			     where a.SUBCONTRACT_ID=b.SUBCONTRACT_ID 
+			     and c.CONTRACT_ID=a.CONTRACT_ID
+			     and b.SUBCONTRACT_TYPE='03'                               
+			) t 
+			where t.CONTRACT_ID=#{contractId} group by t.rmb_amt 
+	</select>
+	<!-- 存在在途合同：RCON_0026 -->
+	<select id="checkRCON_0026" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) a from tb_con_contract_info where con_status in ('01','02') and amount_detail_id = #{amountDetailId}
+	</select>
+	<!-- 存在未入库的押品：RLON_0008 -->
+	<select id="checkRLON_0008" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) c
+	        from tb_con_contract_info   t,
+	             tb_con_subcontract_rel ta,
+	             tb_con_subcontract     tb,
+	             tb_grt_mortgage_basic  td,
+	             tb_con_sub_grt_rel     tc
+        left join tb_grt_house te on tc.surety_id = te.surety_id
+			 where t.contract_id = ta.contract_id
+			   and ta.subcontract_id = tb.subcontract_id
+			   and tb.subcontract_id = tc.subcontract_id
+			   and tc.surety_id = td.surety_id
+			   and tb.subcontract_status = '03'
+			   and td.mortgage_status != '09'
+			   and nvl(te.house_prop_status, '01') = '01'
+			   and t.product_type not in ('01013001', '02005001','01013010', '02005010', '02005002', '02005003', '02002004', '02002005')
+		  	 and t.contract_id = #{contractId}
+	</select>
+	<!-- 按揭存在未入库的押品：RLON_0036 -->
+	<select id="checkRLON_0036" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*)c
+		  from tb_con_contract_info   t,
+		       tb_con_subcontract_rel ta,
+		       tb_con_subcontract     tb,
+		       tb_grt_mortgage_basic  td,
+		       tb_con_sub_grt_rel     tc
+		 left join tb_grt_house te on tc.surety_id = te.surety_id
+			 where t.contract_id = ta.contract_id
+			   and ta.subcontract_id = tb.subcontract_id
+			   and tb.subcontract_id = tc.subcontract_id
+			   and tc.surety_id = td.surety_id
+			   and tb.subcontract_status = '03'
+			   and td.mortgage_status != '09'
+			   and nvl(te.house_prop_status, '01') = '01'
+		  	 and t.contract_id =  #{contractId}
+	</select>
+	<!-- 检查合同可用余额校验：RLON_0035 -->
+	<select id="checkRLON_0035" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) as c from tb_con_contract_info a where a.contract_amt=a.con_yu_e and a.contract_id=#{contractId}
+	</select>
+	<!-- 检查合同可用余额校验：RLON_0201 -->
+	<select id="checkRLON_0201" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) as c from tb_con_contract_info a where a.contract_id=#{contractId} AND CON_BALANCE &gt; 0 AND CREDIT_STATUS='01' AND CON_STATUS='03'
+	</select>
+	<!-- 检查合同可用余额校验：RLON_0034 -->
+	<select id="checkRLON_0034" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) as c from tb_con_contract_info where contract_id = #{contractId}
+        and to_char(begin_date,'yyyyMMdd') &lt;= (select to_char(operating_date,'yyyyMMdd') from tb_pub_date)
+        and to_char(end_date,'yyyyMMdd') &gt;= (select to_char(operating_date,'yyyyMMdd') from tb_pub_date)
+	</select>
+	<!-- 国结出账校验：RLON_0028 -->
+	<select id="checkRLON_0028" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) as c from tb_loan_summary r where r.contract_id = #{contractId} and r.summary_status_cd in('01','02','03','04')
+	</select>
+	<!-- 银承、贴现是否已出账校验：RLON_0033 -->
+	<select id="checkRLON_0033" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) as c from tb_loan_summary r where r.contract_id = #{contractId} and r.summary_status_cd not in('06','09')
+	</select>
+
+	
+	
+</mapper>

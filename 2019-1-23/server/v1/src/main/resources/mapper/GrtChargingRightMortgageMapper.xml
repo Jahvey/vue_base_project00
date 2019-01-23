@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtChargingRightMortgageMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtChargingRightMortgage">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="APPROVE_ORG" jdbcType="VARCHAR" property="approveOrg" />
+    <result column="APPROVE_DOCUMENT_NUM" jdbcType="VARCHAR" property="approveDocumentNum" />
+    <result column="CHARGE_REPAYMENT_RATE" jdbcType="DECIMAL" property="chargeRepaymentRate" />
+    <result column="CHARGE_RIGHT_CASHFLOW_ANALYSIS" jdbcType="VARCHAR" property="chargeRightCashflowAnalysis" />
+    <result column="COLLECTION_ACCOUNT" jdbcType="VARCHAR" property="collectionAccount" />
+    <result column="OPEN_BANK" jdbcType="VARCHAR" property="openBank" />
+    <result column="CHARGING_RIGHT_NAME" jdbcType="VARCHAR" property="chargingRightName" />
+    <result column="CHARGING_RIGHT_STANDER" jdbcType="VARCHAR" property="chargingRightStander" />
+    <result column="CHARGING_RIGHT_FILE_NAME" jdbcType="VARCHAR" property="chargingRightFileName" />
+    <result column="CHARGES_LICENSE_NUM" jdbcType="VARCHAR" property="chargesLicenseNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, APPROVE_ORG, APPROVE_DOCUMENT_NUM, CHARGE_REPAYMENT_RATE, CHARGE_RIGHT_CASHFLOW_ANALYSIS, 
+    COLLECTION_ACCOUNT, OPEN_BANK, CHARGING_RIGHT_NAME, CHARGING_RIGHT_STANDER, CHARGING_RIGHT_FILE_NAME, 
+    CHARGES_LICENSE_NUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_CHARGING_RIGHT_MORTGAGE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_CHARGING_RIGHT_MORTGAGE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtChargingRightMortgage">
+    insert into TB_GRT_CHARGING_RIGHT_MORTGAGE (GUARANTY_ID, APPROVE_ORG, APPROVE_DOCUMENT_NUM, 
+      CHARGE_REPAYMENT_RATE, CHARGE_RIGHT_CASHFLOW_ANALYSIS, 
+      COLLECTION_ACCOUNT, OPEN_BANK, CHARGING_RIGHT_NAME, 
+      CHARGING_RIGHT_STANDER, CHARGING_RIGHT_FILE_NAME, 
+      CHARGES_LICENSE_NUM)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{approveOrg,jdbcType=VARCHAR}, #{approveDocumentNum,jdbcType=VARCHAR}, 
+      #{chargeRepaymentRate,jdbcType=DECIMAL}, #{chargeRightCashflowAnalysis,jdbcType=VARCHAR}, 
+      #{collectionAccount,jdbcType=VARCHAR}, #{openBank,jdbcType=VARCHAR}, #{chargingRightName,jdbcType=VARCHAR}, 
+      #{chargingRightStander,jdbcType=VARCHAR}, #{chargingRightFileName,jdbcType=VARCHAR}, 
+      #{chargesLicenseNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtChargingRightMortgage">
+    insert into TB_GRT_CHARGING_RIGHT_MORTGAGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="approveOrg != null">
+        APPROVE_ORG,
+      </if>
+      <if test="approveDocumentNum != null">
+        APPROVE_DOCUMENT_NUM,
+      </if>
+      <if test="chargeRepaymentRate != null">
+        CHARGE_REPAYMENT_RATE,
+      </if>
+      <if test="chargeRightCashflowAnalysis != null">
+        CHARGE_RIGHT_CASHFLOW_ANALYSIS,
+      </if>
+      <if test="collectionAccount != null">
+        COLLECTION_ACCOUNT,
+      </if>
+      <if test="openBank != null">
+        OPEN_BANK,
+      </if>
+      <if test="chargingRightName != null">
+        CHARGING_RIGHT_NAME,
+      </if>
+      <if test="chargingRightStander != null">
+        CHARGING_RIGHT_STANDER,
+      </if>
+      <if test="chargingRightFileName != null">
+        CHARGING_RIGHT_FILE_NAME,
+      </if>
+      <if test="chargesLicenseNum != null">
+        CHARGES_LICENSE_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="approveOrg != null">
+        #{approveOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="approveDocumentNum != null">
+        #{approveDocumentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeRepaymentRate != null">
+        #{chargeRepaymentRate,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeRightCashflowAnalysis != null">
+        #{chargeRightCashflowAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionAccount != null">
+        #{collectionAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="openBank != null">
+        #{openBank,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingRightName != null">
+        #{chargingRightName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingRightStander != null">
+        #{chargingRightStander,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingRightFileName != null">
+        #{chargingRightFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargesLicenseNum != null">
+        #{chargesLicenseNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtChargingRightMortgage">
+    update TB_GRT_CHARGING_RIGHT_MORTGAGE
+    <set>
+      <if test="approveOrg != null">
+        APPROVE_ORG = #{approveOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="approveDocumentNum != null">
+        APPROVE_DOCUMENT_NUM = #{approveDocumentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeRepaymentRate != null">
+        CHARGE_REPAYMENT_RATE = #{chargeRepaymentRate,jdbcType=DECIMAL},
+      </if>
+      <if test="chargeRightCashflowAnalysis != null">
+        CHARGE_RIGHT_CASHFLOW_ANALYSIS = #{chargeRightCashflowAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionAccount != null">
+        COLLECTION_ACCOUNT = #{collectionAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="openBank != null">
+        OPEN_BANK = #{openBank,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingRightName != null">
+        CHARGING_RIGHT_NAME = #{chargingRightName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingRightStander != null">
+        CHARGING_RIGHT_STANDER = #{chargingRightStander,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingRightFileName != null">
+        CHARGING_RIGHT_FILE_NAME = #{chargingRightFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargesLicenseNum != null">
+        CHARGES_LICENSE_NUM = #{chargesLicenseNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtChargingRightMortgage">
+    update TB_GRT_CHARGING_RIGHT_MORTGAGE
+    set APPROVE_ORG = #{approveOrg,jdbcType=VARCHAR},
+      APPROVE_DOCUMENT_NUM = #{approveDocumentNum,jdbcType=VARCHAR},
+      CHARGE_REPAYMENT_RATE = #{chargeRepaymentRate,jdbcType=DECIMAL},
+      CHARGE_RIGHT_CASHFLOW_ANALYSIS = #{chargeRightCashflowAnalysis,jdbcType=VARCHAR},
+      COLLECTION_ACCOUNT = #{collectionAccount,jdbcType=VARCHAR},
+      OPEN_BANK = #{openBank,jdbcType=VARCHAR},
+      CHARGING_RIGHT_NAME = #{chargingRightName,jdbcType=VARCHAR},
+      CHARGING_RIGHT_STANDER = #{chargingRightStander,jdbcType=VARCHAR},
+      CHARGING_RIGHT_FILE_NAME = #{chargingRightFileName,jdbcType=VARCHAR},
+      CHARGES_LICENSE_NUM = #{chargesLicenseNum,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtBillMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtBill">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="BILL_AMT" jdbcType="DECIMAL" property="billAmt" />
+    <result column="BILL_CURRENCY_CD" jdbcType="VARCHAR" property="billCurrencyCd" />
+    <result column="BILL_SIGNUP_DATE" jdbcType="TIMESTAMP" property="billSignupDate" />
+    <result column="BILL_EXPIRE_DATE" jdbcType="TIMESTAMP" property="billExpireDate" />
+    <result column="BILL_TYPE" jdbcType="VARCHAR" property="billType" />
+    <result column="REMITTER_NAME" jdbcType="VARCHAR" property="remitterName" />
+    <result column="REMITTER_ACCOUNT" jdbcType="VARCHAR" property="remitterAccount" />
+    <result column="REMITTER_BANK" jdbcType="VARCHAR" property="remitterBank" />
+    <result column="PAYEE_NAME" jdbcType="VARCHAR" property="payeeName" />
+    <result column="PAYEE_ACCOUNT" jdbcType="VARCHAR" property="payeeAccount" />
+    <result column="PAYEE_BANK" jdbcType="VARCHAR" property="payeeBank" />
+    <result column="SEARCH_RESULT" jdbcType="VARCHAR" property="searchResult" />
+    <result column="ACCEPTOR_BANK" jdbcType="VARCHAR" property="acceptorBank" />
+    <result column="BILL_TERM" jdbcType="DECIMAL" property="billTerm" />
+    <result column="BILL_TERM_CD" jdbcType="VARCHAR" property="billTermCd" />
+    <result column="BILL_NUM" jdbcType="VARCHAR" property="billNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, BILL_AMT, BILL_CURRENCY_CD, BILL_SIGNUP_DATE, BILL_EXPIRE_DATE, BILL_TYPE, 
+    REMITTER_NAME, REMITTER_ACCOUNT, REMITTER_BANK, PAYEE_NAME, PAYEE_ACCOUNT, PAYEE_BANK, 
+    SEARCH_RESULT, ACCEPTOR_BANK, BILL_TERM, BILL_TERM_CD, BILL_NUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_BILL
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_BILL
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBill">
+    insert into TB_GRT_BILL (GUARANTY_ID, BILL_AMT, BILL_CURRENCY_CD, 
+      BILL_SIGNUP_DATE, BILL_EXPIRE_DATE, BILL_TYPE, 
+      REMITTER_NAME, REMITTER_ACCOUNT, REMITTER_BANK, 
+      PAYEE_NAME, PAYEE_ACCOUNT, PAYEE_BANK, 
+      SEARCH_RESULT, ACCEPTOR_BANK, BILL_TERM, 
+      BILL_TERM_CD, BILL_NUM)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{billAmt,jdbcType=DECIMAL}, #{billCurrencyCd,jdbcType=VARCHAR}, 
+      #{billSignupDate,jdbcType=TIMESTAMP}, #{billExpireDate,jdbcType=TIMESTAMP}, #{billType,jdbcType=VARCHAR}, 
+      #{remitterName,jdbcType=VARCHAR}, #{remitterAccount,jdbcType=VARCHAR}, #{remitterBank,jdbcType=VARCHAR}, 
+      #{payeeName,jdbcType=VARCHAR}, #{payeeAccount,jdbcType=VARCHAR}, #{payeeBank,jdbcType=VARCHAR}, 
+      #{searchResult,jdbcType=VARCHAR}, #{acceptorBank,jdbcType=VARCHAR}, #{billTerm,jdbcType=DECIMAL}, 
+      #{billTermCd,jdbcType=VARCHAR}, #{billNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBill">
+    insert into TB_GRT_BILL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="billAmt != null">
+        BILL_AMT,
+      </if>
+      <if test="billCurrencyCd != null">
+        BILL_CURRENCY_CD,
+      </if>
+      <if test="billSignupDate != null">
+        BILL_SIGNUP_DATE,
+      </if>
+      <if test="billExpireDate != null">
+        BILL_EXPIRE_DATE,
+      </if>
+      <if test="billType != null">
+        BILL_TYPE,
+      </if>
+      <if test="remitterName != null">
+        REMITTER_NAME,
+      </if>
+      <if test="remitterAccount != null">
+        REMITTER_ACCOUNT,
+      </if>
+      <if test="remitterBank != null">
+        REMITTER_BANK,
+      </if>
+      <if test="payeeName != null">
+        PAYEE_NAME,
+      </if>
+      <if test="payeeAccount != null">
+        PAYEE_ACCOUNT,
+      </if>
+      <if test="payeeBank != null">
+        PAYEE_BANK,
+      </if>
+      <if test="searchResult != null">
+        SEARCH_RESULT,
+      </if>
+      <if test="acceptorBank != null">
+        ACCEPTOR_BANK,
+      </if>
+      <if test="billTerm != null">
+        BILL_TERM,
+      </if>
+      <if test="billTermCd != null">
+        BILL_TERM_CD,
+      </if>
+      <if test="billNum != null">
+        BILL_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="billAmt != null">
+        #{billAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="billCurrencyCd != null">
+        #{billCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="billSignupDate != null">
+        #{billSignupDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billExpireDate != null">
+        #{billExpireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billType != null">
+        #{billType,jdbcType=VARCHAR},
+      </if>
+      <if test="remitterName != null">
+        #{remitterName,jdbcType=VARCHAR},
+      </if>
+      <if test="remitterAccount != null">
+        #{remitterAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="remitterBank != null">
+        #{remitterBank,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeName != null">
+        #{payeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeAccount != null">
+        #{payeeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeBank != null">
+        #{payeeBank,jdbcType=VARCHAR},
+      </if>
+      <if test="searchResult != null">
+        #{searchResult,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptorBank != null">
+        #{acceptorBank,jdbcType=VARCHAR},
+      </if>
+      <if test="billTerm != null">
+        #{billTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="billTermCd != null">
+        #{billTermCd,jdbcType=VARCHAR},
+      </if>
+      <if test="billNum != null">
+        #{billNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBill">
+    update TB_GRT_BILL
+    <set>
+      <if test="billAmt != null">
+        BILL_AMT = #{billAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="billCurrencyCd != null">
+        BILL_CURRENCY_CD = #{billCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="billSignupDate != null">
+        BILL_SIGNUP_DATE = #{billSignupDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billExpireDate != null">
+        BILL_EXPIRE_DATE = #{billExpireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billType != null">
+        BILL_TYPE = #{billType,jdbcType=VARCHAR},
+      </if>
+      <if test="remitterName != null">
+        REMITTER_NAME = #{remitterName,jdbcType=VARCHAR},
+      </if>
+      <if test="remitterAccount != null">
+        REMITTER_ACCOUNT = #{remitterAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="remitterBank != null">
+        REMITTER_BANK = #{remitterBank,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeName != null">
+        PAYEE_NAME = #{payeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeAccount != null">
+        PAYEE_ACCOUNT = #{payeeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeBank != null">
+        PAYEE_BANK = #{payeeBank,jdbcType=VARCHAR},
+      </if>
+      <if test="searchResult != null">
+        SEARCH_RESULT = #{searchResult,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptorBank != null">
+        ACCEPTOR_BANK = #{acceptorBank,jdbcType=VARCHAR},
+      </if>
+      <if test="billTerm != null">
+        BILL_TERM = #{billTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="billTermCd != null">
+        BILL_TERM_CD = #{billTermCd,jdbcType=VARCHAR},
+      </if>
+      <if test="billNum != null">
+        BILL_NUM = #{billNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBill">
+    update TB_GRT_BILL
+    set BILL_AMT = #{billAmt,jdbcType=DECIMAL},
+      BILL_CURRENCY_CD = #{billCurrencyCd,jdbcType=VARCHAR},
+      BILL_SIGNUP_DATE = #{billSignupDate,jdbcType=TIMESTAMP},
+      BILL_EXPIRE_DATE = #{billExpireDate,jdbcType=TIMESTAMP},
+      BILL_TYPE = #{billType,jdbcType=VARCHAR},
+      REMITTER_NAME = #{remitterName,jdbcType=VARCHAR},
+      REMITTER_ACCOUNT = #{remitterAccount,jdbcType=VARCHAR},
+      REMITTER_BANK = #{remitterBank,jdbcType=VARCHAR},
+      PAYEE_NAME = #{payeeName,jdbcType=VARCHAR},
+      PAYEE_ACCOUNT = #{payeeAccount,jdbcType=VARCHAR},
+      PAYEE_BANK = #{payeeBank,jdbcType=VARCHAR},
+      SEARCH_RESULT = #{searchResult,jdbcType=VARCHAR},
+      ACCEPTOR_BANK = #{acceptorBank,jdbcType=VARCHAR},
+      BILL_TERM = #{billTerm,jdbcType=DECIMAL},
+      BILL_TERM_CD = #{billTermCd,jdbcType=VARCHAR},
+      BILL_NUM = #{billNum,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

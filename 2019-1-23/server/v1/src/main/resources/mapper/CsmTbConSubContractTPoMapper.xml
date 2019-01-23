@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConSubContractTPoMapper">
+
+<resultMap type="com.cdgit.loan.csm.po.TbConSubContractTPo" id="csmTbConSubContractTPo">
+	<id column="id" javaType="String" property="id" />
+	<result column="subcontract_id" javaType="String" property="subcontractId" />
+	<result column="subcontract_num" javaType="String" property="subcontractNum" />
+	<result column="subcontract_manual_num" javaType="String" property="subcontractManualNum" />
+	<result column="subcontract_type" javaType="String" property="subcontractType" />
+	<result column="subcontract_status" javaType="String" property="subcontractStatus" />
+	<result column="if_top_subcon" javaType="String" property="ifTopSubcon" />
+	<result column="sign_date" javaType="java.sql.Timestamp" property="signDate" />
+	<result column="begin_date" javaType="java.sql.Timestamp" property="beginDate" />
+	<result column="end_date" javaType="java.sql.Timestamp" property="endDate" />
+	<result column="subcontract_amt" javaType="String" property="subcontractAmt" />
+	<result column="user_num" javaType="String" property="userNum" />
+	<result column="org_num" javaType="String" property="orgNum" />
+	<result column="create_time" javaType="java.sql.Timestamp" property="createTime" />
+	<result column="update_time" javaType="java.sql.Timestamp" property="updateTime" />
+	<result column="party_id" javaType="String" property="partyId" />
+	<result column="bz" javaType="String" property="bz" />
+	<result column="zgbjxe" javaType="String" property="zgbjxe" />
+	<result column="jggzrbldj" javaType="String" property="jggzrbldj" />
+	<result column="zfwyjbl" javaType="String" property="zfwyjbl" />
+	<result column="change_percent" javaType="String" property="changePercent" />
+	<result column="jrncrbzj" javaType="String" property="jrncrbzj" />
+	<result column="bzjje" javaType="String" property="bzjje" />
+	<result column="bzjbl" javaType="String" property="bzjbl" />
+	<result column="bzjlx" javaType="String" property="bzjlx" />
+	<result column="aylljx" javaType="String" property="aylljx" />
+	<result column="anlljx" javaType="String" property="anlljx" />
+	<result column="jrtzkh" javaType="String" property="jrtzkh" />
+	<result column="avi_amt" javaType="String" property="aviAmt" />
+	<result column="total_amt" javaType="String" property="totalAmt" />
+	<result column="paper_con_num" javaType="String" property="paperConNum" />
+	<result column="bzjjxzq" javaType="String" property="bzjjxzq" />
+	<result column="con_party_id" javaType="String" property="conPartyId" />
+	<result column="if_data_move" javaType="String" property="ifDataMove" />
+	<result column="status" javaType="String" property="status" />
+	<result column="qtjsxfs" javaType="String" property="qtjsxfs" />
+	<result column="proguaranty_way" javaType="String" property="proguarantyWay" />
+	<result column="proguaranty_type" javaType="String" property="proguarantyType" />
+	<result column="proguaranty_form" javaType="String" property="proguarantyForm" />
+	<result column="sub_scope" javaType="String" property="subScope" />
+	<result column="db_rate" javaType="String" property="dbRate" />
+
+</resultMap>
+
+
+<select id="queryOneTbConSubContractTPoInfo" parameterType="java.util.Map" resultMap="csmTbConSubContractTPo">
+select 
+* 
+from 
+tb_con_subcontract_t
+where 
+subcontract_id=#{subcontract_id}
+
+
+
+</select>
+
+
+
+</mapper>

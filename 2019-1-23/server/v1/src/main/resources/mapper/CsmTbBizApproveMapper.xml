@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizApproveMapper">
+  
+  
+  
+  <resultMap id="CsmTbBizApprovePo" type="com.cdgit.loan.csm.po.TbBizApprovePo">
+  
+	 <result column="approve_id" javaType="String" property="approveId" />
+	<result column="biz_num" javaType="String" property="bizNum" />
+	<result column="biz_type" javaType="String" property="bizType" />
+	<result column="low_risk_biz_type" javaType="String" property="lowRiskBizType" />
+	<result column="apply_mode_type" javaType="String" property="applyModeType" />
+	<result column="biz_happen_type" javaType="String" property="bizHappenType" />
+	<result column="org_num" javaType="String" property="orgNum" />
+	<result column="user_num" javaType="String" property="userNum" />
+	<result column="party_id" javaType="String" property="partyId" />
+	<result column="business_product" javaType="String" property="businessProduct" />
+	<result column="product_type" javaType="String" property="productType" />
+	<result column="apply_date" javaType="java.sql.Timestamp" property="applyDate" />
+	<result column="handing_date" javaType="java.sql.Timestamp" property="handingDate" />
+	<result column="amount_type" javaType="String" property="amountType" />
+	<result column="create_time" javaType="java.sql.Timestamp" property="createTime" />
+	<result column="update_time" javaType="java.sql.Timestamp" property="updateTime" />
+	<result column="csm_crd_level" javaType="String" property="csmCrdLevel" />
+	<result column="approval_num" javaType="String" property="approvalNum" />
+	<result column="become_effective_mark" javaType="String" property="becomeEffectiveMark" />
+	<result column="original_approve_id" javaType="String" property="originalApproveId" />
+	<result column="is_bank_team_loan" javaType="String" property="isBankTeamLoan" />
+	<result column="loan_inspection_fre" javaType="String" property="loanInspectionFre" />
+	<result column="policy_decision_idea" javaType="String" property="policyDecisionIdea" />
+	<result column="valid_date" javaType="java.sql.Timestamp" property="validDate" />
+	<result column="policy_decision_num" javaType="String" property="policyDecisionNum" />
+	<result column="apply_type_mark" javaType="String" property="applyTypeMark" />
+	<result column="approve_conclusion" javaType="String" property="approveConclusion" />
+	<result column="end_org_num" javaType="String" property="endOrgNum" />
+	<result column="end_date" javaType="java.sql.Timestamp" property="endDate" />
+	<result column="if_data_move" javaType="String" property="ifDataMove" />
+	<result column="apply_id" javaType="String" property="applyId" />
+	<result column="biz_happen_nature" javaType="String" property="bizHappenNature" />
+	<result column="is_green_loan" javaType="String" property="isGreenLoan" />
+	<result column="loan_type" javaType="String" property="loanType" />
+	<result column="biz_type_flag" javaType="String" property="bizTypeFlag" />
+	<result column="guaranty_type" javaType="String" property="guarantyType" />
+	<result column="term_num" javaType="String" property="termNum" />
+	<result column="term_unit" javaType="String" property="termUnit" />
+	<result column="rmb_amt" javaType="String" property="rmbAmt" />
+	<result column="bo_use" javaType="String" property="boUse" />
+	<result column="no_use" javaType="String" property="noUse" />
+	<result column="crd_id" javaType="String" property="crdId" />
+	<result column="credit_mode" javaType="String" property="creditMode" />
+  
+  
+  </resultMap>
+  
+  
+  <select id="queryOneTbBizApproveByApproveId" parameterType="java.lang.String" resultMap="CsmTbBizApprovePo">
+  
+  select *
+  from
+  TB_BIZ_APPROVE
+  where
+  approve_id=#{approveId}
+  
+  
+  </select>
+</mapper>

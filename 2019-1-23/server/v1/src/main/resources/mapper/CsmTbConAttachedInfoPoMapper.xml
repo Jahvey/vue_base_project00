@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConAttachedInfoPoMapper">
+
+ <resultMap id="tbConAttachedInfoPo" type="com.cdgit.loan.csm.po.TbConAttachedInfoPo">
+	<result column="attached" javaType="String" property="attached" />
+	<result column="contract_id" javaType="String" property="contractId" />
+	<result column="arbitrate_type" javaType="String" property="arbitrateType" />
+	<result column="arbitrate_name" javaType="String" property="arbitrateName" />
+	<result column="arbitrate_address" javaType="String" property="arbitrateAddress" />
+	<result column="other" javaType="String" property="other" />
+	<result column="a_hold_count" javaType="String" property="aHoldCount" />
+	<result column="b_hold_count" javaType="String" property="bHoldCount" />
+	<result column="c_type" javaType="String" property="cType" />
+	<result column="c_hold_count" javaType="String" property="cHoldCount" />
+	<result column="total_count" javaType="String" property="totalCount" />
+	<result column="add_clause" javaType="String" property="addClause" />
+	<result column="constraint_index" javaType="String" property="constraintIndex" />
+  	<result column="d_hold_count" javaType="String" property="dHoldCount" />
+  	<result column="e_hold_count" javaType="String" property="eHoldCount" />
+  	<result column="tk_condition" javaType="String" property="tkCondition" />
+  	<result column="c_name" javaType="String" property="cName" />
+  	<result column="legal_court" javaType="String" property="legalCourt" />
+
+  </resultMap>
+  
+  
+    
+  <select id="queryCsmTbConAttachedInfoPo" parameterType="java.lang.String" resultMap="tbConAttachedInfoPo">
+	select 
+	*
+	from 
+		TB_CON_ATTACHED_INFO
+	where 
+		contract_id=#{contractId}
+		
+  </select>
+  
+  
+  
+
+
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbLoanSummaryMapper">
+<resultMap id="csmTbLoanSummaryPo" type="com.cdgit.loan.csm.po.TbLoanSummaryPo">
+
+	<result column="summary_id" javaType="String" property="summaryId" />
+	<result column="loan_id" javaType="String" property="loanId" />
+	<result column="party_id" javaType="String" property="partyId" />
+	<result column="summary_amt" javaType="String" property="summaryAmt" />
+	<result column="summary_currency_cd" javaType="String" property="summaryCurrencyCd" />
+	<result column="begin_date" javaType="java.sql.Timestamp" property="beginDate" />
+	<result column="end_date" javaType="java.sql.Timestamp" property="endDate" />
+	<result column="summary_term" javaType="String" property="summaryTerm" />
+	<result column="cycle_unit" javaType="String" property="cycleUnit" />
+	<result column="user_num" javaType="String" property="userNum" />
+	<result column="org_num" javaType="String" property="orgNum" />
+	<result column="create_time" javaType="java.sql.Timestamp" property="createTime" />
+	<result column="update_time" javaType="java.sql.Timestamp" property="updateTime" />
+	<result column="summary_status_cd" javaType="String" property="summaryStatusCd" />
+	<result column="summary_num" javaType="String" property="summaryNum" />
+	<result column="nft_no" javaType="String" property="nftNo" />
+	<result column="jjye" javaType="String" property="jjye" />
+	<result column="yqts" javaType="String" property="yqts" />
+	<result column="fljg" javaType="String" property="fljg" />
+	<result column="exchange_rate" javaType="String" property="exchangeRate" />
+	<result column="rmb_amt" javaType="String" property="rmbAmt" />
+	<result column="guaranty_type" javaType="String" property="guarantyType" />
+	<result column="dft_itr" javaType="String" property="dftItr" />
+	<result column="dft_itr_in" javaType="String" property="dftItrIn" />
+	<result column="dft_itr_out" javaType="String" property="dftItrOut" />
+	<result column="contract_id" javaType="String" property="contractId" />
+	<result column="ljyqcs" javaType="String" property="ljyqcs" />
+	<result column="lxyqcs" javaType="String" property="lxyqcs" />
+	<result column="tiexi_status" javaType="String" property="tiexiStatus" />
+	<result column="tingxi_status" javaType="String" property="tingxiStatus" />
+	<result column="jjyqbj" javaType="String" property="jjyqbj" />
+	<result column="ljfx" javaType="String" property="ljfx" />
+	<result column="byjezd" javaType="String" property="byjezd" />
+	<result column="bydmzd" javaType="String" property="bydmzd" />
+	<result column="normal_itr" javaType="String" property="normalItr" />
+	<result column="arrear_itr" javaType="String" property="arrearItr" />
+	<result column="punish_itr" javaType="String" property="punishItr" />
+	<result column="deav_sts" javaType="String" property="deavSts" />
+	<result column="entrust_return_principal_acc" javaType="String" property="entrustReturnPrincipalAcc" />
+	<result column="entrust_return_interest_acc" javaType="String" property="entrustReturnInterestAcc" />
+	<result column="rcn_stan" javaType="String" property="rcnStan" />
+	<result column="ywbh" javaType="String" property="ywbh" />
+	<result column="back_cd" javaType="String" property="backCd" />
+	<result column="if_data_move" javaType="String" property="ifDataMove" />
+	<result column="if_data_move1" javaType="String" property="ifDataMove1" />
+	<result column="period_flag" javaType="String" property="periodFlag" />
+	<result column="period_num" javaType="String" property="periodNum" />
+	<result column="exext_flg" javaType="String" property="exextFlg" />
+	<result column="bzjbl" javaType="String" property="bzjbl" />
+	<result column="bzjje" javaType="String" property="bzjje" />
+	<result column="new_pns_itr" javaType="String" property="newPnsItr" />
+	<result column="new_fl_itr" javaType="String" property="newFlItr" />
+	<result column="auto_fljg" javaType="String" property="autoFljg" />
+	<result column="adjust_flg" javaType="String" property="adjustFlg" />
+	<result column="settle_date" javaType="java.sql.Timestamp" property="settleDate" />
+	<result column="last_pay_date" javaType="java.sql.Timestamp" property="lastPayDate" />
+	<result column="bj_yqts" javaType="String" property="bjYqts" />
+	<result column="lx_yqts" javaType="String" property="lxYqts" />
+
+</resultMap>
+
+<select id="queryOneTbLoanSummaryBySummaryId" parameterType="java.lang.String" resultMap="csmTbLoanSummaryPo">
+
+select 
+*
+from
+TB_LOAN_SUMMARY
+where
+summary_id=#{summaryId}
+
+
+</select>
+
+
+  
+</mapper>
