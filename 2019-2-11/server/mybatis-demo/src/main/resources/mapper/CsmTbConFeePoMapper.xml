@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConFeePoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConFeePo">
+    <id column="FEE_ID" jdbcType="VARCHAR" property="feeId" />
+    <result column="COST_TYPE" jdbcType="VARCHAR" property="costType" />
+    <result column="CHARGING_DIRECTION" jdbcType="VARCHAR" property="chargingDirection" />
+    <result column="CHARGING_FREQUENCY" jdbcType="VARCHAR" property="chargingFrequency" />
+    <result column="CHARGING_TYPE" jdbcType="VARCHAR" property="chargingType" />
+    <result column="CHARGING_PROPORTION" jdbcType="DECIMAL" property="chargingProportion" />
+    <result column="SHOULD_FEE" jdbcType="DECIMAL" property="shouldFee" />
+    <result column="REDUCTION_FEE" jdbcType="DECIMAL" property="reductionFee" />
+    <result column="ACTUAL_FEE" jdbcType="DECIMAL" property="actualFee" />
+    <result column="FEE_DATE" jdbcType="TIMESTAMP" property="feeDate" />
+    <result column="CONTRACT_DETAIL_ID" jdbcType="VARCHAR" property="contractDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    FEE_ID, COST_TYPE, CHARGING_DIRECTION, CHARGING_FREQUENCY, CHARGING_TYPE, CHARGING_PROPORTION, 
+    SHOULD_FEE, REDUCTION_FEE, ACTUAL_FEE, FEE_DATE, CONTRACT_DETAIL_ID, CREATE_TIME, 
+    UPDATE_TIME
+  </sql>
+  
+  
+  <select id="queryListByConId" parameterType="java.lang.String" resultMap="BaseResultMap" >
+	select * from 
+	Tb_Con_Fee b 
+	where 
+	b.contract_detail_id=#{contractDetailId,jdbcType=VARCHAR}
+  
+  
+  
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    *
+    from CRMS.TB_CON_FEE
+    where FEE_ID = #{feeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_FEE
+    where FEE_ID = #{feeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConFeePo">
+    insert into CRMS.TB_CON_FEE (FEE_ID, COST_TYPE, CHARGING_DIRECTION, 
+      CHARGING_FREQUENCY, CHARGING_TYPE, CHARGING_PROPORTION, 
+      SHOULD_FEE, REDUCTION_FEE, ACTUAL_FEE, 
+      FEE_DATE, CONTRACT_DETAIL_ID, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{feeId,jdbcType=VARCHAR}, #{costType,jdbcType=VARCHAR}, #{chargingDirection,jdbcType=VARCHAR}, 
+      #{chargingFrequency,jdbcType=VARCHAR}, #{chargingType,jdbcType=VARCHAR}, #{chargingProportion,jdbcType=DECIMAL}, 
+      #{shouldFee,jdbcType=DECIMAL}, #{reductionFee,jdbcType=DECIMAL}, #{actualFee,jdbcType=DECIMAL}, 
+      #{feeDate,jdbcType=TIMESTAMP}, #{contractDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConFeePo">
+    insert into CRMS.TB_CON_FEE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="feeId != null">
+        FEE_ID,
+      </if>
+      <if test="costType != null">
+        COST_TYPE,
+      </if>
+      <if test="chargingDirection != null">
+        CHARGING_DIRECTION,
+      </if>
+      <if test="chargingFrequency != null">
+        CHARGING_FREQUENCY,
+      </if>
+      <if test="chargingType != null">
+        CHARGING_TYPE,
+      </if>
+      <if test="chargingProportion != null">
+        CHARGING_PROPORTION,
+      </if>
+      <if test="shouldFee != null">
+        SHOULD_FEE,
+      </if>
+      <if test="reductionFee != null">
+        REDUCTION_FEE,
+      </if>
+      <if test="actualFee != null">
+        ACTUAL_FEE,
+      </if>
+      <if test="feeDate != null">
+        FEE_DATE,
+      </if>
+      <if test="contractDetailId != null">
+        CONTRACT_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="feeId != null">
+        #{feeId,jdbcType=VARCHAR},
+      </if>
+      <if test="costType != null">
+        #{costType,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingDirection != null">
+        #{chargingDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingFrequency != null">
+        #{chargingFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingType != null">
+        #{chargingType,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingProportion != null">
+        #{chargingProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldFee != null">
+        #{shouldFee,jdbcType=DECIMAL},
+      </if>
+      <if test="reductionFee != null">
+        #{reductionFee,jdbcType=DECIMAL},
+      </if>
+      <if test="actualFee != null">
+        #{actualFee,jdbcType=DECIMAL},
+      </if>
+      <if test="feeDate != null">
+        #{feeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractDetailId != null">
+        #{contractDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConFeePo">
+    update CRMS.TB_CON_FEE
+    <set>
+      <if test="costType != null">
+        COST_TYPE = #{costType,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingDirection != null">
+        CHARGING_DIRECTION = #{chargingDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingFrequency != null">
+        CHARGING_FREQUENCY = #{chargingFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingType != null">
+        CHARGING_TYPE = #{chargingType,jdbcType=VARCHAR},
+      </if>
+      <if test="chargingProportion != null">
+        CHARGING_PROPORTION = #{chargingProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldFee != null">
+        SHOULD_FEE = #{shouldFee,jdbcType=DECIMAL},
+      </if>
+      <if test="reductionFee != null">
+        REDUCTION_FEE = #{reductionFee,jdbcType=DECIMAL},
+      </if>
+      <if test="actualFee != null">
+        ACTUAL_FEE = #{actualFee,jdbcType=DECIMAL},
+      </if>
+      <if test="feeDate != null">
+        FEE_DATE = #{feeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractDetailId != null">
+        CONTRACT_DETAIL_ID = #{contractDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where FEE_ID = #{feeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConFeePo">
+    update CRMS.TB_CON_FEE
+    set COST_TYPE = #{costType,jdbcType=VARCHAR},
+      CHARGING_DIRECTION = #{chargingDirection,jdbcType=VARCHAR},
+      CHARGING_FREQUENCY = #{chargingFrequency,jdbcType=VARCHAR},
+      CHARGING_TYPE = #{chargingType,jdbcType=VARCHAR},
+      CHARGING_PROPORTION = #{chargingProportion,jdbcType=DECIMAL},
+      SHOULD_FEE = #{shouldFee,jdbcType=DECIMAL},
+      REDUCTION_FEE = #{reductionFee,jdbcType=DECIMAL},
+      ACTUAL_FEE = #{actualFee,jdbcType=DECIMAL},
+      FEE_DATE = #{feeDate,jdbcType=TIMESTAMP},
+      CONTRACT_DETAIL_ID = #{contractDetailId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where FEE_ID = #{feeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConBgdkPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConBgdkPo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="BGFS" jdbcType="VARCHAR" property="bgfs" />
+    <result column="BGJYJE" jdbcType="DECIMAL" property="bgjyje" />
+    <result column="BBGF" jdbcType="VARCHAR" property="bbgf" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="REST_RATE" jdbcType="DECIMAL" property="restRate" />
+    <result column="PAY_WAY" jdbcType="VARCHAR" property="payWay" />
+    <result column="PAY_DEPEND1" jdbcType="VARCHAR" property="payDepend1" />
+    <result column="PAY_DEPEND2" jdbcType="VARCHAR" property="payDepend2" />
+    <result column="PAY_DEPEND3" jdbcType="VARCHAR" property="payDepend3" />
+    <result column="PREPAY_JS" jdbcType="DECIMAL" property="prepayJs" />
+    <result column="PREPAY_MAKEUP_RATE" jdbcType="DECIMAL" property="prepayMakeupRate" />
+    <result column="LEAST_PREPAY_AMOUNT" jdbcType="DECIMAL" property="leastPrepayAmount" />
+    <result column="LEAST_SETTLE_RATE" jdbcType="DECIMAL" property="leastSettleRate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, BGFS, BGJYJE, BBGF, 
+    CONTRACT_ID, REST_RATE, PAY_WAY, PAY_DEPEND1, PAY_DEPEND2, PAY_DEPEND3, PREPAY_JS, 
+    PREPAY_MAKEUP_RATE, LEAST_PREPAY_AMOUNT, LEAST_SETTLE_RATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_BGDK
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_BGDK
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConBgdkPo">
+    insert into CRMS.TB_CON_BGDK (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, BGFS, BGJYJE, 
+      BBGF, CONTRACT_ID, REST_RATE, 
+      PAY_WAY, PAY_DEPEND1, PAY_DEPEND2, 
+      PAY_DEPEND3, PREPAY_JS, PREPAY_MAKEUP_RATE, 
+      LEAST_PREPAY_AMOUNT, LEAST_SETTLE_RATE)
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{bgfs,jdbcType=VARCHAR}, #{bgjyje,jdbcType=DECIMAL}, 
+      #{bbgf,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{restRate,jdbcType=DECIMAL}, 
+      #{payWay,jdbcType=VARCHAR}, #{payDepend1,jdbcType=VARCHAR}, #{payDepend2,jdbcType=VARCHAR}, 
+      #{payDepend3,jdbcType=VARCHAR}, #{prepayJs,jdbcType=DECIMAL}, #{prepayMakeupRate,jdbcType=DECIMAL}, 
+      #{leastPrepayAmount,jdbcType=DECIMAL}, #{leastSettleRate,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConBgdkPo">
+    insert into CRMS.TB_CON_BGDK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="bgfs != null">
+        BGFS,
+      </if>
+      <if test="bgjyje != null">
+        BGJYJE,
+      </if>
+      <if test="bbgf != null">
+        BBGF,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="restRate != null">
+        REST_RATE,
+      </if>
+      <if test="payWay != null">
+        PAY_WAY,
+      </if>
+      <if test="payDepend1 != null">
+        PAY_DEPEND1,
+      </if>
+      <if test="payDepend2 != null">
+        PAY_DEPEND2,
+      </if>
+      <if test="payDepend3 != null">
+        PAY_DEPEND3,
+      </if>
+      <if test="prepayJs != null">
+        PREPAY_JS,
+      </if>
+      <if test="prepayMakeupRate != null">
+        PREPAY_MAKEUP_RATE,
+      </if>
+      <if test="leastPrepayAmount != null">
+        LEAST_PREPAY_AMOUNT,
+      </if>
+      <if test="leastSettleRate != null">
+        LEAST_SETTLE_RATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="bgfs != null">
+        #{bgfs,jdbcType=VARCHAR},
+      </if>
+      <if test="bgjyje != null">
+        #{bgjyje,jdbcType=DECIMAL},
+      </if>
+      <if test="bbgf != null">
+        #{bbgf,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="restRate != null">
+        #{restRate,jdbcType=DECIMAL},
+      </if>
+      <if test="payWay != null">
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend1 != null">
+        #{payDepend1,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend2 != null">
+        #{payDepend2,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend3 != null">
+        #{payDepend3,jdbcType=VARCHAR},
+      </if>
+      <if test="prepayJs != null">
+        #{prepayJs,jdbcType=DECIMAL},
+      </if>
+      <if test="prepayMakeupRate != null">
+        #{prepayMakeupRate,jdbcType=DECIMAL},
+      </if>
+      <if test="leastPrepayAmount != null">
+        #{leastPrepayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="leastSettleRate != null">
+        #{leastSettleRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConBgdkPo">
+    update CRMS.TB_CON_BGDK
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="bgfs != null">
+        BGFS = #{bgfs,jdbcType=VARCHAR},
+      </if>
+      <if test="bgjyje != null">
+        BGJYJE = #{bgjyje,jdbcType=DECIMAL},
+      </if>
+      <if test="bbgf != null">
+        BBGF = #{bbgf,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="restRate != null">
+        REST_RATE = #{restRate,jdbcType=DECIMAL},
+      </if>
+      <if test="payWay != null">
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend1 != null">
+        PAY_DEPEND1 = #{payDepend1,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend2 != null">
+        PAY_DEPEND2 = #{payDepend2,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend3 != null">
+        PAY_DEPEND3 = #{payDepend3,jdbcType=VARCHAR},
+      </if>
+      <if test="prepayJs != null">
+        PREPAY_JS = #{prepayJs,jdbcType=DECIMAL},
+      </if>
+      <if test="prepayMakeupRate != null">
+        PREPAY_MAKEUP_RATE = #{prepayMakeupRate,jdbcType=DECIMAL},
+      </if>
+      <if test="leastPrepayAmount != null">
+        LEAST_PREPAY_AMOUNT = #{leastPrepayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="leastSettleRate != null">
+        LEAST_SETTLE_RATE = #{leastSettleRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConBgdkPo">
+    update CRMS.TB_CON_BGDK
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      BGFS = #{bgfs,jdbcType=VARCHAR},
+      BGJYJE = #{bgjyje,jdbcType=DECIMAL},
+      BBGF = #{bbgf,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      REST_RATE = #{restRate,jdbcType=DECIMAL},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      PAY_DEPEND1 = #{payDepend1,jdbcType=VARCHAR},
+      PAY_DEPEND2 = #{payDepend2,jdbcType=VARCHAR},
+      PAY_DEPEND3 = #{payDepend3,jdbcType=VARCHAR},
+      PREPAY_JS = #{prepayJs,jdbcType=DECIMAL},
+      PREPAY_MAKEUP_RATE = #{prepayMakeupRate,jdbcType=DECIMAL},
+      LEAST_PREPAY_AMOUNT = #{leastPrepayAmount,jdbcType=DECIMAL},
+      LEAST_SETTLE_RATE = #{leastSettleRate,jdbcType=DECIMAL}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

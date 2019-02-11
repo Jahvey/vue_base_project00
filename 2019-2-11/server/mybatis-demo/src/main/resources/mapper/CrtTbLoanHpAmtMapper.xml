@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbLoanHpAmtMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbLoanHpAmt">
+    <id column="MONEY_USE_ID" jdbcType="VARCHAR" property="moneyUseId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="LOAN_AMT" jdbcType="DECIMAL" property="loanAmt" />
+    <result column="ORD_NUMBER" jdbcType="VARCHAR" property="ordNumber" />
+    <result column="PYE_ACCT_NM" jdbcType="VARCHAR" property="pyeAcctNm" />
+    <result column="PYE_ACCT_NO" jdbcType="VARCHAR" property="pyeAcctNo" />
+    <result column="PYE_OPEN_ACCT_BNK_NM" jdbcType="VARCHAR" property="pyeOpenAcctBnkNm" />
+    <result column="DRFT_EXP_DT" jdbcType="TIMESTAMP" property="drftExpDt" />
+    <result column="ISSU_DT" jdbcType="TIMESTAMP" property="issuDt" />
+    <result column="BILL_NO" jdbcType="VARCHAR" property="billNo" />
+    <result column="BILL_STATE" jdbcType="VARCHAR" property="billState" />
+    <result column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="DRWE_BNK_NM" jdbcType="VARCHAR" property="drweBnkNm" />
+    <result column="DRWE_BNK_NO" jdbcType="VARCHAR" property="drweBnkNo" />
+    <result column="DRWE_BNK_ADR" jdbcType="VARCHAR" property="drweBnkAdr" />
+    <result column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="HP_BILL_STATUS" jdbcType="VARCHAR" property="hpBillStatus" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="SORT_ORDER" jdbcType="DECIMAL" property="sortOrder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MONEY_USE_ID, LOAN_ID, LOAN_AMT, ORD_NUMBER, PYE_ACCT_NM, PYE_ACCT_NO, PYE_OPEN_ACCT_BNK_NM, 
+    DRFT_EXP_DT, ISSU_DT, BILL_NO, BILL_STATE, SUMMARY_ID, SUMMARY_NUM, DRWE_BNK_NM, 
+    DRWE_BNK_NO, DRWE_BNK_ADR, APPLY_DETAIL_ID, HP_BILL_STATUS, UPDATE_TIME, SORT_ORDER
+  </sql>
+  <select id="selectCrtTbLoanHpAmtByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_HP_AMT
+    where MONEY_USE_ID = #{moneyUseId,jdbcType=VARCHAR}
+  </select>
+  <!-- 插入一条数据 -->
+  <insert id="insertCrtTbLoanHpAmtSelective" parameterType="com.cdgit.loan.contract.bean.CrtTbLoanHpAmt">
+    insert into CRMS.TB_LOAN_HP_AMT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="moneyUseId != null">
+        MONEY_USE_ID,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="loanAmt != null">
+        LOAN_AMT,
+      </if>
+      <if test="ordNumber != null">
+        ORD_NUMBER,
+      </if>
+      <if test="pyeAcctNm != null">
+        PYE_ACCT_NM,
+      </if>
+      <if test="pyeAcctNo != null">
+        PYE_ACCT_NO,
+      </if>
+      <if test="pyeOpenAcctBnkNm != null">
+        PYE_OPEN_ACCT_BNK_NM,
+      </if>
+      <if test="drftExpDt != null">
+        DRFT_EXP_DT,
+      </if>
+      <if test="issuDt != null">
+        ISSU_DT,
+      </if>
+      <if test="billNo != null">
+        BILL_NO,
+      </if>
+      <if test="billState != null">
+        BILL_STATE,
+      </if>
+      <if test="summaryId != null">
+        SUMMARY_ID,
+      </if>
+      <if test="summaryNum != null">
+        SUMMARY_NUM,
+      </if>
+      <if test="drweBnkNm != null">
+        DRWE_BNK_NM,
+      </if>
+      <if test="drweBnkNo != null">
+        DRWE_BNK_NO,
+      </if>
+      <if test="drweBnkAdr != null">
+        DRWE_BNK_ADR,
+      </if>
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="hpBillStatus != null">
+        HP_BILL_STATUS,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="sortOrder != null">
+        SORT_ORDER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="moneyUseId != null">
+        #{moneyUseId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        #{loanAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="ordNumber != null">
+        #{ordNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="pyeAcctNm != null">
+        #{pyeAcctNm,jdbcType=VARCHAR},
+      </if>
+      <if test="pyeAcctNo != null">
+        #{pyeAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="pyeOpenAcctBnkNm != null">
+        #{pyeOpenAcctBnkNm,jdbcType=VARCHAR},
+      </if>
+      <if test="drftExpDt != null">
+        #{drftExpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="issuDt != null">
+        #{issuDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billNo != null">
+        #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="billState != null">
+        #{billState,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null">
+        #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryNum != null">
+        #{summaryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkNm != null">
+        #{drweBnkNm,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkNo != null">
+        #{drweBnkNo,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkAdr != null">
+        #{drweBnkAdr,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="hpBillStatus != null">
+        #{hpBillStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+ 
+</mapper>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizMyhtxxApplyPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbBizMyhtxxApplyPo">
+    <id column="HT_ID" jdbcType="VARCHAR" property="htId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="HTBH" jdbcType="VARCHAR" property="htbh" />
+    <result column="HTGF" jdbcType="VARCHAR" property="htgf" />
+    <result column="HTXF" jdbcType="VARCHAR" property="htxf" />
+    <result column="HTQDRQ" jdbcType="TIMESTAMP" property="htqdrq" />
+    <result column="HTDQRQ" jdbcType="TIMESTAMP" property="htdqrq" />
+    <result column="HTZJE" jdbcType="DECIMAL" property="htzje" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HT_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, HTBH, HTGF, HTXF, HTQDRQ, HTDQRQ, 
+    HTZJE, CURRENCY_CD, BZ
+  </sql>
+  
+  
+  <select id="queryListByAmtDetailId" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select 
+    *
+    from CRMS.TB_BIZ_MYHTXX_APPLY b
+    where b.amount_detail_id = #{contractId,jdbcType=VARCHAR}
+ 
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    *
+    from CRMS.TB_BIZ_MYHTXX_APPLY
+    where HT_ID = #{htId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_BIZ_MYHTXX_APPLY
+    where HT_ID = #{htId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbBizMyhtxxApplyPo">
+    insert into CRMS.TB_BIZ_MYHTXX_APPLY (HT_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, HTBH, HTGF, 
+      HTXF, HTQDRQ, HTDQRQ, 
+      HTZJE, CURRENCY_CD, BZ
+      )
+    values (#{htId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{htbh,jdbcType=VARCHAR}, #{htgf,jdbcType=VARCHAR}, 
+      #{htxf,jdbcType=VARCHAR}, #{htqdrq,jdbcType=TIMESTAMP}, #{htdqrq,jdbcType=TIMESTAMP}, 
+      #{htzje,jdbcType=DECIMAL}, #{currencyCd,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbBizMyhtxxApplyPo">
+    insert into CRMS.TB_BIZ_MYHTXX_APPLY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="htId != null">
+        HT_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="htbh != null">
+        HTBH,
+      </if>
+      <if test="htgf != null">
+        HTGF,
+      </if>
+      <if test="htxf != null">
+        HTXF,
+      </if>
+      <if test="htqdrq != null">
+        HTQDRQ,
+      </if>
+      <if test="htdqrq != null">
+        HTDQRQ,
+      </if>
+      <if test="htzje != null">
+        HTZJE,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="htId != null">
+        #{htId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="htbh != null">
+        #{htbh,jdbcType=VARCHAR},
+      </if>
+      <if test="htgf != null">
+        #{htgf,jdbcType=VARCHAR},
+      </if>
+      <if test="htxf != null">
+        #{htxf,jdbcType=VARCHAR},
+      </if>
+      <if test="htqdrq != null">
+        #{htqdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="htdqrq != null">
+        #{htdqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="htzje != null">
+        #{htzje,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbBizMyhtxxApplyPo">
+    update CRMS.TB_BIZ_MYHTXX_APPLY
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="htbh != null">
+        HTBH = #{htbh,jdbcType=VARCHAR},
+      </if>
+      <if test="htgf != null">
+        HTGF = #{htgf,jdbcType=VARCHAR},
+      </if>
+      <if test="htxf != null">
+        HTXF = #{htxf,jdbcType=VARCHAR},
+      </if>
+      <if test="htqdrq != null">
+        HTQDRQ = #{htqdrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="htdqrq != null">
+        HTDQRQ = #{htdqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="htzje != null">
+        HTZJE = #{htzje,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HT_ID = #{htId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbBizMyhtxxApplyPo">
+    update CRMS.TB_BIZ_MYHTXX_APPLY
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      HTBH = #{htbh,jdbcType=VARCHAR},
+      HTGF = #{htgf,jdbcType=VARCHAR},
+      HTXF = #{htxf,jdbcType=VARCHAR},
+      HTQDRQ = #{htqdrq,jdbcType=TIMESTAMP},
+      HTDQRQ = #{htdqrq,jdbcType=TIMESTAMP},
+      HTZJE = #{htzje,jdbcType=DECIMAL},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR}
+    where HT_ID = #{htId,jdbcType=VARCHAR}
+  </update>
+</mapper>

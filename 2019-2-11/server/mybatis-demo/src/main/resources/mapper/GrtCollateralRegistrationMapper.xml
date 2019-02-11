@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtCollateralRegistrationMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtCollateralRegistration">
+    <id column="COLLATERAL_REGISTRATION_ID" jdbcType="VARCHAR" property="collateralRegistrationId" />
+    <result column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="REGISTER_NUM" jdbcType="VARCHAR" property="registerNum" />
+    <result column="REGISTER_DATE" jdbcType="TIMESTAMP" property="registerDate" />
+    <result column="OTHER_NOTE" jdbcType="VARCHAR" property="otherNote" />
+    <result column="REGISTER_EXPIRATION_DATE" jdbcType="TIMESTAMP" property="registerExpirationDate" />
+    <result column="REGISTER_ORG_NAME" jdbcType="VARCHAR" property="registerOrgName" />
+    <result column="REGISTER_ORG_TYPE_CD" jdbcType="VARCHAR" property="registerOrgTypeCd" />
+    <result column="SYS_UPDATE_TIME" jdbcType="TIMESTAMP" property="sysUpdateTime" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="IS_USE" jdbcType="CHAR" property="isUse" />
+    <result column="REGISTER_AREA" jdbcType="VARCHAR" property="registerArea" />
+    <result column="REGISTER_VALUE" jdbcType="DECIMAL" property="registerValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COLLATERAL_REGISTRATION_ID, GUARANTY_ID, REGISTER_NUM, REGISTER_DATE, OTHER_NOTE, 
+    REGISTER_EXPIRATION_DATE, REGISTER_ORG_NAME, REGISTER_ORG_TYPE_CD, SYS_UPDATE_TIME, 
+    CONTRACT_NUM, IS_USE, REGISTER_AREA, REGISTER_VALUE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_COLLATERAL_REGISTRATION
+    where COLLATERAL_REGISTRATION_ID = #{collateralRegistrationId,jdbcType=VARCHAR}
+  </select>
+    <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_COLLATERAL_REGISTRATION where 1=1
+     <if test="registerNum != null and registerNum != '' "> 
+       AND REGISTER_NUM LIKE  '%'||#{registerNum}||'%'
+     </if>
+     <if test="registerOrgTypeCd != null and registerOrgTypeCd != '' "> 
+       AND REGISTER_ORG_TYPE_CD LIKE  '%'||#{registerOrgTypeCd}||'%'
+     </if>
+     <if test="registerOrgName != null and registerOrgName != '' "> 
+       AND REGISTER_ORG_NAME LIKE  '%'||#{registerOrgName}||'%'
+     </if>
+     <if test="contractNum != null and contractNum != '' "> 
+       AND CONTRACT_NUM LIKE  '%'||#{contractNum}||'%'
+     </if>
+     <if test="guarantyId != null and guarantyId != '' "> 
+       AND GUARANTY_ID LIKE  '%'||#{guarantyId}||'%'
+     </if>
+  </select>
+    <delete id="deleteBatch" parameterType="java.util.List">
+  	 delete from TB_GRT_COLLATERAL_REGISTRATION where 
+  	 COLLATERAL_REGISTRATION_ID in
+	   <foreach collection="ids" index="index" item="item"
+	         open="(" separator="," close=")">
+	         #{item}
+	   </foreach>
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_COLLATERAL_REGISTRATION
+    where COLLATERAL_REGISTRATION_ID = #{collateralRegistrationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralRegistration">
+    insert into TB_GRT_COLLATERAL_REGISTRATION (COLLATERAL_REGISTRATION_ID, GUARANTY_ID, 
+      REGISTER_NUM, REGISTER_DATE, OTHER_NOTE, 
+      REGISTER_EXPIRATION_DATE, REGISTER_ORG_NAME, 
+      REGISTER_ORG_TYPE_CD, SYS_UPDATE_TIME, CONTRACT_NUM, 
+      IS_USE, REGISTER_AREA, REGISTER_VALUE
+      )
+    values (#{collateralRegistrationId,jdbcType=VARCHAR}, #{guarantyId,jdbcType=VARCHAR}, 
+      #{registerNum,jdbcType=VARCHAR}, #{registerDate,jdbcType=TIMESTAMP}, #{otherNote,jdbcType=VARCHAR}, 
+      #{registerExpirationDate,jdbcType=TIMESTAMP}, #{registerOrgName,jdbcType=VARCHAR}, 
+      #{registerOrgTypeCd,jdbcType=VARCHAR}, #{sysUpdateTime,jdbcType=TIMESTAMP}, #{contractNum,jdbcType=VARCHAR}, 
+      #{isUse,jdbcType=CHAR}, #{registerArea,jdbcType=VARCHAR}, #{registerValue,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralRegistration">
+    insert into TB_GRT_COLLATERAL_REGISTRATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="collateralRegistrationId != null">
+        COLLATERAL_REGISTRATION_ID,
+      </if>
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="registerNum != null">
+        REGISTER_NUM,
+      </if>
+      <if test="registerDate != null">
+        REGISTER_DATE,
+      </if>
+      <if test="otherNote != null">
+        OTHER_NOTE,
+      </if>
+      <if test="registerExpirationDate != null">
+        REGISTER_EXPIRATION_DATE,
+      </if>
+      <if test="registerOrgName != null">
+        REGISTER_ORG_NAME,
+      </if>
+      <if test="registerOrgTypeCd != null">
+        REGISTER_ORG_TYPE_CD,
+      </if>
+      <if test="sysUpdateTime != null">
+        SYS_UPDATE_TIME,
+      </if>
+      <if test="contractNum != null">
+        CONTRACT_NUM,
+      </if>
+      <if test="isUse != null">
+        IS_USE,
+      </if>
+      <if test="registerArea != null">
+        REGISTER_AREA,
+      </if>
+      <if test="registerValue != null">
+        REGISTER_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="collateralRegistrationId != null">
+        #{collateralRegistrationId,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="registerNum != null">
+        #{registerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null">
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherNote != null">
+        #{otherNote,jdbcType=VARCHAR},
+      </if>
+      <if test="registerExpirationDate != null">
+        #{registerExpirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerOrgName != null">
+        #{registerOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerOrgTypeCd != null">
+        #{registerOrgTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUpdateTime != null">
+        #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractNum != null">
+        #{contractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null">
+        #{isUse,jdbcType=CHAR},
+      </if>
+      <if test="registerArea != null">
+        #{registerArea,jdbcType=VARCHAR},
+      </if>
+      <if test="registerValue != null">
+        #{registerValue,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralRegistration">
+    update TB_GRT_COLLATERAL_REGISTRATION
+    <set>
+      <if test="guarantyId != null">
+        GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="registerNum != null">
+        REGISTER_NUM = #{registerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null">
+        REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherNote != null">
+        OTHER_NOTE = #{otherNote,jdbcType=VARCHAR},
+      </if>
+      <if test="registerExpirationDate != null">
+        REGISTER_EXPIRATION_DATE = #{registerExpirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerOrgName != null">
+        REGISTER_ORG_NAME = #{registerOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerOrgTypeCd != null">
+        REGISTER_ORG_TYPE_CD = #{registerOrgTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUpdateTime != null">
+        SYS_UPDATE_TIME = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractNum != null">
+        CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null">
+        IS_USE = #{isUse,jdbcType=CHAR},
+      </if>
+      <if test="registerArea != null">
+        REGISTER_AREA = #{registerArea,jdbcType=VARCHAR},
+      </if>
+      <if test="registerValue != null">
+        REGISTER_VALUE = #{registerValue,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where COLLATERAL_REGISTRATION_ID = #{collateralRegistrationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralRegistration">
+    update TB_GRT_COLLATERAL_REGISTRATION
+    set GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR},
+      REGISTER_NUM = #{registerNum,jdbcType=VARCHAR},
+      REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      OTHER_NOTE = #{otherNote,jdbcType=VARCHAR},
+      REGISTER_EXPIRATION_DATE = #{registerExpirationDate,jdbcType=TIMESTAMP},
+      REGISTER_ORG_NAME = #{registerOrgName,jdbcType=VARCHAR},
+      REGISTER_ORG_TYPE_CD = #{registerOrgTypeCd,jdbcType=VARCHAR},
+      SYS_UPDATE_TIME = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR},
+      IS_USE = #{isUse,jdbcType=CHAR},
+      REGISTER_AREA = #{registerArea,jdbcType=VARCHAR},
+      REGISTER_VALUE = #{registerValue,jdbcType=DECIMAL}
+    where COLLATERAL_REGISTRATION_ID = #{collateralRegistrationId,jdbcType=VARCHAR}
+  </update>
+</mapper>

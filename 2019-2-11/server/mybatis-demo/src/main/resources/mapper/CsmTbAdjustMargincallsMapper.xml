@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbAdjustMargincallsMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbAdjustMargincalls">
+    <id column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="SUBCONTRACT_ID" jdbcType="VARCHAR" property="subcontractId" />
+    <result column="SUBCONTRACT_NUM" jdbcType="VARCHAR" property="subcontractNum" />
+    <result column="MARGIN_STATUS" jdbcType="VARCHAR" property="marginStatus" />
+    <result column="APPEND_FLAG" jdbcType="VARCHAR" property="appendFlag" />
+    <result column="APPEND_AMT" jdbcType="DECIMAL" property="appendAmt" />
+    <result column="MAGIN_SCALE" jdbcType="DECIMAL" property="maginScale" />
+    <result column="MARGIN_ACCOUNT" jdbcType="VARCHAR" property="marginAccount" />
+    <result column="MARGIN_SORT" jdbcType="VARCHAR" property="marginSort" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="ACC_BALANCE" jdbcType="DECIMAL" property="accBalance" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="OPEN_BANK" jdbcType="VARCHAR" property="openBank" />
+    <result column="ACCT_NAME" jdbcType="VARCHAR" property="acctName" />
+    <result column="IS_JIXI" jdbcType="VARCHAR" property="isJixi" />
+    <result column="MARGIN_RATE" jdbcType="DECIMAL" property="marginRate" />
+    <result column="FULL_STATUS" jdbcType="VARCHAR" property="fullStatus" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SURETY_ID, PARTY_ID, LOAN_ID, CONTRACT_ID, CONTRACT_NUM, SUBCONTRACT_ID, SUBCONTRACT_NUM, 
+    MARGIN_STATUS, APPEND_FLAG, APPEND_AMT, MAGIN_SCALE, MARGIN_ACCOUNT, MARGIN_SORT, 
+    CURRENCY_CD, ACC_BALANCE, BEGIN_DATE, END_DATE, OPEN_BANK, ACCT_NAME, IS_JIXI, MARGIN_RATE, 
+    FULL_STATUS, ORG_NUM, USER_NUM, CREATE_TIME, UPDATE_TIME
+  </sql>
+ 
+
+</mapper>

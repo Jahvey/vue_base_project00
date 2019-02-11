@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.mapper.SubContractMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.bean.SubContract">
+    <id column="SUBCONTRACT_ID" jdbcType="VARCHAR" property="subcontractId" />
+    <result column="SUBCONTRACT_NUM" jdbcType="VARCHAR" property="subcontractNum" />
+    <result column="SUBCONTRACT_MANUAL_NUM" jdbcType="VARCHAR" property="subcontractManualNum" />
+    <result column="SUBCONTRACT_TYPE" jdbcType="VARCHAR" property="subcontractType" />
+    <result column="SUBCONTRACT_STATUS" jdbcType="VARCHAR" property="subcontractStatus" />
+    <result column="IF_TOP_SUBCON" jdbcType="VARCHAR" property="ifTopSubcon" />
+    <result column="SIGN_DATE" jdbcType="TIMESTAMP" property="signDate" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="SUBCONTRACT_AMT" jdbcType="DECIMAL" property="subcontractAmt" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="ZGBJXE" jdbcType="DECIMAL" property="zgbjxe" />
+    <result column="JGGZRBLDJ" jdbcType="DECIMAL" property="jggzrbldj" />
+    <result column="ZFWYJBL" jdbcType="DECIMAL" property="zfwyjbl" />
+    <result column="CHANGE_PERCENT" jdbcType="DECIMAL" property="changePercent" />
+    <result column="JRNCRBZJ" jdbcType="DECIMAL" property="jrncrbzj" />
+    <result column="BZJJE" jdbcType="DECIMAL" property="bzjje" />
+    <result column="BZJBL" jdbcType="DECIMAL" property="bzjbl" />
+    <result column="BZJLX" jdbcType="VARCHAR" property="bzjlx" />
+    <result column="AYLLJX" jdbcType="DECIMAL" property="aylljx" />
+    <result column="ANLLJX" jdbcType="DECIMAL" property="anlljx" />
+    <result column="JRTZKH" jdbcType="DECIMAL" property="jrtzkh" />
+    <result column="AVI_AMT" jdbcType="DECIMAL" property="aviAmt" />
+    <result column="TOTAL_AMT" jdbcType="DECIMAL" property="totalAmt" />
+    <result column="PAPER_CON_NUM" jdbcType="VARCHAR" property="paperConNum" />
+    <result column="BZJJXZQ" jdbcType="VARCHAR" property="bzjjxzq" />
+    <result column="CON_PARTY_ID" jdbcType="VARCHAR" property="conPartyId" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="QTJSXFS" jdbcType="VARCHAR" property="qtjsxfs" />
+    <result column="PROGUARANTY_WAY" jdbcType="VARCHAR" property="proguarantyWay" />
+    <result column="PROGUARANTY_TYPE" jdbcType="VARCHAR" property="proguarantyType" />
+    <result column="PROGUARANTY_FORM" jdbcType="VARCHAR" property="proguarantyForm" />
+    <result column="SUB_SCOPE" jdbcType="VARCHAR" property="subScope" />
+    <result column="DB_RATE" jdbcType="DECIMAL" property="dbRate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SUBCONTRACT_ID, SUBCONTRACT_NUM, SUBCONTRACT_MANUAL_NUM, SUBCONTRACT_TYPE, SUBCONTRACT_STATUS, 
+    IF_TOP_SUBCON, SIGN_DATE, BEGIN_DATE, END_DATE, SUBCONTRACT_AMT, USER_NUM, ORG_NUM, 
+    CREATE_TIME, UPDATE_TIME, PARTY_ID, BZ, ZGBJXE, JGGZRBLDJ, ZFWYJBL, CHANGE_PERCENT, 
+    JRNCRBZJ, BZJJE, BZJBL, BZJLX, AYLLJX, ANLLJX, JRTZKH, AVI_AMT, TOTAL_AMT, PAPER_CON_NUM, 
+    BZJJXZQ, CON_PARTY_ID, IF_DATA_MOVE, QTJSXFS, PROGUARANTY_WAY, PROGUARANTY_TYPE, 
+    PROGUARANTY_FORM, SUB_SCOPE, DB_RATE
+  </sql>
+  <!--为我行客户担保信息 本行保证情况-->
+  <select id="guaranteeList" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT DISTINCT 
+            V.PARTY_ID partyId,
+            V.PARTY_NAME partyName,  
+           A.PRODUCT_TYPE productType,
+           a.currency_cd currencyCd,
+           A.CONTRACT_NUM contractNum,
+           C.SUBCONTRACT_NUM,
+           a.con_yu_e conYuE,
+           DECODE(C.IF_TOP_SUBCON, '1', B.SURETY_AMT, A.CONTRACT_AMT) subContractAmt,
+           DECODE(C.IF_TOP_SUBCON,'1',c.zgbjxe-c.avi_amt,'0',a.CONTRACT_AMT,'0') subContractSum,
+           DECODE(C.IF_TOP_SUBCON, '1', C.AVI_AMT, '0', '0') AVI_AMT,
+           to_char(decode(c.IF_TOP_SUBCON, '1', c.BEGIN_DATE, a.BEGIN_DATE),'yyyy-MM-dd') as BEGIN_DATE,
+           to_char(decode(c.IF_TOP_SUBCON, '1', c.END_DATE, a.END_DATE),'yyyy-MM-dd') as end_DATE
+      FROM TB_CON_CONTRACT_INFO   A,
+           TB_CON_SUBCONTRACT_REL B,
+           TB_CON_SUBCONTRACT     C,
+           TB_CON_SUB_GRT_REL     D,
+           TB_GRT_GUARANTEE_BASIC E,
+           V_CSM_PARTY            V
+     WHERE A.CONTRACT_ID = B.CONTRACT_ID
+       AND V.PARTY_ID = A.PARTY_ID
+       AND B.SUBCONTRACT_ID = C.SUBCONTRACT_ID
+       AND C.SUBCONTRACT_ID = D.SUBCONTRACT_ID
+       AND D.SURETY_ID = E.SURETY_ID
+       AND A.CON_STATUS = '03'
+       and c.subcontract_status='03'
+	 AND E.PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <!--为我行客户担保信息 本行抵质押情况-->
+  <select id="guaranteeListDY" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT DISTINCT v.PARTY_ID partyId,
+                    V.PARTY_NAME partyName,
+                    tc.PRODUCT_TYPE productType,
+                    TC.CONTRACT_NUM contractNum,
+                    TS.SUBCONTRACT_NUM,
+                    DECODE(TS.IF_TOP_SUBCON,'1',TSR.SURETY_AMT,TC.Contract_Amt) SUBCONTRACT_AMT ,
+                    DECODE(TS.IF_TOP_SUBCON,'1',ts.zgbjxe-ts.avi_amt,'0',TS.SUBCONTRACT_AMT,'0') subContractSum ,
+                    TS.AVI_AMT,
+                    C.COLL_TYPE collType,
+                    C.SORT_TYPE sortType,
+                    tc.con_yu_e conYuE,
+                    tc.currency_cd currencyCd,
+       TO_CHAR(DECODE(TS.IF_TOP_SUBCON, '1', TS.BEGIN_DATE, TC.BEGIN_DATE),'yyyy-MM-dd') AS BEGIN_DATE,
+           TO_CHAR(DECODE(TS.IF_TOP_SUBCON, '1', TS.END_DATE, TC.END_DATE),'yyyy-MM-dd') AS END_DATE,
+         (CASE C.MORTGAGE_STATUS WHEN '09' THEN '已入库' WHEN '04' THEN '已出库' ELSE '未入库' END) STATUS,
+                    TS.ZGBJXE
+      FROM 
+           TB_CON_CONTRACT_INFO         TC,
+           TB_CON_SUBCONTRACT_REL       TSR,
+           TB_CON_SUBCONTRACT           TS, 
+           V_CSM_PARTY                  V,
+           TB_CON_SUB_GRT_REL     F,
+           TB_GRT_MORTGAGE_BASIC  C
+     WHERE
+        TSR.CONTRACT_ID = TC.CONTRACT_ID
+       AND TSR.SUBCONTRACT_ID = TS.SUBCONTRACT_ID
+       AND TS.SUBCONTRACT_ID = F.SUBCONTRACT_ID
+       AND F.SURETY_ID = C.SURETY_ID
+       AND TS.CON_PARTY_ID = V.PARTY_ID
+       AND C.COLL_TYPE IN ('01','02')
+       and tc.con_status='03'
+       and ts.subcontract_status = '03'
+		   AND TS.PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CON_SUBCONTRACT
+    where SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CON_SUBCONTRACT
+    where SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.bean.SubContract">
+    insert into TB_CON_SUBCONTRACT (SUBCONTRACT_ID, SUBCONTRACT_NUM, SUBCONTRACT_MANUAL_NUM, 
+      SUBCONTRACT_TYPE, SUBCONTRACT_STATUS, IF_TOP_SUBCON, 
+      SIGN_DATE, BEGIN_DATE, END_DATE, 
+      SUBCONTRACT_AMT, USER_NUM, ORG_NUM, 
+      CREATE_TIME, UPDATE_TIME, PARTY_ID, 
+      BZ, ZGBJXE, JGGZRBLDJ, 
+      ZFWYJBL, CHANGE_PERCENT, JRNCRBZJ, 
+      BZJJE, BZJBL, BZJLX, 
+      AYLLJX, ANLLJX, JRTZKH, 
+      AVI_AMT, TOTAL_AMT, PAPER_CON_NUM, 
+      BZJJXZQ, CON_PARTY_ID, IF_DATA_MOVE, 
+      QTJSXFS, PROGUARANTY_WAY, PROGUARANTY_TYPE, 
+      PROGUARANTY_FORM, SUB_SCOPE, DB_RATE
+      )
+    values (#{subcontractId,jdbcType=VARCHAR}, #{subcontractNum,jdbcType=VARCHAR}, #{subcontractManualNum,jdbcType=VARCHAR}, 
+      #{subcontractType,jdbcType=VARCHAR}, #{subcontractStatus,jdbcType=VARCHAR}, #{ifTopSubcon,jdbcType=VARCHAR}, 
+      #{signDate,jdbcType=TIMESTAMP}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{subcontractAmt,jdbcType=DECIMAL}, #{userNum,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{partyId,jdbcType=VARCHAR}, 
+      #{bz,jdbcType=VARCHAR}, #{zgbjxe,jdbcType=DECIMAL}, #{jggzrbldj,jdbcType=DECIMAL}, 
+      #{zfwyjbl,jdbcType=DECIMAL}, #{changePercent,jdbcType=DECIMAL}, #{jrncrbzj,jdbcType=DECIMAL}, 
+      #{bzjje,jdbcType=DECIMAL}, #{bzjbl,jdbcType=DECIMAL}, #{bzjlx,jdbcType=VARCHAR}, 
+      #{aylljx,jdbcType=DECIMAL}, #{anlljx,jdbcType=DECIMAL}, #{jrtzkh,jdbcType=DECIMAL}, 
+      #{aviAmt,jdbcType=DECIMAL}, #{totalAmt,jdbcType=DECIMAL}, #{paperConNum,jdbcType=VARCHAR}, 
+      #{bzjjxzq,jdbcType=VARCHAR}, #{conPartyId,jdbcType=VARCHAR}, #{ifDataMove,jdbcType=VARCHAR}, 
+      #{qtjsxfs,jdbcType=VARCHAR}, #{proguarantyWay,jdbcType=VARCHAR}, #{proguarantyType,jdbcType=VARCHAR}, 
+      #{proguarantyForm,jdbcType=VARCHAR}, #{subScope,jdbcType=VARCHAR}, #{dbRate,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.bean.SubContract">
+    insert into TB_CON_SUBCONTRACT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subcontractId != null">
+        SUBCONTRACT_ID,
+      </if>
+      <if test="subcontractNum != null">
+        SUBCONTRACT_NUM,
+      </if>
+      <if test="subcontractManualNum != null">
+        SUBCONTRACT_MANUAL_NUM,
+      </if>
+      <if test="subcontractType != null">
+        SUBCONTRACT_TYPE,
+      </if>
+      <if test="subcontractStatus != null">
+        SUBCONTRACT_STATUS,
+      </if>
+      <if test="ifTopSubcon != null">
+        IF_TOP_SUBCON,
+      </if>
+      <if test="signDate != null">
+        SIGN_DATE,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="subcontractAmt != null">
+        SUBCONTRACT_AMT,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="zgbjxe != null">
+        ZGBJXE,
+      </if>
+      <if test="jggzrbldj != null">
+        JGGZRBLDJ,
+      </if>
+      <if test="zfwyjbl != null">
+        ZFWYJBL,
+      </if>
+      <if test="changePercent != null">
+        CHANGE_PERCENT,
+      </if>
+      <if test="jrncrbzj != null">
+        JRNCRBZJ,
+      </if>
+      <if test="bzjje != null">
+        BZJJE,
+      </if>
+      <if test="bzjbl != null">
+        BZJBL,
+      </if>
+      <if test="bzjlx != null">
+        BZJLX,
+      </if>
+      <if test="aylljx != null">
+        AYLLJX,
+      </if>
+      <if test="anlljx != null">
+        ANLLJX,
+      </if>
+      <if test="jrtzkh != null">
+        JRTZKH,
+      </if>
+      <if test="aviAmt != null">
+        AVI_AMT,
+      </if>
+      <if test="totalAmt != null">
+        TOTAL_AMT,
+      </if>
+      <if test="paperConNum != null">
+        PAPER_CON_NUM,
+      </if>
+      <if test="bzjjxzq != null">
+        BZJJXZQ,
+      </if>
+      <if test="conPartyId != null">
+        CON_PARTY_ID,
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE,
+      </if>
+      <if test="qtjsxfs != null">
+        QTJSXFS,
+      </if>
+      <if test="proguarantyWay != null">
+        PROGUARANTY_WAY,
+      </if>
+      <if test="proguarantyType != null">
+        PROGUARANTY_TYPE,
+      </if>
+      <if test="proguarantyForm != null">
+        PROGUARANTY_FORM,
+      </if>
+      <if test="subScope != null">
+        SUB_SCOPE,
+      </if>
+      <if test="dbRate != null">
+        DB_RATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subcontractId != null">
+        #{subcontractId,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractNum != null">
+        #{subcontractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractManualNum != null">
+        #{subcontractManualNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractType != null">
+        #{subcontractType,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractStatus != null">
+        #{subcontractStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ifTopSubcon != null">
+        #{ifTopSubcon,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        #{signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subcontractAmt != null">
+        #{subcontractAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="zgbjxe != null">
+        #{zgbjxe,jdbcType=DECIMAL},
+      </if>
+      <if test="jggzrbldj != null">
+        #{jggzrbldj,jdbcType=DECIMAL},
+      </if>
+      <if test="zfwyjbl != null">
+        #{zfwyjbl,jdbcType=DECIMAL},
+      </if>
+      <if test="changePercent != null">
+        #{changePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="jrncrbzj != null">
+        #{jrncrbzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjje != null">
+        #{bzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjbl != null">
+        #{bzjbl,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjlx != null">
+        #{bzjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="aylljx != null">
+        #{aylljx,jdbcType=DECIMAL},
+      </if>
+      <if test="anlljx != null">
+        #{anlljx,jdbcType=DECIMAL},
+      </if>
+      <if test="jrtzkh != null">
+        #{jrtzkh,jdbcType=DECIMAL},
+      </if>
+      <if test="aviAmt != null">
+        #{aviAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmt != null">
+        #{totalAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="paperConNum != null">
+        #{paperConNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bzjjxzq != null">
+        #{bzjjxzq,jdbcType=VARCHAR},
+      </if>
+      <if test="conPartyId != null">
+        #{conPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="qtjsxfs != null">
+        #{qtjsxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="proguarantyWay != null">
+        #{proguarantyWay,jdbcType=VARCHAR},
+      </if>
+      <if test="proguarantyType != null">
+        #{proguarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="proguarantyForm != null">
+        #{proguarantyForm,jdbcType=VARCHAR},
+      </if>
+      <if test="subScope != null">
+        #{subScope,jdbcType=VARCHAR},
+      </if>
+      <if test="dbRate != null">
+        #{dbRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.bean.SubContract">
+    update TB_CON_SUBCONTRACT
+    <set>
+      <if test="subcontractNum != null">
+        SUBCONTRACT_NUM = #{subcontractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractManualNum != null">
+        SUBCONTRACT_MANUAL_NUM = #{subcontractManualNum,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractType != null">
+        SUBCONTRACT_TYPE = #{subcontractType,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractStatus != null">
+        SUBCONTRACT_STATUS = #{subcontractStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ifTopSubcon != null">
+        IF_TOP_SUBCON = #{ifTopSubcon,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        SIGN_DATE = #{signDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subcontractAmt != null">
+        SUBCONTRACT_AMT = #{subcontractAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="zgbjxe != null">
+        ZGBJXE = #{zgbjxe,jdbcType=DECIMAL},
+      </if>
+      <if test="jggzrbldj != null">
+        JGGZRBLDJ = #{jggzrbldj,jdbcType=DECIMAL},
+      </if>
+      <if test="zfwyjbl != null">
+        ZFWYJBL = #{zfwyjbl,jdbcType=DECIMAL},
+      </if>
+      <if test="changePercent != null">
+        CHANGE_PERCENT = #{changePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="jrncrbzj != null">
+        JRNCRBZJ = #{jrncrbzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjje != null">
+        BZJJE = #{bzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjbl != null">
+        BZJBL = #{bzjbl,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjlx != null">
+        BZJLX = #{bzjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="aylljx != null">
+        AYLLJX = #{aylljx,jdbcType=DECIMAL},
+      </if>
+      <if test="anlljx != null">
+        ANLLJX = #{anlljx,jdbcType=DECIMAL},
+      </if>
+      <if test="jrtzkh != null">
+        JRTZKH = #{jrtzkh,jdbcType=DECIMAL},
+      </if>
+      <if test="aviAmt != null">
+        AVI_AMT = #{aviAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmt != null">
+        TOTAL_AMT = #{totalAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="paperConNum != null">
+        PAPER_CON_NUM = #{paperConNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bzjjxzq != null">
+        BZJJXZQ = #{bzjjxzq,jdbcType=VARCHAR},
+      </if>
+      <if test="conPartyId != null">
+        CON_PARTY_ID = #{conPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="qtjsxfs != null">
+        QTJSXFS = #{qtjsxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="proguarantyWay != null">
+        PROGUARANTY_WAY = #{proguarantyWay,jdbcType=VARCHAR},
+      </if>
+      <if test="proguarantyType != null">
+        PROGUARANTY_TYPE = #{proguarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="proguarantyForm != null">
+        PROGUARANTY_FORM = #{proguarantyForm,jdbcType=VARCHAR},
+      </if>
+      <if test="subScope != null">
+        SUB_SCOPE = #{subScope,jdbcType=VARCHAR},
+      </if>
+      <if test="dbRate != null">
+        DB_RATE = #{dbRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.bean.SubContract">
+    update TB_CON_SUBCONTRACT
+    set SUBCONTRACT_NUM = #{subcontractNum,jdbcType=VARCHAR},
+      SUBCONTRACT_MANUAL_NUM = #{subcontractManualNum,jdbcType=VARCHAR},
+      SUBCONTRACT_TYPE = #{subcontractType,jdbcType=VARCHAR},
+      SUBCONTRACT_STATUS = #{subcontractStatus,jdbcType=VARCHAR},
+      IF_TOP_SUBCON = #{ifTopSubcon,jdbcType=VARCHAR},
+      SIGN_DATE = #{signDate,jdbcType=TIMESTAMP},
+      BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      SUBCONTRACT_AMT = #{subcontractAmt,jdbcType=DECIMAL},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      ZGBJXE = #{zgbjxe,jdbcType=DECIMAL},
+      JGGZRBLDJ = #{jggzrbldj,jdbcType=DECIMAL},
+      ZFWYJBL = #{zfwyjbl,jdbcType=DECIMAL},
+      CHANGE_PERCENT = #{changePercent,jdbcType=DECIMAL},
+      JRNCRBZJ = #{jrncrbzj,jdbcType=DECIMAL},
+      BZJJE = #{bzjje,jdbcType=DECIMAL},
+      BZJBL = #{bzjbl,jdbcType=DECIMAL},
+      BZJLX = #{bzjlx,jdbcType=VARCHAR},
+      AYLLJX = #{aylljx,jdbcType=DECIMAL},
+      ANLLJX = #{anlljx,jdbcType=DECIMAL},
+      JRTZKH = #{jrtzkh,jdbcType=DECIMAL},
+      AVI_AMT = #{aviAmt,jdbcType=DECIMAL},
+      TOTAL_AMT = #{totalAmt,jdbcType=DECIMAL},
+      PAPER_CON_NUM = #{paperConNum,jdbcType=VARCHAR},
+      BZJJXZQ = #{bzjjxzq,jdbcType=VARCHAR},
+      CON_PARTY_ID = #{conPartyId,jdbcType=VARCHAR},
+      IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      QTJSXFS = #{qtjsxfs,jdbcType=VARCHAR},
+      PROGUARANTY_WAY = #{proguarantyWay,jdbcType=VARCHAR},
+      PROGUARANTY_TYPE = #{proguarantyType,jdbcType=VARCHAR},
+      PROGUARANTY_FORM = #{proguarantyForm,jdbcType=VARCHAR},
+      SUB_SCOPE = #{subScope,jdbcType=VARCHAR},
+      DB_RATE = #{dbRate,jdbcType=DECIMAL}
+    where SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR}
+  </update>
+</mapper>

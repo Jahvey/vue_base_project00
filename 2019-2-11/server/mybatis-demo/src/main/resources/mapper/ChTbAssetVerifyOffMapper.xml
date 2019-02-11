@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.ledger.asset.mapper.ChTbAssetVerifyOffMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.ledger.asset.bean.ChSelectWriteOffResult">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <id column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="PLAN_NUM" jdbcType="VARCHAR" property="planNum" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="PLAN_TYPE" jdbcType="VARCHAR" property="planType" />
+    <result column="REG_DATE" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="REG_ORG_ID" jdbcType="VARCHAR" property="regOrgId" />
+    <result column="REG_USER_ID" jdbcType="VARCHAR" property="regUserId" />
+    <result column="SUM_BEGIN_DATE" jdbcType="TIMESTAMP" property="sumBeginDate" />
+    <result column="SUM_END_DATE" jdbcType="TIMESTAMP" property="sumEndDate" />
+    <result column="SUMMARY_AMT" jdbcType="DECIMAL" property="summaryAmt" />
+    <result column="SUMMARY_BAL" jdbcType="DECIMAL" property="summaryBal" />
+    <result column="PURSUE" jdbcType="VARCHAR" property="pursue" />
+    <result column="CANCEL_ARREAR_ITR" jdbcType="DECIMAL" property="cancelArrearItr" />
+    <result column="CANCEL_CAPITAL_AMT" jdbcType="DECIMAL" property="cancelCapitalAmt" />
+    <result column="CANCEL_AMT" jdbcType="DECIMAL" property="cancelAmt" />
+    <result column="CANCEL_NORMAL_ITR" jdbcType="DECIMAL" property="cancelNormalItr" />
+    <result column="CANCEL_PUNISH_ITR" jdbcType="DECIMAL" property="cancelPunishItr" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />    
+  </resultMap>
+  <!-- 1.核销查询 2.不良资产处置查询 -->
+  <select id="selectWriteOff" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+     SELECT 
+	     p.PLAN_NUM,
+	     cp.PARTY_NAME,
+	     cp.CERT_TYPE,
+	     cp.CERT_NUM,
+	     P.PLAN_TYPE,
+	     <!--p.REG_DATE,
+	      to_char(p.REG_DATE,'yyyy-mm-dd hh24:mi:ss')REG_DATE, -->
+	     to_char(p.REG_DATE,'yyyy-mm-dd')REG_DATE, 
+	     p.REG_ORG_ID,
+	     p.REG_USER_ID,
+	    <!-- vo.SUM_BEGIN_DATE,
+	     vo.SUM_END_DATE,
+		  to_char(vo.SUM_BEGIN_DATE,'yyyy-mm-dd hh24:mi:ss')SUM_BEGIN_DATE,
+		 to_char(vo.SUM_END_DATE,'yyyy-mm-dd hh24:mi:ss')SUM_END_DATE, -->
+		 to_char(vo.SUM_BEGIN_DATE,'yyyy-mm-dd')SUM_BEGIN_DATE,
+		 to_char(vo.SUM_END_DATE,'yyyy-mm-dd')SUM_END_DATE,
+		 vo.SUMMARY_AMT,
+		 vo.SUMMARY_BAL,
+		 vo.PURSUE,
+		 vo.CANCEL_ARREAR_ITR,
+		 vo.CANCEL_CAPITAL_AMT,
+		 vo.CANCEL_AMT,
+		 vo.CANCEL_NORMAL_ITR,
+		 vo.CANCEL_PUNISH_ITR,
+		 ls.SUMMARY_NUM,
+		 ci.CONTRACT_NUM,
+		 li.PRODUCT_TYPE,
+		 vo.ID,
+		 ls.LOAN_ID,
+		 ci.CONTRACT_ID,
+		 li.USER_NUM
+	FROM TB_ASSET_VERIFY_OFF vo
+	LEFT JOIN TB_ASSET_HANDLE_PLAN p ON vo.id=p.ID
+	LEFT JOIN TB_LOAN_SUMMARY ls ON ls.SUMMARY_ID=vo.SUMMARY_ID
+	LEFT JOIN TB_CON_CONTRACT_INFO ci ON ci.CONTRACT_ID=ls.CONTRACT_ID
+	LEFT JOIN TB_LOAN_INFO li ON li.loan_id = ls.LOAN_ID
+	LEFT JOIN V_CSM_PARTY cp ON cp.PARTY_ID=ls.PARTY_ID
+	WHERE p.STATUS='30'
+  		<if test="regOrgId !=null and regOrgId !='' ">
+		 	AND p.REG_ORG_ID=#{regOrgId,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="userNum !=null and userNum !='' ">
+		 	AND li.USER_NUM=#{userNum,jdbcType=VARCHAR} 
+		 </if>
+		<if test="partyName !=null and partyName !='' ">
+		 	AND cp.PARTY_NAME LIKE '%'||#{partyName}||'%' 
+		 </if>
+		 <if test="certType !=null and certType !='' ">
+		 	 AND cp.CERT_TYPE = #{certType,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="certNum !=null and certNum !='' ">
+		 	 AND cp.CERT_NUM = #{certNum,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="contractNum !=null and contractNum !='' ">
+		 	 AND ci.CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="summaryNum !=null and summaryNum !='' ">
+		 	 AND ls.SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR} 
+		 </if>
+		 <if test="planType !=null and planType !='' ">
+		 	 AND p.PLAN_TYPE = #{planType,jdbcType=VARCHAR} 
+		 </if>
+  </select>
+  
+  
+</mapper>

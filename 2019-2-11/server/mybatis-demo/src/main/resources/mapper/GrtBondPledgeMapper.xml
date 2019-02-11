@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtBondPledgeMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtBondPledge">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="ISSUE_PERS_NAME" jdbcType="VARCHAR" property="issuePersName" />
+    <result column="BOND_LEVEL_TYPE" jdbcType="VARCHAR" property="bondLevelType" />
+    <result column="REGISTER_ORG_NAME" jdbcType="VARCHAR" property="registerOrgName" />
+    <result column="BOND_VALUE" jdbcType="DECIMAL" property="bondValue" />
+    <result column="BOND_TYPE" jdbcType="VARCHAR" property="bondType" />
+    <result column="BOND_VALUE_CURRENCY_CD" jdbcType="VARCHAR" property="bondValueCurrencyCd" />
+    <result column="SIGN_COMPANY_STATUS" jdbcType="VARCHAR" property="signCompanyStatus" />
+    <result column="SIGN_COMPANY_TYPE" jdbcType="VARCHAR" property="signCompanyType" />
+    <result column="AGENCY_MAN" jdbcType="VARCHAR" property="agencyMan" />
+    <result column="CREDITOR_NAME" jdbcType="VARCHAR" property="creditorName" />
+    <result column="BOND_SINGED_TYPE" jdbcType="VARCHAR" property="bondSingedType" />
+    <result column="BOND_MATURITY" jdbcType="TIMESTAMP" property="bondMaturity" />
+    <result column="BOND_INTEREST_PAY_TYPE" jdbcType="VARCHAR" property="bondInterestPayType" />
+    <result column="BOND_INTEREST_PAY_MODE" jdbcType="VARCHAR" property="bondInterestPayMode" />
+    <result column="BOND_TERM" jdbcType="DECIMAL" property="bondTerm" />
+    <result column="BOND_TERM_UNIT_CD" jdbcType="VARCHAR" property="bondTermUnitCd" />
+    <result column="BOND_ANNUAL_RATE" jdbcType="DECIMAL" property="bondAnnualRate" />
+    <result column="SIGN_BOND_IND" jdbcType="CHAR" property="signBondInd" />
+    <result column="K71ZQZL" jdbcType="VARCHAR" property="k71zqzl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, ISSUE_PERS_NAME, BOND_LEVEL_TYPE, REGISTER_ORG_NAME, BOND_VALUE, BOND_TYPE, 
+    BOND_VALUE_CURRENCY_CD, SIGN_COMPANY_STATUS, SIGN_COMPANY_TYPE, AGENCY_MAN, CREDITOR_NAME, 
+    BOND_SINGED_TYPE, BOND_MATURITY, BOND_INTEREST_PAY_TYPE, BOND_INTEREST_PAY_MODE, 
+    BOND_TERM, BOND_TERM_UNIT_CD, BOND_ANNUAL_RATE, SIGN_BOND_IND, K71ZQZL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_BOND_PLEDGE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_BOND_PLEDGE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBondPledge">
+    insert into TB_GRT_BOND_PLEDGE (GUARANTY_ID, ISSUE_PERS_NAME, BOND_LEVEL_TYPE, 
+      REGISTER_ORG_NAME, BOND_VALUE, BOND_TYPE, 
+      BOND_VALUE_CURRENCY_CD, SIGN_COMPANY_STATUS, 
+      SIGN_COMPANY_TYPE, AGENCY_MAN, CREDITOR_NAME, 
+      BOND_SINGED_TYPE, BOND_MATURITY, BOND_INTEREST_PAY_TYPE, 
+      BOND_INTEREST_PAY_MODE, BOND_TERM, BOND_TERM_UNIT_CD, 
+      BOND_ANNUAL_RATE, SIGN_BOND_IND, K71ZQZL
+      )
+    values (#{guarantyId,jdbcType=VARCHAR}, #{issuePersName,jdbcType=VARCHAR}, #{bondLevelType,jdbcType=VARCHAR}, 
+      #{registerOrgName,jdbcType=VARCHAR}, #{bondValue,jdbcType=DECIMAL}, #{bondType,jdbcType=VARCHAR}, 
+      #{bondValueCurrencyCd,jdbcType=VARCHAR}, #{signCompanyStatus,jdbcType=VARCHAR}, 
+      #{signCompanyType,jdbcType=VARCHAR}, #{agencyMan,jdbcType=VARCHAR}, #{creditorName,jdbcType=VARCHAR}, 
+      #{bondSingedType,jdbcType=VARCHAR}, #{bondMaturity,jdbcType=TIMESTAMP}, #{bondInterestPayType,jdbcType=VARCHAR}, 
+      #{bondInterestPayMode,jdbcType=VARCHAR}, #{bondTerm,jdbcType=DECIMAL}, #{bondTermUnitCd,jdbcType=VARCHAR}, 
+      #{bondAnnualRate,jdbcType=DECIMAL}, #{signBondInd,jdbcType=CHAR}, #{k71zqzl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBondPledge">
+    insert into TB_GRT_BOND_PLEDGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="issuePersName != null">
+        ISSUE_PERS_NAME,
+      </if>
+      <if test="bondLevelType != null">
+        BOND_LEVEL_TYPE,
+      </if>
+      <if test="registerOrgName != null">
+        REGISTER_ORG_NAME,
+      </if>
+      <if test="bondValue != null">
+        BOND_VALUE,
+      </if>
+      <if test="bondType != null">
+        BOND_TYPE,
+      </if>
+      <if test="bondValueCurrencyCd != null">
+        BOND_VALUE_CURRENCY_CD,
+      </if>
+      <if test="signCompanyStatus != null">
+        SIGN_COMPANY_STATUS,
+      </if>
+      <if test="signCompanyType != null">
+        SIGN_COMPANY_TYPE,
+      </if>
+      <if test="agencyMan != null">
+        AGENCY_MAN,
+      </if>
+      <if test="creditorName != null">
+        CREDITOR_NAME,
+      </if>
+      <if test="bondSingedType != null">
+        BOND_SINGED_TYPE,
+      </if>
+      <if test="bondMaturity != null">
+        BOND_MATURITY,
+      </if>
+      <if test="bondInterestPayType != null">
+        BOND_INTEREST_PAY_TYPE,
+      </if>
+      <if test="bondInterestPayMode != null">
+        BOND_INTEREST_PAY_MODE,
+      </if>
+      <if test="bondTerm != null">
+        BOND_TERM,
+      </if>
+      <if test="bondTermUnitCd != null">
+        BOND_TERM_UNIT_CD,
+      </if>
+      <if test="bondAnnualRate != null">
+        BOND_ANNUAL_RATE,
+      </if>
+      <if test="signBondInd != null">
+        SIGN_BOND_IND,
+      </if>
+      <if test="k71zqzl != null">
+        K71ZQZL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="issuePersName != null">
+        #{issuePersName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondLevelType != null">
+        #{bondLevelType,jdbcType=VARCHAR},
+      </if>
+      <if test="registerOrgName != null">
+        #{registerOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondValue != null">
+        #{bondValue,jdbcType=DECIMAL},
+      </if>
+      <if test="bondType != null">
+        #{bondType,jdbcType=VARCHAR},
+      </if>
+      <if test="bondValueCurrencyCd != null">
+        #{bondValueCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="signCompanyStatus != null">
+        #{signCompanyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="signCompanyType != null">
+        #{signCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="agencyMan != null">
+        #{agencyMan,jdbcType=VARCHAR},
+      </if>
+      <if test="creditorName != null">
+        #{creditorName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondSingedType != null">
+        #{bondSingedType,jdbcType=VARCHAR},
+      </if>
+      <if test="bondMaturity != null">
+        #{bondMaturity,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bondInterestPayType != null">
+        #{bondInterestPayType,jdbcType=VARCHAR},
+      </if>
+      <if test="bondInterestPayMode != null">
+        #{bondInterestPayMode,jdbcType=VARCHAR},
+      </if>
+      <if test="bondTerm != null">
+        #{bondTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="bondTermUnitCd != null">
+        #{bondTermUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="bondAnnualRate != null">
+        #{bondAnnualRate,jdbcType=DECIMAL},
+      </if>
+      <if test="signBondInd != null">
+        #{signBondInd,jdbcType=CHAR},
+      </if>
+      <if test="k71zqzl != null">
+        #{k71zqzl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBondPledge">
+    update TB_GRT_BOND_PLEDGE
+    <set>
+      <if test="issuePersName != null">
+        ISSUE_PERS_NAME = #{issuePersName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondLevelType != null">
+        BOND_LEVEL_TYPE = #{bondLevelType,jdbcType=VARCHAR},
+      </if>
+      <if test="registerOrgName != null">
+        REGISTER_ORG_NAME = #{registerOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondValue != null">
+        BOND_VALUE = #{bondValue,jdbcType=DECIMAL},
+      </if>
+      <if test="bondType != null">
+        BOND_TYPE = #{bondType,jdbcType=VARCHAR},
+      </if>
+      <if test="bondValueCurrencyCd != null">
+        BOND_VALUE_CURRENCY_CD = #{bondValueCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="signCompanyStatus != null">
+        SIGN_COMPANY_STATUS = #{signCompanyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="signCompanyType != null">
+        SIGN_COMPANY_TYPE = #{signCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="agencyMan != null">
+        AGENCY_MAN = #{agencyMan,jdbcType=VARCHAR},
+      </if>
+      <if test="creditorName != null">
+        CREDITOR_NAME = #{creditorName,jdbcType=VARCHAR},
+      </if>
+      <if test="bondSingedType != null">
+        BOND_SINGED_TYPE = #{bondSingedType,jdbcType=VARCHAR},
+      </if>
+      <if test="bondMaturity != null">
+        BOND_MATURITY = #{bondMaturity,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bondInterestPayType != null">
+        BOND_INTEREST_PAY_TYPE = #{bondInterestPayType,jdbcType=VARCHAR},
+      </if>
+      <if test="bondInterestPayMode != null">
+        BOND_INTEREST_PAY_MODE = #{bondInterestPayMode,jdbcType=VARCHAR},
+      </if>
+      <if test="bondTerm != null">
+        BOND_TERM = #{bondTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="bondTermUnitCd != null">
+        BOND_TERM_UNIT_CD = #{bondTermUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="bondAnnualRate != null">
+        BOND_ANNUAL_RATE = #{bondAnnualRate,jdbcType=DECIMAL},
+      </if>
+      <if test="signBondInd != null">
+        SIGN_BOND_IND = #{signBondInd,jdbcType=CHAR},
+      </if>
+      <if test="k71zqzl != null">
+        K71ZQZL = #{k71zqzl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtBondPledge">
+    update TB_GRT_BOND_PLEDGE
+    set ISSUE_PERS_NAME = #{issuePersName,jdbcType=VARCHAR},
+      BOND_LEVEL_TYPE = #{bondLevelType,jdbcType=VARCHAR},
+      REGISTER_ORG_NAME = #{registerOrgName,jdbcType=VARCHAR},
+      BOND_VALUE = #{bondValue,jdbcType=DECIMAL},
+      BOND_TYPE = #{bondType,jdbcType=VARCHAR},
+      BOND_VALUE_CURRENCY_CD = #{bondValueCurrencyCd,jdbcType=VARCHAR},
+      SIGN_COMPANY_STATUS = #{signCompanyStatus,jdbcType=VARCHAR},
+      SIGN_COMPANY_TYPE = #{signCompanyType,jdbcType=VARCHAR},
+      AGENCY_MAN = #{agencyMan,jdbcType=VARCHAR},
+      CREDITOR_NAME = #{creditorName,jdbcType=VARCHAR},
+      BOND_SINGED_TYPE = #{bondSingedType,jdbcType=VARCHAR},
+      BOND_MATURITY = #{bondMaturity,jdbcType=TIMESTAMP},
+      BOND_INTEREST_PAY_TYPE = #{bondInterestPayType,jdbcType=VARCHAR},
+      BOND_INTEREST_PAY_MODE = #{bondInterestPayMode,jdbcType=VARCHAR},
+      BOND_TERM = #{bondTerm,jdbcType=DECIMAL},
+      BOND_TERM_UNIT_CD = #{bondTermUnitCd,jdbcType=VARCHAR},
+      BOND_ANNUAL_RATE = #{bondAnnualRate,jdbcType=DECIMAL},
+      SIGN_BOND_IND = #{signBondInd,jdbcType=CHAR},
+      K71ZQZL = #{k71zqzl,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,74 @@
+{
+	"view": {
+		"$": "",
+		"widget": [
+			{
+				"$": {
+					"name": "main_pictures_1514385711188",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/csc-designer/static/images/20180104235343858.jpg",
+									"link": "",
+									"selectedNum": "4",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "image_text_1515082211710",
+					"type": "image_text"
+				},
+				"config": [
+					{
+						"_": "<p style=\"text-align: center;\" class=\"\"><span style=\"font-family:arial black, avant garde;font-size:32px\"><strong>客服云测试</strong></span></p>",
+						"$": {
+							"key": "content"
+						}
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "image_text_1515082525183",
+					"type": "image_text"
+				},
+				"config": [
+					{
+						"_": "<p class=\"\" style=\"text-align: center;\"><span style=\"font-size:32px\">客服云测试<span style=\"font-family: impact, chicago;\"><strong></strong></span></span></p>",
+						"$": {
+							"key": "content"
+						}
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "image_text_1515083020390",
+					"type": "image_text"
+				},
+				"config": [
+					{
+						"_": "<p class=\"\" style=\"text-align: center;\"><br/></p><p class=\"\" style=\"text-align: center;\"><span style=\"font-size:18px\"><strong class=\"\">2018年元月</strong></span></p><p class=\"\" style=\"text-align: left;\"><span style=\"font-size:18px\"><strong class=\"\"><span style=\"font-size: large; line-height: 25.2px; text-align: center; white-space: normal;\" class=\"\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;客服云测试</span><span style=\"font-weight: bolder; font-size: large; line-height: 25.2px; text-align: center; white-space: normal;\"></span>同步共享！</strong></span></p>",
+						"$": {
+							"key": "content"
+						}
+					}
+				]
+			}
+		]
+	}
+}

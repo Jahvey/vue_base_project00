@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.afterloan.afterloancheck.mapper.ChDailyCheckReportMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.afterloan.afterloancheck.resultbean.BorListResult">
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ENGLISH_NAME" jdbcType="TIMESTAMP" property="englishName" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="SUMMARY_ID" jdbcType="DECIMAL" property="summaryId" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="SUMMARY_AMT" jdbcType="VARCHAR" property="summaryAmt" />
+    <result column="JJYE" jdbcType="TIMESTAMP" property="jjye" />
+    <result column="BEGIN_DATE" jdbcType="VARCHAR" property="beginDate" />
+    <result column="END_DATE" jdbcType="VARCHAR" property="endDate" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CHECK_STATUS" jdbcType="TIMESTAMP" property="checkStatus" />
+    <result column="FINISH_DES" jdbcType="VARCHAR" property="finishDes" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="RECEIPT_NUM" jdbcType="VARCHAR" property="receiptNum" />
+    <result column="REPORT_NUM" jdbcType="VARCHAR" property="reportNum" />
+    <result column="REPORT_NAME" jdbcType="VARCHAR" property="reportName" />
+    <result column="MIDDLE_CODE" jdbcType="VARCHAR" property="middleCode" />
+  </resultMap>
+<!--日常检查报告列表  -->
+  <select id="selectDailyCheckReport" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+   SELECT P.PARTY_ID,
+		       P.PARTY_NUM,
+		       P.PARTY_TYPE_CD,
+		       P.PARTY_NAME,
+		       NC.CHECK_TYPE,
+		       NP.CERT_TYPE,
+		       NP.CERT_NUM,
+		       NP.MIDDLE_CODE,
+		       NC.REPORT_NUM,
+		       NC.REPORT_NAME,
+		       NC.USER_NUM,
+		       AA.AMT,
+		       Y.JJYE 
+		  FROM TB_AFT_NORMAL_CHECK NC,
+		       TB_CSM_PARTY P,
+		       V_CSM_PARTY NP,
+		       (SELECT A.PARTY_ID,
+		               SUM(C.CREDIT_AMOUNT) AMT,
+		               SUM(C.CREDIT_AVI) AVA,
+		               (SUM(C.CREDIT_AMOUNT) - SUM(C.CREDIT_AVI)) BALANCE
+		          FROM TB_BIZ_APPROVE        A,
+		               TB_BIZ_AMOUNT_APPROVE C
+		         WHERE A.APPROVE_ID = C.APPROVE_ID
+		           AND A.APPROVE_CONCLUSION = '1'
+		           AND A.BECOME_EFFECTIVE_MARK = '03'
+ 		           AND EXISTS
+		         (SELECT 1
+		                  FROM TB_LOAN_INFO LI, TB_LOAN_SUMMARY LS
+		                 WHERE LI.LOAN_ID = LS.LOAN_ID
+		                   AND LI.PARTY_ID = A.PARTY_ID
+		                   AND LS.SUMMARY_STATUS_CD IN ('02', '03'))
+		         GROUP BY A.PARTY_ID) AA,
+		       (SELECT TLI.PARTY_ID, SUM(TLS.JJYE) JJYE
+		          FROM TB_LOAN_INFO TLI, TB_LOAN_SUMMARY TLS
+		         WHERE TLI.LOAN_ID = TLS.LOAN_ID
+		           AND TLS.SUMMARY_STATUS_CD IN ('02', '03')
+		         GROUP BY TLI.PARTY_ID) Y
+		 WHERE NC.PARTY_ID = P.PARTY_ID
+		   AND P.PARTY_ID = NP.PARTY_ID
+		   AND P.PARTY_ID = AA.PARTY_ID
+		   AND P.PARTY_ID = Y.PARTY_ID
+ 
+		 <!--  AND NC.IS_SMALL = '1'  -->
+		   AND NC.UPDATE_DATE IS NOT NULL 
+		   <if test=" partyName != null and partyName != '' ">
+        	 AND P.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+           </if>
+           <if test=" reportNum != null and reportNum != '' ">
+        	 AND  NC.REPORT_NUM = #{reportNum,jdbcType=VARCHAR}
+           </if>  
+		  <!--  <isNotNull property="orglevel1">总行用户
+			   and nc.org_num in (select o.orgcode from om_organization o)
+		   </isNotNull>
+		   <isNotNull property="orglevel2">分行用户
+			   and nc.org_num in (select o.orgcode from om_organization o where o.parentorgid = #currentorgid#)
+		   </isNotNull>
+		   <isNotNull property="orglevel3">支行用户
+			   and nc.org_num = #currentorgcode#
+		   </isNotNull>
+		   <isNotNull property="orglevel4">总行小企业信贷中心
+			   and nc.org_num in (select o.orgcode from om_organization o where o.orgdegree = '2')
+		   </isNotNull>
+		     <isNotNull property="userNum">
+	    	and nc.user_num=#userNum#
+	     </isNotNull>
+		   
+ 		 <isNotNull property="partyName">  and p.party_name like '%$partyName$%' </isNotNull>
+ 		 <isNotNull property="reportNum">  and nc.REPORT_NUM = '$reportNum$' </isNotNull>
+  -->
+  </select>
+ 
+ 
+ 
+</mapper>

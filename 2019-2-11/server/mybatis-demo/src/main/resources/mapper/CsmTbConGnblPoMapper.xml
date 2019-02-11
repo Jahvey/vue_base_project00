@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConGnblPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConGnblPo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="BLLX" jdbcType="VARCHAR" property="bllx" />
+    <result column="SFYZSQ" jdbcType="VARCHAR" property="sfyzsq" />
+    <result column="BLTFFS" jdbcType="VARCHAR" property="bltffs" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="YSZKHSZHHM" jdbcType="VARCHAR" property="yszkhszhhm" />
+    <result column="YSZKHSZHZH" jdbcType="VARCHAR" property="yszkhszhzh" />
+    <result column="SFWBZJZH" jdbcType="VARCHAR" property="sfwbzjzh" />
+    <result column="GRACE_PERIOD" jdbcType="DECIMAL" property="gracePeriod" />
+    <result column="RZFSQFS" jdbcType="VARCHAR" property="rzfsqfs" />
+    <result column="JBSGKBL" jdbcType="DECIMAL" property="jbsgkbl" />
+    <result column="KCFY1" jdbcType="DECIMAL" property="kcfy1" />
+    <result column="KCFY2" jdbcType="DECIMAL" property="kcfy2" />
+    <result column="ZDSXBDJE" jdbcType="DECIMAL" property="zdsxbdje" />
+    <result column="SGKBL" jdbcType="DECIMAL" property="sgkbl" />
+    <result column="ZJSGCS" jdbcType="DECIMAL" property="zjsgcs" />
+    <result column="DKLL" jdbcType="DECIMAL" property="dkll" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, BLLX, SFYZSQ, BLTFFS, 
+    CONTRACT_ID, YSZKHSZHHM, YSZKHSZHZH, SFWBZJZH, GRACE_PERIOD, RZFSQFS, JBSGKBL, KCFY1, 
+    KCFY2, ZDSXBDJE, SGKBL, ZJSGCS, DKLL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_GNBL
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_GNBL
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConGnblPo">
+    insert into CRMS.TB_CON_GNBL (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, BLLX, SFYZSQ, 
+      BLTFFS, CONTRACT_ID, YSZKHSZHHM, 
+      YSZKHSZHZH, SFWBZJZH, GRACE_PERIOD, 
+      RZFSQFS, JBSGKBL, KCFY1, 
+      KCFY2, ZDSXBDJE, SGKBL, 
+      ZJSGCS, DKLL)
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{bllx,jdbcType=VARCHAR}, #{sfyzsq,jdbcType=VARCHAR}, 
+      #{bltffs,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{yszkhszhhm,jdbcType=VARCHAR}, 
+      #{yszkhszhzh,jdbcType=VARCHAR}, #{sfwbzjzh,jdbcType=VARCHAR}, #{gracePeriod,jdbcType=DECIMAL}, 
+      #{rzfsqfs,jdbcType=VARCHAR}, #{jbsgkbl,jdbcType=DECIMAL}, #{kcfy1,jdbcType=DECIMAL}, 
+      #{kcfy2,jdbcType=DECIMAL}, #{zdsxbdje,jdbcType=DECIMAL}, #{sgkbl,jdbcType=DECIMAL}, 
+      #{zjsgcs,jdbcType=DECIMAL}, #{dkll,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConGnblPo">
+    insert into CRMS.TB_CON_GNBL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="bllx != null">
+        BLLX,
+      </if>
+      <if test="sfyzsq != null">
+        SFYZSQ,
+      </if>
+      <if test="bltffs != null">
+        BLTFFS,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="yszkhszhhm != null">
+        YSZKHSZHHM,
+      </if>
+      <if test="yszkhszhzh != null">
+        YSZKHSZHZH,
+      </if>
+      <if test="sfwbzjzh != null">
+        SFWBZJZH,
+      </if>
+      <if test="gracePeriod != null">
+        GRACE_PERIOD,
+      </if>
+      <if test="rzfsqfs != null">
+        RZFSQFS,
+      </if>
+      <if test="jbsgkbl != null">
+        JBSGKBL,
+      </if>
+      <if test="kcfy1 != null">
+        KCFY1,
+      </if>
+      <if test="kcfy2 != null">
+        KCFY2,
+      </if>
+      <if test="zdsxbdje != null">
+        ZDSXBDJE,
+      </if>
+      <if test="sgkbl != null">
+        SGKBL,
+      </if>
+      <if test="zjsgcs != null">
+        ZJSGCS,
+      </if>
+      <if test="dkll != null">
+        DKLL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="bllx != null">
+        #{bllx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfyzsq != null">
+        #{sfyzsq,jdbcType=VARCHAR},
+      </if>
+      <if test="bltffs != null">
+        #{bltffs,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="yszkhszhhm != null">
+        #{yszkhszhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="yszkhszhzh != null">
+        #{yszkhszhzh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfwbzjzh != null">
+        #{sfwbzjzh,jdbcType=VARCHAR},
+      </if>
+      <if test="gracePeriod != null">
+        #{gracePeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="rzfsqfs != null">
+        #{rzfsqfs,jdbcType=VARCHAR},
+      </if>
+      <if test="jbsgkbl != null">
+        #{jbsgkbl,jdbcType=DECIMAL},
+      </if>
+      <if test="kcfy1 != null">
+        #{kcfy1,jdbcType=DECIMAL},
+      </if>
+      <if test="kcfy2 != null">
+        #{kcfy2,jdbcType=DECIMAL},
+      </if>
+      <if test="zdsxbdje != null">
+        #{zdsxbdje,jdbcType=DECIMAL},
+      </if>
+      <if test="sgkbl != null">
+        #{sgkbl,jdbcType=DECIMAL},
+      </if>
+      <if test="zjsgcs != null">
+        #{zjsgcs,jdbcType=DECIMAL},
+      </if>
+      <if test="dkll != null">
+        #{dkll,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConGnblPo">
+    update CRMS.TB_CON_GNBL
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="bllx != null">
+        BLLX = #{bllx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfyzsq != null">
+        SFYZSQ = #{sfyzsq,jdbcType=VARCHAR},
+      </if>
+      <if test="bltffs != null">
+        BLTFFS = #{bltffs,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="yszkhszhhm != null">
+        YSZKHSZHHM = #{yszkhszhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="yszkhszhzh != null">
+        YSZKHSZHZH = #{yszkhszhzh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfwbzjzh != null">
+        SFWBZJZH = #{sfwbzjzh,jdbcType=VARCHAR},
+      </if>
+      <if test="gracePeriod != null">
+        GRACE_PERIOD = #{gracePeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="rzfsqfs != null">
+        RZFSQFS = #{rzfsqfs,jdbcType=VARCHAR},
+      </if>
+      <if test="jbsgkbl != null">
+        JBSGKBL = #{jbsgkbl,jdbcType=DECIMAL},
+      </if>
+      <if test="kcfy1 != null">
+        KCFY1 = #{kcfy1,jdbcType=DECIMAL},
+      </if>
+      <if test="kcfy2 != null">
+        KCFY2 = #{kcfy2,jdbcType=DECIMAL},
+      </if>
+      <if test="zdsxbdje != null">
+        ZDSXBDJE = #{zdsxbdje,jdbcType=DECIMAL},
+      </if>
+      <if test="sgkbl != null">
+        SGKBL = #{sgkbl,jdbcType=DECIMAL},
+      </if>
+      <if test="zjsgcs != null">
+        ZJSGCS = #{zjsgcs,jdbcType=DECIMAL},
+      </if>
+      <if test="dkll != null">
+        DKLL = #{dkll,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConGnblPo">
+    update CRMS.TB_CON_GNBL
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      BLLX = #{bllx,jdbcType=VARCHAR},
+      SFYZSQ = #{sfyzsq,jdbcType=VARCHAR},
+      BLTFFS = #{bltffs,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      YSZKHSZHHM = #{yszkhszhhm,jdbcType=VARCHAR},
+      YSZKHSZHZH = #{yszkhszhzh,jdbcType=VARCHAR},
+      SFWBZJZH = #{sfwbzjzh,jdbcType=VARCHAR},
+      GRACE_PERIOD = #{gracePeriod,jdbcType=DECIMAL},
+      RZFSQFS = #{rzfsqfs,jdbcType=VARCHAR},
+      JBSGKBL = #{jbsgkbl,jdbcType=DECIMAL},
+      KCFY1 = #{kcfy1,jdbcType=DECIMAL},
+      KCFY2 = #{kcfy2,jdbcType=DECIMAL},
+      ZDSXBDJE = #{zdsxbdje,jdbcType=DECIMAL},
+      SGKBL = #{sgkbl,jdbcType=DECIMAL},
+      ZJSGCS = #{zjsgcs,jdbcType=DECIMAL},
+      DKLL = #{dkll,jdbcType=DECIMAL}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

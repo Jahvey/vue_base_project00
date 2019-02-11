@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.afterloan.afterloancheck.mapper.ChImportantCheckMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.afterloan.afterloancheck.resultbean.BorListResult">
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ENGLISH_NAME" jdbcType="TIMESTAMP" property="englishName" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="SUMMARY_ID" jdbcType="DECIMAL" property="summaryId" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="SUMMARY_AMT" jdbcType="VARCHAR" property="summaryAmt" />
+    <result column="JJYE" jdbcType="TIMESTAMP" property="jjye" />
+    <result column="BEGIN_DATE" jdbcType="VARCHAR" property="beginDate" />
+    <result column="END_DATE" jdbcType="VARCHAR" property="endDate" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CHECK_STATUS" jdbcType="TIMESTAMP" property="checkStatus" />
+    <result column="FINISH_DES" jdbcType="VARCHAR" property="finishDes" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="RECEIPT_NUM" jdbcType="VARCHAR" property="receiptNum" />
+    <result column="AMT" jdbcType="VARCHAR" property="amt" />
+    <result column="AVA" jdbcType="VARCHAR" property="ava" />
+    <result column="CREATE_DATE" jdbcType="VARCHAR" property="createDate" />
+    <result column="BALANCE" jdbcType="VARCHAR" property="balance" />
+    <result column="CONTRACT_AMT" jdbcType="VARCHAR" property="contractAmt" />
+    <result column="CON_BALANCE" jdbcType="VARCHAR" property="conBalance" />
+    <result column="CON_YU_E" jdbcType="VARCHAR" property="conYuE" />
+    
+  </resultMap>
+  <!-- 重点常检查客户合同列表查询 -->
+  <select id="selectImportantCheck" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    SELECT * FROM (
+    	SELECT P.PARTY_ID,
+		       P.PARTY_NUM,
+		       CC.CORP_CUSTOMER_TYPE_CD,
+		       P.PARTY_TYPE_CD,
+		       P.PARTY_NAME,
+		       CC.ENGLISH_NAME,
+		       (CASE
+		         WHEN P.PARTY_TYPE_CD = '01' THEN
+		          '202'
+		         WHEN P.PARTY_TYPE_CD = '02' THEN
+		          NP.CERT_TYPE
+		         ELSE
+		          ''
+		       END) AS CERT_TYPE,
+		       (CASE
+		         WHEN P.PARTY_TYPE_CD = '01' THEN
+		          CC.ORG_REGISTER_CD
+		         WHEN P.PARTY_TYPE_CD = '02' THEN
+		          NP.CERT_NUM
+		         ELSE
+		          ''
+		       END) AS CERT_NUM,
+		       CI.CONTRACT_ID,
+		       CI.CONTRACT_NUM,
+		       CI.CONTRACT_AMT,
+		       CI.CON_BALANCE,
+		       CI.CON_YU_E,
+		       TO_CHAR(CI.BEGIN_DATE,'YYYY-MM-DD') AS BEGIN_DATE,
+       		   TO_CHAR(CI.END_DATE,'YYYY-MM-DD') AS END_DATE,
+       		   TO_CHAR(X.CREATE_DATE,'YYYY-MM-DD') AS CREATE_DATE
+		  FROM TB_CON_CONTRACT_INFO CI 
+			  LEFT JOIN (
+	             SELECT PC.CONTRACT_ID CONTRACT_ID,MAX(PC.CREATE_DATE) CREATE_DATE 
+	               FROM TB_AFT_POINT_CHECK PC WHERE PC.CHECK_STATUS = '03' GROUP BY PC.CONTRACT_ID
+	        ) X ON X.CONTRACT_ID = CI.CONTRACT_ID, TB_CSM_PARTY P
+		  LEFT JOIN TB_CSM_CORPORATION CC ON CC.PARTY_ID = P.PARTY_ID
+		  LEFT JOIN TB_CSM_NATURAL_PERSON NP ON NP.PARTY_ID = P.PARTY_ID
+		 WHERE CI.PARTY_ID = P.PARTY_ID
+		   AND CI.CON_STATUS = '03'
+		   AND CI.USER_NUM = '200555'
+		   AND CI.ORG_NUM = '0700'
+	      <!-- <if test=" userNum != null and userNum != '' ">
+		    AND CI.USER_NUM = #{userNum,jdbcType=VARCHAR} 		   
+	   	  </if>
+		  <if test=" orgNum != null and orgNum != '' ">
+		 	AND CI.ORG_NUM = #{orgNum,jdbcType=VARCHAR}
+		  </if> -->
+		   ) A WHERE 1=1 
+		    <if test=" partyName != null and partyName != '' ">
+ 		 	and A.PARTY_NAME like '%'||#{partyName,jdbcType=VARCHAR}||'%'
+ 		 </if>
+ 		 <if test=" certType != null and certType != '' ">
+ 		 	and A.CERT_TYPE = #{certType,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" certNum != null and certNum != '' ">
+ 		 	and A.CERT_NUM = #{certNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" contractNum != null and contractNum != '' ">
+ 		 	and A.CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		<!--  <isNotNull property="partyName">  and a.party_name like '%$partyName$%' </isNotNull>
+ 		 <isNotNull property="certType">  and a.cert_type = '$certType$' </isNotNull>
+ 		 <isNotNull property="certNum">  and a.cert_num = '$certNum$' </isNotNull>
+ 		 <isNotNull property="contractNum">  and a.contract_num = '$contractNum$' </isNotNull>
+ 		 <isNotNull property="transContractNum">  and a.contract_num = '$transContractNum$' </isNotNull> -->
+  </select>
+ 
+ 
+ 
+</mapper>

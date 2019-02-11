@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmConInfoBaseVoMapper">
+
+
+ <resultMap type="com.cdgit.loan.csm.bean.CsmConCreditInfo" id="csmConCreditInfo">
+    <id column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CONTRACT_DATE" jdbcType="TIMESTAMP" property="contractDate" />
+    <result column="CONTRACT_ADDRESS" jdbcType="VARCHAR" property="contractAddress" />
+    <result column="OLD_CONTRACT_ID" jdbcType="VARCHAR" property="oldContractId" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CON_STATUS" jdbcType="VARCHAR" property="conStatus" />
+    <result column="PAPER_CON_NUM" jdbcType="VARCHAR" property="paperConNum" />
+
+
+</resultMap>
+
+
+
+  <resultMap id="csmTbBizApproveInfo" type="com.cdgit.loan.csm.bean.CsmTbBizApprove">
+    <id column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+    <result column="BIZ_NUM" jdbcType="VARCHAR" property="bizNum" />
+    <result column="BIZ_TYPE" jdbcType="VARCHAR" property="bizType" />
+    <result column="LOW_RISK_BIZ_TYPE" jdbcType="VARCHAR" property="lowRiskBizType" />
+    <result column="APPLY_MODE_TYPE" jdbcType="VARCHAR" property="applyModeType" />
+    <result column="BIZ_HAPPEN_TYPE" jdbcType="VARCHAR" property="bizHappenType" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="BUSINESS_PRODUCT" jdbcType="VARCHAR" property="businessProduct" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    
+    <result column="APPLY_DATE" jdbcType="VARCHAR" property="applyDate" />
+    <result column="HANDING_DATE" jdbcType="VARCHAR" property="handingDate" />
+    
+    <result column="AMOUNT_TYPE" jdbcType="VARCHAR" property="amountType" />
+    
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    
+    <result column="CSM_CRD_LEVEL" jdbcType="VARCHAR" property="csmCrdLevel" />
+    <result column="APPROVAL_NUM" jdbcType="VARCHAR" property="approvalNum" />
+    <result column="BECOME_EFFECTIVE_MARK" jdbcType="VARCHAR" property="becomeEffectiveMark" />
+    <result column="ORIGINAL_APPROVE_ID" jdbcType="VARCHAR" property="originalApproveId" />
+    <result column="IS_BANK_TEAM_LOAN" jdbcType="VARCHAR" property="isBankTeamLoan" />
+    
+    <result column="LOAN_INSPECTION_FRE" jdbcType="VARCHAR" property="loanInspectionFre" />
+    <result column="POLICY_DECISION_IDEA" jdbcType="VARCHAR" property="policyDecisionIdea" />
+    <result column="VALID_DATE" jdbcType="VARCHAR" property="validDate" />
+    
+    <result column="POLICY_DECISION_NUM" jdbcType="VARCHAR" property="policyDecisionNum" />
+    <result column="APPLY_TYPE_MARK" jdbcType="VARCHAR" property="applyTypeMark" />
+    <result column="APPROVE_CONCLUSION" jdbcType="VARCHAR" property="approveConclusion" />
+    <result column="END_ORG_NUM" jdbcType="VARCHAR" property="endOrgNum" />
+    <result column="END_DATE" jdbcType="VARCHAR" property="endDate" />
+    
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="BIZ_HAPPEN_NATURE" jdbcType="VARCHAR" property="bizHappenNature" />
+    <result column="IS_GREEN_LOAN" jdbcType="VARCHAR" property="isGreenLoan" />
+    <result column="LOAN_TYPE" jdbcType="VARCHAR" property="loanType" />
+    <result column="BIZ_TYPE_FLAG" jdbcType="VARCHAR" property="bizTypeFlag" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="TERM_NUM" jdbcType="VARCHAR" property="termNum" />
+    <result column="TERM_UNIT" jdbcType="VARCHAR" property="termUnit" />
+    <result column="RMB_AMT" jdbcType="VARCHAR" property="rmbAmt" />
+    <result column="BO_USE" jdbcType="VARCHAR" property="boUse" />
+    <result column="NO_USE" jdbcType="VARCHAR" property="noUse" />
+    
+    <result column="CRD_ID" jdbcType="VARCHAR" property="crdId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+  </resultMap>
+
+
+
+<!-- 查询批复信息 -->
+<select id="queryCsmTbBizApproveVoInfo" parameterType="java.lang.String" resultMap="csmTbBizApproveInfo">
+    select 
+	*
+
+    from Tb_Biz_Approve
+    where 
+    apply_id = #{applyId,jdbcType=VARCHAR}
+
+
+</select>
+
+
+<!-- 查询协议信息 -->
+<select id="getCsmTbConCreditInfo" parameterType="java.lang.String" resultMap="csmConCreditInfo">
+    select 
+    *
+    from tb_Con_Credit_Info a
+    where a.CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+
+
+</select>
+
+
+
+</mapper>

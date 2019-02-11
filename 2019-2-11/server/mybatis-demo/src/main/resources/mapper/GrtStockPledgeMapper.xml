@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtStockPledgeMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtStockPledge">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="STOCK_LISTED_IND" jdbcType="CHAR" property="stockListedInd" />
+    <result column="STOCK_CHARACTER" jdbcType="VARCHAR" property="stockCharacter" />
+    <result column="STOCK_REGISTRATION_ORG" jdbcType="VARCHAR" property="stockRegistrationOrg" />
+    <result column="STOCK_COUNT" jdbcType="DECIMAL" property="stockCount" />
+    <result column="CONTROL_PERCENTAGE" jdbcType="DECIMAL" property="controlPercentage" />
+    <result column="NET_VALUE_PER_STOCK" jdbcType="DECIMAL" property="netValuePerStock" />
+    <result column="NET_VALUE_CURRENCY_CD" jdbcType="VARCHAR" property="netValueCurrencyCd" />
+    <result column="STOCK_NAME" jdbcType="VARCHAR" property="stockName" />
+    <result column="STOCK_ISSUE_TYPE_CD" jdbcType="VARCHAR" property="stockIssueTypeCd" />
+    <result column="MARKET_PLACE" jdbcType="VARCHAR" property="marketPlace" />
+    <result column="MARKET_COMPANY_NAME" jdbcType="VARCHAR" property="marketCompanyName" />
+    <result column="MARKET_COMPANY_TYPE_CD" jdbcType="VARCHAR" property="marketCompanyTypeCd" />
+    <result column="MARKET_COMPANY_OPER_STATUS" jdbcType="VARCHAR" property="marketCompanyOperStatus" />
+    <result column="AVERAGE_PRICE_LATEST_YEAR" jdbcType="DECIMAL" property="averagePriceLatestYear" />
+    <result column="AVERAGE_PRICE_LATEST_DAY" jdbcType="DECIMAL" property="averagePriceLatestDay" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, STOCK_LISTED_IND, STOCK_CHARACTER, STOCK_REGISTRATION_ORG, STOCK_COUNT, 
+    CONTROL_PERCENTAGE, NET_VALUE_PER_STOCK, NET_VALUE_CURRENCY_CD, STOCK_NAME, STOCK_ISSUE_TYPE_CD, 
+    MARKET_PLACE, MARKET_COMPANY_NAME, MARKET_COMPANY_TYPE_CD, MARKET_COMPANY_OPER_STATUS, 
+    AVERAGE_PRICE_LATEST_YEAR, AVERAGE_PRICE_LATEST_DAY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_STOCK_PLEDGE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_STOCK_PLEDGE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtStockPledge">
+    insert into TB_GRT_STOCK_PLEDGE (GUARANTY_ID, STOCK_LISTED_IND, STOCK_CHARACTER, 
+      STOCK_REGISTRATION_ORG, STOCK_COUNT, CONTROL_PERCENTAGE, 
+      NET_VALUE_PER_STOCK, NET_VALUE_CURRENCY_CD, STOCK_NAME, 
+      STOCK_ISSUE_TYPE_CD, MARKET_PLACE, MARKET_COMPANY_NAME, 
+      MARKET_COMPANY_TYPE_CD, MARKET_COMPANY_OPER_STATUS, 
+      AVERAGE_PRICE_LATEST_YEAR, AVERAGE_PRICE_LATEST_DAY
+      )
+    values (#{guarantyId,jdbcType=VARCHAR}, #{stockListedInd,jdbcType=CHAR}, #{stockCharacter,jdbcType=VARCHAR}, 
+      #{stockRegistrationOrg,jdbcType=VARCHAR}, #{stockCount,jdbcType=DECIMAL}, #{controlPercentage,jdbcType=DECIMAL}, 
+      #{netValuePerStock,jdbcType=DECIMAL}, #{netValueCurrencyCd,jdbcType=VARCHAR}, #{stockName,jdbcType=VARCHAR}, 
+      #{stockIssueTypeCd,jdbcType=VARCHAR}, #{marketPlace,jdbcType=VARCHAR}, #{marketCompanyName,jdbcType=VARCHAR}, 
+      #{marketCompanyTypeCd,jdbcType=VARCHAR}, #{marketCompanyOperStatus,jdbcType=VARCHAR}, 
+      #{averagePriceLatestYear,jdbcType=DECIMAL}, #{averagePriceLatestDay,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtStockPledge">
+    insert into TB_GRT_STOCK_PLEDGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="stockListedInd != null">
+        STOCK_LISTED_IND,
+      </if>
+      <if test="stockCharacter != null">
+        STOCK_CHARACTER,
+      </if>
+      <if test="stockRegistrationOrg != null">
+        STOCK_REGISTRATION_ORG,
+      </if>
+      <if test="stockCount != null">
+        STOCK_COUNT,
+      </if>
+      <if test="controlPercentage != null">
+        CONTROL_PERCENTAGE,
+      </if>
+      <if test="netValuePerStock != null">
+        NET_VALUE_PER_STOCK,
+      </if>
+      <if test="netValueCurrencyCd != null">
+        NET_VALUE_CURRENCY_CD,
+      </if>
+      <if test="stockName != null">
+        STOCK_NAME,
+      </if>
+      <if test="stockIssueTypeCd != null">
+        STOCK_ISSUE_TYPE_CD,
+      </if>
+      <if test="marketPlace != null">
+        MARKET_PLACE,
+      </if>
+      <if test="marketCompanyName != null">
+        MARKET_COMPANY_NAME,
+      </if>
+      <if test="marketCompanyTypeCd != null">
+        MARKET_COMPANY_TYPE_CD,
+      </if>
+      <if test="marketCompanyOperStatus != null">
+        MARKET_COMPANY_OPER_STATUS,
+      </if>
+      <if test="averagePriceLatestYear != null">
+        AVERAGE_PRICE_LATEST_YEAR,
+      </if>
+      <if test="averagePriceLatestDay != null">
+        AVERAGE_PRICE_LATEST_DAY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="stockListedInd != null">
+        #{stockListedInd,jdbcType=CHAR},
+      </if>
+      <if test="stockCharacter != null">
+        #{stockCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="stockRegistrationOrg != null">
+        #{stockRegistrationOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCount != null">
+        #{stockCount,jdbcType=DECIMAL},
+      </if>
+      <if test="controlPercentage != null">
+        #{controlPercentage,jdbcType=DECIMAL},
+      </if>
+      <if test="netValuePerStock != null">
+        #{netValuePerStock,jdbcType=DECIMAL},
+      </if>
+      <if test="netValueCurrencyCd != null">
+        #{netValueCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="stockName != null">
+        #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockIssueTypeCd != null">
+        #{stockIssueTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPlace != null">
+        #{marketPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="marketCompanyName != null">
+        #{marketCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketCompanyTypeCd != null">
+        #{marketCompanyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="marketCompanyOperStatus != null">
+        #{marketCompanyOperStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="averagePriceLatestYear != null">
+        #{averagePriceLatestYear,jdbcType=DECIMAL},
+      </if>
+      <if test="averagePriceLatestDay != null">
+        #{averagePriceLatestDay,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtStockPledge">
+    update TB_GRT_STOCK_PLEDGE
+    <set>
+      <if test="stockListedInd != null">
+        STOCK_LISTED_IND = #{stockListedInd,jdbcType=CHAR},
+      </if>
+      <if test="stockCharacter != null">
+        STOCK_CHARACTER = #{stockCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="stockRegistrationOrg != null">
+        STOCK_REGISTRATION_ORG = #{stockRegistrationOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="stockCount != null">
+        STOCK_COUNT = #{stockCount,jdbcType=DECIMAL},
+      </if>
+      <if test="controlPercentage != null">
+        CONTROL_PERCENTAGE = #{controlPercentage,jdbcType=DECIMAL},
+      </if>
+      <if test="netValuePerStock != null">
+        NET_VALUE_PER_STOCK = #{netValuePerStock,jdbcType=DECIMAL},
+      </if>
+      <if test="netValueCurrencyCd != null">
+        NET_VALUE_CURRENCY_CD = #{netValueCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="stockName != null">
+        STOCK_NAME = #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockIssueTypeCd != null">
+        STOCK_ISSUE_TYPE_CD = #{stockIssueTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPlace != null">
+        MARKET_PLACE = #{marketPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="marketCompanyName != null">
+        MARKET_COMPANY_NAME = #{marketCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketCompanyTypeCd != null">
+        MARKET_COMPANY_TYPE_CD = #{marketCompanyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="marketCompanyOperStatus != null">
+        MARKET_COMPANY_OPER_STATUS = #{marketCompanyOperStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="averagePriceLatestYear != null">
+        AVERAGE_PRICE_LATEST_YEAR = #{averagePriceLatestYear,jdbcType=DECIMAL},
+      </if>
+      <if test="averagePriceLatestDay != null">
+        AVERAGE_PRICE_LATEST_DAY = #{averagePriceLatestDay,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtStockPledge">
+    update TB_GRT_STOCK_PLEDGE
+    set STOCK_LISTED_IND = #{stockListedInd,jdbcType=CHAR},
+      STOCK_CHARACTER = #{stockCharacter,jdbcType=VARCHAR},
+      STOCK_REGISTRATION_ORG = #{stockRegistrationOrg,jdbcType=VARCHAR},
+      STOCK_COUNT = #{stockCount,jdbcType=DECIMAL},
+      CONTROL_PERCENTAGE = #{controlPercentage,jdbcType=DECIMAL},
+      NET_VALUE_PER_STOCK = #{netValuePerStock,jdbcType=DECIMAL},
+      NET_VALUE_CURRENCY_CD = #{netValueCurrencyCd,jdbcType=VARCHAR},
+      STOCK_NAME = #{stockName,jdbcType=VARCHAR},
+      STOCK_ISSUE_TYPE_CD = #{stockIssueTypeCd,jdbcType=VARCHAR},
+      MARKET_PLACE = #{marketPlace,jdbcType=VARCHAR},
+      MARKET_COMPANY_NAME = #{marketCompanyName,jdbcType=VARCHAR},
+      MARKET_COMPANY_TYPE_CD = #{marketCompanyTypeCd,jdbcType=VARCHAR},
+      MARKET_COMPANY_OPER_STATUS = #{marketCompanyOperStatus,jdbcType=VARCHAR},
+      AVERAGE_PRICE_LATEST_YEAR = #{averagePriceLatestYear,jdbcType=DECIMAL},
+      AVERAGE_PRICE_LATEST_DAY = #{averagePriceLatestDay,jdbcType=DECIMAL}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

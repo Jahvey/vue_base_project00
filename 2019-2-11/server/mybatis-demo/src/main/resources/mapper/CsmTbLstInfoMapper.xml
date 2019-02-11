@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbLstInfoMapper">
+
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbLstInfo">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="LIST_STATUS" jdbcType="VARCHAR" property="listStatus" />
+    <result column="APPROVE_STATUS" jdbcType="VARCHAR" property="approveStatus" />
+    <result column="OPER_USERID" jdbcType="VARCHAR" property="operUserid" />
+    <result column="OPER_ORGCODE" jdbcType="VARCHAR" property="operOrgcode" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="PD_YJ" jdbcType="VARCHAR" property="pdYj" />
+    <result column="NEW_STATUS" jdbcType="VARCHAR" property="newStatus" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PARTY_ID, LIST_STATUS, APPROVE_STATUS, OPER_USERID, OPER_ORGCODE, CREATE_DATE, PD_YJ, 
+    NEW_STATUS, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LST_INFO
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+
+</mapper>
+ 

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConGjxyzkzPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConGjxyzkzPo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="JYQ" jdbcType="VARCHAR" property="jyq" />
+    <result column="YQTS" jdbcType="VARCHAR" property="yqts" />
+    <result column="DQRQ" jdbcType="TIMESTAMP" property="dqrq" />
+    <result column="YZBL" jdbcType="DECIMAL" property="yzbl" />
+    <result column="DZBL" jdbcType="DECIMAL" property="dzbl" />
+    <result column="BZJZH" jdbcType="VARCHAR" property="bzjzh" />
+    <result column="BZJJE" jdbcType="DECIMAL" property="bzjje" />
+    <result column="BZJBZ" jdbcType="VARCHAR" property="bzjbz" />
+    <result column="BZJBLBDY" jdbcType="DECIMAL" property="bzjblbdy" />
+    <result column="MYHTH" jdbcType="VARCHAR" property="myhth" />
+    <result column="MYHTJE" jdbcType="DECIMAL" property="myhtje" />
+    <result column="GNGJZ" jdbcType="VARCHAR" property="gngjz" />
+    <result column="DKLL" jdbcType="DECIMAL" property="dkll" />
+    <result column="RZZH" jdbcType="VARCHAR" property="rzzh" />
+    <result column="YWHM" jdbcType="VARCHAR" property="ywhm" />
+    <result column="FPH" jdbcType="VARCHAR" property="fph" />
+    <result column="KZJE" jdbcType="DECIMAL" property="kzje" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, CONTRACT_ID, JYQ, YQTS, 
+    DQRQ, YZBL, DZBL, BZJZH, BZJJE, BZJBZ, BZJBLBDY, MYHTH, MYHTJE, GNGJZ, DKLL, RZZH, 
+    YWHM, FPH, KZJE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_GJXYZKZ
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_GJXYZKZ
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConGjxyzkzPo">
+    insert into CRMS.TB_CON_GJXYZKZ (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, CONTRACT_ID, JYQ, 
+      YQTS, DQRQ, YZBL, 
+      DZBL, BZJZH, BZJJE, 
+      BZJBZ, BZJBLBDY, MYHTH, 
+      MYHTJE, GNGJZ, DKLL, 
+      RZZH, YWHM, FPH, KZJE
+      )
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{jyq,jdbcType=VARCHAR}, 
+      #{yqts,jdbcType=VARCHAR}, #{dqrq,jdbcType=TIMESTAMP}, #{yzbl,jdbcType=DECIMAL}, 
+      #{dzbl,jdbcType=DECIMAL}, #{bzjzh,jdbcType=VARCHAR}, #{bzjje,jdbcType=DECIMAL}, 
+      #{bzjbz,jdbcType=VARCHAR}, #{bzjblbdy,jdbcType=DECIMAL}, #{myhth,jdbcType=VARCHAR}, 
+      #{myhtje,jdbcType=DECIMAL}, #{gngjz,jdbcType=VARCHAR}, #{dkll,jdbcType=DECIMAL}, 
+      #{rzzh,jdbcType=VARCHAR}, #{ywhm,jdbcType=VARCHAR}, #{fph,jdbcType=VARCHAR}, #{kzje,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConGjxyzkzPo">
+    insert into CRMS.TB_CON_GJXYZKZ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="jyq != null">
+        JYQ,
+      </if>
+      <if test="yqts != null">
+        YQTS,
+      </if>
+      <if test="dqrq != null">
+        DQRQ,
+      </if>
+      <if test="yzbl != null">
+        YZBL,
+      </if>
+      <if test="dzbl != null">
+        DZBL,
+      </if>
+      <if test="bzjzh != null">
+        BZJZH,
+      </if>
+      <if test="bzjje != null">
+        BZJJE,
+      </if>
+      <if test="bzjbz != null">
+        BZJBZ,
+      </if>
+      <if test="bzjblbdy != null">
+        BZJBLBDY,
+      </if>
+      <if test="myhth != null">
+        MYHTH,
+      </if>
+      <if test="myhtje != null">
+        MYHTJE,
+      </if>
+      <if test="gngjz != null">
+        GNGJZ,
+      </if>
+      <if test="dkll != null">
+        DKLL,
+      </if>
+      <if test="rzzh != null">
+        RZZH,
+      </if>
+      <if test="ywhm != null">
+        YWHM,
+      </if>
+      <if test="fph != null">
+        FPH,
+      </if>
+      <if test="kzje != null">
+        KZJE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="jyq != null">
+        #{jyq,jdbcType=VARCHAR},
+      </if>
+      <if test="yqts != null">
+        #{yqts,jdbcType=VARCHAR},
+      </if>
+      <if test="dqrq != null">
+        #{dqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yzbl != null">
+        #{yzbl,jdbcType=DECIMAL},
+      </if>
+      <if test="dzbl != null">
+        #{dzbl,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjzh != null">
+        #{bzjzh,jdbcType=VARCHAR},
+      </if>
+      <if test="bzjje != null">
+        #{bzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjbz != null">
+        #{bzjbz,jdbcType=VARCHAR},
+      </if>
+      <if test="bzjblbdy != null">
+        #{bzjblbdy,jdbcType=DECIMAL},
+      </if>
+      <if test="myhth != null">
+        #{myhth,jdbcType=VARCHAR},
+      </if>
+      <if test="myhtje != null">
+        #{myhtje,jdbcType=DECIMAL},
+      </if>
+      <if test="gngjz != null">
+        #{gngjz,jdbcType=VARCHAR},
+      </if>
+      <if test="dkll != null">
+        #{dkll,jdbcType=DECIMAL},
+      </if>
+      <if test="rzzh != null">
+        #{rzzh,jdbcType=VARCHAR},
+      </if>
+      <if test="ywhm != null">
+        #{ywhm,jdbcType=VARCHAR},
+      </if>
+      <if test="fph != null">
+        #{fph,jdbcType=VARCHAR},
+      </if>
+      <if test="kzje != null">
+        #{kzje,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConGjxyzkzPo">
+    update CRMS.TB_CON_GJXYZKZ
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="jyq != null">
+        JYQ = #{jyq,jdbcType=VARCHAR},
+      </if>
+      <if test="yqts != null">
+        YQTS = #{yqts,jdbcType=VARCHAR},
+      </if>
+      <if test="dqrq != null">
+        DQRQ = #{dqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yzbl != null">
+        YZBL = #{yzbl,jdbcType=DECIMAL},
+      </if>
+      <if test="dzbl != null">
+        DZBL = #{dzbl,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjzh != null">
+        BZJZH = #{bzjzh,jdbcType=VARCHAR},
+      </if>
+      <if test="bzjje != null">
+        BZJJE = #{bzjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjbz != null">
+        BZJBZ = #{bzjbz,jdbcType=VARCHAR},
+      </if>
+      <if test="bzjblbdy != null">
+        BZJBLBDY = #{bzjblbdy,jdbcType=DECIMAL},
+      </if>
+      <if test="myhth != null">
+        MYHTH = #{myhth,jdbcType=VARCHAR},
+      </if>
+      <if test="myhtje != null">
+        MYHTJE = #{myhtje,jdbcType=DECIMAL},
+      </if>
+      <if test="gngjz != null">
+        GNGJZ = #{gngjz,jdbcType=VARCHAR},
+      </if>
+      <if test="dkll != null">
+        DKLL = #{dkll,jdbcType=DECIMAL},
+      </if>
+      <if test="rzzh != null">
+        RZZH = #{rzzh,jdbcType=VARCHAR},
+      </if>
+      <if test="ywhm != null">
+        YWHM = #{ywhm,jdbcType=VARCHAR},
+      </if>
+      <if test="fph != null">
+        FPH = #{fph,jdbcType=VARCHAR},
+      </if>
+      <if test="kzje != null">
+        KZJE = #{kzje,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConGjxyzkzPo">
+    update CRMS.TB_CON_GJXYZKZ
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      JYQ = #{jyq,jdbcType=VARCHAR},
+      YQTS = #{yqts,jdbcType=VARCHAR},
+      DQRQ = #{dqrq,jdbcType=TIMESTAMP},
+      YZBL = #{yzbl,jdbcType=DECIMAL},
+      DZBL = #{dzbl,jdbcType=DECIMAL},
+      BZJZH = #{bzjzh,jdbcType=VARCHAR},
+      BZJJE = #{bzjje,jdbcType=DECIMAL},
+      BZJBZ = #{bzjbz,jdbcType=VARCHAR},
+      BZJBLBDY = #{bzjblbdy,jdbcType=DECIMAL},
+      MYHTH = #{myhth,jdbcType=VARCHAR},
+      MYHTJE = #{myhtje,jdbcType=DECIMAL},
+      GNGJZ = #{gngjz,jdbcType=VARCHAR},
+      DKLL = #{dkll,jdbcType=DECIMAL},
+      RZZH = #{rzzh,jdbcType=VARCHAR},
+      YWHM = #{ywhm,jdbcType=VARCHAR},
+      FPH = #{fph,jdbcType=VARCHAR},
+      KZJE = #{kzje,jdbcType=DECIMAL}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

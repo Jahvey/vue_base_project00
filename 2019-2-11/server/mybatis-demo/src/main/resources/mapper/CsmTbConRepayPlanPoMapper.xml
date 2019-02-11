@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConRepayPlanPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConRepayPlanPo">
+    <id column="REPAY_PLAN_ID" jdbcType="VARCHAR" property="repayPlanId" />
+    <result column="REPAY_DATE" jdbcType="TIMESTAMP" property="repayDate" />
+    <result column="REPAY_AMT" jdbcType="DECIMAL" property="repayAmt" />
+    <result column="PERIODS_NUMBER" jdbcType="DECIMAL" property="periodsNumber" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    REPAY_PLAN_ID, REPAY_DATE, REPAY_AMT, PERIODS_NUMBER, CREATE_TIME, UPDATE_TIME, CONTRACT_ID
+  </sql>
+  
+  
+  <select id="queryListByConId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  select * 
+  from 
+  Tb_Con_Repay_Plan b 
+  where 
+  b.contract_id=#{contractId,jdbcType=VARCHAR}
+  
+  
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    *
+    from CRMS.TB_CON_REPAY_PLAN
+    where REPAY_PLAN_ID = #{repayPlanId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_REPAY_PLAN
+    where REPAY_PLAN_ID = #{repayPlanId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConRepayPlanPo">
+    insert into CRMS.TB_CON_REPAY_PLAN (REPAY_PLAN_ID, REPAY_DATE, REPAY_AMT, 
+      PERIODS_NUMBER, CREATE_TIME, UPDATE_TIME, 
+      CONTRACT_ID)
+    values (#{repayPlanId,jdbcType=VARCHAR}, #{repayDate,jdbcType=TIMESTAMP}, #{repayAmt,jdbcType=DECIMAL}, 
+      #{periodsNumber,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{contractId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConRepayPlanPo">
+    insert into CRMS.TB_CON_REPAY_PLAN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="repayPlanId != null">
+        REPAY_PLAN_ID,
+      </if>
+      <if test="repayDate != null">
+        REPAY_DATE,
+      </if>
+      <if test="repayAmt != null">
+        REPAY_AMT,
+      </if>
+      <if test="periodsNumber != null">
+        PERIODS_NUMBER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="repayPlanId != null">
+        #{repayPlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="repayDate != null">
+        #{repayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayAmt != null">
+        #{repayAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="periodsNumber != null">
+        #{periodsNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConRepayPlanPo">
+    update CRMS.TB_CON_REPAY_PLAN
+    <set>
+      <if test="repayDate != null">
+        REPAY_DATE = #{repayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayAmt != null">
+        REPAY_AMT = #{repayAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="periodsNumber != null">
+        PERIODS_NUMBER = #{periodsNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REPAY_PLAN_ID = #{repayPlanId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConRepayPlanPo">
+    update CRMS.TB_CON_REPAY_PLAN
+    set REPAY_DATE = #{repayDate,jdbcType=TIMESTAMP},
+      REPAY_AMT = #{repayAmt,jdbcType=DECIMAL},
+      PERIODS_NUMBER = #{periodsNumber,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+    where REPAY_PLAN_ID = #{repayPlanId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,24 @@
+[data-type="Path_mapping"] .menu-path{
+	/*border-bottom: 1px solid #cdcdcd;*/
+  font-size: 12px;
+  height: 26px;
+  margin: 16px 0 0 0;
+  color: #494848;
+  font-family: "microsoft yahei";
+}
+[data-type="Path_mapping"] .menu-path > ul > li,
+ [data-type="Path_mapping"] .menu-path > span {
+  display: block;
+  min-width: 40px;
+  float: left;
+  font-size: 12px;
+}
+[data-type="Path_mapping"] .menu-path > ul > li:not(:last-child):after {
+  content: ">";
+  padding: 0 10px;
+  color: #898989;
+}
+[data-type="Path_mapping"] .menu-path > ul > li a,
+[data-type="Path_mapping"] .menu-path > ul > li a:hover{
+  color: #ef524d
+}

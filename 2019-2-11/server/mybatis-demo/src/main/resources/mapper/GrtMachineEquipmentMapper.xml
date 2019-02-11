@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtMachineEquipmentMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtMachineEquipment">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="SECONDHAND_IND" jdbcType="VARCHAR" property="secondhandInd" />
+    <result column="EQUIPMENT_NAME" jdbcType="VARCHAR" property="equipmentName" />
+    <result column="MODEL_TYPE" jdbcType="VARCHAR" property="modelType" />
+    <result column="POWER" jdbcType="DECIMAL" property="power" />
+    <result column="POWER_UNIT_CD" jdbcType="VARCHAR" property="powerUnitCd" />
+    <result column="MANUFACTURE_DATE" jdbcType="TIMESTAMP" property="manufactureDate" />
+    <result column="UTILIZED_YEARS" jdbcType="DECIMAL" property="utilizedYears" />
+    <result column="PURPOSE" jdbcType="VARCHAR" property="purpose" />
+    <result column="FUEL" jdbcType="VARCHAR" property="fuel" />
+    <result column="EQUIP_MOUNT" jdbcType="DECIMAL" property="equipMount" />
+    <result column="EQUIP_MOUNT_UNIT_CD" jdbcType="VARCHAR" property="equipMountUnitCd" />
+    <result column="MANUFACTURE" jdbcType="VARCHAR" property="manufacture" />
+    <result column="PRODUCE_AREA" jdbcType="VARCHAR" property="produceArea" />
+    <result column="ELI_LICENSE_IND" jdbcType="CHAR" property="eliLicenseInd" />
+    <result column="SAFE_CHECK_IND" jdbcType="CHAR" property="safeCheckInd" />
+    <result column="FIRE_CHECK_IND" jdbcType="CHAR" property="fireCheckInd" />
+    <result column="DEVICE_USE_LIFE" jdbcType="DECIMAL" property="deviceUseLife" />
+    <result column="BIG_REPAIR_TIMES" jdbcType="DECIMAL" property="bigRepairTimes" />
+    <result column="ORI_PUR_PRICE" jdbcType="DECIMAL" property="oriPurPrice" />
+    <result column="OBTAIN_MODE" jdbcType="VARCHAR" property="obtainMode" />
+    <result column="EQUIPMENT_TYPE" jdbcType="VARCHAR" property="equipmentType" />
+    <result column="USE_TYPE" jdbcType="VARCHAR" property="useType" />
+    <result column="NEW_RATE" jdbcType="DECIMAL" property="newRate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, SECONDHAND_IND, EQUIPMENT_NAME, MODEL_TYPE, POWER, POWER_UNIT_CD, MANUFACTURE_DATE, 
+    UTILIZED_YEARS, PURPOSE, FUEL, EQUIP_MOUNT, EQUIP_MOUNT_UNIT_CD, MANUFACTURE, PRODUCE_AREA, 
+    ELI_LICENSE_IND, SAFE_CHECK_IND, FIRE_CHECK_IND, DEVICE_USE_LIFE, BIG_REPAIR_TIMES, 
+    ORI_PUR_PRICE, OBTAIN_MODE, EQUIPMENT_TYPE, USE_TYPE, NEW_RATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_MACHINE_EQUIPMENT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_MACHINE_EQUIPMENT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtMachineEquipment">
+    insert into TB_GRT_MACHINE_EQUIPMENT (GUARANTY_ID, SECONDHAND_IND, EQUIPMENT_NAME, 
+      MODEL_TYPE, POWER, POWER_UNIT_CD, 
+      MANUFACTURE_DATE, UTILIZED_YEARS, PURPOSE, 
+      FUEL, EQUIP_MOUNT, EQUIP_MOUNT_UNIT_CD, 
+      MANUFACTURE, PRODUCE_AREA, ELI_LICENSE_IND, 
+      SAFE_CHECK_IND, FIRE_CHECK_IND, DEVICE_USE_LIFE, 
+      BIG_REPAIR_TIMES, ORI_PUR_PRICE, OBTAIN_MODE, 
+      EQUIPMENT_TYPE, USE_TYPE, NEW_RATE
+      )
+    values (#{guarantyId,jdbcType=VARCHAR}, #{secondhandInd,jdbcType=VARCHAR}, #{equipmentName,jdbcType=VARCHAR}, 
+      #{modelType,jdbcType=VARCHAR}, #{power,jdbcType=DECIMAL}, #{powerUnitCd,jdbcType=VARCHAR}, 
+      #{manufactureDate,jdbcType=TIMESTAMP}, #{utilizedYears,jdbcType=DECIMAL}, #{purpose,jdbcType=VARCHAR}, 
+      #{fuel,jdbcType=VARCHAR}, #{equipMount,jdbcType=DECIMAL}, #{equipMountUnitCd,jdbcType=VARCHAR}, 
+      #{manufacture,jdbcType=VARCHAR}, #{produceArea,jdbcType=VARCHAR}, #{eliLicenseInd,jdbcType=CHAR}, 
+      #{safeCheckInd,jdbcType=CHAR}, #{fireCheckInd,jdbcType=CHAR}, #{deviceUseLife,jdbcType=DECIMAL}, 
+      #{bigRepairTimes,jdbcType=DECIMAL}, #{oriPurPrice,jdbcType=DECIMAL}, #{obtainMode,jdbcType=VARCHAR}, 
+      #{equipmentType,jdbcType=VARCHAR}, #{useType,jdbcType=VARCHAR}, #{newRate,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtMachineEquipment">
+    insert into TB_GRT_MACHINE_EQUIPMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="secondhandInd != null">
+        SECONDHAND_IND,
+      </if>
+      <if test="equipmentName != null">
+        EQUIPMENT_NAME,
+      </if>
+      <if test="modelType != null">
+        MODEL_TYPE,
+      </if>
+      <if test="power != null">
+        POWER,
+      </if>
+      <if test="powerUnitCd != null">
+        POWER_UNIT_CD,
+      </if>
+      <if test="manufactureDate != null">
+        MANUFACTURE_DATE,
+      </if>
+      <if test="utilizedYears != null">
+        UTILIZED_YEARS,
+      </if>
+      <if test="purpose != null">
+        PURPOSE,
+      </if>
+      <if test="fuel != null">
+        FUEL,
+      </if>
+      <if test="equipMount != null">
+        EQUIP_MOUNT,
+      </if>
+      <if test="equipMountUnitCd != null">
+        EQUIP_MOUNT_UNIT_CD,
+      </if>
+      <if test="manufacture != null">
+        MANUFACTURE,
+      </if>
+      <if test="produceArea != null">
+        PRODUCE_AREA,
+      </if>
+      <if test="eliLicenseInd != null">
+        ELI_LICENSE_IND,
+      </if>
+      <if test="safeCheckInd != null">
+        SAFE_CHECK_IND,
+      </if>
+      <if test="fireCheckInd != null">
+        FIRE_CHECK_IND,
+      </if>
+      <if test="deviceUseLife != null">
+        DEVICE_USE_LIFE,
+      </if>
+      <if test="bigRepairTimes != null">
+        BIG_REPAIR_TIMES,
+      </if>
+      <if test="oriPurPrice != null">
+        ORI_PUR_PRICE,
+      </if>
+      <if test="obtainMode != null">
+        OBTAIN_MODE,
+      </if>
+      <if test="equipmentType != null">
+        EQUIPMENT_TYPE,
+      </if>
+      <if test="useType != null">
+        USE_TYPE,
+      </if>
+      <if test="newRate != null">
+        NEW_RATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="secondhandInd != null">
+        #{secondhandInd,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentName != null">
+        #{equipmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelType != null">
+        #{modelType,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null">
+        #{power,jdbcType=DECIMAL},
+      </if>
+      <if test="powerUnitCd != null">
+        #{powerUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="manufactureDate != null">
+        #{manufactureDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utilizedYears != null">
+        #{utilizedYears,jdbcType=DECIMAL},
+      </if>
+      <if test="purpose != null">
+        #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null">
+        #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="equipMount != null">
+        #{equipMount,jdbcType=DECIMAL},
+      </if>
+      <if test="equipMountUnitCd != null">
+        #{equipMountUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null">
+        #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="produceArea != null">
+        #{produceArea,jdbcType=VARCHAR},
+      </if>
+      <if test="eliLicenseInd != null">
+        #{eliLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="safeCheckInd != null">
+        #{safeCheckInd,jdbcType=CHAR},
+      </if>
+      <if test="fireCheckInd != null">
+        #{fireCheckInd,jdbcType=CHAR},
+      </if>
+      <if test="deviceUseLife != null">
+        #{deviceUseLife,jdbcType=DECIMAL},
+      </if>
+      <if test="bigRepairTimes != null">
+        #{bigRepairTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="oriPurPrice != null">
+        #{oriPurPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="obtainMode != null">
+        #{obtainMode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentType != null">
+        #{equipmentType,jdbcType=VARCHAR},
+      </if>
+      <if test="useType != null">
+        #{useType,jdbcType=VARCHAR},
+      </if>
+      <if test="newRate != null">
+        #{newRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtMachineEquipment">
+    update TB_GRT_MACHINE_EQUIPMENT
+    <set>
+      <if test="secondhandInd != null">
+        SECONDHAND_IND = #{secondhandInd,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentName != null">
+        EQUIPMENT_NAME = #{equipmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelType != null">
+        MODEL_TYPE = #{modelType,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null">
+        POWER = #{power,jdbcType=DECIMAL},
+      </if>
+      <if test="powerUnitCd != null">
+        POWER_UNIT_CD = #{powerUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="manufactureDate != null">
+        MANUFACTURE_DATE = #{manufactureDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="utilizedYears != null">
+        UTILIZED_YEARS = #{utilizedYears,jdbcType=DECIMAL},
+      </if>
+      <if test="purpose != null">
+        PURPOSE = #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null">
+        FUEL = #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="equipMount != null">
+        EQUIP_MOUNT = #{equipMount,jdbcType=DECIMAL},
+      </if>
+      <if test="equipMountUnitCd != null">
+        EQUIP_MOUNT_UNIT_CD = #{equipMountUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null">
+        MANUFACTURE = #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="produceArea != null">
+        PRODUCE_AREA = #{produceArea,jdbcType=VARCHAR},
+      </if>
+      <if test="eliLicenseInd != null">
+        ELI_LICENSE_IND = #{eliLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="safeCheckInd != null">
+        SAFE_CHECK_IND = #{safeCheckInd,jdbcType=CHAR},
+      </if>
+      <if test="fireCheckInd != null">
+        FIRE_CHECK_IND = #{fireCheckInd,jdbcType=CHAR},
+      </if>
+      <if test="deviceUseLife != null">
+        DEVICE_USE_LIFE = #{deviceUseLife,jdbcType=DECIMAL},
+      </if>
+      <if test="bigRepairTimes != null">
+        BIG_REPAIR_TIMES = #{bigRepairTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="oriPurPrice != null">
+        ORI_PUR_PRICE = #{oriPurPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="obtainMode != null">
+        OBTAIN_MODE = #{obtainMode,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentType != null">
+        EQUIPMENT_TYPE = #{equipmentType,jdbcType=VARCHAR},
+      </if>
+      <if test="useType != null">
+        USE_TYPE = #{useType,jdbcType=VARCHAR},
+      </if>
+      <if test="newRate != null">
+        NEW_RATE = #{newRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtMachineEquipment">
+    update TB_GRT_MACHINE_EQUIPMENT
+    set SECONDHAND_IND = #{secondhandInd,jdbcType=VARCHAR},
+      EQUIPMENT_NAME = #{equipmentName,jdbcType=VARCHAR},
+      MODEL_TYPE = #{modelType,jdbcType=VARCHAR},
+      POWER = #{power,jdbcType=DECIMAL},
+      POWER_UNIT_CD = #{powerUnitCd,jdbcType=VARCHAR},
+      MANUFACTURE_DATE = #{manufactureDate,jdbcType=TIMESTAMP},
+      UTILIZED_YEARS = #{utilizedYears,jdbcType=DECIMAL},
+      PURPOSE = #{purpose,jdbcType=VARCHAR},
+      FUEL = #{fuel,jdbcType=VARCHAR},
+      EQUIP_MOUNT = #{equipMount,jdbcType=DECIMAL},
+      EQUIP_MOUNT_UNIT_CD = #{equipMountUnitCd,jdbcType=VARCHAR},
+      MANUFACTURE = #{manufacture,jdbcType=VARCHAR},
+      PRODUCE_AREA = #{produceArea,jdbcType=VARCHAR},
+      ELI_LICENSE_IND = #{eliLicenseInd,jdbcType=CHAR},
+      SAFE_CHECK_IND = #{safeCheckInd,jdbcType=CHAR},
+      FIRE_CHECK_IND = #{fireCheckInd,jdbcType=CHAR},
+      DEVICE_USE_LIFE = #{deviceUseLife,jdbcType=DECIMAL},
+      BIG_REPAIR_TIMES = #{bigRepairTimes,jdbcType=DECIMAL},
+      ORI_PUR_PRICE = #{oriPurPrice,jdbcType=DECIMAL},
+      OBTAIN_MODE = #{obtainMode,jdbcType=VARCHAR},
+      EQUIPMENT_TYPE = #{equipmentType,jdbcType=VARCHAR},
+      USE_TYPE = #{useType,jdbcType=VARCHAR},
+      NEW_RATE = #{newRate,jdbcType=DECIMAL}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

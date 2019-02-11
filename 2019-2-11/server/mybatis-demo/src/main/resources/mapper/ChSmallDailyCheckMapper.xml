@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.afterloan.afterloancheck.mapper.ChSmallDailyCheckMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.afterloan.afterloancheck.resultbean.BorListResult">
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ENGLISH_NAME" jdbcType="TIMESTAMP" property="englishName" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="SUMMARY_ID" jdbcType="DECIMAL" property="summaryId" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="SUMMARY_AMT" jdbcType="VARCHAR" property="summaryAmt" />
+    <result column="JJYE" jdbcType="TIMESTAMP" property="jjye" />
+    <result column="BEGIN_DATE" jdbcType="VARCHAR" property="beginDate" />
+    <result column="END_DATE" jdbcType="VARCHAR" property="endDate" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CHECK_STATUS" jdbcType="TIMESTAMP" property="checkStatus" />
+    <result column="FINISH_DES" jdbcType="VARCHAR" property="finishDes" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="RECEIPT_NUM" jdbcType="VARCHAR" property="receiptNum" />
+  </resultMap>
+	<!-- 小贷中心日常检查  -->
+  <select id="selectSmallDailyCheck" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+            SELECT 
+                   P.PARTY_ID,
+			       P.PARTY_NUM,
+			       P.PARTY_TYPE_CD,
+			       P.PARTY_NAME,
+			       NP.CERT_TYPE,
+			       NP.CERT_NUM,
+			       NP.MIDDLE_CODE,
+			       B.SUMMARY_AMT,
+			       B.JJYE
+			  FROM TB_CSM_PARTY P,
+			       TB_CSM_NATURAL_PERSON NP,
+			       TB_CSM_MANAGEMENT_TEAM MT,
+			       TB_LOAN_SUMMARY B
+			 WHERE 1 = 1
+			   AND NP.PARTY_ID = P.PARTY_ID
+			   AND P.PARTY_ID = MT.PARTY_ID
+			   AND P.PARTY_ID = B.PARTY_ID
+			   AND MT.USER_PLACING_CD = '01'
+			   AND MT.USER_NUM = '200555'
+			   AND MT.ORG_NUM = '0700'
+		 <if test=" partyName != null and partyName != '' ">
+ 		 	and P.PARTY_NAME like '%'||#{partyName,jdbcType=VARCHAR}||'%'
+ 		 </if>
+ 		 <if test=" certType != null and certType != '' ">
+ 		 	and NP.CERT_TYPE = #{certType,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" certNum != null and certNum != '' ">
+ 		 	and NP.CERT_NUM = #{certNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" middleCode != null and middleCode != '' ">
+ 		 	and NP.MIDDLE_CODE = #{middleCode,jdbcType=VARCHAR}
+ 		 </if>
+ 		
+		<!-- 	   and not exists (select 1 from tb_aft_normal_check nc where nc.party_id = p.party_id)
+ 		 <isNotNull property="partyName">  and p.party_name like '%$partyName$%' </isNotNull>
+
+ 		 <isNotNull property="certType">  and np.cert_type = '$certType$' </isNotNull>
+ 		 <isNotNull property="certNum">  and np.cert_num = '$certNum$' </isNotNull>
+ 		 <isNotNull property="middleCode">  and np.middle_code = '$middleCode$' </isNotNull>
+ 		 由提醒列表传来的数据
+ 		 <isNotNull property="partyId">  and p.party_Id = '$partyId$' </isNotNull> -->
+  </select>
+ 
+ 
+ 
+</mapper>

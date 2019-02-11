@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConGdzcdkPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConGdzcdkPo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="PREPAYMENT_PENALTY" jdbcType="VARCHAR" property="prepaymentPenalty" />
+    <result column="MAKEUP_WAY" jdbcType="VARCHAR" property="makeupWay" />
+    <result column="PAY_WAY" jdbcType="VARCHAR" property="payWay" />
+    <result column="PAY_DEPEND1" jdbcType="VARCHAR" property="payDepend1" />
+    <result column="PAY_DEPEND2" jdbcType="VARCHAR" property="payDepend2" />
+    <result column="PAY_DEPEND3" jdbcType="VARCHAR" property="payDepend3" />
+    <result column="LEAST_PREPAY_AMOUNT" jdbcType="DECIMAL" property="leastPrepayAmount" />
+    <result column="PREPAY_JS" jdbcType="DECIMAL" property="prepayJs" />
+    <result column="OTHER_CONDITION1" jdbcType="VARCHAR" property="otherCondition1" />
+    <result column="OTHER_CONDITION2" jdbcType="VARCHAR" property="otherCondition2" />
+    <result column="OTHER_CONDITION3" jdbcType="VARCHAR" property="otherCondition3" />
+    <result column="OTHER_CONDITION4" jdbcType="VARCHAR" property="otherCondition4" />
+    <result column="THIRD_LOAN_AMOUNT" jdbcType="DECIMAL" property="thirdLoanAmount" />
+    <result column="TOTAL_DEBT" jdbcType="DECIMAL" property="totalDebt" />
+    <result column="THIRD_BORROW_AMOUNT" jdbcType="DECIMAL" property="thirdBorrowAmount" />
+    <result column="THIRD_GUARANT" jdbcType="DECIMAL" property="thirdGuarant" />
+    <result column="STOCK_CHANGE" jdbcType="DECIMAL" property="stockChange" />
+    <result column="FINANCIAL_LIMIT" jdbcType="DECIMAL" property="financialLimit" />
+    <result column="WYBCBL" jdbcType="DECIMAL" property="wybcbl" />
+    <result column="JMRHSX" jdbcType="VARCHAR" property="jmrhsx" />
+    <result column="SFJMRHSX" jdbcType="VARCHAR" property="sfjmrhsx" />
+    <result column="ZH_PJCL_YQ" jdbcType="VARCHAR" property="zhPjclYq" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, CONTRACT_ID, PREPAYMENT_PENALTY, 
+    MAKEUP_WAY, PAY_WAY, PAY_DEPEND1, PAY_DEPEND2, PAY_DEPEND3, LEAST_PREPAY_AMOUNT, 
+    PREPAY_JS, OTHER_CONDITION1, OTHER_CONDITION2, OTHER_CONDITION3, OTHER_CONDITION4, 
+    THIRD_LOAN_AMOUNT, TOTAL_DEBT, THIRD_BORROW_AMOUNT, THIRD_GUARANT, STOCK_CHANGE, 
+    FINANCIAL_LIMIT, WYBCBL, JMRHSX, SFJMRHSX, ZH_PJCL_YQ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_GDZCDK
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_GDZCDK
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConGdzcdkPo">
+    insert into CRMS.TB_CON_GDZCDK (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, CONTRACT_ID, PREPAYMENT_PENALTY, 
+      MAKEUP_WAY, PAY_WAY, PAY_DEPEND1, 
+      PAY_DEPEND2, PAY_DEPEND3, LEAST_PREPAY_AMOUNT, 
+      PREPAY_JS, OTHER_CONDITION1, OTHER_CONDITION2, 
+      OTHER_CONDITION3, OTHER_CONDITION4, THIRD_LOAN_AMOUNT, 
+      TOTAL_DEBT, THIRD_BORROW_AMOUNT, THIRD_GUARANT, 
+      STOCK_CHANGE, FINANCIAL_LIMIT, WYBCBL, 
+      JMRHSX, SFJMRHSX, ZH_PJCL_YQ
+      )
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{prepaymentPenalty,jdbcType=VARCHAR}, 
+      #{makeupWay,jdbcType=VARCHAR}, #{payWay,jdbcType=VARCHAR}, #{payDepend1,jdbcType=VARCHAR}, 
+      #{payDepend2,jdbcType=VARCHAR}, #{payDepend3,jdbcType=VARCHAR}, #{leastPrepayAmount,jdbcType=DECIMAL}, 
+      #{prepayJs,jdbcType=DECIMAL}, #{otherCondition1,jdbcType=VARCHAR}, #{otherCondition2,jdbcType=VARCHAR}, 
+      #{otherCondition3,jdbcType=VARCHAR}, #{otherCondition4,jdbcType=VARCHAR}, #{thirdLoanAmount,jdbcType=DECIMAL}, 
+      #{totalDebt,jdbcType=DECIMAL}, #{thirdBorrowAmount,jdbcType=DECIMAL}, #{thirdGuarant,jdbcType=DECIMAL}, 
+      #{stockChange,jdbcType=DECIMAL}, #{financialLimit,jdbcType=DECIMAL}, #{wybcbl,jdbcType=DECIMAL}, 
+      #{jmrhsx,jdbcType=VARCHAR}, #{sfjmrhsx,jdbcType=VARCHAR}, #{zhPjclYq,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConGdzcdkPo">
+    insert into CRMS.TB_CON_GDZCDK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="prepaymentPenalty != null">
+        PREPAYMENT_PENALTY,
+      </if>
+      <if test="makeupWay != null">
+        MAKEUP_WAY,
+      </if>
+      <if test="payWay != null">
+        PAY_WAY,
+      </if>
+      <if test="payDepend1 != null">
+        PAY_DEPEND1,
+      </if>
+      <if test="payDepend2 != null">
+        PAY_DEPEND2,
+      </if>
+      <if test="payDepend3 != null">
+        PAY_DEPEND3,
+      </if>
+      <if test="leastPrepayAmount != null">
+        LEAST_PREPAY_AMOUNT,
+      </if>
+      <if test="prepayJs != null">
+        PREPAY_JS,
+      </if>
+      <if test="otherCondition1 != null">
+        OTHER_CONDITION1,
+      </if>
+      <if test="otherCondition2 != null">
+        OTHER_CONDITION2,
+      </if>
+      <if test="otherCondition3 != null">
+        OTHER_CONDITION3,
+      </if>
+      <if test="otherCondition4 != null">
+        OTHER_CONDITION4,
+      </if>
+      <if test="thirdLoanAmount != null">
+        THIRD_LOAN_AMOUNT,
+      </if>
+      <if test="totalDebt != null">
+        TOTAL_DEBT,
+      </if>
+      <if test="thirdBorrowAmount != null">
+        THIRD_BORROW_AMOUNT,
+      </if>
+      <if test="thirdGuarant != null">
+        THIRD_GUARANT,
+      </if>
+      <if test="stockChange != null">
+        STOCK_CHANGE,
+      </if>
+      <if test="financialLimit != null">
+        FINANCIAL_LIMIT,
+      </if>
+      <if test="wybcbl != null">
+        WYBCBL,
+      </if>
+      <if test="jmrhsx != null">
+        JMRHSX,
+      </if>
+      <if test="sfjmrhsx != null">
+        SFJMRHSX,
+      </if>
+      <if test="zhPjclYq != null">
+        ZH_PJCL_YQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="prepaymentPenalty != null">
+        #{prepaymentPenalty,jdbcType=VARCHAR},
+      </if>
+      <if test="makeupWay != null">
+        #{makeupWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null">
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend1 != null">
+        #{payDepend1,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend2 != null">
+        #{payDepend2,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend3 != null">
+        #{payDepend3,jdbcType=VARCHAR},
+      </if>
+      <if test="leastPrepayAmount != null">
+        #{leastPrepayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="prepayJs != null">
+        #{prepayJs,jdbcType=DECIMAL},
+      </if>
+      <if test="otherCondition1 != null">
+        #{otherCondition1,jdbcType=VARCHAR},
+      </if>
+      <if test="otherCondition2 != null">
+        #{otherCondition2,jdbcType=VARCHAR},
+      </if>
+      <if test="otherCondition3 != null">
+        #{otherCondition3,jdbcType=VARCHAR},
+      </if>
+      <if test="otherCondition4 != null">
+        #{otherCondition4,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdLoanAmount != null">
+        #{thirdLoanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDebt != null">
+        #{totalDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdBorrowAmount != null">
+        #{thirdBorrowAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdGuarant != null">
+        #{thirdGuarant,jdbcType=DECIMAL},
+      </if>
+      <if test="stockChange != null">
+        #{stockChange,jdbcType=DECIMAL},
+      </if>
+      <if test="financialLimit != null">
+        #{financialLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="wybcbl != null">
+        #{wybcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="jmrhsx != null">
+        #{jmrhsx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfjmrhsx != null">
+        #{sfjmrhsx,jdbcType=VARCHAR},
+      </if>
+      <if test="zhPjclYq != null">
+        #{zhPjclYq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConGdzcdkPo">
+    update CRMS.TB_CON_GDZCDK
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="prepaymentPenalty != null">
+        PREPAYMENT_PENALTY = #{prepaymentPenalty,jdbcType=VARCHAR},
+      </if>
+      <if test="makeupWay != null">
+        MAKEUP_WAY = #{makeupWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null">
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend1 != null">
+        PAY_DEPEND1 = #{payDepend1,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend2 != null">
+        PAY_DEPEND2 = #{payDepend2,jdbcType=VARCHAR},
+      </if>
+      <if test="payDepend3 != null">
+        PAY_DEPEND3 = #{payDepend3,jdbcType=VARCHAR},
+      </if>
+      <if test="leastPrepayAmount != null">
+        LEAST_PREPAY_AMOUNT = #{leastPrepayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="prepayJs != null">
+        PREPAY_JS = #{prepayJs,jdbcType=DECIMAL},
+      </if>
+      <if test="otherCondition1 != null">
+        OTHER_CONDITION1 = #{otherCondition1,jdbcType=VARCHAR},
+      </if>
+      <if test="otherCondition2 != null">
+        OTHER_CONDITION2 = #{otherCondition2,jdbcType=VARCHAR},
+      </if>
+      <if test="otherCondition3 != null">
+        OTHER_CONDITION3 = #{otherCondition3,jdbcType=VARCHAR},
+      </if>
+      <if test="otherCondition4 != null">
+        OTHER_CONDITION4 = #{otherCondition4,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdLoanAmount != null">
+        THIRD_LOAN_AMOUNT = #{thirdLoanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDebt != null">
+        TOTAL_DEBT = #{totalDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdBorrowAmount != null">
+        THIRD_BORROW_AMOUNT = #{thirdBorrowAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="thirdGuarant != null">
+        THIRD_GUARANT = #{thirdGuarant,jdbcType=DECIMAL},
+      </if>
+      <if test="stockChange != null">
+        STOCK_CHANGE = #{stockChange,jdbcType=DECIMAL},
+      </if>
+      <if test="financialLimit != null">
+        FINANCIAL_LIMIT = #{financialLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="wybcbl != null">
+        WYBCBL = #{wybcbl,jdbcType=DECIMAL},
+      </if>
+      <if test="jmrhsx != null">
+        JMRHSX = #{jmrhsx,jdbcType=VARCHAR},
+      </if>
+      <if test="sfjmrhsx != null">
+        SFJMRHSX = #{sfjmrhsx,jdbcType=VARCHAR},
+      </if>
+      <if test="zhPjclYq != null">
+        ZH_PJCL_YQ = #{zhPjclYq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConGdzcdkPo">
+    update CRMS.TB_CON_GDZCDK
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      PREPAYMENT_PENALTY = #{prepaymentPenalty,jdbcType=VARCHAR},
+      MAKEUP_WAY = #{makeupWay,jdbcType=VARCHAR},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      PAY_DEPEND1 = #{payDepend1,jdbcType=VARCHAR},
+      PAY_DEPEND2 = #{payDepend2,jdbcType=VARCHAR},
+      PAY_DEPEND3 = #{payDepend3,jdbcType=VARCHAR},
+      LEAST_PREPAY_AMOUNT = #{leastPrepayAmount,jdbcType=DECIMAL},
+      PREPAY_JS = #{prepayJs,jdbcType=DECIMAL},
+      OTHER_CONDITION1 = #{otherCondition1,jdbcType=VARCHAR},
+      OTHER_CONDITION2 = #{otherCondition2,jdbcType=VARCHAR},
+      OTHER_CONDITION3 = #{otherCondition3,jdbcType=VARCHAR},
+      OTHER_CONDITION4 = #{otherCondition4,jdbcType=VARCHAR},
+      THIRD_LOAN_AMOUNT = #{thirdLoanAmount,jdbcType=DECIMAL},
+      TOTAL_DEBT = #{totalDebt,jdbcType=DECIMAL},
+      THIRD_BORROW_AMOUNT = #{thirdBorrowAmount,jdbcType=DECIMAL},
+      THIRD_GUARANT = #{thirdGuarant,jdbcType=DECIMAL},
+      STOCK_CHANGE = #{stockChange,jdbcType=DECIMAL},
+      FINANCIAL_LIMIT = #{financialLimit,jdbcType=DECIMAL},
+      WYBCBL = #{wybcbl,jdbcType=DECIMAL},
+      JMRHSX = #{jmrhsx,jdbcType=VARCHAR},
+      SFJMRHSX = #{sfjmrhsx,jdbcType=VARCHAR},
+      ZH_PJCL_YQ = #{zhPjclYq,jdbcType=VARCHAR}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>
