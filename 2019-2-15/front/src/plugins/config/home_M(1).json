@@ -1,0 +1,2230 @@
+{
+	"view": {
+		"$": {
+			"name": "homeView",
+			"title": "主页",
+			"controller": "HomeViewController",
+			"layoutSpacing": "0",
+			"isneedToolbar": "0",
+			"isneedSearch": true
+		},
+		"widget": [
+			{
+				"$": {
+					"name": "navigation_1i",
+					"type": "navigation"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "height",
+							"value": "315"
+						}
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "image_text_14",
+					"type": "image_text"
+				},
+				"config": [
+					{
+						"_": "<div><br/></div><p><img+src=\"/photo/template_imgag_text/21/20151110/3c82de95-a6b1-45f5-992c-10292714a01d.PNG\"+_src=\"/photo/template_imgag_text/21/20151110/3c82de95-a6b1-45f5-992c-10292714a01d.PNG\"/></p>",
+						"$": {
+							"key": "content"
+						}
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "image_text_1Y",
+					"type": "image_text"
+				},
+				"config": [
+					{
+						"_": "<p><img+src=\"/photo/template_imgag_text/21/20151110/4b877737-df63-4671-ac1e-7a84066cb000.PNG\"+_src=\"/photo/template_imgag_text/21/20151110/4b877737-df63-4671-ac1e-7a84066cb000.PNG\"+style=\"font-size:+16px;+line-height:+1.5em;\"/><br/></p>",
+						"$": {
+							"key": "content"
+						}
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "image_text_1j",
+					"type": "image_text"
+				},
+				"config": [
+					{
+						"_": "<p><img+src=\"/photo/template_imgag_text/21/20151110/f4084eee-b08c-4611-8d20-10ffb9135937.PNG\"+_src=\"/photo/template_imgag_text/21/20151110/f4084eee-b08c-4611-8d20-10ffb9135937.PNG\"+style=\"font-size:+16px;+line-height:+1.5em;\"/><br/></p>",
+						"$": {
+							"key": "content"
+						}
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_jp",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "1",
+									"url": "/photo/template/21/1b8f0b1d-73c4-47a0-8287-c0a701e27bf7.png",
+									"link": "/detail?goods_id=6324",
+									"isExternal": false,
+									"configNum": 100,
+									"isNotFile": true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_x8",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "1",
+									"porder": "315",
+									"link": "/detail?goods_id=6320",
+									"height": "315",
+									"url": "/photo/return/21/20160307/lm_8868a9de-7b74-42a9-9142-a010c35e87d4.PNG",
+									"configNum": 50,
+									"isNotFile": true,
+									"name": "请上传图片"
+								}
+							},
+							{
+								"$": {
+									"id": "uploader0",
+									"url": "/photo/return/21/20160307/lm_8fd1a5b7-ce01-4ee8-aacb-e16556770415.PNG",
+									"link": "/detail?goods_id=6323",
+									"porder": "",
+									"configNum": 50,
+									"isNotFile": true,
+									"name": "请上传图片"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_yP",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "1",
+									"porder": "315",
+									"link": "/detail?goods_id=6321",
+									"height": "315",
+									"url": "/photo/return/21/20160307/lm_212acb4d-9849-4306-b92c-29e06d821a06.PNG",
+									"configNum": 50,
+									"isNotFile": true,
+									"name": "请上传图片"
+								}
+							},
+							{
+								"$": {
+									"id": "uploader0",
+									"url": "/photo/return/21/20160307/lm_8baa43ec-b400-44dd-8b58-59b5d0718ef6.PNG",
+									"link": "/detail?goods_id=6322",
+									"porder": "",
+									"configNum": 50,
+									"isNotFile": true,
+									"name": "请上传图片"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_74",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "1",
+									"url": "/photo/template/21/93c8817a-1259-40bf-8a14-81ef9ce1e210.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_Dz",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/5f5cc0d2-4288-4e70-a3ea-2d547685489a.png",
+									"link": "/detail?goods_id=658",
+									"isExternal": false,
+									"configNum": 100,
+									"isNotFile": true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_Wd",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/88cfd9be-3926-47b7-ae6e-5628067520b0.png",
+									"link": "/list?tag_id=382",
+									"isExternal": false,
+									"configNum": 33
+								}
+							},
+							{
+								"$": {
+									"id": 1,
+									"url": "/photo/template/21/b48f8af6-d416-49c9-aebb-5004957c70fa.png",
+									"link": "/list?tag_id=383",
+									"isExternal": false,
+									"configNum": 33
+								}
+							},
+							{
+								"$": {
+									"id": 2,
+									"url": "/photo/template/21/632f5108-240e-4ad2-a5db-7fdeb2a9d09a.png",
+									"link": "/list?tag_id=384",
+									"isExternal": false,
+									"configNum": 33
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_De",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/5f40c00b-d518-4e3d-b305-c39963b701f7.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1460448625810",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 5,
+									"nY": 5,
+									"id": "0_0_5_5",
+									"isNotFile": true,
+									"url": "/photo/template/21/0280ef49-4686-4844-8304-88beef329047.png",
+									"href": "https://www.taobao.com/"
+								}
+							},
+							{
+								"$": {
+									"startX": 5,
+									"startY": 0,
+									"nX": 3,
+									"nY": 5,
+									"id": "5_0_3_5",
+									"isNotFile": true,
+									"url": "/photo/template/21/22c3ab83-3b93-4764-a9ab-fae52fa59d71.png",
+									"href": "https://www.baidu.com/"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1460448695612",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 5,
+									"nY": 5,
+									"id": "0_0_5_5",
+									"isNotFile": true,
+									"url": "/photo/template/21/0a87caf7-4222-4a24-9237-a95d10154e77.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 5,
+									"startY": 0,
+									"nX": 3,
+									"nY": 3,
+									"id": "5_0_3_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/68be9fcf-98a9-488c-b5da-fd33e0b372fe.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 5,
+									"startY": 3,
+									"nX": 3,
+									"nY": 5,
+									"id": "5_3_3_5",
+									"isNotFile": true,
+									"url": "/photo/template/21/f49e9972-b34b-4f58-8f41-bd324bde715e.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 0,
+									"startY": 5,
+									"nX": 5,
+									"nY": 3,
+									"id": "0_5_5_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/5a22a24c-e184-4a3a-a545-1273900af36f.png",
+									"href": ""
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1460450381357",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 4,
+									"nY": 3,
+									"id": "0_0_4_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/43a67087-6981-4a5d-8596-416901d224cd.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 4,
+									"startY": 0,
+									"nX": 4,
+									"nY": 7,
+									"id": "4_0_4_7",
+									"isNotFile": true,
+									"url": "/photo/template/21/65c82bf3-209f-4d5c-9524-94a472f7ed32.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 0,
+									"startY": 3,
+									"nX": 4,
+									"nY": 4,
+									"id": "0_3_4_4",
+									"isNotFile": true,
+									"url": "/photo/template/21/9cfe5c70-e5f8-4383-b423-a2daf75eab3d.png",
+									"href": ""
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1460450664156",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 4,
+									"nY": 7,
+									"id": "0_0_4_7",
+									"isNotFile": true,
+									"url": "/photo/template/21/9346a27c-dd0e-44f1-b3b9-a34827ec2ad9.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 4,
+									"startY": 1,
+									"nX": 4,
+									"nY": 7,
+									"id": "4_1_4_7",
+									"isNotFile": true,
+									"url": "/photo/template/21/a7735e95-cba3-4d9b-8a46-b553b308df23.png",
+									"href": ""
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460450781304",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/633255ef-62d7-46e1-be9f-776bc7a035c9.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460450969269",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/6e1b006e-aee0-44fd-84d8-43a8072ba1f8.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460509668263",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/ec9f9da9-a2ee-462e-b181-91a0901ea289.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 33
+								}
+							},
+							{
+								"$": {
+									"id": 1,
+									"url": "/photo/template/21/38ebbc2e-efcd-4bc9-a9ba-ce0b9d8ef07a.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 33
+								}
+							},
+							{
+								"$": {
+									"id": 2,
+									"url": "/photo/template/21/6c2082ad-69bc-42e7-91af-93d88d445f7a.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 33
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460509750313",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/212c783c-3863-4ee4-9f4e-27fb091b77aa.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100,
+									"isNotFile": true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460509794338",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/46f4e7c7-bed8-460f-ac7f-a3489642d567.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460511652024",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": 2,
+									"url": "/photo/template/21/15de1fa5-15e6-4d26-b804-f8a24d4cd577.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 33,
+									"isNotFile": true
+								}
+							},
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/921c7c2c-6020-4fda-bd6c-ccad2c858d4e.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 33
+								}
+							},
+							{
+								"$": {
+									"id": 1,
+									"url": "/photo/template/21/eaf6efe1-ea7e-4673-ba86-d55e29b5f22d.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 33,
+									"isNotFile": true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_slide_1460527401631",
+					"type": "main_slide"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "data"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "slide1",
+									"cMemo": "",
+									"iOrder": "",
+									"cRedirectUrl": "",
+									"cAdImageUrl": "/photo/template/21/99155772-bde1-4285-bc4a-f984876d7c17.png",
+									"iHeight": "",
+									"isNotFile": true,
+									"url": "/photo/template/21/99155772-bde1-4285-bc4a-f984876d7c17.png",
+									"isExternal": false
+								}
+							},
+							{
+								"$": {
+									"id": 1460527421463,
+									"cAdImageUrl": "/photo/template/21/03f5ee3b-6fe7-420f-a51f-cf6f9998ad62.png",
+									"iOrder": "",
+									"cRedirectUrl": "",
+									"isExternal": false,
+									"isNotFile": true,
+									"url": "/photo/template/21/03f5ee3b-6fe7-420f-a51f-cf6f9998ad62.png"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_slide_1460700732530",
+					"type": "main_slide"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "data"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "slide1",
+									"cMemo": "",
+									"iOrder": "",
+									"cRedirectUrl": "\tchannel/channel22",
+									"cAdImageUrl": "/photo/template/21/222bdb0f-9486-46c8-877a-88ed14ab3297.png",
+									"iHeight": "",
+									"isNotFile": true,
+									"url": "/photo/template/21/222bdb0f-9486-46c8-877a-88ed14ab3297.png",
+									"isExternal": false
+								}
+							},
+							{
+								"$": {
+									"id": 1460700816747,
+									"cAdImageUrl": "/photo/template/21/9a045777-f617-42f9-8bc8-84683f8c55e7.jpg",
+									"iOrder": "",
+									"cRedirectUrl": "",
+									"isExternal": false,
+									"isNotFile": true,
+									"url": "/photo/template/21/9a045777-f617-42f9-8bc8-84683f8c55e7.jpg"
+								}
+							},
+							{
+								"$": {
+									"id": 1460700891629,
+									"cAdImageUrl": "/photo/template/21/ce167264-4c8b-467f-bfb9-e9e02f92ed4f.png",
+									"iOrder": "",
+									"cRedirectUrl": "",
+									"isExternal": false,
+									"isNotFile": true,
+									"url": "/photo/template/21/ce167264-4c8b-467f-bfb9-e9e02f92ed4f.png"
+								}
+							},
+							{
+								"$": {
+									"id": 1460700838103,
+									"cAdImageUrl": "/photo/template/21/9c6d9368-90a4-4d99-af26-53f664f978a1.png",
+									"iOrder": "4",
+									"cRedirectUrl": "",
+									"isExternal": false,
+									"isNotFile": true,
+									"url": "/photo/template/21/9c6d9368-90a4-4d99-af26-53f664f978a1.png"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460701297921",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/16a6d6d1-3692-4428-9d60-e51657107508.png",
+									"link": "channel/channel22",
+									"isExternal": false,
+									"configNum": 100,
+									"isNotFile": true,
+									"selectedNum": "4"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460701377779",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/c5ef9445-738a-4004-8a10-c30fa42b5f40.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100,
+									"isNotFile": true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1460701426748",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 4,
+									"nY": 4,
+									"id": "0_0_4_4",
+									"isNotFile": true,
+									"url": "/photo/template/21/a5ed13d6-ee24-4ae1-b53a-e7e588afec5a.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 4,
+									"startY": 4,
+									"nX": 4,
+									"nY": 4,
+									"id": "4_4_4_4",
+									"isNotFile": true,
+									"url": "/photo/template/21/efdc00c5-f9b1-4934-8d53-f1c8b716cb30.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 0,
+									"startY": 4,
+									"nX": 4,
+									"nY": 4,
+									"id": "0_4_4_4",
+									"isNotFile": true,
+									"url": "/photo/template/21/04c1dcfd-4b92-4d33-bed4-3dea5e507f64.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 4,
+									"startY": 0,
+									"nX": 4,
+									"nY": 4,
+									"id": "4_0_4_4",
+									"isNotFile": true,
+									"url": "/photo/template/21/6fdc33df-b99f-4b41-a227-b942a297942c.png",
+									"href": ""
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460703235744",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/719d028b-7689-4728-ba43-b2b40856ac44.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460703227103",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/3f5bed31-8c08-4716-9eb9-9ce48571c7a0.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460703425652",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/16c2186a-c204-4154-80e4-b2ff264d4f20.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460703527551",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/27c0e4e1-9137-413b-bfcd-02010abfdb84.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100,
+									"isNotFile": true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460704441474",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/9fa2c86a-5b47-485c-9aba-3902245264a3.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100,
+									"isNotFile": true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1460704473251",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 3,
+									"nY": 4,
+									"id": "0_0_3_4",
+									"isNotFile": true,
+									"url": "/photo/template/21/8dcd36fd-2a66-47be-b00a-f21726668b0f.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 3,
+									"startY": 0,
+									"nX": 3,
+									"nY": 2,
+									"id": "3_0_3_2",
+									"isNotFile": true,
+									"url": "/photo/template/21/ad2233d8-e2ac-4d60-a06d-a28b9dd4ba6e.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 6,
+									"startY": 0,
+									"nX": 2,
+									"nY": 2,
+									"id": "6_0_2_2",
+									"isNotFile": true,
+									"url": "/photo/template/21/36d281e2-d7db-4b91-8a36-ce4d5ecb536c.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 3,
+									"startY": 2,
+									"nX": 2,
+									"nY": 2,
+									"id": "3_2_2_2",
+									"isNotFile": true,
+									"url": "/photo/template/21/78914cbf-3c6d-4013-a8da-994cc9975e9d.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 5,
+									"startY": 2,
+									"nX": 3,
+									"nY": 2,
+									"id": "5_2_3_2",
+									"isNotFile": true,
+									"url": "/photo/template/21/4f1a6e4d-696b-4050-b6e7-4677360226bf.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"isNotFile": true,
+									"url": "/photo/template/21/11a61ce7-9e24-431b-bd74-9ec3cdced8f8.png",
+									"href": "",
+									"id": "undefined_undefined_undefined_undefined"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460707537299",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/774edcb2-6052-4e81-8d9d-177b592720cf.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100,
+									"isNotFile": true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1460707750160",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 4,
+									"nY": 3,
+									"id": "0_0_4_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/85a21aa8-1c6c-437c-a742-36a68818c9e0.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 4,
+									"startY": 0,
+									"nX": 4,
+									"nY": 3,
+									"id": "4_0_4_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/a9d3f3d9-65ec-489d-b6aa-20801c7892bf.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 0,
+									"startY": 3,
+									"nX": 4,
+									"nY": 3,
+									"id": "0_3_4_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/2046bb11-1690-4eb2-a08c-372ec2af3749.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 4,
+									"startY": 3,
+									"nX": 4,
+									"nY": 3,
+									"id": "4_3_4_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/89444b80-b56c-43cf-87c3-917d967fc065.png",
+									"href": ""
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1460707937452",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 3,
+									"nY": 3,
+									"id": "0_0_3_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/cf82f6a7-f736-49c7-8ac5-faa36057a839.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 3,
+									"startY": 0,
+									"nX": 3,
+									"nY": 3,
+									"id": "3_0_3_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/0b6629e8-3a69-4b5b-8537-108fbea28c66.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 6,
+									"startY": 0,
+									"nX": 2,
+									"nY": 3,
+									"id": "6_0_2_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/ee1b3069-2639-454d-ac97-ea0803b12d40.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 0,
+									"startY": 3,
+									"nX": 2,
+									"nY": 3,
+									"id": "0_3_2_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/c8848e6c-e2ce-42ff-a330-72bbd66b422e.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 2,
+									"startY": 3,
+									"nX": 3,
+									"nY": 3,
+									"id": "2_3_3_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/f76492a3-b45a-4734-bdc8-500487ba9af9.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 5,
+									"startY": 3,
+									"nX": 3,
+									"nY": 3,
+									"id": "5_3_3_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/af2074d1-cc92-4bfa-bc9a-4809f5cf537d.png",
+									"href": ""
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460708343022",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/abad5ad8-00ec-4993-b217-f77ee75480aa.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100,
+									"isNotFile": true
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1460945734654",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 3,
+									"nY": 5,
+									"id": "0_0_3_5",
+									"isNotFile": true,
+									"url": "/photo/template/21/b32b63a3-a922-47d1-ab09-14bc1e3b3697.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 5,
+									"startY": 3,
+									"nX": 3,
+									"nY": 5,
+									"id": "5_3_3_5",
+									"isNotFile": true,
+									"url": "/photo/template/21/77a62075-7cb8-4742-ae6e-9d2cf278da54.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 5,
+									"startY": 0,
+									"nX": 3,
+									"nY": 3,
+									"id": "5_0_3_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/a90f9d66-9998-4ad2-b48a-0beb3ad98416.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 0,
+									"startY": 5,
+									"nX": 3,
+									"nY": 3,
+									"id": "0_5_3_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/ed74827a-78b8-4372-a9c1-1a5db910ffa1.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 3,
+									"startY": 0,
+									"nX": 2,
+									"nY": 2,
+									"id": "3_0_2_2",
+									"isNotFile": true,
+									"url": "/photo/template/21/524aed74-c0bf-4fdb-94ea-ad5f6d9e0b5f.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 3,
+									"startY": 2,
+									"nX": 2,
+									"nY": 2,
+									"id": "3_2_2_2",
+									"isNotFile": true,
+									"url": "/photo/template/21/87a66838-7e20-4fa1-b078-cbce188c507d.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 3,
+									"startY": 4,
+									"nX": 2,
+									"nY": 2,
+									"id": "3_4_2_2",
+									"isNotFile": true,
+									"url": "/photo/template/21/f66a9e8d-6f1e-4fb7-a477-53018f9a63df.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 3,
+									"startY": 6,
+									"nX": 2,
+									"nY": 2,
+									"id": "3_6_2_2",
+									"isNotFile": true,
+									"url": "/photo/template/21/3688108d-e67d-431d-aaa7-c28f92845483.png",
+									"href": ""
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "magic_box_1460945983715",
+					"type": "magic_box"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "imagedata"
+						},
+						"item": [
+							{
+								"$": {
+									"startX": 0,
+									"startY": 0,
+									"nX": 5,
+									"nY": 5,
+									"id": "0_0_5_5",
+									"isNotFile": true,
+									"url": "/photo/template/21/3feed904-fe48-4fb0-aa11-15a903eb8a7e.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 0,
+									"startY": 5,
+									"nX": 3,
+									"nY": 3,
+									"id": "0_5_3_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/e384c390-80df-47a9-a8b3-2e30db799679.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 3,
+									"startY": 5,
+									"nX": 3,
+									"nY": 3,
+									"id": "3_5_3_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/fb093633-5367-43cc-9d8e-eca21ad8909a.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"startX": 6,
+									"startY": 5,
+									"nX": 2,
+									"nY": 3,
+									"id": "6_5_2_3",
+									"isNotFile": true,
+									"url": "/photo/template/21/8b50812e-8813-4eb1-8390-c9102554351c.png",
+									"href": ""
+								}
+							},
+							{
+								"$": {
+									"isNotFile": true,
+									"url": "/photo/template/21/097db2be-80b3-4823-81f3-4d428f713adf.png",
+									"href": "",
+									"id": "undefined_undefined_undefined_undefined"
+								}
+							},
+							{
+								"$": {
+									"startX": 5,
+									"startY": 0,
+									"nX": 3,
+									"nY": 5,
+									"id": "5_0_3_5",
+									"isNotFile": true,
+									"url": "/photo/template/21/ce18c414-bfef-49ac-bbbe-9c5b9d116c9b.png",
+									"href": ""
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "main_pictures_1460948599699",
+					"type": "main_pictures"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "photos"
+						},
+						"item": [
+							{
+								"$": {
+									"id": "0",
+									"url": "/photo/template/21/83f7c2b5-268a-41f1-b171-d2edb18743a4.png",
+									"link": "",
+									"isExternal": false,
+									"configNum": 100
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "district",
+					"type": "district"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "styleType",
+							"value": "3"
+						}
+					},
+					{
+						"$": {
+							"key": "enbaleFunction",
+							"value": false
+						}
+					},
+					{
+						"$": {
+							"key": "firststartup",
+							"value": true
+						}
+					},
+					{
+						"$": {
+							"key": "customdefined"
+						},
+						"item": [
+							{
+								"$": {
+									"areatitle": "门店",
+									"displayNum": "4"
+								}
+							},
+							{
+								"$": {
+									"districttitle": "门店"
+								}
+							},
+							{
+								"$": {
+									"imgurl": "",
+									"provinceCmp": "",
+									"cityCmp": "",
+									"districttip": "门店"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "index_goods_1511948904469",
+					"type": "index_goods"
+				},
+				"config": [
+					{
+						"type": "index_goods",
+						".tab_page:eq(0)": [
+							{
+								"$": {
+									"key": "advertisement"
+								}
+							},
+							{
+								"$": {
+									"key": "choosegoods",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "colspan"
+								}
+							},
+							{
+								"$": {
+									"key": "rows",
+									"value": "1"
+								}
+							},
+							{
+								"$": {
+									"key": "cols",
+									"value": "4"
+								}
+							},
+							{
+								"$": {
+									"key": "texttag",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "show_market",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "show_star",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "isCurrentClass"
+								}
+							},
+							{
+								"$": {
+									"key": "displayMode",
+									"value": "bigphotolist"
+								}
+							},
+							{
+								"$": {
+									"key": "showname",
+									"value": "initial"
+								}
+							},
+							{
+								"$": {
+									"key": "showprice",
+									"value": "initial"
+								}
+							},
+							{
+								"$": {
+									"key": "showsale",
+									"value": "initial"
+								}
+							},
+							{
+								"$": {
+									"key": "goodclass",
+									"value": "general"
+								}
+							},
+							{
+								"$": {
+									"key": "filter"
+								},
+								"item": [
+									{
+										"$": {
+											"fieldname": "type_id",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "saleprice",
+											"valuefrom": "",
+											"valueto": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "keyword",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "categoryid",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "brand_id",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "tag_id",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "salepoints",
+											"valuefrom": "0",
+											"valueto": "1000"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "timeCondition",
+											"valuefrom": "4"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "timeUnit1",
+											"valuefrom": "1"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "timeUnit2",
+											"valuefrom": "1"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "groupSuccType"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "time1",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "time2",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "goodStyle",
+											"valuefrom": "0"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "showStyle",
+											"valuefrom": "0"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "moreLink",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "area_id",
+											"valuefrom": ""
+										}
+									}
+								]
+							},
+							{
+								"$": {
+									"key": "order"
+								},
+								"item": [
+									{
+										"$": {
+											"fieldname": "iOrder",
+											"direction": "asc"
+										}
+									}
+								]
+							},
+							{
+								"$": {
+									"key": "goodStyle",
+									"value": "0"
+								}
+							},
+							{
+								"$": {
+									"key": "groupselect",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "tabPageName"
+								}
+							},
+							{
+								"$": {
+									"key": "id",
+									"value": "0"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "index_goods_1512022119950",
+					"type": "index_goods"
+				},
+				"config": [
+					{
+						"type": "index_goods",
+						".tab_page:eq(0)": [
+							{
+								"$": {
+									"key": "advertisement"
+								}
+							},
+							{
+								"$": {
+									"key": "choosegoods",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "colspan"
+								}
+							},
+							{
+								"$": {
+									"key": "rows",
+									"value": "1"
+								}
+							},
+							{
+								"$": {
+									"key": "cols",
+									"value": "4"
+								}
+							},
+							{
+								"$": {
+									"key": "texttag",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "show_market",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "show_star",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "isCurrentClass"
+								}
+							},
+							{
+								"$": {
+									"key": "displayMode",
+									"value": "smallphotolist"
+								}
+							},
+							{
+								"$": {
+									"key": "showname",
+									"value": "initial"
+								}
+							},
+							{
+								"$": {
+									"key": "showprice",
+									"value": "initial"
+								}
+							},
+							{
+								"$": {
+									"key": "showsale",
+									"value": "initial"
+								}
+							},
+							{
+								"$": {
+									"key": "goodclass",
+									"value": "general"
+								}
+							},
+							{
+								"$": {
+									"key": "filter"
+								},
+								"item": [
+									{
+										"$": {
+											"fieldname": "goods_id",
+											"valuefrom": "18046,18045,18044,18043,18042,18041"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "selectBy",
+											"valuefrom": "all"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "filterValue",
+											"valuefrom": "all"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "productkeyword",
+											"valuefrom": ""
+										}
+									}
+								]
+							},
+							{
+								"$": {
+									"key": "order"
+								},
+								"item": [
+									{
+										"$": {
+											"fieldname": "iOrder",
+											"direction": "desc"
+										}
+									}
+								]
+							},
+							{
+								"$": {
+									"key": "goodStyle",
+									"value": "0"
+								}
+							},
+							{
+								"$": {
+									"key": "groupselect",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "tabPageName"
+								}
+							},
+							{
+								"$": {
+									"key": "id",
+									"value": "0"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "coupon_1512543306984",
+					"type": "coupon"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "height",
+							"value": "55"
+						}
+					},
+					{
+						"$": {
+							"key": "data"
+						},
+						"item": [
+							{
+								"$": {
+									"id": 1512543365946,
+									"couponid": 1522,
+									"title": "测试发券专用01（勿用、勿动、勿改）",
+									"backtype": "0",
+									"startAmount": 0,
+									"reduceAmount": 10,
+									"expireStartDate": "2017-12-01",
+									"expireEndDate": "2017-12-21",
+									"background": "#e69138",
+									"iorder": "",
+									"itype": false,
+									"iOrder": "",
+									"configNum": 100,
+									"height": "55"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"$": {
+					"name": "index_goods_1513222326491",
+					"type": "index_goods"
+				},
+				"config": [
+					{
+						"type": "index_goods",
+						".tab_page:eq(0)": [
+							{
+								"$": {
+									"key": "advertisement"
+								}
+							},
+							{
+								"$": {
+									"key": "choosegoods",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "colspan"
+								}
+							},
+							{
+								"$": {
+									"key": "rows",
+									"value": "1"
+								}
+							},
+							{
+								"$": {
+									"key": "cols",
+									"value": "14"
+								}
+							},
+							{
+								"$": {
+									"key": "texttag",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "show_market",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "show_star",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "isCurrentClass"
+								}
+							},
+							{
+								"$": {
+									"key": "displayMode",
+									"value": "smallphoto"
+								}
+							},
+							{
+								"$": {
+									"key": "showname",
+									"value": "initial"
+								}
+							},
+							{
+								"$": {
+									"key": "showprice",
+									"value": "initial"
+								}
+							},
+							{
+								"$": {
+									"key": "showsale",
+									"value": "initial"
+								}
+							},
+							{
+								"$": {
+									"key": "goodclass",
+									"value": "points"
+								}
+							},
+							{
+								"$": {
+									"key": "filter"
+								},
+								"item": [
+									{
+										"$": {
+											"fieldname": "type_id",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "saleprice",
+											"valuefrom": "",
+											"valueto": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "keyword",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "categoryid",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "brand_id",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "tag_id",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "salepoints",
+											"valuefrom": "",
+											"valueto": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "timeCondition",
+											"valuefrom": "4"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "timeUnit1",
+											"valuefrom": "1"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "timeUnit2",
+											"valuefrom": "1"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "groupSuccType"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "time1",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "time2",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "goodStyle",
+											"valuefrom": "0"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "showStyle",
+											"valuefrom": "0"
+										}
+									},
+									{
+										"$": {
+											"fieldname": "moreLink",
+											"valuefrom": ""
+										}
+									},
+									{
+										"$": {
+											"fieldname": "area_id",
+											"valuefrom": ""
+										}
+									}
+								]
+							},
+							{
+								"$": {
+									"key": "order"
+								},
+								"item": [
+									{
+										"$": {
+											"fieldname": "iOrder",
+											"direction": "asc"
+										}
+									}
+								]
+							},
+							{
+								"$": {
+									"key": "goodStyle",
+									"value": "0"
+								}
+							},
+							{
+								"$": {
+									"key": "groupselect",
+									"value": ""
+								}
+							},
+							{
+								"$": {
+									"key": "tabPageName"
+								}
+							},
+							{
+								"$": {
+									"key": "id",
+									"value": "0"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtCollateralMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtCollateral">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="COLLATERAL_TYPE_CD" jdbcType="VARCHAR" property="collateralTypeCd" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+    <result column="COLLATERAL_NUM" jdbcType="VARCHAR" property="collateralNum" />
+    <result column="COLLATERAL_STATUS_CD" jdbcType="VARCHAR" property="collateralStatusCd" />
+    <result column="COLLATERAL_NAME" jdbcType="VARCHAR" property="collateralName" />
+    <result column="BOOK_VALUE" jdbcType="DECIMAL" property="bookValue" />
+    <result column="BOOK_NET_VALUE" jdbcType="DECIMAL" property="bookNetValue" />
+    <result column="MARKET_VALUE" jdbcType="DECIMAL" property="marketValue" />
+    <result column="EVAL_VALUE_CURRENCY_CD" jdbcType="VARCHAR" property="evalValueCurrencyCd" />
+    <result column="EVAL_VALUE" jdbcType="DECIMAL" property="evalValue" />
+    <result column="CCB_ASSESSED_VALUE_CURRENCY_CD" jdbcType="VARCHAR" property="ccbAssessedValueCurrencyCd" />
+    <result column="CCB_ASSESSED_VALUE" jdbcType="DECIMAL" property="ccbAssessedValue" />
+    <result column="ACQUIRE_WAY_OF_COLLATERAL_CD" jdbcType="VARCHAR" property="acquireWayOfCollateralCd" />
+    <result column="COMMON_ASSETS_IND" jdbcType="CHAR" property="commonAssetsInd" />
+    <result column="COMMON_OWNER_NAME" jdbcType="VARCHAR" property="commonOwnerName" />
+    <result column="WAY_GUARANTY_EFFECTIVE_CD" jdbcType="VARCHAR" property="wayGuarantyEffectiveCd" />
+    <result column="COLLATERAL_SETUP_IND" jdbcType="CHAR" property="collateralSetupInd" />
+    <result column="SET_GUARANTY_AMT_IN_CCB" jdbcType="DECIMAL" property="setGuarantyAmtInCcb" />
+    <result column="RENTED_LICENSED_IND" jdbcType="CHAR" property="rentedLicensedInd" />
+    <result column="RENTER_NAME" jdbcType="VARCHAR" property="renterName" />
+    <result column="SET_GUARANTY_AMT_OUT_CCB" jdbcType="DECIMAL" property="setGuarantyAmtOutCcb" />
+    <result column="LEASE_EXPIRATION_DATE" jdbcType="TIMESTAMP" property="leaseExpirationDate" />
+    <result column="CUSTOMER_NUM" jdbcType="VARCHAR" property="customerNum" />
+    <result column="SUBMITTING_DATE" jdbcType="TIMESTAMP" property="submittingDate" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="COLLATERAL_DISPOSE" jdbcType="VARCHAR" property="collateralDispose" />
+    <result column="OTHER_NOTE" jdbcType="VARCHAR" property="otherNote" />
+    <result column="SET_GUARANTY_AMT" jdbcType="DECIMAL" property="setGuarantyAmt" />
+    <result column="PROVINCE_CD" jdbcType="VARCHAR" property="provinceCd" />
+    <result column="CITY_CD" jdbcType="VARCHAR" property="cityCd" />
+    <result column="DISTRICT_CD" jdbcType="VARCHAR" property="districtCd" />
+    <result column="STREET_ADDRESS" jdbcType="VARCHAR" property="streetAddress" />
+    <result column="NATIONALITY_CD" jdbcType="VARCHAR" property="nationalityCd" />
+    <result column="MERCHANDISE_TYPE" jdbcType="VARCHAR" property="merchandiseType" />
+    <result column="RIGHT_CERT_TYPE_CD" jdbcType="VARCHAR" property="rightCertTypeCd" />
+    <result column="RIGHT_CERTIFICATION_NUM" jdbcType="VARCHAR" property="rightCertificationNum" />
+    <result column="SYS_UPDATE_TIME" jdbcType="TIMESTAMP" property="sysUpdateTime" />
+    <result column="COLLATERAL_CATALOG_CD" jdbcType="VARCHAR" property="collateralCatalogCd" />
+    <result column="DATA_CREAT_USER_NUM" jdbcType="VARCHAR" property="dataCreatUserNum" />
+    <result column="DATA_CREATOR_ORG_CD" jdbcType="CHAR" property="dataCreatorOrgCd" />
+    <result column="LAST_UPDATE_USER_NUM" jdbcType="VARCHAR" property="lastUpdateUserNum" />
+    <result column="LAST_UPDATE_ORG_CD" jdbcType="CHAR" property="lastUpdateOrgCd" />
+    <result column="TAKEOVER_IND" jdbcType="CHAR" property="takeoverInd" />
+    <result column="ALL_PLEDGE_IND" jdbcType="CHAR" property="allPledgeInd" />
+    <result column="FORBID_CIRCULATE_IND" jdbcType="CHAR" property="forbidCirculateInd" />
+    <result column="NATIONALISATION_IND" jdbcType="CHAR" property="nationalisationInd" />
+    <result column="PROPERTY_DISPUTED_IND" jdbcType="CHAR" property="propertyDisputedInd" />
+    <result column="INVALID_IND" jdbcType="CHAR" property="invalidInd" />
+    <result column="BLEMISH_IND" jdbcType="CHAR" property="blemishInd" />
+    <result column="MP_TYPE" jdbcType="CHAR" property="mpType" />
+    <result column="BLEMISH_NOTE" jdbcType="VARCHAR" property="blemishNote" />
+    <result column="HANDOVER_DATE" jdbcType="TIMESTAMP" property="handoverDate" />
+    <result column="K75ZCMS" jdbcType="VARCHAR" property="k75zcms" />
+    <result column="KEEP_SPECIAL_REQ" jdbcType="VARCHAR" property="keepSpecialReq" />
+    <result column="VALUATOR" jdbcType="VARCHAR" property="valuator" />
+    <result column="EVALUATE_DATE" jdbcType="TIMESTAMP" property="evaluateDate" />
+    <result column="ASSET_STATUS" jdbcType="VARCHAR" property="assetStatus" />
+    <result column="CUSTOMER_TYPE" jdbcType="VARCHAR" property="customerType" />
+    <result column="SETTLED_ASSETS_IND" jdbcType="CHAR" property="settledAssetsInd" />
+    <result column="TIME_MARK" jdbcType="TIMESTAMP" property="timeMark" />
+    <result column="IMPAWN_AMOUNT" jdbcType="DECIMAL" property="impawnAmount" />
+    <result column="IMPAWN_AMOUNT_CD" jdbcType="VARCHAR" property="impawnAmountCd" />
+    <result column="IMPAWN_EXPIRE_DATE" jdbcType="TIMESTAMP" property="impawnExpireDate" />
+    <result column="IMPAWN_GET_DATE" jdbcType="TIMESTAMP" property="impawnGetDate" />
+    <result column="REGISTER_IND" jdbcType="CHAR" property="registerInd" />
+    <result column="COLLATERAL_CARD_DEPARTMENT" jdbcType="VARCHAR" property="collateralCardDepartment" />
+    <result column="IS_STATE_ASSET" jdbcType="CHAR" property="isStateAsset" />
+    <result column="IS_STATE_SECTOR_APPROVAL" jdbcType="CHAR" property="isStateSectorApproval" />
+    <result column="IS_MORTGAGE_ALL_ASSET" jdbcType="CHAR" property="isMortgageAllAsset" />
+    <result column="SETTLED_SOURCE" jdbcType="CHAR" property="settledSource" />
+    <result column="ASSETS_SOURCE_BACKUP" jdbcType="CHAR" property="assetsSourceBackup" />
+    <result column="COLLATERAL_SEQ" jdbcType="VARCHAR" property="collateralSeq" />
+  </resultMap>
+  <resultMap type="com.cdgit.loan.securitymanagement.bean.NaturalPersonCollateral" id="naturalPersonCollateralMap">
+  	<result column="COLLATERAL_TYPE_CD" jdbcType="VARCHAR" property="collateralTypeCd" />
+  	<result column="CUSTOMER_TYPE" jdbcType="VARCHAR" property="customerType" />
+  	<result column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+  	<result column="COLLATERAL_NAME" jdbcType="VARCHAR" property="collateralName" />
+  	<result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+  	<result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+  	<result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+  	<result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+  	<result column="IS_POTENTIAL_CUST" jdbcType="VARCHAR" property="isPotentialCust" />
+  	<result column="IS_FARMER" jdbcType="VARCHAR" property="isFarmer" />
+  	<result column="PHONE_NUMBER" jdbcType="VARCHAR" property="phoneNumber" />
+  	<result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+  	<result column="IS_THIRD_CUST" jdbcType="VARCHAR" property="isThirdCust" />
+  	<result column="COLLATERAL_NUM" jdbcType="VARCHAR" property="collateralNum" />
+  	<result column="MARKET_VALUE" jdbcType="DECIMAL" property="marketValue" />
+  	<result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+  	<result column="TIME_MARK" jdbcType="TIMESTAMP" property="timeMark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, COLLATERAL_TYPE_CD, PARTY_TYPE_CD, COLLATERAL_NUM, COLLATERAL_STATUS_CD, 
+    COLLATERAL_NAME, BOOK_VALUE, BOOK_NET_VALUE, MARKET_VALUE, EVAL_VALUE_CURRENCY_CD, 
+    EVAL_VALUE, CCB_ASSESSED_VALUE_CURRENCY_CD, CCB_ASSESSED_VALUE, ACQUIRE_WAY_OF_COLLATERAL_CD, 
+    COMMON_ASSETS_IND, COMMON_OWNER_NAME, WAY_GUARANTY_EFFECTIVE_CD, COLLATERAL_SETUP_IND, 
+    SET_GUARANTY_AMT_IN_CCB, RENTED_LICENSED_IND, RENTER_NAME, SET_GUARANTY_AMT_OUT_CCB, 
+    LEASE_EXPIRATION_DATE, CUSTOMER_NUM, SUBMITTING_DATE, CURRENCY_CD, COLLATERAL_DISPOSE, 
+    OTHER_NOTE, SET_GUARANTY_AMT, PROVINCE_CD, CITY_CD, DISTRICT_CD, STREET_ADDRESS, 
+    NATIONALITY_CD, MERCHANDISE_TYPE, RIGHT_CERT_TYPE_CD, RIGHT_CERTIFICATION_NUM, SYS_UPDATE_TIME, 
+    COLLATERAL_CATALOG_CD, DATA_CREAT_USER_NUM, DATA_CREATOR_ORG_CD, LAST_UPDATE_USER_NUM, 
+    LAST_UPDATE_ORG_CD, TAKEOVER_IND, ALL_PLEDGE_IND, FORBID_CIRCULATE_IND, NATIONALISATION_IND, 
+    PROPERTY_DISPUTED_IND, INVALID_IND, BLEMISH_IND, MP_TYPE, BLEMISH_NOTE, HANDOVER_DATE, 
+    K75ZCMS, KEEP_SPECIAL_REQ, VALUATOR, EVALUATE_DATE, ASSET_STATUS, CUSTOMER_TYPE, 
+    SETTLED_ASSETS_IND, TIME_MARK, IMPAWN_AMOUNT, IMPAWN_AMOUNT_CD, IMPAWN_EXPIRE_DATE, 
+    IMPAWN_GET_DATE, REGISTER_IND, COLLATERAL_CARD_DEPARTMENT, IS_STATE_ASSET, IS_STATE_SECTOR_APPROVAL, 
+    IS_MORTGAGE_ALL_ASSET, SETTLED_SOURCE, ASSETS_SOURCE_BACKUP, COLLATERAL_SEQ
+  </sql>
+  <select id="selectNaturalPersonCollateralAll"  resultMap="naturalPersonCollateralMap">
+	SELECT 
+	  T2.PARTY_NUM, T2.PARTY_NAME, T3.CERT_TYPE,T3.CERT_NUM,T2.IS_POTENTIAL_CUST,T2.PARTY_ID
+	  ,T3.IS_FARMER,T3.PHONE_NUMBER,T3.IS_THIRD_CUST,
+		T4.GUARANTY_ID,T4.COLLATERAL_NAME,T4.COLLATERAL_TYPE_CD,T4.CUSTOMER_TYPE,T4.COLLATERAL_NUM,
+		T4.MARKET_VALUE,T4.CURRENCY_CD,T4.TIME_MARK
+		FROM TB_GRT_COLLATERAL T4
+  		JOIN TB_CSM_PARTY T2 ON T4.CUSTOMER_NUM = T2.PARTY_NUM
+		JOIN TB_CSM_NATURAL_PERSON T3 ON T2.PARTY_ID = T3.PARTY_ID
+	  	WHERE T2.PARTY_TYPE_CD = '02'  
+	    AND T4.DATA_CREAT_USER_NUM = '200555'
+	  	AND T4.DATA_CREATOR_ORG_CD = '0700'
+<!--        <if test="userNum != null and userNum != '' "> 
+       AND T4.DATA_CREAT_USER_NUM = #{userNum}
+     </if>
+      <if test="orgNum != null and orgNum != '' "> 
+       AND T4.DATA_CREATOR_ORG_CD = #{orgNum}
+     </if>  -->
+     <if test="customerType != null and customerType != '' "> 
+       AND T4.CUSTOMER_TYPE = #{customerType}
+     </if>
+	 <if test="partyNum != null and partyNum != '' "> 
+       AND T2.PARTY_NUM LIKE  '%'||#{partyNum}||'%'
+     </if>
+      <if test="partyName != null and partyName != '' "> 
+       AND T2.PARTY_NAME LIKE  '%'||#{partyName}||'%'
+     </if>
+      <if test="certType != null and certType != '' "> 
+       AND T3.CERT_TYPE LIKE  '%'||#{certType}||'%'
+     </if>
+      <if test="certNum != null and certNum != '' "> 
+       AND T3.CERT_NUM LIKE  '%'||#{certNum}||'%'
+     </if>
+      <if test="collateralTypeCd != null and collateralTypeCd != '' "> 
+       AND T4.COLLATERAL_TYPE_CD =  #{collateralTypeCd}
+     </if>
+     <if test="collateralName != null and collateralName != '' "> 
+       AND T4.COLLATERAL_NAME LIKE  '%'||#{collateralName}||'%'
+     </if>
+      <if test="isFarmer != null and isFarmer != '' "> 
+       AND T3.IS_FARMER LIKE  '%'||#{isFarmer}||'%'
+     </if>
+      <if test="phoneNumber != null and phoneNumber != '' "> 
+       AND T3.PHONE_NUMBER LIKE  '%'||#{phoneNumber}||'%'
+     </if>
+	 ORDER BY
+		<choose>
+			<when test="orderField !=null and orderField !='' ">
+				${orderField}
+			</when>
+			<otherwise>
+				T4.TIME_MARK
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="sort != null and sort !='' ">
+				${sort}
+			</when>
+			<otherwise>
+				desc
+			</otherwise>
+		</choose>
+  </select>
+  <select id="selectBandRelationResult" resultType="java.util.Map">
+  	select * from (select count(*) AS TOGETHER from TB_GRT_TOGETHER_CORRELATIVE where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}) r1,
+	(select count(*) AS INSURANCE from TB_GRT_COLLATERAL_INSURANCE where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}) r2,
+	(select count(*) AS REGISTRATION from TB_GRT_COLLATERAL_REGISTRATION where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}) r3,
+	(select count(*) AS NOTARIZATION from TB_GRT_COLLATERAL_NOTARIZATION where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}) r4,
+	(select count(*) AS ACCIDENT from TB_GRT_COLLATERAL_ACCIDENT where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}) r5
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_COLLATERAL
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_COLLATERAL
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateral">
+    insert into TB_GRT_COLLATERAL (GUARANTY_ID, COLLATERAL_TYPE_CD, PARTY_TYPE_CD, 
+      COLLATERAL_NUM, COLLATERAL_STATUS_CD, COLLATERAL_NAME, 
+      BOOK_VALUE, BOOK_NET_VALUE, MARKET_VALUE, 
+      EVAL_VALUE_CURRENCY_CD, EVAL_VALUE, CCB_ASSESSED_VALUE_CURRENCY_CD, 
+      CCB_ASSESSED_VALUE, ACQUIRE_WAY_OF_COLLATERAL_CD, 
+      COMMON_ASSETS_IND, COMMON_OWNER_NAME, WAY_GUARANTY_EFFECTIVE_CD, 
+      COLLATERAL_SETUP_IND, SET_GUARANTY_AMT_IN_CCB, RENTED_LICENSED_IND, 
+      RENTER_NAME, SET_GUARANTY_AMT_OUT_CCB, LEASE_EXPIRATION_DATE, 
+      CUSTOMER_NUM, SUBMITTING_DATE, CURRENCY_CD, 
+      COLLATERAL_DISPOSE, OTHER_NOTE, SET_GUARANTY_AMT, 
+      PROVINCE_CD, CITY_CD, DISTRICT_CD, 
+      STREET_ADDRESS, NATIONALITY_CD, MERCHANDISE_TYPE, 
+      RIGHT_CERT_TYPE_CD, RIGHT_CERTIFICATION_NUM, 
+      SYS_UPDATE_TIME, COLLATERAL_CATALOG_CD, DATA_CREAT_USER_NUM, 
+      DATA_CREATOR_ORG_CD, LAST_UPDATE_USER_NUM, LAST_UPDATE_ORG_CD, 
+      TAKEOVER_IND, ALL_PLEDGE_IND, FORBID_CIRCULATE_IND, 
+      NATIONALISATION_IND, PROPERTY_DISPUTED_IND, INVALID_IND, 
+      BLEMISH_IND, MP_TYPE, BLEMISH_NOTE, 
+      HANDOVER_DATE, K75ZCMS, KEEP_SPECIAL_REQ, 
+      VALUATOR, EVALUATE_DATE, ASSET_STATUS, 
+      CUSTOMER_TYPE, SETTLED_ASSETS_IND, TIME_MARK, 
+      IMPAWN_AMOUNT, IMPAWN_AMOUNT_CD, IMPAWN_EXPIRE_DATE, 
+      IMPAWN_GET_DATE, REGISTER_IND, COLLATERAL_CARD_DEPARTMENT, 
+      IS_STATE_ASSET, IS_STATE_SECTOR_APPROVAL, IS_MORTGAGE_ALL_ASSET, 
+      SETTLED_SOURCE, ASSETS_SOURCE_BACKUP, COLLATERAL_SEQ
+      )
+    values (#{guarantyId,jdbcType=VARCHAR}, #{collateralTypeCd,jdbcType=VARCHAR}, #{partyTypeCd,jdbcType=VARCHAR}, 
+      #{collateralNum,jdbcType=VARCHAR}, #{collateralStatusCd,jdbcType=VARCHAR}, #{collateralName,jdbcType=VARCHAR}, 
+      #{bookValue,jdbcType=DECIMAL}, #{bookNetValue,jdbcType=DECIMAL}, #{marketValue,jdbcType=DECIMAL}, 
+      #{evalValueCurrencyCd,jdbcType=VARCHAR}, #{evalValue,jdbcType=DECIMAL}, #{ccbAssessedValueCurrencyCd,jdbcType=VARCHAR}, 
+      #{ccbAssessedValue,jdbcType=DECIMAL}, #{acquireWayOfCollateralCd,jdbcType=VARCHAR}, 
+      #{commonAssetsInd,jdbcType=CHAR}, #{commonOwnerName,jdbcType=VARCHAR}, #{wayGuarantyEffectiveCd,jdbcType=VARCHAR}, 
+      #{collateralSetupInd,jdbcType=CHAR}, #{setGuarantyAmtInCcb,jdbcType=DECIMAL}, #{rentedLicensedInd,jdbcType=CHAR}, 
+      #{renterName,jdbcType=VARCHAR}, #{setGuarantyAmtOutCcb,jdbcType=DECIMAL}, #{leaseExpirationDate,jdbcType=TIMESTAMP}, 
+      #{customerNum,jdbcType=VARCHAR}, #{submittingDate,jdbcType=TIMESTAMP}, #{currencyCd,jdbcType=VARCHAR}, 
+      #{collateralDispose,jdbcType=VARCHAR}, #{otherNote,jdbcType=VARCHAR}, #{setGuarantyAmt,jdbcType=DECIMAL}, 
+      #{provinceCd,jdbcType=VARCHAR}, #{cityCd,jdbcType=VARCHAR}, #{districtCd,jdbcType=VARCHAR}, 
+      #{streetAddress,jdbcType=VARCHAR}, #{nationalityCd,jdbcType=VARCHAR}, #{merchandiseType,jdbcType=VARCHAR}, 
+      #{rightCertTypeCd,jdbcType=VARCHAR}, #{rightCertificationNum,jdbcType=VARCHAR}, 
+      #{sysUpdateTime,jdbcType=TIMESTAMP}, #{collateralCatalogCd,jdbcType=VARCHAR}, #{dataCreatUserNum,jdbcType=VARCHAR}, 
+      #{dataCreatorOrgCd,jdbcType=CHAR}, #{lastUpdateUserNum,jdbcType=VARCHAR}, #{lastUpdateOrgCd,jdbcType=CHAR}, 
+      #{takeoverInd,jdbcType=CHAR}, #{allPledgeInd,jdbcType=CHAR}, #{forbidCirculateInd,jdbcType=CHAR}, 
+      #{nationalisationInd,jdbcType=CHAR}, #{propertyDisputedInd,jdbcType=CHAR}, #{invalidInd,jdbcType=CHAR}, 
+      #{blemishInd,jdbcType=CHAR}, #{mpType,jdbcType=CHAR}, #{blemishNote,jdbcType=VARCHAR}, 
+      #{handoverDate,jdbcType=TIMESTAMP}, #{k75zcms,jdbcType=VARCHAR}, #{keepSpecialReq,jdbcType=VARCHAR}, 
+      #{valuator,jdbcType=VARCHAR}, #{evaluateDate,jdbcType=TIMESTAMP}, #{assetStatus,jdbcType=VARCHAR}, 
+      #{customerType,jdbcType=VARCHAR}, #{settledAssetsInd,jdbcType=CHAR}, #{timeMark,jdbcType=TIMESTAMP}, 
+      #{impawnAmount,jdbcType=DECIMAL}, #{impawnAmountCd,jdbcType=VARCHAR}, #{impawnExpireDate,jdbcType=TIMESTAMP}, 
+      #{impawnGetDate,jdbcType=TIMESTAMP}, #{registerInd,jdbcType=CHAR}, #{collateralCardDepartment,jdbcType=VARCHAR}, 
+      #{isStateAsset,jdbcType=CHAR}, #{isStateSectorApproval,jdbcType=CHAR}, #{isMortgageAllAsset,jdbcType=CHAR}, 
+      #{settledSource,jdbcType=CHAR}, #{assetsSourceBackup,jdbcType=CHAR}, #{collateralSeq,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateral">
+    insert into TB_GRT_COLLATERAL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="collateralTypeCd != null">
+        COLLATERAL_TYPE_CD,
+      </if>
+      <if test="partyTypeCd != null">
+        PARTY_TYPE_CD,
+      </if>
+      <if test="collateralNum != null">
+        COLLATERAL_NUM,
+      </if>
+      <if test="collateralStatusCd != null">
+        COLLATERAL_STATUS_CD,
+      </if>
+      <if test="collateralName != null">
+        COLLATERAL_NAME,
+      </if>
+      <if test="bookValue != null">
+        BOOK_VALUE,
+      </if>
+      <if test="bookNetValue != null">
+        BOOK_NET_VALUE,
+      </if>
+      <if test="marketValue != null">
+        MARKET_VALUE,
+      </if>
+      <if test="evalValueCurrencyCd != null">
+        EVAL_VALUE_CURRENCY_CD,
+      </if>
+      <if test="evalValue != null">
+        EVAL_VALUE,
+      </if>
+      <if test="ccbAssessedValueCurrencyCd != null">
+        CCB_ASSESSED_VALUE_CURRENCY_CD,
+      </if>
+      <if test="ccbAssessedValue != null">
+        CCB_ASSESSED_VALUE,
+      </if>
+      <if test="acquireWayOfCollateralCd != null">
+        ACQUIRE_WAY_OF_COLLATERAL_CD,
+      </if>
+      <if test="commonAssetsInd != null">
+        COMMON_ASSETS_IND,
+      </if>
+      <if test="commonOwnerName != null">
+        COMMON_OWNER_NAME,
+      </if>
+      <if test="wayGuarantyEffectiveCd != null">
+        WAY_GUARANTY_EFFECTIVE_CD,
+      </if>
+      <if test="collateralSetupInd != null">
+        COLLATERAL_SETUP_IND,
+      </if>
+      <if test="setGuarantyAmtInCcb != null">
+        SET_GUARANTY_AMT_IN_CCB,
+      </if>
+      <if test="rentedLicensedInd != null">
+        RENTED_LICENSED_IND,
+      </if>
+      <if test="renterName != null">
+        RENTER_NAME,
+      </if>
+      <if test="setGuarantyAmtOutCcb != null">
+        SET_GUARANTY_AMT_OUT_CCB,
+      </if>
+      <if test="leaseExpirationDate != null">
+        LEASE_EXPIRATION_DATE,
+      </if>
+      <if test="customerNum != null">
+        CUSTOMER_NUM,
+      </if>
+      <if test="submittingDate != null">
+        SUBMITTING_DATE,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="collateralDispose != null">
+        COLLATERAL_DISPOSE,
+      </if>
+      <if test="otherNote != null">
+        OTHER_NOTE,
+      </if>
+      <if test="setGuarantyAmt != null">
+        SET_GUARANTY_AMT,
+      </if>
+      <if test="provinceCd != null">
+        PROVINCE_CD,
+      </if>
+      <if test="cityCd != null">
+        CITY_CD,
+      </if>
+      <if test="districtCd != null">
+        DISTRICT_CD,
+      </if>
+      <if test="streetAddress != null">
+        STREET_ADDRESS,
+      </if>
+      <if test="nationalityCd != null">
+        NATIONALITY_CD,
+      </if>
+      <if test="merchandiseType != null">
+        MERCHANDISE_TYPE,
+      </if>
+      <if test="rightCertTypeCd != null">
+        RIGHT_CERT_TYPE_CD,
+      </if>
+      <if test="rightCertificationNum != null">
+        RIGHT_CERTIFICATION_NUM,
+      </if>
+      <if test="sysUpdateTime != null">
+        SYS_UPDATE_TIME,
+      </if>
+      <if test="collateralCatalogCd != null">
+        COLLATERAL_CATALOG_CD,
+      </if>
+      <if test="dataCreatUserNum != null">
+        DATA_CREAT_USER_NUM,
+      </if>
+      <if test="dataCreatorOrgCd != null">
+        DATA_CREATOR_ORG_CD,
+      </if>
+      <if test="lastUpdateUserNum != null">
+        LAST_UPDATE_USER_NUM,
+      </if>
+      <if test="lastUpdateOrgCd != null">
+        LAST_UPDATE_ORG_CD,
+      </if>
+      <if test="takeoverInd != null">
+        TAKEOVER_IND,
+      </if>
+      <if test="allPledgeInd != null">
+        ALL_PLEDGE_IND,
+      </if>
+      <if test="forbidCirculateInd != null">
+        FORBID_CIRCULATE_IND,
+      </if>
+      <if test="nationalisationInd != null">
+        NATIONALISATION_IND,
+      </if>
+      <if test="propertyDisputedInd != null">
+        PROPERTY_DISPUTED_IND,
+      </if>
+      <if test="invalidInd != null">
+        INVALID_IND,
+      </if>
+      <if test="blemishInd != null">
+        BLEMISH_IND,
+      </if>
+      <if test="mpType != null">
+        MP_TYPE,
+      </if>
+      <if test="blemishNote != null">
+        BLEMISH_NOTE,
+      </if>
+      <if test="handoverDate != null">
+        HANDOVER_DATE,
+      </if>
+      <if test="k75zcms != null">
+        K75ZCMS,
+      </if>
+      <if test="keepSpecialReq != null">
+        KEEP_SPECIAL_REQ,
+      </if>
+      <if test="valuator != null">
+        VALUATOR,
+      </if>
+      <if test="evaluateDate != null">
+        EVALUATE_DATE,
+      </if>
+      <if test="assetStatus != null">
+        ASSET_STATUS,
+      </if>
+      <if test="customerType != null">
+        CUSTOMER_TYPE,
+      </if>
+      <if test="settledAssetsInd != null">
+        SETTLED_ASSETS_IND,
+      </if>
+      <if test="timeMark != null">
+        TIME_MARK,
+      </if>
+      <if test="impawnAmount != null">
+        IMPAWN_AMOUNT,
+      </if>
+      <if test="impawnAmountCd != null">
+        IMPAWN_AMOUNT_CD,
+      </if>
+      <if test="impawnExpireDate != null">
+        IMPAWN_EXPIRE_DATE,
+      </if>
+      <if test="impawnGetDate != null">
+        IMPAWN_GET_DATE,
+      </if>
+      <if test="registerInd != null">
+        REGISTER_IND,
+      </if>
+      <if test="collateralCardDepartment != null">
+        COLLATERAL_CARD_DEPARTMENT,
+      </if>
+      <if test="isStateAsset != null">
+        IS_STATE_ASSET,
+      </if>
+      <if test="isStateSectorApproval != null">
+        IS_STATE_SECTOR_APPROVAL,
+      </if>
+      <if test="isMortgageAllAsset != null">
+        IS_MORTGAGE_ALL_ASSET,
+      </if>
+      <if test="settledSource != null">
+        SETTLED_SOURCE,
+      </if>
+      <if test="assetsSourceBackup != null">
+        ASSETS_SOURCE_BACKUP,
+      </if>
+      <if test="collateralSeq != null">
+        COLLATERAL_SEQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralTypeCd != null">
+        #{collateralTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="partyTypeCd != null">
+        #{partyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralNum != null">
+        #{collateralNum,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralStatusCd != null">
+        #{collateralStatusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralName != null">
+        #{collateralName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookValue != null">
+        #{bookValue,jdbcType=DECIMAL},
+      </if>
+      <if test="bookNetValue != null">
+        #{bookNetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="marketValue != null">
+        #{marketValue,jdbcType=DECIMAL},
+      </if>
+      <if test="evalValueCurrencyCd != null">
+        #{evalValueCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="evalValue != null">
+        #{evalValue,jdbcType=DECIMAL},
+      </if>
+      <if test="ccbAssessedValueCurrencyCd != null">
+        #{ccbAssessedValueCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="ccbAssessedValue != null">
+        #{ccbAssessedValue,jdbcType=DECIMAL},
+      </if>
+      <if test="acquireWayOfCollateralCd != null">
+        #{acquireWayOfCollateralCd,jdbcType=VARCHAR},
+      </if>
+      <if test="commonAssetsInd != null">
+        #{commonAssetsInd,jdbcType=CHAR},
+      </if>
+      <if test="commonOwnerName != null">
+        #{commonOwnerName,jdbcType=VARCHAR},
+      </if>
+      <if test="wayGuarantyEffectiveCd != null">
+        #{wayGuarantyEffectiveCd,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralSetupInd != null">
+        #{collateralSetupInd,jdbcType=CHAR},
+      </if>
+      <if test="setGuarantyAmtInCcb != null">
+        #{setGuarantyAmtInCcb,jdbcType=DECIMAL},
+      </if>
+      <if test="rentedLicensedInd != null">
+        #{rentedLicensedInd,jdbcType=CHAR},
+      </if>
+      <if test="renterName != null">
+        #{renterName,jdbcType=VARCHAR},
+      </if>
+      <if test="setGuarantyAmtOutCcb != null">
+        #{setGuarantyAmtOutCcb,jdbcType=DECIMAL},
+      </if>
+      <if test="leaseExpirationDate != null">
+        #{leaseExpirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerNum != null">
+        #{customerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="submittingDate != null">
+        #{submittingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralDispose != null">
+        #{collateralDispose,jdbcType=VARCHAR},
+      </if>
+      <if test="otherNote != null">
+        #{otherNote,jdbcType=VARCHAR},
+      </if>
+      <if test="setGuarantyAmt != null">
+        #{setGuarantyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="provinceCd != null">
+        #{provinceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCd != null">
+        #{cityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCd != null">
+        #{districtCd,jdbcType=VARCHAR},
+      </if>
+      <if test="streetAddress != null">
+        #{streetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityCd != null">
+        #{nationalityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseType != null">
+        #{merchandiseType,jdbcType=VARCHAR},
+      </if>
+      <if test="rightCertTypeCd != null">
+        #{rightCertTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="rightCertificationNum != null">
+        #{rightCertificationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUpdateTime != null">
+        #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collateralCatalogCd != null">
+        #{collateralCatalogCd,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCreatUserNum != null">
+        #{dataCreatUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCreatorOrgCd != null">
+        #{dataCreatorOrgCd,jdbcType=CHAR},
+      </if>
+      <if test="lastUpdateUserNum != null">
+        #{lastUpdateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateOrgCd != null">
+        #{lastUpdateOrgCd,jdbcType=CHAR},
+      </if>
+      <if test="takeoverInd != null">
+        #{takeoverInd,jdbcType=CHAR},
+      </if>
+      <if test="allPledgeInd != null">
+        #{allPledgeInd,jdbcType=CHAR},
+      </if>
+      <if test="forbidCirculateInd != null">
+        #{forbidCirculateInd,jdbcType=CHAR},
+      </if>
+      <if test="nationalisationInd != null">
+        #{nationalisationInd,jdbcType=CHAR},
+      </if>
+      <if test="propertyDisputedInd != null">
+        #{propertyDisputedInd,jdbcType=CHAR},
+      </if>
+      <if test="invalidInd != null">
+        #{invalidInd,jdbcType=CHAR},
+      </if>
+      <if test="blemishInd != null">
+        #{blemishInd,jdbcType=CHAR},
+      </if>
+      <if test="mpType != null">
+        #{mpType,jdbcType=CHAR},
+      </if>
+      <if test="blemishNote != null">
+        #{blemishNote,jdbcType=VARCHAR},
+      </if>
+      <if test="handoverDate != null">
+        #{handoverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="k75zcms != null">
+        #{k75zcms,jdbcType=VARCHAR},
+      </if>
+      <if test="keepSpecialReq != null">
+        #{keepSpecialReq,jdbcType=VARCHAR},
+      </if>
+      <if test="valuator != null">
+        #{valuator,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateDate != null">
+        #{evaluateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assetStatus != null">
+        #{assetStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null">
+        #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="settledAssetsInd != null">
+        #{settledAssetsInd,jdbcType=CHAR},
+      </if>
+      <if test="timeMark != null">
+        #{timeMark,jdbcType=TIMESTAMP},
+      </if>
+      <if test="impawnAmount != null">
+        #{impawnAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="impawnAmountCd != null">
+        #{impawnAmountCd,jdbcType=VARCHAR},
+      </if>
+      <if test="impawnExpireDate != null">
+        #{impawnExpireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="impawnGetDate != null">
+        #{impawnGetDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerInd != null">
+        #{registerInd,jdbcType=CHAR},
+      </if>
+      <if test="collateralCardDepartment != null">
+        #{collateralCardDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="isStateAsset != null">
+        #{isStateAsset,jdbcType=CHAR},
+      </if>
+      <if test="isStateSectorApproval != null">
+        #{isStateSectorApproval,jdbcType=CHAR},
+      </if>
+      <if test="isMortgageAllAsset != null">
+        #{isMortgageAllAsset,jdbcType=CHAR},
+      </if>
+      <if test="settledSource != null">
+        #{settledSource,jdbcType=CHAR},
+      </if>
+      <if test="assetsSourceBackup != null">
+        #{assetsSourceBackup,jdbcType=CHAR},
+      </if>
+      <if test="collateralSeq != null">
+        #{collateralSeq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateral">
+    update TB_GRT_COLLATERAL
+    <set>
+      <if test="collateralTypeCd != null">
+        COLLATERAL_TYPE_CD = #{collateralTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="partyTypeCd != null">
+        PARTY_TYPE_CD = #{partyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralNum != null">
+        COLLATERAL_NUM = #{collateralNum,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralStatusCd != null">
+        COLLATERAL_STATUS_CD = #{collateralStatusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralName != null">
+        COLLATERAL_NAME = #{collateralName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookValue != null">
+        BOOK_VALUE = #{bookValue,jdbcType=DECIMAL},
+      </if>
+      <if test="bookNetValue != null">
+        BOOK_NET_VALUE = #{bookNetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="marketValue != null">
+        MARKET_VALUE = #{marketValue,jdbcType=DECIMAL},
+      </if>
+      <if test="evalValueCurrencyCd != null">
+        EVAL_VALUE_CURRENCY_CD = #{evalValueCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="evalValue != null">
+        EVAL_VALUE = #{evalValue,jdbcType=DECIMAL},
+      </if>
+      <if test="ccbAssessedValueCurrencyCd != null">
+        CCB_ASSESSED_VALUE_CURRENCY_CD = #{ccbAssessedValueCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="ccbAssessedValue != null">
+        CCB_ASSESSED_VALUE = #{ccbAssessedValue,jdbcType=DECIMAL},
+      </if>
+      <if test="acquireWayOfCollateralCd != null">
+        ACQUIRE_WAY_OF_COLLATERAL_CD = #{acquireWayOfCollateralCd,jdbcType=VARCHAR},
+      </if>
+      <if test="commonAssetsInd != null">
+        COMMON_ASSETS_IND = #{commonAssetsInd,jdbcType=CHAR},
+      </if>
+      <if test="commonOwnerName != null">
+        COMMON_OWNER_NAME = #{commonOwnerName,jdbcType=VARCHAR},
+      </if>
+      <if test="wayGuarantyEffectiveCd != null">
+        WAY_GUARANTY_EFFECTIVE_CD = #{wayGuarantyEffectiveCd,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralSetupInd != null">
+        COLLATERAL_SETUP_IND = #{collateralSetupInd,jdbcType=CHAR},
+      </if>
+      <if test="setGuarantyAmtInCcb != null">
+        SET_GUARANTY_AMT_IN_CCB = #{setGuarantyAmtInCcb,jdbcType=DECIMAL},
+      </if>
+      <if test="rentedLicensedInd != null">
+        RENTED_LICENSED_IND = #{rentedLicensedInd,jdbcType=CHAR},
+      </if>
+      <if test="renterName != null">
+        RENTER_NAME = #{renterName,jdbcType=VARCHAR},
+      </if>
+      <if test="setGuarantyAmtOutCcb != null">
+        SET_GUARANTY_AMT_OUT_CCB = #{setGuarantyAmtOutCcb,jdbcType=DECIMAL},
+      </if>
+      <if test="leaseExpirationDate != null">
+        LEASE_EXPIRATION_DATE = #{leaseExpirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerNum != null">
+        CUSTOMER_NUM = #{customerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="submittingDate != null">
+        SUBMITTING_DATE = #{submittingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralDispose != null">
+        COLLATERAL_DISPOSE = #{collateralDispose,jdbcType=VARCHAR},
+      </if>
+      <if test="otherNote != null">
+        OTHER_NOTE = #{otherNote,jdbcType=VARCHAR},
+      </if>
+      <if test="setGuarantyAmt != null">
+        SET_GUARANTY_AMT = #{setGuarantyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="provinceCd != null">
+        PROVINCE_CD = #{provinceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCd != null">
+        CITY_CD = #{cityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCd != null">
+        DISTRICT_CD = #{districtCd,jdbcType=VARCHAR},
+      </if>
+      <if test="streetAddress != null">
+        STREET_ADDRESS = #{streetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityCd != null">
+        NATIONALITY_CD = #{nationalityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseType != null">
+        MERCHANDISE_TYPE = #{merchandiseType,jdbcType=VARCHAR},
+      </if>
+      <if test="rightCertTypeCd != null">
+        RIGHT_CERT_TYPE_CD = #{rightCertTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="rightCertificationNum != null">
+        RIGHT_CERTIFICATION_NUM = #{rightCertificationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUpdateTime != null">
+        SYS_UPDATE_TIME = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collateralCatalogCd != null">
+        COLLATERAL_CATALOG_CD = #{collateralCatalogCd,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCreatUserNum != null">
+        DATA_CREAT_USER_NUM = #{dataCreatUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCreatorOrgCd != null">
+        DATA_CREATOR_ORG_CD = #{dataCreatorOrgCd,jdbcType=CHAR},
+      </if>
+      <if test="lastUpdateUserNum != null">
+        LAST_UPDATE_USER_NUM = #{lastUpdateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateOrgCd != null">
+        LAST_UPDATE_ORG_CD = #{lastUpdateOrgCd,jdbcType=CHAR},
+      </if>
+      <if test="takeoverInd != null">
+        TAKEOVER_IND = #{takeoverInd,jdbcType=CHAR},
+      </if>
+      <if test="allPledgeInd != null">
+        ALL_PLEDGE_IND = #{allPledgeInd,jdbcType=CHAR},
+      </if>
+      <if test="forbidCirculateInd != null">
+        FORBID_CIRCULATE_IND = #{forbidCirculateInd,jdbcType=CHAR},
+      </if>
+      <if test="nationalisationInd != null">
+        NATIONALISATION_IND = #{nationalisationInd,jdbcType=CHAR},
+      </if>
+      <if test="propertyDisputedInd != null">
+        PROPERTY_DISPUTED_IND = #{propertyDisputedInd,jdbcType=CHAR},
+      </if>
+      <if test="invalidInd != null">
+        INVALID_IND = #{invalidInd,jdbcType=CHAR},
+      </if>
+      <if test="blemishInd != null">
+        BLEMISH_IND = #{blemishInd,jdbcType=CHAR},
+      </if>
+      <if test="mpType != null">
+        MP_TYPE = #{mpType,jdbcType=CHAR},
+      </if>
+      <if test="blemishNote != null">
+        BLEMISH_NOTE = #{blemishNote,jdbcType=VARCHAR},
+      </if>
+      <if test="handoverDate != null">
+        HANDOVER_DATE = #{handoverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="k75zcms != null">
+        K75ZCMS = #{k75zcms,jdbcType=VARCHAR},
+      </if>
+      <if test="keepSpecialReq != null">
+        KEEP_SPECIAL_REQ = #{keepSpecialReq,jdbcType=VARCHAR},
+      </if>
+      <if test="valuator != null">
+        VALUATOR = #{valuator,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateDate != null">
+        EVALUATE_DATE = #{evaluateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assetStatus != null">
+        ASSET_STATUS = #{assetStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null">
+        CUSTOMER_TYPE = #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="settledAssetsInd != null">
+        SETTLED_ASSETS_IND = #{settledAssetsInd,jdbcType=CHAR},
+      </if>
+      <if test="timeMark != null">
+        TIME_MARK = #{timeMark,jdbcType=TIMESTAMP},
+      </if>
+      <if test="impawnAmount != null">
+        IMPAWN_AMOUNT = #{impawnAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="impawnAmountCd != null">
+        IMPAWN_AMOUNT_CD = #{impawnAmountCd,jdbcType=VARCHAR},
+      </if>
+      <if test="impawnExpireDate != null">
+        IMPAWN_EXPIRE_DATE = #{impawnExpireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="impawnGetDate != null">
+        IMPAWN_GET_DATE = #{impawnGetDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerInd != null">
+        REGISTER_IND = #{registerInd,jdbcType=CHAR},
+      </if>
+      <if test="collateralCardDepartment != null">
+        COLLATERAL_CARD_DEPARTMENT = #{collateralCardDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="isStateAsset != null">
+        IS_STATE_ASSET = #{isStateAsset,jdbcType=CHAR},
+      </if>
+      <if test="isStateSectorApproval != null">
+        IS_STATE_SECTOR_APPROVAL = #{isStateSectorApproval,jdbcType=CHAR},
+      </if>
+      <if test="isMortgageAllAsset != null">
+        IS_MORTGAGE_ALL_ASSET = #{isMortgageAllAsset,jdbcType=CHAR},
+      </if>
+      <if test="settledSource != null">
+        SETTLED_SOURCE = #{settledSource,jdbcType=CHAR},
+      </if>
+      <if test="assetsSourceBackup != null">
+        ASSETS_SOURCE_BACKUP = #{assetsSourceBackup,jdbcType=CHAR},
+      </if>
+      <if test="collateralSeq != null">
+        COLLATERAL_SEQ = #{collateralSeq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateral">
+    update TB_GRT_COLLATERAL
+    set COLLATERAL_TYPE_CD = #{collateralTypeCd,jdbcType=VARCHAR},
+      PARTY_TYPE_CD = #{partyTypeCd,jdbcType=VARCHAR},
+      COLLATERAL_NUM = #{collateralNum,jdbcType=VARCHAR},
+      COLLATERAL_STATUS_CD = #{collateralStatusCd,jdbcType=VARCHAR},
+      COLLATERAL_NAME = #{collateralName,jdbcType=VARCHAR},
+      BOOK_VALUE = #{bookValue,jdbcType=DECIMAL},
+      BOOK_NET_VALUE = #{bookNetValue,jdbcType=DECIMAL},
+      MARKET_VALUE = #{marketValue,jdbcType=DECIMAL},
+      EVAL_VALUE_CURRENCY_CD = #{evalValueCurrencyCd,jdbcType=VARCHAR},
+      EVAL_VALUE = #{evalValue,jdbcType=DECIMAL},
+      CCB_ASSESSED_VALUE_CURRENCY_CD = #{ccbAssessedValueCurrencyCd,jdbcType=VARCHAR},
+      CCB_ASSESSED_VALUE = #{ccbAssessedValue,jdbcType=DECIMAL},
+      ACQUIRE_WAY_OF_COLLATERAL_CD = #{acquireWayOfCollateralCd,jdbcType=VARCHAR},
+      COMMON_ASSETS_IND = #{commonAssetsInd,jdbcType=CHAR},
+      COMMON_OWNER_NAME = #{commonOwnerName,jdbcType=VARCHAR},
+      WAY_GUARANTY_EFFECTIVE_CD = #{wayGuarantyEffectiveCd,jdbcType=VARCHAR},
+      COLLATERAL_SETUP_IND = #{collateralSetupInd,jdbcType=CHAR},
+      SET_GUARANTY_AMT_IN_CCB = #{setGuarantyAmtInCcb,jdbcType=DECIMAL},
+      RENTED_LICENSED_IND = #{rentedLicensedInd,jdbcType=CHAR},
+      RENTER_NAME = #{renterName,jdbcType=VARCHAR},
+      SET_GUARANTY_AMT_OUT_CCB = #{setGuarantyAmtOutCcb,jdbcType=DECIMAL},
+      LEASE_EXPIRATION_DATE = #{leaseExpirationDate,jdbcType=TIMESTAMP},
+      CUSTOMER_NUM = #{customerNum,jdbcType=VARCHAR},
+      SUBMITTING_DATE = #{submittingDate,jdbcType=TIMESTAMP},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      COLLATERAL_DISPOSE = #{collateralDispose,jdbcType=VARCHAR},
+      OTHER_NOTE = #{otherNote,jdbcType=VARCHAR},
+      SET_GUARANTY_AMT = #{setGuarantyAmt,jdbcType=DECIMAL},
+      PROVINCE_CD = #{provinceCd,jdbcType=VARCHAR},
+      CITY_CD = #{cityCd,jdbcType=VARCHAR},
+      DISTRICT_CD = #{districtCd,jdbcType=VARCHAR},
+      STREET_ADDRESS = #{streetAddress,jdbcType=VARCHAR},
+      NATIONALITY_CD = #{nationalityCd,jdbcType=VARCHAR},
+      MERCHANDISE_TYPE = #{merchandiseType,jdbcType=VARCHAR},
+      RIGHT_CERT_TYPE_CD = #{rightCertTypeCd,jdbcType=VARCHAR},
+      RIGHT_CERTIFICATION_NUM = #{rightCertificationNum,jdbcType=VARCHAR},
+      SYS_UPDATE_TIME = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      COLLATERAL_CATALOG_CD = #{collateralCatalogCd,jdbcType=VARCHAR},
+      DATA_CREAT_USER_NUM = #{dataCreatUserNum,jdbcType=VARCHAR},
+      DATA_CREATOR_ORG_CD = #{dataCreatorOrgCd,jdbcType=CHAR},
+      LAST_UPDATE_USER_NUM = #{lastUpdateUserNum,jdbcType=VARCHAR},
+      LAST_UPDATE_ORG_CD = #{lastUpdateOrgCd,jdbcType=CHAR},
+      TAKEOVER_IND = #{takeoverInd,jdbcType=CHAR},
+      ALL_PLEDGE_IND = #{allPledgeInd,jdbcType=CHAR},
+      FORBID_CIRCULATE_IND = #{forbidCirculateInd,jdbcType=CHAR},
+      NATIONALISATION_IND = #{nationalisationInd,jdbcType=CHAR},
+      PROPERTY_DISPUTED_IND = #{propertyDisputedInd,jdbcType=CHAR},
+      INVALID_IND = #{invalidInd,jdbcType=CHAR},
+      BLEMISH_IND = #{blemishInd,jdbcType=CHAR},
+      MP_TYPE = #{mpType,jdbcType=CHAR},
+      BLEMISH_NOTE = #{blemishNote,jdbcType=VARCHAR},
+      HANDOVER_DATE = #{handoverDate,jdbcType=TIMESTAMP},
+      K75ZCMS = #{k75zcms,jdbcType=VARCHAR},
+      KEEP_SPECIAL_REQ = #{keepSpecialReq,jdbcType=VARCHAR},
+      VALUATOR = #{valuator,jdbcType=VARCHAR},
+      EVALUATE_DATE = #{evaluateDate,jdbcType=TIMESTAMP},
+      ASSET_STATUS = #{assetStatus,jdbcType=VARCHAR},
+      CUSTOMER_TYPE = #{customerType,jdbcType=VARCHAR},
+      SETTLED_ASSETS_IND = #{settledAssetsInd,jdbcType=CHAR},
+      TIME_MARK = #{timeMark,jdbcType=TIMESTAMP},
+      IMPAWN_AMOUNT = #{impawnAmount,jdbcType=DECIMAL},
+      IMPAWN_AMOUNT_CD = #{impawnAmountCd,jdbcType=VARCHAR},
+      IMPAWN_EXPIRE_DATE = #{impawnExpireDate,jdbcType=TIMESTAMP},
+      IMPAWN_GET_DATE = #{impawnGetDate,jdbcType=TIMESTAMP},
+      REGISTER_IND = #{registerInd,jdbcType=CHAR},
+      COLLATERAL_CARD_DEPARTMENT = #{collateralCardDepartment,jdbcType=VARCHAR},
+      IS_STATE_ASSET = #{isStateAsset,jdbcType=CHAR},
+      IS_STATE_SECTOR_APPROVAL = #{isStateSectorApproval,jdbcType=CHAR},
+      IS_MORTGAGE_ALL_ASSET = #{isMortgageAllAsset,jdbcType=CHAR},
+      SETTLED_SOURCE = #{settledSource,jdbcType=CHAR},
+      ASSETS_SOURCE_BACKUP = #{assetsSourceBackup,jdbcType=CHAR},
+      COLLATERAL_SEQ = #{collateralSeq,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtIntellPropertyRightsMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtIntellPropertyRights">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="PROPERTY_RIGHT_NATURE" jdbcType="VARCHAR" property="propertyRightNature" />
+    <result column="BRAND_TYPE" jdbcType="VARCHAR" property="brandType" />
+    <result column="PRODUCT_CLASS" jdbcType="VARCHAR" property="productClass" />
+    <result column="PATENT_TYPE" jdbcType="VARCHAR" property="patentType" />
+    <result column="PATENT_PURPOSE" jdbcType="VARCHAR" property="patentPurpose" />
+    <result column="LICENSE_OWNER" jdbcType="VARCHAR" property="licenseOwner" />
+    <result column="PUBLISHED_YEAR" jdbcType="CHAR" property="publishedYear" />
+    <result column="PRODUCTION_TYPE" jdbcType="VARCHAR" property="productionType" />
+    <result column="PROCETED_DATE" jdbcType="TIMESTAMP" property="procetedDate" />
+    <result column="CHECKED_DATE" jdbcType="TIMESTAMP" property="checkedDate" />
+    <result column="LICENSE_NAME" jdbcType="VARCHAR" property="licenseName" />
+    <result column="LICENSE_NUM" jdbcType="VARCHAR" property="licenseNum" />
+    <result column="LICENSE_DEPARTMENT" jdbcType="VARCHAR" property="licenseDepartment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, PROPERTY_RIGHT_NATURE, BRAND_TYPE, PRODUCT_CLASS, PATENT_TYPE, PATENT_PURPOSE, 
+    LICENSE_OWNER, PUBLISHED_YEAR, PRODUCTION_TYPE, PROCETED_DATE, CHECKED_DATE, LICENSE_NAME, 
+    LICENSE_NUM, LICENSE_DEPARTMENT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_INTELL_PROPERTY_RIGHTS
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_INTELL_PROPERTY_RIGHTS
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtIntellPropertyRights">
+    insert into TB_GRT_INTELL_PROPERTY_RIGHTS (GUARANTY_ID, PROPERTY_RIGHT_NATURE, 
+      BRAND_TYPE, PRODUCT_CLASS, PATENT_TYPE, 
+      PATENT_PURPOSE, LICENSE_OWNER, PUBLISHED_YEAR, 
+      PRODUCTION_TYPE, PROCETED_DATE, CHECKED_DATE, 
+      LICENSE_NAME, LICENSE_NUM, LICENSE_DEPARTMENT
+      )
+    values (#{guarantyId,jdbcType=VARCHAR}, #{propertyRightNature,jdbcType=VARCHAR}, 
+      #{brandType,jdbcType=VARCHAR}, #{productClass,jdbcType=VARCHAR}, #{patentType,jdbcType=VARCHAR}, 
+      #{patentPurpose,jdbcType=VARCHAR}, #{licenseOwner,jdbcType=VARCHAR}, #{publishedYear,jdbcType=CHAR}, 
+      #{productionType,jdbcType=VARCHAR}, #{procetedDate,jdbcType=TIMESTAMP}, #{checkedDate,jdbcType=TIMESTAMP}, 
+      #{licenseName,jdbcType=VARCHAR}, #{licenseNum,jdbcType=VARCHAR}, #{licenseDepartment,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtIntellPropertyRights">
+    insert into TB_GRT_INTELL_PROPERTY_RIGHTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="propertyRightNature != null">
+        PROPERTY_RIGHT_NATURE,
+      </if>
+      <if test="brandType != null">
+        BRAND_TYPE,
+      </if>
+      <if test="productClass != null">
+        PRODUCT_CLASS,
+      </if>
+      <if test="patentType != null">
+        PATENT_TYPE,
+      </if>
+      <if test="patentPurpose != null">
+        PATENT_PURPOSE,
+      </if>
+      <if test="licenseOwner != null">
+        LICENSE_OWNER,
+      </if>
+      <if test="publishedYear != null">
+        PUBLISHED_YEAR,
+      </if>
+      <if test="productionType != null">
+        PRODUCTION_TYPE,
+      </if>
+      <if test="procetedDate != null">
+        PROCETED_DATE,
+      </if>
+      <if test="checkedDate != null">
+        CHECKED_DATE,
+      </if>
+      <if test="licenseName != null">
+        LICENSE_NAME,
+      </if>
+      <if test="licenseNum != null">
+        LICENSE_NUM,
+      </if>
+      <if test="licenseDepartment != null">
+        LICENSE_DEPARTMENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyRightNature != null">
+        #{propertyRightNature,jdbcType=VARCHAR},
+      </if>
+      <if test="brandType != null">
+        #{brandType,jdbcType=VARCHAR},
+      </if>
+      <if test="productClass != null">
+        #{productClass,jdbcType=VARCHAR},
+      </if>
+      <if test="patentType != null">
+        #{patentType,jdbcType=VARCHAR},
+      </if>
+      <if test="patentPurpose != null">
+        #{patentPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseOwner != null">
+        #{licenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedYear != null">
+        #{publishedYear,jdbcType=CHAR},
+      </if>
+      <if test="productionType != null">
+        #{productionType,jdbcType=VARCHAR},
+      </if>
+      <if test="procetedDate != null">
+        #{procetedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkedDate != null">
+        #{checkedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseName != null">
+        #{licenseName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseNum != null">
+        #{licenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseDepartment != null">
+        #{licenseDepartment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtIntellPropertyRights">
+    update TB_GRT_INTELL_PROPERTY_RIGHTS
+    <set>
+      <if test="propertyRightNature != null">
+        PROPERTY_RIGHT_NATURE = #{propertyRightNature,jdbcType=VARCHAR},
+      </if>
+      <if test="brandType != null">
+        BRAND_TYPE = #{brandType,jdbcType=VARCHAR},
+      </if>
+      <if test="productClass != null">
+        PRODUCT_CLASS = #{productClass,jdbcType=VARCHAR},
+      </if>
+      <if test="patentType != null">
+        PATENT_TYPE = #{patentType,jdbcType=VARCHAR},
+      </if>
+      <if test="patentPurpose != null">
+        PATENT_PURPOSE = #{patentPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseOwner != null">
+        LICENSE_OWNER = #{licenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedYear != null">
+        PUBLISHED_YEAR = #{publishedYear,jdbcType=CHAR},
+      </if>
+      <if test="productionType != null">
+        PRODUCTION_TYPE = #{productionType,jdbcType=VARCHAR},
+      </if>
+      <if test="procetedDate != null">
+        PROCETED_DATE = #{procetedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkedDate != null">
+        CHECKED_DATE = #{checkedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseName != null">
+        LICENSE_NAME = #{licenseName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseNum != null">
+        LICENSE_NUM = #{licenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseDepartment != null">
+        LICENSE_DEPARTMENT = #{licenseDepartment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtIntellPropertyRights">
+    update TB_GRT_INTELL_PROPERTY_RIGHTS
+    set PROPERTY_RIGHT_NATURE = #{propertyRightNature,jdbcType=VARCHAR},
+      BRAND_TYPE = #{brandType,jdbcType=VARCHAR},
+      PRODUCT_CLASS = #{productClass,jdbcType=VARCHAR},
+      PATENT_TYPE = #{patentType,jdbcType=VARCHAR},
+      PATENT_PURPOSE = #{patentPurpose,jdbcType=VARCHAR},
+      LICENSE_OWNER = #{licenseOwner,jdbcType=VARCHAR},
+      PUBLISHED_YEAR = #{publishedYear,jdbcType=CHAR},
+      PRODUCTION_TYPE = #{productionType,jdbcType=VARCHAR},
+      PROCETED_DATE = #{procetedDate,jdbcType=TIMESTAMP},
+      CHECKED_DATE = #{checkedDate,jdbcType=TIMESTAMP},
+      LICENSE_NAME = #{licenseName,jdbcType=VARCHAR},
+      LICENSE_NUM = #{licenseNum,jdbcType=VARCHAR},
+      LICENSE_DEPARTMENT = #{licenseDepartment,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

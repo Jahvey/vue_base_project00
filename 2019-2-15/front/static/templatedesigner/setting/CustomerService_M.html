@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="templatedesigner/setting/CustomerService_M.js" type="text/javascript"></script>
+	<script src="js/jquery.spectrum.js" type="text/javascript"></script>
+	<link href="templatedesigner/css/designer.css"  rel="Stylesheet" type="text/css" />
+	<link href="templatedesigner/css/jquery.spectrum.min.css"  rel="Stylesheet" type="text/css" />
+</head>
+<body>
+<div class="page" data-page="CustomerService">
+	<div class="content-block-title" style="font-size:18px;">客服电话属性</div>
+	<div class="upUeditor" id="myEditor" style="width:100%;">
+		
+	</div>
+	<div>
+		<div class="row m-t-10">
+			<div class="announcement-1">
+                <div class="announcement-inner">
+					<label>客服选择:</label>
+					<div class="float-btn">
+						<span><input type="checkbox" value="left" name="servicePhone" checked>电话</span>
+						<span><input type="checkbox" value="right" name="serviceICC">客服</span>
+					</div>
+				</div>
+              	<div class="announcement-inner">
+					<label>在线电话显示名称：</label>
+					<div>
+						<input value="电话" type="text" class="customerServiceInput"/>
+					</div>
+				</div>
+				<div class="announcement-inner">
+					<label>在线客服显示名称：</label>
+					<div>
+						<input value="客服" type="text" class="customerServiceICCInput"/>
+					</div>
+				</div>
+				<div class="announcement-inner">
+					<label>悬浮位置:</label>
+					<div class="float-btn">
+						<span><input type="radio" value="left" name="positionButton">左侧</span>
+						<input type="radio" value="right" name="positionButton">右侧
+					</div>
+				</div>
+			</div>
+			<div class="announcement-1">
+				<h6>样式</h6>
+				<div class="announcement-inner">
+					<label>字号：</label>
+					<div class="announcement-2">
+						<input value="12" type='text' id="customerServicefontSize">
+					</div>
+				</div>
+				<div class="announcement-inner">
+					<label>字体颜色：</label>
+					<input class="announcement-4" id="customerServicefontcolor"/>
+
+				</div>
+				<div class="announcement-inner">
+					<label>背景颜色：</label>
+					<input class="announcement-4" id="customerServicebgcolor"/>
+				</div>
+			</div>
+			<div class="announcement-5">
+				<a href="#" class="button button-fill submit" id="customerServiceSubmit">保存</a>
+			</div>
+		</div>		
+		
+	</div>
+</div>
+<script src="js/icheck.min.js" type="text/javascript"></script>
+
+</body>
+</html>

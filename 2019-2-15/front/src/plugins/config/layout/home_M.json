@@ -1,0 +1,101 @@
+{
+	"page": {
+		"header": [
+			{
+				"col": [
+					{
+						"$": {
+							"widgetname": "platform_search",
+							"datatype": "platform_search"
+						}
+					}
+				]
+			}
+		],
+		"body": [
+			{
+				"row": [
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1514186143541",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "image_text_1514204726301",
+									"datatype": "image_text",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_slide_1514193081384",
+									"datatype": "main_slide",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1514188029165",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "magic_box_1514188140769",
+									"datatype": "magic_box",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "image_text_1514193266385",
+									"datatype": "image_text",
+									"colspan": "12"
+								}
+							}
+						]
+					}
+				]
+			}
+		],
+		"footer": [
+			{
+				"col": [
+					{
+						"$": {
+							"widgetname": "toolbar",
+							"datatype": "toolbar",
+							"colspan": "12"
+						}
+					}
+				]
+			}
+		]
+	}
+}

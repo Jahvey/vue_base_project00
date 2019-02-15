@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtReceivableMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtReceivable">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="PAYMENT_PERS_NAME" jdbcType="VARCHAR" property="paymentPersName" />
+    <result column="CURRENCY_CS" jdbcType="VARCHAR" property="currencyCs" />
+    <result column="AMT" jdbcType="DECIMAL" property="amt" />
+    <result column="ACCOUNT_YEARS" jdbcType="DECIMAL" property="accountYears" />
+    <result column="ACCOUN_YEARS_UNIT_CD" jdbcType="VARCHAR" property="accounYearsUnitCd" />
+    <result column="MATURITY_DATE" jdbcType="TIMESTAMP" property="maturityDate" />
+    <result column="RECEIVABLE_CONTRACT_NUM" jdbcType="VARCHAR" property="receivableContractNum" />
+    <result column="RECEIVABLE_MANAGER_NAME" jdbcType="VARCHAR" property="receivableManagerName" />
+    <result column="RECEIVABLE_CART_TYPE" jdbcType="VARCHAR" property="receivableCartType" />
+    <result column="RECEIVABLE_CART_NUM" jdbcType="VARCHAR" property="receivableCartNum" />
+    <result column="RECEIVABLE_ACCOUNT_DATE" jdbcType="TIMESTAMP" property="receivableAccountDate" />
+    <result column="RECEIVABLE_CHECK_STUTAS" jdbcType="VARCHAR" property="receivableCheckStutas" />
+    <result column="RECEIVE_AMT_TYPE" jdbcType="VARCHAR" property="receiveAmtType" />
+    <result column="AGREEMENT_AMT_DATE" jdbcType="TIMESTAMP" property="agreementAmtDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, PAYMENT_PERS_NAME, CURRENCY_CS, AMT, ACCOUNT_YEARS, ACCOUN_YEARS_UNIT_CD, 
+    MATURITY_DATE, RECEIVABLE_CONTRACT_NUM, RECEIVABLE_MANAGER_NAME, RECEIVABLE_CART_TYPE, 
+    RECEIVABLE_CART_NUM, RECEIVABLE_ACCOUNT_DATE, RECEIVABLE_CHECK_STUTAS, RECEIVE_AMT_TYPE, 
+    AGREEMENT_AMT_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_RECEIVABLE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_RECEIVABLE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtReceivable">
+    insert into TB_GRT_RECEIVABLE (GUARANTY_ID, PAYMENT_PERS_NAME, CURRENCY_CS, 
+      AMT, ACCOUNT_YEARS, ACCOUN_YEARS_UNIT_CD, 
+      MATURITY_DATE, RECEIVABLE_CONTRACT_NUM, 
+      RECEIVABLE_MANAGER_NAME, RECEIVABLE_CART_TYPE, 
+      RECEIVABLE_CART_NUM, RECEIVABLE_ACCOUNT_DATE, 
+      RECEIVABLE_CHECK_STUTAS, RECEIVE_AMT_TYPE, 
+      AGREEMENT_AMT_DATE)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{paymentPersName,jdbcType=VARCHAR}, #{currencyCs,jdbcType=VARCHAR}, 
+      #{amt,jdbcType=DECIMAL}, #{accountYears,jdbcType=DECIMAL}, #{accounYearsUnitCd,jdbcType=VARCHAR}, 
+      #{maturityDate,jdbcType=TIMESTAMP}, #{receivableContractNum,jdbcType=VARCHAR}, 
+      #{receivableManagerName,jdbcType=VARCHAR}, #{receivableCartType,jdbcType=VARCHAR}, 
+      #{receivableCartNum,jdbcType=VARCHAR}, #{receivableAccountDate,jdbcType=TIMESTAMP}, 
+      #{receivableCheckStutas,jdbcType=VARCHAR}, #{receiveAmtType,jdbcType=VARCHAR}, 
+      #{agreementAmtDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtReceivable">
+    insert into TB_GRT_RECEIVABLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="paymentPersName != null">
+        PAYMENT_PERS_NAME,
+      </if>
+      <if test="currencyCs != null">
+        CURRENCY_CS,
+      </if>
+      <if test="amt != null">
+        AMT,
+      </if>
+      <if test="accountYears != null">
+        ACCOUNT_YEARS,
+      </if>
+      <if test="accounYearsUnitCd != null">
+        ACCOUN_YEARS_UNIT_CD,
+      </if>
+      <if test="maturityDate != null">
+        MATURITY_DATE,
+      </if>
+      <if test="receivableContractNum != null">
+        RECEIVABLE_CONTRACT_NUM,
+      </if>
+      <if test="receivableManagerName != null">
+        RECEIVABLE_MANAGER_NAME,
+      </if>
+      <if test="receivableCartType != null">
+        RECEIVABLE_CART_TYPE,
+      </if>
+      <if test="receivableCartNum != null">
+        RECEIVABLE_CART_NUM,
+      </if>
+      <if test="receivableAccountDate != null">
+        RECEIVABLE_ACCOUNT_DATE,
+      </if>
+      <if test="receivableCheckStutas != null">
+        RECEIVABLE_CHECK_STUTAS,
+      </if>
+      <if test="receiveAmtType != null">
+        RECEIVE_AMT_TYPE,
+      </if>
+      <if test="agreementAmtDate != null">
+        AGREEMENT_AMT_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentPersName != null">
+        #{paymentPersName,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCs != null">
+        #{currencyCs,jdbcType=VARCHAR},
+      </if>
+      <if test="amt != null">
+        #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="accountYears != null">
+        #{accountYears,jdbcType=DECIMAL},
+      </if>
+      <if test="accounYearsUnitCd != null">
+        #{accounYearsUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="maturityDate != null">
+        #{maturityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivableContractNum != null">
+        #{receivableContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableManagerName != null">
+        #{receivableManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableCartType != null">
+        #{receivableCartType,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableCartNum != null">
+        #{receivableCartNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableAccountDate != null">
+        #{receivableAccountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivableCheckStutas != null">
+        #{receivableCheckStutas,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAmtType != null">
+        #{receiveAmtType,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementAmtDate != null">
+        #{agreementAmtDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtReceivable">
+    update TB_GRT_RECEIVABLE
+    <set>
+      <if test="paymentPersName != null">
+        PAYMENT_PERS_NAME = #{paymentPersName,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCs != null">
+        CURRENCY_CS = #{currencyCs,jdbcType=VARCHAR},
+      </if>
+      <if test="amt != null">
+        AMT = #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="accountYears != null">
+        ACCOUNT_YEARS = #{accountYears,jdbcType=DECIMAL},
+      </if>
+      <if test="accounYearsUnitCd != null">
+        ACCOUN_YEARS_UNIT_CD = #{accounYearsUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="maturityDate != null">
+        MATURITY_DATE = #{maturityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivableContractNum != null">
+        RECEIVABLE_CONTRACT_NUM = #{receivableContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableManagerName != null">
+        RECEIVABLE_MANAGER_NAME = #{receivableManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableCartType != null">
+        RECEIVABLE_CART_TYPE = #{receivableCartType,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableCartNum != null">
+        RECEIVABLE_CART_NUM = #{receivableCartNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableAccountDate != null">
+        RECEIVABLE_ACCOUNT_DATE = #{receivableAccountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivableCheckStutas != null">
+        RECEIVABLE_CHECK_STUTAS = #{receivableCheckStutas,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAmtType != null">
+        RECEIVE_AMT_TYPE = #{receiveAmtType,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementAmtDate != null">
+        AGREEMENT_AMT_DATE = #{agreementAmtDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtReceivable">
+    update TB_GRT_RECEIVABLE
+    set PAYMENT_PERS_NAME = #{paymentPersName,jdbcType=VARCHAR},
+      CURRENCY_CS = #{currencyCs,jdbcType=VARCHAR},
+      AMT = #{amt,jdbcType=DECIMAL},
+      ACCOUNT_YEARS = #{accountYears,jdbcType=DECIMAL},
+      ACCOUN_YEARS_UNIT_CD = #{accounYearsUnitCd,jdbcType=VARCHAR},
+      MATURITY_DATE = #{maturityDate,jdbcType=TIMESTAMP},
+      RECEIVABLE_CONTRACT_NUM = #{receivableContractNum,jdbcType=VARCHAR},
+      RECEIVABLE_MANAGER_NAME = #{receivableManagerName,jdbcType=VARCHAR},
+      RECEIVABLE_CART_TYPE = #{receivableCartType,jdbcType=VARCHAR},
+      RECEIVABLE_CART_NUM = #{receivableCartNum,jdbcType=VARCHAR},
+      RECEIVABLE_ACCOUNT_DATE = #{receivableAccountDate,jdbcType=TIMESTAMP},
+      RECEIVABLE_CHECK_STUTAS = #{receivableCheckStutas,jdbcType=VARCHAR},
+      RECEIVE_AMT_TYPE = #{receiveAmtType,jdbcType=VARCHAR},
+      AGREEMENT_AMT_DATE = #{agreementAmtDate,jdbcType=TIMESTAMP}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

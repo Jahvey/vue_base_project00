@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.mapper.NaturalRelativeMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.bean.NaturalRelative">
+    <id column="NATURAL_RELATIVE_ID" jdbcType="VARCHAR" property="naturalRelativeId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="RELATIVEID_PARTY_ID" jdbcType="VARCHAR" property="relativeidPartyId" />
+    <result column="CERTIFICATE_TYPE_CD" jdbcType="VARCHAR" property="certificateTypeCd" />
+    <result column="CERT_ID" jdbcType="VARCHAR" property="certId" />
+    <result column="CONTACT_TEL_NUM" jdbcType="VARCHAR" property="contactTelNum" />
+    <result column="INPUT_ORG_NUM" jdbcType="VARCHAR" property="inputOrgNum" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="APPELLATION" jdbcType="VARCHAR" property="appellation" />
+    <result column="ACCOUNTING_ASSISTANT" jdbcType="VARCHAR" property="accountingAssistant" />
+    <result column="INDUSTRY" jdbcType="VARCHAR" property="industry" />
+    <result column="MONTHLY_INCOME" jdbcType="VARCHAR" property="monthlyIncome" />
+    <result column="CUST_RELA" jdbcType="VARCHAR" property="custRela" />
+    <result column="PARTNERCOMPANY" jdbcType="VARCHAR" property="partnercompany" />
+    <result column="PARTNERPHONENUM" jdbcType="VARCHAR" property="partnerphonenum" />
+    <result column="LEGAL_CONTRY" jdbcType="VARCHAR" property="legalContry" />
+    <result column="CERT_BEGIN_DATE" jdbcType="TIMESTAMP" property="certBeginDate" />
+    <result column="CERT_END_DATE" jdbcType="TIMESTAMP" property="certEndDate" />
+    <result column="CUST_TYPE" jdbcType="VARCHAR" property="custType" />
+    <result column="ISCOUT" jdbcType="VARCHAR" property="iscout" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="PAR_SEQ_ID" jdbcType="VARCHAR" property="parSeqId" />
+    <result column="RELATION_ID" jdbcType="VARCHAR" property="relationId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    NATURAL_RELATIVE_ID, PARTY_ID, RELATIVEID_PARTY_ID, CERTIFICATE_TYPE_CD, CERT_ID, 
+    CONTACT_TEL_NUM, INPUT_ORG_NUM, UPDATE_ORG_NUM, UPDATE_USER_NUM, REMARK, BIRTHDAY, 
+    UPDATE_TIME, APPELLATION, ACCOUNTING_ASSISTANT, INDUSTRY, MONTHLY_INCOME, CUST_RELA, 
+    PARTNERCOMPANY, PARTNERPHONENUM, LEGAL_CONTRY, CERT_BEGIN_DATE, CERT_END_DATE, CUST_TYPE, 
+    ISCOUT, PARTY_NAME, PAR_SEQ_ID, RELATION_ID
+  </sql>
+  <select id="selectByPartyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    r.*,np.CERT_NUM certNum,np.CERT_TYPE certType,p.PARTY_TYPE_CD partyTypeCd
+    from TB_CSM_NATURAL_RELATIVE r 
+    left join TB_CSM_NATURAL_PERSON np on r.PARTY_ID = np.PARTY_ID
+    left join TB_CSM_PARTY p on r.PARTY_ID = p.PARTY_ID
+    where r.PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_NATURAL_RELATIVE
+    where NATURAL_RELATIVE_ID = #{naturalRelativeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_NATURAL_RELATIVE
+    where NATURAL_RELATIVE_ID = #{naturalRelativeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.bean.NaturalRelative">
+    insert into TB_CSM_NATURAL_RELATIVE (NATURAL_RELATIVE_ID, PARTY_ID, RELATIVEID_PARTY_ID, 
+      CERTIFICATE_TYPE_CD, CERT_ID, CONTACT_TEL_NUM, 
+      INPUT_ORG_NUM, UPDATE_ORG_NUM, UPDATE_USER_NUM, 
+      REMARK, BIRTHDAY, UPDATE_TIME, 
+      APPELLATION, ACCOUNTING_ASSISTANT, INDUSTRY, 
+      MONTHLY_INCOME, CUST_RELA, PARTNERCOMPANY, 
+      PARTNERPHONENUM, LEGAL_CONTRY, CERT_BEGIN_DATE, 
+      CERT_END_DATE, CUST_TYPE, ISCOUT, 
+      PARTY_NAME, PAR_SEQ_ID, RELATION_ID
+      )
+    values (#{naturalRelativeId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{relativeidPartyId,jdbcType=VARCHAR}, 
+      #{certificateTypeCd,jdbcType=VARCHAR}, #{certId,jdbcType=VARCHAR}, #{contactTelNum,jdbcType=VARCHAR}, 
+      #{inputOrgNum,jdbcType=VARCHAR}, #{updateOrgNum,jdbcType=VARCHAR}, #{updateUserNum,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{appellation,jdbcType=VARCHAR}, #{accountingAssistant,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, 
+      #{monthlyIncome,jdbcType=VARCHAR}, #{custRela,jdbcType=VARCHAR}, #{partnercompany,jdbcType=VARCHAR}, 
+      #{partnerphonenum,jdbcType=VARCHAR}, #{legalContry,jdbcType=VARCHAR}, #{certBeginDate,jdbcType=TIMESTAMP}, 
+      #{certEndDate,jdbcType=TIMESTAMP}, #{custType,jdbcType=VARCHAR}, #{iscout,jdbcType=VARCHAR}, 
+      #{partyName,jdbcType=VARCHAR}, #{parSeqId,jdbcType=VARCHAR}, #{relationId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.bean.NaturalRelative">
+    insert into TB_CSM_NATURAL_RELATIVE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="naturalRelativeId != null">
+        NATURAL_RELATIVE_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="relativeidPartyId != null">
+        RELATIVEID_PARTY_ID,
+      </if>
+      <if test="certificateTypeCd != null">
+        CERTIFICATE_TYPE_CD,
+      </if>
+      <if test="certId != null">
+        CERT_ID,
+      </if>
+      <if test="contactTelNum != null">
+        CONTACT_TEL_NUM,
+      </if>
+      <if test="inputOrgNum != null">
+        INPUT_ORG_NUM,
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM,
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="appellation != null">
+        APPELLATION,
+      </if>
+      <if test="accountingAssistant != null">
+        ACCOUNTING_ASSISTANT,
+      </if>
+      <if test="industry != null">
+        INDUSTRY,
+      </if>
+      <if test="monthlyIncome != null">
+        MONTHLY_INCOME,
+      </if>
+      <if test="custRela != null">
+        CUST_RELA,
+      </if>
+      <if test="partnercompany != null">
+        PARTNERCOMPANY,
+      </if>
+      <if test="partnerphonenum != null">
+        PARTNERPHONENUM,
+      </if>
+      <if test="legalContry != null">
+        LEGAL_CONTRY,
+      </if>
+      <if test="certBeginDate != null">
+        CERT_BEGIN_DATE,
+      </if>
+      <if test="certEndDate != null">
+        CERT_END_DATE,
+      </if>
+      <if test="custType != null">
+        CUST_TYPE,
+      </if>
+      <if test="iscout != null">
+        ISCOUT,
+      </if>
+      <if test="partyName != null">
+        PARTY_NAME,
+      </if>
+      <if test="parSeqId != null">
+        PAR_SEQ_ID,
+      </if>
+      <if test="relationId != null">
+        RELATION_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="naturalRelativeId != null">
+        #{naturalRelativeId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="relativeidPartyId != null">
+        #{relativeidPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateTypeCd != null">
+        #{certificateTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="certId != null">
+        #{certId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTelNum != null">
+        #{contactTelNum,jdbcType=VARCHAR},
+      </if>
+      <if test="inputOrgNum != null">
+        #{inputOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNum != null">
+        #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appellation != null">
+        #{appellation,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingAssistant != null">
+        #{accountingAssistant,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlyIncome != null">
+        #{monthlyIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="custRela != null">
+        #{custRela,jdbcType=VARCHAR},
+      </if>
+      <if test="partnercompany != null">
+        #{partnercompany,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerphonenum != null">
+        #{partnerphonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="legalContry != null">
+        #{legalContry,jdbcType=VARCHAR},
+      </if>
+      <if test="certBeginDate != null">
+        #{certBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certEndDate != null">
+        #{certEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custType != null">
+        #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="iscout != null">
+        #{iscout,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null">
+        #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="parSeqId != null">
+        #{parSeqId,jdbcType=VARCHAR},
+      </if>
+      <if test="relationId != null">
+        #{relationId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.bean.NaturalRelative">
+    update TB_CSM_NATURAL_RELATIVE
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="relativeidPartyId != null">
+        RELATIVEID_PARTY_ID = #{relativeidPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateTypeCd != null">
+        CERTIFICATE_TYPE_CD = #{certificateTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="certId != null">
+        CERT_ID = #{certId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTelNum != null">
+        CONTACT_TEL_NUM = #{contactTelNum,jdbcType=VARCHAR},
+      </if>
+      <if test="inputOrgNum != null">
+        INPUT_ORG_NUM = #{inputOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appellation != null">
+        APPELLATION = #{appellation,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingAssistant != null">
+        ACCOUNTING_ASSISTANT = #{accountingAssistant,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        INDUSTRY = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlyIncome != null">
+        MONTHLY_INCOME = #{monthlyIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="custRela != null">
+        CUST_RELA = #{custRela,jdbcType=VARCHAR},
+      </if>
+      <if test="partnercompany != null">
+        PARTNERCOMPANY = #{partnercompany,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerphonenum != null">
+        PARTNERPHONENUM = #{partnerphonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="legalContry != null">
+        LEGAL_CONTRY = #{legalContry,jdbcType=VARCHAR},
+      </if>
+      <if test="certBeginDate != null">
+        CERT_BEGIN_DATE = #{certBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certEndDate != null">
+        CERT_END_DATE = #{certEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custType != null">
+        CUST_TYPE = #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="iscout != null">
+        ISCOUT = #{iscout,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null">
+        PARTY_NAME = #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="parSeqId != null">
+        PAR_SEQ_ID = #{parSeqId,jdbcType=VARCHAR},
+      </if>
+      <if test="relationId != null">
+        RELATION_ID = #{relationId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where NATURAL_RELATIVE_ID = #{naturalRelativeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.bean.NaturalRelative">
+    update TB_CSM_NATURAL_RELATIVE
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      RELATIVEID_PARTY_ID = #{relativeidPartyId,jdbcType=VARCHAR},
+      CERTIFICATE_TYPE_CD = #{certificateTypeCd,jdbcType=VARCHAR},
+      CERT_ID = #{certId,jdbcType=VARCHAR},
+      CONTACT_TEL_NUM = #{contactTelNum,jdbcType=VARCHAR},
+      INPUT_ORG_NUM = #{inputOrgNum,jdbcType=VARCHAR},
+      UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      APPELLATION = #{appellation,jdbcType=VARCHAR},
+      ACCOUNTING_ASSISTANT = #{accountingAssistant,jdbcType=VARCHAR},
+      INDUSTRY = #{industry,jdbcType=VARCHAR},
+      MONTHLY_INCOME = #{monthlyIncome,jdbcType=VARCHAR},
+      CUST_RELA = #{custRela,jdbcType=VARCHAR},
+      PARTNERCOMPANY = #{partnercompany,jdbcType=VARCHAR},
+      PARTNERPHONENUM = #{partnerphonenum,jdbcType=VARCHAR},
+      LEGAL_CONTRY = #{legalContry,jdbcType=VARCHAR},
+      CERT_BEGIN_DATE = #{certBeginDate,jdbcType=TIMESTAMP},
+      CERT_END_DATE = #{certEndDate,jdbcType=TIMESTAMP},
+      CUST_TYPE = #{custType,jdbcType=VARCHAR},
+      ISCOUT = #{iscout,jdbcType=VARCHAR},
+      PARTY_NAME = #{partyName,jdbcType=VARCHAR},
+      PAR_SEQ_ID = #{parSeqId,jdbcType=VARCHAR},
+      RELATION_ID = #{relationId,jdbcType=VARCHAR}
+    where NATURAL_RELATIVE_ID = #{naturalRelativeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

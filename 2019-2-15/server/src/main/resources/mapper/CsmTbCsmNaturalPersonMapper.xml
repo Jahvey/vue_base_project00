@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbCsmNaturalPersonMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbCsmNaturalPerson">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ENGLISH_NAME" jdbcType="VARCHAR" property="englishName" />
+    <result column="CHINESE_SHORT_NAME" jdbcType="VARCHAR" property="chineseShortName" />
+    <result column="ENGLISH_SHORT_NAME" jdbcType="VARCHAR" property="englishShortName" />
+    <result column="GENDER_CD" jdbcType="VARCHAR" property="genderCd" />
+    <result column="MARRIAGE_CD" jdbcType="VARCHAR" property="marriageCd" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="DEGREE_CD" jdbcType="VARCHAR" property="degreeCd" />
+    <result column="EDUCATION_BACKGROUD_CD" jdbcType="VARCHAR" property="educationBackgroudCd" />
+    <result column="NATION" jdbcType="VARCHAR" property="nation" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="NATURAL_PERSON_TYPE_CD" jdbcType="VARCHAR" property="naturalPersonTypeCd" />
+    <result column="WORK_UNIT" jdbcType="VARCHAR" property="workUnit" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="HUKOU_PROPERTY" jdbcType="VARCHAR" property="hukouProperty" />
+    <result column="IS_FARMER" jdbcType="VARCHAR" property="isFarmer" />
+    <result column="HUKOU_REGISTED" jdbcType="VARCHAR" property="hukouRegisted" />
+    <result column="STREET_POLICE_STATION" jdbcType="VARCHAR" property="streetPoliceStation" />
+    <result column="HEALTH_STATE" jdbcType="VARCHAR" property="healthState" />
+    <result column="PROFESSION" jdbcType="VARCHAR" property="profession" />
+    <result column="PROFESSIONAL_TITLE" jdbcType="VARCHAR" property="professionalTitle" />
+    <result column="ACCOUNTING_ASSISTANT" jdbcType="VARCHAR" property="accountingAssistant" />
+    <result column="POSITION_PROPERTY" jdbcType="VARCHAR" property="positionProperty" />
+    <result column="WORK_YEARS" jdbcType="VARCHAR" property="workYears" />
+    <result column="FAMILY_NUMBER" jdbcType="VARCHAR" property="familyNumber" />
+    <result column="PROVIDE_FOR_NUMBER" jdbcType="VARCHAR" property="provideForNumber" />
+    <result column="FAMILY_ADDRESS" jdbcType="VARCHAR" property="familyAddress" />
+    <result column="HOUSE_PROPERTY" jdbcType="VARCHAR" property="houseProperty" />
+    <result column="FAMILY_PHONE" jdbcType="VARCHAR" property="familyPhone" />
+    <result column="PHONE_NUMBER" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="UNIT_ADRESS" jdbcType="VARCHAR" property="unitAdress" />
+    <result column="UNIT_PHONE" jdbcType="VARCHAR" property="unitPhone" />
+    <result column="INDUSTRY" jdbcType="VARCHAR" property="industry" />
+    <result column="INDUSTRY_DESC" jdbcType="VARCHAR" property="industryDesc" />
+    <result column="JOINT_GUARANTEE" jdbcType="VARCHAR" property="jointGuarantee" />
+    <result column="STOCKHOLDER_OF_BANK" jdbcType="VARCHAR" property="stockholderOfBank" />
+    <result column="WHETHER_BLACK_LIST" jdbcType="VARCHAR" property="whetherBlackList" />
+    <result column="BLACK_LIST_REASON" jdbcType="VARCHAR" property="blackListReason" />
+    <result column="IS_BANK_EMPLOYEE" jdbcType="VARCHAR" property="isBankEmployee" />
+    <result column="EMPLOYEE_GRADE" jdbcType="VARCHAR" property="employeeGrade" />
+    <result column="IS_SAMLL_LOAND_EMP" jdbcType="VARCHAR" property="isSamllLoandEmp" />
+    <result column="COUNTRY_SIGN" jdbcType="VARCHAR" property="countrySign" />
+    <result column="IS_BASEBANK_RELA_CUST" jdbcType="VARCHAR" property="isBasebankRelaCust" />
+    <result column="IS_THIRD_CUST" jdbcType="VARCHAR" property="isThirdCust" />
+    <result column="THIRD_CUST_TYPE_CD" jdbcType="VARCHAR" property="thirdCustTypeCd" />
+    <result column="MIDDLE_CODE" jdbcType="VARCHAR" property="middleCode" />
+    <result column="WEIXIN_NUM" jdbcType="VARCHAR" property="weixinNum" />
+    <result column="COMMUNICATION_ADDRESS" jdbcType="VARCHAR" property="communicationAddress" />
+    <result column="COMMUNICATION_ADDRESS_CODE" jdbcType="VARCHAR" property="communicationAddressCode" />
+    <result column="LIVE_ADDRESS_CODE" jdbcType="VARCHAR" property="liveAddressCode" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="UNIT_ADDRESS_CODE" jdbcType="VARCHAR" property="unitAddressCode" />
+    <result column="ANNUALSALARY" jdbcType="VARCHAR" property="annualsalary" />
+    <result column="RESDNT_CHAR_CD" jdbcType="VARCHAR" property="resdntCharCd" />
+    <result column="SCH_NAME" jdbcType="VARCHAR" property="schName" />
+    <result column="CERT_CREATE_DATE" jdbcType="TIMESTAMP" property="certCreateDate" />
+    <result column="CERT_END_DATE" jdbcType="TIMESTAMP" property="certEndDate" />
+    <result column="IFCERTIFICATE" jdbcType="VARCHAR" property="ifcertificate" />
+    <result column="NATIFLAG" jdbcType="VARCHAR" property="natiflag" />
+    <result column="NATURE_OF_UNIT" jdbcType="VARCHAR" property="natureOfUnit" />
+    <result column="SCALE_OF_UNIT" jdbcType="VARCHAR" property="scaleOfUnit" />
+    <result column="FLG_SMS" jdbcType="VARCHAR" property="flgSms" />
+    <result column="CUST_TYPE" jdbcType="VARCHAR" property="custType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PARTY_ID, PARTY_NAME, ENGLISH_NAME, CHINESE_SHORT_NAME, ENGLISH_SHORT_NAME, GENDER_CD, 
+    MARRIAGE_CD, BIRTHDAY, DEGREE_CD, EDUCATION_BACKGROUD_CD, NATION, REMARK, CREATE_TIME, 
+    UPDATE_TIME, UPDATE_USER_NUM, UPDATE_ORG_NUM, NATURAL_PERSON_TYPE_CD, WORK_UNIT, 
+    CERT_TYPE, CERT_NUM, HUKOU_PROPERTY, IS_FARMER, HUKOU_REGISTED, STREET_POLICE_STATION, 
+    HEALTH_STATE, PROFESSION, PROFESSIONAL_TITLE, ACCOUNTING_ASSISTANT, POSITION_PROPERTY, 
+    WORK_YEARS, FAMILY_NUMBER, PROVIDE_FOR_NUMBER, FAMILY_ADDRESS, HOUSE_PROPERTY, FAMILY_PHONE, 
+    PHONE_NUMBER, UNIT_ADRESS, UNIT_PHONE, INDUSTRY, INDUSTRY_DESC, JOINT_GUARANTEE, 
+    STOCKHOLDER_OF_BANK, WHETHER_BLACK_LIST, BLACK_LIST_REASON, IS_BANK_EMPLOYEE, EMPLOYEE_GRADE, 
+    IS_SAMLL_LOAND_EMP, COUNTRY_SIGN, IS_BASEBANK_RELA_CUST, IS_THIRD_CUST, THIRD_CUST_TYPE_CD, 
+    MIDDLE_CODE, WEIXIN_NUM, COMMUNICATION_ADDRESS, COMMUNICATION_ADDRESS_CODE, LIVE_ADDRESS_CODE, 
+    EMAIL, UNIT_ADDRESS_CODE, ANNUALSALARY, RESDNT_CHAR_CD, SCH_NAME, CERT_CREATE_DATE, 
+    CERT_END_DATE, IFCERTIFICATE, NATIFLAG, NATURE_OF_UNIT, SCALE_OF_UNIT, FLG_SMS, CUST_TYPE
+  </sql>
+  
+</mapper>

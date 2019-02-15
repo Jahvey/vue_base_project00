@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizPjxxApplyPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbBizPjxxApplyPo">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="CPRQC" jdbcType="VARCHAR" property="cprqc" />
+    <result column="CPRZH" jdbcType="VARCHAR" property="cprzh" />
+    <result column="SKRQC" jdbcType="VARCHAR" property="skrqc" />
+    <result column="SKRZH" jdbcType="VARCHAR" property="skrzh" />
+    <result column="SKRKHH" jdbcType="VARCHAR" property="skrkhh" />
+    <result column="PJHM" jdbcType="VARCHAR" property="pjhm" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="HPJE" jdbcType="DECIMAL" property="hpje" />
+    <result column="HPXS" jdbcType="VARCHAR" property="hpxs" />
+    <result column="HPCPRQ" jdbcType="TIMESTAMP" property="hpcprq" />
+    <result column="HPDQRQ" jdbcType="TIMESTAMP" property="hpdqrq" />
+    <result column="DFDZ" jdbcType="VARCHAR" property="dfdz" />
+    <result column="HTBH" jdbcType="VARCHAR" property="htbh" />
+    <result column="JLZT" jdbcType="VARCHAR" property="jlzt" />
+    <result column="REMITTERBANKNAME" jdbcType="VARCHAR" property="remitterbankname" />
+    <result column="REMITTERBANKNO" jdbcType="VARCHAR" property="remitterbankno" />
+    <result column="PAYEEBANKNAME" jdbcType="VARCHAR" property="payeebankname" />
+    <result column="PAYEEBANKNO" jdbcType="VARCHAR" property="payeebankno" />
+    <result column="ACCEPTORBANKNAME" jdbcType="VARCHAR" property="acceptorbankname" />
+    <result column="ACCEPTORBANKNO" jdbcType="VARCHAR" property="acceptorbankno" />
+    <result column="BILLID" jdbcType="VARCHAR" property="billid" />
+    <result column="FORBIDFLAG" jdbcType="VARCHAR" property="forbidflag" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="SORT_ORDER" jdbcType="DECIMAL" property="sortOrder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, CPRQC, CPRZH, SKRQC, 
+    SKRZH, SKRKHH, PJHM, CURRENCY_CD, HPJE, HPXS, HPCPRQ, HPDQRQ, DFDZ, HTBH, JLZT, REMITTERBANKNAME, 
+    REMITTERBANKNO, PAYEEBANKNAME, PAYEEBANKNO, ACCEPTORBANKNAME, ACCEPTORBANKNO, BILLID, 
+    FORBIDFLAG, CONTRACT_ID, SORT_ORDER
+  </sql>
+  
+  <select id="queryByAmountDetailId" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select 
+    *
+    from TB_BIZ_PJXX_APPLY
+    where Amount_Detail_Id = #{amountDetailId,jdbcType=VARCHAR}
+
+  </select>
+
+  
+ <select id="queryListByAmtDetailIdAndHtbh" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+     select 
+    *
+    from 
+    Tb_Biz_Pjxx_Apply b
+    where 
+    b.amount_detail_id= #{amountDetailId,jdbcType=VARCHAR}
+    and b.htbh=#{contractNum,jdbcType=VARCHAR}
+    <if test="contractId !=null and contractId !='' ">
+    and b.contract_id=#{contractId,jdbcType=VARCHAR}
+    </if>
+ 
+ 
+ </select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    *
+    from TB_BIZ_PJXX_APPLY
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_BIZ_PJXX_APPLY
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbBizPjxxApplyPo">
+    insert into TB_BIZ_PJXX_APPLY (APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, CPRQC, CPRZH, 
+      SKRQC, SKRZH, SKRKHH, 
+      PJHM, CURRENCY_CD, HPJE, 
+      HPXS, HPCPRQ, HPDQRQ, 
+      DFDZ, HTBH, JLZT, REMITTERBANKNAME, 
+      REMITTERBANKNO, PAYEEBANKNAME, PAYEEBANKNO, 
+      ACCEPTORBANKNAME, ACCEPTORBANKNO, BILLID, 
+      FORBIDFLAG, CONTRACT_ID, SORT_ORDER
+      )
+    values (#{applyDetailId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{cprqc,jdbcType=VARCHAR}, #{cprzh,jdbcType=VARCHAR}, 
+      #{skrqc,jdbcType=VARCHAR}, #{skrzh,jdbcType=VARCHAR}, #{skrkhh,jdbcType=VARCHAR}, 
+      #{pjhm,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, #{hpje,jdbcType=DECIMAL}, 
+      #{hpxs,jdbcType=VARCHAR}, #{hpcprq,jdbcType=TIMESTAMP}, #{hpdqrq,jdbcType=TIMESTAMP}, 
+      #{dfdz,jdbcType=VARCHAR}, #{htbh,jdbcType=VARCHAR}, #{jlzt,jdbcType=VARCHAR}, #{remitterbankname,jdbcType=VARCHAR}, 
+      #{remitterbankno,jdbcType=VARCHAR}, #{payeebankname,jdbcType=VARCHAR}, #{payeebankno,jdbcType=VARCHAR}, 
+      #{acceptorbankname,jdbcType=VARCHAR}, #{acceptorbankno,jdbcType=VARCHAR}, #{billid,jdbcType=VARCHAR}, 
+      #{forbidflag,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{sortOrder,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbBizPjxxApplyPo">
+    insert into TB_BIZ_PJXX_APPLY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="cprqc != null">
+        CPRQC,
+      </if>
+      <if test="cprzh != null">
+        CPRZH,
+      </if>
+      <if test="skrqc != null">
+        SKRQC,
+      </if>
+      <if test="skrzh != null">
+        SKRZH,
+      </if>
+      <if test="skrkhh != null">
+        SKRKHH,
+      </if>
+      <if test="pjhm != null">
+        PJHM,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="hpje != null">
+        HPJE,
+      </if>
+      <if test="hpxs != null">
+        HPXS,
+      </if>
+      <if test="hpcprq != null">
+        HPCPRQ,
+      </if>
+      <if test="hpdqrq != null">
+        HPDQRQ,
+      </if>
+      <if test="dfdz != null">
+        DFDZ,
+      </if>
+      <if test="htbh != null">
+        HTBH,
+      </if>
+      <if test="jlzt != null">
+        JLZT,
+      </if>
+      <if test="remitterbankname != null">
+        REMITTERBANKNAME,
+      </if>
+      <if test="remitterbankno != null">
+        REMITTERBANKNO,
+      </if>
+      <if test="payeebankname != null">
+        PAYEEBANKNAME,
+      </if>
+      <if test="payeebankno != null">
+        PAYEEBANKNO,
+      </if>
+      <if test="acceptorbankname != null">
+        ACCEPTORBANKNAME,
+      </if>
+      <if test="acceptorbankno != null">
+        ACCEPTORBANKNO,
+      </if>
+      <if test="billid != null">
+        BILLID,
+      </if>
+      <if test="forbidflag != null">
+        FORBIDFLAG,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="sortOrder != null">
+        SORT_ORDER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="cprqc != null">
+        #{cprqc,jdbcType=VARCHAR},
+      </if>
+      <if test="cprzh != null">
+        #{cprzh,jdbcType=VARCHAR},
+      </if>
+      <if test="skrqc != null">
+        #{skrqc,jdbcType=VARCHAR},
+      </if>
+      <if test="skrzh != null">
+        #{skrzh,jdbcType=VARCHAR},
+      </if>
+      <if test="skrkhh != null">
+        #{skrkhh,jdbcType=VARCHAR},
+      </if>
+      <if test="pjhm != null">
+        #{pjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="hpje != null">
+        #{hpje,jdbcType=DECIMAL},
+      </if>
+      <if test="hpxs != null">
+        #{hpxs,jdbcType=VARCHAR},
+      </if>
+      <if test="hpcprq != null">
+        #{hpcprq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hpdqrq != null">
+        #{hpdqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dfdz != null">
+        #{dfdz,jdbcType=VARCHAR},
+      </if>
+      <if test="htbh != null">
+        #{htbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jlzt != null">
+        #{jlzt,jdbcType=VARCHAR},
+      </if>
+      <if test="remitterbankname != null">
+        #{remitterbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="remitterbankno != null">
+        #{remitterbankno,jdbcType=VARCHAR},
+      </if>
+      <if test="payeebankname != null">
+        #{payeebankname,jdbcType=VARCHAR},
+      </if>
+      <if test="payeebankno != null">
+        #{payeebankno,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptorbankname != null">
+        #{acceptorbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptorbankno != null">
+        #{acceptorbankno,jdbcType=VARCHAR},
+      </if>
+      <if test="billid != null">
+        #{billid,jdbcType=VARCHAR},
+      </if>
+      <if test="forbidflag != null">
+        #{forbidflag,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbBizPjxxApplyPo">
+    update CRMS.TB_BIZ_PJXX_APPLY
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="cprqc != null">
+        CPRQC = #{cprqc,jdbcType=VARCHAR},
+      </if>
+      <if test="cprzh != null">
+        CPRZH = #{cprzh,jdbcType=VARCHAR},
+      </if>
+      <if test="skrqc != null">
+        SKRQC = #{skrqc,jdbcType=VARCHAR},
+      </if>
+      <if test="skrzh != null">
+        SKRZH = #{skrzh,jdbcType=VARCHAR},
+      </if>
+      <if test="skrkhh != null">
+        SKRKHH = #{skrkhh,jdbcType=VARCHAR},
+      </if>
+      <if test="pjhm != null">
+        PJHM = #{pjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="hpje != null">
+        HPJE = #{hpje,jdbcType=DECIMAL},
+      </if>
+      <if test="hpxs != null">
+        HPXS = #{hpxs,jdbcType=VARCHAR},
+      </if>
+      <if test="hpcprq != null">
+        HPCPRQ = #{hpcprq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hpdqrq != null">
+        HPDQRQ = #{hpdqrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dfdz != null">
+        DFDZ = #{dfdz,jdbcType=VARCHAR},
+      </if>
+      <if test="htbh != null">
+        HTBH = #{htbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jlzt != null">
+        JLZT = #{jlzt,jdbcType=VARCHAR},
+      </if>
+      <if test="remitterbankname != null">
+        REMITTERBANKNAME = #{remitterbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="remitterbankno != null">
+        REMITTERBANKNO = #{remitterbankno,jdbcType=VARCHAR},
+      </if>
+      <if test="payeebankname != null">
+        PAYEEBANKNAME = #{payeebankname,jdbcType=VARCHAR},
+      </if>
+      <if test="payeebankno != null">
+        PAYEEBANKNO = #{payeebankno,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptorbankname != null">
+        ACCEPTORBANKNAME = #{acceptorbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptorbankno != null">
+        ACCEPTORBANKNO = #{acceptorbankno,jdbcType=VARCHAR},
+      </if>
+      <if test="billid != null">
+        BILLID = #{billid,jdbcType=VARCHAR},
+      </if>
+      <if test="forbidflag != null">
+        FORBIDFLAG = #{forbidflag,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        SORT_ORDER = #{sortOrder,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbBizPjxxApplyPo">
+    update TB_BIZ_PJXX_APPLY
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      CPRQC = #{cprqc,jdbcType=VARCHAR},
+      CPRZH = #{cprzh,jdbcType=VARCHAR},
+      SKRQC = #{skrqc,jdbcType=VARCHAR},
+      SKRZH = #{skrzh,jdbcType=VARCHAR},
+      SKRKHH = #{skrkhh,jdbcType=VARCHAR},
+      PJHM = #{pjhm,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      HPJE = #{hpje,jdbcType=DECIMAL},
+      HPXS = #{hpxs,jdbcType=VARCHAR},
+      HPCPRQ = #{hpcprq,jdbcType=TIMESTAMP},
+      HPDQRQ = #{hpdqrq,jdbcType=TIMESTAMP},
+      DFDZ = #{dfdz,jdbcType=VARCHAR},
+      HTBH = #{htbh,jdbcType=VARCHAR},
+      JLZT = #{jlzt,jdbcType=VARCHAR},
+      REMITTERBANKNAME = #{remitterbankname,jdbcType=VARCHAR},
+      REMITTERBANKNO = #{remitterbankno,jdbcType=VARCHAR},
+      PAYEEBANKNAME = #{payeebankname,jdbcType=VARCHAR},
+      PAYEEBANKNO = #{payeebankno,jdbcType=VARCHAR},
+      ACCEPTORBANKNAME = #{acceptorbankname,jdbcType=VARCHAR},
+      ACCEPTORBANKNO = #{acceptorbankno,jdbcType=VARCHAR},
+      BILLID = #{billid,jdbcType=VARCHAR},
+      FORBIDFLAG = #{forbidflag,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      SORT_ORDER = #{sortOrder,jdbcType=DECIMAL}
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

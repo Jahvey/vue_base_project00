@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtDepositMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtDeposit">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="DEPOSIT_RECEIPT_NUM" jdbcType="VARCHAR" property="depositReceiptNum" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="AMT" jdbcType="DECIMAL" property="amt" />
+    <result column="OPEN_BANK" jdbcType="VARCHAR" property="openBank" />
+    <result column="ACCOUNT_NUM" jdbcType="VARCHAR" property="accountNum" />
+    <result column="EXPIRE_DATE" jdbcType="TIMESTAMP" property="expireDate" />
+    <result column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="STOP_PAYMENT_IND" jdbcType="CHAR" property="stopPaymentInd" />
+    <result column="DEPOSIT_TERM" jdbcType="DECIMAL" property="depositTerm" />
+    <result column="VOLUMENUM" jdbcType="VARCHAR" property="volumenum" />
+    <result column="IS_MY_BANK" jdbcType="CHAR" property="isMyBank" />
+    <result column="DEPOSIT_TYPE" jdbcType="VARCHAR" property="depositType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, DEPOSIT_RECEIPT_NUM, CURRENCY_CD, AMT, OPEN_BANK, ACCOUNT_NUM, EXPIRE_DATE, 
+    START_DATE, STOP_PAYMENT_IND, DEPOSIT_TERM, VOLUMENUM, IS_MY_BANK, DEPOSIT_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_DEPOSIT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_DEPOSIT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtDeposit">
+    insert into TB_GRT_DEPOSIT (GUARANTY_ID, DEPOSIT_RECEIPT_NUM, CURRENCY_CD, 
+      AMT, OPEN_BANK, ACCOUNT_NUM, 
+      EXPIRE_DATE, START_DATE, STOP_PAYMENT_IND, 
+      DEPOSIT_TERM, VOLUMENUM, IS_MY_BANK, 
+      DEPOSIT_TYPE)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{depositReceiptNum,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, 
+      #{amt,jdbcType=DECIMAL}, #{openBank,jdbcType=VARCHAR}, #{accountNum,jdbcType=VARCHAR}, 
+      #{expireDate,jdbcType=TIMESTAMP}, #{startDate,jdbcType=TIMESTAMP}, #{stopPaymentInd,jdbcType=CHAR}, 
+      #{depositTerm,jdbcType=DECIMAL}, #{volumenum,jdbcType=VARCHAR}, #{isMyBank,jdbcType=CHAR}, 
+      #{depositType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtDeposit">
+    insert into TB_GRT_DEPOSIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="depositReceiptNum != null">
+        DEPOSIT_RECEIPT_NUM,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="amt != null">
+        AMT,
+      </if>
+      <if test="openBank != null">
+        OPEN_BANK,
+      </if>
+      <if test="accountNum != null">
+        ACCOUNT_NUM,
+      </if>
+      <if test="expireDate != null">
+        EXPIRE_DATE,
+      </if>
+      <if test="startDate != null">
+        START_DATE,
+      </if>
+      <if test="stopPaymentInd != null">
+        STOP_PAYMENT_IND,
+      </if>
+      <if test="depositTerm != null">
+        DEPOSIT_TERM,
+      </if>
+      <if test="volumenum != null">
+        VOLUMENUM,
+      </if>
+      <if test="isMyBank != null">
+        IS_MY_BANK,
+      </if>
+      <if test="depositType != null">
+        DEPOSIT_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="depositReceiptNum != null">
+        #{depositReceiptNum,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="amt != null">
+        #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="openBank != null">
+        #{openBank,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNum != null">
+        #{accountNum,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null">
+        #{expireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopPaymentInd != null">
+        #{stopPaymentInd,jdbcType=CHAR},
+      </if>
+      <if test="depositTerm != null">
+        #{depositTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="volumenum != null">
+        #{volumenum,jdbcType=VARCHAR},
+      </if>
+      <if test="isMyBank != null">
+        #{isMyBank,jdbcType=CHAR},
+      </if>
+      <if test="depositType != null">
+        #{depositType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtDeposit">
+    update TB_GRT_DEPOSIT
+    <set>
+      <if test="depositReceiptNum != null">
+        DEPOSIT_RECEIPT_NUM = #{depositReceiptNum,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="amt != null">
+        AMT = #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="openBank != null">
+        OPEN_BANK = #{openBank,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNum != null">
+        ACCOUNT_NUM = #{accountNum,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null">
+        EXPIRE_DATE = #{expireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null">
+        START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopPaymentInd != null">
+        STOP_PAYMENT_IND = #{stopPaymentInd,jdbcType=CHAR},
+      </if>
+      <if test="depositTerm != null">
+        DEPOSIT_TERM = #{depositTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="volumenum != null">
+        VOLUMENUM = #{volumenum,jdbcType=VARCHAR},
+      </if>
+      <if test="isMyBank != null">
+        IS_MY_BANK = #{isMyBank,jdbcType=CHAR},
+      </if>
+      <if test="depositType != null">
+        DEPOSIT_TYPE = #{depositType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtDeposit">
+    update TB_GRT_DEPOSIT
+    set DEPOSIT_RECEIPT_NUM = #{depositReceiptNum,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      AMT = #{amt,jdbcType=DECIMAL},
+      OPEN_BANK = #{openBank,jdbcType=VARCHAR},
+      ACCOUNT_NUM = #{accountNum,jdbcType=VARCHAR},
+      EXPIRE_DATE = #{expireDate,jdbcType=TIMESTAMP},
+      START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      STOP_PAYMENT_IND = #{stopPaymentInd,jdbcType=CHAR},
+      DEPOSIT_TERM = #{depositTerm,jdbcType=DECIMAL},
+      VOLUMENUM = #{volumenum,jdbcType=VARCHAR},
+      IS_MY_BANK = #{isMyBank,jdbcType=CHAR},
+      DEPOSIT_TYPE = #{depositType,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

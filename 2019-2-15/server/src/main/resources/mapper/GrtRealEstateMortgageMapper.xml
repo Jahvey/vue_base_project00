@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtRealEstateMortgageMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtRealEstateMortgage">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="CONSTRUCTED_DATE" jdbcType="TIMESTAMP" property="constructedDate" />
+    <result column="BUILDING_STRUCTURE" jdbcType="VARCHAR" property="buildingStructure" />
+    <result column="UTILIZATION_TYPE" jdbcType="VARCHAR" property="utilizationType" />
+    <result column="LAND_ACQUIRING_WAY_CD" jdbcType="VARCHAR" property="landAcquiringWayCd" />
+    <result column="CITY_LOCATION_IND" jdbcType="CHAR" property="cityLocationInd" />
+    <result column="LAND_AREA" jdbcType="DECIMAL" property="landArea" />
+    <result column="BUILD_ALL_AREA" jdbcType="DECIMAL" property="buildAllArea" />
+    <result column="CIRCLE_STATUS" jdbcType="VARCHAR" property="circleStatus" />
+    <result column="STREET_DEEP" jdbcType="VARCHAR" property="streetDeep" />
+    <result column="STREET_WIDTH" jdbcType="VARCHAR" property="streetWidth" />
+    <result column="OTHER_STATUS" jdbcType="VARCHAR" property="otherStatus" />
+    <result column="FINISH_DATE" jdbcType="TIMESTAMP" property="finishDate" />
+    <result column="ASSET_LIFE" jdbcType="DECIMAL" property="assetLife" />
+    <result column="TOTLE_FLOOR" jdbcType="DECIMAL" property="totleFloor" />
+    <result column="HOUSE_LICENSE_IND" jdbcType="CHAR" property="houseLicenseInd" />
+    <result column="HOUSE_LICENSE_TYPE" jdbcType="VARCHAR" property="houseLicenseType" />
+    <result column="HOUSE_LICENSE_NUM" jdbcType="VARCHAR" property="houseLicenseNum" />
+    <result column="HOUSE_LICENSE_OWNER" jdbcType="VARCHAR" property="houseLicenseOwner" />
+    <result column="LAND_LICENSE_IND" jdbcType="CHAR" property="landLicenseInd" />
+    <result column="LAND_LICENSE_DATE" jdbcType="TIMESTAMP" property="landLicenseDate" />
+    <result column="LAND_LICENSE_TYPE" jdbcType="VARCHAR" property="landLicenseType" />
+    <result column="LAND_LICENSE_NUM" jdbcType="VARCHAR" property="landLicenseNum" />
+    <result column="LAND_LICENSE_OWNER" jdbcType="VARCHAR" property="landLicenseOwner" />
+    <result column="LAND_CHARACTER" jdbcType="VARCHAR" property="landCharacter" />
+    <result column="LAND_USE_TYPE" jdbcType="VARCHAR" property="landUseType" />
+    <result column="FLOOR_AREA" jdbcType="DECIMAL" property="floorArea" />
+    <result column="BUILDING_LOCATION" jdbcType="VARCHAR" property="buildingLocation" />
+    <result column="CASH_CAPACITY" jdbcType="VARCHAR" property="cashCapacity" />
+    <result column="IS_LAND_MORTGAGE" jdbcType="CHAR" property="isLandMortgage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, CONSTRUCTED_DATE, BUILDING_STRUCTURE, UTILIZATION_TYPE, LAND_ACQUIRING_WAY_CD, 
+    CITY_LOCATION_IND, LAND_AREA, BUILD_ALL_AREA, CIRCLE_STATUS, STREET_DEEP, STREET_WIDTH, 
+    OTHER_STATUS, FINISH_DATE, ASSET_LIFE, TOTLE_FLOOR, HOUSE_LICENSE_IND, HOUSE_LICENSE_TYPE, 
+    HOUSE_LICENSE_NUM, HOUSE_LICENSE_OWNER, LAND_LICENSE_IND, LAND_LICENSE_DATE, LAND_LICENSE_TYPE, 
+    LAND_LICENSE_NUM, LAND_LICENSE_OWNER, LAND_CHARACTER, LAND_USE_TYPE, FLOOR_AREA, 
+    BUILDING_LOCATION, CASH_CAPACITY, IS_LAND_MORTGAGE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_REAL_ESTATE_MORTGAGE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_REAL_ESTATE_MORTGAGE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtRealEstateMortgage">
+    insert into TB_GRT_REAL_ESTATE_MORTGAGE (GUARANTY_ID, CONSTRUCTED_DATE, BUILDING_STRUCTURE, 
+      UTILIZATION_TYPE, LAND_ACQUIRING_WAY_CD, CITY_LOCATION_IND, 
+      LAND_AREA, BUILD_ALL_AREA, CIRCLE_STATUS, 
+      STREET_DEEP, STREET_WIDTH, OTHER_STATUS, 
+      FINISH_DATE, ASSET_LIFE, TOTLE_FLOOR, 
+      HOUSE_LICENSE_IND, HOUSE_LICENSE_TYPE, HOUSE_LICENSE_NUM, 
+      HOUSE_LICENSE_OWNER, LAND_LICENSE_IND, LAND_LICENSE_DATE, 
+      LAND_LICENSE_TYPE, LAND_LICENSE_NUM, LAND_LICENSE_OWNER, 
+      LAND_CHARACTER, LAND_USE_TYPE, FLOOR_AREA, 
+      BUILDING_LOCATION, CASH_CAPACITY, IS_LAND_MORTGAGE
+      )
+    values (#{guarantyId,jdbcType=VARCHAR}, #{constructedDate,jdbcType=TIMESTAMP}, #{buildingStructure,jdbcType=VARCHAR}, 
+      #{utilizationType,jdbcType=VARCHAR}, #{landAcquiringWayCd,jdbcType=VARCHAR}, #{cityLocationInd,jdbcType=CHAR}, 
+      #{landArea,jdbcType=DECIMAL}, #{buildAllArea,jdbcType=DECIMAL}, #{circleStatus,jdbcType=VARCHAR}, 
+      #{streetDeep,jdbcType=VARCHAR}, #{streetWidth,jdbcType=VARCHAR}, #{otherStatus,jdbcType=VARCHAR}, 
+      #{finishDate,jdbcType=TIMESTAMP}, #{assetLife,jdbcType=DECIMAL}, #{totleFloor,jdbcType=DECIMAL}, 
+      #{houseLicenseInd,jdbcType=CHAR}, #{houseLicenseType,jdbcType=VARCHAR}, #{houseLicenseNum,jdbcType=VARCHAR}, 
+      #{houseLicenseOwner,jdbcType=VARCHAR}, #{landLicenseInd,jdbcType=CHAR}, #{landLicenseDate,jdbcType=TIMESTAMP}, 
+      #{landLicenseType,jdbcType=VARCHAR}, #{landLicenseNum,jdbcType=VARCHAR}, #{landLicenseOwner,jdbcType=VARCHAR}, 
+      #{landCharacter,jdbcType=VARCHAR}, #{landUseType,jdbcType=VARCHAR}, #{floorArea,jdbcType=DECIMAL}, 
+      #{buildingLocation,jdbcType=VARCHAR}, #{cashCapacity,jdbcType=VARCHAR}, #{isLandMortgage,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtRealEstateMortgage">
+    insert into TB_GRT_REAL_ESTATE_MORTGAGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="constructedDate != null">
+        CONSTRUCTED_DATE,
+      </if>
+      <if test="buildingStructure != null">
+        BUILDING_STRUCTURE,
+      </if>
+      <if test="utilizationType != null">
+        UTILIZATION_TYPE,
+      </if>
+      <if test="landAcquiringWayCd != null">
+        LAND_ACQUIRING_WAY_CD,
+      </if>
+      <if test="cityLocationInd != null">
+        CITY_LOCATION_IND,
+      </if>
+      <if test="landArea != null">
+        LAND_AREA,
+      </if>
+      <if test="buildAllArea != null">
+        BUILD_ALL_AREA,
+      </if>
+      <if test="circleStatus != null">
+        CIRCLE_STATUS,
+      </if>
+      <if test="streetDeep != null">
+        STREET_DEEP,
+      </if>
+      <if test="streetWidth != null">
+        STREET_WIDTH,
+      </if>
+      <if test="otherStatus != null">
+        OTHER_STATUS,
+      </if>
+      <if test="finishDate != null">
+        FINISH_DATE,
+      </if>
+      <if test="assetLife != null">
+        ASSET_LIFE,
+      </if>
+      <if test="totleFloor != null">
+        TOTLE_FLOOR,
+      </if>
+      <if test="houseLicenseInd != null">
+        HOUSE_LICENSE_IND,
+      </if>
+      <if test="houseLicenseType != null">
+        HOUSE_LICENSE_TYPE,
+      </if>
+      <if test="houseLicenseNum != null">
+        HOUSE_LICENSE_NUM,
+      </if>
+      <if test="houseLicenseOwner != null">
+        HOUSE_LICENSE_OWNER,
+      </if>
+      <if test="landLicenseInd != null">
+        LAND_LICENSE_IND,
+      </if>
+      <if test="landLicenseDate != null">
+        LAND_LICENSE_DATE,
+      </if>
+      <if test="landLicenseType != null">
+        LAND_LICENSE_TYPE,
+      </if>
+      <if test="landLicenseNum != null">
+        LAND_LICENSE_NUM,
+      </if>
+      <if test="landLicenseOwner != null">
+        LAND_LICENSE_OWNER,
+      </if>
+      <if test="landCharacter != null">
+        LAND_CHARACTER,
+      </if>
+      <if test="landUseType != null">
+        LAND_USE_TYPE,
+      </if>
+      <if test="floorArea != null">
+        FLOOR_AREA,
+      </if>
+      <if test="buildingLocation != null">
+        BUILDING_LOCATION,
+      </if>
+      <if test="cashCapacity != null">
+        CASH_CAPACITY,
+      </if>
+      <if test="isLandMortgage != null">
+        IS_LAND_MORTGAGE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="constructedDate != null">
+        #{constructedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buildingStructure != null">
+        #{buildingStructure,jdbcType=VARCHAR},
+      </if>
+      <if test="utilizationType != null">
+        #{utilizationType,jdbcType=VARCHAR},
+      </if>
+      <if test="landAcquiringWayCd != null">
+        #{landAcquiringWayCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityLocationInd != null">
+        #{cityLocationInd,jdbcType=CHAR},
+      </if>
+      <if test="landArea != null">
+        #{landArea,jdbcType=DECIMAL},
+      </if>
+      <if test="buildAllArea != null">
+        #{buildAllArea,jdbcType=DECIMAL},
+      </if>
+      <if test="circleStatus != null">
+        #{circleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="streetDeep != null">
+        #{streetDeep,jdbcType=VARCHAR},
+      </if>
+      <if test="streetWidth != null">
+        #{streetWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="otherStatus != null">
+        #{otherStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="finishDate != null">
+        #{finishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assetLife != null">
+        #{assetLife,jdbcType=DECIMAL},
+      </if>
+      <if test="totleFloor != null">
+        #{totleFloor,jdbcType=DECIMAL},
+      </if>
+      <if test="houseLicenseInd != null">
+        #{houseLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="houseLicenseType != null">
+        #{houseLicenseType,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLicenseNum != null">
+        #{houseLicenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLicenseOwner != null">
+        #{houseLicenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="landLicenseInd != null">
+        #{landLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="landLicenseDate != null">
+        #{landLicenseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="landLicenseType != null">
+        #{landLicenseType,jdbcType=VARCHAR},
+      </if>
+      <if test="landLicenseNum != null">
+        #{landLicenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="landLicenseOwner != null">
+        #{landLicenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="landCharacter != null">
+        #{landCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="landUseType != null">
+        #{landUseType,jdbcType=VARCHAR},
+      </if>
+      <if test="floorArea != null">
+        #{floorArea,jdbcType=DECIMAL},
+      </if>
+      <if test="buildingLocation != null">
+        #{buildingLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="cashCapacity != null">
+        #{cashCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="isLandMortgage != null">
+        #{isLandMortgage,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtRealEstateMortgage">
+    update TB_GRT_REAL_ESTATE_MORTGAGE
+    <set>
+      <if test="constructedDate != null">
+        CONSTRUCTED_DATE = #{constructedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buildingStructure != null">
+        BUILDING_STRUCTURE = #{buildingStructure,jdbcType=VARCHAR},
+      </if>
+      <if test="utilizationType != null">
+        UTILIZATION_TYPE = #{utilizationType,jdbcType=VARCHAR},
+      </if>
+      <if test="landAcquiringWayCd != null">
+        LAND_ACQUIRING_WAY_CD = #{landAcquiringWayCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityLocationInd != null">
+        CITY_LOCATION_IND = #{cityLocationInd,jdbcType=CHAR},
+      </if>
+      <if test="landArea != null">
+        LAND_AREA = #{landArea,jdbcType=DECIMAL},
+      </if>
+      <if test="buildAllArea != null">
+        BUILD_ALL_AREA = #{buildAllArea,jdbcType=DECIMAL},
+      </if>
+      <if test="circleStatus != null">
+        CIRCLE_STATUS = #{circleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="streetDeep != null">
+        STREET_DEEP = #{streetDeep,jdbcType=VARCHAR},
+      </if>
+      <if test="streetWidth != null">
+        STREET_WIDTH = #{streetWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="otherStatus != null">
+        OTHER_STATUS = #{otherStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="finishDate != null">
+        FINISH_DATE = #{finishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assetLife != null">
+        ASSET_LIFE = #{assetLife,jdbcType=DECIMAL},
+      </if>
+      <if test="totleFloor != null">
+        TOTLE_FLOOR = #{totleFloor,jdbcType=DECIMAL},
+      </if>
+      <if test="houseLicenseInd != null">
+        HOUSE_LICENSE_IND = #{houseLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="houseLicenseType != null">
+        HOUSE_LICENSE_TYPE = #{houseLicenseType,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLicenseNum != null">
+        HOUSE_LICENSE_NUM = #{houseLicenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLicenseOwner != null">
+        HOUSE_LICENSE_OWNER = #{houseLicenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="landLicenseInd != null">
+        LAND_LICENSE_IND = #{landLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="landLicenseDate != null">
+        LAND_LICENSE_DATE = #{landLicenseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="landLicenseType != null">
+        LAND_LICENSE_TYPE = #{landLicenseType,jdbcType=VARCHAR},
+      </if>
+      <if test="landLicenseNum != null">
+        LAND_LICENSE_NUM = #{landLicenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="landLicenseOwner != null">
+        LAND_LICENSE_OWNER = #{landLicenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="landCharacter != null">
+        LAND_CHARACTER = #{landCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="landUseType != null">
+        LAND_USE_TYPE = #{landUseType,jdbcType=VARCHAR},
+      </if>
+      <if test="floorArea != null">
+        FLOOR_AREA = #{floorArea,jdbcType=DECIMAL},
+      </if>
+      <if test="buildingLocation != null">
+        BUILDING_LOCATION = #{buildingLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="cashCapacity != null">
+        CASH_CAPACITY = #{cashCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="isLandMortgage != null">
+        IS_LAND_MORTGAGE = #{isLandMortgage,jdbcType=CHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtRealEstateMortgage">
+    update TB_GRT_REAL_ESTATE_MORTGAGE
+    set CONSTRUCTED_DATE = #{constructedDate,jdbcType=TIMESTAMP},
+      BUILDING_STRUCTURE = #{buildingStructure,jdbcType=VARCHAR},
+      UTILIZATION_TYPE = #{utilizationType,jdbcType=VARCHAR},
+      LAND_ACQUIRING_WAY_CD = #{landAcquiringWayCd,jdbcType=VARCHAR},
+      CITY_LOCATION_IND = #{cityLocationInd,jdbcType=CHAR},
+      LAND_AREA = #{landArea,jdbcType=DECIMAL},
+      BUILD_ALL_AREA = #{buildAllArea,jdbcType=DECIMAL},
+      CIRCLE_STATUS = #{circleStatus,jdbcType=VARCHAR},
+      STREET_DEEP = #{streetDeep,jdbcType=VARCHAR},
+      STREET_WIDTH = #{streetWidth,jdbcType=VARCHAR},
+      OTHER_STATUS = #{otherStatus,jdbcType=VARCHAR},
+      FINISH_DATE = #{finishDate,jdbcType=TIMESTAMP},
+      ASSET_LIFE = #{assetLife,jdbcType=DECIMAL},
+      TOTLE_FLOOR = #{totleFloor,jdbcType=DECIMAL},
+      HOUSE_LICENSE_IND = #{houseLicenseInd,jdbcType=CHAR},
+      HOUSE_LICENSE_TYPE = #{houseLicenseType,jdbcType=VARCHAR},
+      HOUSE_LICENSE_NUM = #{houseLicenseNum,jdbcType=VARCHAR},
+      HOUSE_LICENSE_OWNER = #{houseLicenseOwner,jdbcType=VARCHAR},
+      LAND_LICENSE_IND = #{landLicenseInd,jdbcType=CHAR},
+      LAND_LICENSE_DATE = #{landLicenseDate,jdbcType=TIMESTAMP},
+      LAND_LICENSE_TYPE = #{landLicenseType,jdbcType=VARCHAR},
+      LAND_LICENSE_NUM = #{landLicenseNum,jdbcType=VARCHAR},
+      LAND_LICENSE_OWNER = #{landLicenseOwner,jdbcType=VARCHAR},
+      LAND_CHARACTER = #{landCharacter,jdbcType=VARCHAR},
+      LAND_USE_TYPE = #{landUseType,jdbcType=VARCHAR},
+      FLOOR_AREA = #{floorArea,jdbcType=DECIMAL},
+      BUILDING_LOCATION = #{buildingLocation,jdbcType=VARCHAR},
+      CASH_CAPACITY = #{cashCapacity,jdbcType=VARCHAR},
+      IS_LAND_MORTGAGE = #{isLandMortgage,jdbcType=CHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtGuaranteeSlipMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtGuaranteeSlip">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="K68BXGSMC" jdbcType="VARCHAR" property="k68bxgsmc" />
+    <result column="K68TBJE" jdbcType="DECIMAL" property="k68tbje" />
+    <result column="K68SYR" jdbcType="VARCHAR" property="k68syr" />
+    <result column="K68DBR" jdbcType="VARCHAR" property="k68dbr" />
+    <result column="K68BDZL" jdbcType="VARCHAR" property="k68bdzl" />
+    <result column="K68BZSM" jdbcType="VARCHAR" property="k68bzsm" />
+    <result column="K68GRSJ" jdbcType="TIMESTAMP" property="k68grsj" />
+    <result column="K68BDDQR" jdbcType="TIMESTAMP" property="k68bddqr" />
+    <result column="K68BDJE" jdbcType="DECIMAL" property="k68bdje" />
+    <result column="K68BDH" jdbcType="VARCHAR" property="k68bdh" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, K68BXGSMC, K68TBJE, K68SYR, K68DBR, K68BDZL, K68BZSM, K68GRSJ, K68BDDQR, 
+    K68BDJE, K68BDH
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_GUARANTEE_SLIP
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_GUARANTEE_SLIP
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtGuaranteeSlip">
+    insert into TB_GRT_GUARANTEE_SLIP (GUARANTY_ID, K68BXGSMC, K68TBJE, 
+      K68SYR, K68DBR, K68BDZL, 
+      K68BZSM, K68GRSJ, K68BDDQR, 
+      K68BDJE, K68BDH)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{k68bxgsmc,jdbcType=VARCHAR}, #{k68tbje,jdbcType=DECIMAL}, 
+      #{k68syr,jdbcType=VARCHAR}, #{k68dbr,jdbcType=VARCHAR}, #{k68bdzl,jdbcType=VARCHAR}, 
+      #{k68bzsm,jdbcType=VARCHAR}, #{k68grsj,jdbcType=TIMESTAMP}, #{k68bddqr,jdbcType=TIMESTAMP}, 
+      #{k68bdje,jdbcType=DECIMAL}, #{k68bdh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtGuaranteeSlip">
+    insert into TB_GRT_GUARANTEE_SLIP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="k68bxgsmc != null">
+        K68BXGSMC,
+      </if>
+      <if test="k68tbje != null">
+        K68TBJE,
+      </if>
+      <if test="k68syr != null">
+        K68SYR,
+      </if>
+      <if test="k68dbr != null">
+        K68DBR,
+      </if>
+      <if test="k68bdzl != null">
+        K68BDZL,
+      </if>
+      <if test="k68bzsm != null">
+        K68BZSM,
+      </if>
+      <if test="k68grsj != null">
+        K68GRSJ,
+      </if>
+      <if test="k68bddqr != null">
+        K68BDDQR,
+      </if>
+      <if test="k68bdje != null">
+        K68BDJE,
+      </if>
+      <if test="k68bdh != null">
+        K68BDH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="k68bxgsmc != null">
+        #{k68bxgsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="k68tbje != null">
+        #{k68tbje,jdbcType=DECIMAL},
+      </if>
+      <if test="k68syr != null">
+        #{k68syr,jdbcType=VARCHAR},
+      </if>
+      <if test="k68dbr != null">
+        #{k68dbr,jdbcType=VARCHAR},
+      </if>
+      <if test="k68bdzl != null">
+        #{k68bdzl,jdbcType=VARCHAR},
+      </if>
+      <if test="k68bzsm != null">
+        #{k68bzsm,jdbcType=VARCHAR},
+      </if>
+      <if test="k68grsj != null">
+        #{k68grsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="k68bddqr != null">
+        #{k68bddqr,jdbcType=TIMESTAMP},
+      </if>
+      <if test="k68bdje != null">
+        #{k68bdje,jdbcType=DECIMAL},
+      </if>
+      <if test="k68bdh != null">
+        #{k68bdh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtGuaranteeSlip">
+    update TB_GRT_GUARANTEE_SLIP
+    <set>
+      <if test="k68bxgsmc != null">
+        K68BXGSMC = #{k68bxgsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="k68tbje != null">
+        K68TBJE = #{k68tbje,jdbcType=DECIMAL},
+      </if>
+      <if test="k68syr != null">
+        K68SYR = #{k68syr,jdbcType=VARCHAR},
+      </if>
+      <if test="k68dbr != null">
+        K68DBR = #{k68dbr,jdbcType=VARCHAR},
+      </if>
+      <if test="k68bdzl != null">
+        K68BDZL = #{k68bdzl,jdbcType=VARCHAR},
+      </if>
+      <if test="k68bzsm != null">
+        K68BZSM = #{k68bzsm,jdbcType=VARCHAR},
+      </if>
+      <if test="k68grsj != null">
+        K68GRSJ = #{k68grsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="k68bddqr != null">
+        K68BDDQR = #{k68bddqr,jdbcType=TIMESTAMP},
+      </if>
+      <if test="k68bdje != null">
+        K68BDJE = #{k68bdje,jdbcType=DECIMAL},
+      </if>
+      <if test="k68bdh != null">
+        K68BDH = #{k68bdh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtGuaranteeSlip">
+    update TB_GRT_GUARANTEE_SLIP
+    set K68BXGSMC = #{k68bxgsmc,jdbcType=VARCHAR},
+      K68TBJE = #{k68tbje,jdbcType=DECIMAL},
+      K68SYR = #{k68syr,jdbcType=VARCHAR},
+      K68DBR = #{k68dbr,jdbcType=VARCHAR},
+      K68BDZL = #{k68bdzl,jdbcType=VARCHAR},
+      K68BZSM = #{k68bzsm,jdbcType=VARCHAR},
+      K68GRSJ = #{k68grsj,jdbcType=TIMESTAMP},
+      K68BDDQR = #{k68bddqr,jdbcType=TIMESTAMP},
+      K68BDJE = #{k68bdje,jdbcType=DECIMAL},
+      K68BDH = #{k68bdh,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

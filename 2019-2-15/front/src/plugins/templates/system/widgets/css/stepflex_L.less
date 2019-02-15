@@ -1,0 +1,91 @@
+/*购物车和结算部分分步样式开始*/
+/*默认的为分三步*/
+/*分四步、五步分别添加样式four和five*/
+.stepflex {
+    display: inline-block;
+    text-align: center;
+    margin: 10px auto;
+    width: 90%;
+    margin-top: 40px;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 0;
+    dl {
+        float: left;
+        position: relative;
+        width: 33%;
+        top: -5px;
+        border-top: 3px solid #e2e2e2;
+        margin-bottom: 10px;
+        .s-num {
+            position: relative;
+            margin: -20px auto 0;
+            color: #fff;
+            font-weight: 700;
+            width: 48px;
+            height: 37px;
+            background: url("../images/setp-bg.png") no-repeat;
+            line-height: 38px;
+            text-align: left;
+            text-indent: 22px;
+        }
+    }
+    .s-text {
+        color: #a29e9e;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 12px;
+    }
+}
+.stepflex.four dl {
+    width: 25%;
+}
+.stepflex.five dl {
+    width: 20%;
+}
+.stepflex dl.first .s-num {
+    background: url("../images/setp-first.png") no-repeat;
+    margin-left: 0;
+    text-indent: 16px;
+}
+.stepflex dl.last .s-num {
+    background: url("../images/setp-last.png") no-repeat;
+    margin-right: -5px;
+}
+.stepflex dl.done {
+    border-top-color: #ef524d;
+}
+.stepflex dl.doing {
+    border-top-color: #ef524d;
+}
+.stepflex dl.doing .s-num,
+.stepflex dl.done .s-num {
+    background: url("../images/setp-doing.png") no-repeat;
+}
+.stepflex dl.last.doing .s-num,
+.stepflex dl.last.done .s-num {
+    background: url("../images/setp-done-last.png") no-repeat;
+}
+.stepflex dl.first.doing .s-num,
+.stepflex dl.first.done .s-num {
+    background: url("../images/setp-first.png") no-repeat;
+}
+.stepflex dl.first .s-text {
+    color: #262626;
+    text-align: left;
+}
+.stepflex dl.last .s-text {
+    text-align: right;
+}
+.stepflex dl.doing .s-text {
+    color: #262626;
+}
+.stepflex s {
+    left: 0;
+}
+.stepflex .last b {
+    background-position: -5px -24px;
+    background-color: #fff;
+}
+/*购物车和结算部分分步样式 end*/
+

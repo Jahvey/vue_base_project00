@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.afterloan.afterloancheck.mapper.ChCheckFrequencyMapper">
+	<resultMap type="com.cdgit.afterloan.afterloancheck.resultbean.CheckFrequencyResult" id="rateMap">
+        <result column="DEFAULT_RATE" property="defaultRate" jdbcType="VARCHAR"/>
+        <result column="APPROVE_RATE" property="approveRate" jdbcType="VARCHAR"/>
+        <result column="SET_RATE" property="setRate" jdbcType="VARCHAR"/>
+        <result column="PARTY_TYPE_CD" property="customerTypeCd" jdbcType="VARCHAR"/>
+        <result column="ORG_NUM" property="orgNum" jdbcType="VARCHAR"/>
+        <result column="PARTY_NAME" property="partyName" jdbcType="VARCHAR"/>
+        <result column="PARTY_NUM" property="partyNum" jdbcType="VARCHAR"/>
+        <result column="PARTY_ID" property="partyId" jdbcType="VARCHAR"/>
+        <result column="IR_ID" property="irId" jdbcType="VARCHAR"/>
+        <result column="CLASSIFICATION_RESULT_CD" property="classificationResultCd" jdbcType="VARCHAR"/>
+        <result column="CREDIT_RATING_CD" property="creditRatingCd" jdbcType="VARCHAR"/>
+        <result column="WARNING_LEVEL_CD" property="warningLevelCd" jdbcType="VARCHAR"/>
+        <result column="LIST_STATUS" property="listStatus" jdbcType="VARCHAR"/>
+        <result column="IS_DIFFERENT_PLACE" property="isDifferentPlace" jdbcType="VARCHAR"/>
+    </resultMap>
+    <!-- 贷后检查频率 -->
+  <select id="selectCheckFrequency" parameterType="java.util.HashMap" resultMap="rateMap">
+        SELECT 
+   		       TAI.DEFAULT_RATE,
+		       TAI.APPROVE_RATE,
+		       TAI.SET_RATE,
+		       PP.ORG_NUM,
+		       PP.PARTY_NUM,
+		       TAI.IR_ID,
+		       TAI.IS_DIFFERENT_PLACE,
+		       CLA.CLASSIFICATION_RESULT_CD,
+		       RR.CREDIT_RATING_CD,
+		       EW.WARNING_LEVEL_CD,
+		       PP.PARTY_TYPE_CD,
+		       PP.PARTY_NAME,
+		       LI.LIST_STATUS,
+		       PP.PARTY_ID
+		  FROM V_CSM_PARTY PP
+		  LEFT JOIN TB_AFT_INSPECT_RATE TAI ON TAI.PARTY_ID = PP.PARTY_ID
+		  LEFT JOIN TB_REW_CSM_EARLY_WARNING EW ON TAI.PARTY_ID = EW.PARTY_ID
+		  LEFT JOIN TB_LST_INFO LI ON TAI.PARTY_ID = LI.PARTY_ID
+		  LEFT JOIN (SELECT PARTY_ID, MAX(CLS_RESULT) CLASSIFICATION_RESULT_CD
+		               FROM TB_CON_CONTRACT_INFO GROUP BY PARTY_ID) CLA ON TAI.PARTY_ID = CLA.PARTY_ID
+		  LEFT JOIN (SELECT PARTY_ID, MAX(CREDIT_RATING_CD) CREDIT_RATING_CD
+		               FROM TB_IRM_INTERNAL_RATING_RESULT
+		              WHERE RATING_STATE = '03'
+		              GROUP BY PARTY_ID) RR ON TAI.PARTY_ID = RR.PARTY_ID
+		 WHERE 1 = 1
+		 <if test=" orgNum != null and orgNum != '' ">
+	    	AND PP.ORG_NUM IN (SELECT ORGCODE FROM OM_ORGANIZATION WHERE ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%')
+	    </if>
+	    <if test=" partyName != null and partyName != '' ">
+	    	 AND PP.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+	    </if>
+	    <if test=" classificationResultCd != null and classificationResultCd != '' ">
+	    	AND CLA.CLASSIFICATION_RESULT_CD = #{classificationResultCd,jdbcType=VARCHAR}
+	    </if>
+	    <if test=" setRate != null and setRate != '' ">
+	    	AND TAI.SET_RATE = #{setRate,jdbcType=VARCHAR}
+	    </if>
+	    <if test=" creditRatingCd != null and creditRatingCd != '' ">
+	    	AND RR.CREDIT_RATING_CD = #{creditRatingCd,jdbcType=VARCHAR}
+	    </if>
+	    <if test=" warningLevelCd != null and warningLevelCd != '' ">
+	    	AND EW.WARNING_LEVEL_CD = #{warningLevelCd,jdbcType=VARCHAR}
+	    </if>
+	    <if test=" listStatus != null and listStatus != '' ">
+	    	AND LI.LIST_STATUS = #{listStatus,jdbcType=VARCHAR}
+	    </if>
+	    <if test=" isDifferentPlace != null and isDifferentPlace != '' ">
+	    	AND TAI.IS_DIFFERENT_PLACE = #{isDifferentPlace,jdbcType=VARCHAR}
+	    </if>
+		<!-- <isNotNull property="orglevel1">总行用户
+			and pp.org_num in (select o.orgcode from om_organization o)
+		</isNotNull>
+		<isNotNull property="orglevel2">分行用户
+			and pp.org_num in (select o.orgcode from om_organization o where o.parentorgid = #currentorgid#)
+		</isNotNull>
+		<isNotNull property="orglevel3">支行用户
+			and pp.org_num = #currentorgcode#
+		</isNotNull> 
+		<isNotNull property="orgid">
+	    	and pp.org_num in (select orgcode from om_organization where orgseq like '%$orgid$%')
+	    </isNotNull>
+   		<isNotNull property="classificationResultCd">
+   			and cla.CLASSIFICATION_RESULT_CD = #classificationResultCd#
+   		</isNotNull>
+   		<isNotNull property="partyName">
+	    	and pp.party_name like '%$partyName$%'
+	   </isNotNull>
+	   <isNotNull property="setRate">
+	        and tai.set_rate = #setRate#
+	   </isNotNull>
+	   <isNotNull property="creditRatingCd">
+	        and rr.credit_rating_cd = #creditRatingCd#
+	   </isNotNull>
+	   <isNotNull property="warningLevelCd">
+	        and ew.warning_level_cd = #warningLevelCd#
+	   </isNotNull>
+	   <isNotNull property="listStatus">
+	        and li.list_status = #listStatus#
+	   </isNotNull>
+	   <isNotNull property="isDifferentPlace">
+	        and tai.is_different_place = #isDifferentPlace#
+	   </isNotNull>-->
+	    
+  </select>
+ 
+ 
+ 
+</mapper>
