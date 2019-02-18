@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtRealEstateDetailMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtRealEstateDetail">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="ROOM_NUM" jdbcType="VARCHAR" property="roomNum" />
+    <result column="BUILDING_NUM" jdbcType="VARCHAR" property="buildingNum" />
+    <result column="FLOOR_COUNT" jdbcType="DECIMAL" property="floorCount" />
+    <result column="FLOOR_HEIGHT" jdbcType="DECIMAL" property="floorHeight" />
+    <result column="BUILD_AREA" jdbcType="DECIMAL" property="buildArea" />
+    <result column="MANAGE_STATUS" jdbcType="VARCHAR" property="manageStatus" />
+    <result column="LAND_AREA" jdbcType="DECIMAL" property="landArea" />
+    <result column="ROOM_USER" jdbcType="VARCHAR" property="roomUser" />
+    <result column="DIRECTION" jdbcType="VARCHAR" property="direction" />
+    <result column="HOUSE_MODEL" jdbcType="VARCHAR" property="houseModel" />
+    <result column="FITMENT_DEGREE" jdbcType="VARCHAR" property="fitmentDegree" />
+    <result column="COURT_AREA" jdbcType="DECIMAL" property="courtArea" />
+    <result column="SELF_CARBARN_IND" jdbcType="CHAR" property="selfCarbarnInd" />
+    <result column="FLOOR" jdbcType="VARCHAR" property="floor" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, ROOM_NUM, BUILDING_NUM, FLOOR_COUNT, FLOOR_HEIGHT, BUILD_AREA, MANAGE_STATUS, 
+    LAND_AREA, ROOM_USER, DIRECTION, HOUSE_MODEL, FITMENT_DEGREE, COURT_AREA, SELF_CARBARN_IND, 
+    FLOOR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_REAL_ESTATE_DETAIL
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_REAL_ESTATE_DETAIL
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtRealEstateDetail">
+    insert into TB_GRT_REAL_ESTATE_DETAIL (GUARANTY_ID, ROOM_NUM, BUILDING_NUM, 
+      FLOOR_COUNT, FLOOR_HEIGHT, BUILD_AREA, 
+      MANAGE_STATUS, LAND_AREA, ROOM_USER, 
+      DIRECTION, HOUSE_MODEL, FITMENT_DEGREE, 
+      COURT_AREA, SELF_CARBARN_IND, FLOOR
+      )
+    values (#{guarantyId,jdbcType=VARCHAR}, #{roomNum,jdbcType=VARCHAR}, #{buildingNum,jdbcType=VARCHAR}, 
+      #{floorCount,jdbcType=DECIMAL}, #{floorHeight,jdbcType=DECIMAL}, #{buildArea,jdbcType=DECIMAL}, 
+      #{manageStatus,jdbcType=VARCHAR}, #{landArea,jdbcType=DECIMAL}, #{roomUser,jdbcType=VARCHAR}, 
+      #{direction,jdbcType=VARCHAR}, #{houseModel,jdbcType=VARCHAR}, #{fitmentDegree,jdbcType=VARCHAR}, 
+      #{courtArea,jdbcType=DECIMAL}, #{selfCarbarnInd,jdbcType=CHAR}, #{floor,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtRealEstateDetail">
+    insert into TB_GRT_REAL_ESTATE_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="roomNum != null">
+        ROOM_NUM,
+      </if>
+      <if test="buildingNum != null">
+        BUILDING_NUM,
+      </if>
+      <if test="floorCount != null">
+        FLOOR_COUNT,
+      </if>
+      <if test="floorHeight != null">
+        FLOOR_HEIGHT,
+      </if>
+      <if test="buildArea != null">
+        BUILD_AREA,
+      </if>
+      <if test="manageStatus != null">
+        MANAGE_STATUS,
+      </if>
+      <if test="landArea != null">
+        LAND_AREA,
+      </if>
+      <if test="roomUser != null">
+        ROOM_USER,
+      </if>
+      <if test="direction != null">
+        DIRECTION,
+      </if>
+      <if test="houseModel != null">
+        HOUSE_MODEL,
+      </if>
+      <if test="fitmentDegree != null">
+        FITMENT_DEGREE,
+      </if>
+      <if test="courtArea != null">
+        COURT_AREA,
+      </if>
+      <if test="selfCarbarnInd != null">
+        SELF_CARBARN_IND,
+      </if>
+      <if test="floor != null">
+        FLOOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNum != null">
+        #{roomNum,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNum != null">
+        #{buildingNum,jdbcType=VARCHAR},
+      </if>
+      <if test="floorCount != null">
+        #{floorCount,jdbcType=DECIMAL},
+      </if>
+      <if test="floorHeight != null">
+        #{floorHeight,jdbcType=DECIMAL},
+      </if>
+      <if test="buildArea != null">
+        #{buildArea,jdbcType=DECIMAL},
+      </if>
+      <if test="manageStatus != null">
+        #{manageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="landArea != null">
+        #{landArea,jdbcType=DECIMAL},
+      </if>
+      <if test="roomUser != null">
+        #{roomUser,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null">
+        #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="houseModel != null">
+        #{houseModel,jdbcType=VARCHAR},
+      </if>
+      <if test="fitmentDegree != null">
+        #{fitmentDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="courtArea != null">
+        #{courtArea,jdbcType=DECIMAL},
+      </if>
+      <if test="selfCarbarnInd != null">
+        #{selfCarbarnInd,jdbcType=CHAR},
+      </if>
+      <if test="floor != null">
+        #{floor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtRealEstateDetail">
+    update TB_GRT_REAL_ESTATE_DETAIL
+    <set>
+      <if test="roomNum != null">
+        ROOM_NUM = #{roomNum,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingNum != null">
+        BUILDING_NUM = #{buildingNum,jdbcType=VARCHAR},
+      </if>
+      <if test="floorCount != null">
+        FLOOR_COUNT = #{floorCount,jdbcType=DECIMAL},
+      </if>
+      <if test="floorHeight != null">
+        FLOOR_HEIGHT = #{floorHeight,jdbcType=DECIMAL},
+      </if>
+      <if test="buildArea != null">
+        BUILD_AREA = #{buildArea,jdbcType=DECIMAL},
+      </if>
+      <if test="manageStatus != null">
+        MANAGE_STATUS = #{manageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="landArea != null">
+        LAND_AREA = #{landArea,jdbcType=DECIMAL},
+      </if>
+      <if test="roomUser != null">
+        ROOM_USER = #{roomUser,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null">
+        DIRECTION = #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="houseModel != null">
+        HOUSE_MODEL = #{houseModel,jdbcType=VARCHAR},
+      </if>
+      <if test="fitmentDegree != null">
+        FITMENT_DEGREE = #{fitmentDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="courtArea != null">
+        COURT_AREA = #{courtArea,jdbcType=DECIMAL},
+      </if>
+      <if test="selfCarbarnInd != null">
+        SELF_CARBARN_IND = #{selfCarbarnInd,jdbcType=CHAR},
+      </if>
+      <if test="floor != null">
+        FLOOR = #{floor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtRealEstateDetail">
+    update TB_GRT_REAL_ESTATE_DETAIL
+    set ROOM_NUM = #{roomNum,jdbcType=VARCHAR},
+      BUILDING_NUM = #{buildingNum,jdbcType=VARCHAR},
+      FLOOR_COUNT = #{floorCount,jdbcType=DECIMAL},
+      FLOOR_HEIGHT = #{floorHeight,jdbcType=DECIMAL},
+      BUILD_AREA = #{buildArea,jdbcType=DECIMAL},
+      MANAGE_STATUS = #{manageStatus,jdbcType=VARCHAR},
+      LAND_AREA = #{landArea,jdbcType=DECIMAL},
+      ROOM_USER = #{roomUser,jdbcType=VARCHAR},
+      DIRECTION = #{direction,jdbcType=VARCHAR},
+      HOUSE_MODEL = #{houseModel,jdbcType=VARCHAR},
+      FITMENT_DEGREE = #{fitmentDegree,jdbcType=VARCHAR},
+      COURT_AREA = #{courtArea,jdbcType=DECIMAL},
+      SELF_CARBARN_IND = #{selfCarbarnInd,jdbcType=CHAR},
+      FLOOR = #{floor,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.afterloan.afterloancheck.mapper.ChBeforeMatCheckMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.afterloan.afterloancheck.resultbean.BorListResult">
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ENGLISH_NAME" jdbcType="TIMESTAMP" property="englishName" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="SUMMARY_ID" jdbcType="DECIMAL" property="summaryId" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="SUMMARY_AMT" jdbcType="VARCHAR" property="summaryAmt" />
+    <result column="JJYE" jdbcType="TIMESTAMP" property="jjye" />
+    <result column="BEGIN_DATE" jdbcType="VARCHAR" property="beginDate" />
+    <result column="END_DATE" jdbcType="VARCHAR" property="endDate" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CHECK_STATUS" jdbcType="TIMESTAMP" property="checkStatus" />
+    <result column="FINISH_DES" jdbcType="VARCHAR" property="finishDes" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="RECEIPT_NUM" jdbcType="VARCHAR" property="receiptNum" />
+  </resultMap>
+<!-- 贷款到期前跟踪检查借据列表 -->
+  <select id="selectBeforeMatCheck" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    SELECT * FROM (
+    	SELECT P.PARTY_ID,
+		       P.PARTY_NUM,
+		       CC.CORP_CUSTOMER_TYPE_CD,
+		       P.PARTY_TYPE_CD,
+		       P.PARTY_NAME,
+		       CC.ENGLISH_NAME,
+		       (CASE
+		         WHEN P.PARTY_TYPE_CD = '01' THEN
+		          '202'
+		         WHEN P.PARTY_TYPE_CD = '02' THEN
+		          NP.CERT_TYPE
+		         ELSE
+		          ''
+		       END) AS CERT_TYPE,
+		       (CASE
+		         WHEN P.PARTY_TYPE_CD = '01' THEN
+		          CC.ORG_REGISTER_CD
+		         WHEN P.PARTY_TYPE_CD = '02' THEN
+		          NP.CERT_NUM
+		         ELSE
+		          ''
+		       END) AS CERT_NUM,
+		       LI.LOAN_ID,
+		       LI.PRODUCT_TYPE,
+		       LS.SUMMARY_ID,
+		       LS.SUMMARY_NUM,
+		       LS.SUMMARY_AMT,
+		       LS.JJYE,
+		       LS.BEGIN_DATE,
+		       LS.END_DATE,
+		       CI.CONTRACT_ID,
+		       CI.CONTRACT_NUM
+		  FROM TB_LOAN_INFO         LI,
+		       TB_LOAN_SUMMARY      LS,
+		       TB_CON_CONTRACT_INFO CI,
+		       TB_CSM_PARTY         P
+		  LEFT JOIN TB_CSM_CORPORATION CC ON CC.PARTY_ID = P.PARTY_ID
+		  LEFT JOIN TB_CSM_NATURAL_PERSON NP ON NP.PARTY_ID = P.PARTY_ID
+		 WHERE LI.LOAN_ID = LS.LOAN_ID
+		   AND LI.CONTRACT_ID = CI.CONTRACT_ID
+		   AND LI.PARTY_ID = P.PARTY_ID
+		   <!--AND LI.LOAN_STATUS = '03'出账状态01-未提交03-已生效-->
+		   AND LS.SUMMARY_STATUS_CD IN ('02','03')<!--借据状态01-未放款02-已放款03-逾期/垫款04-结清-->
+		<![CDATA[    AND LS.END_DATE<=ADD_MONTHS(SYSDATE,1) ]]>
+		   
+		   AND LI.USER_NUM = '200555'
+		   AND LI.ORG_NUM = '0700'
+		   ) A WHERE 1=1
+		 <if test=" partyName != null and partyName != '' ">
+ 		 	and A.PARTY_NAME like '%'||#{partyName,jdbcType=VARCHAR}||'%'
+ 		 </if>
+ 		 <if test=" certType != null and certType != '' ">
+ 		 	and A.CERT_TYPE = #{certType,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" certNum != null and certNum != '' ">
+ 		 	and A.CERT_NUM = #{certNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" summaryNum != null and summaryNum != '' ">
+ 		 	and A.SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" contractNum != null and contractNum != '' ">
+ 		 	and A.CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		<!--  <isNotNull property="partyName">  and a.party_name like '%$partyName$%' </isNotNull>
+ 		 <isNotNull property="certType">  and a.cert_type = '$certType$' </isNotNull>
+ 		 <isNotNull property="certNum">  and a.cert_num = '$certNum$' </isNotNull>
+ 		 <isNotNull property="summaryNum">  and a.summary_num = '$summaryNum$' </isNotNull>
+ 		 <isNotNull property="contractNum">  and a.contract_num = '$contractNum$' </isNotNull>
+ 	     从提醒页面传来的借据编号 
+ 		 <isNotNull property="receiptNum">  and a.summary_num = '$receiptNum$' </isNotNull>
+ 		 <isNotNull property="param"> <![CDATA[  and a.jjye >= (select credit_expire_yue from tb_pub_expire_check pe where pe.credit_expire_check_ind=#crediteExpireCheckInd#) ]]> </isNotNull>
+ 		  -->
+  </select>
+ 
+ 
+ 
+</mapper>

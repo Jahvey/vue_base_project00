@@ -1,0 +1,1362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.ledger.pubquery.mapper.ChTbIrmInternalRatingApplyMapper">
+  <resultMap id="Rate" type="com.cdgit.ledger.pubquery.resultbean.CustRateInfoResult">
+			<result property="orgname" column="ORGNAME" jdbcType="VARCHAR"/>
+			<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="certType" column="CERT_TYPE" jdbcType="VARCHAR"/>
+			<result property="certNum" column="CERT_NUM" jdbcType="VARCHAR"/>
+			<result property="effectiveStartDt" column="EFFECTIVE_START_DT" jdbcType="VARCHAR"/>
+			<result property="effectiveEndDt" column="EFFECTIVE_END_DT" jdbcType="VARCHAR"/>
+			<result property="iraApplyId" column="IRA_APPLY_ID" jdbcType="VARCHAR"/>
+			<result property="generalAdjustRatingCd" column="GENERAL_ADJUST_RATING_CD" jdbcType="VARCHAR"/>
+			<result property="operatorname" column="OPERATORNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+  <!-- 客户评级查询 -->
+  <select id="selectCustRate" parameterType="java.util.HashMap" resultMap="Rate">
+    SELECT (SELECT ORGNAME FROM OM_ORGANIZATION WHERE ORGCODE = T4.ORG_NUM) AS ORGNAME,
+		       T3.ORG_NUM,
+		       T2.PARTY_NAME,
+		       V.CERT_TYPE,
+		       V.CERT_NUM,
+		       T1.IRA_APPLY_ID,
+		       T1.GENERAL_ADJUST_RATING_CD,
+		       to_char(T4.EFFECTIVE_START_DT,'yyyy-mm-dd') EFFECTIVE_START_DT,
+           	   to_char(T4.EFFECTIVE_END_DT,'yyyy-mm-dd') EFFECTIVE_END_DT,
+		       (SELECT OPERATORNAME FROM AC_OPERATOR WHERE USERID = T4.USER_NUM) AS OPERATORNAME
+		  FROM TB_IRM_INTERNAL_RATING_APPLY T1,
+		       TB_CSM_PARTY T2,
+		       TB_CSM_MANAGEMENT_TEAM T3,
+		       V_CSM_PARTY V,
+		       TB_IRM_INTERNAL_RATING_RESULT T4 
+		 WHERE T1.RATING_STATE = '03'
+		   AND T4.RATING_STATE = '03' 
+		   AND T1.PARTY_ID = T2.PARTY_ID
+		   AND T2.PARTY_ID = T3.PARTY_ID
+		   AND V.PARTY_ID = T2.PARTY_ID 
+		   AND T1.IRA_APPLY_ID = T4.IRA_APPLY_ID  
+		   <!-- AND T3.ORG_NUM IN (SELECT O.ORGCODE
+		                           FROM OM_ORGANIZATION O
+		                          WHERE O.ORGSEQ LIKE '%.$orgId$.%') -->
+		   <if test=" orgname != null and orgname != '' ">
+		   		AND T3.ORG_NUM IN (SELECT O.ORGCODE
+		                           FROM OM_ORGANIZATION O
+		                          WHERE O.ORGSEQ LIKE '%'||#{orgname,jdbcType=VARCHAR}||'%')
+		   </if>
+		   <if test=" partyName != null and partyName != '' ">
+		   		AND T2.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+		   </if>
+		   <if test=" certType != null and certType != '' ">
+		   		AND V.CERT_TYPE = #{certType}
+		   </if>
+		   <if test=" certNum != null and certNum != '' ">
+		   		AND V.CERT_NUM = #{certNum}
+		   </if>
+		   <if test=" operatorname != null and operatorname != '' ">
+		   		AND T3.User_Num = #{operatorname}
+		   </if>
+		   <if test=" generalAdjustRatingCd != null and generalAdjustRatingCd != '' ">
+		   		AND T1.GENERAL_ADJUST_RATING_CD = #{generalAdjustRatingCd}
+		   </if>
+		   <!-- <isNotNull property="partyName">  AND T2.PARTY_NAME LIKE '%$partyName$%' </isNotNull>
+		   <isNotNull property="certType">  AND V.CERT_TYPE = #certType# </isNotNull>
+		   <isNotNull property="certNum">    AND V.CERT_NUM = #certNum# </isNotNull>
+		   <isNotNull property="userNum">    AND T3.User_Num = #userNum# </isNotNull>
+		   <isNotNull property="generalAdjustRatingCd">AND T1.GENERAL_ADJUST_RATING_CD = #generalAdjustRatingCd# </isNotNull> -->
+  </select>
+   <resultMap id="RiskClass" type="com.cdgit.ledger.pubquery.resultbean.RiskClassResult">
+			<result property="acApplyId" column="AC_APPLY_ID" jdbcType="VARCHAR"/>
+			<result property="acApplyNum" column="AC_APPLY_NUM" jdbcType="VARCHAR"/>
+			<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+			<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+			<result property="partyId" column="PARTY_ID" jdbcType="VARCHAR"/>
+			<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="certType" column="CERT_TYPE" jdbcType="VARCHAR"/>
+			<result property="certNum" column="CERT_NUM" jdbcType="VARCHAR"/>
+			<result property="middelCode" column="MIDDLE_CODE" jdbcType="VARCHAR"/>
+			<result property="claMethod" column="CLA_METHOD" jdbcType="VARCHAR"/>
+			<result property="createTime" column="CREATE_TIME" jdbcType="VARCHAR"/>
+	</resultMap>
+  
+  <!-- 风险分类查询 -->
+  <select id="selectRiskClass" parameterType="java.util.HashMap" resultMap="RiskClass">
+ 			 SELECT T1.AC_APPLY_ID,
+		       T1.AC_APPLY_NUM,
+		       T2.ORG_NUM,
+		       T2.USER_NUM,
+		       T2.PARTY_ID,
+		       T2.PARTY_NAME,
+		       T2.CERT_NUM,
+		       T2.CERT_TYPE,
+		       T2.MIDDLE_CODE,
+		       T1.CLA_METHOD,
+		       TO_CHAR(T1.APPLY_DT, 'yyyy-mm-dd') CREATE_TIME
+		  FROM (SELECT DISTINCT B.PARTY_ID,
+		                        A.AC_APPLY_ID,
+		                        A.AC_APPLY_NUM,
+		                        B.CLA_METHOD,
+		                        A.APPLY_DT
+		          FROM TB_CLA_ASSETS_CLASSIFY_APPLY A, TB_CLA_CLASSIFY_DELT_INFO B
+		         WHERE A.AC_APPLY_ID = B.AC_APPLY_ID
+		           AND A.APPLY_STATUS = '2') T1,
+		       V_CSM_PARTY T2
+		 WHERE T1.PARTY_ID = T2.PARTY_ID 
+	  
+	   <if test=" orgNum != null and orgNum != '' ">
+	   		 AND T2.ORG_NUM IN (SELECT O.ORGCODE
+		                        FROM OM_ORGANIZATION O
+		                       WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%')
+	   </if>
+	   <if test=" partyName != null and partyName != '' ">
+	   		AND  T2.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+	   </if>
+	  <if test=" certType != null and certType != '' ">
+		   		AND T2.CERT_TYPE = #{certType}
+	  </if>
+	  <if test=" certNum != null and certNum != '' ">
+		   		AND T2.CERT_NUM = #{certNum}
+	  </if>
+	  <if test=" claMethod != null and claMethod != '' ">
+		   		AND T1.CLA_METHOD = #{claMethod}
+	  </if>
+	  <if test=" userNum != null and userNum != '' ">
+		   		AND T2.USER_NUM = #{userNum}
+	  </if> 
+	  <!-- <isNotNull property="orgId">
+	      AND T2.ORG_NUM IN (SELECT O.ORGCODE
+		                        FROM OM_ORGANIZATION O
+		                       WHERE O.ORGSEQ LIKE '%.$orgId$.%')
+	   </isNotNull>                    
+	   <isNotNull property="partyName">  AND T2.PARTY_NAME LIKE '%$partyName$%' </isNotNull>
+	   <isNotNull property="certType">  AND T2.CERT_TYPE = #certType# </isNotNull>
+	   <isNotNull property="certNum">  AND T2.CERT_NUM = #certNum#</isNotNull>
+	   <isNotNull property="claMethod">  AND T1.CLA_METHOD = #claMethod# </isNotNull>
+	   <isNotNull property="userNum">    AND T2.USER_NUM = #userNum# </isNotNull> -->
+  </select>
+  
+   <resultMap id="afterLoanChange" type="com.cdgit.ledger.pubquery.resultbean.ChangeAfterLoanResult">
+			<result property="changeId" column="CHANGE_ID" jdbcType="VARCHAR"/>
+			<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+			<result property="partyId" column="PARTY_ID" jdbcType="VARCHAR"/>
+			<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="certType" column="CERT_TYPE" jdbcType="VARCHAR"/>
+			<result property="certNum" column="CERT_NUM" jdbcType="VARCHAR"/>
+			<result property="middleCode" column="MIDDLE_CODE" jdbcType="VARCHAR"/>
+			<result property="contractNum" column="CONTRACT_NUM" jdbcType="VARCHAR"/>
+			<result property="summaryNum" column="SUMMARY_NUM" jdbcType="VARCHAR"/>
+			<result property="loanChangeType" column="LOAN_CHANGE_TYPE" jdbcType="VARCHAR"/>
+			<result property="changeDate" column="CHANGE_DATE" jdbcType="VARCHAR"/>
+			<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+			<result property="changeNum" column="CHANGE_NUM" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!-- 贷后变更查询 -->
+    <select id="selectChangeAfterLoan" parameterType="java.util.HashMap" resultMap="afterLoanChange">
+		SELECT LC.CHANGE_ID,
+		       LC.ORG_NUM,
+		       P.PARTY_NAME,
+		       V.PARTY_ID,
+		       V.CERT_TYPE,
+		       V.CERT_NUM,
+		       V.MIDDLE_CODE,
+		       CI.CONTRACT_NUM,
+		       LS.SUMMARY_NUM,
+		       LC.LOAN_CHANGE_TYPE,
+		       to_char(LC.CHANGE_DATE,'yyyy-mm-dd') CHANGE_DATE,
+		       LC.User_Num,
+		       LC.Change_Num
+		  FROM TB_CON_LOAN_CHANGE   LC,
+		       TB_LOAN_SUMMARY      LS,
+		       TB_LOAN_INFO         LI,
+		       TB_CON_CONTRACT_INFO CI,
+		       TB_CSM_PARTY         P,
+		       V_CSM_PARTY          V
+		 WHERE LC.SUMMARY_ID = LS.SUMMARY_ID
+		   AND LS.LOAN_ID = LI.LOAN_ID
+		   AND LI.CONTRACT_ID = CI.CONTRACT_ID
+		   AND LC.PARTY_ID = P.PARTY_ID
+		   AND P.PARTY_ID = V.PARTY_ID
+		   AND LC.change_status = '03'
+		   AND LC.ORG_NUM IN (SELECT O.ORGCODE
+		                      FROM OM_ORGANIZATION O
+		          WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%')
+	 <if test=" partyName != null and partyName != '' ">
+	   		AND  V.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+	 </if>	                          
+	 <if test=" certType != null and certType != '' ">
+		   		AND V.CERT_TYPE = #{certType}
+	  </if>
+	  <if test=" certNum != null and certNum != '' ">
+		   		AND V.CERT_NUM = #{certNum}
+	  </if>	
+	  <if test=" userNum != null and userNum != '' ">
+		   		AND LC.User_Num = #{userNum}
+	  </if>
+	  <if test=" contractNum != null and contractNum != '' ">
+		   		AND CI.CONTRACT_NUM = #{contractNum}
+	  </if>
+	  <if test=" summaryNum != null and summaryNum != '' ">
+		   		AND LS.SUMMARY_NUM = #{summaryNum}
+	  </if>
+	  <if test=" loanChangeType != null and loanChangeType != '' ">
+		   		AND LC.LOAN_CHANGE_TYPE = #{loanChangeType}
+	  </if>
+	                         
+     <!-- <isNotNull property="partyName">  AND V.PARTY_NAME LIKE '%$partyName$%' </isNotNull>
+     <isNotNull property="certType">  AND V.CERT_TYPE = #certType# </isNotNull>
+	 <isNotNull property="userNum">    AND LC.User_Num = #userNum# </isNotNull>
+	 <isNotNull property="certNum">    AND V.CERT_NUM = #certNum# </isNotNull>
+	 <isNotNull property="contractNum">    AND CI.CONTRACT_NUM = #contractNum# </isNotNull>
+	 <isNotNull property="summaryNum">    AND LS.SUMMARY_NUM = #summaryNum# </isNotNull>
+	 <isNotNull property="loanChangeType">    AND LC.LOAN_CHANGE_TYPE = #loanChangeType# </isNotNull> -->	   
+	 </select>
+  
+  <resultMap id="afterLoanCheck" type="com.cdgit.ledger.pubquery.resultbean.PostLoanInspectResult">
+			<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+			<result property="checkId" column="CHECK_ID" jdbcType="VARCHAR"/>
+			<result property="partyId" column="PARTY_ID" jdbcType="VARCHAR"/>
+			<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="certType" column="CERT_TYPE" jdbcType="VARCHAR"/>
+			<result property="certNum" column="CERT_NUM" jdbcType="VARCHAR"/>
+			<result property="type" column="TYPE" jdbcType="VARCHAR"/>
+			<result property="createDate" column="CREATE_DATE" jdbcType="VARCHAR"/>
+			<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+			<result property="checkNum" column="CHECK_NUM" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!-- 贷后检查查询 -->
+    <select id="selectPostLoanInspect" parameterType="java.util.HashMap" resultMap="afterLoanCheck">
+	SELECT T.ORG_NUM,
+		   V.PARTY_ID,
+		   T.CHECK_ID,
+	       V.PARTY_NAME,
+	       V.CERT_TYPE,
+	       V.CERT_NUM,
+	       T.TYPE,
+	       T.CREATE_DATE,
+	       T.USER_NUM,
+	       T.CHECK_NUM
+	  FROM (SELECT  FC.PARTY_ID,
+                 FC.FIRST_CHECK_ID as CHECK_ID,
+                 FC.USER_NUM,
+                 FC.ORG_NUM,
+                 TO_CHAR(FC.CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE,
+                 '1' AS TYPE,
+                 FC.CHECK_NUM
+            FROM TB_AFT_FIRST_CHECK FC
+            WHERE check_status = '03' and is_small = '0'
+          UNION ALL
+          SELECT F.PARTY_ID,
+                 F.FIRST_CHECK_ID as CHECK_ID,
+                 F.USER_NUM,
+                 F.ORG_NUM,
+                 TO_CHAR(F.CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE,
+                 '1' AS TYPE,
+                 F.CHECK_NUM
+            FROM TB_AFT_FIRST_CHECK F
+            WHERE update_date is not null and is_small = '1'
+          UNION ALL
+          SELECT NC.PARTY_ID,
+                 NC.NORMAL_CHECK_ID as CHECK_ID,
+                 NC.USER_NUM,
+                 NC.ORG_NUM,
+                 TO_CHAR(NC.CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE,
+                 '2' AS TYPE,
+                 NC.CHECK_NUM
+            FROM TB_AFT_NORMAL_CHECK NC
+            WHERE check_status = '03' and is_small = '0'
+          UNION ALL
+          SELECT N.PARTY_ID,
+                 N.NORMAL_CHECK_ID as CHECK_ID,
+                 N.USER_NUM,
+                 N.ORG_NUM,
+                 TO_CHAR(N.CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE,
+                 '2' AS TYPE,
+                 N.CHECK_NUM
+            FROM TB_AFT_NORMAL_CHECK N
+            WHERE update_date is not null and is_small = '1'
+          UNION ALL
+          SELECT PC.PARTY_ID,
+                 PC.CHECK_ID as CHECK_ID,
+                 PC.USER_NUM,
+                 PC.ORG_NUM,
+                 TO_CHAR(PC.CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE,
+                 '4' AS TYPE,
+                 PC.CHECK_NUM
+            FROM TB_AFT_POINT_CHECK PC
+            WHERE check_status = '03'
+          UNION ALL
+          SELECT EC.PARTY_ID,
+                 EC.CHECK_ID as CHECK_ID,
+                 EC.USER_NUM,
+                 EC.ORG_NUM,
+                 TO_CHAR(EC.CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE,
+                 '3' AS TYPE,
+                 EC.CHECK_NUM
+            FROM TB_AFT_EXPIRE_CHECK EC
+            WHERE check_status = '03') T,
+	       V_CSM_PARTY V
+	 WHERE T.PARTY_ID = V.PARTY_ID
+		 	AND T.ORG_NUM IN (SELECT O.ORGCODE FROM OM_ORGANIZATION O  WHERE O.ORGSEQ 
+		    					LIKE '%'||(select orgid from om_organization where orgcode = #{orgNum,jdbcType=VARCHAR})||'%')
+		  <!--  <isNotNull property="partyName">  AND V.PARTY_NAME LIKE '%$partyName$%' </isNotNull>
+		   <isNotNull property="certType">  AND V.CERT_TYPE = #certType# </isNotNull>
+		   <isNotNull property="certNum">    AND V.CERT_NUM = #certNum# </isNotNull>
+		   <isNotNull property="type">    AND T.TYPE = #type# </isNotNull>
+		   <isNotNull property="userNum">    AND T.USER_NUM = #userNum# </isNotNull> -->
+	 	 <if test=" partyName != null and partyName != '' ">
+	   		AND  V.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+		 </if>	                          
+		 <if test=" certType != null and certType != '' ">
+			   		AND V.CERT_TYPE = #{certType}
+		  </if>
+		  <if test=" certNum != null and certNum != '' ">
+			   		AND V.CERT_NUM = #{certNum}
+		  </if>	
+		  <if test=" userNum != null and userNum != '' ">
+			   		AND T.USER_NUM = #{userNum}
+		  </if>
+		  <if test=" type != null and type != '' ">
+			   		AND T.TYPE = #{type}
+		  </if>
+	 
+	 </select>
+  <resultMap id="declineLoan" type="com.cdgit.ledger.pubquery.resultbean.DeclineLoanResult">
+    		<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+			<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="certType" column="CERT_TYPE" jdbcType="VARCHAR"/>
+			<result property="certNum" column="CERT_NUM" jdbcType="VARCHAR"/>
+			<result property="middleCode" column="MIDDLE_CODE" jdbcType="VARCHAR"/>
+			<result property="bizNum" column="BIZ_NUM" jdbcType="VARCHAR"/>
+			<result property="applyDate" column="APPLY_DATE" jdbcType="VARCHAR"/>
+			<result property="creditAmount" column="CREDIT_AMOUNT" jdbcType="VARCHAR"/>
+			<result property="currencyCd" column="CURRENCY_CD" jdbcType="VARCHAR"/>
+			<result property="bizType" column="BIZ_TYPE" jdbcType="VARCHAR"/>
+			<result property="bizHappenNature" column="BIZ_HAPPEN_NATURE" jdbcType="VARCHAR"/>
+			<result property="creditTerm" column="CREDIT_TERM" jdbcType="VARCHAR"/>
+			<result property="validDate" column="VALID_DATE" jdbcType="VARCHAR"/>
+			<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+			<result property="loanUse" column="LOAN_USE" jdbcType="VARCHAR"/>
+			<result property="partyId" column="PARTY_ID" jdbcType="VARCHAR"/>
+			<result property="applyId" column="APPLY_ID" jdbcType="VARCHAR"/>
+			<result property="opinion" column="OPINION" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!-- 拒贷查询 -->
+    <select id="selectDeclineLoan" parameterType="java.util.HashMap" resultMap="declineLoan">
+		select a.apply_id,
+               a.org_num,
+               v.party_id,
+               v.party_name,
+               v.cert_type,
+               v.cert_num,
+               v.middle_code,
+               a.biz_num,
+               to_char(a.apply_date, 'yyyy-mm-dd') apply_date,
+               b.credit_amount,
+               b.currency_cd,
+               a.biz_type,
+               a.biz_happen_nature,
+               b.credit_term,
+               to_char(a.valid_date, 'yyyy-mm-dd') valid_date,
+               a.user_num,
+               (select to_char(listagg(loan_use,',') within group (order by loan_use))
+                  from tb_biz_amount_detail_approve
+                 where amount_id = b.amount_id) loan_use,
+               w.opinion
+          from tb_biz_approve          a,
+               tb_biz_amount_approve   b,
+               tb_wfm_workiteminstance w,
+               tb_wfm_processinstance  wf,
+               v_csm_party             v
+         where a.approve_id = b.approve_id
+           and a.party_id = v.party_id
+           and w.process_id = wf.process_id
+           and a.apply_id = wf.product_id
+           and w.conclusion = '2'
+           and  a.org_num in (
+                SELECT O.ORGCODE
+                  FROM OM_ORGANIZATION O
+                 WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%')
+		 <!-- <isNotNull property="partyName">  AND v.PARTY_NAME LIKE '%$partyName$%' </isNotNull>
+		 <isNotNull property="certType">  AND v.CERT_TYPE = #certType# </isNotNull>
+		 <isNotNull property="certNum">  AND v.CERT_NUM = #certNum# </isNotNull>
+		 <isNotNull property="userNum">  AND a.USER_NUM = #userNum# </isNotNull> -->
+	 	 <if test=" partyName != null and partyName != '' ">
+	   		AND  V.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+		 </if>	                          
+		 <if test=" certType != null and certType != '' ">
+			   		AND V.CERT_TYPE = #{certType}
+		  </if>
+		  <if test=" certNum != null and certNum != '' ">
+			   		AND V.CERT_NUM = #{certNum}
+		  </if>	
+		  <if test=" userNum != null and userNum != '' ">
+			   		AND a.USER_NUM = #{userNum}
+		  </if>
+	 </select>
+  
+     <resultMap id="fundUseLedger" type="com.cdgit.ledger.pubquery.resultbean.FundUseLedgerResult">
+    		<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+    		<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+    		<result property="partyId" column="PARTY_ID" jdbcType="VARCHAR"/>
+			<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="certType" column="CERT_TYPE" jdbcType="VARCHAR"/>
+			<result property="certNum" column="CERT_NUM" jdbcType="VARCHAR"/>
+			<result property="middleCode" column="MIDDLE_CODE" jdbcType="VARCHAR"/>
+			<result property="payTime" column="PAY_TIME" jdbcType="VARCHAR"/>
+			<result property="summaryCurrencyCd" column="SUMMARY_CURRENCY_CD" jdbcType="VARCHAR"/>
+			<result property="payUse" column="PAY_USE" jdbcType="VARCHAR"/>
+			<result property="applyAmount" column="APPLY_AMOUNT" jdbcType="VARCHAR"/>
+			<result property="payObject" column="PAY_OBJECT" jdbcType="VARCHAR"/>
+			<result property="isFitDeal" column="IS_FIT_DEAL" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!-- 资金使用台账查询 -->
+    <select id="selectFundUseLedger" parameterType="java.util.HashMap" resultMap="fundUseLedger">
+		SELECT T.ORG_NUM,
+			   T.USER_NUM,
+			   V.PARTY_ID,	
+			   V.PARTY_NAME,
+		       V.CERT_TYPE,
+		       V.CERT_NUM,
+		       V.MIDDLE_CODE,
+		       TO_CHAR(TA.PAY_TIME,'YYYY-MM-DD') AS PAY_TIME,
+		       T.SUMMARY_CURRENCY_CD,
+		       TA.PAY_USE,
+		       TA.APPLY_AMOUNT,
+		       TA.PAY_OBJECT,
+		       TA.IS_FIT_DEAL
+		  FROM TB_LOAN_SUMMARY T, TB_LOAN_MONEY_USE TA, V_CSM_PARTY V
+		 WHERE T.SUMMARY_ID = TA.SUMMARY_ID
+		       AND T.PARTY_ID = V.PARTY_ID
+			   AND T.ORG_NUM IN (SELECT O.ORGCODE
+			                        FROM OM_ORGANIZATION O
+			                       WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%')
+		 
+		 <if test=" partyName != null and partyName != '' ">
+	   		AND  V.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+		 </if>	                          
+		 <if test=" certType != null and certType != '' ">
+			   		AND V.CERT_TYPE = #{certType}
+		  </if>
+		  <if test=" certNum != null and certNum != '' ">
+			   		AND V.CERT_NUM = #{certNum}
+		  </if>	
+		  <if test=" userNum != null and userNum != '' ">
+			   		AND T.USER_NUM = #{userNum}
+		  </if>
+		  <if test=" payTime != null and payTime != '' ">
+			   		AND TA.PAY_TIME = to_date(#{payTime} ,'yyyy-mm-dd hh24:mi:ss')
+		  </if>
+		 
+		 <!-- <isNotNull property="partyName">  AND V.PARTY_NAME LIKE '%$partyName$%' </isNotNull>
+		 <isNotNull property="certType">  AND V.CERT_TYPE = #certType# </isNotNull>
+		 <isNotNull property="certNum">  AND V.CERT_NUM = #certNum# </isNotNull>
+		  <isNotNull property="userNum">  AND T.USER_NUM = #userNum# </isNotNull>
+		 <isNotNull property="date1">
+		<![CDATA[
+			AND TA.PAY_TIME >= to_date(#date1# ,'yyyy-mm-dd hh24:mi:ss')
+		]]>
+		</isNotNull>
+		<isNotNull property="date2">
+		<![CDATA[
+			AND TA.PAY_TIME <= to_date(#date2# ,'yyyy-mm-dd hh24:mi:ss')
+		]]>
+		</isNotNull> -->
+	 </select>
+	
+	<resultMap id="repaymentPlan" type="com.cdgit.ledger.pubquery.resultbean.RepaymentPlanResult">
+    		<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+    		<result property="partyId" column="PARTY_ID" jdbcType="VARCHAR"/>
+    		<result property="partyNum" column="PARTY_NUM" jdbcType="VARCHAR"/>
+			<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+			<result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+			<result property="contractNum" column="CONTRACT_NUM" jdbcType="VARCHAR"/>
+			<result property="summaryNum" column="SUMMARY_NUM" jdbcType="VARCHAR"/>
+			<result property="endDate" column="END_DATE" jdbcType="VARCHAR"/>
+			<result property="amt" column="AMT" jdbcType="VARCHAR"/>
+			<result property="bj" column="BJ" jdbcType="VARCHAR"/>
+			<result property="lx" column="LX" jdbcType="VARCHAR"/>
+			<result property="qc" column="QC" jdbcType="VARCHAR"/>
+			<result property="hkzh" column="HKZH" jdbcType="VARCHAR"/>
+			<result property="dkzh" column="DKZH" jdbcType="VARCHAR"/>
+			<result property="certNum" column="CERT_NUM" jdbcType="VARCHAR"/>
+			<result property="certType" column="CERT_TYPE" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!-- 还款计划查询 -->
+    <select id="selectRepaymentPlan" parameterType="java.util.HashMap" resultMap="repaymentPlan">
+		select 	
+		        L.ORG_NUM,
+		        L.USER_NUM,
+		        V.PARTY_ID,
+		        V.PARTY_NUM,
+		        V.PARTY_NAME,
+		        V.CERT_NUM,
+		        V.CERT_TYPE,
+			  	(SELECT PHONE_NUMBER FROM TB_CSM_NATURAL_PERSON WHERE PARTY_ID=V.PARTY_ID) PHONE_NUMBER,
+				C.CONTRACT_NUM,
+		        L.SUMMARY_NUM,
+		        TO_DATE(T.END_DATE,'yyyymmdd') AS END_DATE, 
+		        T.RCV_TOTAL AMT,
+		        T.RCV_PRN BJ,
+		        T.RCV_ITR LX,
+		        T.CURR_PERI QC,
+		        (SELECT DISTINCT ZH FROM TB_LOAN_ZH WHERE ZHLX='1' AND LOAN_ID=L.LOAN_ID) HKZH,
+		        (SELECT DISTINCT ZH FROM TB_LOAN_ZH WHERE ZHLX='0' AND LOAN_ID=L.LOAN_ID) DKZH,
+		        S.FLJG 
+				FROM TB_LOAN_INFO L,TB_LOAN_SUMMARY S,TB_CON_CONTRACT_INFO C,TB_SUP_PRIN_PLAN T,V_CSM_PARTY V 
+		WHERE   L.LOAN_ID=S.LOAN_ID 
+				AND L.CONTRACT_ID=C.CONTRACT_ID 
+		        AND S.SUMMARY_NUM=T.DUE_NUM
+		        AND L.PARTY_ID=V.PARTY_ID
+		        AND S.SUMMARY_STATUS_CD IN ('02','03')
+		    	AND T.END_DATE &gt; 0 
+		    	<!-- <isEqual property="datafinal"  compareValue="searchByEndDate">
+		    	AND SUBSTR(T.END_DATE,0,6) &gt;= #datafinal1#   
+		    	AND SUBSTR(T.END_DATE,0,6) &lt;= #datafinal2# 
+		    	</isEqual>
+		    	
+		    	<choose>
+		    		<when test="summaryStatusCd = 'undefined' ">
+	         			AND T.SUMMARY_STATUS_CD in ('02','03')
+	       			</when>
+		    	</choose> -->
+		    	
+		  	<!--   	<isNotNull property="summaryNum"> AND S.SUMMARY_NUM = #summaryNum# </isNotNull>
+		  	  	<isNotNull property="contractNum"> AND C.CONTRACT_NUM = #contractNum# </isNotNull>
+	 			<isNotNull property="partyName"> AND V.PARTY_NAME = #partyName# </isNotNull>
+		 		<isNotNull property="certNum"> AND V.CERT_NUM = #certNum# </isNotNull>
+		    	<isNotNull property="userNum">  AND L.USER_NUM = #userNum# </isNotNull>
+		    	<isNotNull property="orgcode">  AND L.ORG_NUM = #orgcode# </isNotNull>
+		    	<isNotNull property="certType"> AND V.CERT_TYPE = #certType# </isNotNull>
+		    	<isNotNull property="beginDate1"> AND to_date(T.END_DATE,'yyyymmdd') &gt;= to_date(#beginDate1# ,'yyyy-mm-dd hh24:mi:ss') </isNotNull>
+			    <isNotNull property="beginDate2"> AND to_date(T.END_DATE,'yyyymmdd') &lt;= to_date(#beginDate2# ,'yyyy-mm-dd hh24:mi:ss') </isNotNull> -->
+			     <if test=" summaryNum != null and summaryNum != '' ">
+					   		AND S.SUMMARY_NUM = #{summaryNum}
+				  </if>
+				  <if test=" contractNum != null and contractNum != '' ">
+					   		AND C.CONTRACT_NUM = #{contractNum}
+				  </if>
+			     <if test=" partyName != null and partyName != '' ">
+			   		AND  V.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+				 </if>	                          
+				 <if test=" certType != null and certType != '' ">
+					   		AND V.CERT_TYPE = #{certType}
+				  </if>
+				  <if test=" certNum != null and certNum != '' ">
+					   		AND V.CERT_NUM = #{certNum}
+				  </if>	
+				  <if test=" userNum != null and userNum != '' ">
+					   		AND L.USER_NUM = #{userNum}
+				  </if>
+				  <if test=" orgNum != null and orgNum != '' ">
+					   		AND L.ORG_NUM = #{orgNum}
+				  </if>
+				  <if test=" endDate != null and endDate != '' ">
+					   	    AND to_date(T.END_DATE,'yyyymmdd') = to_date(#{endDate} ,'yyyy-mm-dd hh24:mi:ss')
+				  </if>
+			  
+			    ORDER BY T.END_DATE
+	 </select>  
+  	 <resultMap id="DetailedHistory" type="com.cdgit.ledger.pubquery.resultbean.DetailedHistoryResult">
+    		<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+    		<result property="partyId" column="PARTY_ID" jdbcType="VARCHAR"/>
+    		<result property="partyNum" column="PARTY_NUM" jdbcType="VARCHAR"/>
+			<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+			<result property="contractNum" column="CONTRACT_NUM" jdbcType="VARCHAR"/>
+			<result property="summaryNum" column="SUMMARY_NUM" jdbcType="VARCHAR"/>
+			<result property="rcvDate" column="rcv_date" jdbcType="VARCHAR"/>
+			<result property="hkje" column="hkje" jdbcType="VARCHAR"/>
+			<result property="hbje" column="hbje" jdbcType="VARCHAR"/>
+			<result property="hxje" column="hxje" jdbcType="VARCHAR"/>
+			<result property="fljg" column="FLJG" jdbcType="VARCHAR"/>
+			<result property="sum1" column="sum1" jdbcType="VARCHAR"/>
+			<result property="sum2" column="sum2" jdbcType="VARCHAR"/>
+			<result property="sum3" column="sum3" jdbcType="VARCHAR"/>
+			<result property="certNum" column="CERT_NUM" jdbcType="VARCHAR"/>
+			<result property="certType" column="CERT_TYPE" jdbcType="VARCHAR"/>
+	</resultMap>
+    <select id="selectDetailedHistory" parameterType="java.util.HashMap" resultMap="DetailedHistory">
+		SELECT  	
+		       <!--  /*+index(SN_SUP_REPAYMENT_INFO IDX_REPAYMENT_INFO_DATE)*/ --> 
+		        L.ORG_NUM,
+        		L.USER_NUM,
+        		V.PARTY_NUM,
+        		V.PARTY_ID,
+        		V.PARTY_NAME,
+        		V.CERT_NUM,
+          		V.CERT_TYPE,
+        		S.SUMMARY_NUM,
+        		C.CONTRACT_NUM,
+        		TO_DATE(R.RCV_DATE,'yyyymmdd') AS RCV_DATE,
+        		(NVL(PAD_UP_PRN,0)+NVL(PAD_UP_NOR_ITR_IN,0)+NVL(PAD_UP_DFT_ITR_IN,0)+NVL(PAD_UP_PNS_ITR_IN,0)+NVL(PAD_UP_NOR_ITR_OUT,0)+NVL(PAD_UP_DFT_ITR_OUT,0)+NVL(PAD_UP_PNS_ITR_OUT,0)) HKJE,
+        		NVL(PAD_UP_PRN,0) HBJE,
+        		(NVL(PAD_UP_NOR_ITR_IN,0)+NVL(PAD_UP_DFT_ITR_IN,0)+NVL(PAD_UP_PNS_ITR_IN,0)+NVL(PAD_UP_NOR_ITR_OUT,0)+NVL(PAD_UP_DFT_ITR_OUT,0)+NVL(PAD_UP_PNS_ITR_OUT,0)) HXJE,
+        		S.FLJG,
+        		NVL(PAD_UP_NOR_ITR_IN,0)+NVL(PAD_UP_DFT_ITR_IN,0)+NVL(PAD_UP_NOR_ITR_OUT,0)+NVL(PAD_UP_DFT_ITR_OUT,0) AS SUM1,
+            	NVL(PAD_UP_PNS_ITR_IN,0)+NVL(PAD_UP_PNS_ITR_OUT,0) AS SUM2,
+            	NVL(PAD_UP_PRN,0)+NVL(PAD_UP_NOR_ITR_IN,0)+NVL(PAD_UP_DFT_ITR_IN,0)+NVL(PAD_UP_NOR_ITR_OUT,0)+NVL(PAD_UP_DFT_ITR_OUT,0)+NVL(PAD_UP_PNS_ITR_IN,0)+NVL(PAD_UP_PNS_ITR_OUT,0) AS SUM3 
+        		FROM TB_LOAN_INFO L,TB_LOAN_SUMMARY S,TB_CON_CONTRACT_INFO C,SN_SUP_REPAYMENT_INFO R,V_CSM_PARTY V
+    	WHERE   L.SUMMARY_NUM=S.SUMMARY_NUM 
+        	AND L.CONTRACT_ID=C.CONTRACT_ID
+        	AND S.SUMMARY_NUM=R.DUE_NUM 
+        	AND L.PARTY_ID=V.PARTY_ID 
+        	AND V.PARTY_TYPE_CD IN ('01','02') 
+			AND L.ORG_NUM IN (SELECT O.ORGCODE FROM OM_ORGANIZATION O  WHERE O.ORGSEQ 
+		    			LIKE '%'||(SELECT ORGID FROM OM_ORGANIZATION WHERE ORGCODE = #{orgNum,jdbcType=VARCHAR})||'%')
+		    AND R.RCV_DATE &gt; 0 
+
+	  	 	<!-- <isNotNull property="datafinal">
+	  	 	AND SUBSTR(R.RCV_DATE,0,6) &gt;= #datafinal1# 
+	    	AND SUBSTR(R.RCV_DATE,0,6) &lt;= #datafinal2# 
+	  	 	
+	    	AND SUBSTR(R.RCV_DATE,0,6) &gt;= substr(to_char(add_months(bt_get_workdate,-6), 'yyyymmdd'),0,6)  
+	    	AND SUBSTR(R.RCV_DATE,0,6) &lt;= substr(to_char(bt_get_workdate, 'yyyymmdd'),0,6) 
+	    	
+	    	</isNotNull> -->
+	    	<!-- <isNotNull property="partyNum">  AND V.PARTY_NUM = #partyNum# </isNotNull>
+	  	  	<isNotNull property="partyName">  AND V.PARTY_NAME LIKE '%$partyName$%' </isNotNull>
+	  	  	<isNotNull property="certType">  AND V.CERT_TYPE = #certType# </isNotNull>
+	 		<isNotNull property="certNum">  AND V.CERT_NUM = #certNum# </isNotNull>
+	    	<isNotNull property="contractNum"> AND C.CONTRACT_NUM = #contractNum# </isNotNull>
+ 			<isNotNull property="summaryNum">  AND S.SUMMARY_NUM = #summaryNum# </isNotNull>
+	    	<isNotNull property="userNum">  AND L.USER_NUM = #userNum# </isNotNull>
+	    	<isNotNull property="beginDate1">  AND to_date(R.RCV_DATE,'yyyymmdd') &gt;= to_date(#beginDate1# ,'yyyy-mm-dd hh24:mi:ss') </isNotNull>
+		    <isNotNull property="beginDate2"> AND to_date(R.RCV_DATE,'yyyymmdd') &lt;= to_date(#beginDate2# ,'yyyy-mm-dd hh24:mi:ss') </isNotNull> -->
+			
+			<if test=" summaryNum != null and summaryNum != '' ">
+					   		AND S.SUMMARY_NUM = #{summaryNum}
+				  </if>
+				  <if test=" contractNum != null and contractNum != '' ">
+					   		AND C.CONTRACT_NUM = #{contractNum}
+				  </if>
+			     <if test=" partyName != null and partyName != '' ">
+			   		AND  V.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+				 </if>	                          
+				 <if test=" certType != null and certType != '' ">
+					   		AND V.CERT_TYPE = #{certType}
+				  </if>
+				  <if test=" certNum != null and certNum != '' ">
+					   		AND V.CERT_NUM = #{certNum}
+				  </if>	
+				  <if test=" userNum != null and userNum != '' ">
+					   		AND L.USER_NUM = #{userNum}
+				  </if>
+				  <!-- <if test=" orgNum != null and orgNum != '' ">
+					   		AND L.ORG_NUM = #{orgNum}
+				  </if> -->
+				  <if test=" rcvDate != null and rcvDate != '' ">
+					   		AND to_date(R.RCV_DATE,'yyyymmdd') = to_date(#{rcvDate} ,'yyyy-mm-dd hh24:mi:ss')
+				  </if>
+			ORDER BY R.RCV_DATE DESC 
+	 </select>
+  	  <resultMap id="techProcess" type="com.cdgit.ledger.pubquery.resultbean.TechProcessResult">
+    		<result property="processId" column="PROCESS_ID" jdbcType="VARCHAR"/>
+    		<result property="cusName" column="CUS_NAME" jdbcType="VARCHAR"/>
+    		<result property="createOrgNum" column="CREATE_ORG_NUM" jdbcType="VARCHAR"/>
+    		<result property="createOrgName" column="CREATE_ORG_NAME" jdbcType="VARCHAR"/>
+			<result property="createUserNum" column="CREATE_USER_NUM" jdbcType="VARCHAR"/>
+			<result property="createUserName" column="CREATE_USER_NAME" jdbcType="VARCHAR"/>
+			<result property="createTime" column="CREATE_TIME" jdbcType="VARCHAR"/>
+			<result property="lastUpdateTime" column="LASTUPDATETIME" jdbcType="VARCHAR"/>
+			<result property="processStatus" column="PROCESS_STATUS" jdbcType="VARCHAR"/>
+			<result property="bizType" column="BIZ_TYPE" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!--流程查询 -->
+	<select id="selectTechProcess" parameterType="java.util.HashMap" resultMap="techProcess">
+   
+       SELECT
+			    distinct
+			    p.PROCESS_ID,
+			    p.PRODUCT_CD,
+			    p.PRODUCT_ID,
+			    p.CREATE_POST_NAME,
+			    p.CREATE_POST_CD,
+			    p.CREATE_USER_NAME,
+			    p.CREATE_USER_NUM,
+			    p.CREATE_ORG_NAME,
+			    p.CREATE_ORG_NUM,
+			    to_char(p.CREATE_TIME,'yyyy-MM-dd hh24:mi:ss') as createTime,
+			    to_char(p.FINISH_TIME,'yyyy-MM-dd hh24:mi:ss') as finishTime,
+			    p.ACTIVITY_NAME,
+			    p.POST_CD,
+			    p.APPOINT_USER_NAME,
+			    p.APPOINT_USER_NUM,
+			    p.APPOINT_ORG_CD,
+			    p.APPOINT_ORG_NAME,
+			    p.TEMPLATE_VERSION,
+			    p.PROCESS_STATUS,
+			    p.APP_TYPE,
+			    p.CUS_NAME,
+			    p.BIZ_STATUS,
+			    p.PRODUCT_NAME,
+			    pm.BIZ_VIEW_URL,
+			    pm.BIZ_TYPE,
+			    p.PROCESSDEFNAME,
+			    to_char(p.LASTUPDATETIME,'yyyy-MM-dd hh24:mi:ss') as lastupdatetime,
+			    p.PROCESSINSTANCENAME
+			FROM
+			    TB_WFM_PROCESSINSTANCE p,TB_WFM_PROCESSMAPPING pm
+			where  p.processdefname = pm.template_name 
+			and pm.version_status='1'  
+			and p.PROCESS_STATUS = 'finish'  
+			AND p.CREATE_ORG_NUM  IN (SELECT O.ORGCODE
+		                         FROM OM_ORGANIZATION O
+									WHERE O.ORGSEQ LIKE '%'||#{createOrgNum,jdbcType=VARCHAR}||'%')
+		
+			<if test=" cusName != null and cusName != '' ">
+				and p.CUS_NAME like '%'||#{cusName,jdbcType=VARCHAR}||'%'
+			</if>
+			<!--<if test=" cusName != null and cusName != '' ">
+				and p.CUS_NAME like '%'||#{cusName,jdbcType=VARCHAR}||'%'
+			</if>
+			<isNotNull property="cusName">
+				and p.CUS_NAME like '%$cusName$%' 
+			</isNotNull>  
+			<isNotNull property="processDefName">
+				and p.PROCESSDEFNAME like '%$processDefName$%' 
+			</isNotNull>  
+			
+			<isNotNull property="createUserName">
+				and ( p.CREATE_USER_NAME like '%$createUserName$%' or p.CREATE_USER_NUM like '%$createUserName$%' )
+			</isNotNull>
+			
+			<isNotNull property="createUserName">
+				and p.CREATE_USER_NAME = #createUserName#  
+			</isNotNull>
+			-->
+			<if test=" createUserName != null and createUserName != '' ">
+				and ( p.CREATE_USER_NAME = #{createUserName} or p.CREATE_USER_NUM = #{createUserName} )
+			</if>
+			<if test=" processInstName != null and processInstName != '' ">
+				and p.PROCESSINSTANCENAME like '%'||#{processInstName,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test=" processStatus != null and processStatus != '' ">
+				and p.PROCESS_STATUS = #{processStatus,jdbcType=VARCHAR}
+			</if>
+			<if test=" processId != null and processId != '' ">
+				and p.PROCESS_ID = #{processId,jdbcType=VARCHAR}
+			</if>
+			<if test=" createTime != null and createTime != '' ">
+				and p.CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test=" bizType != null and bizType != '' ">
+				and pm.BIZ_TYPE = #{bizType,jdbcType=VARCHAR}
+			</if>
+			<!-- <isNotNull property="createUserName">
+				and ( p.CREATE_USER_NAME = #createUserName# or p.CREATE_USER_NUM = #createUserName# )
+			</isNotNull>
+			
+			<isNotNull property="processInstName">
+				and p.PROCESSINSTANCENAME like '%$processInstName$%' 
+			</isNotNull>
+			<isNotNull property="processStatus">
+				and p.PROCESS_STATUS=#processStatus#
+			</isNotNull>
+			<isNotNull property="processId">
+				and p.PROCESS_ID=#processId#
+			</isNotNull>
+			<isNotNull property="startDate">
+			 
+				and to_char(p.CREATE_TIME,'yyyy-mm-dd') &gt;= to_char(to_date(#startDate# ,'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd') 
+			
+			</isNotNull>
+			<isNotNull property="endDate">
+			
+				and to_char(p.CREATE_TIME,'yyyy-mm-dd') &lt;= to_char(to_date(#endDate# ,'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd') 	
+			 
+			</isNotNull>
+			
+			<isNotNull property="createOrgId">
+				and p.CREATE_ORG_NUM in(select orgcode from om_organization where orgseq like '%$createOrgId$%')
+			</isNotNull>
+			
+			<isNotNull property="userNum">  AND p.CREATE_USER_NUM = #userNum# </isNotNull> -->
+			order by lastupdatetime desc
+    	
+  </select>
+	
+	
+	<resultMap id="quarState" type="com.cdgit.ledger.pubquery.resultbean.QuarStateResult">
+    		<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+    		<result property="contractNum" column="CONTRACT_NUM" jdbcType="VARCHAR"/>
+    		<result property="summaryNum" column="SUMMARY_NUM" jdbcType="VARCHAR"/>
+    		<result property="beginDate" column="BEGIN_DATE" jdbcType="VARCHAR"/>
+			<result property="endDate" column="END_DATE" jdbcType="VARCHAR"/>
+			<result property="summaryAmt" column="SUMMARY_AMT" jdbcType="VARCHAR"/>
+			<result property="jjye" column="JJYE" jdbcType="VARCHAR"/>
+			<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+			<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+			<result property="ifAccount" column="IF_ACCOUNT" jdbcType="VARCHAR"/>
+			<result property="tsDate" column="TS_DATE" jdbcType="VARCHAR"/>
+			<result property="loanId" column="LOAN_ID" jdbcType="VARCHAR"/>
+			<result property="ifPrint" column="IF_PRINT" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!--季度对账单  -->
+  <select id="selectQuarState" parameterType="java.util.HashMap" resultMap="quarState">
+	select 
+		 d.party_name,
+		 c.contract_num ,
+		 b.summary_num,
+		 b.begin_date,
+		 b.end_date,
+		 b.summary_amt,
+		 (nvl(e.nor_bal_101, 0) + nvl(e.dvl_bal_102, 0)) JJYE,
+		 a.user_num,
+		 a.org_num,
+		 (case when e.IF_ACCOUNT='1' then '对账成功'
+		 when e.IF_ACCOUNT='0' then '对账失败' else '未对账' end) IF_ACCOUNT,
+		  e.TS_DATE,
+		  a.LOAN_ID,
+		  e.if_print
+		from tb_loan_info a,
+		  tb_loan_summary b,
+		  tb_con_contract_info c,
+		  tb_csm_party d,
+		  tb_loan_account_info_quarter e 
+		  where a.loan_id=b.loan_id and 
+		     a.contract_id=c.contract_id and 
+		     a.party_id=d.party_id and 
+		     b.summary_num=e.due_num
+		     <if test=" tsDate != null and tsDate != null">
+		     and e.ts_date=(  select (case when  substr(#{tsDate,jdbcType=VARCHAR},6,2)||substr(#{tsDate,jdbcType=VARCHAR},9,2) >='0930' then substr(#{tsDate,jdbcType=VARCHAR},0,4) 
+                   when substr(#{tsDate,jdbcType=VARCHAR},6,2)||substr(#{tsDate,jdbcType=VARCHAR},9,2) >='0630' then substr(#{tsDate,jdbcType=VARCHAR},0,4)
+                    when substr(#{tsDate,jdbcType=VARCHAR},6,2)||substr(#{tsDate,jdbcType=VARCHAR},9,2) >='0331' then substr(#{tsDate,jdbcType=VARCHAR},0,4)
+                    else to_char(to_number(substr(#{tsDate,jdbcType=VARCHAR},0,4),'9999')-1) end)
+                    ||(case when  substr(#{tsDate,jdbcType=VARCHAR},6,2)||substr(#{tsDate,jdbcType=VARCHAR},9,2) >='1231' then '1231' 
+                     when  substr(#{tsDate,jdbcType=VARCHAR},6,2)||substr(#{tsDate,jdbcType=VARCHAR},9,2) >='0930' then '0930' 
+                   when substr(#{tsDate,jdbcType=VARCHAR},6,2)||substr(#{tsDate,jdbcType=VARCHAR},9,2) >='0630' then '0630'
+                    when substr(#{tsDate,jdbcType=VARCHAR},6,2)||substr(#{tsDate,jdbcType=VARCHAR},9,2) >='0331' then '0331'
+                    else '1231' end ) from dual)
+		     </if>
+			<!-- <isNotNull property="tsDate">
+			and e.ts_date=(  select (case when  substr(#tsDate#,6,2)||substr(#tsDate#,9,2) >='0930' then substr(#tsDate#,0,4) 
+                   when substr(#tsDate#,6,2)||substr(#tsDate#,9,2) >='0630' then substr(#tsDate#,0,4)
+                    when substr(#tsDate#,6,2)||substr(#tsDate#,9,2) >='0331' then substr(#tsDate#,0,4)
+                    else to_char(to_number(substr(#tsDate#,0,4),'9999')-1) end)
+                    ||(case when  substr(#tsDate#,6,2)||substr(#tsDate#,9,2) >='1231' then '1231' 
+                     when  substr(#tsDate#,6,2)||substr(#tsDate#,9,2) >='0930' then '0930' 
+                   when substr(#tsDate#,6,2)||substr(#tsDate#,9,2) >='0630' then '0630'
+                    when substr(#tsDate#,6,2)||substr(#tsDate#,9,2) >='0331' then '0331'
+                    else '1231' end ) from dual)
+           </isNotNull> 
+			<isNotNull property="summaryNum">and b.summary_num=#summaryNum# </isNotNull>
+			<isNotNull property="partyName">and d.party_name like '%'||#partyName#||'%' </isNotNull>
+			<isNotNull property="contractNum">and c.contract_num=#contractNum# </isNotNull>
+			<isNotNull property="ifAccount">and e.IF_ACCOUNT=#ifAccount# </isNotNull>
+			<isNotNull property="ifPrint">and e.IF_PRINT=#ifPrint# </isNotNull>
+			<isNotNull property="userNum">and b.USER_NUM=#userNum# </isNotNull>  -->
+			<if test=" summaryNum != null and summaryNum !='' ">
+				and b.summary_num=#{summaryNum,jdbcType=VARCHAR} 
+			</if>
+			<if test=" partyName != null and partyName !='' ">
+				and d.party_name like '%'||#{partyName,jdbcType=VARCHAR}||'%' 
+			</if>
+			<if test=" contractNum != null and contractNum !='' ">
+				and c.contract_num=#{contractNum,jdbcType=VARCHAR} 
+			</if>
+			<if test=" ifAccount != null and ifAccount !='' ">
+				and e.IF_ACCOUNT=#{ifAccount,jdbcType=VARCHAR} 
+			</if>
+			
+			<if test=" ifPrint != null and ifPrint !='' ">
+				and e.IF_PRINT=#{ifPrint,jdbcType=VARCHAR} 
+			</if>
+			<if test=" userNum != null and userNum !='' ">
+				and b.USER_NUM=#{userNum,jdbcType=VARCHAR} 
+			</if>
+			and d.PARTY_TYPE_CD !='02'
+			 AND a.ORG_NUM IN (SELECT O.ORGCODE FROM OM_ORGANIZATION O  WHERE O.ORGSEQ 
+		    					LIKE '%'||(select orgid from om_organization where orgcode = #{orgNum,jdbcType=VARCHAR})||'%')
+    </select>
+	<resultMap id="RecognEnterpriseScale" type="com.cdgit.ledger.pubquery.resultbean.RecognEnterpriseScaleResult">
+    		<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+			<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+			<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+			<result property="certType" column="CERT_TYPE" jdbcType="VARCHAR"/>
+			<result property="certNum" column="CERT_NUM" jdbcType="VARCHAR"/>
+			<result property="createDate" column="CREATE_DATE" jdbcType="VARCHAR"/>
+			<result property="oldScaleCode" column="OLD_SCALE_CODE" jdbcType="VARCHAR"/>
+			<result property="scaleCode" column="SCALE_CODE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	 <!--企业规模认定查询结果-->
+	<select id="selectRecognEnterpriseScale" parameterType="java.util.Map" resultMap="RecognEnterpriseScale">
+		SELECT 
+		    s.PARTY_ID,
+		    s.SCALE_CODE,
+		    s.OLD_SCALE_CODE,
+		    s.ORG_NUM,
+		    s.USER_NUM,
+		    c.PARTY_NAME,
+		    c.CERT_NUM,
+		    c.CERT_TYPE,
+		    to_char(s.CREATE_DATE,'yyyy-MM-dd HH24:mi:ss')CREATE_DATE 
+		FROM TB_CSM_CORP_SCALE_IDENTIFY s
+		LEFT JOIN V_CSM_PARTY c ON s.PARTY_ID=c.PARTY_ID
+		WHERE 1=1
+		<!-- <isNotNull property="certType"> AND c.CERT_TYPE = #certType# </isNotNull>
+		<isNotNull property="certNum"> AND c.CERT_NUM LIKE #certNum# </isNotNull> -->
+		<if test=" certType != null and certType != '' ">
+			AND c.CERT_TYPE = #{certType,jdbcType=VARCHAR}
+		</if>
+		<if test=" certNum != null and certNum != '' ">
+			AND c.CERT_NUM LIKE '%'||#{certNum,jdbcType=VARCHAR}||'%'
+		</if>
+		<if test=" userNum != null and userNum != '' ">
+			AND s.USER_NUM = #{userNum,jdbcType=VARCHAR}
+		</if>
+		<if test=" orgNum != null and orgNum != '' ">
+			AND s.ORG_NUM =#{orgNum,jdbcType=VARCHAR}
+		</if>
+		<if test=" partyName != null and partyName != '' ">
+			AND c.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+		</if>
+		<!-- <isEqual property="searchMode" compareValue="searchByOrgOrUser">
+		 AND EXISTS (SELECT 1 FROM TB_CSM_MANAGEMENT_TEAM mt WHERE PARTY_ID=s.PARTY_ID 
+		<isNotNull property="userNum"> AND mt.USER_NUM=#userNum# </isNotNull>
+		<isNotNull property="orgNum"> AND mt.ORG_NUM=#orgNum# </isNotNull> 
+		)
+		</isEqual>
+		<isNotNull property="partyName"> AND c.PARTY_NAME LIKE '%'||#partyName#||'%' </isNotNull>
+		<isNotNull property="partyId"> AND s.party_Id = #partyId# </isNotNull> -->
+	</select>
+	
+	 <resultMap id="corporationLoan" type="com.cdgit.ledger.pubquery.resultbean.BorrowQueryResult">
+	 		<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+    		<result property="userNum" column="USER_NUM" jdbcType="VARCHAR"/>
+    		<result property="partyName" column="PARTY_NAME" jdbcType="VARCHAR"/>
+    		<result property="partyId" column="PARTY_ID" jdbcType="VARCHAR"/>
+    		<result property="contractNum" column="CONTRACT_NUM" jdbcType="VARCHAR"/>
+    		<result property="summaryId" column="SUMMARY_ID" jdbcType="VARCHAR"/>
+    		<result property="summaryNum" column="SUMMARY_NUM" jdbcType="VARCHAR"/>
+    		<result property="summaryNum2" column="SUMMARY_NUM2" jdbcType="VARCHAR"/>
+    		<result property="productType" column="PRODUCT_TYPE" jdbcType="VARCHAR"/>
+    		<result property="currencyCd" column="CURRENCY_CD" jdbcType="VARCHAR"/>
+    		<result property="summaryAmt" column="SUMMARY_AMT" jdbcType="VARCHAR"/>
+    		<result property="jjye" column="JJYE" jdbcType="VARCHAR"/>
+    		<result property="beginDate" column="BEGIN_DATE" jdbcType="VARCHAR"/>
+    		<result property="endDate" column="END_DATE" jdbcType="VARCHAR"/>
+    		<result property="yearRate" column="YEAR_RATE" jdbcType="VARCHAR"/>
+    		<result property="yqts" column="YQTS" jdbcType="VARCHAR"/>
+    		<result property="normalItr" column="NORMAL_ITR" jdbcType="VARCHAR"/>
+    		<result property="arrearItr" column="ARREAR_ITR" jdbcType="VARCHAR"/>
+    		<result property="punishItr" column="PUNISH_ITR" jdbcType="VARCHAR"/>
+    		<result property="summaryStatusCd" column="SUMMARY_STATUS_CD" jdbcType="VARCHAR"/>
+    		<result property="loanSubject1" column="loan_subject1" jdbcType="VARCHAR"/>
+    		<result property="periodFlag" column="PERIOD_FLAG" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!-- 1.借据信息查询  -->
+    <select id="selectBorrowQuery" parameterType="java.util.HashMap" resultMap="corporationLoan">
+			SELECT
+				li.ORG_NUM,
+				li.USER_NUM,
+				p.PARTY_NAME,
+				p.PARTY_ID,
+				ci.CONTRACT_NUM,
+				ls.SUMMARY_ID,
+				ls.SUMMARY_NUM SUMMARY_NUM2,
+				ls.SUMMARY_NUM,
+				li.PRODUCT_TYPE,
+				ci.CURRENCY_CD,
+				ls.SUMMARY_AMT,
+				ls.JJYE,
+				TO_CHAR( ls.BEGIN_DATE, 'yyyy-mm-dd' ) BEGIN_DATE,
+				TO_CHAR( ls.END_DATE, 'yyyy-mm-dd' ) END_DATE,
+				NVL( lr.YEAR_RATE, 0 ) YEAR_RATE,
+				NVL( ls.YQTS, 0 ) YQTS,
+				NVL( ls.NORMAL_ITR, 0 ) NORMAL_ITR,
+				NVL( ls.ARREAR_ITR, 0 ) ARREAR_ITR,
+				NVL( ls.PUNISH_ITR, 0 ) PUNISH_ITR,
+				ls.SUMMARY_STATUS_CD,
+				li.loan_subject1,
+				DECODE( ls.PERIOD_FLAG, '1', '1', '0' ) PERIOD_FLAG,
+				<!-- li.USER_NUM, -->
+				DECODE( ls.EXEXT_FLG, '03', '03', '' ) PERIOD_STATE
+			FROM
+				TB_LOAN_SUMMARY ls,
+				TB_LOAN_INFO li,
+				TB_CON_CONTRACT_INFO ci,
+				TB_CSM_PARTY p,
+				TB_LOAN_LOANRATE lr
+			WHERE
+				ls.LOAN_ID = li.LOAN_ID
+				AND ls.CONTRACT_ID = ci.CONTRACT_ID
+				AND ls.PARTY_ID = p.PARTY_ID
+				AND li.LOAN_ID = lr.LOAN_ID
+				AND ls.ORG_NUM in (SELECT O.ORGCODE FROM OM_ORGANIZATION O  
+				WHERE O.ORGSEQ LIKE '%'||(select orgid from om_organization where orgcode = #{orgNum,jdbcType=VARCHAR})||'%')
+			<if test=" summaryNum != null and summaryNum != '' ">
+				AND ls.SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR}
+			</if>
+			<if test=" contractNum != null and contractNum != '' ">
+				AND ci.CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR}
+			</if>
+			<if test=" userNum != null and userNum != '' ">
+				AND ls.USER_NUM = #{userNum,jdbcType=VARCHAR}
+			</if>
+			<if test=" productType != null and productType != '' ">
+				AND li.PRODUCT_TYPE =#{productType,jdbcType=VARCHAR}
+			</if>
+			<if test=" beginDate != null and beginDate != '' ">
+			    AND ls.BEGIN_DATE = TO_DATE(#{beginDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+			</if>
+			<if test=" endDate != null and endDate != '' ">
+			    AND ls.END_DATE = TO_DATE(#{endDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+			</if>
+			<if test=" summaryAmt != null and summaryAmt != '' ">
+				AND ls.SUMMARY_AMT = #{summaryAmt,jdbcType=VARCHAR}
+			</if>
+			<if test=" jjye != null and jjye != '' ">
+				AND ls.JJYE =#{jjye,jdbcType=VARCHAR}
+			</if>	
+			<!-- <if test=" summaryStatusCd = WJQ ">
+				AND ls.SUMMARY_STATUS_CD in ('02','03')
+			</if>
+			<if test=" summaryStatusCd != WJQ ">  -->
+				<if test=" summaryStatusCd != null and  summaryStatusCd != '' ">
+					AND ls.SUMMARY_STATUS_CD=#{summaryStatusCd,jdbcType=VARCHAR}	
+				</if>
+			<!-- 	<if test=" summaryStatusCd = null and  summaryStatusCd = '' ">
+					AND ls.SUMMARY_STATUS_CD != '06'
+				</if>
+			</if> -->
+			<if test=" partyName != null and partyName != '' ">
+				AND p.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+			</if>	
+			<!-- <isNotNull property="summaryNum">AND ls.SUMMARY_NUM=#summaryNum#</isNotNull>
+			<isNotNull property="contractNum">AND ci.CONTRACT_NUM=#contractNum#</isNotNull>
+			<isNotNull property="userNum">AND ls.USER_NUM = #userNum# </isNotNull>
+			<isNotNull property="productType">AND li.PRODUCT_TYPE = #productType#</isNotNull>
+			<isNotNull property="beginDate">AND ls.BEGIN_DATE &gt;= TO_DATE(#beginDate#,'YYYY-MM-DD HH24:MI:SS')</isNotNull>
+			<isNotNull property="beginDate2">AND ls.BEGIN_DATE &lt;= TO_DATE(#beginDate2#,'YYYY-MM-DD HH24:MI:SS')</isNotNull>
+			<isNotNull property="endDate">AND ls.END_DATE &gt;= TO_DATE(#endDate#,'YYYY-MM-DD HH24:MI:SS')</isNotNull>
+			<isNotNull property="endDate2">AND ls.END_DATE &lt;= TO_DATE(#endDate2#,'YYYY-MM-DD HH24:MI:SS')</isNotNull>
+			<isNotNull property="minAmt">AND ls.$amtType$ &gt;= #minAmt#</isNotNull>
+			<isNotNull property="maxAmt">AND ls.$amtType$ &lt;= #maxAmt#</isNotNull>
+			页面新增了一个数据字典没有的码值  发现不给值是null  给了这个码值就是undefined 所以用undefined来作了判断
+			<isEqual property="summaryStatusCd" compareValue="WJQ" >AND ls.SUMMARY_STATUS_CD in ('02','03')</isEqual>
+			<isNotEqual property="summaryStatusCd" compareValue="WJQ" >
+			<isNotNull property="summaryStatusCd">AND ls.SUMMARY_STATUS_CD=#summaryStatusCd#</isNotNull> 
+			<isNull property="summaryStatusCd">AND ls.SUMMARY_STATUS_CD != '06'</isNull>
+			</isNotEqual>
+			AND ls.ORG_NUM in (SELECT O.ORGCODE FROM OM_ORGANIZATION O  WHERE O.ORGSEQ LIKE '%.'||(select orgid from om_organization where orgcode = #orgcode#)||'.%')
+			<isNotNull property="partyName">AND p.PARTY_NAME LIKE '%'||#partyName#||'%'</isNotNull> -->
+	 </select>
+	 <!--2.贷款交易明细查询  -->
+     <select id="selectLoadDetail" parameterType="java.util.HashMap" resultMap="corporationLoan">
+		select 
+			b.loan_id,
+			c.party_name,
+			a.summary_num,
+			d.contract_num, 
+			to_char(a.begin_date,'yyyy-mm-dd') BEGIN_DATE, 
+			to_char(a.end_date,'yyyy-mm-dd') END_DATE,
+			a.summary_amt,
+			a.jjye,
+			b.user_num,
+			b.org_num,
+			a.SUMMARY_ID
+		from tb_loan_summary a,
+			 tb_loan_info b,
+			 tb_csm_party c,
+			 tb_con_contract_info d
+	    where a.loan_id = b.loan_id 
+	    	 and a.party_id = c.party_id 
+	    	 and b.contract_id = d.contract_id
+	         <!-- and b.user_num ='$userNum$'
+       		 and b.org_num = '$orgNum$' -->
+       		 and b.user_num ='200555'
+       		 and b.org_num = '0700'
+       		 <if test=" summaryNum != null and summaryNum != '' ">
+				AND a.SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR}
+			</if>
+			<if test=" contractNum != null and contractNum != '' ">
+				AND d.CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR}
+			</if>
+			<if test=" partyName != null and partyName != '' ">
+				AND c.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%'
+			</if>
+	        <!-- <isNotNull property="contractNum">  and d.contract_num = '$contractNum$' </isNotNull>
+	        <isNotNull property="summaryNum">  and a.summary_num = '$summaryNum$' </isNotNull>
+	        <isNotNull property="partyName">  and c.party_name like '%$partyName$%' </isNotNull> -->
+     </select>
+     
+     <resultMap id="gdbn" type="com.cdgit.ledger.pubquery.resultbean.FixedQueryResult">
+    		<result property="orgNum" column="ORG_NUM" jdbcType="VARCHAR"/>
+    		<result property="orgName" column="ORGNAME" jdbcType="VARCHAR"/>
+    		<result property="orgSeq" column="ORGSEQ" jdbcType="VARCHAR"/>
+			<result property="zchs" column="ZCHS" jdbcType="VARCHAR"/>
+			<result property="zcbs" column="ZCBS" jdbcType="VARCHAR"/>
+			<result property="zcye" column="ZCYE" jdbcType="VARCHAR"/>
+			<result property="gzhs" column="GZHS" jdbcType="VARCHAR"/>
+			<result property="gzbs" column="GZBS" jdbcType="VARCHAR"/>
+			<result property="gzye" column="GZYE" jdbcType="VARCHAR"/>
+			<result property="cjhs" column="CJHS" jdbcType="VARCHAR"/>
+			<result property="cjbs" column="CJBS" jdbcType="VARCHAR"/>
+			<result property="cjye" column="CJYE" jdbcType="VARCHAR"/>
+			<result property="kyhs" column="KYHS" jdbcType="VARCHAR"/>
+			<result property="kybs" column="KYBS" jdbcType="VARCHAR"/>
+			<result property="kyye" column="KYYE" jdbcType="VARCHAR"/>
+			<result property="sshs" column="SSHS" jdbcType="VARCHAR"/>
+			<result property="ssbs" column="SSBS" jdbcType="VARCHAR"/>
+			<result property="ssye" column="SSYE" jdbcType="VARCHAR"/>
+			<result property="hjhs" column="HJHS" jdbcType="VARCHAR"/>
+			<result property="hjbs" column="HJBS" jdbcType="VARCHAR"/>
+			<result property="hjye" column="HJYE" jdbcType="VARCHAR"/>
+			<result property="hjdk" column="HJDK" jdbcType="VARCHAR"/>
+			<result property="ssdk" column="SSDK" jdbcType="VARCHAR"/>
+			<result property="kydk" column="KYDK" jdbcType="VARCHAR"/>
+			<result property="cjdk" column="CJDK" jdbcType="VARCHAR"/>
+			<result property="gzdk" column="GZDK" jdbcType="VARCHAR"/>
+	</resultMap>
+
+    <select id="selectBnFixed" parameterType="java.util.HashMap" resultMap="gdbn">
+		
+		SELECT 
+		    ORG_NUM,ORGNAME ,ORGSEQ ,
+			SUM(CASE WHEN KK='1' THEN PARTY_ID ELSE 0 END ) AS ZCHS,
+			SUM(CASE WHEN KK='1' THEN SUMMARY_NUM ELSE 0 END )AS ZCBS,
+			SUM(CASE WHEN KK='1' THEN JJYE ELSE 0 END) AS ZCYE,
+			SUM(CASE WHEN KK='2' THEN PARTY_ID ELSE 0 END) AS GZHS,
+			SUM(CASE WHEN KK='2' THEN SUMMARY_NUM ELSE 0 END) AS GZBS,
+			SUM(CASE WHEN KK='2' THEN JJYE ELSE 0 END) AS GZYE,
+			SUM(CASE WHEN KK='3' THEN PARTY_ID ELSE 0 END) AS CJHS,
+			SUM(CASE WHEN KK='3' THEN SUMMARY_NUM ELSE 0 END) AS CJBS,
+			SUM(CASE WHEN KK='3' THEN JJYE ELSE 0 END) AS CJYE,
+			SUM(CASE WHEN KK='4' THEN PARTY_ID ELSE 0 END) AS KYHS,
+			SUM(CASE WHEN KK='4' THEN SUMMARY_NUM ELSE 0 END) AS KYBS,
+			SUM(CASE WHEN KK='4' THEN JJYE ELSE 0 END) AS KYYE,
+			SUM(CASE WHEN KK='5' THEN PARTY_ID ELSE 0 END) AS SSHS,
+			SUM(CASE WHEN KK='5' THEN SUMMARY_NUM ELSE 0 END) AS SSBS,
+			SUM(CASE WHEN KK='5' THEN JJYE ELSE 0 END) AS SSYE,
+			SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN PARTY_ID ELSE 0 END) AS HJHS, 
+			SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN SUMMARY_NUM ELSE 0 END) AS HJBS, 
+			SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN JJYE ELSE 0 END) AS HJYE 
+		FROM (
+			SELECT S.ORG_NUM,OM.ORGNAME,OM.ORGSEQ,
+				CASE WHEN S.FLJG IN ('0101','0102','0103') THEN '1' 
+				WHEN S.FLJG IN ('0201','0202','0203') THEN '2' 
+				WHEN S.FLJG IN ('0301','0301') THEN '3' 
+				WHEN S.FLJG='0401' THEN '4' WHEN S.FLJG='0501' THEN '5' ELSE 'X' END KK,
+				COUNT(DISTINCT S.PARTY_ID) PARTY_ID,
+				COUNT(S.SUMMARY_NUM) SUMMARY_NUM,
+				SUM(S.JJYE) JJYE 
+			FROM TB_LOAN_SUMMARY S,TB_LOAN_INFO L ,OM_ORGANIZATION OM ,TB_SYS_PRODUCT P ,SN_SUP_LOAN_INFO SU  
+				WHERE S.LOAN_ID=L.LOAN_ID 
+				AND S.SUMMARY_NUM = SU.DUE_NUM 
+				AND S.ORG_NUM=OM.ORGCODE 
+				AND L.PRODUCT_TYPE = P.PRODUCT_CD
+				AND P.PRODUCT_TYPE = '1' 
+				AND SU.DEVA_STS = '0' 
+				AND S.SUMMARY_STATUS_CD IN ('02','03') 
+				AND NVL(S.JJYE,0) > 0 
+				AND S.FLJG IS NOT NULL 
+				
+			    AND S.ORG_NUM IN (SELECT O.ORGCODE FROM OM_ORGANIZATION O WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%') 
+				<if test=" userNum != null and userNum != '' ">
+					AND S.USER_NUM = #{userNum,jdbcType=VARCHAR}
+				</if>
+				<!--<isNotNull property="userNum"> AND S.USER_NUM = #userNum# </isNotNull> -->
+				GROUP BY S.ORG_NUM,OM.ORGNAME,OM.ORGSEQ,
+					CASE WHEN S.FLJG IN ('0101','0102','0103') THEN '1' 
+					WHEN S.FLJG IN ('0201','0202','0203') THEN '2' 
+					WHEN S.FLJG IN ('0301','0301') THEN '3' 
+					WHEN S.FLJG='0401' THEN '4' WHEN S.FLJG='0501' THEN '5' ELSE 'X' END 
+				) WHERE KK IN ('1','2','3','4','5') GROUP BY ORG_NUM ,ORGNAME,ORGSEQ
+		UNION ALL
+		SELECT '99999' AS ORG_NUM,'合计' AS ORGNAME ,'.10000.99.99.' AS ORGSEQ,
+			SUM(CASE WHEN KK='1' THEN PARTY_ID ELSE 0 END ) AS ZCHS,
+			SUM(CASE WHEN KK='1' THEN SUMMARY_NUM ELSE 0 END )AS ZCBS,
+			SUM(CASE WHEN KK='1' THEN JJYE ELSE 0 END) AS ZCYE,
+			SUM(CASE WHEN KK='2' THEN PARTY_ID ELSE 0 END) AS GZHS,
+			SUM(CASE WHEN KK='2' THEN SUMMARY_NUM ELSE 0 END) AS GZBS,
+			SUM(CASE WHEN KK='2' THEN JJYE ELSE 0 END) AS GZYE,
+			SUM(CASE WHEN KK='3' THEN PARTY_ID ELSE 0 END) AS CJHS,
+			SUM(CASE WHEN KK='3' THEN SUMMARY_NUM ELSE 0 END) AS CJBS,
+			SUM(CASE WHEN KK='3' THEN JJYE ELSE 0 END) AS CJYE,
+			SUM(CASE WHEN KK='4' THEN PARTY_ID ELSE 0 END) AS KYHS,
+			SUM(CASE WHEN KK='4' THEN SUMMARY_NUM ELSE 0 END) AS KYBS,
+			SUM(CASE WHEN KK='4' THEN JJYE ELSE 0 END) AS KYYE,
+			SUM(CASE WHEN KK='5' THEN PARTY_ID ELSE 0 END) AS SSHS,
+			SUM(CASE WHEN KK='5' THEN SUMMARY_NUM ELSE 0 END) AS SSBS,
+			SUM(CASE WHEN KK='5' THEN JJYE ELSE 0 END) AS SSYE,
+			SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN PARTY_ID ELSE 0 END) AS HJHS, 
+			SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN SUMMARY_NUM ELSE 0 END) AS HJBS, 
+			SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN JJYE ELSE 0 END) AS HJYE 
+		FROM (
+			SELECT 
+				CASE WHEN S.FLJG IN ('0101','0102','0103') THEN '1' 
+				WHEN S.FLJG IN ('0201','0202','0203') THEN '2' 
+				WHEN S.FLJG IN ('0301','0301') THEN '3' 
+				WHEN S.FLJG='0401' THEN '4' WHEN S.FLJG='0501' THEN '5' ELSE 'X' END KK,
+				COUNT(DISTINCT S.PARTY_ID) PARTY_ID,COUNT(S.SUMMARY_NUM) SUMMARY_NUM,SUM(S.JJYE) JJYE 
+			FROM TB_LOAN_SUMMARY S,TB_LOAN_INFO L ,TB_SYS_PRODUCT P ,SN_SUP_LOAN_INFO SU  
+				WHERE S.LOAN_ID=L.LOAN_ID 
+				AND L.PRODUCT_TYPE = P.PRODUCT_CD 
+				AND S.SUMMARY_NUM = SU.DUE_NUM 
+				AND P.PRODUCT_TYPE = '1' 
+				AND SU.DEVA_STS = '0'
+				AND S.SUMMARY_STATUS_CD IN ('02','03') 
+				AND NVL(S.JJYE,0) > 0 
+				AND S.FLJG IS NOT NULL 
+				
+				AND S.ORG_NUM IN (SELECT O.ORGCODE FROM OM_ORGANIZATION O WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%') 
+				<if test=" userNum != null and userNum != '' ">
+					AND S.USER_NUM = #{userNum,jdbcType=VARCHAR}
+				</if>
+				<!-- <isNotNull property="userNum"> AND S.USER_NUM = #userNum# </isNotNull> -->
+				GROUP BY S.ORG_NUM,
+					CASE WHEN S.FLJG IN ('0101','0102','0103') THEN '1' 
+					WHEN S.FLJG IN ('0201','0202','0203') THEN '2' 
+					WHEN S.FLJG IN ('0301','0301') THEN '3' 
+					WHEN S.FLJG='0401' THEN '4' WHEN S.FLJG='0501' THEN '5' ELSE 'X' END 
+				) WHERE KK IN ('1','2','3','4','5')  ORDER BY ORGSEQ 
+		
+	</select>
+     
+    
+    <select id="selectBwFixed" parameterType="java.util.HashMap" resultMap="gdbn">
+		
+		SELECT ORG_NUM,ORGNAME ,ORGSEQ ,
+			SUM(CASE WHEN KK='1' THEN PARTY_ID ELSE 0 END ) AS ZCHS,
+			SUM(CASE WHEN KK='1' THEN SUMMARY_NUM ELSE 0 END )AS ZCBS,
+			SUM(CASE WHEN KK='1' THEN DKYE+JJYE ELSE 0 END) AS ZCYE,
+			SUM(CASE WHEN KK='2' THEN PARTY_ID ELSE 0 END) AS GZHS,
+			SUM(CASE WHEN KK='2' THEN SUMMARY_NUM ELSE 0 END) AS GZBS,
+			SUM(CASE WHEN KK='2' THEN DKYE ELSE 0 END) AS GZDK,
+			SUM(CASE WHEN KK='2' THEN JJYE ELSE 0 END) AS GZYE,
+			SUM(CASE WHEN KK='3' THEN PARTY_ID ELSE 0 END) AS CJHS,
+			SUM(CASE WHEN KK='3' THEN SUMMARY_NUM ELSE 0 END) AS CJBS,
+			SUM(CASE WHEN KK='3' THEN DKYE ELSE 0 END) AS CJDK,
+			SUM(CASE WHEN KK='3' THEN JJYE ELSE 0 END) AS CJYE,
+			SUM(CASE WHEN KK='4' THEN PARTY_ID ELSE 0 END) AS KYHS,
+			SUM(CASE WHEN KK='4' THEN SUMMARY_NUM ELSE 0 END) AS KYBS,
+			SUM(CASE WHEN KK='4' THEN DKYE ELSE 0 END) AS KYDK,
+			SUM(CASE WHEN KK='4' THEN JJYE ELSE 0 END) AS KYYE,
+			SUM(CASE WHEN KK='5' THEN PARTY_ID ELSE 0 END) AS SSHS,
+			SUM(CASE WHEN KK='5' THEN SUMMARY_NUM ELSE 0 END) AS SSBS,
+			SUM(CASE WHEN KK='5' THEN DKYE ELSE 0 END) AS SSDK,
+			SUM(CASE WHEN KK='5' THEN JJYE ELSE 0 END) AS SSYE,
+			SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN PARTY_ID ELSE 0 END) AS HJHS, 
+			SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN SUMMARY_NUM ELSE 0 END) AS HJBS, 
+			SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN DKYE ELSE 0 END) AS HJDK, 
+			SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN JJYE ELSE 0 END) AS HJYE 
+		FROM (
+			SELECT S.ORG_NUM,OM.ORGNAME,OM.ORGSEQ,
+				CASE WHEN S.FLJG IN ('0101','0102','0103') THEN '1' 
+				WHEN S.FLJG IN ('0201','0202','0203') THEN '2' 
+				WHEN S.FLJG IN ('0301','0301') THEN '3' 
+				WHEN S.FLJG='0401' THEN '4' WHEN S.FLJG='0501' THEN '5' ELSE 'X' END KK,
+				COUNT(DISTINCT S.PARTY_ID) PARTY_ID,
+				COUNT(S.SUMMARY_NUM) SUMMARY_NUM,
+				SUM(CASE WHEN S.SUMMARY_STATUS_CD='03' THEN S.JJYE ELSE 0 END) DKYE, 
+        		SUM(CASE WHEN S.SUMMARY_STATUS_CD='02' THEN S.JJYE ELSE 0 END) JJYE 
+			FROM TB_LOAN_SUMMARY S,TB_LOAN_INFO L ,OM_ORGANIZATION OM  
+				WHERE S.LOAN_ID=L.LOAN_ID 
+				AND S.ORG_NUM=OM.ORGCODE 
+				AND S.SUMMARY_STATUS_CD IN ('02','03') 
+				AND S.FLJG IS NOT NULL 
+				AND exists(
+					SELECT DISTINCT SUMMARY_NUM FROM (
+						SELECT S.SUMMARY_NUM FROM TB_LOAN_SUMMARY S,TB_LOAN_INFO L,TB_SYS_PRODUCT P  
+						WHERE S.LOAN_ID=L.LOAN_ID AND L.PRODUCT_TYPE=P.PRODUCT_CD  
+						AND P.PRODUCT_TYPE='2' AND S.SUMMARY_STATUS_CD = '02'  
+						AND S.ORG_NUM IN (SELECT O.ORGCODE FROM OM_ORGANIZATION O WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%') 
+						<if test=" userNum != null and userNum != '' ">
+						AND S.USER_NUM = #{userNum,jdbcType=VARCHAR}
+						</if>
+						<!-- <isNotNull property="userNum"> AND S.USER_NUM = #userNum# </isNotNull> -->
+					UNION ALL
+						SELECT S.SUMMARY_NUM FROM TB_LOAN_SUMMARY S,TB_LOAN_INFO L,TB_SYS_PRODUCT P ,SN_SUP_LOAN_INFO SU 
+						WHERE S.LOAN_ID=L.LOAN_ID AND L.PRODUCT_TYPE=P.PRODUCT_CD AND S.SUMMARY_NUM = SU.DUE_NUM 
+						AND P.PRODUCT_TYPE='1' AND SU.DEVA_STS = '1' AND NVL(S.JJYE,0)>0 
+						AND S.ORG_NUM IN (SELECT O.ORGCODE FROM OM_ORGANIZATION O WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%') 
+						<if test=" userNum != null and userNum != '' ">
+						AND S.USER_NUM = #{userNum,jdbcType=VARCHAR}
+						</if>
+						<!-- <isNotNull property="userNum"> AND S.USER_NUM = #userNum# </isNotNull> --> ) 
+				where S.Summary_Num = SUMMARY_NUM )
+			GROUP BY S.ORG_NUM,OM.ORGNAME,OM.ORGSEQ,
+				CASE WHEN S.FLJG IN ('0101','0102','0103') THEN '1' 
+					WHEN S.FLJG IN ('0201','0202','0203') THEN '2' 
+					WHEN S.FLJG IN ('0301','0301') THEN '3' 
+					WHEN S.FLJG='0401' THEN '4' WHEN S.FLJG='0501' THEN '5' ELSE 'X' END 
+				) WHERE KK IN ('1','2','3','4','5') GROUP BY ORG_NUM ,ORGNAME,ORGSEQ
+			UNION ALL
+				SELECT '99999' AS ORG_NUM,'合计' AS ORGNAME ,'.10000.99.99.' AS ORGSEQ,
+					SUM(CASE WHEN KK='1' THEN PARTY_ID ELSE 0 END ) AS ZCHS,
+					SUM(CASE WHEN KK='1' THEN SUMMARY_NUM ELSE 0 END )AS ZCBS,
+					SUM(CASE WHEN KK='1' THEN DKYE+JJYE ELSE 0 END) AS ZCYE,
+					SUM(CASE WHEN KK='2' THEN PARTY_ID ELSE 0 END) AS GZHS,
+					SUM(CASE WHEN KK='2' THEN SUMMARY_NUM ELSE 0 END) AS GZBS,
+					SUM(CASE WHEN KK='2' THEN DKYE ELSE 0 END) AS GZDK,
+					SUM(CASE WHEN KK='2' THEN JJYE ELSE 0 END) AS GZYE,
+					SUM(CASE WHEN KK='3' THEN PARTY_ID ELSE 0 END) AS CJHS,
+					SUM(CASE WHEN KK='3' THEN SUMMARY_NUM ELSE 0 END) AS CJBS,
+					SUM(CASE WHEN KK='3' THEN DKYE ELSE 0 END) AS CJDK,
+					SUM(CASE WHEN KK='3' THEN JJYE ELSE 0 END) AS CJYE,
+					SUM(CASE WHEN KK='4' THEN PARTY_ID ELSE 0 END) AS KYHS,
+					SUM(CASE WHEN KK='4' THEN SUMMARY_NUM ELSE 0 END) AS KYBS,
+					SUM(CASE WHEN KK='4' THEN DKYE ELSE 0 END) AS KYDK,
+					SUM(CASE WHEN KK='4' THEN JJYE ELSE 0 END) AS KYYE,
+					SUM(CASE WHEN KK='5' THEN PARTY_ID ELSE 0 END) AS SSHS,
+					SUM(CASE WHEN KK='5' THEN SUMMARY_NUM ELSE 0 END) AS SSBS,
+					SUM(CASE WHEN KK='5' THEN DKYE ELSE 0 END) AS SSDK,
+					SUM(CASE WHEN KK='5' THEN JJYE ELSE 0 END) AS SSYE,
+					SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN PARTY_ID ELSE 0 END) AS HJHS, 
+					SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN SUMMARY_NUM ELSE 0 END) AS HJBS, 
+					SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN DKYE ELSE 0 END) AS HJDK,
+					SUM(CASE WHEN KK IN ('1','2','3','4','5') THEN JJYE ELSE 0 END) AS HJYE  
+			FROM (
+				SELECT 
+					CASE WHEN S.FLJG IN ('0101','0102','0103') THEN '1' 
+					WHEN S.FLJG IN ('0201','0202','0203') THEN '2' 
+					WHEN S.FLJG IN ('0301','0301') THEN '3' 
+					WHEN S.FLJG='0401' THEN '4' WHEN S.FLJG='0501' THEN '5' ELSE 'X' END KK,
+					COUNT(DISTINCT S.PARTY_ID) PARTY_ID,COUNT(S.SUMMARY_NUM) SUMMARY_NUM,
+					SUM(CASE WHEN S.SUMMARY_STATUS_CD='03' THEN S.JJYE ELSE 0 END) DKYE, 
+          			SUM(CASE WHEN S.SUMMARY_STATUS_CD='02' THEN S.JJYE ELSE 0 END) JJYE  
+				FROM TB_LOAN_SUMMARY S,TB_LOAN_INFO L 
+				WHERE S.LOAN_ID=L.LOAN_ID 
+				AND S.SUMMARY_STATUS_CD IN ('02','03') 
+				AND S.FLJG IS NOT NULL 
+				AND exists(
+					SELECT DISTINCT SUMMARY_NUM FROM (
+						SELECT S.SUMMARY_NUM FROM TB_LOAN_SUMMARY S,TB_LOAN_INFO L,TB_SYS_PRODUCT P  
+						WHERE S.LOAN_ID=L.LOAN_ID AND L.PRODUCT_TYPE=P.PRODUCT_CD  
+						AND P.PRODUCT_TYPE='2' AND S.SUMMARY_STATUS_CD = '02'  
+						AND S.ORG_NUM IN (SELECT O.ORGCODE FROM OM_ORGANIZATION O WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%')
+						<if test=" userNum != null and userNum != '' ">
+						AND S.USER_NUM = #{userNum,jdbcType=VARCHAR}
+						</if>
+						<!-- <isNotNull property="userNum"> AND S.USER_NUM = #userNum# </isNotNull>  -->
+					UNION ALL
+						SELECT S.SUMMARY_NUM FROM TB_LOAN_SUMMARY S,TB_LOAN_INFO L,TB_SYS_PRODUCT P ,SN_SUP_LOAN_INFO SU 
+						WHERE S.LOAN_ID=L.LOAN_ID AND L.PRODUCT_TYPE=P.PRODUCT_CD AND S.SUMMARY_NUM = SU.DUE_NUM 
+						AND P.PRODUCT_TYPE='1' AND SU.DEVA_STS = '1' AND NVL(S.JJYE,0)>0 
+						AND S.ORG_NUM IN (SELECT O.ORGCODE FROM OM_ORGANIZATION O WHERE O.ORGSEQ LIKE '%'||#{orgNum,jdbcType=VARCHAR}||'%')
+						<if test=" userNum != null and userNum != '' ">
+						AND S.USER_NUM = #{userNum,jdbcType=VARCHAR}
+						</if>
+						<!-- <isNotNull property="userNum"> AND S.USER_NUM = #userNum# </isNotNull> --> ) 
+					where S.SUMMARY_NUM = SUMMARY_NUM )
+					GROUP BY S.ORG_NUM,
+						CASE WHEN S.FLJG IN ('0101','0102','0103') THEN '1' 
+							WHEN S.FLJG IN ('0201','0202','0203') THEN '2' 
+							WHEN S.FLJG IN ('0301','0301') THEN '3' 
+							WHEN S.FLJG='0401' THEN '4' WHEN S.FLJG='0501' THEN '5' ELSE 'X' END 
+					) WHERE KK IN ('1','2','3','4','5')  ORDER BY ORGSEQ  
+		
+	</select>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+	
+</mapper>

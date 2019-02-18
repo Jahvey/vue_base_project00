@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtVehicleTypeMortgageMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtVehicleTypeMortgage">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="VEHICLE_LICENSE_NUM" jdbcType="VARCHAR" property="vehicleLicenseNum" />
+    <result column="VEHICLE_NAME" jdbcType="VARCHAR" property="vehicleName" />
+    <result column="CARRYING_CAPACITY" jdbcType="DECIMAL" property="carryingCapacity" />
+    <result column="POWER" jdbcType="DECIMAL" property="power" />
+    <result column="MANUFACTURING_YEAR" jdbcType="VARCHAR" property="manufacturingYear" />
+    <result column="MANUFACTURING_COMPANY" jdbcType="VARCHAR" property="manufacturingCompany" />
+    <result column="POWER_UNIT_CD" jdbcType="VARCHAR" property="powerUnitCd" />
+    <result column="MANUFACTURING_PLACE" jdbcType="VARCHAR" property="manufacturingPlace" />
+    <result column="MODEL_STYLE" jdbcType="VARCHAR" property="modelStyle" />
+    <result column="BIG_REPAIR_TIMES" jdbcType="VARCHAR" property="bigRepairTimes" />
+    <result column="TROUBLE_RECORDS" jdbcType="VARCHAR" property="troubleRecords" />
+    <result column="USED_YEAR" jdbcType="DECIMAL" property="usedYear" />
+    <result column="VEHICLE_TYPE" jdbcType="VARCHAR" property="vehicleType" />
+    <result column="BEAR_ABILITY" jdbcType="VARCHAR" property="bearAbility" />
+    <result column="STORE_PLACE" jdbcType="VARCHAR" property="storePlace" />
+    <result column="DEPRECIATION_VALUE" jdbcType="DECIMAL" property="depreciationValue" />
+    <result column="DEPRECIATION_REST_VALUE" jdbcType="DECIMAL" property="depreciationRestValue" />
+    <result column="CAR_AGE" jdbcType="DECIMAL" property="carAge" />
+    <result column="PURCHASE_YEAR" jdbcType="TIMESTAMP" property="purchaseYear" />
+    <result column="CAR_BRAND" jdbcType="VARCHAR" property="carBrand" />
+    <result column="CAR_TYPE" jdbcType="VARCHAR" property="carType" />
+    <result column="REJECT_YEAR" jdbcType="TIMESTAMP" property="rejectYear" />
+    <result column="TRAFFIC_CURRENCY_CD" jdbcType="VARCHAR" property="trafficCurrencyCd" />
+    <result column="ENGINE_NUM" jdbcType="VARCHAR" property="engineNum" />
+    <result column="HAS_OPERATION_CERTIFICATE" jdbcType="CHAR" property="hasOperationCertificate" />
+    <result column="OPERATION_CERTIFICATE_ORG" jdbcType="VARCHAR" property="operationCertificateOrg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, VEHICLE_LICENSE_NUM, VEHICLE_NAME, CARRYING_CAPACITY, POWER, MANUFACTURING_YEAR, 
+    MANUFACTURING_COMPANY, POWER_UNIT_CD, MANUFACTURING_PLACE, MODEL_STYLE, BIG_REPAIR_TIMES, 
+    TROUBLE_RECORDS, USED_YEAR, VEHICLE_TYPE, BEAR_ABILITY, STORE_PLACE, DEPRECIATION_VALUE, 
+    DEPRECIATION_REST_VALUE, CAR_AGE, PURCHASE_YEAR, CAR_BRAND, CAR_TYPE, REJECT_YEAR, 
+    TRAFFIC_CURRENCY_CD, ENGINE_NUM, HAS_OPERATION_CERTIFICATE, OPERATION_CERTIFICATE_ORG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_VEHICLE_TYPE_MORTGAGE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_VEHICLE_TYPE_MORTGAGE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtVehicleTypeMortgage">
+    insert into TB_GRT_VEHICLE_TYPE_MORTGAGE (GUARANTY_ID, VEHICLE_LICENSE_NUM, VEHICLE_NAME, 
+      CARRYING_CAPACITY, POWER, MANUFACTURING_YEAR, 
+      MANUFACTURING_COMPANY, POWER_UNIT_CD, MANUFACTURING_PLACE, 
+      MODEL_STYLE, BIG_REPAIR_TIMES, TROUBLE_RECORDS, 
+      USED_YEAR, VEHICLE_TYPE, BEAR_ABILITY, 
+      STORE_PLACE, DEPRECIATION_VALUE, DEPRECIATION_REST_VALUE, 
+      CAR_AGE, PURCHASE_YEAR, CAR_BRAND, 
+      CAR_TYPE, REJECT_YEAR, TRAFFIC_CURRENCY_CD, 
+      ENGINE_NUM, HAS_OPERATION_CERTIFICATE, OPERATION_CERTIFICATE_ORG
+      )
+    values (#{guarantyId,jdbcType=VARCHAR}, #{vehicleLicenseNum,jdbcType=VARCHAR}, #{vehicleName,jdbcType=VARCHAR}, 
+      #{carryingCapacity,jdbcType=DECIMAL}, #{power,jdbcType=DECIMAL}, #{manufacturingYear,jdbcType=VARCHAR}, 
+      #{manufacturingCompany,jdbcType=VARCHAR}, #{powerUnitCd,jdbcType=VARCHAR}, #{manufacturingPlace,jdbcType=VARCHAR}, 
+      #{modelStyle,jdbcType=VARCHAR}, #{bigRepairTimes,jdbcType=VARCHAR}, #{troubleRecords,jdbcType=VARCHAR}, 
+      #{usedYear,jdbcType=DECIMAL}, #{vehicleType,jdbcType=VARCHAR}, #{bearAbility,jdbcType=VARCHAR}, 
+      #{storePlace,jdbcType=VARCHAR}, #{depreciationValue,jdbcType=DECIMAL}, #{depreciationRestValue,jdbcType=DECIMAL}, 
+      #{carAge,jdbcType=DECIMAL}, #{purchaseYear,jdbcType=TIMESTAMP}, #{carBrand,jdbcType=VARCHAR}, 
+      #{carType,jdbcType=VARCHAR}, #{rejectYear,jdbcType=TIMESTAMP}, #{trafficCurrencyCd,jdbcType=VARCHAR}, 
+      #{engineNum,jdbcType=VARCHAR}, #{hasOperationCertificate,jdbcType=CHAR}, #{operationCertificateOrg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtVehicleTypeMortgage">
+    insert into TB_GRT_VEHICLE_TYPE_MORTGAGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="vehicleLicenseNum != null">
+        VEHICLE_LICENSE_NUM,
+      </if>
+      <if test="vehicleName != null">
+        VEHICLE_NAME,
+      </if>
+      <if test="carryingCapacity != null">
+        CARRYING_CAPACITY,
+      </if>
+      <if test="power != null">
+        POWER,
+      </if>
+      <if test="manufacturingYear != null">
+        MANUFACTURING_YEAR,
+      </if>
+      <if test="manufacturingCompany != null">
+        MANUFACTURING_COMPANY,
+      </if>
+      <if test="powerUnitCd != null">
+        POWER_UNIT_CD,
+      </if>
+      <if test="manufacturingPlace != null">
+        MANUFACTURING_PLACE,
+      </if>
+      <if test="modelStyle != null">
+        MODEL_STYLE,
+      </if>
+      <if test="bigRepairTimes != null">
+        BIG_REPAIR_TIMES,
+      </if>
+      <if test="troubleRecords != null">
+        TROUBLE_RECORDS,
+      </if>
+      <if test="usedYear != null">
+        USED_YEAR,
+      </if>
+      <if test="vehicleType != null">
+        VEHICLE_TYPE,
+      </if>
+      <if test="bearAbility != null">
+        BEAR_ABILITY,
+      </if>
+      <if test="storePlace != null">
+        STORE_PLACE,
+      </if>
+      <if test="depreciationValue != null">
+        DEPRECIATION_VALUE,
+      </if>
+      <if test="depreciationRestValue != null">
+        DEPRECIATION_REST_VALUE,
+      </if>
+      <if test="carAge != null">
+        CAR_AGE,
+      </if>
+      <if test="purchaseYear != null">
+        PURCHASE_YEAR,
+      </if>
+      <if test="carBrand != null">
+        CAR_BRAND,
+      </if>
+      <if test="carType != null">
+        CAR_TYPE,
+      </if>
+      <if test="rejectYear != null">
+        REJECT_YEAR,
+      </if>
+      <if test="trafficCurrencyCd != null">
+        TRAFFIC_CURRENCY_CD,
+      </if>
+      <if test="engineNum != null">
+        ENGINE_NUM,
+      </if>
+      <if test="hasOperationCertificate != null">
+        HAS_OPERATION_CERTIFICATE,
+      </if>
+      <if test="operationCertificateOrg != null">
+        OPERATION_CERTIFICATE_ORG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleLicenseNum != null">
+        #{vehicleLicenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleName != null">
+        #{vehicleName,jdbcType=VARCHAR},
+      </if>
+      <if test="carryingCapacity != null">
+        #{carryingCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="power != null">
+        #{power,jdbcType=DECIMAL},
+      </if>
+      <if test="manufacturingYear != null">
+        #{manufacturingYear,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturingCompany != null">
+        #{manufacturingCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="powerUnitCd != null">
+        #{powerUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturingPlace != null">
+        #{manufacturingPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="modelStyle != null">
+        #{modelStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="bigRepairTimes != null">
+        #{bigRepairTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="troubleRecords != null">
+        #{troubleRecords,jdbcType=VARCHAR},
+      </if>
+      <if test="usedYear != null">
+        #{usedYear,jdbcType=DECIMAL},
+      </if>
+      <if test="vehicleType != null">
+        #{vehicleType,jdbcType=VARCHAR},
+      </if>
+      <if test="bearAbility != null">
+        #{bearAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="storePlace != null">
+        #{storePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="depreciationValue != null">
+        #{depreciationValue,jdbcType=DECIMAL},
+      </if>
+      <if test="depreciationRestValue != null">
+        #{depreciationRestValue,jdbcType=DECIMAL},
+      </if>
+      <if test="carAge != null">
+        #{carAge,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseYear != null">
+        #{purchaseYear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carBrand != null">
+        #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null">
+        #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectYear != null">
+        #{rejectYear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trafficCurrencyCd != null">
+        #{trafficCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="engineNum != null">
+        #{engineNum,jdbcType=VARCHAR},
+      </if>
+      <if test="hasOperationCertificate != null">
+        #{hasOperationCertificate,jdbcType=CHAR},
+      </if>
+      <if test="operationCertificateOrg != null">
+        #{operationCertificateOrg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtVehicleTypeMortgage">
+    update TB_GRT_VEHICLE_TYPE_MORTGAGE
+    <set>
+      <if test="vehicleLicenseNum != null">
+        VEHICLE_LICENSE_NUM = #{vehicleLicenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleName != null">
+        VEHICLE_NAME = #{vehicleName,jdbcType=VARCHAR},
+      </if>
+      <if test="carryingCapacity != null">
+        CARRYING_CAPACITY = #{carryingCapacity,jdbcType=DECIMAL},
+      </if>
+      <if test="power != null">
+        POWER = #{power,jdbcType=DECIMAL},
+      </if>
+      <if test="manufacturingYear != null">
+        MANUFACTURING_YEAR = #{manufacturingYear,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturingCompany != null">
+        MANUFACTURING_COMPANY = #{manufacturingCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="powerUnitCd != null">
+        POWER_UNIT_CD = #{powerUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturingPlace != null">
+        MANUFACTURING_PLACE = #{manufacturingPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="modelStyle != null">
+        MODEL_STYLE = #{modelStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="bigRepairTimes != null">
+        BIG_REPAIR_TIMES = #{bigRepairTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="troubleRecords != null">
+        TROUBLE_RECORDS = #{troubleRecords,jdbcType=VARCHAR},
+      </if>
+      <if test="usedYear != null">
+        USED_YEAR = #{usedYear,jdbcType=DECIMAL},
+      </if>
+      <if test="vehicleType != null">
+        VEHICLE_TYPE = #{vehicleType,jdbcType=VARCHAR},
+      </if>
+      <if test="bearAbility != null">
+        BEAR_ABILITY = #{bearAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="storePlace != null">
+        STORE_PLACE = #{storePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="depreciationValue != null">
+        DEPRECIATION_VALUE = #{depreciationValue,jdbcType=DECIMAL},
+      </if>
+      <if test="depreciationRestValue != null">
+        DEPRECIATION_REST_VALUE = #{depreciationRestValue,jdbcType=DECIMAL},
+      </if>
+      <if test="carAge != null">
+        CAR_AGE = #{carAge,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseYear != null">
+        PURCHASE_YEAR = #{purchaseYear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carBrand != null">
+        CAR_BRAND = #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null">
+        CAR_TYPE = #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectYear != null">
+        REJECT_YEAR = #{rejectYear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trafficCurrencyCd != null">
+        TRAFFIC_CURRENCY_CD = #{trafficCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="engineNum != null">
+        ENGINE_NUM = #{engineNum,jdbcType=VARCHAR},
+      </if>
+      <if test="hasOperationCertificate != null">
+        HAS_OPERATION_CERTIFICATE = #{hasOperationCertificate,jdbcType=CHAR},
+      </if>
+      <if test="operationCertificateOrg != null">
+        OPERATION_CERTIFICATE_ORG = #{operationCertificateOrg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtVehicleTypeMortgage">
+    update TB_GRT_VEHICLE_TYPE_MORTGAGE
+    set VEHICLE_LICENSE_NUM = #{vehicleLicenseNum,jdbcType=VARCHAR},
+      VEHICLE_NAME = #{vehicleName,jdbcType=VARCHAR},
+      CARRYING_CAPACITY = #{carryingCapacity,jdbcType=DECIMAL},
+      POWER = #{power,jdbcType=DECIMAL},
+      MANUFACTURING_YEAR = #{manufacturingYear,jdbcType=VARCHAR},
+      MANUFACTURING_COMPANY = #{manufacturingCompany,jdbcType=VARCHAR},
+      POWER_UNIT_CD = #{powerUnitCd,jdbcType=VARCHAR},
+      MANUFACTURING_PLACE = #{manufacturingPlace,jdbcType=VARCHAR},
+      MODEL_STYLE = #{modelStyle,jdbcType=VARCHAR},
+      BIG_REPAIR_TIMES = #{bigRepairTimes,jdbcType=VARCHAR},
+      TROUBLE_RECORDS = #{troubleRecords,jdbcType=VARCHAR},
+      USED_YEAR = #{usedYear,jdbcType=DECIMAL},
+      VEHICLE_TYPE = #{vehicleType,jdbcType=VARCHAR},
+      BEAR_ABILITY = #{bearAbility,jdbcType=VARCHAR},
+      STORE_PLACE = #{storePlace,jdbcType=VARCHAR},
+      DEPRECIATION_VALUE = #{depreciationValue,jdbcType=DECIMAL},
+      DEPRECIATION_REST_VALUE = #{depreciationRestValue,jdbcType=DECIMAL},
+      CAR_AGE = #{carAge,jdbcType=DECIMAL},
+      PURCHASE_YEAR = #{purchaseYear,jdbcType=TIMESTAMP},
+      CAR_BRAND = #{carBrand,jdbcType=VARCHAR},
+      CAR_TYPE = #{carType,jdbcType=VARCHAR},
+      REJECT_YEAR = #{rejectYear,jdbcType=TIMESTAMP},
+      TRAFFIC_CURRENCY_CD = #{trafficCurrencyCd,jdbcType=VARCHAR},
+      ENGINE_NUM = #{engineNum,jdbcType=VARCHAR},
+      HAS_OPERATION_CERTIFICATE = #{hasOperationCertificate,jdbcType=CHAR},
+      OPERATION_CERTIFICATE_ORG = #{operationCertificateOrg,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

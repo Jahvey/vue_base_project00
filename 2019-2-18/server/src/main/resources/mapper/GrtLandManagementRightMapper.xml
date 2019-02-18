@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtLandManagementRightMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtLandManagementRight">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="LAND_ACREAGE" jdbcType="DECIMAL" property="landAcreage" />
+    <result column="CIRCLE_STATUS" jdbcType="VARCHAR" property="circleStatus" />
+    <result column="CONTRACT_START_DATE" jdbcType="TIMESTAMP" property="contractStartDate" />
+    <result column="CONTRACT_END_DATE" jdbcType="TIMESTAMP" property="contractEndDate" />
+    <result column="ANNUAL_CHARGE" jdbcType="DECIMAL" property="annualCharge" />
+    <result column="LAND_UTILIZATION_PURPOSE" jdbcType="VARCHAR" property="landUtilizationPurpose" />
+    <result column="EXPIRATE_DATE" jdbcType="TIMESTAMP" property="expirateDate" />
+    <result column="LAND_ACQUIRING_WAY_CD" jdbcType="VARCHAR" property="landAcquiringWayCd" />
+    <result column="GROUND_REMISE_CD" jdbcType="VARCHAR" property="groundRemiseCd" />
+    <result column="SIGN_DESC" jdbcType="VARCHAR" property="signDesc" />
+    <result column="MANAGEMENT_TYPE_CD" jdbcType="VARCHAR" property="managementTypeCd" />
+    <result column="MANAGEMENT_SIZE_CD" jdbcType="VARCHAR" property="managementSizeCd" />
+    <result column="LICENSE_OWNER" jdbcType="VARCHAR" property="licenseOwner" />
+    <result column="MANAGEMENT_STATUS" jdbcType="VARCHAR" property="managementStatus" />
+    <result column="LAND_BUSINESS_NATURE" jdbcType="VARCHAR" property="landBusinessNature" />
+    <result column="CONTRACT_FEES_PAY_METHOD" jdbcType="VARCHAR" property="contractFeesPayMethod" />
+    <result column="CONTRACT_FEES_DUE_DATE" jdbcType="TIMESTAMP" property="contractFeesDueDate" />
+    <result column="LAND_USE_STATUS" jdbcType="VARCHAR" property="landUseStatus" />
+    <result column="LAND_USE_NATURE" jdbcType="VARCHAR" property="landUseNature" />
+    <result column="CONTRACT_FEES_PAY_SITUATION" jdbcType="VARCHAR" property="contractFeesPaySituation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, LAND_ACREAGE, CIRCLE_STATUS, CONTRACT_START_DATE, CONTRACT_END_DATE, 
+    ANNUAL_CHARGE, LAND_UTILIZATION_PURPOSE, EXPIRATE_DATE, LAND_ACQUIRING_WAY_CD, GROUND_REMISE_CD, 
+    SIGN_DESC, MANAGEMENT_TYPE_CD, MANAGEMENT_SIZE_CD, LICENSE_OWNER, MANAGEMENT_STATUS, 
+    LAND_BUSINESS_NATURE, CONTRACT_FEES_PAY_METHOD, CONTRACT_FEES_DUE_DATE, LAND_USE_STATUS, 
+    LAND_USE_NATURE, CONTRACT_FEES_PAY_SITUATION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_LAND_MANAGEMENT_RIGHT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_LAND_MANAGEMENT_RIGHT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtLandManagementRight">
+    insert into TB_GRT_LAND_MANAGEMENT_RIGHT (GUARANTY_ID, LAND_ACREAGE, CIRCLE_STATUS, 
+      CONTRACT_START_DATE, CONTRACT_END_DATE, 
+      ANNUAL_CHARGE, LAND_UTILIZATION_PURPOSE, EXPIRATE_DATE, 
+      LAND_ACQUIRING_WAY_CD, GROUND_REMISE_CD, SIGN_DESC, 
+      MANAGEMENT_TYPE_CD, MANAGEMENT_SIZE_CD, LICENSE_OWNER, 
+      MANAGEMENT_STATUS, LAND_BUSINESS_NATURE, CONTRACT_FEES_PAY_METHOD, 
+      CONTRACT_FEES_DUE_DATE, LAND_USE_STATUS, LAND_USE_NATURE, 
+      CONTRACT_FEES_PAY_SITUATION)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{landAcreage,jdbcType=DECIMAL}, #{circleStatus,jdbcType=VARCHAR}, 
+      #{contractStartDate,jdbcType=TIMESTAMP}, #{contractEndDate,jdbcType=TIMESTAMP}, 
+      #{annualCharge,jdbcType=DECIMAL}, #{landUtilizationPurpose,jdbcType=VARCHAR}, #{expirateDate,jdbcType=TIMESTAMP}, 
+      #{landAcquiringWayCd,jdbcType=VARCHAR}, #{groundRemiseCd,jdbcType=VARCHAR}, #{signDesc,jdbcType=VARCHAR}, 
+      #{managementTypeCd,jdbcType=VARCHAR}, #{managementSizeCd,jdbcType=VARCHAR}, #{licenseOwner,jdbcType=VARCHAR}, 
+      #{managementStatus,jdbcType=VARCHAR}, #{landBusinessNature,jdbcType=VARCHAR}, #{contractFeesPayMethod,jdbcType=VARCHAR}, 
+      #{contractFeesDueDate,jdbcType=TIMESTAMP}, #{landUseStatus,jdbcType=VARCHAR}, #{landUseNature,jdbcType=VARCHAR}, 
+      #{contractFeesPaySituation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtLandManagementRight">
+    insert into TB_GRT_LAND_MANAGEMENT_RIGHT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="landAcreage != null">
+        LAND_ACREAGE,
+      </if>
+      <if test="circleStatus != null">
+        CIRCLE_STATUS,
+      </if>
+      <if test="contractStartDate != null">
+        CONTRACT_START_DATE,
+      </if>
+      <if test="contractEndDate != null">
+        CONTRACT_END_DATE,
+      </if>
+      <if test="annualCharge != null">
+        ANNUAL_CHARGE,
+      </if>
+      <if test="landUtilizationPurpose != null">
+        LAND_UTILIZATION_PURPOSE,
+      </if>
+      <if test="expirateDate != null">
+        EXPIRATE_DATE,
+      </if>
+      <if test="landAcquiringWayCd != null">
+        LAND_ACQUIRING_WAY_CD,
+      </if>
+      <if test="groundRemiseCd != null">
+        GROUND_REMISE_CD,
+      </if>
+      <if test="signDesc != null">
+        SIGN_DESC,
+      </if>
+      <if test="managementTypeCd != null">
+        MANAGEMENT_TYPE_CD,
+      </if>
+      <if test="managementSizeCd != null">
+        MANAGEMENT_SIZE_CD,
+      </if>
+      <if test="licenseOwner != null">
+        LICENSE_OWNER,
+      </if>
+      <if test="managementStatus != null">
+        MANAGEMENT_STATUS,
+      </if>
+      <if test="landBusinessNature != null">
+        LAND_BUSINESS_NATURE,
+      </if>
+      <if test="contractFeesPayMethod != null">
+        CONTRACT_FEES_PAY_METHOD,
+      </if>
+      <if test="contractFeesDueDate != null">
+        CONTRACT_FEES_DUE_DATE,
+      </if>
+      <if test="landUseStatus != null">
+        LAND_USE_STATUS,
+      </if>
+      <if test="landUseNature != null">
+        LAND_USE_NATURE,
+      </if>
+      <if test="contractFeesPaySituation != null">
+        CONTRACT_FEES_PAY_SITUATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="landAcreage != null">
+        #{landAcreage,jdbcType=DECIMAL},
+      </if>
+      <if test="circleStatus != null">
+        #{circleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStartDate != null">
+        #{contractStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractEndDate != null">
+        #{contractEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="annualCharge != null">
+        #{annualCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="landUtilizationPurpose != null">
+        #{landUtilizationPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="expirateDate != null">
+        #{expirateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="landAcquiringWayCd != null">
+        #{landAcquiringWayCd,jdbcType=VARCHAR},
+      </if>
+      <if test="groundRemiseCd != null">
+        #{groundRemiseCd,jdbcType=VARCHAR},
+      </if>
+      <if test="signDesc != null">
+        #{signDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="managementTypeCd != null">
+        #{managementTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="managementSizeCd != null">
+        #{managementSizeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseOwner != null">
+        #{licenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="managementStatus != null">
+        #{managementStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="landBusinessNature != null">
+        #{landBusinessNature,jdbcType=VARCHAR},
+      </if>
+      <if test="contractFeesPayMethod != null">
+        #{contractFeesPayMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="contractFeesDueDate != null">
+        #{contractFeesDueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="landUseStatus != null">
+        #{landUseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="landUseNature != null">
+        #{landUseNature,jdbcType=VARCHAR},
+      </if>
+      <if test="contractFeesPaySituation != null">
+        #{contractFeesPaySituation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtLandManagementRight">
+    update TB_GRT_LAND_MANAGEMENT_RIGHT
+    <set>
+      <if test="landAcreage != null">
+        LAND_ACREAGE = #{landAcreage,jdbcType=DECIMAL},
+      </if>
+      <if test="circleStatus != null">
+        CIRCLE_STATUS = #{circleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStartDate != null">
+        CONTRACT_START_DATE = #{contractStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractEndDate != null">
+        CONTRACT_END_DATE = #{contractEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="annualCharge != null">
+        ANNUAL_CHARGE = #{annualCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="landUtilizationPurpose != null">
+        LAND_UTILIZATION_PURPOSE = #{landUtilizationPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="expirateDate != null">
+        EXPIRATE_DATE = #{expirateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="landAcquiringWayCd != null">
+        LAND_ACQUIRING_WAY_CD = #{landAcquiringWayCd,jdbcType=VARCHAR},
+      </if>
+      <if test="groundRemiseCd != null">
+        GROUND_REMISE_CD = #{groundRemiseCd,jdbcType=VARCHAR},
+      </if>
+      <if test="signDesc != null">
+        SIGN_DESC = #{signDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="managementTypeCd != null">
+        MANAGEMENT_TYPE_CD = #{managementTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="managementSizeCd != null">
+        MANAGEMENT_SIZE_CD = #{managementSizeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseOwner != null">
+        LICENSE_OWNER = #{licenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="managementStatus != null">
+        MANAGEMENT_STATUS = #{managementStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="landBusinessNature != null">
+        LAND_BUSINESS_NATURE = #{landBusinessNature,jdbcType=VARCHAR},
+      </if>
+      <if test="contractFeesPayMethod != null">
+        CONTRACT_FEES_PAY_METHOD = #{contractFeesPayMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="contractFeesDueDate != null">
+        CONTRACT_FEES_DUE_DATE = #{contractFeesDueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="landUseStatus != null">
+        LAND_USE_STATUS = #{landUseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="landUseNature != null">
+        LAND_USE_NATURE = #{landUseNature,jdbcType=VARCHAR},
+      </if>
+      <if test="contractFeesPaySituation != null">
+        CONTRACT_FEES_PAY_SITUATION = #{contractFeesPaySituation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtLandManagementRight">
+    update TB_GRT_LAND_MANAGEMENT_RIGHT
+    set LAND_ACREAGE = #{landAcreage,jdbcType=DECIMAL},
+      CIRCLE_STATUS = #{circleStatus,jdbcType=VARCHAR},
+      CONTRACT_START_DATE = #{contractStartDate,jdbcType=TIMESTAMP},
+      CONTRACT_END_DATE = #{contractEndDate,jdbcType=TIMESTAMP},
+      ANNUAL_CHARGE = #{annualCharge,jdbcType=DECIMAL},
+      LAND_UTILIZATION_PURPOSE = #{landUtilizationPurpose,jdbcType=VARCHAR},
+      EXPIRATE_DATE = #{expirateDate,jdbcType=TIMESTAMP},
+      LAND_ACQUIRING_WAY_CD = #{landAcquiringWayCd,jdbcType=VARCHAR},
+      GROUND_REMISE_CD = #{groundRemiseCd,jdbcType=VARCHAR},
+      SIGN_DESC = #{signDesc,jdbcType=VARCHAR},
+      MANAGEMENT_TYPE_CD = #{managementTypeCd,jdbcType=VARCHAR},
+      MANAGEMENT_SIZE_CD = #{managementSizeCd,jdbcType=VARCHAR},
+      LICENSE_OWNER = #{licenseOwner,jdbcType=VARCHAR},
+      MANAGEMENT_STATUS = #{managementStatus,jdbcType=VARCHAR},
+      LAND_BUSINESS_NATURE = #{landBusinessNature,jdbcType=VARCHAR},
+      CONTRACT_FEES_PAY_METHOD = #{contractFeesPayMethod,jdbcType=VARCHAR},
+      CONTRACT_FEES_DUE_DATE = #{contractFeesDueDate,jdbcType=TIMESTAMP},
+      LAND_USE_STATUS = #{landUseStatus,jdbcType=VARCHAR},
+      LAND_USE_NATURE = #{landUseNature,jdbcType=VARCHAR},
+      CONTRACT_FEES_PAY_SITUATION = #{contractFeesPaySituation,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

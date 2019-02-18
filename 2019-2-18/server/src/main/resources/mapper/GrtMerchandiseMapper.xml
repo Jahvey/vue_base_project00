@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtMerchandiseMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtMerchandise">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="RIGHT_PLEDGE_TYPE_CD" jdbcType="VARCHAR" property="rightPledgeTypeCd" />
+    <result column="RIGHT_PLEDGE_NUM" jdbcType="VARCHAR" property="rightPledgeNum" />
+    <result column="MERCHANDISE_TYPE_CD" jdbcType="VARCHAR" property="merchandiseTypeCd" />
+    <result column="MERCHANDISE_NAME" jdbcType="VARCHAR" property="merchandiseName" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="UNIT" jdbcType="VARCHAR" property="unit" />
+    <result column="STORE_START_DATE" jdbcType="TIMESTAMP" property="storeStartDate" />
+    <result column="STORE_PLACE" jdbcType="VARCHAR" property="storePlace" />
+    <result column="STORE_MANAGER" jdbcType="VARCHAR" property="storeManager" />
+    <result column="STORE_STUTAS" jdbcType="VARCHAR" property="storeStutas" />
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    <result column="MARKET_VALUE" jdbcType="DECIMAL" property="marketValue" />
+    <result column="REGIST_ORG" jdbcType="VARCHAR" property="registOrg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, RIGHT_PLEDGE_TYPE_CD, RIGHT_PLEDGE_NUM, MERCHANDISE_TYPE_CD, MERCHANDISE_NAME, 
+    AMOUNT, UNIT, STORE_START_DATE, STORE_PLACE, STORE_MANAGER, STORE_STUTAS, PRICE, 
+    MARKET_VALUE, REGIST_ORG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_MERCHANDISE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_MERCHANDISE
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtMerchandise">
+    insert into TB_GRT_MERCHANDISE (GUARANTY_ID, RIGHT_PLEDGE_TYPE_CD, RIGHT_PLEDGE_NUM, 
+      MERCHANDISE_TYPE_CD, MERCHANDISE_NAME, AMOUNT, 
+      UNIT, STORE_START_DATE, STORE_PLACE, 
+      STORE_MANAGER, STORE_STUTAS, PRICE, 
+      MARKET_VALUE, REGIST_ORG)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{rightPledgeTypeCd,jdbcType=VARCHAR}, #{rightPledgeNum,jdbcType=VARCHAR}, 
+      #{merchandiseTypeCd,jdbcType=VARCHAR}, #{merchandiseName,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{unit,jdbcType=VARCHAR}, #{storeStartDate,jdbcType=TIMESTAMP}, #{storePlace,jdbcType=VARCHAR}, 
+      #{storeManager,jdbcType=VARCHAR}, #{storeStutas,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{marketValue,jdbcType=DECIMAL}, #{registOrg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtMerchandise">
+    insert into TB_GRT_MERCHANDISE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="rightPledgeTypeCd != null">
+        RIGHT_PLEDGE_TYPE_CD,
+      </if>
+      <if test="rightPledgeNum != null">
+        RIGHT_PLEDGE_NUM,
+      </if>
+      <if test="merchandiseTypeCd != null">
+        MERCHANDISE_TYPE_CD,
+      </if>
+      <if test="merchandiseName != null">
+        MERCHANDISE_NAME,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="unit != null">
+        UNIT,
+      </if>
+      <if test="storeStartDate != null">
+        STORE_START_DATE,
+      </if>
+      <if test="storePlace != null">
+        STORE_PLACE,
+      </if>
+      <if test="storeManager != null">
+        STORE_MANAGER,
+      </if>
+      <if test="storeStutas != null">
+        STORE_STUTAS,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="marketValue != null">
+        MARKET_VALUE,
+      </if>
+      <if test="registOrg != null">
+        REGIST_ORG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="rightPledgeTypeCd != null">
+        #{rightPledgeTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="rightPledgeNum != null">
+        #{rightPledgeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseTypeCd != null">
+        #{merchandiseTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseName != null">
+        #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="storeStartDate != null">
+        #{storeStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storePlace != null">
+        #{storePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="storeManager != null">
+        #{storeManager,jdbcType=VARCHAR},
+      </if>
+      <if test="storeStutas != null">
+        #{storeStutas,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="marketValue != null">
+        #{marketValue,jdbcType=DECIMAL},
+      </if>
+      <if test="registOrg != null">
+        #{registOrg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtMerchandise">
+    update TB_GRT_MERCHANDISE
+    <set>
+      <if test="rightPledgeTypeCd != null">
+        RIGHT_PLEDGE_TYPE_CD = #{rightPledgeTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="rightPledgeNum != null">
+        RIGHT_PLEDGE_NUM = #{rightPledgeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseTypeCd != null">
+        MERCHANDISE_TYPE_CD = #{merchandiseTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseName != null">
+        MERCHANDISE_NAME = #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="storeStartDate != null">
+        STORE_START_DATE = #{storeStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storePlace != null">
+        STORE_PLACE = #{storePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="storeManager != null">
+        STORE_MANAGER = #{storeManager,jdbcType=VARCHAR},
+      </if>
+      <if test="storeStutas != null">
+        STORE_STUTAS = #{storeStutas,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="marketValue != null">
+        MARKET_VALUE = #{marketValue,jdbcType=DECIMAL},
+      </if>
+      <if test="registOrg != null">
+        REGIST_ORG = #{registOrg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtMerchandise">
+    update TB_GRT_MERCHANDISE
+    set RIGHT_PLEDGE_TYPE_CD = #{rightPledgeTypeCd,jdbcType=VARCHAR},
+      RIGHT_PLEDGE_NUM = #{rightPledgeNum,jdbcType=VARCHAR},
+      MERCHANDISE_TYPE_CD = #{merchandiseTypeCd,jdbcType=VARCHAR},
+      MERCHANDISE_NAME = #{merchandiseName,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      STORE_START_DATE = #{storeStartDate,jdbcType=TIMESTAMP},
+      STORE_PLACE = #{storePlace,jdbcType=VARCHAR},
+      STORE_MANAGER = #{storeManager,jdbcType=VARCHAR},
+      STORE_STUTAS = #{storeStutas,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      MARKET_VALUE = #{marketValue,jdbcType=DECIMAL},
+      REGIST_ORG = #{registOrg,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

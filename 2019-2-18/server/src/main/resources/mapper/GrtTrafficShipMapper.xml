@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtTrafficShipMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtTrafficShip">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="ENGINE_TYPE" jdbcType="VARCHAR" property="engineType" />
+    <result column="SHIP_NUM" jdbcType="VARCHAR" property="shipNum" />
+    <result column="FUEL" jdbcType="VARCHAR" property="fuel" />
+    <result column="FUEL_LABEL_NO" jdbcType="VARCHAR" property="fuelLabelNo" />
+    <result column="TOTAL_TON" jdbcType="DECIMAL" property="totalTon" />
+    <result column="DISPLACEMENT" jdbcType="DECIMAL" property="displacement" />
+    <result column="SEAWORTHINESS_CERTIFICATE_IND" jdbcType="CHAR" property="seaworthinessCertificateInd" />
+    <result column="SEAWORTHINESS_CERTIFICATE_NUM" jdbcType="VARCHAR" property="seaworthinessCertificateNum" />
+    <result column="SEAWORTHINESS_CERTIFICATE_DATE" jdbcType="TIMESTAMP" property="seaworthinessCertificateDate" />
+    <result column="REGISTER_ADDRESS" jdbcType="VARCHAR" property="registerAddress" />
+    <result column="INSURANCE_DATE" jdbcType="TIMESTAMP" property="insuranceDate" />
+    <result column="ORI_SHIP_OWNER" jdbcType="VARCHAR" property="oriShipOwner" />
+    <result column="ORI_PURCHASE_PRICE" jdbcType="DECIMAL" property="oriPurchasePrice" />
+    <result column="RUNNED_KM" jdbcType="DECIMAL" property="runnedKm" />
+    <result column="USED_YEARS" jdbcType="DECIMAL" property="usedYears" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, ENGINE_TYPE, SHIP_NUM, FUEL, FUEL_LABEL_NO, TOTAL_TON, DISPLACEMENT, 
+    SEAWORTHINESS_CERTIFICATE_IND, SEAWORTHINESS_CERTIFICATE_NUM, SEAWORTHINESS_CERTIFICATE_DATE, 
+    REGISTER_ADDRESS, INSURANCE_DATE, ORI_SHIP_OWNER, ORI_PURCHASE_PRICE, RUNNED_KM, 
+    USED_YEARS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_TRAFFIC_SHIP
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_TRAFFIC_SHIP
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficShip">
+    insert into TB_GRT_TRAFFIC_SHIP (GUARANTY_ID, ENGINE_TYPE, SHIP_NUM, 
+      FUEL, FUEL_LABEL_NO, TOTAL_TON, 
+      DISPLACEMENT, SEAWORTHINESS_CERTIFICATE_IND, 
+      SEAWORTHINESS_CERTIFICATE_NUM, SEAWORTHINESS_CERTIFICATE_DATE, 
+      REGISTER_ADDRESS, INSURANCE_DATE, ORI_SHIP_OWNER, 
+      ORI_PURCHASE_PRICE, RUNNED_KM, USED_YEARS
+      )
+    values (#{guarantyId,jdbcType=VARCHAR}, #{engineType,jdbcType=VARCHAR}, #{shipNum,jdbcType=VARCHAR}, 
+      #{fuel,jdbcType=VARCHAR}, #{fuelLabelNo,jdbcType=VARCHAR}, #{totalTon,jdbcType=DECIMAL}, 
+      #{displacement,jdbcType=DECIMAL}, #{seaworthinessCertificateInd,jdbcType=CHAR}, 
+      #{seaworthinessCertificateNum,jdbcType=VARCHAR}, #{seaworthinessCertificateDate,jdbcType=TIMESTAMP}, 
+      #{registerAddress,jdbcType=VARCHAR}, #{insuranceDate,jdbcType=TIMESTAMP}, #{oriShipOwner,jdbcType=VARCHAR}, 
+      #{oriPurchasePrice,jdbcType=DECIMAL}, #{runnedKm,jdbcType=DECIMAL}, #{usedYears,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficShip">
+    insert into TB_GRT_TRAFFIC_SHIP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="engineType != null">
+        ENGINE_TYPE,
+      </if>
+      <if test="shipNum != null">
+        SHIP_NUM,
+      </if>
+      <if test="fuel != null">
+        FUEL,
+      </if>
+      <if test="fuelLabelNo != null">
+        FUEL_LABEL_NO,
+      </if>
+      <if test="totalTon != null">
+        TOTAL_TON,
+      </if>
+      <if test="displacement != null">
+        DISPLACEMENT,
+      </if>
+      <if test="seaworthinessCertificateInd != null">
+        SEAWORTHINESS_CERTIFICATE_IND,
+      </if>
+      <if test="seaworthinessCertificateNum != null">
+        SEAWORTHINESS_CERTIFICATE_NUM,
+      </if>
+      <if test="seaworthinessCertificateDate != null">
+        SEAWORTHINESS_CERTIFICATE_DATE,
+      </if>
+      <if test="registerAddress != null">
+        REGISTER_ADDRESS,
+      </if>
+      <if test="insuranceDate != null">
+        INSURANCE_DATE,
+      </if>
+      <if test="oriShipOwner != null">
+        ORI_SHIP_OWNER,
+      </if>
+      <if test="oriPurchasePrice != null">
+        ORI_PURCHASE_PRICE,
+      </if>
+      <if test="runnedKm != null">
+        RUNNED_KM,
+      </if>
+      <if test="usedYears != null">
+        USED_YEARS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="engineType != null">
+        #{engineType,jdbcType=VARCHAR},
+      </if>
+      <if test="shipNum != null">
+        #{shipNum,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null">
+        #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelLabelNo != null">
+        #{fuelLabelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalTon != null">
+        #{totalTon,jdbcType=DECIMAL},
+      </if>
+      <if test="displacement != null">
+        #{displacement,jdbcType=DECIMAL},
+      </if>
+      <if test="seaworthinessCertificateInd != null">
+        #{seaworthinessCertificateInd,jdbcType=CHAR},
+      </if>
+      <if test="seaworthinessCertificateNum != null">
+        #{seaworthinessCertificateNum,jdbcType=VARCHAR},
+      </if>
+      <if test="seaworthinessCertificateDate != null">
+        #{seaworthinessCertificateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerAddress != null">
+        #{registerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceDate != null">
+        #{insuranceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oriShipOwner != null">
+        #{oriShipOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="oriPurchasePrice != null">
+        #{oriPurchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="runnedKm != null">
+        #{runnedKm,jdbcType=DECIMAL},
+      </if>
+      <if test="usedYears != null">
+        #{usedYears,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficShip">
+    update TB_GRT_TRAFFIC_SHIP
+    <set>
+      <if test="engineType != null">
+        ENGINE_TYPE = #{engineType,jdbcType=VARCHAR},
+      </if>
+      <if test="shipNum != null">
+        SHIP_NUM = #{shipNum,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null">
+        FUEL = #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelLabelNo != null">
+        FUEL_LABEL_NO = #{fuelLabelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalTon != null">
+        TOTAL_TON = #{totalTon,jdbcType=DECIMAL},
+      </if>
+      <if test="displacement != null">
+        DISPLACEMENT = #{displacement,jdbcType=DECIMAL},
+      </if>
+      <if test="seaworthinessCertificateInd != null">
+        SEAWORTHINESS_CERTIFICATE_IND = #{seaworthinessCertificateInd,jdbcType=CHAR},
+      </if>
+      <if test="seaworthinessCertificateNum != null">
+        SEAWORTHINESS_CERTIFICATE_NUM = #{seaworthinessCertificateNum,jdbcType=VARCHAR},
+      </if>
+      <if test="seaworthinessCertificateDate != null">
+        SEAWORTHINESS_CERTIFICATE_DATE = #{seaworthinessCertificateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerAddress != null">
+        REGISTER_ADDRESS = #{registerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceDate != null">
+        INSURANCE_DATE = #{insuranceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oriShipOwner != null">
+        ORI_SHIP_OWNER = #{oriShipOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="oriPurchasePrice != null">
+        ORI_PURCHASE_PRICE = #{oriPurchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="runnedKm != null">
+        RUNNED_KM = #{runnedKm,jdbcType=DECIMAL},
+      </if>
+      <if test="usedYears != null">
+        USED_YEARS = #{usedYears,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficShip">
+    update TB_GRT_TRAFFIC_SHIP
+    set ENGINE_TYPE = #{engineType,jdbcType=VARCHAR},
+      SHIP_NUM = #{shipNum,jdbcType=VARCHAR},
+      FUEL = #{fuel,jdbcType=VARCHAR},
+      FUEL_LABEL_NO = #{fuelLabelNo,jdbcType=VARCHAR},
+      TOTAL_TON = #{totalTon,jdbcType=DECIMAL},
+      DISPLACEMENT = #{displacement,jdbcType=DECIMAL},
+      SEAWORTHINESS_CERTIFICATE_IND = #{seaworthinessCertificateInd,jdbcType=CHAR},
+      SEAWORTHINESS_CERTIFICATE_NUM = #{seaworthinessCertificateNum,jdbcType=VARCHAR},
+      SEAWORTHINESS_CERTIFICATE_DATE = #{seaworthinessCertificateDate,jdbcType=TIMESTAMP},
+      REGISTER_ADDRESS = #{registerAddress,jdbcType=VARCHAR},
+      INSURANCE_DATE = #{insuranceDate,jdbcType=TIMESTAMP},
+      ORI_SHIP_OWNER = #{oriShipOwner,jdbcType=VARCHAR},
+      ORI_PURCHASE_PRICE = #{oriPurchasePrice,jdbcType=DECIMAL},
+      RUNNED_KM = #{runnedKm,jdbcType=DECIMAL},
+      USED_YEARS = #{usedYears,jdbcType=DECIMAL}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

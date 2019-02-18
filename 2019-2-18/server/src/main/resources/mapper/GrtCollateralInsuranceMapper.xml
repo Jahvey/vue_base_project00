@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtCollateralInsuranceMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtCollateralInsurance">
+    <id column="INSURANCE_ID" jdbcType="VARCHAR" property="insuranceId" />
+    <result column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="INSURANCE_COMPANY_NAME" jdbcType="VARCHAR" property="insuranceCompanyName" />
+    <result column="INSURANCE_TYPE" jdbcType="VARCHAR" property="insuranceType" />
+    <result column="INSURANCE_POLICY_NUM" jdbcType="VARCHAR" property="insurancePolicyNum" />
+    <result column="INSURANCE_AMT" jdbcType="DECIMAL" property="insuranceAmt" />
+    <result column="EFFECTIVE_DATE" jdbcType="TIMESTAMP" property="effectiveDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="INSURANCE_TERMS_INSTRUCTION" jdbcType="VARCHAR" property="insuranceTermsInstruction" />
+    <result column="INSURANCE_BENEFITIARY" jdbcType="VARCHAR" property="insuranceBenefitiary" />
+    <result column="POLICY_HOLDER" jdbcType="VARCHAR" property="policyHolder" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="SYS_UPDATE_TIME" jdbcType="TIMESTAMP" property="sysUpdateTime" />
+    <result column="LOANMAN_CONTRACT_NUM" jdbcType="VARCHAR" property="loanmanContractNum" />
+    <result column="LOANMANNAME" jdbcType="VARCHAR" property="loanmanname" />
+    <result column="CERTIFICATE_TYPE" jdbcType="VARCHAR" property="certificateType" />
+    <result column="CERTIFICATE_CODE" jdbcType="VARCHAR" property="certificateCode" />
+    <result column="INSURANCE_KIND" jdbcType="VARCHAR" property="insuranceKind" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    INSURANCE_ID, GUARANTY_ID, INSURANCE_COMPANY_NAME, INSURANCE_TYPE, INSURANCE_POLICY_NUM, 
+    INSURANCE_AMT, EFFECTIVE_DATE, END_DATE, INSURANCE_TERMS_INSTRUCTION, INSURANCE_BENEFITIARY, 
+    POLICY_HOLDER, CURRENCY_CD, START_DATE, SYS_UPDATE_TIME, LOANMAN_CONTRACT_NUM, LOANMANNAME, 
+    CERTIFICATE_TYPE, CERTIFICATE_CODE, INSURANCE_KIND
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_COLLATERAL_INSURANCE
+    where INSURANCE_ID = #{insuranceId,jdbcType=VARCHAR}
+  </select>
+    <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_COLLATERAL_INSURANCE where 1=1
+     <if test="policyHolder != null and policyHolder != '' "> 
+       AND POLICY_HOLDER LIKE  '%'||#{policyHolder}||'%'
+     </if>
+     <if test="insurancePolicyNum != null and insurancePolicyNum != '' "> 
+       AND INSURANCE_POLICY_NUM LIKE  '%'||#{insurancePolicyNum}||'%'
+     </if>
+     <if test="insuranceCompanyName != null and insuranceCompanyName != '' "> 
+       AND INSURANCE_COMPANY_NAME LIKE  '%'||#{insuranceCompanyName}||'%'
+     </if>
+     <if test="guarantyId != null and guarantyId != '' "> 
+       AND GUARANTY_ID LIKE  '%'||#{guarantyId}||'%'
+     </if>
+  </select>
+    <delete id="deleteBatch" parameterType="java.util.List">
+  	 delete from TB_GRT_COLLATERAL_INSURANCE where 
+  	 INSURANCE_ID in
+	   <foreach collection="ids" index="index" item="insuranceId"
+	         open="(" separator="," close=")">
+	         #{insuranceId}
+	   </foreach>
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_COLLATERAL_INSURANCE
+    where INSURANCE_ID = #{insuranceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralInsurance">
+    insert into TB_GRT_COLLATERAL_INSURANCE (INSURANCE_ID, GUARANTY_ID, INSURANCE_COMPANY_NAME, 
+      INSURANCE_TYPE, INSURANCE_POLICY_NUM, INSURANCE_AMT, 
+      EFFECTIVE_DATE, END_DATE, INSURANCE_TERMS_INSTRUCTION, 
+      INSURANCE_BENEFITIARY, POLICY_HOLDER, CURRENCY_CD, 
+      START_DATE, SYS_UPDATE_TIME, LOANMAN_CONTRACT_NUM, 
+      LOANMANNAME, CERTIFICATE_TYPE, CERTIFICATE_CODE, 
+      INSURANCE_KIND)
+    values (#{insuranceId,jdbcType=VARCHAR}, #{guarantyId,jdbcType=VARCHAR}, #{insuranceCompanyName,jdbcType=VARCHAR}, 
+      #{insuranceType,jdbcType=VARCHAR}, #{insurancePolicyNum,jdbcType=VARCHAR}, #{insuranceAmt,jdbcType=DECIMAL}, 
+      #{effectiveDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{insuranceTermsInstruction,jdbcType=VARCHAR}, 
+      #{insuranceBenefitiary,jdbcType=VARCHAR}, #{policyHolder,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{sysUpdateTime,jdbcType=TIMESTAMP}, #{loanmanContractNum,jdbcType=VARCHAR}, 
+      #{loanmanname,jdbcType=VARCHAR}, #{certificateType,jdbcType=VARCHAR}, #{certificateCode,jdbcType=VARCHAR}, 
+      #{insuranceKind,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralInsurance">
+    insert into TB_GRT_COLLATERAL_INSURANCE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="insuranceId != null">
+        INSURANCE_ID,
+      </if>
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="insuranceCompanyName != null">
+        INSURANCE_COMPANY_NAME,
+      </if>
+      <if test="insuranceType != null">
+        INSURANCE_TYPE,
+      </if>
+      <if test="insurancePolicyNum != null">
+        INSURANCE_POLICY_NUM,
+      </if>
+      <if test="insuranceAmt != null">
+        INSURANCE_AMT,
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="insuranceTermsInstruction != null">
+        INSURANCE_TERMS_INSTRUCTION,
+      </if>
+      <if test="insuranceBenefitiary != null">
+        INSURANCE_BENEFITIARY,
+      </if>
+      <if test="policyHolder != null">
+        POLICY_HOLDER,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="startDate != null">
+        START_DATE,
+      </if>
+      <if test="sysUpdateTime != null">
+        SYS_UPDATE_TIME,
+      </if>
+      <if test="loanmanContractNum != null">
+        LOANMAN_CONTRACT_NUM,
+      </if>
+      <if test="loanmanname != null">
+        LOANMANNAME,
+      </if>
+      <if test="certificateType != null">
+        CERTIFICATE_TYPE,
+      </if>
+      <if test="certificateCode != null">
+        CERTIFICATE_CODE,
+      </if>
+      <if test="insuranceKind != null">
+        INSURANCE_KIND,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="insuranceId != null">
+        #{insuranceId,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompanyName != null">
+        #{insuranceCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null">
+        #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancePolicyNum != null">
+        #{insurancePolicyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceAmt != null">
+        #{insuranceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="effectiveDate != null">
+        #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insuranceTermsInstruction != null">
+        #{insuranceTermsInstruction,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceBenefitiary != null">
+        #{insuranceBenefitiary,jdbcType=VARCHAR},
+      </if>
+      <if test="policyHolder != null">
+        #{policyHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysUpdateTime != null">
+        #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanmanContractNum != null">
+        #{loanmanContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="loanmanname != null">
+        #{loanmanname,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateCode != null">
+        #{certificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceKind != null">
+        #{insuranceKind,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralInsurance">
+    update TB_GRT_COLLATERAL_INSURANCE
+    <set>
+      <if test="guarantyId != null">
+        GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompanyName != null">
+        INSURANCE_COMPANY_NAME = #{insuranceCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null">
+        INSURANCE_TYPE = #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="insurancePolicyNum != null">
+        INSURANCE_POLICY_NUM = #{insurancePolicyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceAmt != null">
+        INSURANCE_AMT = #{insuranceAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE = #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insuranceTermsInstruction != null">
+        INSURANCE_TERMS_INSTRUCTION = #{insuranceTermsInstruction,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceBenefitiary != null">
+        INSURANCE_BENEFITIARY = #{insuranceBenefitiary,jdbcType=VARCHAR},
+      </if>
+      <if test="policyHolder != null">
+        POLICY_HOLDER = #{policyHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysUpdateTime != null">
+        SYS_UPDATE_TIME = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanmanContractNum != null">
+        LOANMAN_CONTRACT_NUM = #{loanmanContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="loanmanname != null">
+        LOANMANNAME = #{loanmanname,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateCode != null">
+        CERTIFICATE_CODE = #{certificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceKind != null">
+        INSURANCE_KIND = #{insuranceKind,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INSURANCE_ID = #{insuranceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralInsurance">
+    update TB_GRT_COLLATERAL_INSURANCE
+    set GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR},
+      INSURANCE_COMPANY_NAME = #{insuranceCompanyName,jdbcType=VARCHAR},
+      INSURANCE_TYPE = #{insuranceType,jdbcType=VARCHAR},
+      INSURANCE_POLICY_NUM = #{insurancePolicyNum,jdbcType=VARCHAR},
+      INSURANCE_AMT = #{insuranceAmt,jdbcType=DECIMAL},
+      EFFECTIVE_DATE = #{effectiveDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      INSURANCE_TERMS_INSTRUCTION = #{insuranceTermsInstruction,jdbcType=VARCHAR},
+      INSURANCE_BENEFITIARY = #{insuranceBenefitiary,jdbcType=VARCHAR},
+      POLICY_HOLDER = #{policyHolder,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      SYS_UPDATE_TIME = #{sysUpdateTime,jdbcType=TIMESTAMP},
+      LOANMAN_CONTRACT_NUM = #{loanmanContractNum,jdbcType=VARCHAR},
+      LOANMANNAME = #{loanmanname,jdbcType=VARCHAR},
+      CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+      CERTIFICATE_CODE = #{certificateCode,jdbcType=VARCHAR},
+      INSURANCE_KIND = #{insuranceKind,jdbcType=VARCHAR}
+    where INSURANCE_ID = #{insuranceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

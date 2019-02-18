@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.afterloan.afterloancheck.mapper.ChAfterLoanCheckRosterMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.afterloan.afterloancheck.resultbean.BorListResult">
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ENGLISH_NAME" jdbcType="VARCHAR" property="englishName" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="SUMMARY_AMT" jdbcType="VARCHAR" property="summaryAmt" />
+    <result column="JJYE" jdbcType="VARCHAR" property="jjye" />
+    <result column="BEGIN_DATE" jdbcType="VARCHAR" property="beginDate" />
+    <result column="END_DATE" jdbcType="VARCHAR" property="endDate" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CHECK_STATUS" jdbcType="VARCHAR" property="checkStatus" />
+    <result column="FINISH_DES" jdbcType="VARCHAR" property="finishDes" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="RECEIPT_NUM" jdbcType="VARCHAR" property="receiptNum" />
+    <result column="REPORT_NUM" jdbcType="VARCHAR" property="reportNum" />
+    <result column="REPORT_NAME" jdbcType="VARCHAR" property="reportName" />
+    <result column="MIDDLE_CODE" jdbcType="VARCHAR" property="middleCode" />
+    <result column="REMIND_STATUS" jdbcType="VARCHAR" property="remindStatus" />
+    <result column="WARNING_LEVEL_CD" jdbcType="VARCHAR" property="warningLevelCd" />
+    <result column="REMIND_TYPE" jdbcType="VARCHAR" property="remindType" />
+    <result column="LAST_DATE" jdbcType="VARCHAR" property="lastDate" />
+  </resultMap>
+<!--贷后检查名单列表  -->
+  <select id="selectAfterLoanCheckRoster" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+   SELECT *
+		  FROM (SELECT MT.USER_NUM,
+		               MT.ORG_NUM,
+		               P.PARTY_ID,
+		               P.PARTY_NUM,
+		               P.PARTY_NAME,
+		               P.PARTY_TYPE_CD,
+		             (CASE WHEN  X.REMIND_STATUS='02' THEN 1 ELSE 0 END) AS REMIND_STATUS,
+		               EW.WARNING_LEVEL_CD,
+		               (CASE
+		                 WHEN P.PARTY_TYPE_CD = '01' THEN
+		                  '202'
+		                 WHEN P.PARTY_TYPE_CD = '02' THEN
+		                  NP.CERT_TYPE
+		                 ELSE
+		                  ''
+		               END) AS CERT_TYPE,
+		               (CASE
+		                 WHEN P.PARTY_TYPE_CD = '01' THEN
+		                  CC.ORG_REGISTER_CD
+		                 WHEN P.PARTY_TYPE_CD = '02' THEN
+		                  NP.CERT_NUM
+		                 ELSE
+		                  ''
+		               END) AS CERT_NUM,
+		               X.REMIND_TYPE,
+		               X.LAST_DATE
+		          FROM TB_CSM_PARTY P
+		          LEFT JOIN TB_REW_CSM_EARLY_WARNING EW ON P.PARTY_ID = EW.PARTY_ID
+		          LEFT JOIN TB_CSM_CORPORATION CC ON P.PARTY_ID = CC.PARTY_ID
+		          LEFT JOIN TB_CSM_NATURAL_PERSON NP ON P.PARTY_ID = NP.PARTY_ID,
+		         TB_CSM_MANAGEMENT_TEAM MT,
+		         (SELECT DISTINCT R.PARTY_ID,R.REMIND_STATUS,
+                       R.REMIND_TYPE,
+                       R.END_DATE AS LAST_DATE,
+                       (CASE
+                         WHEN R.REMIND_TYPE = '01' THEN
+                          R01.RECEIPT_NUM
+                         WHEN R.REMIND_TYPE = '02' THEN
+                          ''
+                         WHEN R.REMIND_TYPE = '14' THEN
+                          R14.CONTRACT_NUM
+                         WHEN R.REMIND_TYPE = '15' THEN
+                          R15.RECEIPT_NUM
+                         ELSE
+                          NULL
+                       END) AS RE_NUM
+         FROM TB_TAB_REMIND_INFO R
+         LEFT JOIN TB_TAB_FIRSTCHECK_REMIND R01 ON R.REMIND_ID =
+                                                   R01.REMIND_ID
+         LEFT JOIN TB_TAB_DAYCHECK_REMIND R02 ON R.REMIND_ID =
+                                                 R02.REMIND_ID
+         LEFT JOIN TB_TAB_IMPORTANT_REMIND R14 ON R.REMIND_ID =
+                                                  R14.REMIND_ID
+         LEFT JOIN TB_TAB_BEFORECHECK_REMIND R15 ON R.REMIND_ID =
+                                                    R15.REMIND_ID
+        WHERE R.REMIND_TYPE IN
+              ('01', '02', '14', '15') AND R.REMIND_STATUS IN ('01','02')) X
+
+		         WHERE P.PARTY_ID = MT.PARTY_ID
+		           AND P.PARTY_ID = X.PARTY_ID
+		           AND MT.USER_PLACING_CD = '01') A
+		 WHERE 1 = 1
+			 and a.org_num in (SELECT O.ORGCODE FROM OM_ORGANIZATION O  WHERE O.ORGSEQ 
+		    					LIKE '%'||(select orgid from om_organization where orgcode = #{orgcode,jdbcType=VARCHAR})||'%') 
+		 <!-- 	<isNotNull property="orglevel1">总行用户
+			   and a.org_num in (SELECT O.ORGCODE FROM OM_ORGANIZATION O 
+		                       )
+		   </isNotNull>
+		   <isNotNull property="orglevel2">分行用户
+			   and a.org_num in (select o.orgcode from om_organization o where o.parentorgid = #currentorgid#)
+		   </isNotNull>
+		   <isNotNull property="orglevel3">支行用户
+			   and a.org_num = #currentorgcode#
+		   </isNotNull>
+		   <isNotNull property="orglevel4">总行小企业信贷中心
+			   and a.org_num in (select o.orgcode from om_organization o where o.orgdegree = '2')
+		   </isNotNull>
+		 <isNotNull property="orgid">
+	    	and a.org_num in (select orgcode from om_organization where orgseq like '%$orgid$%')
+	     </isNotNull> -->
+	    <if test=" userNum != null and userNum != '' ">
+	    	AND A.USER_NUM = #{userNum,jdbcType=VARCHAR}
+	    </if>
+	    <if test=" partyName != null and partyName != '' ">
+	    	 and a.party_name like '%'||#{partyName,jdbcType=VARCHAR}||'%'
+	    </if>
+	    <if test=" certType != null and certType != '' ">
+	    	AND A.CERT_TYPE = #{certType,jdbcType=VARCHAR}
+	    </if>
+	    <if test=" certNum != null and certNum != '' ">
+	    	AND A.CERT_NUM = #{certNum,jdbcType=VARCHAR}
+	    </if>
+	    <if test=" stDate != null and stDate != '' ">
+	    	AND to_char(A.LAST_DATE,'yyyy-MM-dd') = substr(#{stDate,jdbcType=VARCHAR},0,10)
+	    </if>
+	    <if test=" remindType != null and remindType != '' ">
+	    	AND A.REMIND_TYPE = #{remindType,jdbcType=VARCHAR}
+	    </if>
+	    <if test=" remindStatus != null and remindStatus != '' ">
+	    	AND A.REMIND_STATUS = #{remindStatus,jdbcType=VARCHAR}
+	    </if>
+	    <!--  <isNotNull property="userNum">
+	    	and a.user_num = #userNum#
+	     </isNotNull>
+  		 <isNotNull property="partyName">  and a.party_name like '%$partyName$%' </isNotNull>
+ 		 <isNotNull property="certType">  and a.cert_type = '$certType$' </isNotNull>
+ 		 <isNotNull property="certNum">  and a.cert_num = '$certNum$' </isNotNull>
+ 		 <isNotNull property="stDate">  and to_char(a.last_date,'yyyy-MM-dd') =  substr(#stDate#,0,10) </isNotNull>
+ 		 <isNotNull property="enDate">  <![CDATA[and to_char(a.last_date,'yyyy-MM-dd') <= #enDate#]]> </isNotNull>
+ 		 <isNotNull property="remindType">  and a.remind = '$remindType$' </isNotNull>
+ 		 <isNotNull property="remindStatus">  and a.REMIND_STATUS = '$remindStatus$' </isNotNull> -->
+ 		 
+ 		 ORDER BY A.REMIND_STATUS ASC,  A.LAST_DATE DESC
+  </select>
+ 
+ 
+ 
+</mapper>

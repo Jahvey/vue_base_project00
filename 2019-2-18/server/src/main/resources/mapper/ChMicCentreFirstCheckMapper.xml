@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.afterloan.afterloancheck.mapper.ChMicCentreFirstCheckMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.afterloan.afterloancheck.resultbean.BorListResult">
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ENGLISH_NAME" jdbcType="TIMESTAMP" property="englishName" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="SUMMARY_ID" jdbcType="DECIMAL" property="summaryId" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="SUMMARY_AMT" jdbcType="VARCHAR" property="summaryAmt" />
+    <result column="JJYE" jdbcType="TIMESTAMP" property="jjye" />
+    <result column="BEGIN_DATE" jdbcType="VARCHAR" property="beginDate" />
+    <result column="END_DATE" jdbcType="VARCHAR" property="endDate" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CHECK_STATUS" jdbcType="TIMESTAMP" property="checkStatus" />
+    <result column="FINISH_DES" jdbcType="VARCHAR" property="finishDes" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="RECEIPT_NUM" jdbcType="VARCHAR" property="receiptNum" />
+    <result column="MIDDLE_CODE" jdbcType="VARCHAR" property="middleCode" />
+    
+  </resultMap>
+  <!-- 小贷中心首次检查 -->
+  <select id="selectMicCentreFirstCheck" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    SELECT P.PARTY_ID,
+		       P.PARTY_NUM,
+		       P.PARTY_TYPE_CD,
+		       P.PARTY_NAME,
+		       NP.CERT_TYPE,
+		       NP.CERT_NUM,
+		       NP.MIDDLE_CODE,
+		       LI.LOAN_ID,
+		       LI.PRODUCT_TYPE,
+		       LI.REPAY_TYPE,
+		       LI.ORG_NUM,
+		       LI.USER_NUM,
+		       LS.SUMMARY_ID,
+		       LS.SUMMARY_NUM,
+		       LS.SUMMARY_AMT,
+		       LS.JJYE,
+		       TO_CHAR(LS.BEGIN_DATE,'YYYY-MM-DD') BEGIN_DATE,
+		       TO_CHAR(LS.END_DATE,'YYYY-MM-DD') END_DATE,
+		       TO_CHAR(SYSDATE,'YYYY-MM-DD') CURR_DATE,
+		       CI.CONTRACT_ID,
+		       CI.CONTRACT_NUM
+		  FROM TB_LOAN_INFO          LI,
+		       TB_LOAN_SUMMARY       LS,
+		       TB_CON_CONTRACT_INFO  CI,
+		       TB_CSM_PARTY          P,
+		       TB_CSM_NATURAL_PERSON NP
+		 WHERE LI.LOAN_ID = LS.LOAN_ID
+		   AND LI.CONTRACT_ID = CI.CONTRACT_ID
+		   AND LI.PARTY_ID = P.PARTY_ID
+		   AND NP.PARTY_ID = P.PARTY_ID
+		   AND NP.NATURAL_PERSON_TYPE_CD IN ('2', '3')
+		   <!--AND LI.LOAN_STATUS = '03'出账状态01-未提交03-已生效-->
+		   AND LS.SUMMARY_STATUS_CD IN ('02','03')<!--借据状态01-未放款02-已放款03-逾期/垫款04-结清-->
+		   AND EXISTS (SELECT 1
+		          FROM TB_BIZ_APPROVE               A,
+		               TB_BIZ_AMOUNT_APPROVE        AA,
+		               TB_BIZ_AMOUNT_DETAIL_APPROVE DA
+		         WHERE A.APPROVE_ID = AA.APPROVE_ID
+		           AND AA.AMOUNT_ID = DA.AMOUNT_ID
+		           AND DA.AMOUNT_DETAIL_ID = CI.AMOUNT_DETAIL_ID
+		           AND A.BIZ_TYPE = '04')
+		   AND LI.USER_NUM = '200555'
+		   AND LI.ORG_NUM = '0700'
+		   <!--<![CDATA[
+		   		AND (SYSDATE - LS.BEGIN_DATE) <= 30
+		   ]]>放款后30天-->
+		   <!--and not exists (select 1
+		          from tb_aft_first_check fc
+		         where fc.summary_id = ls.summary_id)-->
+ 		  <if test=" partyName != null and partyName != '' ">
+ 		 	and P.PARTY_NAME like '%'||#{partyName,jdbcType=VARCHAR}||'%'
+ 		 </if>
+ 		 <if test=" certType != null and certType != '' ">
+ 		 	and NP.CERT_TYPE = #{certType,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" certNum != null and certNum != '' ">
+ 		 	and NP.CERT_NUM = #{certNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" summaryNum != null and summaryNum != '' ">
+ 		 	and LS.SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" middleCode != null and middleCode != '' ">
+ 		 	and NP.MIDDLE_CODE = #{middleCode,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" receiptNum != null and receiptNum != '' ">
+ 		 	and LS.SUMMARY_NUM = #{receiptNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <!-- 
+ 		 <isNotNull property="partyName">  and p.party_name like '%$partyName$%' </isNotNull>
+ 		 <isNotNull property="certType">  and np.cert_type = '$certType$' </isNotNull>
+ 		 <isNotNull property="certNum">  and np.cert_num = '$certNum$' </isNotNull>
+ 		 <isNotNull property="middleCode">  and np.middle_code = '$middleCode$' </isNotNull>
+ 		 <isNotNull property="summaryNum">  and ls.summary_num = '$summaryNum$' </isNotNull>
+ 		 从提醒列表传来的借据编号		 
+ 		 <isNotNull property="receiptNum">  and ls.summary_num = '$receiptNum$' </isNotNull>
+ 		  -->
+ 		order by ls.begin_date
+  </select>
+ 
+ 
+ 
+</mapper>

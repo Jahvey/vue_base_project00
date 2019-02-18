@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtTrafficCarMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtTrafficCar">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="FUEL" jdbcType="VARCHAR" property="fuel" />
+    <result column="COLOR" jdbcType="VARCHAR" property="color" />
+    <result column="FUEL_LABEL_NO" jdbcType="VARCHAR" property="fuelLabelNo" />
+    <result column="FRAMEWORK_NUM" jdbcType="VARCHAR" property="frameworkNum" />
+    <result column="ORI_PURCHASE_PRICE" jdbcType="DECIMAL" property="oriPurchasePrice" />
+    <result column="DIRVER_LICENSE_IND" jdbcType="CHAR" property="dirverLicenseInd" />
+    <result column="HANG_DATE" jdbcType="TIMESTAMP" property="hangDate" />
+    <result column="CAR_CARD_NUM" jdbcType="VARCHAR" property="carCardNum" />
+    <result column="REGISTER_ADDRESS" jdbcType="VARCHAR" property="registerAddress" />
+    <result column="LICENSE_OWNER" jdbcType="VARCHAR" property="licenseOwner" />
+    <result column="COVER_CHARGE_CERT_IND" jdbcType="CHAR" property="coverChargeCertInd" />
+    <result column="CARRY_LICENSE_IND" jdbcType="CHAR" property="carryLicenseInd" />
+    <result column="ADDITIONAL_CHARGES_DATE" jdbcType="TIMESTAMP" property="additionalChargesDate" />
+    <result column="INSURANCE_DATE" jdbcType="TIMESTAMP" property="insuranceDate" />
+    <result column="ROAD_TOLL_DATE" jdbcType="TIMESTAMP" property="roadTollDate" />
+    <result column="PURPOSE" jdbcType="VARCHAR" property="purpose" />
+    <result column="RUNNED_KM" jdbcType="DECIMAL" property="runnedKm" />
+    <result column="PURCHASE_CONTRACT_NO" jdbcType="VARCHAR" property="purchaseContractNo" />
+    <result column="BRAND" jdbcType="VARCHAR" property="brand" />
+    <result column="CAR_MODEL" jdbcType="VARCHAR" property="carModel" />
+    <result column="CAR_TYPE" jdbcType="VARCHAR" property="carType" />
+    <result column="CAR_RUN_NO" jdbcType="VARCHAR" property="carRunNo" />
+    <result column="ELIGIBILITY_CERTIFICATE" jdbcType="VARCHAR" property="eligibilityCertificate" />
+    <result column="UNDER_PAN_NO" jdbcType="VARCHAR" property="underPanNo" />
+    <result column="SEAT_NUM" jdbcType="DECIMAL" property="seatNum" />
+    <result column="RRODUCT_DATE" jdbcType="TIMESTAMP" property="rroductDate" />
+    <result column="PURCHASE_DATE" jdbcType="TIMESTAMP" property="purchaseDate" />
+    <result column="INVOICE_NO" jdbcType="VARCHAR" property="invoiceNo" />
+    <result column="USE_YEAR_NUM" jdbcType="DECIMAL" property="useYearNum" />
+    <result column="MAJOR_PURPOSE" jdbcType="VARCHAR" property="majorPurpose" />
+    <result column="K53BZSM" jdbcType="VARCHAR" property="k53bzsm" />
+    <result column="VEHICLES_NATURE" jdbcType="VARCHAR" property="vehiclesNature" />
+    <result column="ORIGIN" jdbcType="VARCHAR" property="origin" />
+    <result column="MANUFACTURERS" jdbcType="VARCHAR" property="manufacturers" />
+    <result column="PURCHASE_PRICE" jdbcType="DECIMAL" property="purchasePrice" />
+    <result column="LICENSE_NUM" jdbcType="VARCHAR" property="licenseNum" />
+    <result column="LICENSE_DEPARTMENT" jdbcType="VARCHAR" property="licenseDepartment" />
+    <result column="PRODUCED_DATE" jdbcType="TIMESTAMP" property="producedDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, FUEL, COLOR, FUEL_LABEL_NO, FRAMEWORK_NUM, ORI_PURCHASE_PRICE, DIRVER_LICENSE_IND, 
+    HANG_DATE, CAR_CARD_NUM, REGISTER_ADDRESS, LICENSE_OWNER, COVER_CHARGE_CERT_IND, 
+    CARRY_LICENSE_IND, ADDITIONAL_CHARGES_DATE, INSURANCE_DATE, ROAD_TOLL_DATE, PURPOSE, 
+    RUNNED_KM, PURCHASE_CONTRACT_NO, BRAND, CAR_MODEL, CAR_TYPE, CAR_RUN_NO, ELIGIBILITY_CERTIFICATE, 
+    UNDER_PAN_NO, SEAT_NUM, RRODUCT_DATE, PURCHASE_DATE, INVOICE_NO, USE_YEAR_NUM, MAJOR_PURPOSE, 
+    K53BZSM, VEHICLES_NATURE, ORIGIN, MANUFACTURERS, PURCHASE_PRICE, LICENSE_NUM, LICENSE_DEPARTMENT, 
+    PRODUCED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_TRAFFIC_CAR
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_TRAFFIC_CAR
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficCar">
+    insert into TB_GRT_TRAFFIC_CAR (GUARANTY_ID, FUEL, COLOR, 
+      FUEL_LABEL_NO, FRAMEWORK_NUM, ORI_PURCHASE_PRICE, 
+      DIRVER_LICENSE_IND, HANG_DATE, CAR_CARD_NUM, 
+      REGISTER_ADDRESS, LICENSE_OWNER, COVER_CHARGE_CERT_IND, 
+      CARRY_LICENSE_IND, ADDITIONAL_CHARGES_DATE, 
+      INSURANCE_DATE, ROAD_TOLL_DATE, PURPOSE, 
+      RUNNED_KM, PURCHASE_CONTRACT_NO, BRAND, 
+      CAR_MODEL, CAR_TYPE, CAR_RUN_NO, 
+      ELIGIBILITY_CERTIFICATE, UNDER_PAN_NO, SEAT_NUM, 
+      RRODUCT_DATE, PURCHASE_DATE, INVOICE_NO, 
+      USE_YEAR_NUM, MAJOR_PURPOSE, K53BZSM, 
+      VEHICLES_NATURE, ORIGIN, MANUFACTURERS, 
+      PURCHASE_PRICE, LICENSE_NUM, LICENSE_DEPARTMENT, 
+      PRODUCED_DATE)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{fuel,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, 
+      #{fuelLabelNo,jdbcType=VARCHAR}, #{frameworkNum,jdbcType=VARCHAR}, #{oriPurchasePrice,jdbcType=DECIMAL}, 
+      #{dirverLicenseInd,jdbcType=CHAR}, #{hangDate,jdbcType=TIMESTAMP}, #{carCardNum,jdbcType=VARCHAR}, 
+      #{registerAddress,jdbcType=VARCHAR}, #{licenseOwner,jdbcType=VARCHAR}, #{coverChargeCertInd,jdbcType=CHAR}, 
+      #{carryLicenseInd,jdbcType=CHAR}, #{additionalChargesDate,jdbcType=TIMESTAMP}, 
+      #{insuranceDate,jdbcType=TIMESTAMP}, #{roadTollDate,jdbcType=TIMESTAMP}, #{purpose,jdbcType=VARCHAR}, 
+      #{runnedKm,jdbcType=DECIMAL}, #{purchaseContractNo,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
+      #{carModel,jdbcType=VARCHAR}, #{carType,jdbcType=VARCHAR}, #{carRunNo,jdbcType=VARCHAR}, 
+      #{eligibilityCertificate,jdbcType=VARCHAR}, #{underPanNo,jdbcType=VARCHAR}, #{seatNum,jdbcType=DECIMAL}, 
+      #{rroductDate,jdbcType=TIMESTAMP}, #{purchaseDate,jdbcType=TIMESTAMP}, #{invoiceNo,jdbcType=VARCHAR}, 
+      #{useYearNum,jdbcType=DECIMAL}, #{majorPurpose,jdbcType=VARCHAR}, #{k53bzsm,jdbcType=VARCHAR}, 
+      #{vehiclesNature,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, #{manufacturers,jdbcType=VARCHAR}, 
+      #{purchasePrice,jdbcType=DECIMAL}, #{licenseNum,jdbcType=VARCHAR}, #{licenseDepartment,jdbcType=VARCHAR}, 
+      #{producedDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficCar">
+    insert into TB_GRT_TRAFFIC_CAR
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="fuel != null">
+        FUEL,
+      </if>
+      <if test="color != null">
+        COLOR,
+      </if>
+      <if test="fuelLabelNo != null">
+        FUEL_LABEL_NO,
+      </if>
+      <if test="frameworkNum != null">
+        FRAMEWORK_NUM,
+      </if>
+      <if test="oriPurchasePrice != null">
+        ORI_PURCHASE_PRICE,
+      </if>
+      <if test="dirverLicenseInd != null">
+        DIRVER_LICENSE_IND,
+      </if>
+      <if test="hangDate != null">
+        HANG_DATE,
+      </if>
+      <if test="carCardNum != null">
+        CAR_CARD_NUM,
+      </if>
+      <if test="registerAddress != null">
+        REGISTER_ADDRESS,
+      </if>
+      <if test="licenseOwner != null">
+        LICENSE_OWNER,
+      </if>
+      <if test="coverChargeCertInd != null">
+        COVER_CHARGE_CERT_IND,
+      </if>
+      <if test="carryLicenseInd != null">
+        CARRY_LICENSE_IND,
+      </if>
+      <if test="additionalChargesDate != null">
+        ADDITIONAL_CHARGES_DATE,
+      </if>
+      <if test="insuranceDate != null">
+        INSURANCE_DATE,
+      </if>
+      <if test="roadTollDate != null">
+        ROAD_TOLL_DATE,
+      </if>
+      <if test="purpose != null">
+        PURPOSE,
+      </if>
+      <if test="runnedKm != null">
+        RUNNED_KM,
+      </if>
+      <if test="purchaseContractNo != null">
+        PURCHASE_CONTRACT_NO,
+      </if>
+      <if test="brand != null">
+        BRAND,
+      </if>
+      <if test="carModel != null">
+        CAR_MODEL,
+      </if>
+      <if test="carType != null">
+        CAR_TYPE,
+      </if>
+      <if test="carRunNo != null">
+        CAR_RUN_NO,
+      </if>
+      <if test="eligibilityCertificate != null">
+        ELIGIBILITY_CERTIFICATE,
+      </if>
+      <if test="underPanNo != null">
+        UNDER_PAN_NO,
+      </if>
+      <if test="seatNum != null">
+        SEAT_NUM,
+      </if>
+      <if test="rroductDate != null">
+        RRODUCT_DATE,
+      </if>
+      <if test="purchaseDate != null">
+        PURCHASE_DATE,
+      </if>
+      <if test="invoiceNo != null">
+        INVOICE_NO,
+      </if>
+      <if test="useYearNum != null">
+        USE_YEAR_NUM,
+      </if>
+      <if test="majorPurpose != null">
+        MAJOR_PURPOSE,
+      </if>
+      <if test="k53bzsm != null">
+        K53BZSM,
+      </if>
+      <if test="vehiclesNature != null">
+        VEHICLES_NATURE,
+      </if>
+      <if test="origin != null">
+        ORIGIN,
+      </if>
+      <if test="manufacturers != null">
+        MANUFACTURERS,
+      </if>
+      <if test="purchasePrice != null">
+        PURCHASE_PRICE,
+      </if>
+      <if test="licenseNum != null">
+        LICENSE_NUM,
+      </if>
+      <if test="licenseDepartment != null">
+        LICENSE_DEPARTMENT,
+      </if>
+      <if test="producedDate != null">
+        PRODUCED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null">
+        #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelLabelNo != null">
+        #{fuelLabelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="frameworkNum != null">
+        #{frameworkNum,jdbcType=VARCHAR},
+      </if>
+      <if test="oriPurchasePrice != null">
+        #{oriPurchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="dirverLicenseInd != null">
+        #{dirverLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="hangDate != null">
+        #{hangDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carCardNum != null">
+        #{carCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddress != null">
+        #{registerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseOwner != null">
+        #{licenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="coverChargeCertInd != null">
+        #{coverChargeCertInd,jdbcType=CHAR},
+      </if>
+      <if test="carryLicenseInd != null">
+        #{carryLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="additionalChargesDate != null">
+        #{additionalChargesDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insuranceDate != null">
+        #{insuranceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roadTollDate != null">
+        #{roadTollDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purpose != null">
+        #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="runnedKm != null">
+        #{runnedKm,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseContractNo != null">
+        #{purchaseContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="carModel != null">
+        #{carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null">
+        #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="carRunNo != null">
+        #{carRunNo,jdbcType=VARCHAR},
+      </if>
+      <if test="eligibilityCertificate != null">
+        #{eligibilityCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="underPanNo != null">
+        #{underPanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="seatNum != null">
+        #{seatNum,jdbcType=DECIMAL},
+      </if>
+      <if test="rroductDate != null">
+        #{rroductDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchaseDate != null">
+        #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceNo != null">
+        #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="useYearNum != null">
+        #{useYearNum,jdbcType=DECIMAL},
+      </if>
+      <if test="majorPurpose != null">
+        #{majorPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="k53bzsm != null">
+        #{k53bzsm,jdbcType=VARCHAR},
+      </if>
+      <if test="vehiclesNature != null">
+        #{vehiclesNature,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturers != null">
+        #{manufacturers,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null">
+        #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="licenseNum != null">
+        #{licenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseDepartment != null">
+        #{licenseDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="producedDate != null">
+        #{producedDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficCar">
+    update TB_GRT_TRAFFIC_CAR
+    <set>
+      <if test="fuel != null">
+        FUEL = #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        COLOR = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelLabelNo != null">
+        FUEL_LABEL_NO = #{fuelLabelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="frameworkNum != null">
+        FRAMEWORK_NUM = #{frameworkNum,jdbcType=VARCHAR},
+      </if>
+      <if test="oriPurchasePrice != null">
+        ORI_PURCHASE_PRICE = #{oriPurchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="dirverLicenseInd != null">
+        DIRVER_LICENSE_IND = #{dirverLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="hangDate != null">
+        HANG_DATE = #{hangDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carCardNum != null">
+        CAR_CARD_NUM = #{carCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddress != null">
+        REGISTER_ADDRESS = #{registerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseOwner != null">
+        LICENSE_OWNER = #{licenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="coverChargeCertInd != null">
+        COVER_CHARGE_CERT_IND = #{coverChargeCertInd,jdbcType=CHAR},
+      </if>
+      <if test="carryLicenseInd != null">
+        CARRY_LICENSE_IND = #{carryLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="additionalChargesDate != null">
+        ADDITIONAL_CHARGES_DATE = #{additionalChargesDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insuranceDate != null">
+        INSURANCE_DATE = #{insuranceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roadTollDate != null">
+        ROAD_TOLL_DATE = #{roadTollDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purpose != null">
+        PURPOSE = #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="runnedKm != null">
+        RUNNED_KM = #{runnedKm,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseContractNo != null">
+        PURCHASE_CONTRACT_NO = #{purchaseContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        BRAND = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="carModel != null">
+        CAR_MODEL = #{carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null">
+        CAR_TYPE = #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="carRunNo != null">
+        CAR_RUN_NO = #{carRunNo,jdbcType=VARCHAR},
+      </if>
+      <if test="eligibilityCertificate != null">
+        ELIGIBILITY_CERTIFICATE = #{eligibilityCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="underPanNo != null">
+        UNDER_PAN_NO = #{underPanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="seatNum != null">
+        SEAT_NUM = #{seatNum,jdbcType=DECIMAL},
+      </if>
+      <if test="rroductDate != null">
+        RRODUCT_DATE = #{rroductDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchaseDate != null">
+        PURCHASE_DATE = #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceNo != null">
+        INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="useYearNum != null">
+        USE_YEAR_NUM = #{useYearNum,jdbcType=DECIMAL},
+      </if>
+      <if test="majorPurpose != null">
+        MAJOR_PURPOSE = #{majorPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="k53bzsm != null">
+        K53BZSM = #{k53bzsm,jdbcType=VARCHAR},
+      </if>
+      <if test="vehiclesNature != null">
+        VEHICLES_NATURE = #{vehiclesNature,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        ORIGIN = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturers != null">
+        MANUFACTURERS = #{manufacturers,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null">
+        PURCHASE_PRICE = #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="licenseNum != null">
+        LICENSE_NUM = #{licenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseDepartment != null">
+        LICENSE_DEPARTMENT = #{licenseDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="producedDate != null">
+        PRODUCED_DATE = #{producedDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtTrafficCar">
+    update TB_GRT_TRAFFIC_CAR
+    set FUEL = #{fuel,jdbcType=VARCHAR},
+      COLOR = #{color,jdbcType=VARCHAR},
+      FUEL_LABEL_NO = #{fuelLabelNo,jdbcType=VARCHAR},
+      FRAMEWORK_NUM = #{frameworkNum,jdbcType=VARCHAR},
+      ORI_PURCHASE_PRICE = #{oriPurchasePrice,jdbcType=DECIMAL},
+      DIRVER_LICENSE_IND = #{dirverLicenseInd,jdbcType=CHAR},
+      HANG_DATE = #{hangDate,jdbcType=TIMESTAMP},
+      CAR_CARD_NUM = #{carCardNum,jdbcType=VARCHAR},
+      REGISTER_ADDRESS = #{registerAddress,jdbcType=VARCHAR},
+      LICENSE_OWNER = #{licenseOwner,jdbcType=VARCHAR},
+      COVER_CHARGE_CERT_IND = #{coverChargeCertInd,jdbcType=CHAR},
+      CARRY_LICENSE_IND = #{carryLicenseInd,jdbcType=CHAR},
+      ADDITIONAL_CHARGES_DATE = #{additionalChargesDate,jdbcType=TIMESTAMP},
+      INSURANCE_DATE = #{insuranceDate,jdbcType=TIMESTAMP},
+      ROAD_TOLL_DATE = #{roadTollDate,jdbcType=TIMESTAMP},
+      PURPOSE = #{purpose,jdbcType=VARCHAR},
+      RUNNED_KM = #{runnedKm,jdbcType=DECIMAL},
+      PURCHASE_CONTRACT_NO = #{purchaseContractNo,jdbcType=VARCHAR},
+      BRAND = #{brand,jdbcType=VARCHAR},
+      CAR_MODEL = #{carModel,jdbcType=VARCHAR},
+      CAR_TYPE = #{carType,jdbcType=VARCHAR},
+      CAR_RUN_NO = #{carRunNo,jdbcType=VARCHAR},
+      ELIGIBILITY_CERTIFICATE = #{eligibilityCertificate,jdbcType=VARCHAR},
+      UNDER_PAN_NO = #{underPanNo,jdbcType=VARCHAR},
+      SEAT_NUM = #{seatNum,jdbcType=DECIMAL},
+      RRODUCT_DATE = #{rroductDate,jdbcType=TIMESTAMP},
+      PURCHASE_DATE = #{purchaseDate,jdbcType=TIMESTAMP},
+      INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR},
+      USE_YEAR_NUM = #{useYearNum,jdbcType=DECIMAL},
+      MAJOR_PURPOSE = #{majorPurpose,jdbcType=VARCHAR},
+      K53BZSM = #{k53bzsm,jdbcType=VARCHAR},
+      VEHICLES_NATURE = #{vehiclesNature,jdbcType=VARCHAR},
+      ORIGIN = #{origin,jdbcType=VARCHAR},
+      MANUFACTURERS = #{manufacturers,jdbcType=VARCHAR},
+      PURCHASE_PRICE = #{purchasePrice,jdbcType=DECIMAL},
+      LICENSE_NUM = #{licenseNum,jdbcType=VARCHAR},
+      LICENSE_DEPARTMENT = #{licenseDepartment,jdbcType=VARCHAR},
+      PRODUCED_DATE = #{producedDate,jdbcType=TIMESTAMP}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

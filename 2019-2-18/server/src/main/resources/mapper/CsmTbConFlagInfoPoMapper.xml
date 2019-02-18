@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConFlagInfoPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConFlagInfoPo">
+    <id column="FLAG_ID" jdbcType="VARCHAR" property="flagId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="LOAN_TURN" jdbcType="VARCHAR" property="loanTurn" />
+    <result column="GREEN_LOAN" jdbcType="VARCHAR" property="greenLoan" />
+    <result column="EMPHASIS_TURN" jdbcType="VARCHAR" property="emphasisTurn" />
+    <result column="RHBZFFL" jdbcType="VARCHAR" property="rhbzffl" />
+    <result column="YJBZFFL" jdbcType="VARCHAR" property="yjbzffl" />
+    <result column="RISK_INFO" jdbcType="VARCHAR" property="riskInfo" />
+    <result column="ACT" jdbcType="VARCHAR" property="act" />
+    <result column="SERVICE_TYPE" jdbcType="VARCHAR" property="serviceType" />
+    <result column="REDUCE_AMOUNT" jdbcType="VARCHAR" property="reduceAmount" />
+    <result column="FOCUS_TYPE" jdbcType="VARCHAR" property="focusType" />
+    <result column="AJUST_TYPE" jdbcType="VARCHAR" property="ajustType" />
+    <result column="UPGRADE_TYPE" jdbcType="VARCHAR" property="upgradeType" />
+    <result column="NEW_PRODUCT_TYPE" jdbcType="VARCHAR" property="newProductType" />
+    <result column="WHETHER_ARG_RELATED" jdbcType="VARCHAR" property="whetherArgRelated" />
+    <result column="SUP_ARG_TYPE" jdbcType="VARCHAR" property="supArgType" />
+    <result column="ARG_TYPE" jdbcType="VARCHAR" property="argType" />
+    <result column="GREEN_LOAN_USE" jdbcType="VARCHAR" property="greenLoanUse" />
+    <result column="GREEN_RISK_TYPE" jdbcType="VARCHAR" property="greenRiskType" />
+    <result column="GREEN_RISK_DETAIL" jdbcType="VARCHAR" property="greenRiskDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    FLAG_ID, CONTRACT_ID, LOAN_TURN, GREEN_LOAN, EMPHASIS_TURN, RHBZFFL, YJBZFFL, RISK_INFO, 
+    ACT, SERVICE_TYPE, REDUCE_AMOUNT, FOCUS_TYPE, AJUST_TYPE, UPGRADE_TYPE, NEW_PRODUCT_TYPE, 
+    WHETHER_ARG_RELATED, SUP_ARG_TYPE, ARG_TYPE, GREEN_LOAN_USE, GREEN_RISK_TYPE, GREEN_RISK_DETAIL
+  </sql>
+  
+  
+  <select id="queryOneByConId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  SELECT
+	* 
+FROM
+	TB_CON_FLAG_INFO b 
+WHERE
+	b.contract_id = #{contractId,jdbcType=VARCHAR}
+
+  </select>
+  
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+   *
+    from CRMS.TB_CON_FLAG_INFO
+    where FLAG_ID = #{flagId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_FLAG_INFO
+    where FLAG_ID = #{flagId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConFlagInfoPo">
+    insert into CRMS.TB_CON_FLAG_INFO (FLAG_ID, CONTRACT_ID, LOAN_TURN, 
+      GREEN_LOAN, EMPHASIS_TURN, RHBZFFL, 
+      YJBZFFL, RISK_INFO, ACT, 
+      SERVICE_TYPE, REDUCE_AMOUNT, FOCUS_TYPE, 
+      AJUST_TYPE, UPGRADE_TYPE, NEW_PRODUCT_TYPE, 
+      WHETHER_ARG_RELATED, SUP_ARG_TYPE, ARG_TYPE, 
+      GREEN_LOAN_USE, GREEN_RISK_TYPE, GREEN_RISK_DETAIL
+      )
+    values (#{flagId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{loanTurn,jdbcType=VARCHAR}, 
+      #{greenLoan,jdbcType=VARCHAR}, #{emphasisTurn,jdbcType=VARCHAR}, #{rhbzffl,jdbcType=VARCHAR}, 
+      #{yjbzffl,jdbcType=VARCHAR}, #{riskInfo,jdbcType=VARCHAR}, #{act,jdbcType=VARCHAR}, 
+      #{serviceType,jdbcType=VARCHAR}, #{reduceAmount,jdbcType=VARCHAR}, #{focusType,jdbcType=VARCHAR}, 
+      #{ajustType,jdbcType=VARCHAR}, #{upgradeType,jdbcType=VARCHAR}, #{newProductType,jdbcType=VARCHAR}, 
+      #{whetherArgRelated,jdbcType=VARCHAR}, #{supArgType,jdbcType=VARCHAR}, #{argType,jdbcType=VARCHAR}, 
+      #{greenLoanUse,jdbcType=VARCHAR}, #{greenRiskType,jdbcType=VARCHAR}, #{greenRiskDetail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConFlagInfoPo">
+    insert into CRMS.TB_CON_FLAG_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="flagId != null">
+        FLAG_ID,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="loanTurn != null">
+        LOAN_TURN,
+      </if>
+      <if test="greenLoan != null">
+        GREEN_LOAN,
+      </if>
+      <if test="emphasisTurn != null">
+        EMPHASIS_TURN,
+      </if>
+      <if test="rhbzffl != null">
+        RHBZFFL,
+      </if>
+      <if test="yjbzffl != null">
+        YJBZFFL,
+      </if>
+      <if test="riskInfo != null">
+        RISK_INFO,
+      </if>
+      <if test="act != null">
+        ACT,
+      </if>
+      <if test="serviceType != null">
+        SERVICE_TYPE,
+      </if>
+      <if test="reduceAmount != null">
+        REDUCE_AMOUNT,
+      </if>
+      <if test="focusType != null">
+        FOCUS_TYPE,
+      </if>
+      <if test="ajustType != null">
+        AJUST_TYPE,
+      </if>
+      <if test="upgradeType != null">
+        UPGRADE_TYPE,
+      </if>
+      <if test="newProductType != null">
+        NEW_PRODUCT_TYPE,
+      </if>
+      <if test="whetherArgRelated != null">
+        WHETHER_ARG_RELATED,
+      </if>
+      <if test="supArgType != null">
+        SUP_ARG_TYPE,
+      </if>
+      <if test="argType != null">
+        ARG_TYPE,
+      </if>
+      <if test="greenLoanUse != null">
+        GREEN_LOAN_USE,
+      </if>
+      <if test="greenRiskType != null">
+        GREEN_RISK_TYPE,
+      </if>
+      <if test="greenRiskDetail != null">
+        GREEN_RISK_DETAIL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="flagId != null">
+        #{flagId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTurn != null">
+        #{loanTurn,jdbcType=VARCHAR},
+      </if>
+      <if test="greenLoan != null">
+        #{greenLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="emphasisTurn != null">
+        #{emphasisTurn,jdbcType=VARCHAR},
+      </if>
+      <if test="rhbzffl != null">
+        #{rhbzffl,jdbcType=VARCHAR},
+      </if>
+      <if test="yjbzffl != null">
+        #{yjbzffl,jdbcType=VARCHAR},
+      </if>
+      <if test="riskInfo != null">
+        #{riskInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="act != null">
+        #{act,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceType != null">
+        #{serviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceAmount != null">
+        #{reduceAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="focusType != null">
+        #{focusType,jdbcType=VARCHAR},
+      </if>
+      <if test="ajustType != null">
+        #{ajustType,jdbcType=VARCHAR},
+      </if>
+      <if test="upgradeType != null">
+        #{upgradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="newProductType != null">
+        #{newProductType,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherArgRelated != null">
+        #{whetherArgRelated,jdbcType=VARCHAR},
+      </if>
+      <if test="supArgType != null">
+        #{supArgType,jdbcType=VARCHAR},
+      </if>
+      <if test="argType != null">
+        #{argType,jdbcType=VARCHAR},
+      </if>
+      <if test="greenLoanUse != null">
+        #{greenLoanUse,jdbcType=VARCHAR},
+      </if>
+      <if test="greenRiskType != null">
+        #{greenRiskType,jdbcType=VARCHAR},
+      </if>
+      <if test="greenRiskDetail != null">
+        #{greenRiskDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConFlagInfoPo">
+    update CRMS.TB_CON_FLAG_INFO
+    <set>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTurn != null">
+        LOAN_TURN = #{loanTurn,jdbcType=VARCHAR},
+      </if>
+      <if test="greenLoan != null">
+        GREEN_LOAN = #{greenLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="emphasisTurn != null">
+        EMPHASIS_TURN = #{emphasisTurn,jdbcType=VARCHAR},
+      </if>
+      <if test="rhbzffl != null">
+        RHBZFFL = #{rhbzffl,jdbcType=VARCHAR},
+      </if>
+      <if test="yjbzffl != null">
+        YJBZFFL = #{yjbzffl,jdbcType=VARCHAR},
+      </if>
+      <if test="riskInfo != null">
+        RISK_INFO = #{riskInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="act != null">
+        ACT = #{act,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceType != null">
+        SERVICE_TYPE = #{serviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceAmount != null">
+        REDUCE_AMOUNT = #{reduceAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="focusType != null">
+        FOCUS_TYPE = #{focusType,jdbcType=VARCHAR},
+      </if>
+      <if test="ajustType != null">
+        AJUST_TYPE = #{ajustType,jdbcType=VARCHAR},
+      </if>
+      <if test="upgradeType != null">
+        UPGRADE_TYPE = #{upgradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="newProductType != null">
+        NEW_PRODUCT_TYPE = #{newProductType,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherArgRelated != null">
+        WHETHER_ARG_RELATED = #{whetherArgRelated,jdbcType=VARCHAR},
+      </if>
+      <if test="supArgType != null">
+        SUP_ARG_TYPE = #{supArgType,jdbcType=VARCHAR},
+      </if>
+      <if test="argType != null">
+        ARG_TYPE = #{argType,jdbcType=VARCHAR},
+      </if>
+      <if test="greenLoanUse != null">
+        GREEN_LOAN_USE = #{greenLoanUse,jdbcType=VARCHAR},
+      </if>
+      <if test="greenRiskType != null">
+        GREEN_RISK_TYPE = #{greenRiskType,jdbcType=VARCHAR},
+      </if>
+      <if test="greenRiskDetail != null">
+        GREEN_RISK_DETAIL = #{greenRiskDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FLAG_ID = #{flagId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConFlagInfoPo">
+    update CRMS.TB_CON_FLAG_INFO
+    set CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      LOAN_TURN = #{loanTurn,jdbcType=VARCHAR},
+      GREEN_LOAN = #{greenLoan,jdbcType=VARCHAR},
+      EMPHASIS_TURN = #{emphasisTurn,jdbcType=VARCHAR},
+      RHBZFFL = #{rhbzffl,jdbcType=VARCHAR},
+      YJBZFFL = #{yjbzffl,jdbcType=VARCHAR},
+      RISK_INFO = #{riskInfo,jdbcType=VARCHAR},
+      ACT = #{act,jdbcType=VARCHAR},
+      SERVICE_TYPE = #{serviceType,jdbcType=VARCHAR},
+      REDUCE_AMOUNT = #{reduceAmount,jdbcType=VARCHAR},
+      FOCUS_TYPE = #{focusType,jdbcType=VARCHAR},
+      AJUST_TYPE = #{ajustType,jdbcType=VARCHAR},
+      UPGRADE_TYPE = #{upgradeType,jdbcType=VARCHAR},
+      NEW_PRODUCT_TYPE = #{newProductType,jdbcType=VARCHAR},
+      WHETHER_ARG_RELATED = #{whetherArgRelated,jdbcType=VARCHAR},
+      SUP_ARG_TYPE = #{supArgType,jdbcType=VARCHAR},
+      ARG_TYPE = #{argType,jdbcType=VARCHAR},
+      GREEN_LOAN_USE = #{greenLoanUse,jdbcType=VARCHAR},
+      GREEN_RISK_TYPE = #{greenRiskType,jdbcType=VARCHAR},
+      GREEN_RISK_DETAIL = #{greenRiskDetail,jdbcType=VARCHAR}
+    where FLAG_ID = #{flagId,jdbcType=VARCHAR}
+  </update>
+</mapper>

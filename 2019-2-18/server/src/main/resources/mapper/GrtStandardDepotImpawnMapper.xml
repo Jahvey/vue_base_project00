@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtStandardDepotImpawnMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtStandardDepotImpawn">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="DEPOT_TYPE_CD" jdbcType="VARCHAR" property="depotTypeCd" />
+    <result column="BOURSE" jdbcType="VARCHAR" property="bourse" />
+    <result column="BREED" jdbcType="VARCHAR" property="breed" />
+    <result column="HOLD_NUM" jdbcType="DECIMAL" property="holdNum" />
+    <result column="AMOUNT" jdbcType="VARCHAR" property="amount" />
+    <result column="AVAILABILITY_EXPIRATION_DATE" jdbcType="TIMESTAMP" property="availabilityExpirationDate" />
+    <result column="DEPOT_NAME" jdbcType="VARCHAR" property="depotName" />
+    <result column="CONSIGNOR_NAME" jdbcType="VARCHAR" property="consignorName" />
+    <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+    <result column="LOGO" jdbcType="VARCHAR" property="logo" />
+    <result column="RANK" jdbcType="VARCHAR" property="rank" />
+    <result column="EXTEND_FIELD" jdbcType="VARCHAR" property="extendField" />
+    <result column="DEPOT_IMPAWN_SORT" jdbcType="VARCHAR" property="depotImpawnSort" />
+    <result column="ENTER_DEPOT_DATE" jdbcType="TIMESTAMP" property="enterDepotDate" />
+    <result column="ENTER_DEPOT_APPLY_USER" jdbcType="VARCHAR" property="enterDepotApplyUser" />
+    <result column="ENTER_DEPOT_APPROVE_USER" jdbcType="VARCHAR" property="enterDepotApproveUser" />
+    <result column="DEPOT_IMPAWN_APPLY_USER" jdbcType="VARCHAR" property="depotImpawnApplyUser" />
+    <result column="WAREHOUSE_ADDRESS" jdbcType="VARCHAR" property="warehouseAddress" />
+    <result column="CUSTODY_FEE" jdbcType="DECIMAL" property="custodyFee" />
+    <result column="IS_PAY_CUSTODY_FEE" jdbcType="CHAR" property="isPayCustodyFee" />
+    <result column="OTHER_NOTE" jdbcType="VARCHAR" property="otherNote" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, DEPOT_TYPE_CD, BOURSE, BREED, HOLD_NUM, AMOUNT, AVAILABILITY_EXPIRATION_DATE, 
+    DEPOT_NAME, CONSIGNOR_NAME, GOODS_NAME, LOGO, RANK, EXTEND_FIELD, DEPOT_IMPAWN_SORT, 
+    ENTER_DEPOT_DATE, ENTER_DEPOT_APPLY_USER, ENTER_DEPOT_APPROVE_USER, DEPOT_IMPAWN_APPLY_USER, 
+    WAREHOUSE_ADDRESS, CUSTODY_FEE, IS_PAY_CUSTODY_FEE, OTHER_NOTE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_STANDARD_DEPOT_IMPAWN
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_STANDARD_DEPOT_IMPAWN
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtStandardDepotImpawn">
+    insert into TB_GRT_STANDARD_DEPOT_IMPAWN (GUARANTY_ID, DEPOT_TYPE_CD, BOURSE, 
+      BREED, HOLD_NUM, AMOUNT, 
+      AVAILABILITY_EXPIRATION_DATE, DEPOT_NAME, 
+      CONSIGNOR_NAME, GOODS_NAME, LOGO, 
+      RANK, EXTEND_FIELD, DEPOT_IMPAWN_SORT, 
+      ENTER_DEPOT_DATE, ENTER_DEPOT_APPLY_USER, 
+      ENTER_DEPOT_APPROVE_USER, DEPOT_IMPAWN_APPLY_USER, 
+      WAREHOUSE_ADDRESS, CUSTODY_FEE, IS_PAY_CUSTODY_FEE, 
+      OTHER_NOTE)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{depotTypeCd,jdbcType=VARCHAR}, #{bourse,jdbcType=VARCHAR}, 
+      #{breed,jdbcType=VARCHAR}, #{holdNum,jdbcType=DECIMAL}, #{amount,jdbcType=VARCHAR}, 
+      #{availabilityExpirationDate,jdbcType=TIMESTAMP}, #{depotName,jdbcType=VARCHAR}, 
+      #{consignorName,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{rank,jdbcType=VARCHAR}, #{extendField,jdbcType=VARCHAR}, #{depotImpawnSort,jdbcType=VARCHAR}, 
+      #{enterDepotDate,jdbcType=TIMESTAMP}, #{enterDepotApplyUser,jdbcType=VARCHAR}, 
+      #{enterDepotApproveUser,jdbcType=VARCHAR}, #{depotImpawnApplyUser,jdbcType=VARCHAR}, 
+      #{warehouseAddress,jdbcType=VARCHAR}, #{custodyFee,jdbcType=DECIMAL}, #{isPayCustodyFee,jdbcType=CHAR}, 
+      #{otherNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtStandardDepotImpawn">
+    insert into TB_GRT_STANDARD_DEPOT_IMPAWN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="depotTypeCd != null">
+        DEPOT_TYPE_CD,
+      </if>
+      <if test="bourse != null">
+        BOURSE,
+      </if>
+      <if test="breed != null">
+        BREED,
+      </if>
+      <if test="holdNum != null">
+        HOLD_NUM,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="availabilityExpirationDate != null">
+        AVAILABILITY_EXPIRATION_DATE,
+      </if>
+      <if test="depotName != null">
+        DEPOT_NAME,
+      </if>
+      <if test="consignorName != null">
+        CONSIGNOR_NAME,
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME,
+      </if>
+      <if test="logo != null">
+        LOGO,
+      </if>
+      <if test="rank != null">
+        RANK,
+      </if>
+      <if test="extendField != null">
+        EXTEND_FIELD,
+      </if>
+      <if test="depotImpawnSort != null">
+        DEPOT_IMPAWN_SORT,
+      </if>
+      <if test="enterDepotDate != null">
+        ENTER_DEPOT_DATE,
+      </if>
+      <if test="enterDepotApplyUser != null">
+        ENTER_DEPOT_APPLY_USER,
+      </if>
+      <if test="enterDepotApproveUser != null">
+        ENTER_DEPOT_APPROVE_USER,
+      </if>
+      <if test="depotImpawnApplyUser != null">
+        DEPOT_IMPAWN_APPLY_USER,
+      </if>
+      <if test="warehouseAddress != null">
+        WAREHOUSE_ADDRESS,
+      </if>
+      <if test="custodyFee != null">
+        CUSTODY_FEE,
+      </if>
+      <if test="isPayCustodyFee != null">
+        IS_PAY_CUSTODY_FEE,
+      </if>
+      <if test="otherNote != null">
+        OTHER_NOTE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="depotTypeCd != null">
+        #{depotTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="bourse != null">
+        #{bourse,jdbcType=VARCHAR},
+      </if>
+      <if test="breed != null">
+        #{breed,jdbcType=VARCHAR},
+      </if>
+      <if test="holdNum != null">
+        #{holdNum,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="availabilityExpirationDate != null">
+        #{availabilityExpirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depotName != null">
+        #{depotName,jdbcType=VARCHAR},
+      </if>
+      <if test="consignorName != null">
+        #{consignorName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=VARCHAR},
+      </if>
+      <if test="extendField != null">
+        #{extendField,jdbcType=VARCHAR},
+      </if>
+      <if test="depotImpawnSort != null">
+        #{depotImpawnSort,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDepotDate != null">
+        #{enterDepotDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterDepotApplyUser != null">
+        #{enterDepotApplyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDepotApproveUser != null">
+        #{enterDepotApproveUser,jdbcType=VARCHAR},
+      </if>
+      <if test="depotImpawnApplyUser != null">
+        #{depotImpawnApplyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseAddress != null">
+        #{warehouseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="custodyFee != null">
+        #{custodyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="isPayCustodyFee != null">
+        #{isPayCustodyFee,jdbcType=CHAR},
+      </if>
+      <if test="otherNote != null">
+        #{otherNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtStandardDepotImpawn">
+    update TB_GRT_STANDARD_DEPOT_IMPAWN
+    <set>
+      <if test="depotTypeCd != null">
+        DEPOT_TYPE_CD = #{depotTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="bourse != null">
+        BOURSE = #{bourse,jdbcType=VARCHAR},
+      </if>
+      <if test="breed != null">
+        BREED = #{breed,jdbcType=VARCHAR},
+      </if>
+      <if test="holdNum != null">
+        HOLD_NUM = #{holdNum,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="availabilityExpirationDate != null">
+        AVAILABILITY_EXPIRATION_DATE = #{availabilityExpirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depotName != null">
+        DEPOT_NAME = #{depotName,jdbcType=VARCHAR},
+      </if>
+      <if test="consignorName != null">
+        CONSIGNOR_NAME = #{consignorName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        LOGO = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        RANK = #{rank,jdbcType=VARCHAR},
+      </if>
+      <if test="extendField != null">
+        EXTEND_FIELD = #{extendField,jdbcType=VARCHAR},
+      </if>
+      <if test="depotImpawnSort != null">
+        DEPOT_IMPAWN_SORT = #{depotImpawnSort,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDepotDate != null">
+        ENTER_DEPOT_DATE = #{enterDepotDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterDepotApplyUser != null">
+        ENTER_DEPOT_APPLY_USER = #{enterDepotApplyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDepotApproveUser != null">
+        ENTER_DEPOT_APPROVE_USER = #{enterDepotApproveUser,jdbcType=VARCHAR},
+      </if>
+      <if test="depotImpawnApplyUser != null">
+        DEPOT_IMPAWN_APPLY_USER = #{depotImpawnApplyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseAddress != null">
+        WAREHOUSE_ADDRESS = #{warehouseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="custodyFee != null">
+        CUSTODY_FEE = #{custodyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="isPayCustodyFee != null">
+        IS_PAY_CUSTODY_FEE = #{isPayCustodyFee,jdbcType=CHAR},
+      </if>
+      <if test="otherNote != null">
+        OTHER_NOTE = #{otherNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtStandardDepotImpawn">
+    update TB_GRT_STANDARD_DEPOT_IMPAWN
+    set DEPOT_TYPE_CD = #{depotTypeCd,jdbcType=VARCHAR},
+      BOURSE = #{bourse,jdbcType=VARCHAR},
+      BREED = #{breed,jdbcType=VARCHAR},
+      HOLD_NUM = #{holdNum,jdbcType=DECIMAL},
+      AMOUNT = #{amount,jdbcType=VARCHAR},
+      AVAILABILITY_EXPIRATION_DATE = #{availabilityExpirationDate,jdbcType=TIMESTAMP},
+      DEPOT_NAME = #{depotName,jdbcType=VARCHAR},
+      CONSIGNOR_NAME = #{consignorName,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      LOGO = #{logo,jdbcType=VARCHAR},
+      RANK = #{rank,jdbcType=VARCHAR},
+      EXTEND_FIELD = #{extendField,jdbcType=VARCHAR},
+      DEPOT_IMPAWN_SORT = #{depotImpawnSort,jdbcType=VARCHAR},
+      ENTER_DEPOT_DATE = #{enterDepotDate,jdbcType=TIMESTAMP},
+      ENTER_DEPOT_APPLY_USER = #{enterDepotApplyUser,jdbcType=VARCHAR},
+      ENTER_DEPOT_APPROVE_USER = #{enterDepotApproveUser,jdbcType=VARCHAR},
+      DEPOT_IMPAWN_APPLY_USER = #{depotImpawnApplyUser,jdbcType=VARCHAR},
+      WAREHOUSE_ADDRESS = #{warehouseAddress,jdbcType=VARCHAR},
+      CUSTODY_FEE = #{custodyFee,jdbcType=DECIMAL},
+      IS_PAY_CUSTODY_FEE = #{isPayCustodyFee,jdbcType=CHAR},
+      OTHER_NOTE = #{otherNote,jdbcType=VARCHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

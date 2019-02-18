@@ -1,0 +1,254 @@
+{
+	"page": {
+		"header": [
+			{
+				"col": [
+					{
+						"$": {
+							"widgetname": "platform_search",
+							"datatype": "platform_search"
+						}
+					}
+				]
+			}
+		],
+		"body": [
+			{
+				"row": [
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_slide_1460700732530",
+									"datatype": "main_slide",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1460701297921",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "index_goods_1513222326491",
+									"datatype": "index_goods",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "coupon_1512543306984",
+									"datatype": "coupon",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "index_goods_1511948904469",
+									"datatype": "index_goods",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "index_goods_1512022119950",
+									"datatype": "index_goods",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1460701377779",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "magic_box_1460701426748",
+									"datatype": "magic_box",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1460707537299",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "magic_box_1460707750160",
+									"datatype": "magic_box",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1460703425652",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "magic_box_1460707937452",
+									"datatype": "magic_box",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1460703235744",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1460704441474",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "magic_box_1460704473251",
+									"datatype": "magic_box",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1460948599699",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "magic_box_1460945983715",
+									"datatype": "magic_box",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1460703227103",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1460703527551",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "magic_box_1460945734654",
+									"datatype": "magic_box",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1460708343022",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					}
+				]
+			}
+		],
+		"footer": []
+	}
+}

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtCollateralNotarizationMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtCollateralNotarization">
+    <id column="NOTARIZATION_ID" jdbcType="VARCHAR" property="notarizationId" />
+    <result column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="LOAN_CONTRACT_NUM" jdbcType="VARCHAR" property="loanContractNum" />
+    <result column="LOAN_MAN_NAME" jdbcType="VARCHAR" property="loanManName" />
+    <result column="LOAN_CERTIFICATE_TYPE" jdbcType="VARCHAR" property="loanCertificateType" />
+    <result column="CERTIFICATE_CODE" jdbcType="VARCHAR" property="certificateCode" />
+    <result column="NOTARIAL_DEED_NO" jdbcType="VARCHAR" property="notarialDeedNo" />
+    <result column="NOTARIAL_ORG" jdbcType="VARCHAR" property="notarialOrg" />
+    <result column="RECORD_DATE" jdbcType="TIMESTAMP" property="recordDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    NOTARIZATION_ID, GUARANTY_ID, LOAN_CONTRACT_NUM, LOAN_MAN_NAME, LOAN_CERTIFICATE_TYPE, 
+    CERTIFICATE_CODE, NOTARIAL_DEED_NO, NOTARIAL_ORG, RECORD_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_COLLATERAL_NOTARIZATION
+    where NOTARIZATION_ID = #{notarizationId,jdbcType=VARCHAR}
+  </select>
+      <delete id="deleteBatch" parameterType="java.util.List">
+  	 delete from TB_GRT_COLLATERAL_NOTARIZATION where 
+  	 NOTARIZATION_ID in
+	   <foreach collection="ids" index="index" item="item"
+	         open="(" separator="," close=")">
+	         #{item}
+	   </foreach>
+  </delete>
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_COLLATERAL_NOTARIZATION where 1=1
+     <if test="loanContractNum != null and loanContractNum != '' "> 
+       AND LOAN_CONTRACT_NUM LIKE  '%'||#{loanContractNum}||'%'
+     </if>
+     <if test="loanManName != null and loanManName != '' "> 
+       AND LOAN_MAN_NAME LIKE  '%'||#{loanManName}||'%'
+     </if>
+     <if test="loanCertificateType != null and loanCertificateType != '' "> 
+       AND LOAN_CERTIFICATE_TYPE LIKE  '%'||#{loanCertificateType}||'%'
+     </if>
+     <if test="certificateCode != null and certificateCode != '' "> 
+       AND CERTIFICATE_CODE LIKE  '%'||#{certificateCode}||'%'
+     </if>
+     <if test="notarialDeedNo != null and notarialDeedNo != '' "> 
+       AND NOTARIAL_DEED_NO LIKE  '%'||#{notarialDeedNo}||'%'
+     </if>
+     <if test="notarialOrg != null and notarialOrg != '' "> 
+       AND NOTARIAL_ORG LIKE  '%'||#{notarialOrg}||'%'
+     </if>
+     <if test="guarantyId != null and guarantyId != '' "> 
+       AND GUARANTY_ID LIKE  '%'||#{guarantyId}||'%'
+     </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_COLLATERAL_NOTARIZATION
+    where NOTARIZATION_ID = #{notarizationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralNotarization">
+    insert into TB_GRT_COLLATERAL_NOTARIZATION (NOTARIZATION_ID, GUARANTY_ID, LOAN_CONTRACT_NUM, 
+      LOAN_MAN_NAME, LOAN_CERTIFICATE_TYPE, CERTIFICATE_CODE, 
+      NOTARIAL_DEED_NO, NOTARIAL_ORG, RECORD_DATE
+      )
+    values (#{notarizationId,jdbcType=VARCHAR}, #{guarantyId,jdbcType=VARCHAR}, #{loanContractNum,jdbcType=VARCHAR}, 
+      #{loanManName,jdbcType=VARCHAR}, #{loanCertificateType,jdbcType=VARCHAR}, #{certificateCode,jdbcType=VARCHAR}, 
+      #{notarialDeedNo,jdbcType=VARCHAR}, #{notarialOrg,jdbcType=VARCHAR}, #{recordDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralNotarization">
+    insert into TB_GRT_COLLATERAL_NOTARIZATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="notarizationId != null">
+        NOTARIZATION_ID,
+      </if>
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="loanContractNum != null">
+        LOAN_CONTRACT_NUM,
+      </if>
+      <if test="loanManName != null">
+        LOAN_MAN_NAME,
+      </if>
+      <if test="loanCertificateType != null">
+        LOAN_CERTIFICATE_TYPE,
+      </if>
+      <if test="certificateCode != null">
+        CERTIFICATE_CODE,
+      </if>
+      <if test="notarialDeedNo != null">
+        NOTARIAL_DEED_NO,
+      </if>
+      <if test="notarialOrg != null">
+        NOTARIAL_ORG,
+      </if>
+      <if test="recordDate != null">
+        RECORD_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="notarizationId != null">
+        #{notarizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanContractNum != null">
+        #{loanContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="loanManName != null">
+        #{loanManName,jdbcType=VARCHAR},
+      </if>
+      <if test="loanCertificateType != null">
+        #{loanCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateCode != null">
+        #{certificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="notarialDeedNo != null">
+        #{notarialDeedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="notarialOrg != null">
+        #{notarialOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="recordDate != null">
+        #{recordDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralNotarization">
+    update TB_GRT_COLLATERAL_NOTARIZATION
+    <set>
+      <if test="guarantyId != null">
+        GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanContractNum != null">
+        LOAN_CONTRACT_NUM = #{loanContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="loanManName != null">
+        LOAN_MAN_NAME = #{loanManName,jdbcType=VARCHAR},
+      </if>
+      <if test="loanCertificateType != null">
+        LOAN_CERTIFICATE_TYPE = #{loanCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateCode != null">
+        CERTIFICATE_CODE = #{certificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="notarialDeedNo != null">
+        NOTARIAL_DEED_NO = #{notarialDeedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="notarialOrg != null">
+        NOTARIAL_ORG = #{notarialOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="recordDate != null">
+        RECORD_DATE = #{recordDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where NOTARIZATION_ID = #{notarizationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtCollateralNotarization">
+    update TB_GRT_COLLATERAL_NOTARIZATION
+    set GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR},
+      LOAN_CONTRACT_NUM = #{loanContractNum,jdbcType=VARCHAR},
+      LOAN_MAN_NAME = #{loanManName,jdbcType=VARCHAR},
+      LOAN_CERTIFICATE_TYPE = #{loanCertificateType,jdbcType=VARCHAR},
+      CERTIFICATE_CODE = #{certificateCode,jdbcType=VARCHAR},
+      NOTARIAL_DEED_NO = #{notarialDeedNo,jdbcType=VARCHAR},
+      NOTARIAL_ORG = #{notarialOrg,jdbcType=VARCHAR},
+      RECORD_DATE = #{recordDate,jdbcType=TIMESTAMP}
+    where NOTARIZATION_ID = #{notarizationId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtWoodlandPropertyMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtWoodlandProperty">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="WOODLAND_PROPERTY_TYPE_CD" jdbcType="VARCHAR" property="woodlandPropertyTypeCd" />
+    <result column="WOODLAND_PROPERTY_NUM" jdbcType="VARCHAR" property="woodlandPropertyNum" />
+    <result column="WOODLAND_TYPE" jdbcType="VARCHAR" property="woodlandType" />
+    <result column="WOODLAND_PLACE" jdbcType="VARCHAR" property="woodlandPlace" />
+    <result column="WOODLAND_BORDERLINE" jdbcType="VARCHAR" property="woodlandBorderline" />
+    <result column="WOODLAND_AREA" jdbcType="VARCHAR" property="woodlandArea" />
+    <result column="WOODS_TYPE_CD" jdbcType="VARCHAR" property="woodsTypeCd" />
+    <result column="TREE_KIND" jdbcType="VARCHAR" property="treeKind" />
+    <result column="TREE_YEARS" jdbcType="VARCHAR" property="treeYears" />
+    <result column="FARMING_AREA" jdbcType="VARCHAR" property="farmingArea" />
+    <result column="WOODLAND_TERRA_TYPE_CD" jdbcType="VARCHAR" property="woodlandTerraTypeCd" />
+    <result column="REMAIN_AVAILABILITY_TERM" jdbcType="VARCHAR" property="remainAvailabilityTerm" />
+    <result column="TREE_NUMBER" jdbcType="DECIMAL" property="treeNumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, WOODLAND_PROPERTY_TYPE_CD, WOODLAND_PROPERTY_NUM, WOODLAND_TYPE, WOODLAND_PLACE, 
+    WOODLAND_BORDERLINE, WOODLAND_AREA, WOODS_TYPE_CD, TREE_KIND, TREE_YEARS, FARMING_AREA, 
+    WOODLAND_TERRA_TYPE_CD, REMAIN_AVAILABILITY_TERM, TREE_NUMBER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_WOODLAND_PROPERTY
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_WOODLAND_PROPERTY
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtWoodlandProperty">
+    insert into TB_GRT_WOODLAND_PROPERTY (GUARANTY_ID, WOODLAND_PROPERTY_TYPE_CD, 
+      WOODLAND_PROPERTY_NUM, WOODLAND_TYPE, WOODLAND_PLACE, 
+      WOODLAND_BORDERLINE, WOODLAND_AREA, WOODS_TYPE_CD, 
+      TREE_KIND, TREE_YEARS, FARMING_AREA, 
+      WOODLAND_TERRA_TYPE_CD, REMAIN_AVAILABILITY_TERM, 
+      TREE_NUMBER)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{woodlandPropertyTypeCd,jdbcType=VARCHAR}, 
+      #{woodlandPropertyNum,jdbcType=VARCHAR}, #{woodlandType,jdbcType=VARCHAR}, #{woodlandPlace,jdbcType=VARCHAR}, 
+      #{woodlandBorderline,jdbcType=VARCHAR}, #{woodlandArea,jdbcType=VARCHAR}, #{woodsTypeCd,jdbcType=VARCHAR}, 
+      #{treeKind,jdbcType=VARCHAR}, #{treeYears,jdbcType=VARCHAR}, #{farmingArea,jdbcType=VARCHAR}, 
+      #{woodlandTerraTypeCd,jdbcType=VARCHAR}, #{remainAvailabilityTerm,jdbcType=VARCHAR}, 
+      #{treeNumber,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtWoodlandProperty">
+    insert into TB_GRT_WOODLAND_PROPERTY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="woodlandPropertyTypeCd != null">
+        WOODLAND_PROPERTY_TYPE_CD,
+      </if>
+      <if test="woodlandPropertyNum != null">
+        WOODLAND_PROPERTY_NUM,
+      </if>
+      <if test="woodlandType != null">
+        WOODLAND_TYPE,
+      </if>
+      <if test="woodlandPlace != null">
+        WOODLAND_PLACE,
+      </if>
+      <if test="woodlandBorderline != null">
+        WOODLAND_BORDERLINE,
+      </if>
+      <if test="woodlandArea != null">
+        WOODLAND_AREA,
+      </if>
+      <if test="woodsTypeCd != null">
+        WOODS_TYPE_CD,
+      </if>
+      <if test="treeKind != null">
+        TREE_KIND,
+      </if>
+      <if test="treeYears != null">
+        TREE_YEARS,
+      </if>
+      <if test="farmingArea != null">
+        FARMING_AREA,
+      </if>
+      <if test="woodlandTerraTypeCd != null">
+        WOODLAND_TERRA_TYPE_CD,
+      </if>
+      <if test="remainAvailabilityTerm != null">
+        REMAIN_AVAILABILITY_TERM,
+      </if>
+      <if test="treeNumber != null">
+        TREE_NUMBER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandPropertyTypeCd != null">
+        #{woodlandPropertyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandPropertyNum != null">
+        #{woodlandPropertyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandType != null">
+        #{woodlandType,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandPlace != null">
+        #{woodlandPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandBorderline != null">
+        #{woodlandBorderline,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandArea != null">
+        #{woodlandArea,jdbcType=VARCHAR},
+      </if>
+      <if test="woodsTypeCd != null">
+        #{woodsTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="treeKind != null">
+        #{treeKind,jdbcType=VARCHAR},
+      </if>
+      <if test="treeYears != null">
+        #{treeYears,jdbcType=VARCHAR},
+      </if>
+      <if test="farmingArea != null">
+        #{farmingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandTerraTypeCd != null">
+        #{woodlandTerraTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="remainAvailabilityTerm != null">
+        #{remainAvailabilityTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="treeNumber != null">
+        #{treeNumber,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtWoodlandProperty">
+    update TB_GRT_WOODLAND_PROPERTY
+    <set>
+      <if test="woodlandPropertyTypeCd != null">
+        WOODLAND_PROPERTY_TYPE_CD = #{woodlandPropertyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandPropertyNum != null">
+        WOODLAND_PROPERTY_NUM = #{woodlandPropertyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandType != null">
+        WOODLAND_TYPE = #{woodlandType,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandPlace != null">
+        WOODLAND_PLACE = #{woodlandPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandBorderline != null">
+        WOODLAND_BORDERLINE = #{woodlandBorderline,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandArea != null">
+        WOODLAND_AREA = #{woodlandArea,jdbcType=VARCHAR},
+      </if>
+      <if test="woodsTypeCd != null">
+        WOODS_TYPE_CD = #{woodsTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="treeKind != null">
+        TREE_KIND = #{treeKind,jdbcType=VARCHAR},
+      </if>
+      <if test="treeYears != null">
+        TREE_YEARS = #{treeYears,jdbcType=VARCHAR},
+      </if>
+      <if test="farmingArea != null">
+        FARMING_AREA = #{farmingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="woodlandTerraTypeCd != null">
+        WOODLAND_TERRA_TYPE_CD = #{woodlandTerraTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="remainAvailabilityTerm != null">
+        REMAIN_AVAILABILITY_TERM = #{remainAvailabilityTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="treeNumber != null">
+        TREE_NUMBER = #{treeNumber,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtWoodlandProperty">
+    update TB_GRT_WOODLAND_PROPERTY
+    set WOODLAND_PROPERTY_TYPE_CD = #{woodlandPropertyTypeCd,jdbcType=VARCHAR},
+      WOODLAND_PROPERTY_NUM = #{woodlandPropertyNum,jdbcType=VARCHAR},
+      WOODLAND_TYPE = #{woodlandType,jdbcType=VARCHAR},
+      WOODLAND_PLACE = #{woodlandPlace,jdbcType=VARCHAR},
+      WOODLAND_BORDERLINE = #{woodlandBorderline,jdbcType=VARCHAR},
+      WOODLAND_AREA = #{woodlandArea,jdbcType=VARCHAR},
+      WOODS_TYPE_CD = #{woodsTypeCd,jdbcType=VARCHAR},
+      TREE_KIND = #{treeKind,jdbcType=VARCHAR},
+      TREE_YEARS = #{treeYears,jdbcType=VARCHAR},
+      FARMING_AREA = #{farmingArea,jdbcType=VARCHAR},
+      WOODLAND_TERRA_TYPE_CD = #{woodlandTerraTypeCd,jdbcType=VARCHAR},
+      REMAIN_AVAILABILITY_TERM = #{remainAvailabilityTerm,jdbcType=VARCHAR},
+      TREE_NUMBER = #{treeNumber,jdbcType=DECIMAL}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

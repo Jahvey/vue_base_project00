@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.securitymanagerment.mapper.GrtLandUseRightMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.securitymanagement.bean.GrtLandUseRight">
+    <id column="GUARANTY_ID" jdbcType="VARCHAR" property="guarantyId" />
+    <result column="LAND_ACREAGE" jdbcType="DECIMAL" property="landAcreage" />
+    <result column="LAND_FOUR" jdbcType="VARCHAR" property="landFour" />
+    <result column="STREET_DEEP" jdbcType="VARCHAR" property="streetDeep" />
+    <result column="STREET_WIDTH" jdbcType="VARCHAR" property="streetWidth" />
+    <result column="CIRCLE_STATUS" jdbcType="VARCHAR" property="circleStatus" />
+    <result column="LAND_LICENSE_IND" jdbcType="CHAR" property="landLicenseInd" />
+    <result column="LICENSE_DATE" jdbcType="TIMESTAMP" property="licenseDate" />
+    <result column="USE_YEARS" jdbcType="DECIMAL" property="useYears" />
+    <result column="LAND_LICENSE_NUM" jdbcType="VARCHAR" property="landLicenseNum" />
+    <result column="LAND_LICENSE_OWNER" jdbcType="VARCHAR" property="landLicenseOwner" />
+    <result column="LAND_NUM" jdbcType="VARCHAR" property="landNum" />
+    <result column="RAW_DEGREE" jdbcType="VARCHAR" property="rawDegree" />
+    <result column="PROJECT_PLAN_LICENSE_IND" jdbcType="CHAR" property="projectPlanLicenseInd" />
+    <result column="LAND_CHARACTER" jdbcType="VARCHAR" property="landCharacter" />
+    <result column="LAND_USER_TYPE" jdbcType="VARCHAR" property="landUserType" />
+    <result column="PATCH_LAND_MONEY" jdbcType="DECIMAL" property="patchLandMoney" />
+    <result column="SIGN_DESC" jdbcType="VARCHAR" property="signDesc" />
+    <result column="GROUND_REMISE_CD" jdbcType="VARCHAR" property="groundRemiseCd" />
+    <result column="LAND_ACQUIRING_WAY_CD" jdbcType="VARCHAR" property="landAcquiringWayCd" />
+    <result column="LAND_UTILIZATION_PURPOSE" jdbcType="VARCHAR" property="landUtilizationPurpose" />
+    <result column="CITY_LOCATION_IND" jdbcType="CHAR" property="cityLocationInd" />
+    <result column="IS_PAYMENT_LAND_TRANSFER" jdbcType="CHAR" property="isPaymentLandTransfer" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUARANTY_ID, LAND_ACREAGE, LAND_FOUR, STREET_DEEP, STREET_WIDTH, CIRCLE_STATUS, LAND_LICENSE_IND, 
+    LICENSE_DATE, USE_YEARS, LAND_LICENSE_NUM, LAND_LICENSE_OWNER, LAND_NUM, RAW_DEGREE, 
+    PROJECT_PLAN_LICENSE_IND, LAND_CHARACTER, LAND_USER_TYPE, PATCH_LAND_MONEY, SIGN_DESC, 
+    GROUND_REMISE_CD, LAND_ACQUIRING_WAY_CD, LAND_UTILIZATION_PURPOSE, CITY_LOCATION_IND, 
+    IS_PAYMENT_LAND_TRANSFER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_LAND_USE_RIGHT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_LAND_USE_RIGHT
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.securitymanagement.bean.GrtLandUseRight">
+    insert into TB_GRT_LAND_USE_RIGHT (GUARANTY_ID, LAND_ACREAGE, LAND_FOUR, 
+      STREET_DEEP, STREET_WIDTH, CIRCLE_STATUS, 
+      LAND_LICENSE_IND, LICENSE_DATE, USE_YEARS, 
+      LAND_LICENSE_NUM, LAND_LICENSE_OWNER, LAND_NUM, 
+      RAW_DEGREE, PROJECT_PLAN_LICENSE_IND, LAND_CHARACTER, 
+      LAND_USER_TYPE, PATCH_LAND_MONEY, SIGN_DESC, 
+      GROUND_REMISE_CD, LAND_ACQUIRING_WAY_CD, LAND_UTILIZATION_PURPOSE, 
+      CITY_LOCATION_IND, IS_PAYMENT_LAND_TRANSFER)
+    values (#{guarantyId,jdbcType=VARCHAR}, #{landAcreage,jdbcType=DECIMAL}, #{landFour,jdbcType=VARCHAR}, 
+      #{streetDeep,jdbcType=VARCHAR}, #{streetWidth,jdbcType=VARCHAR}, #{circleStatus,jdbcType=VARCHAR}, 
+      #{landLicenseInd,jdbcType=CHAR}, #{licenseDate,jdbcType=TIMESTAMP}, #{useYears,jdbcType=DECIMAL}, 
+      #{landLicenseNum,jdbcType=VARCHAR}, #{landLicenseOwner,jdbcType=VARCHAR}, #{landNum,jdbcType=VARCHAR}, 
+      #{rawDegree,jdbcType=VARCHAR}, #{projectPlanLicenseInd,jdbcType=CHAR}, #{landCharacter,jdbcType=VARCHAR}, 
+      #{landUserType,jdbcType=VARCHAR}, #{patchLandMoney,jdbcType=DECIMAL}, #{signDesc,jdbcType=VARCHAR}, 
+      #{groundRemiseCd,jdbcType=VARCHAR}, #{landAcquiringWayCd,jdbcType=VARCHAR}, #{landUtilizationPurpose,jdbcType=VARCHAR}, 
+      #{cityLocationInd,jdbcType=CHAR}, #{isPaymentLandTransfer,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtLandUseRight">
+    insert into TB_GRT_LAND_USE_RIGHT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        GUARANTY_ID,
+      </if>
+      <if test="landAcreage != null">
+        LAND_ACREAGE,
+      </if>
+      <if test="landFour != null">
+        LAND_FOUR,
+      </if>
+      <if test="streetDeep != null">
+        STREET_DEEP,
+      </if>
+      <if test="streetWidth != null">
+        STREET_WIDTH,
+      </if>
+      <if test="circleStatus != null">
+        CIRCLE_STATUS,
+      </if>
+      <if test="landLicenseInd != null">
+        LAND_LICENSE_IND,
+      </if>
+      <if test="licenseDate != null">
+        LICENSE_DATE,
+      </if>
+      <if test="useYears != null">
+        USE_YEARS,
+      </if>
+      <if test="landLicenseNum != null">
+        LAND_LICENSE_NUM,
+      </if>
+      <if test="landLicenseOwner != null">
+        LAND_LICENSE_OWNER,
+      </if>
+      <if test="landNum != null">
+        LAND_NUM,
+      </if>
+      <if test="rawDegree != null">
+        RAW_DEGREE,
+      </if>
+      <if test="projectPlanLicenseInd != null">
+        PROJECT_PLAN_LICENSE_IND,
+      </if>
+      <if test="landCharacter != null">
+        LAND_CHARACTER,
+      </if>
+      <if test="landUserType != null">
+        LAND_USER_TYPE,
+      </if>
+      <if test="patchLandMoney != null">
+        PATCH_LAND_MONEY,
+      </if>
+      <if test="signDesc != null">
+        SIGN_DESC,
+      </if>
+      <if test="groundRemiseCd != null">
+        GROUND_REMISE_CD,
+      </if>
+      <if test="landAcquiringWayCd != null">
+        LAND_ACQUIRING_WAY_CD,
+      </if>
+      <if test="landUtilizationPurpose != null">
+        LAND_UTILIZATION_PURPOSE,
+      </if>
+      <if test="cityLocationInd != null">
+        CITY_LOCATION_IND,
+      </if>
+      <if test="isPaymentLandTransfer != null">
+        IS_PAYMENT_LAND_TRANSFER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guarantyId != null">
+        #{guarantyId,jdbcType=VARCHAR},
+      </if>
+      <if test="landAcreage != null">
+        #{landAcreage,jdbcType=DECIMAL},
+      </if>
+      <if test="landFour != null">
+        #{landFour,jdbcType=VARCHAR},
+      </if>
+      <if test="streetDeep != null">
+        #{streetDeep,jdbcType=VARCHAR},
+      </if>
+      <if test="streetWidth != null">
+        #{streetWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="circleStatus != null">
+        #{circleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="landLicenseInd != null">
+        #{landLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="licenseDate != null">
+        #{licenseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useYears != null">
+        #{useYears,jdbcType=DECIMAL},
+      </if>
+      <if test="landLicenseNum != null">
+        #{landLicenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="landLicenseOwner != null">
+        #{landLicenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="landNum != null">
+        #{landNum,jdbcType=VARCHAR},
+      </if>
+      <if test="rawDegree != null">
+        #{rawDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPlanLicenseInd != null">
+        #{projectPlanLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="landCharacter != null">
+        #{landCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="landUserType != null">
+        #{landUserType,jdbcType=VARCHAR},
+      </if>
+      <if test="patchLandMoney != null">
+        #{patchLandMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="signDesc != null">
+        #{signDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="groundRemiseCd != null">
+        #{groundRemiseCd,jdbcType=VARCHAR},
+      </if>
+      <if test="landAcquiringWayCd != null">
+        #{landAcquiringWayCd,jdbcType=VARCHAR},
+      </if>
+      <if test="landUtilizationPurpose != null">
+        #{landUtilizationPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="cityLocationInd != null">
+        #{cityLocationInd,jdbcType=CHAR},
+      </if>
+      <if test="isPaymentLandTransfer != null">
+        #{isPaymentLandTransfer,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.securitymanagement.bean.GrtLandUseRight">
+    update TB_GRT_LAND_USE_RIGHT
+    <set>
+      <if test="landAcreage != null">
+        LAND_ACREAGE = #{landAcreage,jdbcType=DECIMAL},
+      </if>
+      <if test="landFour != null">
+        LAND_FOUR = #{landFour,jdbcType=VARCHAR},
+      </if>
+      <if test="streetDeep != null">
+        STREET_DEEP = #{streetDeep,jdbcType=VARCHAR},
+      </if>
+      <if test="streetWidth != null">
+        STREET_WIDTH = #{streetWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="circleStatus != null">
+        CIRCLE_STATUS = #{circleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="landLicenseInd != null">
+        LAND_LICENSE_IND = #{landLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="licenseDate != null">
+        LICENSE_DATE = #{licenseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useYears != null">
+        USE_YEARS = #{useYears,jdbcType=DECIMAL},
+      </if>
+      <if test="landLicenseNum != null">
+        LAND_LICENSE_NUM = #{landLicenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="landLicenseOwner != null">
+        LAND_LICENSE_OWNER = #{landLicenseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="landNum != null">
+        LAND_NUM = #{landNum,jdbcType=VARCHAR},
+      </if>
+      <if test="rawDegree != null">
+        RAW_DEGREE = #{rawDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPlanLicenseInd != null">
+        PROJECT_PLAN_LICENSE_IND = #{projectPlanLicenseInd,jdbcType=CHAR},
+      </if>
+      <if test="landCharacter != null">
+        LAND_CHARACTER = #{landCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="landUserType != null">
+        LAND_USER_TYPE = #{landUserType,jdbcType=VARCHAR},
+      </if>
+      <if test="patchLandMoney != null">
+        PATCH_LAND_MONEY = #{patchLandMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="signDesc != null">
+        SIGN_DESC = #{signDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="groundRemiseCd != null">
+        GROUND_REMISE_CD = #{groundRemiseCd,jdbcType=VARCHAR},
+      </if>
+      <if test="landAcquiringWayCd != null">
+        LAND_ACQUIRING_WAY_CD = #{landAcquiringWayCd,jdbcType=VARCHAR},
+      </if>
+      <if test="landUtilizationPurpose != null">
+        LAND_UTILIZATION_PURPOSE = #{landUtilizationPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="cityLocationInd != null">
+        CITY_LOCATION_IND = #{cityLocationInd,jdbcType=CHAR},
+      </if>
+      <if test="isPaymentLandTransfer != null">
+        IS_PAYMENT_LAND_TRANSFER = #{isPaymentLandTransfer,jdbcType=CHAR},
+      </if>
+    </set>
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.securitymanagement.bean.GrtLandUseRight">
+    update TB_GRT_LAND_USE_RIGHT
+    set LAND_ACREAGE = #{landAcreage,jdbcType=DECIMAL},
+      LAND_FOUR = #{landFour,jdbcType=VARCHAR},
+      STREET_DEEP = #{streetDeep,jdbcType=VARCHAR},
+      STREET_WIDTH = #{streetWidth,jdbcType=VARCHAR},
+      CIRCLE_STATUS = #{circleStatus,jdbcType=VARCHAR},
+      LAND_LICENSE_IND = #{landLicenseInd,jdbcType=CHAR},
+      LICENSE_DATE = #{licenseDate,jdbcType=TIMESTAMP},
+      USE_YEARS = #{useYears,jdbcType=DECIMAL},
+      LAND_LICENSE_NUM = #{landLicenseNum,jdbcType=VARCHAR},
+      LAND_LICENSE_OWNER = #{landLicenseOwner,jdbcType=VARCHAR},
+      LAND_NUM = #{landNum,jdbcType=VARCHAR},
+      RAW_DEGREE = #{rawDegree,jdbcType=VARCHAR},
+      PROJECT_PLAN_LICENSE_IND = #{projectPlanLicenseInd,jdbcType=CHAR},
+      LAND_CHARACTER = #{landCharacter,jdbcType=VARCHAR},
+      LAND_USER_TYPE = #{landUserType,jdbcType=VARCHAR},
+      PATCH_LAND_MONEY = #{patchLandMoney,jdbcType=DECIMAL},
+      SIGN_DESC = #{signDesc,jdbcType=VARCHAR},
+      GROUND_REMISE_CD = #{groundRemiseCd,jdbcType=VARCHAR},
+      LAND_ACQUIRING_WAY_CD = #{landAcquiringWayCd,jdbcType=VARCHAR},
+      LAND_UTILIZATION_PURPOSE = #{landUtilizationPurpose,jdbcType=VARCHAR},
+      CITY_LOCATION_IND = #{cityLocationInd,jdbcType=CHAR},
+      IS_PAYMENT_LAND_TRANSFER = #{isPaymentLandTransfer,jdbcType=CHAR}
+    where GUARANTY_ID = #{guarantyId,jdbcType=VARCHAR}
+  </update>
+</mapper>
