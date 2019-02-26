@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtOrgRelMapper">
+  
+  <!-- 查询经办机构相关信息 -->
+  <select id="selectOrgRel" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    SELECT 
+    	A.OPR_ORG_NO AS OPR_ORG_NO,
+    	A.ACC_ORG_NO AS ACC_ORG_NO,
+    	B.ORGNAME AS ORGNAME,
+    	b.ORGADDR AS ORGADDR,
+    	B.BANKNO AS BANKNO,
+    	C.KEHYWM AS KEHYWM
+	FROM 
+		TB_ORG_ACC_REL A
+	LEFT JOIN 
+		OM_ORGANIZATION B ON A.ACC_ORG_NO = B.ORGCODE
+	LEFT 
+		JOIN PZFHH C ON B.BANKNO = C.FBHHHH
+	WHERE 
+		A.OPR_ORG_NO = #{orgCode} 
+	AND 
+		A.COL2 = #{type}
+  </select>
+ 
+</mapper>

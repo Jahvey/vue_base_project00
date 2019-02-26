@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbLoanLoanrateMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbLoanLoanrate">
+    <id column="LOANRATE_ID" jdbcType="VARCHAR" property="loanrateId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="RATE_TYPE" jdbcType="VARCHAR" property="rateType" />
+    <result column="INTEREST_COLLECT_TYPE" jdbcType="VARCHAR" property="interestCollectType" />
+    <result column="RATE_FLOAT_PROPORTION" jdbcType="DECIMAL" property="rateFloatProportion" />
+    <result column="IR_UPDATE_FREQUENCY" jdbcType="VARCHAR" property="irUpdateFrequency" />
+    <result column="BASE_RATE_VALUE" jdbcType="DECIMAL" property="baseRateValue" />
+    <result column="RATE_FLOAT_MEMBER" jdbcType="DECIMAL" property="rateFloatMember" />
+    <result column="OVERDUE_RATE_UP_PROPORTION" jdbcType="VARCHAR" property="overdueRateUpProportion" />
+    <result column="YEAR_RATE" jdbcType="DECIMAL" property="yearRate" />
+    <result column="FLOAT_TYPE" jdbcType="VARCHAR" property="floatType" />
+    <result column="FLOAT_WAY" jdbcType="VARCHAR" property="floatWay" />
+    <result column="GRACE_PERIOD_DAY" jdbcType="DECIMAL" property="gracePeriodDay" />
+    <result column="GRACE_PERIOD_TYPE" jdbcType="VARCHAR" property="gracePeriodType" />
+    <result column="GRACE_COUNT_INT_FLAG" jdbcType="VARCHAR" property="graceCountIntFlag" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+    <result column="HOLIDAY_FLG" jdbcType="VARCHAR" property="holidayFlg" />
+    <result column="HOLIDAY_INT_FLG" jdbcType="VARCHAR" property="holidayIntFlg" />
+    <result column="FEE_FLAG" jdbcType="VARCHAR" property="feeFlag" />
+    <result column="DISC_FLAG" jdbcType="VARCHAR" property="discFlag" />
+    <result column="NEW_BASE_RATE_VALUE" jdbcType="DECIMAL" property="newBaseRateValue" />
+    <result column="NEW_YEAR_RATE" jdbcType="DECIMAL" property="newYearRate" />
+    <result column="VALID_DATE" jdbcType="VARCHAR" property="validDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LOANRATE_ID, CREATE_TIME, UPDATE_TIME, RATE_TYPE, INTEREST_COLLECT_TYPE, RATE_FLOAT_PROPORTION, 
+    IR_UPDATE_FREQUENCY, BASE_RATE_VALUE, RATE_FLOAT_MEMBER, OVERDUE_RATE_UP_PROPORTION, 
+    YEAR_RATE, FLOAT_TYPE, FLOAT_WAY, GRACE_PERIOD_DAY, GRACE_PERIOD_TYPE, GRACE_COUNT_INT_FLAG, 
+    CONTRACT_ID, LOAN_ID, SUMMARY_ID, HOLIDAY_FLG, HOLIDAY_INT_FLG, FEE_FLAG, DISC_FLAG, 
+    NEW_BASE_RATE_VALUE, NEW_YEAR_RATE, VALID_DATE
+  </sql>
+  <select id="selectLoanLoanrateByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_LOANRATE
+    where LOANRATE_ID = #{loanrateId,jdbcType=VARCHAR}
+  </select>
+  <!-- 根据放款id查询多条放款信息 -->
+  <select id="queryLoanLoanrateListByLoanId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_LOANRATE
+    where loan_Id = #{loanId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertLoanLoanrateSelective" parameterType="com.cdgit.loan.contract.bean.CrtTbLoanLoanrate">
+    insert into CRMS.TB_LOAN_LOANRATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loanrateId != null">
+        LOANRATE_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE,
+      </if>
+      <if test="interestCollectType != null">
+        INTEREST_COLLECT_TYPE,
+      </if>
+      <if test="rateFloatProportion != null">
+        RATE_FLOAT_PROPORTION,
+      </if>
+      <if test="irUpdateFrequency != null">
+        IR_UPDATE_FREQUENCY,
+      </if>
+      <if test="baseRateValue != null">
+        BASE_RATE_VALUE,
+      </if>
+      <if test="rateFloatMember != null">
+        RATE_FLOAT_MEMBER,
+      </if>
+      <if test="overdueRateUpProportion != null">
+        OVERDUE_RATE_UP_PROPORTION,
+      </if>
+      <if test="yearRate != null">
+        YEAR_RATE,
+      </if>
+      <if test="floatType != null">
+        FLOAT_TYPE,
+      </if>
+      <if test="floatWay != null">
+        FLOAT_WAY,
+      </if>
+      <if test="gracePeriodDay != null">
+        GRACE_PERIOD_DAY,
+      </if>
+      <if test="gracePeriodType != null">
+        GRACE_PERIOD_TYPE,
+      </if>
+      <if test="graceCountIntFlag != null">
+        GRACE_COUNT_INT_FLAG,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="summaryId != null">
+        SUMMARY_ID,
+      </if>
+      <if test="holidayFlg != null">
+        HOLIDAY_FLG,
+      </if>
+      <if test="holidayIntFlg != null">
+        HOLIDAY_INT_FLG,
+      </if>
+      <if test="feeFlag != null">
+        FEE_FLAG,
+      </if>
+      <if test="discFlag != null">
+        DISC_FLAG,
+      </if>
+      <if test="newBaseRateValue != null">
+        NEW_BASE_RATE_VALUE,
+      </if>
+      <if test="newYearRate != null">
+        NEW_YEAR_RATE,
+      </if>
+      <if test="validDate != null">
+        VALID_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loanrateId != null">
+        #{loanrateId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rateType != null">
+        #{rateType,jdbcType=VARCHAR},
+      </if>
+      <if test="interestCollectType != null">
+        #{interestCollectType,jdbcType=VARCHAR},
+      </if>
+      <if test="rateFloatProportion != null">
+        #{rateFloatProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="irUpdateFrequency != null">
+        #{irUpdateFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="baseRateValue != null">
+        #{baseRateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="rateFloatMember != null">
+        #{rateFloatMember,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueRateUpProportion != null">
+        #{overdueRateUpProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="yearRate != null">
+        #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="floatType != null">
+        #{floatType,jdbcType=VARCHAR},
+      </if>
+      <if test="floatWay != null">
+        #{floatWay,jdbcType=VARCHAR},
+      </if>
+      <if test="gracePeriodDay != null">
+        #{gracePeriodDay,jdbcType=DECIMAL},
+      </if>
+      <if test="gracePeriodType != null">
+        #{gracePeriodType,jdbcType=VARCHAR},
+      </if>
+      <if test="graceCountIntFlag != null">
+        #{graceCountIntFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null">
+        #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayFlg != null">
+        #{holidayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayIntFlg != null">
+        #{holidayIntFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="feeFlag != null">
+        #{feeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="discFlag != null">
+        #{discFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="newBaseRateValue != null">
+        #{newBaseRateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="newYearRate != null">
+        #{newYearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="validDate != null">
+        #{validDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

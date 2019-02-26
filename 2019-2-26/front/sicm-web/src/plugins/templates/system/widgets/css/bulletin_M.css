@@ -1,0 +1,111 @@
+*{margin: 0;padding: 0}
+.announce-1{height:240px}
+.announce-1 i{display: inline-block;background: #fff;padding: 0 7px;position: relative;z-index: 2;font-style: normal}
+.announce-1 span{display:block;position: relative;margin:0 auto;padding-bottom:10px;width: 74px;font-size: 16px; color: #666;line-height: 24px;height: 24px;text-align: center}
+.announce-1 span:after{display: block;content: "";position: absolute;width: 100%;height: 1px;background:#949494;top:12px;z-index: 1 }
+.announce-1 ul li{box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.announce-1 ul{margin: 0;padding: 0}
+.announce-1 ul li a{display: inline-block;overflow: hidden;white-space: nowrap;width: 100%;text-overflow: ellipsis;color: #666; height: 32px;}
+.announce-1 ul li{line-height: 32px;font-size: 13px;background: url("../images/icon-ling.png") no-repeat;background-size:9px 9px;background-position: 14px 11px;padding-left: 30px;padding-right: 10px;}
+.announce-1 ul li em{width:100px;font-style: normal;color: #999;padding-left: 20px;}
+/**在线客服*/
+/*.floating_ck{
+    position:fixed;
+    width: 30px;
+    z-index: 1000000;
+    top:50%;
+}
+.floating_ck dl dd{
+    position:relative;
+    background-color:#646577;
+    border-bottom:solid 1px #555666;
+    text-align:center;
+    background-repeat:no-repeat;
+    background-position:center 20%;
+    cursor:pointer;
+    font-size: 17px;
+    line-height: 17px;
+    box-shadow: rgb(102, 102, 102) 0px 0px 5px;
+    padding: 8px 6px;
+    border: 2px solid white;
+    border-radius: 10px 0 0 10px;
+    padding: 10px 5px;
+    font-weight: bold;
+}*/
+/*.floating_ckShop{
+    position:absolute;
+    width: 30px;
+    z-index: 1000000;
+    top:50%;
+}
+.floating_ckShop dl dd{
+    position:relative;
+    background-color:#646577;
+    border-bottom:solid 1px #555666;
+    text-align:center;
+    background-repeat:no-repeat;
+    background-position:center 20%;
+    cursor:pointer;
+    font-size: 17px;
+    line-height: 17px;
+    box-shadow: rgb(102, 102, 102) 0px 0px 5px;
+    padding: 8px 6px;
+    border: 2px solid white;
+    border-radius: 10px 0 0 10px;
+    padding: 10px 5px;
+    font-weight: bold;
+}*/
+/*友联客服和电话客服样式开始*/
+#tbox {
+    width: 54px;
+    float: right;
+    position: fixed;
+    right: 0px;
+    bottom: 15px;
+    z-index: 1000;
+}
+.float-box {
+    width: 38px !important;
+    bottom: 100px !important;
+}
+.float-box dl {
+    height: 60px;
+    /*border: 1px solid #eee;*/
+    position: relative;
+    background-color: #fff;
+}
+.float-box a:first-child dl{border-top-left-radius:4px }
+.float-box a:last-child dl{border-bottom-left-radius:4px }
+.float-box dl.float-phone dt {
+    background: url(../images/icon-m-kefu.png) no-repeat;
+    background-size: 16px  16px;
+    background-position: center;
+}
+.float-box dl.plusPhoneBtn dt{
+    background: url(../images/icon-m-phone.png) no-repeat;
+    background-size: 16px  16px;
+    background-position: center;
+}
+.float-box dl dt {
+    height: 38px;
+    /*margin-top: 1px;*/
+}
+.float-box dl dd {
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+}
+/*友联客服和电话客服样式结束*/

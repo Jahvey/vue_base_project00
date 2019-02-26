@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.mapper.NaturalBusinessMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.bean.NaturalBusiness">
+    <id column="BUSINESS_ID" jdbcType="VARCHAR" property="businessId" />
+    <result column="DEALPROJ" jdbcType="VARCHAR" property="dealproj" />
+    <result column="DEALBRAND" jdbcType="VARCHAR" property="dealbrand" />
+    <result column="LICETYPE" jdbcType="VARCHAR" property="licetype" />
+    <result column="COMEDATE" jdbcType="TIMESTAMP" property="comedate" />
+    <result column="LICEID" jdbcType="VARCHAR" property="liceid" />
+    <result column="LICEADDR" jdbcType="VARCHAR" property="liceaddr" />
+    <result column="DEALSCOPE" jdbcType="VARCHAR" property="dealscope" />
+    <result column="DEALADDR" jdbcType="VARCHAR" property="dealaddr" />
+    <result column="DEALADDRKIND" jdbcType="VARCHAR" property="dealaddrkind" />
+    <result column="YEARAMT" jdbcType="VARCHAR" property="yearamt" />
+    <result column="EMPNUM" jdbcType="VARCHAR" property="empnum" />
+    <result column="LASTCHANPERSON" jdbcType="VARCHAR" property="lastchanperson" />
+    <result column="LASTCHANDATE" jdbcType="TIMESTAMP" property="lastchandate" />
+    <result column="MONTHAVESELL" jdbcType="VARCHAR" property="monthavesell" />
+    <result column="MONTHAVECOST" jdbcType="VARCHAR" property="monthavecost" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BUSINESS_ID, DEALPROJ, DEALBRAND, LICETYPE, COMEDATE, LICEID, LICEADDR, DEALSCOPE, 
+    DEALADDR, DEALADDRKIND, YEARAMT, EMPNUM, LASTCHANPERSON, LASTCHANDATE, MONTHAVESELL, 
+    MONTHAVECOST, PARTY_ID
+  </sql>
+  <select id="selectByPartyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_NATURAL_BUSINESS
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_NATURAL_BUSINESS
+    where BUSINESS_ID = #{businessId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_NATURAL_BUSINESS
+    where BUSINESS_ID = #{businessId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.bean.NaturalBusiness">
+    insert into TB_CSM_NATURAL_BUSINESS (BUSINESS_ID, DEALPROJ, DEALBRAND, 
+      LICETYPE, COMEDATE, LICEID, 
+      LICEADDR, DEALSCOPE, DEALADDR, 
+      DEALADDRKIND, YEARAMT, EMPNUM, 
+      LASTCHANPERSON, LASTCHANDATE, MONTHAVESELL, 
+      MONTHAVECOST, PARTY_ID)
+    values (#{businessId,jdbcType=VARCHAR}, #{dealproj,jdbcType=VARCHAR}, #{dealbrand,jdbcType=VARCHAR}, 
+      #{licetype,jdbcType=VARCHAR}, #{comedate,jdbcType=TIMESTAMP}, #{liceid,jdbcType=VARCHAR}, 
+      #{liceaddr,jdbcType=VARCHAR}, #{dealscope,jdbcType=VARCHAR}, #{dealaddr,jdbcType=VARCHAR}, 
+      #{dealaddrkind,jdbcType=VARCHAR}, #{yearamt,jdbcType=VARCHAR}, #{empnum,jdbcType=VARCHAR}, 
+      #{lastchanperson,jdbcType=VARCHAR}, #{lastchandate,jdbcType=TIMESTAMP}, #{monthavesell,jdbcType=VARCHAR}, 
+      #{monthavecost,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.bean.NaturalBusiness">
+    insert into TB_CSM_NATURAL_BUSINESS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="businessId != null">
+        BUSINESS_ID,
+      </if>
+      <if test="dealproj != null">
+        DEALPROJ,
+      </if>
+      <if test="dealbrand != null">
+        DEALBRAND,
+      </if>
+      <if test="licetype != null">
+        LICETYPE,
+      </if>
+      <if test="comedate != null">
+        COMEDATE,
+      </if>
+      <if test="liceid != null">
+        LICEID,
+      </if>
+      <if test="liceaddr != null">
+        LICEADDR,
+      </if>
+      <if test="dealscope != null">
+        DEALSCOPE,
+      </if>
+      <if test="dealaddr != null">
+        DEALADDR,
+      </if>
+      <if test="dealaddrkind != null">
+        DEALADDRKIND,
+      </if>
+      <if test="yearamt != null">
+        YEARAMT,
+      </if>
+      <if test="empnum != null">
+        EMPNUM,
+      </if>
+      <if test="lastchanperson != null">
+        LASTCHANPERSON,
+      </if>
+      <if test="lastchandate != null">
+        LASTCHANDATE,
+      </if>
+      <if test="monthavesell != null">
+        MONTHAVESELL,
+      </if>
+      <if test="monthavecost != null">
+        MONTHAVECOST,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="businessId != null">
+        #{businessId,jdbcType=VARCHAR},
+      </if>
+      <if test="dealproj != null">
+        #{dealproj,jdbcType=VARCHAR},
+      </if>
+      <if test="dealbrand != null">
+        #{dealbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="licetype != null">
+        #{licetype,jdbcType=VARCHAR},
+      </if>
+      <if test="comedate != null">
+        #{comedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="liceid != null">
+        #{liceid,jdbcType=VARCHAR},
+      </if>
+      <if test="liceaddr != null">
+        #{liceaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="dealscope != null">
+        #{dealscope,jdbcType=VARCHAR},
+      </if>
+      <if test="dealaddr != null">
+        #{dealaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="dealaddrkind != null">
+        #{dealaddrkind,jdbcType=VARCHAR},
+      </if>
+      <if test="yearamt != null">
+        #{yearamt,jdbcType=VARCHAR},
+      </if>
+      <if test="empnum != null">
+        #{empnum,jdbcType=VARCHAR},
+      </if>
+      <if test="lastchanperson != null">
+        #{lastchanperson,jdbcType=VARCHAR},
+      </if>
+      <if test="lastchandate != null">
+        #{lastchandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monthavesell != null">
+        #{monthavesell,jdbcType=VARCHAR},
+      </if>
+      <if test="monthavecost != null">
+        #{monthavecost,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.bean.NaturalBusiness">
+    update TB_CSM_NATURAL_BUSINESS
+    <set>
+      <if test="dealproj != null">
+        DEALPROJ = #{dealproj,jdbcType=VARCHAR},
+      </if>
+      <if test="dealbrand != null">
+        DEALBRAND = #{dealbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="licetype != null">
+        LICETYPE = #{licetype,jdbcType=VARCHAR},
+      </if>
+      <if test="comedate != null">
+        COMEDATE = #{comedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="liceid != null">
+        LICEID = #{liceid,jdbcType=VARCHAR},
+      </if>
+      <if test="liceaddr != null">
+        LICEADDR = #{liceaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="dealscope != null">
+        DEALSCOPE = #{dealscope,jdbcType=VARCHAR},
+      </if>
+      <if test="dealaddr != null">
+        DEALADDR = #{dealaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="dealaddrkind != null">
+        DEALADDRKIND = #{dealaddrkind,jdbcType=VARCHAR},
+      </if>
+      <if test="yearamt != null">
+        YEARAMT = #{yearamt,jdbcType=VARCHAR},
+      </if>
+      <if test="empnum != null">
+        EMPNUM = #{empnum,jdbcType=VARCHAR},
+      </if>
+      <if test="lastchanperson != null">
+        LASTCHANPERSON = #{lastchanperson,jdbcType=VARCHAR},
+      </if>
+      <if test="lastchandate != null">
+        LASTCHANDATE = #{lastchandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monthavesell != null">
+        MONTHAVESELL = #{monthavesell,jdbcType=VARCHAR},
+      </if>
+      <if test="monthavecost != null">
+        MONTHAVECOST = #{monthavecost,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BUSINESS_ID = #{businessId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.bean.NaturalBusiness">
+    update TB_CSM_NATURAL_BUSINESS
+    set DEALPROJ = #{dealproj,jdbcType=VARCHAR},
+      DEALBRAND = #{dealbrand,jdbcType=VARCHAR},
+      LICETYPE = #{licetype,jdbcType=VARCHAR},
+      COMEDATE = #{comedate,jdbcType=TIMESTAMP},
+      LICEID = #{liceid,jdbcType=VARCHAR},
+      LICEADDR = #{liceaddr,jdbcType=VARCHAR},
+      DEALSCOPE = #{dealscope,jdbcType=VARCHAR},
+      DEALADDR = #{dealaddr,jdbcType=VARCHAR},
+      DEALADDRKIND = #{dealaddrkind,jdbcType=VARCHAR},
+      YEARAMT = #{yearamt,jdbcType=VARCHAR},
+      EMPNUM = #{empnum,jdbcType=VARCHAR},
+      LASTCHANPERSON = #{lastchanperson,jdbcType=VARCHAR},
+      LASTCHANDATE = #{lastchandate,jdbcType=TIMESTAMP},
+      MONTHAVESELL = #{monthavesell,jdbcType=VARCHAR},
+      MONTHAVECOST = #{monthavecost,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR}
+    where BUSINESS_ID = #{businessId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.guaranteevaluation.mapper.ConGuaranteQuotaMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.guaranteevaluation.bean.ConGuaranteQuota">
+    <id column="CON_PARTY_ID" jdbcType="VARCHAR" property="conPartyId" />
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="GUARANTE_AMT" jdbcType="DECIMAL" property="guaranteAmt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CON_PARTY_ID, PARTY_ID, GUARANTE_AMT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConGuaranteQuotaKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CON_GUARANTE_QUOTA
+    where CON_PARTY_ID = #{conPartyId,jdbcType=VARCHAR}
+      and PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConGuaranteQuotaKey">
+    delete from TB_CON_GUARANTE_QUOTA
+    where CON_PARTY_ID = #{conPartyId,jdbcType=VARCHAR}
+      and PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConGuaranteQuota">
+    insert into TB_CON_GUARANTE_QUOTA (CON_PARTY_ID, PARTY_ID, GUARANTE_AMT
+      )
+    values (#{conPartyId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{guaranteAmt,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConGuaranteQuota">
+    insert into TB_CON_GUARANTE_QUOTA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="conPartyId != null">
+        CON_PARTY_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="guaranteAmt != null">
+        GUARANTE_AMT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="conPartyId != null">
+        #{conPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteAmt != null">
+        #{guaranteAmt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConGuaranteQuota">
+    update TB_CON_GUARANTE_QUOTA
+    <set>
+      <if test="guaranteAmt != null">
+        GUARANTE_AMT = #{guaranteAmt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CON_PARTY_ID = #{conPartyId,jdbcType=VARCHAR}
+      and PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConGuaranteQuota">
+    update TB_CON_GUARANTE_QUOTA
+    set GUARANTE_AMT = #{guaranteAmt,jdbcType=DECIMAL}
+    where CON_PARTY_ID = #{conPartyId,jdbcType=VARCHAR}
+      and PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

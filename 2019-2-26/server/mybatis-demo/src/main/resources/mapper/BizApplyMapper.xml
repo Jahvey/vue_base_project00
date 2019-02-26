@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.guaranteevaluation.mapper.BizApplyMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.guaranteevaluation.bean.BizApply">
+    <id column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="BIZ_NUM" jdbcType="VARCHAR" property="bizNum" />
+    <result column="BIZ_TYPE" jdbcType="VARCHAR" property="bizType" />
+    <result column="STATUS_TYPE" jdbcType="VARCHAR" property="statusType" />
+    <result column="LOW_RISK_BIZ_TYPE" jdbcType="VARCHAR" property="lowRiskBizType" />
+    <result column="BIZ_HAPPEN_TYPE" jdbcType="VARCHAR" property="bizHappenType" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="IS_BANK_TEAM_LOAN" jdbcType="VARCHAR" property="isBankTeamLoan" />
+    <result column="OLD_APPLY_ID" jdbcType="VARCHAR" property="oldApplyId" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="APPLY_MODE_TYPE" jdbcType="VARCHAR" property="applyModeType" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="BIZ_HAPPEN_NATURE" jdbcType="VARCHAR" property="bizHappenNature" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="IS_GREEN_LOAN" jdbcType="VARCHAR" property="isGreenLoan" />
+    <result column="LOAN_TYPE" jdbcType="VARCHAR" property="loanType" />
+    <result column="BUSI_PARTNER" jdbcType="VARCHAR" property="busiPartner" />
+    <result column="BIZ_TYPE_FLAG" jdbcType="VARCHAR" property="bizTypeFlag" />
+    <result column="WHETHER_BZXZFDK" jdbcType="VARCHAR" property="whetherBzxzfdk" />
+    <result column="ZDFXQY_TYPE" jdbcType="VARCHAR" property="zdfxqyType" />
+    <result column="GREEN_LOAN" jdbcType="VARCHAR" property="greenLoan" />
+    <result column="SJHJBHWFWG_TYPE" jdbcType="VARCHAR" property="sjhjbhwfwgType" />
+    <result column="AQSCWFWG_TYPE" jdbcType="VARCHAR" property="aqscwfwgType" />
+    <result column="ZYBYFKZBDB_TYPE" jdbcType="VARCHAR" property="zybyfkzbdbType" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="TERM_NUM" jdbcType="DECIMAL" property="termNum" />
+    <result column="TERM_UNIT" jdbcType="VARCHAR" property="termUnit" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="CRD_ID" jdbcType="VARCHAR" property="crdId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+    <result column="CSM_CRD_LEVEL" jdbcType="VARCHAR" property="csmCrdLevel" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_ID, BIZ_NUM, BIZ_TYPE, STATUS_TYPE, LOW_RISK_BIZ_TYPE, BIZ_HAPPEN_TYPE, ORG_NUM, 
+    USER_NUM, CREATE_TIME, UPDATE_TIME, IS_BANK_TEAM_LOAN, OLD_APPLY_ID, IF_DATA_MOVE, 
+    APPLY_DATE, APPLY_MODE_TYPE, PARTY_ID, BIZ_HAPPEN_NATURE, PRODUCT_TYPE, IS_GREEN_LOAN, 
+    LOAN_TYPE, BUSI_PARTNER, BIZ_TYPE_FLAG, WHETHER_BZXZFDK, ZDFXQY_TYPE, GREEN_LOAN, 
+    SJHJBHWFWG_TYPE, AQSCWFWG_TYPE, ZYBYFKZBDB_TYPE, GUARANTY_TYPE, TERM_NUM, TERM_UNIT, 
+    RMB_AMT, CRD_ID, CREDIT_MODE, CSM_CRD_LEVEL, PROC_INST_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_APPLY
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_APPLY
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizApply">
+    insert into TB_BIZ_APPLY (APPLY_ID, BIZ_NUM, BIZ_TYPE, 
+      STATUS_TYPE, LOW_RISK_BIZ_TYPE, BIZ_HAPPEN_TYPE, 
+      ORG_NUM, USER_NUM, CREATE_TIME, 
+      UPDATE_TIME, IS_BANK_TEAM_LOAN, OLD_APPLY_ID, 
+      IF_DATA_MOVE, APPLY_DATE, APPLY_MODE_TYPE, 
+      PARTY_ID, BIZ_HAPPEN_NATURE, PRODUCT_TYPE, 
+      IS_GREEN_LOAN, LOAN_TYPE, BUSI_PARTNER, 
+      BIZ_TYPE_FLAG, WHETHER_BZXZFDK, ZDFXQY_TYPE, 
+      GREEN_LOAN, SJHJBHWFWG_TYPE, AQSCWFWG_TYPE, 
+      ZYBYFKZBDB_TYPE, GUARANTY_TYPE, TERM_NUM, 
+      TERM_UNIT, RMB_AMT, CRD_ID, 
+      CREDIT_MODE, CSM_CRD_LEVEL, PROC_INST_ID
+      )
+    values (#{applyId,jdbcType=VARCHAR}, #{bizNum,jdbcType=VARCHAR}, #{bizType,jdbcType=VARCHAR}, 
+      #{statusType,jdbcType=VARCHAR}, #{lowRiskBizType,jdbcType=VARCHAR}, #{bizHappenType,jdbcType=VARCHAR}, 
+      #{orgNum,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isBankTeamLoan,jdbcType=VARCHAR}, #{oldApplyId,jdbcType=VARCHAR}, 
+      #{ifDataMove,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, #{applyModeType,jdbcType=VARCHAR}, 
+      #{partyId,jdbcType=VARCHAR}, #{bizHappenNature,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, 
+      #{isGreenLoan,jdbcType=VARCHAR}, #{loanType,jdbcType=VARCHAR}, #{busiPartner,jdbcType=VARCHAR}, 
+      #{bizTypeFlag,jdbcType=VARCHAR}, #{whetherBzxzfdk,jdbcType=VARCHAR}, #{zdfxqyType,jdbcType=VARCHAR}, 
+      #{greenLoan,jdbcType=VARCHAR}, #{sjhjbhwfwgType,jdbcType=VARCHAR}, #{aqscwfwgType,jdbcType=VARCHAR}, 
+      #{zybyfkzbdbType,jdbcType=VARCHAR}, #{guarantyType,jdbcType=VARCHAR}, #{termNum,jdbcType=DECIMAL}, 
+      #{termUnit,jdbcType=VARCHAR}, #{rmbAmt,jdbcType=DECIMAL}, #{crdId,jdbcType=VARCHAR}, 
+      #{creditMode,jdbcType=VARCHAR}, #{csmCrdLevel,jdbcType=VARCHAR}, #{procInstId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizApply">
+    insert into TB_BIZ_APPLY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="bizNum != null">
+        BIZ_NUM,
+      </if>
+      <if test="bizType != null">
+        BIZ_TYPE,
+      </if>
+      <if test="statusType != null">
+        STATUS_TYPE,
+      </if>
+      <if test="lowRiskBizType != null">
+        LOW_RISK_BIZ_TYPE,
+      </if>
+      <if test="bizHappenType != null">
+        BIZ_HAPPEN_TYPE,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="isBankTeamLoan != null">
+        IS_BANK_TEAM_LOAN,
+      </if>
+      <if test="oldApplyId != null">
+        OLD_APPLY_ID,
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE,
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE,
+      </if>
+      <if test="applyModeType != null">
+        APPLY_MODE_TYPE,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="bizHappenNature != null">
+        BIZ_HAPPEN_NATURE,
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE,
+      </if>
+      <if test="isGreenLoan != null">
+        IS_GREEN_LOAN,
+      </if>
+      <if test="loanType != null">
+        LOAN_TYPE,
+      </if>
+      <if test="busiPartner != null">
+        BUSI_PARTNER,
+      </if>
+      <if test="bizTypeFlag != null">
+        BIZ_TYPE_FLAG,
+      </if>
+      <if test="whetherBzxzfdk != null">
+        WHETHER_BZXZFDK,
+      </if>
+      <if test="zdfxqyType != null">
+        ZDFXQY_TYPE,
+      </if>
+      <if test="greenLoan != null">
+        GREEN_LOAN,
+      </if>
+      <if test="sjhjbhwfwgType != null">
+        SJHJBHWFWG_TYPE,
+      </if>
+      <if test="aqscwfwgType != null">
+        AQSCWFWG_TYPE,
+      </if>
+      <if test="zybyfkzbdbType != null">
+        ZYBYFKZBDB_TYPE,
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE,
+      </if>
+      <if test="termNum != null">
+        TERM_NUM,
+      </if>
+      <if test="termUnit != null">
+        TERM_UNIT,
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT,
+      </if>
+      <if test="crdId != null">
+        CRD_ID,
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE,
+      </if>
+      <if test="csmCrdLevel != null">
+        CSM_CRD_LEVEL,
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizNum != null">
+        #{bizNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bizType != null">
+        #{bizType,jdbcType=VARCHAR},
+      </if>
+      <if test="statusType != null">
+        #{statusType,jdbcType=VARCHAR},
+      </if>
+      <if test="lowRiskBizType != null">
+        #{lowRiskBizType,jdbcType=VARCHAR},
+      </if>
+      <if test="bizHappenType != null">
+        #{bizHappenType,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isBankTeamLoan != null">
+        #{isBankTeamLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="oldApplyId != null">
+        #{oldApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyModeType != null">
+        #{applyModeType,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizHappenNature != null">
+        #{bizHappenNature,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="isGreenLoan != null">
+        #{isGreenLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="loanType != null">
+        #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiPartner != null">
+        #{busiPartner,jdbcType=VARCHAR},
+      </if>
+      <if test="bizTypeFlag != null">
+        #{bizTypeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherBzxzfdk != null">
+        #{whetherBzxzfdk,jdbcType=VARCHAR},
+      </if>
+      <if test="zdfxqyType != null">
+        #{zdfxqyType,jdbcType=VARCHAR},
+      </if>
+      <if test="greenLoan != null">
+        #{greenLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="sjhjbhwfwgType != null">
+        #{sjhjbhwfwgType,jdbcType=VARCHAR},
+      </if>
+      <if test="aqscwfwgType != null">
+        #{aqscwfwgType,jdbcType=VARCHAR},
+      </if>
+      <if test="zybyfkzbdbType != null">
+        #{zybyfkzbdbType,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyType != null">
+        #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="termNum != null">
+        #{termNum,jdbcType=DECIMAL},
+      </if>
+      <if test="termUnit != null">
+        #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="rmbAmt != null">
+        #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdId != null">
+        #{crdId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="csmCrdLevel != null">
+        #{csmCrdLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizApply">
+    update TB_BIZ_APPLY
+    <set>
+      <if test="bizNum != null">
+        BIZ_NUM = #{bizNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bizType != null">
+        BIZ_TYPE = #{bizType,jdbcType=VARCHAR},
+      </if>
+      <if test="statusType != null">
+        STATUS_TYPE = #{statusType,jdbcType=VARCHAR},
+      </if>
+      <if test="lowRiskBizType != null">
+        LOW_RISK_BIZ_TYPE = #{lowRiskBizType,jdbcType=VARCHAR},
+      </if>
+      <if test="bizHappenType != null">
+        BIZ_HAPPEN_TYPE = #{bizHappenType,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isBankTeamLoan != null">
+        IS_BANK_TEAM_LOAN = #{isBankTeamLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="oldApplyId != null">
+        OLD_APPLY_ID = #{oldApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyModeType != null">
+        APPLY_MODE_TYPE = #{applyModeType,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizHappenNature != null">
+        BIZ_HAPPEN_NATURE = #{bizHappenNature,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="isGreenLoan != null">
+        IS_GREEN_LOAN = #{isGreenLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="loanType != null">
+        LOAN_TYPE = #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiPartner != null">
+        BUSI_PARTNER = #{busiPartner,jdbcType=VARCHAR},
+      </if>
+      <if test="bizTypeFlag != null">
+        BIZ_TYPE_FLAG = #{bizTypeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherBzxzfdk != null">
+        WHETHER_BZXZFDK = #{whetherBzxzfdk,jdbcType=VARCHAR},
+      </if>
+      <if test="zdfxqyType != null">
+        ZDFXQY_TYPE = #{zdfxqyType,jdbcType=VARCHAR},
+      </if>
+      <if test="greenLoan != null">
+        GREEN_LOAN = #{greenLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="sjhjbhwfwgType != null">
+        SJHJBHWFWG_TYPE = #{sjhjbhwfwgType,jdbcType=VARCHAR},
+      </if>
+      <if test="aqscwfwgType != null">
+        AQSCWFWG_TYPE = #{aqscwfwgType,jdbcType=VARCHAR},
+      </if>
+      <if test="zybyfkzbdbType != null">
+        ZYBYFKZBDB_TYPE = #{zybyfkzbdbType,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="termNum != null">
+        TERM_NUM = #{termNum,jdbcType=DECIMAL},
+      </if>
+      <if test="termUnit != null">
+        TERM_UNIT = #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="crdId != null">
+        CRD_ID = #{crdId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE = #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="csmCrdLevel != null">
+        CSM_CRD_LEVEL = #{csmCrdLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizApply">
+    update TB_BIZ_APPLY
+    set BIZ_NUM = #{bizNum,jdbcType=VARCHAR},
+      BIZ_TYPE = #{bizType,jdbcType=VARCHAR},
+      STATUS_TYPE = #{statusType,jdbcType=VARCHAR},
+      LOW_RISK_BIZ_TYPE = #{lowRiskBizType,jdbcType=VARCHAR},
+      BIZ_HAPPEN_TYPE = #{bizHappenType,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      IS_BANK_TEAM_LOAN = #{isBankTeamLoan,jdbcType=VARCHAR},
+      OLD_APPLY_ID = #{oldApplyId,jdbcType=VARCHAR},
+      IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      APPLY_MODE_TYPE = #{applyModeType,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      BIZ_HAPPEN_NATURE = #{bizHappenNature,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      IS_GREEN_LOAN = #{isGreenLoan,jdbcType=VARCHAR},
+      LOAN_TYPE = #{loanType,jdbcType=VARCHAR},
+      BUSI_PARTNER = #{busiPartner,jdbcType=VARCHAR},
+      BIZ_TYPE_FLAG = #{bizTypeFlag,jdbcType=VARCHAR},
+      WHETHER_BZXZFDK = #{whetherBzxzfdk,jdbcType=VARCHAR},
+      ZDFXQY_TYPE = #{zdfxqyType,jdbcType=VARCHAR},
+      GREEN_LOAN = #{greenLoan,jdbcType=VARCHAR},
+      SJHJBHWFWG_TYPE = #{sjhjbhwfwgType,jdbcType=VARCHAR},
+      AQSCWFWG_TYPE = #{aqscwfwgType,jdbcType=VARCHAR},
+      ZYBYFKZBDB_TYPE = #{zybyfkzbdbType,jdbcType=VARCHAR},
+      GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      TERM_NUM = #{termNum,jdbcType=DECIMAL},
+      TERM_UNIT = #{termUnit,jdbcType=VARCHAR},
+      RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      CRD_ID = #{crdId,jdbcType=VARCHAR},
+      CREDIT_MODE = #{creditMode,jdbcType=VARCHAR},
+      CSM_CRD_LEVEL = #{csmCrdLevel,jdbcType=VARCHAR},
+      PROC_INST_ID = #{procInstId,jdbcType=VARCHAR}
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

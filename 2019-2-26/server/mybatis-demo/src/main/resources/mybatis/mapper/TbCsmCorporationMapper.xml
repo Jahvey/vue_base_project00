@@ -1,0 +1,2682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.user.mapper.TbCsmCorporationMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.TbCsmCorporation">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="ENGLISH_NAME" jdbcType="VARCHAR" property="englishName" />
+    <result column="ECONOMIC_SECTOR_CODE" jdbcType="VARCHAR" property="economicSectorCode" />
+    <result column="INDUSTRIAL_TYPE_CD" jdbcType="VARCHAR" property="industrialTypeCd" />
+    <result column="LISTING_CORPORATION" jdbcType="VARCHAR" property="listingCorporation" />
+    <result column="REGISTER_ASSETS" jdbcType="DECIMAL" property="registerAssets" />
+    <result column="REGISTER_ASSETS_CURRENCY_CD" jdbcType="VARCHAR" property="registerAssetsCurrencyCd" />
+    <result column="EMPLOYEES_NUMBER" jdbcType="DECIMAL" property="employeesNumber" />
+    <result column="GOVERNMENT_TENT_NO" jdbcType="VARCHAR" property="governmentTentNo" />
+    <result column="CREDIT_RELATIONSHIP_TIME" jdbcType="TIMESTAMP" property="creditRelationshipTime" />
+    <result column="REGISTER_DATE" jdbcType="TIMESTAMP" property="registerDate" />
+    <result column="LEGAL_CERTIFICATE_NO" jdbcType="VARCHAR" property="legalCertificateNo" />
+    <result column="LEGAL_CERTIFICATE_END_DATE" jdbcType="TIMESTAMP" property="legalCertificateEndDate" />
+    <result column="REGISTRATION_TYPE" jdbcType="VARCHAR" property="registrationType" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AREA_TYPE" jdbcType="VARCHAR" property="areaType" />
+    <result column="CONTRY_REGION_CD" jdbcType="VARCHAR" property="contryRegionCd" />
+    <result column="LEGAL_NAME" jdbcType="VARCHAR" property="legalName" />
+    <result column="LEGAL_CERT_TYPE" jdbcType="VARCHAR" property="legalCertType" />
+    <result column="REGISTR_CD" jdbcType="VARCHAR" property="registrCd" />
+    <result column="REGISTER_END_DATE" jdbcType="TIMESTAMP" property="registerEndDate" />
+    <result column="BUSINESS_SCOPE" jdbcType="VARCHAR" property="businessScope" />
+    <result column="ORG_REGISTER_CD" jdbcType="VARCHAR" property="orgRegisterCd" />
+    <result column="ORG_REGISTER_END_DATE" jdbcType="TIMESTAMP" property="orgRegisterEndDate" />
+    <result column="MIDDEL_CODE" jdbcType="VARCHAR" property="middelCode" />
+    <result column="ORG_CREDIT_CODE" jdbcType="VARCHAR" property="orgCreditCode" />
+    <result column="NATIONAL_TAX_NO" jdbcType="VARCHAR" property="nationalTaxNo" />
+    <result column="INDUSTRIAL_TYPE_BIG_CD" jdbcType="VARCHAR" property="industrialTypeBigCd" />
+    <result column="INDUSTRIAL_TYPE_MID_CD" jdbcType="VARCHAR" property="industrialTypeMidCd" />
+    <result column="INDUSTRIAL_TYPE_SAMLL_CD" jdbcType="VARCHAR" property="industrialTypeSamllCd" />
+    <result column="ENTERPRISE_SCALE_GX" jdbcType="VARCHAR" property="enterpriseScaleGx" />
+    <result column="COUNT_BORE_ENTER_SCALE" jdbcType="VARCHAR" property="countBoreEnterScale" />
+    <result column="IS_GROUP_CUST" jdbcType="VARCHAR" property="isGroupCust" />
+    <result column="ATTACH_GROUP_NAME" jdbcType="VARCHAR" property="attachGroupName" />
+    <result column="WHETHER_IMP_EXP" jdbcType="VARCHAR" property="whetherImpExp" />
+    <result column="STOCKHOLDER_OF_BANK" jdbcType="VARCHAR" property="stockholderOfBank" />
+    <result column="JOINT_GUARANTEE" jdbcType="VARCHAR" property="jointGuarantee" />
+    <result column="FAMILY_ENTERPRISE" jdbcType="VARCHAR" property="familyEnterprise" />
+    <result column="WHETHER_GOVERNMENT_FINANCE_COR" jdbcType="VARCHAR" property="whetherGovernmentFinanceCor" />
+    <result column="COUNTRYSIDE_ENTERPRISE" jdbcType="VARCHAR" property="countrysideEnterprise" />
+    <result column="WHETHER_BLACK_LIST" jdbcType="VARCHAR" property="whetherBlackList" />
+    <result column="FOCUS_CUSTOMER" jdbcType="VARCHAR" property="focusCustomer" />
+    <result column="IS_REAL_ESTATE_DEV" jdbcType="VARCHAR" property="isRealEstateDev" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="FUND_SRC" jdbcType="VARCHAR" property="fundSrc" />
+    <result column="OPEN_FUND" jdbcType="DECIMAL" property="openFund" />
+    <result column="IS_BASEBANK_RELA_CUST" jdbcType="VARCHAR" property="isBasebankRelaCust" />
+    <result column="THIRD_CUST_TYPE_CD" jdbcType="VARCHAR" property="thirdCustTypeCd" />
+    <result column="IS_THIRD_CUST" jdbcType="VARCHAR" property="isThirdCust" />
+    <result column="ENTERPRISE_CERT_END_DATE" jdbcType="TIMESTAMP" property="enterpriseCertEndDate" />
+    <result column="ENTERPRISE_CERT_NUM" jdbcType="VARCHAR" property="enterpriseCertNum" />
+    <result column="UNIFY_SOCIETY_CREDIT_NUM" jdbcType="VARCHAR" property="unifySocietyCreditNum" />
+    <result column="SINGLE_LP_CUST_IND" jdbcType="VARCHAR" property="singleLpCustInd" />
+    <result column="STOP_CORP_IND" jdbcType="VARCHAR" property="stopCorpInd" />
+    <result column="LEGAL_CONTRY" jdbcType="VARCHAR" property="legalContry" />
+    <result column="BANK_SCALE_IDENTIFY" jdbcType="VARCHAR" property="bankScaleIdentify" />
+    <result column="LEGAL_PHONE_NUMBER" jdbcType="VARCHAR" property="legalPhoneNumber" />
+    <result column="LEGAL_REGIST_DATE" jdbcType="TIMESTAMP" property="legalRegistDate" />
+    <result column="LEGAL_CONTRY_SIGN" jdbcType="VARCHAR" property="legalContrySign" />
+    <result column="WHETHER_TECHNIC" jdbcType="VARCHAR" property="whetherTechnic" />
+    <result column="WHETHER_GREEN_GROUP" jdbcType="VARCHAR" property="whetherGreenGroup" />
+    <result column="WHETHER_JMRH" jdbcType="VARCHAR" property="whetherJmrh" />
+    <result column="WHETHER_ARG_RELATED" jdbcType="VARCHAR" property="whetherArgRelated" />
+    <result column="WHETHER_OPEN_ACCT" jdbcType="VARCHAR" property="whetherOpenAcct" />
+    <result column="WHETHER_POVERTY_ADD" jdbcType="VARCHAR" property="whetherPovertyAdd" />
+    <result column="AREA" jdbcType="VARCHAR" property="area" />
+    <result column="OWNER" jdbcType="VARCHAR" property="owner" />
+    <result column="NATIONAL_ECONOMY_TYPE" jdbcType="VARCHAR" property="nationalEconomyType" />
+    <result column="CHAIN_SIGN" jdbcType="VARCHAR" property="chainSign" />
+    <result column="MAIN_CUST_TYPE_CD" jdbcType="VARCHAR" property="mainCustTypeCd" />
+    <result column="ORG_STATUS" jdbcType="VARCHAR" property="orgStatus" />
+    <result column="IF_CSY" jdbcType="VARCHAR" property="ifCsy" />
+    <result column="LOAN_TURN" jdbcType="VARCHAR" property="loanTurn" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PARTY_ID, CORP_CUSTOMER_TYPE_CD, ENGLISH_NAME, ECONOMIC_SECTOR_CODE, INDUSTRIAL_TYPE_CD, 
+    LISTING_CORPORATION, REGISTER_ASSETS, REGISTER_ASSETS_CURRENCY_CD, EMPLOYEES_NUMBER, 
+    GOVERNMENT_TENT_NO, CREDIT_RELATIONSHIP_TIME, REGISTER_DATE, LEGAL_CERTIFICATE_NO, 
+    LEGAL_CERTIFICATE_END_DATE, REGISTRATION_TYPE, UPDATE_USER_NUM, UPDATE_ORG_NUM, UPDATE_TIME, 
+    AREA_TYPE, CONTRY_REGION_CD, LEGAL_NAME, LEGAL_CERT_TYPE, REGISTR_CD, REGISTER_END_DATE, 
+    BUSINESS_SCOPE, ORG_REGISTER_CD, ORG_REGISTER_END_DATE, MIDDEL_CODE, ORG_CREDIT_CODE, 
+    NATIONAL_TAX_NO, INDUSTRIAL_TYPE_BIG_CD, INDUSTRIAL_TYPE_MID_CD, INDUSTRIAL_TYPE_SAMLL_CD, 
+    ENTERPRISE_SCALE_GX, COUNT_BORE_ENTER_SCALE, IS_GROUP_CUST, ATTACH_GROUP_NAME, WHETHER_IMP_EXP, 
+    STOCKHOLDER_OF_BANK, JOINT_GUARANTEE, FAMILY_ENTERPRISE, WHETHER_GOVERNMENT_FINANCE_COR, 
+    COUNTRYSIDE_ENTERPRISE, WHETHER_BLACK_LIST, FOCUS_CUSTOMER, IS_REAL_ESTATE_DEV, CREATETIME, 
+    FUND_SRC, OPEN_FUND, IS_BASEBANK_RELA_CUST, THIRD_CUST_TYPE_CD, IS_THIRD_CUST, ENTERPRISE_CERT_END_DATE, 
+    ENTERPRISE_CERT_NUM, UNIFY_SOCIETY_CREDIT_NUM, SINGLE_LP_CUST_IND, STOP_CORP_IND, 
+    LEGAL_CONTRY, BANK_SCALE_IDENTIFY, LEGAL_PHONE_NUMBER, LEGAL_REGIST_DATE, LEGAL_CONTRY_SIGN, 
+    WHETHER_TECHNIC, WHETHER_GREEN_GROUP, WHETHER_JMRH, WHETHER_ARG_RELATED, WHETHER_OPEN_ACCT, 
+    WHETHER_POVERTY_ADD, AREA, OWNER, NATIONAL_ECONOMY_TYPE, CHAIN_SIGN, MAIN_CUST_TYPE_CD, 
+    ORG_STATUS, IF_CSY, LOAN_TURN
+  </sql>
+  <select id="selectByExample" parameterType="com.cdgit.loan.user.bean.TbCsmCorporationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TB_CSM_CORPORATION
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_CORPORATION
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_CORPORATION
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cdgit.loan.user.bean.TbCsmCorporationExample">
+    delete from TB_CSM_CORPORATION
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.user.bean.TbCsmCorporation">
+    <selectKey keyProperty="partyId" order="AFTER" resultType="java.lang.String">
+      oracle
+    </selectKey>
+    insert into TB_CSM_CORPORATION (CORP_CUSTOMER_TYPE_CD, ENGLISH_NAME, 
+      ECONOMIC_SECTOR_CODE, INDUSTRIAL_TYPE_CD, LISTING_CORPORATION, 
+      REGISTER_ASSETS, REGISTER_ASSETS_CURRENCY_CD, 
+      EMPLOYEES_NUMBER, GOVERNMENT_TENT_NO, CREDIT_RELATIONSHIP_TIME, 
+      REGISTER_DATE, LEGAL_CERTIFICATE_NO, LEGAL_CERTIFICATE_END_DATE, 
+      REGISTRATION_TYPE, UPDATE_USER_NUM, UPDATE_ORG_NUM, 
+      UPDATE_TIME, AREA_TYPE, CONTRY_REGION_CD, 
+      LEGAL_NAME, LEGAL_CERT_TYPE, REGISTR_CD, 
+      REGISTER_END_DATE, BUSINESS_SCOPE, ORG_REGISTER_CD, 
+      ORG_REGISTER_END_DATE, MIDDEL_CODE, ORG_CREDIT_CODE, 
+      NATIONAL_TAX_NO, INDUSTRIAL_TYPE_BIG_CD, INDUSTRIAL_TYPE_MID_CD, 
+      INDUSTRIAL_TYPE_SAMLL_CD, ENTERPRISE_SCALE_GX, 
+      COUNT_BORE_ENTER_SCALE, IS_GROUP_CUST, ATTACH_GROUP_NAME, 
+      WHETHER_IMP_EXP, STOCKHOLDER_OF_BANK, JOINT_GUARANTEE, 
+      FAMILY_ENTERPRISE, WHETHER_GOVERNMENT_FINANCE_COR, 
+      COUNTRYSIDE_ENTERPRISE, WHETHER_BLACK_LIST, 
+      FOCUS_CUSTOMER, IS_REAL_ESTATE_DEV, CREATETIME, 
+      FUND_SRC, OPEN_FUND, IS_BASEBANK_RELA_CUST, 
+      THIRD_CUST_TYPE_CD, IS_THIRD_CUST, ENTERPRISE_CERT_END_DATE, 
+      ENTERPRISE_CERT_NUM, UNIFY_SOCIETY_CREDIT_NUM, 
+      SINGLE_LP_CUST_IND, STOP_CORP_IND, LEGAL_CONTRY, 
+      BANK_SCALE_IDENTIFY, LEGAL_PHONE_NUMBER, LEGAL_REGIST_DATE, 
+      LEGAL_CONTRY_SIGN, WHETHER_TECHNIC, WHETHER_GREEN_GROUP, 
+      WHETHER_JMRH, WHETHER_ARG_RELATED, WHETHER_OPEN_ACCT, 
+      WHETHER_POVERTY_ADD, AREA, OWNER, 
+      NATIONAL_ECONOMY_TYPE, CHAIN_SIGN, MAIN_CUST_TYPE_CD, 
+      ORG_STATUS, IF_CSY, LOAN_TURN
+      )
+    values (#{corpCustomerTypeCd,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR}, 
+      #{economicSectorCode,jdbcType=VARCHAR}, #{industrialTypeCd,jdbcType=VARCHAR}, #{listingCorporation,jdbcType=VARCHAR}, 
+      #{registerAssets,jdbcType=DECIMAL}, #{registerAssetsCurrencyCd,jdbcType=VARCHAR}, 
+      #{employeesNumber,jdbcType=DECIMAL}, #{governmentTentNo,jdbcType=VARCHAR}, #{creditRelationshipTime,jdbcType=TIMESTAMP}, 
+      #{registerDate,jdbcType=TIMESTAMP}, #{legalCertificateNo,jdbcType=VARCHAR}, #{legalCertificateEndDate,jdbcType=TIMESTAMP}, 
+      #{registrationType,jdbcType=VARCHAR}, #{updateUserNum,jdbcType=VARCHAR}, #{updateOrgNum,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{areaType,jdbcType=VARCHAR}, #{contryRegionCd,jdbcType=VARCHAR}, 
+      #{legalName,jdbcType=VARCHAR}, #{legalCertType,jdbcType=VARCHAR}, #{registrCd,jdbcType=VARCHAR}, 
+      #{registerEndDate,jdbcType=TIMESTAMP}, #{businessScope,jdbcType=VARCHAR}, #{orgRegisterCd,jdbcType=VARCHAR}, 
+      #{orgRegisterEndDate,jdbcType=TIMESTAMP}, #{middelCode,jdbcType=VARCHAR}, #{orgCreditCode,jdbcType=VARCHAR}, 
+      #{nationalTaxNo,jdbcType=VARCHAR}, #{industrialTypeBigCd,jdbcType=VARCHAR}, #{industrialTypeMidCd,jdbcType=VARCHAR}, 
+      #{industrialTypeSamllCd,jdbcType=VARCHAR}, #{enterpriseScaleGx,jdbcType=VARCHAR}, 
+      #{countBoreEnterScale,jdbcType=VARCHAR}, #{isGroupCust,jdbcType=VARCHAR}, #{attachGroupName,jdbcType=VARCHAR}, 
+      #{whetherImpExp,jdbcType=VARCHAR}, #{stockholderOfBank,jdbcType=VARCHAR}, #{jointGuarantee,jdbcType=VARCHAR}, 
+      #{familyEnterprise,jdbcType=VARCHAR}, #{whetherGovernmentFinanceCor,jdbcType=VARCHAR}, 
+      #{countrysideEnterprise,jdbcType=VARCHAR}, #{whetherBlackList,jdbcType=VARCHAR}, 
+      #{focusCustomer,jdbcType=VARCHAR}, #{isRealEstateDev,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{fundSrc,jdbcType=VARCHAR}, #{openFund,jdbcType=DECIMAL}, #{isBasebankRelaCust,jdbcType=VARCHAR}, 
+      #{thirdCustTypeCd,jdbcType=VARCHAR}, #{isThirdCust,jdbcType=VARCHAR}, #{enterpriseCertEndDate,jdbcType=TIMESTAMP}, 
+      #{enterpriseCertNum,jdbcType=VARCHAR}, #{unifySocietyCreditNum,jdbcType=VARCHAR}, 
+      #{singleLpCustInd,jdbcType=VARCHAR}, #{stopCorpInd,jdbcType=VARCHAR}, #{legalContry,jdbcType=VARCHAR}, 
+      #{bankScaleIdentify,jdbcType=VARCHAR}, #{legalPhoneNumber,jdbcType=VARCHAR}, #{legalRegistDate,jdbcType=TIMESTAMP}, 
+      #{legalContrySign,jdbcType=VARCHAR}, #{whetherTechnic,jdbcType=VARCHAR}, #{whetherGreenGroup,jdbcType=VARCHAR}, 
+      #{whetherJmrh,jdbcType=VARCHAR}, #{whetherArgRelated,jdbcType=VARCHAR}, #{whetherOpenAcct,jdbcType=VARCHAR}, 
+      #{whetherPovertyAdd,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, 
+      #{nationalEconomyType,jdbcType=VARCHAR}, #{chainSign,jdbcType=VARCHAR}, #{mainCustTypeCd,jdbcType=VARCHAR}, 
+      #{orgStatus,jdbcType=VARCHAR}, #{ifCsy,jdbcType=VARCHAR}, #{loanTurn,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.user.bean.TbCsmCorporation">
+    <selectKey keyProperty="partyId" order="AFTER" resultType="java.lang.String">
+      oracle
+    </selectKey>
+    insert into TB_CSM_CORPORATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="corpCustomerTypeCd != null">
+        CORP_CUSTOMER_TYPE_CD,
+      </if>
+      <if test="englishName != null">
+        ENGLISH_NAME,
+      </if>
+      <if test="economicSectorCode != null">
+        ECONOMIC_SECTOR_CODE,
+      </if>
+      <if test="industrialTypeCd != null">
+        INDUSTRIAL_TYPE_CD,
+      </if>
+      <if test="listingCorporation != null">
+        LISTING_CORPORATION,
+      </if>
+      <if test="registerAssets != null">
+        REGISTER_ASSETS,
+      </if>
+      <if test="registerAssetsCurrencyCd != null">
+        REGISTER_ASSETS_CURRENCY_CD,
+      </if>
+      <if test="employeesNumber != null">
+        EMPLOYEES_NUMBER,
+      </if>
+      <if test="governmentTentNo != null">
+        GOVERNMENT_TENT_NO,
+      </if>
+      <if test="creditRelationshipTime != null">
+        CREDIT_RELATIONSHIP_TIME,
+      </if>
+      <if test="registerDate != null">
+        REGISTER_DATE,
+      </if>
+      <if test="legalCertificateNo != null">
+        LEGAL_CERTIFICATE_NO,
+      </if>
+      <if test="legalCertificateEndDate != null">
+        LEGAL_CERTIFICATE_END_DATE,
+      </if>
+      <if test="registrationType != null">
+        REGISTRATION_TYPE,
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM,
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="areaType != null">
+        AREA_TYPE,
+      </if>
+      <if test="contryRegionCd != null">
+        CONTRY_REGION_CD,
+      </if>
+      <if test="legalName != null">
+        LEGAL_NAME,
+      </if>
+      <if test="legalCertType != null">
+        LEGAL_CERT_TYPE,
+      </if>
+      <if test="registrCd != null">
+        REGISTR_CD,
+      </if>
+      <if test="registerEndDate != null">
+        REGISTER_END_DATE,
+      </if>
+      <if test="businessScope != null">
+        BUSINESS_SCOPE,
+      </if>
+      <if test="orgRegisterCd != null">
+        ORG_REGISTER_CD,
+      </if>
+      <if test="orgRegisterEndDate != null">
+        ORG_REGISTER_END_DATE,
+      </if>
+      <if test="middelCode != null">
+        MIDDEL_CODE,
+      </if>
+      <if test="orgCreditCode != null">
+        ORG_CREDIT_CODE,
+      </if>
+      <if test="nationalTaxNo != null">
+        NATIONAL_TAX_NO,
+      </if>
+      <if test="industrialTypeBigCd != null">
+        INDUSTRIAL_TYPE_BIG_CD,
+      </if>
+      <if test="industrialTypeMidCd != null">
+        INDUSTRIAL_TYPE_MID_CD,
+      </if>
+      <if test="industrialTypeSamllCd != null">
+        INDUSTRIAL_TYPE_SAMLL_CD,
+      </if>
+      <if test="enterpriseScaleGx != null">
+        ENTERPRISE_SCALE_GX,
+      </if>
+      <if test="countBoreEnterScale != null">
+        COUNT_BORE_ENTER_SCALE,
+      </if>
+      <if test="isGroupCust != null">
+        IS_GROUP_CUST,
+      </if>
+      <if test="attachGroupName != null">
+        ATTACH_GROUP_NAME,
+      </if>
+      <if test="whetherImpExp != null">
+        WHETHER_IMP_EXP,
+      </if>
+      <if test="stockholderOfBank != null">
+        STOCKHOLDER_OF_BANK,
+      </if>
+      <if test="jointGuarantee != null">
+        JOINT_GUARANTEE,
+      </if>
+      <if test="familyEnterprise != null">
+        FAMILY_ENTERPRISE,
+      </if>
+      <if test="whetherGovernmentFinanceCor != null">
+        WHETHER_GOVERNMENT_FINANCE_COR,
+      </if>
+      <if test="countrysideEnterprise != null">
+        COUNTRYSIDE_ENTERPRISE,
+      </if>
+      <if test="whetherBlackList != null">
+        WHETHER_BLACK_LIST,
+      </if>
+      <if test="focusCustomer != null">
+        FOCUS_CUSTOMER,
+      </if>
+      <if test="isRealEstateDev != null">
+        IS_REAL_ESTATE_DEV,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="fundSrc != null">
+        FUND_SRC,
+      </if>
+      <if test="openFund != null">
+        OPEN_FUND,
+      </if>
+      <if test="isBasebankRelaCust != null">
+        IS_BASEBANK_RELA_CUST,
+      </if>
+      <if test="thirdCustTypeCd != null">
+        THIRD_CUST_TYPE_CD,
+      </if>
+      <if test="isThirdCust != null">
+        IS_THIRD_CUST,
+      </if>
+      <if test="enterpriseCertEndDate != null">
+        ENTERPRISE_CERT_END_DATE,
+      </if>
+      <if test="enterpriseCertNum != null">
+        ENTERPRISE_CERT_NUM,
+      </if>
+      <if test="unifySocietyCreditNum != null">
+        UNIFY_SOCIETY_CREDIT_NUM,
+      </if>
+      <if test="singleLpCustInd != null">
+        SINGLE_LP_CUST_IND,
+      </if>
+      <if test="stopCorpInd != null">
+        STOP_CORP_IND,
+      </if>
+      <if test="legalContry != null">
+        LEGAL_CONTRY,
+      </if>
+      <if test="bankScaleIdentify != null">
+        BANK_SCALE_IDENTIFY,
+      </if>
+      <if test="legalPhoneNumber != null">
+        LEGAL_PHONE_NUMBER,
+      </if>
+      <if test="legalRegistDate != null">
+        LEGAL_REGIST_DATE,
+      </if>
+      <if test="legalContrySign != null">
+        LEGAL_CONTRY_SIGN,
+      </if>
+      <if test="whetherTechnic != null">
+        WHETHER_TECHNIC,
+      </if>
+      <if test="whetherGreenGroup != null">
+        WHETHER_GREEN_GROUP,
+      </if>
+      <if test="whetherJmrh != null">
+        WHETHER_JMRH,
+      </if>
+      <if test="whetherArgRelated != null">
+        WHETHER_ARG_RELATED,
+      </if>
+      <if test="whetherOpenAcct != null">
+        WHETHER_OPEN_ACCT,
+      </if>
+      <if test="whetherPovertyAdd != null">
+        WHETHER_POVERTY_ADD,
+      </if>
+      <if test="area != null">
+        AREA,
+      </if>
+      <if test="owner != null">
+        OWNER,
+      </if>
+      <if test="nationalEconomyType != null">
+        NATIONAL_ECONOMY_TYPE,
+      </if>
+      <if test="chainSign != null">
+        CHAIN_SIGN,
+      </if>
+      <if test="mainCustTypeCd != null">
+        MAIN_CUST_TYPE_CD,
+      </if>
+      <if test="orgStatus != null">
+        ORG_STATUS,
+      </if>
+      <if test="ifCsy != null">
+        IF_CSY,
+      </if>
+      <if test="loanTurn != null">
+        LOAN_TURN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="corpCustomerTypeCd != null">
+        #{corpCustomerTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null">
+        #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="economicSectorCode != null">
+        #{economicSectorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeCd != null">
+        #{industrialTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="listingCorporation != null">
+        #{listingCorporation,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAssets != null">
+        #{registerAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="registerAssetsCurrencyCd != null">
+        #{registerAssetsCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="employeesNumber != null">
+        #{employeesNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="governmentTentNo != null">
+        #{governmentTentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRelationshipTime != null">
+        #{creditRelationshipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerDate != null">
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="legalCertificateNo != null">
+        #{legalCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertificateEndDate != null">
+        #{legalCertificateEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationType != null">
+        #{registrationType,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNum != null">
+        #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaType != null">
+        #{areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="contryRegionCd != null">
+        #{contryRegionCd,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertType != null">
+        #{legalCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="registrCd != null">
+        #{registrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerEndDate != null">
+        #{registerEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessScope != null">
+        #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterCd != null">
+        #{orgRegisterCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterEndDate != null">
+        #{orgRegisterEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="middelCode != null">
+        #{middelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCreditCode != null">
+        #{orgCreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalTaxNo != null">
+        #{nationalTaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeBigCd != null">
+        #{industrialTypeBigCd,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeMidCd != null">
+        #{industrialTypeMidCd,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeSamllCd != null">
+        #{industrialTypeSamllCd,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseScaleGx != null">
+        #{enterpriseScaleGx,jdbcType=VARCHAR},
+      </if>
+      <if test="countBoreEnterScale != null">
+        #{countBoreEnterScale,jdbcType=VARCHAR},
+      </if>
+      <if test="isGroupCust != null">
+        #{isGroupCust,jdbcType=VARCHAR},
+      </if>
+      <if test="attachGroupName != null">
+        #{attachGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherImpExp != null">
+        #{whetherImpExp,jdbcType=VARCHAR},
+      </if>
+      <if test="stockholderOfBank != null">
+        #{stockholderOfBank,jdbcType=VARCHAR},
+      </if>
+      <if test="jointGuarantee != null">
+        #{jointGuarantee,jdbcType=VARCHAR},
+      </if>
+      <if test="familyEnterprise != null">
+        #{familyEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherGovernmentFinanceCor != null">
+        #{whetherGovernmentFinanceCor,jdbcType=VARCHAR},
+      </if>
+      <if test="countrysideEnterprise != null">
+        #{countrysideEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherBlackList != null">
+        #{whetherBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="focusCustomer != null">
+        #{focusCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="isRealEstateDev != null">
+        #{isRealEstateDev,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fundSrc != null">
+        #{fundSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="openFund != null">
+        #{openFund,jdbcType=DECIMAL},
+      </if>
+      <if test="isBasebankRelaCust != null">
+        #{isBasebankRelaCust,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCustTypeCd != null">
+        #{thirdCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="isThirdCust != null">
+        #{isThirdCust,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseCertEndDate != null">
+        #{enterpriseCertEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterpriseCertNum != null">
+        #{enterpriseCertNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unifySocietyCreditNum != null">
+        #{unifySocietyCreditNum,jdbcType=VARCHAR},
+      </if>
+      <if test="singleLpCustInd != null">
+        #{singleLpCustInd,jdbcType=VARCHAR},
+      </if>
+      <if test="stopCorpInd != null">
+        #{stopCorpInd,jdbcType=VARCHAR},
+      </if>
+      <if test="legalContry != null">
+        #{legalContry,jdbcType=VARCHAR},
+      </if>
+      <if test="bankScaleIdentify != null">
+        #{bankScaleIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhoneNumber != null">
+        #{legalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRegistDate != null">
+        #{legalRegistDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="legalContrySign != null">
+        #{legalContrySign,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherTechnic != null">
+        #{whetherTechnic,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherGreenGroup != null">
+        #{whetherGreenGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherJmrh != null">
+        #{whetherJmrh,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherArgRelated != null">
+        #{whetherArgRelated,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherOpenAcct != null">
+        #{whetherOpenAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherPovertyAdd != null">
+        #{whetherPovertyAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null">
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalEconomyType != null">
+        #{nationalEconomyType,jdbcType=VARCHAR},
+      </if>
+      <if test="chainSign != null">
+        #{chainSign,jdbcType=VARCHAR},
+      </if>
+      <if test="mainCustTypeCd != null">
+        #{mainCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgStatus != null">
+        #{orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ifCsy != null">
+        #{ifCsy,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTurn != null">
+        #{loanTurn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cdgit.loan.user.bean.TbCsmCorporationExample" resultType="java.lang.Long">
+    select count(*) from TB_CSM_CORPORATION
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update TB_CSM_CORPORATION
+    <set>
+      <if test="record.partyId != null">
+        PARTY_ID = #{record.partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corpCustomerTypeCd != null">
+        CORP_CUSTOMER_TYPE_CD = #{record.corpCustomerTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.englishName != null">
+        ENGLISH_NAME = #{record.englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economicSectorCode != null">
+        ECONOMIC_SECTOR_CODE = #{record.economicSectorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industrialTypeCd != null">
+        INDUSTRIAL_TYPE_CD = #{record.industrialTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listingCorporation != null">
+        LISTING_CORPORATION = #{record.listingCorporation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerAssets != null">
+        REGISTER_ASSETS = #{record.registerAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="record.registerAssetsCurrencyCd != null">
+        REGISTER_ASSETS_CURRENCY_CD = #{record.registerAssetsCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeesNumber != null">
+        EMPLOYEES_NUMBER = #{record.employeesNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="record.governmentTentNo != null">
+        GOVERNMENT_TENT_NO = #{record.governmentTentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditRelationshipTime != null">
+        CREDIT_RELATIONSHIP_TIME = #{record.creditRelationshipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.registerDate != null">
+        REGISTER_DATE = #{record.registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.legalCertificateNo != null">
+        LEGAL_CERTIFICATE_NO = #{record.legalCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalCertificateEndDate != null">
+        LEGAL_CERTIFICATE_END_DATE = #{record.legalCertificateEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.registrationType != null">
+        REGISTRATION_TYPE = #{record.registrationType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserNum != null">
+        UPDATE_USER_NUM = #{record.updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateOrgNum != null">
+        UPDATE_ORG_NUM = #{record.updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.areaType != null">
+        AREA_TYPE = #{record.areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contryRegionCd != null">
+        CONTRY_REGION_CD = #{record.contryRegionCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalName != null">
+        LEGAL_NAME = #{record.legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalCertType != null">
+        LEGAL_CERT_TYPE = #{record.legalCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registrCd != null">
+        REGISTR_CD = #{record.registrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerEndDate != null">
+        REGISTER_END_DATE = #{record.registerEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.businessScope != null">
+        BUSINESS_SCOPE = #{record.businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgRegisterCd != null">
+        ORG_REGISTER_CD = #{record.orgRegisterCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgRegisterEndDate != null">
+        ORG_REGISTER_END_DATE = #{record.orgRegisterEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.middelCode != null">
+        MIDDEL_CODE = #{record.middelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgCreditCode != null">
+        ORG_CREDIT_CODE = #{record.orgCreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nationalTaxNo != null">
+        NATIONAL_TAX_NO = #{record.nationalTaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industrialTypeBigCd != null">
+        INDUSTRIAL_TYPE_BIG_CD = #{record.industrialTypeBigCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industrialTypeMidCd != null">
+        INDUSTRIAL_TYPE_MID_CD = #{record.industrialTypeMidCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industrialTypeSamllCd != null">
+        INDUSTRIAL_TYPE_SAMLL_CD = #{record.industrialTypeSamllCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterpriseScaleGx != null">
+        ENTERPRISE_SCALE_GX = #{record.enterpriseScaleGx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countBoreEnterScale != null">
+        COUNT_BORE_ENTER_SCALE = #{record.countBoreEnterScale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isGroupCust != null">
+        IS_GROUP_CUST = #{record.isGroupCust,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attachGroupName != null">
+        ATTACH_GROUP_NAME = #{record.attachGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherImpExp != null">
+        WHETHER_IMP_EXP = #{record.whetherImpExp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockholderOfBank != null">
+        STOCKHOLDER_OF_BANK = #{record.stockholderOfBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jointGuarantee != null">
+        JOINT_GUARANTEE = #{record.jointGuarantee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyEnterprise != null">
+        FAMILY_ENTERPRISE = #{record.familyEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherGovernmentFinanceCor != null">
+        WHETHER_GOVERNMENT_FINANCE_COR = #{record.whetherGovernmentFinanceCor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countrysideEnterprise != null">
+        COUNTRYSIDE_ENTERPRISE = #{record.countrysideEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherBlackList != null">
+        WHETHER_BLACK_LIST = #{record.whetherBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.focusCustomer != null">
+        FOCUS_CUSTOMER = #{record.focusCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isRealEstateDev != null">
+        IS_REAL_ESTATE_DEV = #{record.isRealEstateDev,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fundSrc != null">
+        FUND_SRC = #{record.fundSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openFund != null">
+        OPEN_FUND = #{record.openFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isBasebankRelaCust != null">
+        IS_BASEBANK_RELA_CUST = #{record.isBasebankRelaCust,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thirdCustTypeCd != null">
+        THIRD_CUST_TYPE_CD = #{record.thirdCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isThirdCust != null">
+        IS_THIRD_CUST = #{record.isThirdCust,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterpriseCertEndDate != null">
+        ENTERPRISE_CERT_END_DATE = #{record.enterpriseCertEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.enterpriseCertNum != null">
+        ENTERPRISE_CERT_NUM = #{record.enterpriseCertNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unifySocietyCreditNum != null">
+        UNIFY_SOCIETY_CREDIT_NUM = #{record.unifySocietyCreditNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.singleLpCustInd != null">
+        SINGLE_LP_CUST_IND = #{record.singleLpCustInd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stopCorpInd != null">
+        STOP_CORP_IND = #{record.stopCorpInd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalContry != null">
+        LEGAL_CONTRY = #{record.legalContry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankScaleIdentify != null">
+        BANK_SCALE_IDENTIFY = #{record.bankScaleIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPhoneNumber != null">
+        LEGAL_PHONE_NUMBER = #{record.legalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalRegistDate != null">
+        LEGAL_REGIST_DATE = #{record.legalRegistDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.legalContrySign != null">
+        LEGAL_CONTRY_SIGN = #{record.legalContrySign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherTechnic != null">
+        WHETHER_TECHNIC = #{record.whetherTechnic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherGreenGroup != null">
+        WHETHER_GREEN_GROUP = #{record.whetherGreenGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherJmrh != null">
+        WHETHER_JMRH = #{record.whetherJmrh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherArgRelated != null">
+        WHETHER_ARG_RELATED = #{record.whetherArgRelated,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherOpenAcct != null">
+        WHETHER_OPEN_ACCT = #{record.whetherOpenAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherPovertyAdd != null">
+        WHETHER_POVERTY_ADD = #{record.whetherPovertyAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        AREA = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.owner != null">
+        OWNER = #{record.owner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nationalEconomyType != null">
+        NATIONAL_ECONOMY_TYPE = #{record.nationalEconomyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chainSign != null">
+        CHAIN_SIGN = #{record.chainSign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainCustTypeCd != null">
+        MAIN_CUST_TYPE_CD = #{record.mainCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgStatus != null">
+        ORG_STATUS = #{record.orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifCsy != null">
+        IF_CSY = #{record.ifCsy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanTurn != null">
+        LOAN_TURN = #{record.loanTurn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update TB_CSM_CORPORATION
+    set PARTY_ID = #{record.partyId,jdbcType=VARCHAR},
+      CORP_CUSTOMER_TYPE_CD = #{record.corpCustomerTypeCd,jdbcType=VARCHAR},
+      ENGLISH_NAME = #{record.englishName,jdbcType=VARCHAR},
+      ECONOMIC_SECTOR_CODE = #{record.economicSectorCode,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_CD = #{record.industrialTypeCd,jdbcType=VARCHAR},
+      LISTING_CORPORATION = #{record.listingCorporation,jdbcType=VARCHAR},
+      REGISTER_ASSETS = #{record.registerAssets,jdbcType=DECIMAL},
+      REGISTER_ASSETS_CURRENCY_CD = #{record.registerAssetsCurrencyCd,jdbcType=VARCHAR},
+      EMPLOYEES_NUMBER = #{record.employeesNumber,jdbcType=DECIMAL},
+      GOVERNMENT_TENT_NO = #{record.governmentTentNo,jdbcType=VARCHAR},
+      CREDIT_RELATIONSHIP_TIME = #{record.creditRelationshipTime,jdbcType=TIMESTAMP},
+      REGISTER_DATE = #{record.registerDate,jdbcType=TIMESTAMP},
+      LEGAL_CERTIFICATE_NO = #{record.legalCertificateNo,jdbcType=VARCHAR},
+      LEGAL_CERTIFICATE_END_DATE = #{record.legalCertificateEndDate,jdbcType=TIMESTAMP},
+      REGISTRATION_TYPE = #{record.registrationType,jdbcType=VARCHAR},
+      UPDATE_USER_NUM = #{record.updateUserNum,jdbcType=VARCHAR},
+      UPDATE_ORG_NUM = #{record.updateOrgNum,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      AREA_TYPE = #{record.areaType,jdbcType=VARCHAR},
+      CONTRY_REGION_CD = #{record.contryRegionCd,jdbcType=VARCHAR},
+      LEGAL_NAME = #{record.legalName,jdbcType=VARCHAR},
+      LEGAL_CERT_TYPE = #{record.legalCertType,jdbcType=VARCHAR},
+      REGISTR_CD = #{record.registrCd,jdbcType=VARCHAR},
+      REGISTER_END_DATE = #{record.registerEndDate,jdbcType=TIMESTAMP},
+      BUSINESS_SCOPE = #{record.businessScope,jdbcType=VARCHAR},
+      ORG_REGISTER_CD = #{record.orgRegisterCd,jdbcType=VARCHAR},
+      ORG_REGISTER_END_DATE = #{record.orgRegisterEndDate,jdbcType=TIMESTAMP},
+      MIDDEL_CODE = #{record.middelCode,jdbcType=VARCHAR},
+      ORG_CREDIT_CODE = #{record.orgCreditCode,jdbcType=VARCHAR},
+      NATIONAL_TAX_NO = #{record.nationalTaxNo,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_BIG_CD = #{record.industrialTypeBigCd,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_MID_CD = #{record.industrialTypeMidCd,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_SAMLL_CD = #{record.industrialTypeSamllCd,jdbcType=VARCHAR},
+      ENTERPRISE_SCALE_GX = #{record.enterpriseScaleGx,jdbcType=VARCHAR},
+      COUNT_BORE_ENTER_SCALE = #{record.countBoreEnterScale,jdbcType=VARCHAR},
+      IS_GROUP_CUST = #{record.isGroupCust,jdbcType=VARCHAR},
+      ATTACH_GROUP_NAME = #{record.attachGroupName,jdbcType=VARCHAR},
+      WHETHER_IMP_EXP = #{record.whetherImpExp,jdbcType=VARCHAR},
+      STOCKHOLDER_OF_BANK = #{record.stockholderOfBank,jdbcType=VARCHAR},
+      JOINT_GUARANTEE = #{record.jointGuarantee,jdbcType=VARCHAR},
+      FAMILY_ENTERPRISE = #{record.familyEnterprise,jdbcType=VARCHAR},
+      WHETHER_GOVERNMENT_FINANCE_COR = #{record.whetherGovernmentFinanceCor,jdbcType=VARCHAR},
+      COUNTRYSIDE_ENTERPRISE = #{record.countrysideEnterprise,jdbcType=VARCHAR},
+      WHETHER_BLACK_LIST = #{record.whetherBlackList,jdbcType=VARCHAR},
+      FOCUS_CUSTOMER = #{record.focusCustomer,jdbcType=VARCHAR},
+      IS_REAL_ESTATE_DEV = #{record.isRealEstateDev,jdbcType=VARCHAR},
+      CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      FUND_SRC = #{record.fundSrc,jdbcType=VARCHAR},
+      OPEN_FUND = #{record.openFund,jdbcType=DECIMAL},
+      IS_BASEBANK_RELA_CUST = #{record.isBasebankRelaCust,jdbcType=VARCHAR},
+      THIRD_CUST_TYPE_CD = #{record.thirdCustTypeCd,jdbcType=VARCHAR},
+      IS_THIRD_CUST = #{record.isThirdCust,jdbcType=VARCHAR},
+      ENTERPRISE_CERT_END_DATE = #{record.enterpriseCertEndDate,jdbcType=TIMESTAMP},
+      ENTERPRISE_CERT_NUM = #{record.enterpriseCertNum,jdbcType=VARCHAR},
+      UNIFY_SOCIETY_CREDIT_NUM = #{record.unifySocietyCreditNum,jdbcType=VARCHAR},
+      SINGLE_LP_CUST_IND = #{record.singleLpCustInd,jdbcType=VARCHAR},
+      STOP_CORP_IND = #{record.stopCorpInd,jdbcType=VARCHAR},
+      LEGAL_CONTRY = #{record.legalContry,jdbcType=VARCHAR},
+      BANK_SCALE_IDENTIFY = #{record.bankScaleIdentify,jdbcType=VARCHAR},
+      LEGAL_PHONE_NUMBER = #{record.legalPhoneNumber,jdbcType=VARCHAR},
+      LEGAL_REGIST_DATE = #{record.legalRegistDate,jdbcType=TIMESTAMP},
+      LEGAL_CONTRY_SIGN = #{record.legalContrySign,jdbcType=VARCHAR},
+      WHETHER_TECHNIC = #{record.whetherTechnic,jdbcType=VARCHAR},
+      WHETHER_GREEN_GROUP = #{record.whetherGreenGroup,jdbcType=VARCHAR},
+      WHETHER_JMRH = #{record.whetherJmrh,jdbcType=VARCHAR},
+      WHETHER_ARG_RELATED = #{record.whetherArgRelated,jdbcType=VARCHAR},
+      WHETHER_OPEN_ACCT = #{record.whetherOpenAcct,jdbcType=VARCHAR},
+      WHETHER_POVERTY_ADD = #{record.whetherPovertyAdd,jdbcType=VARCHAR},
+      AREA = #{record.area,jdbcType=VARCHAR},
+      OWNER = #{record.owner,jdbcType=VARCHAR},
+      NATIONAL_ECONOMY_TYPE = #{record.nationalEconomyType,jdbcType=VARCHAR},
+      CHAIN_SIGN = #{record.chainSign,jdbcType=VARCHAR},
+      MAIN_CUST_TYPE_CD = #{record.mainCustTypeCd,jdbcType=VARCHAR},
+      ORG_STATUS = #{record.orgStatus,jdbcType=VARCHAR},
+      IF_CSY = #{record.ifCsy,jdbcType=VARCHAR},
+      LOAN_TURN = #{record.loanTurn,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.user.bean.TbCsmCorporation">
+    update TB_CSM_CORPORATION
+    <set>
+      <if test="corpCustomerTypeCd != null">
+        CORP_CUSTOMER_TYPE_CD = #{corpCustomerTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null">
+        ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="economicSectorCode != null">
+        ECONOMIC_SECTOR_CODE = #{economicSectorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeCd != null">
+        INDUSTRIAL_TYPE_CD = #{industrialTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="listingCorporation != null">
+        LISTING_CORPORATION = #{listingCorporation,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAssets != null">
+        REGISTER_ASSETS = #{registerAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="registerAssetsCurrencyCd != null">
+        REGISTER_ASSETS_CURRENCY_CD = #{registerAssetsCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="employeesNumber != null">
+        EMPLOYEES_NUMBER = #{employeesNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="governmentTentNo != null">
+        GOVERNMENT_TENT_NO = #{governmentTentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRelationshipTime != null">
+        CREDIT_RELATIONSHIP_TIME = #{creditRelationshipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerDate != null">
+        REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="legalCertificateNo != null">
+        LEGAL_CERTIFICATE_NO = #{legalCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertificateEndDate != null">
+        LEGAL_CERTIFICATE_END_DATE = #{legalCertificateEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationType != null">
+        REGISTRATION_TYPE = #{registrationType,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaType != null">
+        AREA_TYPE = #{areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="contryRegionCd != null">
+        CONTRY_REGION_CD = #{contryRegionCd,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        LEGAL_NAME = #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertType != null">
+        LEGAL_CERT_TYPE = #{legalCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="registrCd != null">
+        REGISTR_CD = #{registrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerEndDate != null">
+        REGISTER_END_DATE = #{registerEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessScope != null">
+        BUSINESS_SCOPE = #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterCd != null">
+        ORG_REGISTER_CD = #{orgRegisterCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterEndDate != null">
+        ORG_REGISTER_END_DATE = #{orgRegisterEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="middelCode != null">
+        MIDDEL_CODE = #{middelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCreditCode != null">
+        ORG_CREDIT_CODE = #{orgCreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalTaxNo != null">
+        NATIONAL_TAX_NO = #{nationalTaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeBigCd != null">
+        INDUSTRIAL_TYPE_BIG_CD = #{industrialTypeBigCd,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeMidCd != null">
+        INDUSTRIAL_TYPE_MID_CD = #{industrialTypeMidCd,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeSamllCd != null">
+        INDUSTRIAL_TYPE_SAMLL_CD = #{industrialTypeSamllCd,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseScaleGx != null">
+        ENTERPRISE_SCALE_GX = #{enterpriseScaleGx,jdbcType=VARCHAR},
+      </if>
+      <if test="countBoreEnterScale != null">
+        COUNT_BORE_ENTER_SCALE = #{countBoreEnterScale,jdbcType=VARCHAR},
+      </if>
+      <if test="isGroupCust != null">
+        IS_GROUP_CUST = #{isGroupCust,jdbcType=VARCHAR},
+      </if>
+      <if test="attachGroupName != null">
+        ATTACH_GROUP_NAME = #{attachGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherImpExp != null">
+        WHETHER_IMP_EXP = #{whetherImpExp,jdbcType=VARCHAR},
+      </if>
+      <if test="stockholderOfBank != null">
+        STOCKHOLDER_OF_BANK = #{stockholderOfBank,jdbcType=VARCHAR},
+      </if>
+      <if test="jointGuarantee != null">
+        JOINT_GUARANTEE = #{jointGuarantee,jdbcType=VARCHAR},
+      </if>
+      <if test="familyEnterprise != null">
+        FAMILY_ENTERPRISE = #{familyEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherGovernmentFinanceCor != null">
+        WHETHER_GOVERNMENT_FINANCE_COR = #{whetherGovernmentFinanceCor,jdbcType=VARCHAR},
+      </if>
+      <if test="countrysideEnterprise != null">
+        COUNTRYSIDE_ENTERPRISE = #{countrysideEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherBlackList != null">
+        WHETHER_BLACK_LIST = #{whetherBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="focusCustomer != null">
+        FOCUS_CUSTOMER = #{focusCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="isRealEstateDev != null">
+        IS_REAL_ESTATE_DEV = #{isRealEstateDev,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fundSrc != null">
+        FUND_SRC = #{fundSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="openFund != null">
+        OPEN_FUND = #{openFund,jdbcType=DECIMAL},
+      </if>
+      <if test="isBasebankRelaCust != null">
+        IS_BASEBANK_RELA_CUST = #{isBasebankRelaCust,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCustTypeCd != null">
+        THIRD_CUST_TYPE_CD = #{thirdCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="isThirdCust != null">
+        IS_THIRD_CUST = #{isThirdCust,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseCertEndDate != null">
+        ENTERPRISE_CERT_END_DATE = #{enterpriseCertEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterpriseCertNum != null">
+        ENTERPRISE_CERT_NUM = #{enterpriseCertNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unifySocietyCreditNum != null">
+        UNIFY_SOCIETY_CREDIT_NUM = #{unifySocietyCreditNum,jdbcType=VARCHAR},
+      </if>
+      <if test="singleLpCustInd != null">
+        SINGLE_LP_CUST_IND = #{singleLpCustInd,jdbcType=VARCHAR},
+      </if>
+      <if test="stopCorpInd != null">
+        STOP_CORP_IND = #{stopCorpInd,jdbcType=VARCHAR},
+      </if>
+      <if test="legalContry != null">
+        LEGAL_CONTRY = #{legalContry,jdbcType=VARCHAR},
+      </if>
+      <if test="bankScaleIdentify != null">
+        BANK_SCALE_IDENTIFY = #{bankScaleIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhoneNumber != null">
+        LEGAL_PHONE_NUMBER = #{legalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRegistDate != null">
+        LEGAL_REGIST_DATE = #{legalRegistDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="legalContrySign != null">
+        LEGAL_CONTRY_SIGN = #{legalContrySign,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherTechnic != null">
+        WHETHER_TECHNIC = #{whetherTechnic,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherGreenGroup != null">
+        WHETHER_GREEN_GROUP = #{whetherGreenGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherJmrh != null">
+        WHETHER_JMRH = #{whetherJmrh,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherArgRelated != null">
+        WHETHER_ARG_RELATED = #{whetherArgRelated,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherOpenAcct != null">
+        WHETHER_OPEN_ACCT = #{whetherOpenAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherPovertyAdd != null">
+        WHETHER_POVERTY_ADD = #{whetherPovertyAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        AREA = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null">
+        OWNER = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalEconomyType != null">
+        NATIONAL_ECONOMY_TYPE = #{nationalEconomyType,jdbcType=VARCHAR},
+      </if>
+      <if test="chainSign != null">
+        CHAIN_SIGN = #{chainSign,jdbcType=VARCHAR},
+      </if>
+      <if test="mainCustTypeCd != null">
+        MAIN_CUST_TYPE_CD = #{mainCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgStatus != null">
+        ORG_STATUS = #{orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ifCsy != null">
+        IF_CSY = #{ifCsy,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTurn != null">
+        LOAN_TURN = #{loanTurn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.user.bean.TbCsmCorporation">
+    update TB_CSM_CORPORATION
+    set CORP_CUSTOMER_TYPE_CD = #{corpCustomerTypeCd,jdbcType=VARCHAR},
+      ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+      ECONOMIC_SECTOR_CODE = #{economicSectorCode,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_CD = #{industrialTypeCd,jdbcType=VARCHAR},
+      LISTING_CORPORATION = #{listingCorporation,jdbcType=VARCHAR},
+      REGISTER_ASSETS = #{registerAssets,jdbcType=DECIMAL},
+      REGISTER_ASSETS_CURRENCY_CD = #{registerAssetsCurrencyCd,jdbcType=VARCHAR},
+      EMPLOYEES_NUMBER = #{employeesNumber,jdbcType=DECIMAL},
+      GOVERNMENT_TENT_NO = #{governmentTentNo,jdbcType=VARCHAR},
+      CREDIT_RELATIONSHIP_TIME = #{creditRelationshipTime,jdbcType=TIMESTAMP},
+      REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      LEGAL_CERTIFICATE_NO = #{legalCertificateNo,jdbcType=VARCHAR},
+      LEGAL_CERTIFICATE_END_DATE = #{legalCertificateEndDate,jdbcType=TIMESTAMP},
+      REGISTRATION_TYPE = #{registrationType,jdbcType=VARCHAR},
+      UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AREA_TYPE = #{areaType,jdbcType=VARCHAR},
+      CONTRY_REGION_CD = #{contryRegionCd,jdbcType=VARCHAR},
+      LEGAL_NAME = #{legalName,jdbcType=VARCHAR},
+      LEGAL_CERT_TYPE = #{legalCertType,jdbcType=VARCHAR},
+      REGISTR_CD = #{registrCd,jdbcType=VARCHAR},
+      REGISTER_END_DATE = #{registerEndDate,jdbcType=TIMESTAMP},
+      BUSINESS_SCOPE = #{businessScope,jdbcType=VARCHAR},
+      ORG_REGISTER_CD = #{orgRegisterCd,jdbcType=VARCHAR},
+      ORG_REGISTER_END_DATE = #{orgRegisterEndDate,jdbcType=TIMESTAMP},
+      MIDDEL_CODE = #{middelCode,jdbcType=VARCHAR},
+      ORG_CREDIT_CODE = #{orgCreditCode,jdbcType=VARCHAR},
+      NATIONAL_TAX_NO = #{nationalTaxNo,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_BIG_CD = #{industrialTypeBigCd,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_MID_CD = #{industrialTypeMidCd,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_SAMLL_CD = #{industrialTypeSamllCd,jdbcType=VARCHAR},
+      ENTERPRISE_SCALE_GX = #{enterpriseScaleGx,jdbcType=VARCHAR},
+      COUNT_BORE_ENTER_SCALE = #{countBoreEnterScale,jdbcType=VARCHAR},
+      IS_GROUP_CUST = #{isGroupCust,jdbcType=VARCHAR},
+      ATTACH_GROUP_NAME = #{attachGroupName,jdbcType=VARCHAR},
+      WHETHER_IMP_EXP = #{whetherImpExp,jdbcType=VARCHAR},
+      STOCKHOLDER_OF_BANK = #{stockholderOfBank,jdbcType=VARCHAR},
+      JOINT_GUARANTEE = #{jointGuarantee,jdbcType=VARCHAR},
+      FAMILY_ENTERPRISE = #{familyEnterprise,jdbcType=VARCHAR},
+      WHETHER_GOVERNMENT_FINANCE_COR = #{whetherGovernmentFinanceCor,jdbcType=VARCHAR},
+      COUNTRYSIDE_ENTERPRISE = #{countrysideEnterprise,jdbcType=VARCHAR},
+      WHETHER_BLACK_LIST = #{whetherBlackList,jdbcType=VARCHAR},
+      FOCUS_CUSTOMER = #{focusCustomer,jdbcType=VARCHAR},
+      IS_REAL_ESTATE_DEV = #{isRealEstateDev,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      FUND_SRC = #{fundSrc,jdbcType=VARCHAR},
+      OPEN_FUND = #{openFund,jdbcType=DECIMAL},
+      IS_BASEBANK_RELA_CUST = #{isBasebankRelaCust,jdbcType=VARCHAR},
+      THIRD_CUST_TYPE_CD = #{thirdCustTypeCd,jdbcType=VARCHAR},
+      IS_THIRD_CUST = #{isThirdCust,jdbcType=VARCHAR},
+      ENTERPRISE_CERT_END_DATE = #{enterpriseCertEndDate,jdbcType=TIMESTAMP},
+      ENTERPRISE_CERT_NUM = #{enterpriseCertNum,jdbcType=VARCHAR},
+      UNIFY_SOCIETY_CREDIT_NUM = #{unifySocietyCreditNum,jdbcType=VARCHAR},
+      SINGLE_LP_CUST_IND = #{singleLpCustInd,jdbcType=VARCHAR},
+      STOP_CORP_IND = #{stopCorpInd,jdbcType=VARCHAR},
+      LEGAL_CONTRY = #{legalContry,jdbcType=VARCHAR},
+      BANK_SCALE_IDENTIFY = #{bankScaleIdentify,jdbcType=VARCHAR},
+      LEGAL_PHONE_NUMBER = #{legalPhoneNumber,jdbcType=VARCHAR},
+      LEGAL_REGIST_DATE = #{legalRegistDate,jdbcType=TIMESTAMP},
+      LEGAL_CONTRY_SIGN = #{legalContrySign,jdbcType=VARCHAR},
+      WHETHER_TECHNIC = #{whetherTechnic,jdbcType=VARCHAR},
+      WHETHER_GREEN_GROUP = #{whetherGreenGroup,jdbcType=VARCHAR},
+      WHETHER_JMRH = #{whetherJmrh,jdbcType=VARCHAR},
+      WHETHER_ARG_RELATED = #{whetherArgRelated,jdbcType=VARCHAR},
+      WHETHER_OPEN_ACCT = #{whetherOpenAcct,jdbcType=VARCHAR},
+      WHETHER_POVERTY_ADD = #{whetherPovertyAdd,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      OWNER = #{owner,jdbcType=VARCHAR},
+      NATIONAL_ECONOMY_TYPE = #{nationalEconomyType,jdbcType=VARCHAR},
+      CHAIN_SIGN = #{chainSign,jdbcType=VARCHAR},
+      MAIN_CUST_TYPE_CD = #{mainCustTypeCd,jdbcType=VARCHAR},
+      ORG_STATUS = #{orgStatus,jdbcType=VARCHAR},
+      IF_CSY = #{ifCsy,jdbcType=VARCHAR},
+      LOAN_TURN = #{loanTurn,jdbcType=VARCHAR}
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.TbCsmCorporation">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="ENGLISH_NAME" jdbcType="VARCHAR" property="englishName" />
+    <result column="ECONOMIC_SECTOR_CODE" jdbcType="VARCHAR" property="economicSectorCode" />
+    <result column="INDUSTRIAL_TYPE_CD" jdbcType="VARCHAR" property="industrialTypeCd" />
+    <result column="LISTING_CORPORATION" jdbcType="VARCHAR" property="listingCorporation" />
+    <result column="REGISTER_ASSETS" jdbcType="DECIMAL" property="registerAssets" />
+    <result column="REGISTER_ASSETS_CURRENCY_CD" jdbcType="VARCHAR" property="registerAssetsCurrencyCd" />
+    <result column="EMPLOYEES_NUMBER" jdbcType="DECIMAL" property="employeesNumber" />
+    <result column="GOVERNMENT_TENT_NO" jdbcType="VARCHAR" property="governmentTentNo" />
+    <result column="CREDIT_RELATIONSHIP_TIME" jdbcType="TIMESTAMP" property="creditRelationshipTime" />
+    <result column="REGISTER_DATE" jdbcType="TIMESTAMP" property="registerDate" />
+    <result column="LEGAL_CERTIFICATE_NO" jdbcType="VARCHAR" property="legalCertificateNo" />
+    <result column="LEGAL_CERTIFICATE_END_DATE" jdbcType="TIMESTAMP" property="legalCertificateEndDate" />
+    <result column="REGISTRATION_TYPE" jdbcType="VARCHAR" property="registrationType" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AREA_TYPE" jdbcType="VARCHAR" property="areaType" />
+    <result column="CONTRY_REGION_CD" jdbcType="VARCHAR" property="contryRegionCd" />
+    <result column="LEGAL_NAME" jdbcType="VARCHAR" property="legalName" />
+    <result column="LEGAL_CERT_TYPE" jdbcType="VARCHAR" property="legalCertType" />
+    <result column="REGISTR_CD" jdbcType="VARCHAR" property="registrCd" />
+    <result column="REGISTER_END_DATE" jdbcType="TIMESTAMP" property="registerEndDate" />
+    <result column="BUSINESS_SCOPE" jdbcType="VARCHAR" property="businessScope" />
+    <result column="ORG_REGISTER_CD" jdbcType="VARCHAR" property="orgRegisterCd" />
+    <result column="ORG_REGISTER_END_DATE" jdbcType="TIMESTAMP" property="orgRegisterEndDate" />
+    <result column="MIDDEL_CODE" jdbcType="VARCHAR" property="middelCode" />
+    <result column="ORG_CREDIT_CODE" jdbcType="VARCHAR" property="orgCreditCode" />
+    <result column="NATIONAL_TAX_NO" jdbcType="VARCHAR" property="nationalTaxNo" />
+    <result column="INDUSTRIAL_TYPE_BIG_CD" jdbcType="VARCHAR" property="industrialTypeBigCd" />
+    <result column="INDUSTRIAL_TYPE_MID_CD" jdbcType="VARCHAR" property="industrialTypeMidCd" />
+    <result column="INDUSTRIAL_TYPE_SAMLL_CD" jdbcType="VARCHAR" property="industrialTypeSamllCd" />
+    <result column="ENTERPRISE_SCALE_GX" jdbcType="VARCHAR" property="enterpriseScaleGx" />
+    <result column="COUNT_BORE_ENTER_SCALE" jdbcType="VARCHAR" property="countBoreEnterScale" />
+    <result column="IS_GROUP_CUST" jdbcType="VARCHAR" property="isGroupCust" />
+    <result column="ATTACH_GROUP_NAME" jdbcType="VARCHAR" property="attachGroupName" />
+    <result column="WHETHER_IMP_EXP" jdbcType="VARCHAR" property="whetherImpExp" />
+    <result column="STOCKHOLDER_OF_BANK" jdbcType="VARCHAR" property="stockholderOfBank" />
+    <result column="JOINT_GUARANTEE" jdbcType="VARCHAR" property="jointGuarantee" />
+    <result column="FAMILY_ENTERPRISE" jdbcType="VARCHAR" property="familyEnterprise" />
+    <result column="WHETHER_GOVERNMENT_FINANCE_COR" jdbcType="VARCHAR" property="whetherGovernmentFinanceCor" />
+    <result column="COUNTRYSIDE_ENTERPRISE" jdbcType="VARCHAR" property="countrysideEnterprise" />
+    <result column="WHETHER_BLACK_LIST" jdbcType="VARCHAR" property="whetherBlackList" />
+    <result column="FOCUS_CUSTOMER" jdbcType="VARCHAR" property="focusCustomer" />
+    <result column="IS_REAL_ESTATE_DEV" jdbcType="VARCHAR" property="isRealEstateDev" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="FUND_SRC" jdbcType="VARCHAR" property="fundSrc" />
+    <result column="OPEN_FUND" jdbcType="DECIMAL" property="openFund" />
+    <result column="IS_BASEBANK_RELA_CUST" jdbcType="VARCHAR" property="isBasebankRelaCust" />
+    <result column="THIRD_CUST_TYPE_CD" jdbcType="VARCHAR" property="thirdCustTypeCd" />
+    <result column="IS_THIRD_CUST" jdbcType="VARCHAR" property="isThirdCust" />
+    <result column="ENTERPRISE_CERT_END_DATE" jdbcType="TIMESTAMP" property="enterpriseCertEndDate" />
+    <result column="ENTERPRISE_CERT_NUM" jdbcType="VARCHAR" property="enterpriseCertNum" />
+    <result column="UNIFY_SOCIETY_CREDIT_NUM" jdbcType="VARCHAR" property="unifySocietyCreditNum" />
+    <result column="SINGLE_LP_CUST_IND" jdbcType="VARCHAR" property="singleLpCustInd" />
+    <result column="STOP_CORP_IND" jdbcType="VARCHAR" property="stopCorpInd" />
+    <result column="LEGAL_CONTRY" jdbcType="VARCHAR" property="legalContry" />
+    <result column="BANK_SCALE_IDENTIFY" jdbcType="VARCHAR" property="bankScaleIdentify" />
+    <result column="LEGAL_PHONE_NUMBER" jdbcType="VARCHAR" property="legalPhoneNumber" />
+    <result column="LEGAL_REGIST_DATE" jdbcType="TIMESTAMP" property="legalRegistDate" />
+    <result column="LEGAL_CONTRY_SIGN" jdbcType="VARCHAR" property="legalContrySign" />
+    <result column="WHETHER_TECHNIC" jdbcType="VARCHAR" property="whetherTechnic" />
+    <result column="WHETHER_GREEN_GROUP" jdbcType="VARCHAR" property="whetherGreenGroup" />
+    <result column="WHETHER_JMRH" jdbcType="VARCHAR" property="whetherJmrh" />
+    <result column="WHETHER_ARG_RELATED" jdbcType="VARCHAR" property="whetherArgRelated" />
+    <result column="WHETHER_OPEN_ACCT" jdbcType="VARCHAR" property="whetherOpenAcct" />
+    <result column="WHETHER_POVERTY_ADD" jdbcType="VARCHAR" property="whetherPovertyAdd" />
+    <result column="AREA" jdbcType="VARCHAR" property="area" />
+    <result column="OWNER" jdbcType="VARCHAR" property="owner" />
+    <result column="NATIONAL_ECONOMY_TYPE" jdbcType="VARCHAR" property="nationalEconomyType" />
+    <result column="CHAIN_SIGN" jdbcType="VARCHAR" property="chainSign" />
+    <result column="MAIN_CUST_TYPE_CD" jdbcType="VARCHAR" property="mainCustTypeCd" />
+    <result column="ORG_STATUS" jdbcType="VARCHAR" property="orgStatus" />
+    <result column="IF_CSY" jdbcType="VARCHAR" property="ifCsy" />
+    <result column="LOAN_TURN" jdbcType="VARCHAR" property="loanTurn" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PARTY_ID, CORP_CUSTOMER_TYPE_CD, ENGLISH_NAME, ECONOMIC_SECTOR_CODE, INDUSTRIAL_TYPE_CD, 
+    LISTING_CORPORATION, REGISTER_ASSETS, REGISTER_ASSETS_CURRENCY_CD, EMPLOYEES_NUMBER, 
+    GOVERNMENT_TENT_NO, CREDIT_RELATIONSHIP_TIME, REGISTER_DATE, LEGAL_CERTIFICATE_NO, 
+    LEGAL_CERTIFICATE_END_DATE, REGISTRATION_TYPE, UPDATE_USER_NUM, UPDATE_ORG_NUM, UPDATE_TIME, 
+    AREA_TYPE, CONTRY_REGION_CD, LEGAL_NAME, LEGAL_CERT_TYPE, REGISTR_CD, REGISTER_END_DATE, 
+    BUSINESS_SCOPE, ORG_REGISTER_CD, ORG_REGISTER_END_DATE, MIDDEL_CODE, ORG_CREDIT_CODE, 
+    NATIONAL_TAX_NO, INDUSTRIAL_TYPE_BIG_CD, INDUSTRIAL_TYPE_MID_CD, INDUSTRIAL_TYPE_SAMLL_CD, 
+    ENTERPRISE_SCALE_GX, COUNT_BORE_ENTER_SCALE, IS_GROUP_CUST, ATTACH_GROUP_NAME, WHETHER_IMP_EXP, 
+    STOCKHOLDER_OF_BANK, JOINT_GUARANTEE, FAMILY_ENTERPRISE, WHETHER_GOVERNMENT_FINANCE_COR, 
+    COUNTRYSIDE_ENTERPRISE, WHETHER_BLACK_LIST, FOCUS_CUSTOMER, IS_REAL_ESTATE_DEV, CREATETIME, 
+    FUND_SRC, OPEN_FUND, IS_BASEBANK_RELA_CUST, THIRD_CUST_TYPE_CD, IS_THIRD_CUST, ENTERPRISE_CERT_END_DATE, 
+    ENTERPRISE_CERT_NUM, UNIFY_SOCIETY_CREDIT_NUM, SINGLE_LP_CUST_IND, STOP_CORP_IND, 
+    LEGAL_CONTRY, BANK_SCALE_IDENTIFY, LEGAL_PHONE_NUMBER, LEGAL_REGIST_DATE, LEGAL_CONTRY_SIGN, 
+    WHETHER_TECHNIC, WHETHER_GREEN_GROUP, WHETHER_JMRH, WHETHER_ARG_RELATED, WHETHER_OPEN_ACCT, 
+    WHETHER_POVERTY_ADD, AREA, OWNER, NATIONAL_ECONOMY_TYPE, CHAIN_SIGN, MAIN_CUST_TYPE_CD, 
+    ORG_STATUS, IF_CSY, LOAN_TURN
+  </sql>
+  <select id="selectByExample" parameterType="com.cdgit.loan.user.bean.TbCsmCorporationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TB_CSM_CORPORATION
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_CORPORATION
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_CORPORATION
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cdgit.loan.user.bean.TbCsmCorporationExample">
+    delete from TB_CSM_CORPORATION
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.user.bean.TbCsmCorporation">
+    <selectKey keyProperty="partyId" order="AFTER" resultType="java.lang.String">
+      oracle
+    </selectKey>
+    insert into TB_CSM_CORPORATION (CORP_CUSTOMER_TYPE_CD, ENGLISH_NAME, 
+      ECONOMIC_SECTOR_CODE, INDUSTRIAL_TYPE_CD, LISTING_CORPORATION, 
+      REGISTER_ASSETS, REGISTER_ASSETS_CURRENCY_CD, 
+      EMPLOYEES_NUMBER, GOVERNMENT_TENT_NO, CREDIT_RELATIONSHIP_TIME, 
+      REGISTER_DATE, LEGAL_CERTIFICATE_NO, LEGAL_CERTIFICATE_END_DATE, 
+      REGISTRATION_TYPE, UPDATE_USER_NUM, UPDATE_ORG_NUM, 
+      UPDATE_TIME, AREA_TYPE, CONTRY_REGION_CD, 
+      LEGAL_NAME, LEGAL_CERT_TYPE, REGISTR_CD, 
+      REGISTER_END_DATE, BUSINESS_SCOPE, ORG_REGISTER_CD, 
+      ORG_REGISTER_END_DATE, MIDDEL_CODE, ORG_CREDIT_CODE, 
+      NATIONAL_TAX_NO, INDUSTRIAL_TYPE_BIG_CD, INDUSTRIAL_TYPE_MID_CD, 
+      INDUSTRIAL_TYPE_SAMLL_CD, ENTERPRISE_SCALE_GX, 
+      COUNT_BORE_ENTER_SCALE, IS_GROUP_CUST, ATTACH_GROUP_NAME, 
+      WHETHER_IMP_EXP, STOCKHOLDER_OF_BANK, JOINT_GUARANTEE, 
+      FAMILY_ENTERPRISE, WHETHER_GOVERNMENT_FINANCE_COR, 
+      COUNTRYSIDE_ENTERPRISE, WHETHER_BLACK_LIST, 
+      FOCUS_CUSTOMER, IS_REAL_ESTATE_DEV, CREATETIME, 
+      FUND_SRC, OPEN_FUND, IS_BASEBANK_RELA_CUST, 
+      THIRD_CUST_TYPE_CD, IS_THIRD_CUST, ENTERPRISE_CERT_END_DATE, 
+      ENTERPRISE_CERT_NUM, UNIFY_SOCIETY_CREDIT_NUM, 
+      SINGLE_LP_CUST_IND, STOP_CORP_IND, LEGAL_CONTRY, 
+      BANK_SCALE_IDENTIFY, LEGAL_PHONE_NUMBER, LEGAL_REGIST_DATE, 
+      LEGAL_CONTRY_SIGN, WHETHER_TECHNIC, WHETHER_GREEN_GROUP, 
+      WHETHER_JMRH, WHETHER_ARG_RELATED, WHETHER_OPEN_ACCT, 
+      WHETHER_POVERTY_ADD, AREA, OWNER, 
+      NATIONAL_ECONOMY_TYPE, CHAIN_SIGN, MAIN_CUST_TYPE_CD, 
+      ORG_STATUS, IF_CSY, LOAN_TURN
+      )
+    values (#{corpCustomerTypeCd,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR}, 
+      #{economicSectorCode,jdbcType=VARCHAR}, #{industrialTypeCd,jdbcType=VARCHAR}, #{listingCorporation,jdbcType=VARCHAR}, 
+      #{registerAssets,jdbcType=DECIMAL}, #{registerAssetsCurrencyCd,jdbcType=VARCHAR}, 
+      #{employeesNumber,jdbcType=DECIMAL}, #{governmentTentNo,jdbcType=VARCHAR}, #{creditRelationshipTime,jdbcType=TIMESTAMP}, 
+      #{registerDate,jdbcType=TIMESTAMP}, #{legalCertificateNo,jdbcType=VARCHAR}, #{legalCertificateEndDate,jdbcType=TIMESTAMP}, 
+      #{registrationType,jdbcType=VARCHAR}, #{updateUserNum,jdbcType=VARCHAR}, #{updateOrgNum,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{areaType,jdbcType=VARCHAR}, #{contryRegionCd,jdbcType=VARCHAR}, 
+      #{legalName,jdbcType=VARCHAR}, #{legalCertType,jdbcType=VARCHAR}, #{registrCd,jdbcType=VARCHAR}, 
+      #{registerEndDate,jdbcType=TIMESTAMP}, #{businessScope,jdbcType=VARCHAR}, #{orgRegisterCd,jdbcType=VARCHAR}, 
+      #{orgRegisterEndDate,jdbcType=TIMESTAMP}, #{middelCode,jdbcType=VARCHAR}, #{orgCreditCode,jdbcType=VARCHAR}, 
+      #{nationalTaxNo,jdbcType=VARCHAR}, #{industrialTypeBigCd,jdbcType=VARCHAR}, #{industrialTypeMidCd,jdbcType=VARCHAR}, 
+      #{industrialTypeSamllCd,jdbcType=VARCHAR}, #{enterpriseScaleGx,jdbcType=VARCHAR}, 
+      #{countBoreEnterScale,jdbcType=VARCHAR}, #{isGroupCust,jdbcType=VARCHAR}, #{attachGroupName,jdbcType=VARCHAR}, 
+      #{whetherImpExp,jdbcType=VARCHAR}, #{stockholderOfBank,jdbcType=VARCHAR}, #{jointGuarantee,jdbcType=VARCHAR}, 
+      #{familyEnterprise,jdbcType=VARCHAR}, #{whetherGovernmentFinanceCor,jdbcType=VARCHAR}, 
+      #{countrysideEnterprise,jdbcType=VARCHAR}, #{whetherBlackList,jdbcType=VARCHAR}, 
+      #{focusCustomer,jdbcType=VARCHAR}, #{isRealEstateDev,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{fundSrc,jdbcType=VARCHAR}, #{openFund,jdbcType=DECIMAL}, #{isBasebankRelaCust,jdbcType=VARCHAR}, 
+      #{thirdCustTypeCd,jdbcType=VARCHAR}, #{isThirdCust,jdbcType=VARCHAR}, #{enterpriseCertEndDate,jdbcType=TIMESTAMP}, 
+      #{enterpriseCertNum,jdbcType=VARCHAR}, #{unifySocietyCreditNum,jdbcType=VARCHAR}, 
+      #{singleLpCustInd,jdbcType=VARCHAR}, #{stopCorpInd,jdbcType=VARCHAR}, #{legalContry,jdbcType=VARCHAR}, 
+      #{bankScaleIdentify,jdbcType=VARCHAR}, #{legalPhoneNumber,jdbcType=VARCHAR}, #{legalRegistDate,jdbcType=TIMESTAMP}, 
+      #{legalContrySign,jdbcType=VARCHAR}, #{whetherTechnic,jdbcType=VARCHAR}, #{whetherGreenGroup,jdbcType=VARCHAR}, 
+      #{whetherJmrh,jdbcType=VARCHAR}, #{whetherArgRelated,jdbcType=VARCHAR}, #{whetherOpenAcct,jdbcType=VARCHAR}, 
+      #{whetherPovertyAdd,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, 
+      #{nationalEconomyType,jdbcType=VARCHAR}, #{chainSign,jdbcType=VARCHAR}, #{mainCustTypeCd,jdbcType=VARCHAR}, 
+      #{orgStatus,jdbcType=VARCHAR}, #{ifCsy,jdbcType=VARCHAR}, #{loanTurn,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.user.bean.TbCsmCorporation">
+    <selectKey keyProperty="partyId" order="AFTER" resultType="java.lang.String">
+      oracle
+    </selectKey>
+    insert into TB_CSM_CORPORATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="corpCustomerTypeCd != null">
+        CORP_CUSTOMER_TYPE_CD,
+      </if>
+      <if test="englishName != null">
+        ENGLISH_NAME,
+      </if>
+      <if test="economicSectorCode != null">
+        ECONOMIC_SECTOR_CODE,
+      </if>
+      <if test="industrialTypeCd != null">
+        INDUSTRIAL_TYPE_CD,
+      </if>
+      <if test="listingCorporation != null">
+        LISTING_CORPORATION,
+      </if>
+      <if test="registerAssets != null">
+        REGISTER_ASSETS,
+      </if>
+      <if test="registerAssetsCurrencyCd != null">
+        REGISTER_ASSETS_CURRENCY_CD,
+      </if>
+      <if test="employeesNumber != null">
+        EMPLOYEES_NUMBER,
+      </if>
+      <if test="governmentTentNo != null">
+        GOVERNMENT_TENT_NO,
+      </if>
+      <if test="creditRelationshipTime != null">
+        CREDIT_RELATIONSHIP_TIME,
+      </if>
+      <if test="registerDate != null">
+        REGISTER_DATE,
+      </if>
+      <if test="legalCertificateNo != null">
+        LEGAL_CERTIFICATE_NO,
+      </if>
+      <if test="legalCertificateEndDate != null">
+        LEGAL_CERTIFICATE_END_DATE,
+      </if>
+      <if test="registrationType != null">
+        REGISTRATION_TYPE,
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM,
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="areaType != null">
+        AREA_TYPE,
+      </if>
+      <if test="contryRegionCd != null">
+        CONTRY_REGION_CD,
+      </if>
+      <if test="legalName != null">
+        LEGAL_NAME,
+      </if>
+      <if test="legalCertType != null">
+        LEGAL_CERT_TYPE,
+      </if>
+      <if test="registrCd != null">
+        REGISTR_CD,
+      </if>
+      <if test="registerEndDate != null">
+        REGISTER_END_DATE,
+      </if>
+      <if test="businessScope != null">
+        BUSINESS_SCOPE,
+      </if>
+      <if test="orgRegisterCd != null">
+        ORG_REGISTER_CD,
+      </if>
+      <if test="orgRegisterEndDate != null">
+        ORG_REGISTER_END_DATE,
+      </if>
+      <if test="middelCode != null">
+        MIDDEL_CODE,
+      </if>
+      <if test="orgCreditCode != null">
+        ORG_CREDIT_CODE,
+      </if>
+      <if test="nationalTaxNo != null">
+        NATIONAL_TAX_NO,
+      </if>
+      <if test="industrialTypeBigCd != null">
+        INDUSTRIAL_TYPE_BIG_CD,
+      </if>
+      <if test="industrialTypeMidCd != null">
+        INDUSTRIAL_TYPE_MID_CD,
+      </if>
+      <if test="industrialTypeSamllCd != null">
+        INDUSTRIAL_TYPE_SAMLL_CD,
+      </if>
+      <if test="enterpriseScaleGx != null">
+        ENTERPRISE_SCALE_GX,
+      </if>
+      <if test="countBoreEnterScale != null">
+        COUNT_BORE_ENTER_SCALE,
+      </if>
+      <if test="isGroupCust != null">
+        IS_GROUP_CUST,
+      </if>
+      <if test="attachGroupName != null">
+        ATTACH_GROUP_NAME,
+      </if>
+      <if test="whetherImpExp != null">
+        WHETHER_IMP_EXP,
+      </if>
+      <if test="stockholderOfBank != null">
+        STOCKHOLDER_OF_BANK,
+      </if>
+      <if test="jointGuarantee != null">
+        JOINT_GUARANTEE,
+      </if>
+      <if test="familyEnterprise != null">
+        FAMILY_ENTERPRISE,
+      </if>
+      <if test="whetherGovernmentFinanceCor != null">
+        WHETHER_GOVERNMENT_FINANCE_COR,
+      </if>
+      <if test="countrysideEnterprise != null">
+        COUNTRYSIDE_ENTERPRISE,
+      </if>
+      <if test="whetherBlackList != null">
+        WHETHER_BLACK_LIST,
+      </if>
+      <if test="focusCustomer != null">
+        FOCUS_CUSTOMER,
+      </if>
+      <if test="isRealEstateDev != null">
+        IS_REAL_ESTATE_DEV,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="fundSrc != null">
+        FUND_SRC,
+      </if>
+      <if test="openFund != null">
+        OPEN_FUND,
+      </if>
+      <if test="isBasebankRelaCust != null">
+        IS_BASEBANK_RELA_CUST,
+      </if>
+      <if test="thirdCustTypeCd != null">
+        THIRD_CUST_TYPE_CD,
+      </if>
+      <if test="isThirdCust != null">
+        IS_THIRD_CUST,
+      </if>
+      <if test="enterpriseCertEndDate != null">
+        ENTERPRISE_CERT_END_DATE,
+      </if>
+      <if test="enterpriseCertNum != null">
+        ENTERPRISE_CERT_NUM,
+      </if>
+      <if test="unifySocietyCreditNum != null">
+        UNIFY_SOCIETY_CREDIT_NUM,
+      </if>
+      <if test="singleLpCustInd != null">
+        SINGLE_LP_CUST_IND,
+      </if>
+      <if test="stopCorpInd != null">
+        STOP_CORP_IND,
+      </if>
+      <if test="legalContry != null">
+        LEGAL_CONTRY,
+      </if>
+      <if test="bankScaleIdentify != null">
+        BANK_SCALE_IDENTIFY,
+      </if>
+      <if test="legalPhoneNumber != null">
+        LEGAL_PHONE_NUMBER,
+      </if>
+      <if test="legalRegistDate != null">
+        LEGAL_REGIST_DATE,
+      </if>
+      <if test="legalContrySign != null">
+        LEGAL_CONTRY_SIGN,
+      </if>
+      <if test="whetherTechnic != null">
+        WHETHER_TECHNIC,
+      </if>
+      <if test="whetherGreenGroup != null">
+        WHETHER_GREEN_GROUP,
+      </if>
+      <if test="whetherJmrh != null">
+        WHETHER_JMRH,
+      </if>
+      <if test="whetherArgRelated != null">
+        WHETHER_ARG_RELATED,
+      </if>
+      <if test="whetherOpenAcct != null">
+        WHETHER_OPEN_ACCT,
+      </if>
+      <if test="whetherPovertyAdd != null">
+        WHETHER_POVERTY_ADD,
+      </if>
+      <if test="area != null">
+        AREA,
+      </if>
+      <if test="owner != null">
+        OWNER,
+      </if>
+      <if test="nationalEconomyType != null">
+        NATIONAL_ECONOMY_TYPE,
+      </if>
+      <if test="chainSign != null">
+        CHAIN_SIGN,
+      </if>
+      <if test="mainCustTypeCd != null">
+        MAIN_CUST_TYPE_CD,
+      </if>
+      <if test="orgStatus != null">
+        ORG_STATUS,
+      </if>
+      <if test="ifCsy != null">
+        IF_CSY,
+      </if>
+      <if test="loanTurn != null">
+        LOAN_TURN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="corpCustomerTypeCd != null">
+        #{corpCustomerTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null">
+        #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="economicSectorCode != null">
+        #{economicSectorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeCd != null">
+        #{industrialTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="listingCorporation != null">
+        #{listingCorporation,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAssets != null">
+        #{registerAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="registerAssetsCurrencyCd != null">
+        #{registerAssetsCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="employeesNumber != null">
+        #{employeesNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="governmentTentNo != null">
+        #{governmentTentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRelationshipTime != null">
+        #{creditRelationshipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerDate != null">
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="legalCertificateNo != null">
+        #{legalCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertificateEndDate != null">
+        #{legalCertificateEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationType != null">
+        #{registrationType,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNum != null">
+        #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaType != null">
+        #{areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="contryRegionCd != null">
+        #{contryRegionCd,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertType != null">
+        #{legalCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="registrCd != null">
+        #{registrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerEndDate != null">
+        #{registerEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessScope != null">
+        #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterCd != null">
+        #{orgRegisterCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterEndDate != null">
+        #{orgRegisterEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="middelCode != null">
+        #{middelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCreditCode != null">
+        #{orgCreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalTaxNo != null">
+        #{nationalTaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeBigCd != null">
+        #{industrialTypeBigCd,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeMidCd != null">
+        #{industrialTypeMidCd,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeSamllCd != null">
+        #{industrialTypeSamllCd,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseScaleGx != null">
+        #{enterpriseScaleGx,jdbcType=VARCHAR},
+      </if>
+      <if test="countBoreEnterScale != null">
+        #{countBoreEnterScale,jdbcType=VARCHAR},
+      </if>
+      <if test="isGroupCust != null">
+        #{isGroupCust,jdbcType=VARCHAR},
+      </if>
+      <if test="attachGroupName != null">
+        #{attachGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherImpExp != null">
+        #{whetherImpExp,jdbcType=VARCHAR},
+      </if>
+      <if test="stockholderOfBank != null">
+        #{stockholderOfBank,jdbcType=VARCHAR},
+      </if>
+      <if test="jointGuarantee != null">
+        #{jointGuarantee,jdbcType=VARCHAR},
+      </if>
+      <if test="familyEnterprise != null">
+        #{familyEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherGovernmentFinanceCor != null">
+        #{whetherGovernmentFinanceCor,jdbcType=VARCHAR},
+      </if>
+      <if test="countrysideEnterprise != null">
+        #{countrysideEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherBlackList != null">
+        #{whetherBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="focusCustomer != null">
+        #{focusCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="isRealEstateDev != null">
+        #{isRealEstateDev,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fundSrc != null">
+        #{fundSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="openFund != null">
+        #{openFund,jdbcType=DECIMAL},
+      </if>
+      <if test="isBasebankRelaCust != null">
+        #{isBasebankRelaCust,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCustTypeCd != null">
+        #{thirdCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="isThirdCust != null">
+        #{isThirdCust,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseCertEndDate != null">
+        #{enterpriseCertEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterpriseCertNum != null">
+        #{enterpriseCertNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unifySocietyCreditNum != null">
+        #{unifySocietyCreditNum,jdbcType=VARCHAR},
+      </if>
+      <if test="singleLpCustInd != null">
+        #{singleLpCustInd,jdbcType=VARCHAR},
+      </if>
+      <if test="stopCorpInd != null">
+        #{stopCorpInd,jdbcType=VARCHAR},
+      </if>
+      <if test="legalContry != null">
+        #{legalContry,jdbcType=VARCHAR},
+      </if>
+      <if test="bankScaleIdentify != null">
+        #{bankScaleIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhoneNumber != null">
+        #{legalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRegistDate != null">
+        #{legalRegistDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="legalContrySign != null">
+        #{legalContrySign,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherTechnic != null">
+        #{whetherTechnic,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherGreenGroup != null">
+        #{whetherGreenGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherJmrh != null">
+        #{whetherJmrh,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherArgRelated != null">
+        #{whetherArgRelated,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherOpenAcct != null">
+        #{whetherOpenAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherPovertyAdd != null">
+        #{whetherPovertyAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null">
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalEconomyType != null">
+        #{nationalEconomyType,jdbcType=VARCHAR},
+      </if>
+      <if test="chainSign != null">
+        #{chainSign,jdbcType=VARCHAR},
+      </if>
+      <if test="mainCustTypeCd != null">
+        #{mainCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgStatus != null">
+        #{orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ifCsy != null">
+        #{ifCsy,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTurn != null">
+        #{loanTurn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cdgit.loan.user.bean.TbCsmCorporationExample" resultType="java.lang.Long">
+    select count(*) from TB_CSM_CORPORATION
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update TB_CSM_CORPORATION
+    <set>
+      <if test="record.partyId != null">
+        PARTY_ID = #{record.partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corpCustomerTypeCd != null">
+        CORP_CUSTOMER_TYPE_CD = #{record.corpCustomerTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.englishName != null">
+        ENGLISH_NAME = #{record.englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economicSectorCode != null">
+        ECONOMIC_SECTOR_CODE = #{record.economicSectorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industrialTypeCd != null">
+        INDUSTRIAL_TYPE_CD = #{record.industrialTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listingCorporation != null">
+        LISTING_CORPORATION = #{record.listingCorporation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerAssets != null">
+        REGISTER_ASSETS = #{record.registerAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="record.registerAssetsCurrencyCd != null">
+        REGISTER_ASSETS_CURRENCY_CD = #{record.registerAssetsCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeesNumber != null">
+        EMPLOYEES_NUMBER = #{record.employeesNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="record.governmentTentNo != null">
+        GOVERNMENT_TENT_NO = #{record.governmentTentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditRelationshipTime != null">
+        CREDIT_RELATIONSHIP_TIME = #{record.creditRelationshipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.registerDate != null">
+        REGISTER_DATE = #{record.registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.legalCertificateNo != null">
+        LEGAL_CERTIFICATE_NO = #{record.legalCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalCertificateEndDate != null">
+        LEGAL_CERTIFICATE_END_DATE = #{record.legalCertificateEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.registrationType != null">
+        REGISTRATION_TYPE = #{record.registrationType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserNum != null">
+        UPDATE_USER_NUM = #{record.updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateOrgNum != null">
+        UPDATE_ORG_NUM = #{record.updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.areaType != null">
+        AREA_TYPE = #{record.areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contryRegionCd != null">
+        CONTRY_REGION_CD = #{record.contryRegionCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalName != null">
+        LEGAL_NAME = #{record.legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalCertType != null">
+        LEGAL_CERT_TYPE = #{record.legalCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registrCd != null">
+        REGISTR_CD = #{record.registrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerEndDate != null">
+        REGISTER_END_DATE = #{record.registerEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.businessScope != null">
+        BUSINESS_SCOPE = #{record.businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgRegisterCd != null">
+        ORG_REGISTER_CD = #{record.orgRegisterCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgRegisterEndDate != null">
+        ORG_REGISTER_END_DATE = #{record.orgRegisterEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.middelCode != null">
+        MIDDEL_CODE = #{record.middelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgCreditCode != null">
+        ORG_CREDIT_CODE = #{record.orgCreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nationalTaxNo != null">
+        NATIONAL_TAX_NO = #{record.nationalTaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industrialTypeBigCd != null">
+        INDUSTRIAL_TYPE_BIG_CD = #{record.industrialTypeBigCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industrialTypeMidCd != null">
+        INDUSTRIAL_TYPE_MID_CD = #{record.industrialTypeMidCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industrialTypeSamllCd != null">
+        INDUSTRIAL_TYPE_SAMLL_CD = #{record.industrialTypeSamllCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterpriseScaleGx != null">
+        ENTERPRISE_SCALE_GX = #{record.enterpriseScaleGx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countBoreEnterScale != null">
+        COUNT_BORE_ENTER_SCALE = #{record.countBoreEnterScale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isGroupCust != null">
+        IS_GROUP_CUST = #{record.isGroupCust,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attachGroupName != null">
+        ATTACH_GROUP_NAME = #{record.attachGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherImpExp != null">
+        WHETHER_IMP_EXP = #{record.whetherImpExp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockholderOfBank != null">
+        STOCKHOLDER_OF_BANK = #{record.stockholderOfBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jointGuarantee != null">
+        JOINT_GUARANTEE = #{record.jointGuarantee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyEnterprise != null">
+        FAMILY_ENTERPRISE = #{record.familyEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherGovernmentFinanceCor != null">
+        WHETHER_GOVERNMENT_FINANCE_COR = #{record.whetherGovernmentFinanceCor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countrysideEnterprise != null">
+        COUNTRYSIDE_ENTERPRISE = #{record.countrysideEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherBlackList != null">
+        WHETHER_BLACK_LIST = #{record.whetherBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.focusCustomer != null">
+        FOCUS_CUSTOMER = #{record.focusCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isRealEstateDev != null">
+        IS_REAL_ESTATE_DEV = #{record.isRealEstateDev,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fundSrc != null">
+        FUND_SRC = #{record.fundSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openFund != null">
+        OPEN_FUND = #{record.openFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isBasebankRelaCust != null">
+        IS_BASEBANK_RELA_CUST = #{record.isBasebankRelaCust,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thirdCustTypeCd != null">
+        THIRD_CUST_TYPE_CD = #{record.thirdCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isThirdCust != null">
+        IS_THIRD_CUST = #{record.isThirdCust,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterpriseCertEndDate != null">
+        ENTERPRISE_CERT_END_DATE = #{record.enterpriseCertEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.enterpriseCertNum != null">
+        ENTERPRISE_CERT_NUM = #{record.enterpriseCertNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unifySocietyCreditNum != null">
+        UNIFY_SOCIETY_CREDIT_NUM = #{record.unifySocietyCreditNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.singleLpCustInd != null">
+        SINGLE_LP_CUST_IND = #{record.singleLpCustInd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stopCorpInd != null">
+        STOP_CORP_IND = #{record.stopCorpInd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalContry != null">
+        LEGAL_CONTRY = #{record.legalContry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankScaleIdentify != null">
+        BANK_SCALE_IDENTIFY = #{record.bankScaleIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPhoneNumber != null">
+        LEGAL_PHONE_NUMBER = #{record.legalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalRegistDate != null">
+        LEGAL_REGIST_DATE = #{record.legalRegistDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.legalContrySign != null">
+        LEGAL_CONTRY_SIGN = #{record.legalContrySign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherTechnic != null">
+        WHETHER_TECHNIC = #{record.whetherTechnic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherGreenGroup != null">
+        WHETHER_GREEN_GROUP = #{record.whetherGreenGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherJmrh != null">
+        WHETHER_JMRH = #{record.whetherJmrh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherArgRelated != null">
+        WHETHER_ARG_RELATED = #{record.whetherArgRelated,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherOpenAcct != null">
+        WHETHER_OPEN_ACCT = #{record.whetherOpenAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherPovertyAdd != null">
+        WHETHER_POVERTY_ADD = #{record.whetherPovertyAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        AREA = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.owner != null">
+        OWNER = #{record.owner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nationalEconomyType != null">
+        NATIONAL_ECONOMY_TYPE = #{record.nationalEconomyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chainSign != null">
+        CHAIN_SIGN = #{record.chainSign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainCustTypeCd != null">
+        MAIN_CUST_TYPE_CD = #{record.mainCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgStatus != null">
+        ORG_STATUS = #{record.orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifCsy != null">
+        IF_CSY = #{record.ifCsy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanTurn != null">
+        LOAN_TURN = #{record.loanTurn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update TB_CSM_CORPORATION
+    set PARTY_ID = #{record.partyId,jdbcType=VARCHAR},
+      CORP_CUSTOMER_TYPE_CD = #{record.corpCustomerTypeCd,jdbcType=VARCHAR},
+      ENGLISH_NAME = #{record.englishName,jdbcType=VARCHAR},
+      ECONOMIC_SECTOR_CODE = #{record.economicSectorCode,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_CD = #{record.industrialTypeCd,jdbcType=VARCHAR},
+      LISTING_CORPORATION = #{record.listingCorporation,jdbcType=VARCHAR},
+      REGISTER_ASSETS = #{record.registerAssets,jdbcType=DECIMAL},
+      REGISTER_ASSETS_CURRENCY_CD = #{record.registerAssetsCurrencyCd,jdbcType=VARCHAR},
+      EMPLOYEES_NUMBER = #{record.employeesNumber,jdbcType=DECIMAL},
+      GOVERNMENT_TENT_NO = #{record.governmentTentNo,jdbcType=VARCHAR},
+      CREDIT_RELATIONSHIP_TIME = #{record.creditRelationshipTime,jdbcType=TIMESTAMP},
+      REGISTER_DATE = #{record.registerDate,jdbcType=TIMESTAMP},
+      LEGAL_CERTIFICATE_NO = #{record.legalCertificateNo,jdbcType=VARCHAR},
+      LEGAL_CERTIFICATE_END_DATE = #{record.legalCertificateEndDate,jdbcType=TIMESTAMP},
+      REGISTRATION_TYPE = #{record.registrationType,jdbcType=VARCHAR},
+      UPDATE_USER_NUM = #{record.updateUserNum,jdbcType=VARCHAR},
+      UPDATE_ORG_NUM = #{record.updateOrgNum,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      AREA_TYPE = #{record.areaType,jdbcType=VARCHAR},
+      CONTRY_REGION_CD = #{record.contryRegionCd,jdbcType=VARCHAR},
+      LEGAL_NAME = #{record.legalName,jdbcType=VARCHAR},
+      LEGAL_CERT_TYPE = #{record.legalCertType,jdbcType=VARCHAR},
+      REGISTR_CD = #{record.registrCd,jdbcType=VARCHAR},
+      REGISTER_END_DATE = #{record.registerEndDate,jdbcType=TIMESTAMP},
+      BUSINESS_SCOPE = #{record.businessScope,jdbcType=VARCHAR},
+      ORG_REGISTER_CD = #{record.orgRegisterCd,jdbcType=VARCHAR},
+      ORG_REGISTER_END_DATE = #{record.orgRegisterEndDate,jdbcType=TIMESTAMP},
+      MIDDEL_CODE = #{record.middelCode,jdbcType=VARCHAR},
+      ORG_CREDIT_CODE = #{record.orgCreditCode,jdbcType=VARCHAR},
+      NATIONAL_TAX_NO = #{record.nationalTaxNo,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_BIG_CD = #{record.industrialTypeBigCd,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_MID_CD = #{record.industrialTypeMidCd,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_SAMLL_CD = #{record.industrialTypeSamllCd,jdbcType=VARCHAR},
+      ENTERPRISE_SCALE_GX = #{record.enterpriseScaleGx,jdbcType=VARCHAR},
+      COUNT_BORE_ENTER_SCALE = #{record.countBoreEnterScale,jdbcType=VARCHAR},
+      IS_GROUP_CUST = #{record.isGroupCust,jdbcType=VARCHAR},
+      ATTACH_GROUP_NAME = #{record.attachGroupName,jdbcType=VARCHAR},
+      WHETHER_IMP_EXP = #{record.whetherImpExp,jdbcType=VARCHAR},
+      STOCKHOLDER_OF_BANK = #{record.stockholderOfBank,jdbcType=VARCHAR},
+      JOINT_GUARANTEE = #{record.jointGuarantee,jdbcType=VARCHAR},
+      FAMILY_ENTERPRISE = #{record.familyEnterprise,jdbcType=VARCHAR},
+      WHETHER_GOVERNMENT_FINANCE_COR = #{record.whetherGovernmentFinanceCor,jdbcType=VARCHAR},
+      COUNTRYSIDE_ENTERPRISE = #{record.countrysideEnterprise,jdbcType=VARCHAR},
+      WHETHER_BLACK_LIST = #{record.whetherBlackList,jdbcType=VARCHAR},
+      FOCUS_CUSTOMER = #{record.focusCustomer,jdbcType=VARCHAR},
+      IS_REAL_ESTATE_DEV = #{record.isRealEstateDev,jdbcType=VARCHAR},
+      CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      FUND_SRC = #{record.fundSrc,jdbcType=VARCHAR},
+      OPEN_FUND = #{record.openFund,jdbcType=DECIMAL},
+      IS_BASEBANK_RELA_CUST = #{record.isBasebankRelaCust,jdbcType=VARCHAR},
+      THIRD_CUST_TYPE_CD = #{record.thirdCustTypeCd,jdbcType=VARCHAR},
+      IS_THIRD_CUST = #{record.isThirdCust,jdbcType=VARCHAR},
+      ENTERPRISE_CERT_END_DATE = #{record.enterpriseCertEndDate,jdbcType=TIMESTAMP},
+      ENTERPRISE_CERT_NUM = #{record.enterpriseCertNum,jdbcType=VARCHAR},
+      UNIFY_SOCIETY_CREDIT_NUM = #{record.unifySocietyCreditNum,jdbcType=VARCHAR},
+      SINGLE_LP_CUST_IND = #{record.singleLpCustInd,jdbcType=VARCHAR},
+      STOP_CORP_IND = #{record.stopCorpInd,jdbcType=VARCHAR},
+      LEGAL_CONTRY = #{record.legalContry,jdbcType=VARCHAR},
+      BANK_SCALE_IDENTIFY = #{record.bankScaleIdentify,jdbcType=VARCHAR},
+      LEGAL_PHONE_NUMBER = #{record.legalPhoneNumber,jdbcType=VARCHAR},
+      LEGAL_REGIST_DATE = #{record.legalRegistDate,jdbcType=TIMESTAMP},
+      LEGAL_CONTRY_SIGN = #{record.legalContrySign,jdbcType=VARCHAR},
+      WHETHER_TECHNIC = #{record.whetherTechnic,jdbcType=VARCHAR},
+      WHETHER_GREEN_GROUP = #{record.whetherGreenGroup,jdbcType=VARCHAR},
+      WHETHER_JMRH = #{record.whetherJmrh,jdbcType=VARCHAR},
+      WHETHER_ARG_RELATED = #{record.whetherArgRelated,jdbcType=VARCHAR},
+      WHETHER_OPEN_ACCT = #{record.whetherOpenAcct,jdbcType=VARCHAR},
+      WHETHER_POVERTY_ADD = #{record.whetherPovertyAdd,jdbcType=VARCHAR},
+      AREA = #{record.area,jdbcType=VARCHAR},
+      OWNER = #{record.owner,jdbcType=VARCHAR},
+      NATIONAL_ECONOMY_TYPE = #{record.nationalEconomyType,jdbcType=VARCHAR},
+      CHAIN_SIGN = #{record.chainSign,jdbcType=VARCHAR},
+      MAIN_CUST_TYPE_CD = #{record.mainCustTypeCd,jdbcType=VARCHAR},
+      ORG_STATUS = #{record.orgStatus,jdbcType=VARCHAR},
+      IF_CSY = #{record.ifCsy,jdbcType=VARCHAR},
+      LOAN_TURN = #{record.loanTurn,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.user.bean.TbCsmCorporation">
+    update TB_CSM_CORPORATION
+    <set>
+      <if test="corpCustomerTypeCd != null">
+        CORP_CUSTOMER_TYPE_CD = #{corpCustomerTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null">
+        ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="economicSectorCode != null">
+        ECONOMIC_SECTOR_CODE = #{economicSectorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeCd != null">
+        INDUSTRIAL_TYPE_CD = #{industrialTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="listingCorporation != null">
+        LISTING_CORPORATION = #{listingCorporation,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAssets != null">
+        REGISTER_ASSETS = #{registerAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="registerAssetsCurrencyCd != null">
+        REGISTER_ASSETS_CURRENCY_CD = #{registerAssetsCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="employeesNumber != null">
+        EMPLOYEES_NUMBER = #{employeesNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="governmentTentNo != null">
+        GOVERNMENT_TENT_NO = #{governmentTentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRelationshipTime != null">
+        CREDIT_RELATIONSHIP_TIME = #{creditRelationshipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerDate != null">
+        REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="legalCertificateNo != null">
+        LEGAL_CERTIFICATE_NO = #{legalCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertificateEndDate != null">
+        LEGAL_CERTIFICATE_END_DATE = #{legalCertificateEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationType != null">
+        REGISTRATION_TYPE = #{registrationType,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaType != null">
+        AREA_TYPE = #{areaType,jdbcType=VARCHAR},
+      </if>
+      <if test="contryRegionCd != null">
+        CONTRY_REGION_CD = #{contryRegionCd,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        LEGAL_NAME = #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertType != null">
+        LEGAL_CERT_TYPE = #{legalCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="registrCd != null">
+        REGISTR_CD = #{registrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerEndDate != null">
+        REGISTER_END_DATE = #{registerEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessScope != null">
+        BUSINESS_SCOPE = #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterCd != null">
+        ORG_REGISTER_CD = #{orgRegisterCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRegisterEndDate != null">
+        ORG_REGISTER_END_DATE = #{orgRegisterEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="middelCode != null">
+        MIDDEL_CODE = #{middelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCreditCode != null">
+        ORG_CREDIT_CODE = #{orgCreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalTaxNo != null">
+        NATIONAL_TAX_NO = #{nationalTaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeBigCd != null">
+        INDUSTRIAL_TYPE_BIG_CD = #{industrialTypeBigCd,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeMidCd != null">
+        INDUSTRIAL_TYPE_MID_CD = #{industrialTypeMidCd,jdbcType=VARCHAR},
+      </if>
+      <if test="industrialTypeSamllCd != null">
+        INDUSTRIAL_TYPE_SAMLL_CD = #{industrialTypeSamllCd,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseScaleGx != null">
+        ENTERPRISE_SCALE_GX = #{enterpriseScaleGx,jdbcType=VARCHAR},
+      </if>
+      <if test="countBoreEnterScale != null">
+        COUNT_BORE_ENTER_SCALE = #{countBoreEnterScale,jdbcType=VARCHAR},
+      </if>
+      <if test="isGroupCust != null">
+        IS_GROUP_CUST = #{isGroupCust,jdbcType=VARCHAR},
+      </if>
+      <if test="attachGroupName != null">
+        ATTACH_GROUP_NAME = #{attachGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherImpExp != null">
+        WHETHER_IMP_EXP = #{whetherImpExp,jdbcType=VARCHAR},
+      </if>
+      <if test="stockholderOfBank != null">
+        STOCKHOLDER_OF_BANK = #{stockholderOfBank,jdbcType=VARCHAR},
+      </if>
+      <if test="jointGuarantee != null">
+        JOINT_GUARANTEE = #{jointGuarantee,jdbcType=VARCHAR},
+      </if>
+      <if test="familyEnterprise != null">
+        FAMILY_ENTERPRISE = #{familyEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherGovernmentFinanceCor != null">
+        WHETHER_GOVERNMENT_FINANCE_COR = #{whetherGovernmentFinanceCor,jdbcType=VARCHAR},
+      </if>
+      <if test="countrysideEnterprise != null">
+        COUNTRYSIDE_ENTERPRISE = #{countrysideEnterprise,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherBlackList != null">
+        WHETHER_BLACK_LIST = #{whetherBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="focusCustomer != null">
+        FOCUS_CUSTOMER = #{focusCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="isRealEstateDev != null">
+        IS_REAL_ESTATE_DEV = #{isRealEstateDev,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fundSrc != null">
+        FUND_SRC = #{fundSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="openFund != null">
+        OPEN_FUND = #{openFund,jdbcType=DECIMAL},
+      </if>
+      <if test="isBasebankRelaCust != null">
+        IS_BASEBANK_RELA_CUST = #{isBasebankRelaCust,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCustTypeCd != null">
+        THIRD_CUST_TYPE_CD = #{thirdCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="isThirdCust != null">
+        IS_THIRD_CUST = #{isThirdCust,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseCertEndDate != null">
+        ENTERPRISE_CERT_END_DATE = #{enterpriseCertEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterpriseCertNum != null">
+        ENTERPRISE_CERT_NUM = #{enterpriseCertNum,jdbcType=VARCHAR},
+      </if>
+      <if test="unifySocietyCreditNum != null">
+        UNIFY_SOCIETY_CREDIT_NUM = #{unifySocietyCreditNum,jdbcType=VARCHAR},
+      </if>
+      <if test="singleLpCustInd != null">
+        SINGLE_LP_CUST_IND = #{singleLpCustInd,jdbcType=VARCHAR},
+      </if>
+      <if test="stopCorpInd != null">
+        STOP_CORP_IND = #{stopCorpInd,jdbcType=VARCHAR},
+      </if>
+      <if test="legalContry != null">
+        LEGAL_CONTRY = #{legalContry,jdbcType=VARCHAR},
+      </if>
+      <if test="bankScaleIdentify != null">
+        BANK_SCALE_IDENTIFY = #{bankScaleIdentify,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhoneNumber != null">
+        LEGAL_PHONE_NUMBER = #{legalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRegistDate != null">
+        LEGAL_REGIST_DATE = #{legalRegistDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="legalContrySign != null">
+        LEGAL_CONTRY_SIGN = #{legalContrySign,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherTechnic != null">
+        WHETHER_TECHNIC = #{whetherTechnic,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherGreenGroup != null">
+        WHETHER_GREEN_GROUP = #{whetherGreenGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherJmrh != null">
+        WHETHER_JMRH = #{whetherJmrh,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherArgRelated != null">
+        WHETHER_ARG_RELATED = #{whetherArgRelated,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherOpenAcct != null">
+        WHETHER_OPEN_ACCT = #{whetherOpenAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherPovertyAdd != null">
+        WHETHER_POVERTY_ADD = #{whetherPovertyAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        AREA = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null">
+        OWNER = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalEconomyType != null">
+        NATIONAL_ECONOMY_TYPE = #{nationalEconomyType,jdbcType=VARCHAR},
+      </if>
+      <if test="chainSign != null">
+        CHAIN_SIGN = #{chainSign,jdbcType=VARCHAR},
+      </if>
+      <if test="mainCustTypeCd != null">
+        MAIN_CUST_TYPE_CD = #{mainCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgStatus != null">
+        ORG_STATUS = #{orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ifCsy != null">
+        IF_CSY = #{ifCsy,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTurn != null">
+        LOAN_TURN = #{loanTurn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.user.bean.TbCsmCorporation">
+    update TB_CSM_CORPORATION
+    set CORP_CUSTOMER_TYPE_CD = #{corpCustomerTypeCd,jdbcType=VARCHAR},
+      ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+      ECONOMIC_SECTOR_CODE = #{economicSectorCode,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_CD = #{industrialTypeCd,jdbcType=VARCHAR},
+      LISTING_CORPORATION = #{listingCorporation,jdbcType=VARCHAR},
+      REGISTER_ASSETS = #{registerAssets,jdbcType=DECIMAL},
+      REGISTER_ASSETS_CURRENCY_CD = #{registerAssetsCurrencyCd,jdbcType=VARCHAR},
+      EMPLOYEES_NUMBER = #{employeesNumber,jdbcType=DECIMAL},
+      GOVERNMENT_TENT_NO = #{governmentTentNo,jdbcType=VARCHAR},
+      CREDIT_RELATIONSHIP_TIME = #{creditRelationshipTime,jdbcType=TIMESTAMP},
+      REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      LEGAL_CERTIFICATE_NO = #{legalCertificateNo,jdbcType=VARCHAR},
+      LEGAL_CERTIFICATE_END_DATE = #{legalCertificateEndDate,jdbcType=TIMESTAMP},
+      REGISTRATION_TYPE = #{registrationType,jdbcType=VARCHAR},
+      UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AREA_TYPE = #{areaType,jdbcType=VARCHAR},
+      CONTRY_REGION_CD = #{contryRegionCd,jdbcType=VARCHAR},
+      LEGAL_NAME = #{legalName,jdbcType=VARCHAR},
+      LEGAL_CERT_TYPE = #{legalCertType,jdbcType=VARCHAR},
+      REGISTR_CD = #{registrCd,jdbcType=VARCHAR},
+      REGISTER_END_DATE = #{registerEndDate,jdbcType=TIMESTAMP},
+      BUSINESS_SCOPE = #{businessScope,jdbcType=VARCHAR},
+      ORG_REGISTER_CD = #{orgRegisterCd,jdbcType=VARCHAR},
+      ORG_REGISTER_END_DATE = #{orgRegisterEndDate,jdbcType=TIMESTAMP},
+      MIDDEL_CODE = #{middelCode,jdbcType=VARCHAR},
+      ORG_CREDIT_CODE = #{orgCreditCode,jdbcType=VARCHAR},
+      NATIONAL_TAX_NO = #{nationalTaxNo,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_BIG_CD = #{industrialTypeBigCd,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_MID_CD = #{industrialTypeMidCd,jdbcType=VARCHAR},
+      INDUSTRIAL_TYPE_SAMLL_CD = #{industrialTypeSamllCd,jdbcType=VARCHAR},
+      ENTERPRISE_SCALE_GX = #{enterpriseScaleGx,jdbcType=VARCHAR},
+      COUNT_BORE_ENTER_SCALE = #{countBoreEnterScale,jdbcType=VARCHAR},
+      IS_GROUP_CUST = #{isGroupCust,jdbcType=VARCHAR},
+      ATTACH_GROUP_NAME = #{attachGroupName,jdbcType=VARCHAR},
+      WHETHER_IMP_EXP = #{whetherImpExp,jdbcType=VARCHAR},
+      STOCKHOLDER_OF_BANK = #{stockholderOfBank,jdbcType=VARCHAR},
+      JOINT_GUARANTEE = #{jointGuarantee,jdbcType=VARCHAR},
+      FAMILY_ENTERPRISE = #{familyEnterprise,jdbcType=VARCHAR},
+      WHETHER_GOVERNMENT_FINANCE_COR = #{whetherGovernmentFinanceCor,jdbcType=VARCHAR},
+      COUNTRYSIDE_ENTERPRISE = #{countrysideEnterprise,jdbcType=VARCHAR},
+      WHETHER_BLACK_LIST = #{whetherBlackList,jdbcType=VARCHAR},
+      FOCUS_CUSTOMER = #{focusCustomer,jdbcType=VARCHAR},
+      IS_REAL_ESTATE_DEV = #{isRealEstateDev,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      FUND_SRC = #{fundSrc,jdbcType=VARCHAR},
+      OPEN_FUND = #{openFund,jdbcType=DECIMAL},
+      IS_BASEBANK_RELA_CUST = #{isBasebankRelaCust,jdbcType=VARCHAR},
+      THIRD_CUST_TYPE_CD = #{thirdCustTypeCd,jdbcType=VARCHAR},
+      IS_THIRD_CUST = #{isThirdCust,jdbcType=VARCHAR},
+      ENTERPRISE_CERT_END_DATE = #{enterpriseCertEndDate,jdbcType=TIMESTAMP},
+      ENTERPRISE_CERT_NUM = #{enterpriseCertNum,jdbcType=VARCHAR},
+      UNIFY_SOCIETY_CREDIT_NUM = #{unifySocietyCreditNum,jdbcType=VARCHAR},
+      SINGLE_LP_CUST_IND = #{singleLpCustInd,jdbcType=VARCHAR},
+      STOP_CORP_IND = #{stopCorpInd,jdbcType=VARCHAR},
+      LEGAL_CONTRY = #{legalContry,jdbcType=VARCHAR},
+      BANK_SCALE_IDENTIFY = #{bankScaleIdentify,jdbcType=VARCHAR},
+      LEGAL_PHONE_NUMBER = #{legalPhoneNumber,jdbcType=VARCHAR},
+      LEGAL_REGIST_DATE = #{legalRegistDate,jdbcType=TIMESTAMP},
+      LEGAL_CONTRY_SIGN = #{legalContrySign,jdbcType=VARCHAR},
+      WHETHER_TECHNIC = #{whetherTechnic,jdbcType=VARCHAR},
+      WHETHER_GREEN_GROUP = #{whetherGreenGroup,jdbcType=VARCHAR},
+      WHETHER_JMRH = #{whetherJmrh,jdbcType=VARCHAR},
+      WHETHER_ARG_RELATED = #{whetherArgRelated,jdbcType=VARCHAR},
+      WHETHER_OPEN_ACCT = #{whetherOpenAcct,jdbcType=VARCHAR},
+      WHETHER_POVERTY_ADD = #{whetherPovertyAdd,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      OWNER = #{owner,jdbcType=VARCHAR},
+      NATIONAL_ECONOMY_TYPE = #{nationalEconomyType,jdbcType=VARCHAR},
+      CHAIN_SIGN = #{chainSign,jdbcType=VARCHAR},
+      MAIN_CUST_TYPE_CD = #{mainCustTypeCd,jdbcType=VARCHAR},
+      ORG_STATUS = #{orgStatus,jdbcType=VARCHAR},
+      IF_CSY = #{ifCsy,jdbcType=VARCHAR},
+      LOAN_TURN = #{loanTurn,jdbcType=VARCHAR}
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

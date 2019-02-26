@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.guaranteevaluation.mapper.GrtMarginMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.guaranteevaluation.bean.GrtMargin">
+    <id column="SURETY_KEY_ID" jdbcType="VARCHAR" property="suretyKeyId" />
+    <result column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+    <result column="MARGIN_ACCOUNT" jdbcType="VARCHAR" property="marginAccount" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="MAGIN_SCALE" jdbcType="DECIMAL" property="maginScale" />
+    <result column="ACC_BALANCE" jdbcType="DECIMAL" property="accBalance" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="MARGIN_SORT" jdbcType="VARCHAR" property="marginSort" />
+    <result column="OPEN_BANK" jdbcType="VARCHAR" property="openBank" />
+    <result column="ACCT_NAME" jdbcType="VARCHAR" property="acctName" />
+    <result column="IS_JIXI" jdbcType="VARCHAR" property="isJixi" />
+    <result column="MARGIN_RATE" jdbcType="DECIMAL" property="marginRate" />
+    <result column="APPEND_FLAG" jdbcType="VARCHAR" property="appendFlag" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="APPEND_AMT" jdbcType="DECIMAL" property="appendAmt" />
+  </resultMap>
+  <resultMap type="com.cdgit.loan.guaranteevaluation.bean.CashDepositBean" id="cashDepositBean">
+  	<result column="RELATION_ID" jdbcType="VARCHAR" property="relationId" />
+  	<result column="SURETY_KEY_ID" jdbcType="VARCHAR" property="suretyKeyId" />
+  	<result column="surety_id" jdbcType="VARCHAR" property="suretyId" />
+  	<result column="MARGIN_ACCOUNT" jdbcType="VARCHAR" property="marginAccount" />
+  	<result column="MARGIN_SORT" jdbcType="VARCHAR" property="marginSort" />
+  	<result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+  	<result column="OPEN_BANK" jdbcType="VARCHAR" property="openBank" />
+  	<result column="ACCT_NAME" jdbcType="VARCHAR" property="acctName" />
+  	<result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+  	<result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+  	<result column="IS_JIXI" jdbcType="VARCHAR" property="isJixi" />
+  	<result column="APPEND_FLAG" jdbcType="VARCHAR" property="appendFlag" />
+  	<result column="MARGIN_RATE" jdbcType="DECIMAL" property="marginRate" />
+  	<result column="append_amt" jdbcType="DECIMAL" property="appendAmt" />
+  	<result column="MAGIN_SCALE" jdbcType="DECIMAL" property="maginScale" />
+  	<result column="ACC_BALANCE" jdbcType="DECIMAL" property="accBalance" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    SURETY_KEY_ID, SURETY_ID, MARGIN_ACCOUNT, CURRENCY_CD, MAGIN_SCALE, ACC_BALANCE, 
+    END_DATE, MARGIN_SORT, OPEN_BANK, ACCT_NAME, IS_JIXI, MARGIN_RATE, APPEND_FLAG, ORG_NUM, 
+    USER_NUM, CREATE_TIME, UPDATE_TIME, BEGIN_DATE, APPEND_AMT
+  </sql>
+  
+  <select id="getCashDepositList" resultMap="cashDepositBean">
+ 		select  rel.RELATION_ID, margin.SURETY_KEY_ID,margin.surety_id,margin.MARGIN_ACCOUNT,margin.MARGIN_SORT,margin.CURRENCY_CD,margin.OPEN_BANK,
+ 	   margin.ACCT_NAME,margin.MAGIN_SCALE,margin.ACC_BALANCE,margin.END_DATE ,margin.IS_JIXI,margin.MARGIN_RATE,margin.append_amt	
+	   from tb_grt_margin margin,TB_GRT_MORTGAGE_BASIC basic,TB_BIZ_GRT_REL rel
+	   where margin.surety_id=basic.surety_id
+	   and basic.surety_id=rel.surety_id
+	   and rel.apply_id=#{applyId}
+ </select>
+ <select id="selectDepositBySuretyKeyId" resultMap="cashDepositBean">
+ 	select  rel.RELATION_ID, margin.SURETY_KEY_ID,margin.surety_id,margin.MARGIN_ACCOUNT,margin.MARGIN_SORT,margin.CURRENCY_CD,margin.OPEN_BANK,
+	 margin.ACCT_NAME,margin.MAGIN_SCALE,margin.ACC_BALANCE,margin.END_DATE ,margin.IS_JIXI,margin.MARGIN_RATE,margin.append_amt,margin.BEGIN_DATE,margin.APPEND_FLAG    		
+	 from tb_grt_margin margin,TB_GRT_MORTGAGE_BASIC basic,TB_BIZ_GRT_REL rel
+	 where margin.surety_id=basic.surety_id
+	 and basic.surety_id=rel.surety_id
+	 AND margin.SURETY_KEY_ID=#{suretyKeyId}
+ </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_MARGIN
+    where SURETY_KEY_ID = #{suretyKeyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_MARGIN
+    where SURETY_KEY_ID = #{suretyKeyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtMargin">
+    insert into TB_GRT_MARGIN (SURETY_KEY_ID, SURETY_ID, MARGIN_ACCOUNT, 
+      CURRENCY_CD, MAGIN_SCALE, ACC_BALANCE, 
+      END_DATE, MARGIN_SORT, OPEN_BANK, 
+      ACCT_NAME, IS_JIXI, MARGIN_RATE, 
+      APPEND_FLAG, ORG_NUM, USER_NUM, 
+      CREATE_TIME, UPDATE_TIME, BEGIN_DATE, 
+      APPEND_AMT)
+    values (#{suretyKeyId,jdbcType=VARCHAR}, #{suretyId,jdbcType=VARCHAR}, #{marginAccount,jdbcType=VARCHAR}, 
+      #{currencyCd,jdbcType=VARCHAR}, #{maginScale,jdbcType=DECIMAL}, #{accBalance,jdbcType=DECIMAL}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{marginSort,jdbcType=VARCHAR}, #{openBank,jdbcType=VARCHAR}, 
+      #{acctName,jdbcType=VARCHAR}, #{isJixi,jdbcType=VARCHAR}, #{marginRate,jdbcType=DECIMAL}, 
+      #{appendFlag,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{beginDate,jdbcType=TIMESTAMP}, 
+      #{appendAmt,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtMargin">
+    insert into TB_GRT_MARGIN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="suretyKeyId != null">
+        SURETY_KEY_ID,
+      </if>
+      <if test="suretyId != null">
+        SURETY_ID,
+      </if>
+      <if test="marginAccount != null">
+        MARGIN_ACCOUNT,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="maginScale != null">
+        MAGIN_SCALE,
+      </if>
+      <if test="accBalance != null">
+        ACC_BALANCE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="marginSort != null">
+        MARGIN_SORT,
+      </if>
+      <if test="openBank != null">
+        OPEN_BANK,
+      </if>
+      <if test="acctName != null">
+        ACCT_NAME,
+      </if>
+      <if test="isJixi != null">
+        IS_JIXI,
+      </if>
+      <if test="marginRate != null">
+        MARGIN_RATE,
+      </if>
+      <if test="appendFlag != null">
+        APPEND_FLAG,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="appendAmt != null">
+        APPEND_AMT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="suretyKeyId != null">
+        #{suretyKeyId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyId != null">
+        #{suretyId,jdbcType=VARCHAR},
+      </if>
+      <if test="marginAccount != null">
+        #{marginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="maginScale != null">
+        #{maginScale,jdbcType=DECIMAL},
+      </if>
+      <if test="accBalance != null">
+        #{accBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="marginSort != null">
+        #{marginSort,jdbcType=VARCHAR},
+      </if>
+      <if test="openBank != null">
+        #{openBank,jdbcType=VARCHAR},
+      </if>
+      <if test="acctName != null">
+        #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="isJixi != null">
+        #{isJixi,jdbcType=VARCHAR},
+      </if>
+      <if test="marginRate != null">
+        #{marginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="appendFlag != null">
+        #{appendFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appendAmt != null">
+        #{appendAmt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtMargin">
+    update TB_GRT_MARGIN
+    <set>
+      <if test="suretyId != null">
+        SURETY_ID = #{suretyId,jdbcType=VARCHAR},
+      </if>
+      <if test="marginAccount != null">
+        MARGIN_ACCOUNT = #{marginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="maginScale != null">
+        MAGIN_SCALE = #{maginScale,jdbcType=DECIMAL},
+      </if>
+      <if test="accBalance != null">
+        ACC_BALANCE = #{accBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="marginSort != null">
+        MARGIN_SORT = #{marginSort,jdbcType=VARCHAR},
+      </if>
+      <if test="openBank != null">
+        OPEN_BANK = #{openBank,jdbcType=VARCHAR},
+      </if>
+      <if test="acctName != null">
+        ACCT_NAME = #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="isJixi != null">
+        IS_JIXI = #{isJixi,jdbcType=VARCHAR},
+      </if>
+      <if test="marginRate != null">
+        MARGIN_RATE = #{marginRate,jdbcType=DECIMAL},
+      </if>
+      <if test="appendFlag != null">
+        APPEND_FLAG = #{appendFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appendAmt != null">
+        APPEND_AMT = #{appendAmt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SURETY_KEY_ID = #{suretyKeyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtMargin">
+    update TB_GRT_MARGIN
+    set SURETY_ID = #{suretyId,jdbcType=VARCHAR},
+      MARGIN_ACCOUNT = #{marginAccount,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      MAGIN_SCALE = #{maginScale,jdbcType=DECIMAL},
+      ACC_BALANCE = #{accBalance,jdbcType=DECIMAL},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      MARGIN_SORT = #{marginSort,jdbcType=VARCHAR},
+      OPEN_BANK = #{openBank,jdbcType=VARCHAR},
+      ACCT_NAME = #{acctName,jdbcType=VARCHAR},
+      IS_JIXI = #{isJixi,jdbcType=VARCHAR},
+      MARGIN_RATE = #{marginRate,jdbcType=DECIMAL},
+      APPEND_FLAG = #{appendFlag,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      APPEND_AMT = #{appendAmt,jdbcType=DECIMAL}
+    where SURETY_KEY_ID = #{suretyKeyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

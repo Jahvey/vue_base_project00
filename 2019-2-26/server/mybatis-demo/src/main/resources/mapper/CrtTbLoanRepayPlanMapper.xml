@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbLoanRepayPlanMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbLoanRepayPlan">
+    <id column="REPAY_PLAN_ID" jdbcType="VARCHAR" property="repayPlanId" />
+    <result column="REPAY_DATE" jdbcType="TIMESTAMP" property="repayDate" />
+    <result column="REPAY_AMT" jdbcType="DECIMAL" property="repayAmt" />
+    <result column="PERIODS_NUMBER" jdbcType="DECIMAL" property="periodsNumber" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+  </resultMap>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_REPAY_PLAN
+    where REPAY_PLAN_ID = #{repayPlanId,jdbcType=VARCHAR}
+  </select>
+ <insert id="insertLoanRepayPlanSelective" parameterType="com.cdgit.loan.contract.bean.CrtTbLoanRepayPlan">
+    insert into CRMS.TB_LOAN_REPAY_PLAN
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="repayPlanId != null">
+	        REPAY_PLAN_ID,
+	      </if>
+	      <if test="repayDate != null">
+	        REPAY_DATE,
+	      </if>
+	      <if test="repayAmt != null">
+	        REPAY_AMT,
+	      </if>
+	      <if test="periodsNumber != null">
+	        PERIODS_NUMBER,
+	      </if>
+	      <if test="createTime != null">
+	        CREATE_TIME,
+	      </if>
+	      <if test="updateTime != null">
+	        UPDATE_TIME,
+	      </if>
+	      <if test="contractId != null">
+	        CONTRACT_ID,
+	      </if>
+	      <if test="summaryId != null">
+	        SUMMARY_ID,
+	      </if>
+	      <if test="loanId != null">
+	        LOAN_ID,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="repayPlanId != null">
+	        #{repayPlanId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="repayDate != null">
+	        #{repayDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="repayAmt != null">
+	        #{repayAmt,jdbcType=DECIMAL},
+	      </if>
+	      <if test="periodsNumber != null">
+	        #{periodsNumber,jdbcType=DECIMAL},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="updateTime != null">
+	        #{updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="contractId != null">
+	        #{contractId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="summaryId != null">
+	        #{summaryId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="loanId != null">
+	        #{loanId,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+  </insert>
+  <sql id="Base_Column_List">
+    REPAY_PLAN_ID, REPAY_DATE, REPAY_AMT, PERIODS_NUMBER, CREATE_TIME, UPDATE_TIME, CONTRACT_ID, 
+    SUMMARY_ID, LOAN_ID
+  </sql>
+</mapper>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.user.mapper.UserMapper">
+    <resultMap id="userMap" type="com.cdgit.loan.user.bean.UserInfo">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.UserInfo" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, user_name, password, user_sex, nick_name,state
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+       FROM users
+    </select>
+
+	<select id="findUser" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+       FROM users
+    </select>	
+
+	<select id="getNextVal" parameterType="java.util.HashMap"  resultType="java.lang.Integer" statementType="STATEMENT">
+       SELECT 
+       ${tableName}
+       FROM dual
+    </select>
+
+	<select id="getNextVal1" parameterType="java.lang.String"  resultType="java.lang.Integer" statementType="STATEMENT">
+       SELECT 
+       ${tableName}
+       FROM dual
+    </select>
+
+	<select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+       FROM users
+       WHERE id = #{id}
+    </select>
+
+    <select id="findByUserName" parameterType="com.cdgit.loan.user.bean.UserInfoCriteria" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+       FROM users
+       WHERE 1 = 1
+       
+       <choose>
+       <when test="userName !=null and userName !='' ">
+       and user_name= #{userName}
+       </when>
+       
+       <when test="state !=null and state !='' ">
+       and state=#{state}
+       </when>
+       
+       </choose>
+       
+    </select>
+
+    <insert id="insert" parameterType="com.cdgit.loan.user.bean.UserInfo" >
+       INSERT INTO 
+            users
+            (id,user_name,password,user_sex,state) 
+        VALUES
+            (#{id,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{userSex,jdbcType=VARCHAR},#{state,jdbcType=VARCHAR})
+    </insert>
+
+	<insert id="insertScore" parameterType="com.cdgit.loan.user.bean.Score" >
+       INSERT INTO 
+            score
+            (id,score_id,score,subject) 
+        VALUES
+            (#{id,jdbcType=INTEGER},#{scoreId,jdbcType=INTEGER},#{score,jdbcType=INTEGER},#{subject,jdbcType=VARCHAR})
+    </insert>	
+
+    <update id="update" parameterType="com.cdgit.loan.user.bean.UserInfo" >
+       UPDATE 
+            users 
+       SET 
+        <if test="userName != null">user_name = #{userName},</if>
+        <if test="password != null">password = #{password},</if>
+        <if test="userName != null">nick_name = #{userName},</if>
+        <if test="remark != null">remark = #{remark},</if>
+        <if test="englishName != null">ENGLISH_NAME = #{englishName},</if>
+        <if test="chineseShortName != null">CHINESE_SHORT_NAME = #{chineseShortName},</if>
+        <if test="englishShortName != null">ENGLISH_SHORT_NAME = #{englishShortName}</if>
+       WHERE 
+            id = #{id}
+    </update>
+
+	<update id="updateById" parameterType="com.cdgit.loan.user.bean.UserInfo" >
+       UPDATE 
+            users 
+       SET 
+        remark=#{remark}
+       WHERE 
+            id = #{id}
+    </update>	
+
+	<update id="updateUser" parameterType="java.util.HashMap" >
+       UPDATE 
+            users 
+       SET 
+        <if test="userName != null">user_name = #{userName},</if>
+        <if test="password != null">password = #{password},</if>
+        <if test="userName != null">nick_name = #{userName},</if>
+        <if test="remark != null">remark = #{remark},</if>
+        <if test="englishName != null">ENGLISH_NAME = #{englishName},</if>
+        <if test="chineseShortName != null">CHINESE_SHORT_NAME = #{chineseShortName},</if>
+        <if test="englishShortName != null">ENGLISH_SHORT_NAME = #{englishShortName}</if>
+       WHERE 
+            id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long" >
+       DELETE FROM
+             users 
+       WHERE 
+             id =#{id}
+    </delete>
+    
+</mapper>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConAttachedInfoPoMapper">
+
+ <resultMap id="tbConAttachedInfoPo" type="com.cdgit.loan.csm.po.TbConAttachedInfoPo">
+    <id column="ATTACHED" jdbcType="VARCHAR" property="attached" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="ARBITRATE_TYPE" jdbcType="VARCHAR" property="arbitrateType" />
+    <result column="ARBITRATE_NAME" jdbcType="VARCHAR" property="arbitrateName" />
+    <result column="ARBITRATE_ADDRESS" jdbcType="VARCHAR" property="arbitrateAddress" />
+    <result column="OTHER" jdbcType="VARCHAR" property="other" />
+    <result column="A_HOLD_COUNT" jdbcType="DECIMAL" property="aHoldCount" />
+    <result column="B_HOLD_COUNT" jdbcType="DECIMAL" property="bHoldCount" />
+    <result column="C_TYPE" jdbcType="VARCHAR" property="cType" />
+    <result column="C_HOLD_COUNT" jdbcType="DECIMAL" property="cHoldCount" />
+    <result column="TOTAL_COUNT" jdbcType="DECIMAL" property="totalCount" />
+    <result column="ADD_CLAUSE" jdbcType="VARCHAR" property="addClause" />
+    <result column="CONSTRAINT_INDEX" jdbcType="VARCHAR" property="constraintIndex" />
+    <result column="D_HOLD_COUNT" jdbcType="DECIMAL" property="dHoldCount" />
+    <result column="E_HOLD_COUNT" jdbcType="DECIMAL" property="eHoldCount" />
+    <result column="TK_CONDITION" jdbcType="VARCHAR" property="tkCondition" />
+    <result column="C_NAME" jdbcType="VARCHAR" property="cName" />
+    <result column="LEGAL_COURT" jdbcType="VARCHAR" property="legalCourt" />
+
+  </resultMap>
+  
+  
+    
+  <select id="queryCsmTbConAttachedInfoPo" parameterType="java.lang.String" resultMap="tbConAttachedInfoPo">
+	select 
+	*
+	from 
+		TB_CON_ATTACHED_INFO
+	where 
+		contract_id=#{contractId,jdbcType=VARCHAR}
+		
+  </select>
+  
+  
+  <select id="queryCsmTbConAttachedInfoByAttached" parameterType="java.lang.String" resultMap="tbConAttachedInfoPo">
+    select 
+   *
+    from CRMS.TB_CON_ATTACHED_INFO
+    where ATTACHED = #{attached,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteCsmTbConAttachedInfoByAttached" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_ATTACHED_INFO
+    where ATTACHED = #{attached,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertCsmTbConAttachedInfo" parameterType="com.cdgit.loan.csm.po.TbConAttachedInfoPo">
+    insert into CRMS.TB_CON_ATTACHED_INFO (ATTACHED, CONTRACT_ID, ARBITRATE_TYPE, 
+      ARBITRATE_NAME, ARBITRATE_ADDRESS, OTHER, 
+      A_HOLD_COUNT, B_HOLD_COUNT, C_TYPE, 
+      C_HOLD_COUNT, TOTAL_COUNT, ADD_CLAUSE, 
+      CONSTRAINT_INDEX, D_HOLD_COUNT, E_HOLD_COUNT, 
+      TK_CONDITION, C_NAME, LEGAL_COURT
+      )
+    values (#{attached,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{arbitrateType,jdbcType=VARCHAR}, 
+      #{arbitrateName,jdbcType=VARCHAR}, #{arbitrateAddress,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, 
+      #{aHoldCount,jdbcType=DECIMAL}, #{bHoldCount,jdbcType=DECIMAL}, #{cType,jdbcType=VARCHAR}, 
+      #{cHoldCount,jdbcType=DECIMAL}, #{totalCount,jdbcType=DECIMAL}, #{addClause,jdbcType=VARCHAR}, 
+      #{constraintIndex,jdbcType=VARCHAR}, #{dHoldCount,jdbcType=DECIMAL}, #{eHoldCount,jdbcType=DECIMAL}, 
+      #{tkCondition,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, #{legalCourt,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertCsmTbConAttachedInfoSelective" parameterType="com.cdgit.loan.csm.po.TbConAttachedInfoPo">
+    insert into CRMS.TB_CON_ATTACHED_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attached != null">
+        ATTACHED,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="arbitrateType != null">
+        ARBITRATE_TYPE,
+      </if>
+      <if test="arbitrateName != null">
+        ARBITRATE_NAME,
+      </if>
+      <if test="arbitrateAddress != null">
+        ARBITRATE_ADDRESS,
+      </if>
+      <if test="other != null">
+        OTHER,
+      </if>
+      <if test="aHoldCount != null">
+        A_HOLD_COUNT,
+      </if>
+      <if test="bHoldCount != null">
+        B_HOLD_COUNT,
+      </if>
+      <if test="cType != null">
+        C_TYPE,
+      </if>
+      <if test="cHoldCount != null">
+        C_HOLD_COUNT,
+      </if>
+      <if test="totalCount != null">
+        TOTAL_COUNT,
+      </if>
+      <if test="addClause != null">
+        ADD_CLAUSE,
+      </if>
+      <if test="constraintIndex != null">
+        CONSTRAINT_INDEX,
+      </if>
+      <if test="dHoldCount != null">
+        D_HOLD_COUNT,
+      </if>
+      <if test="eHoldCount != null">
+        E_HOLD_COUNT,
+      </if>
+      <if test="tkCondition != null">
+        TK_CONDITION,
+      </if>
+      <if test="cName != null">
+        C_NAME,
+      </if>
+      <if test="legalCourt != null">
+        LEGAL_COURT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attached != null">
+        #{attached,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="arbitrateType != null">
+        #{arbitrateType,jdbcType=VARCHAR},
+      </if>
+      <if test="arbitrateName != null">
+        #{arbitrateName,jdbcType=VARCHAR},
+      </if>
+      <if test="arbitrateAddress != null">
+        #{arbitrateAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="aHoldCount != null">
+        #{aHoldCount,jdbcType=DECIMAL},
+      </if>
+      <if test="bHoldCount != null">
+        #{bHoldCount,jdbcType=DECIMAL},
+      </if>
+      <if test="cType != null">
+        #{cType,jdbcType=VARCHAR},
+      </if>
+      <if test="cHoldCount != null">
+        #{cHoldCount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCount != null">
+        #{totalCount,jdbcType=DECIMAL},
+      </if>
+      <if test="addClause != null">
+        #{addClause,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintIndex != null">
+        #{constraintIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="dHoldCount != null">
+        #{dHoldCount,jdbcType=DECIMAL},
+      </if>
+      <if test="eHoldCount != null">
+        #{eHoldCount,jdbcType=DECIMAL},
+      </if>
+      <if test="tkCondition != null">
+        #{tkCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCourt != null">
+        #{legalCourt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateCsmTbConAttachedInfoSelective" parameterType="com.cdgit.loan.csm.po.TbConAttachedInfoPo">
+    update CRMS.TB_CON_ATTACHED_INFO
+    <set>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="arbitrateType != null">
+        ARBITRATE_TYPE = #{arbitrateType,jdbcType=VARCHAR},
+      </if>
+      <if test="arbitrateName != null">
+        ARBITRATE_NAME = #{arbitrateName,jdbcType=VARCHAR},
+      </if>
+      <if test="arbitrateAddress != null">
+        ARBITRATE_ADDRESS = #{arbitrateAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        OTHER = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="aHoldCount != null">
+        A_HOLD_COUNT = #{aHoldCount,jdbcType=DECIMAL},
+      </if>
+      <if test="bHoldCount != null">
+        B_HOLD_COUNT = #{bHoldCount,jdbcType=DECIMAL},
+      </if>
+      <if test="cType != null">
+        C_TYPE = #{cType,jdbcType=VARCHAR},
+      </if>
+      <if test="cHoldCount != null">
+        C_HOLD_COUNT = #{cHoldCount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCount != null">
+        TOTAL_COUNT = #{totalCount,jdbcType=DECIMAL},
+      </if>
+      <if test="addClause != null">
+        ADD_CLAUSE = #{addClause,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintIndex != null">
+        CONSTRAINT_INDEX = #{constraintIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="dHoldCount != null">
+        D_HOLD_COUNT = #{dHoldCount,jdbcType=DECIMAL},
+      </if>
+      <if test="eHoldCount != null">
+        E_HOLD_COUNT = #{eHoldCount,jdbcType=DECIMAL},
+      </if>
+      <if test="tkCondition != null">
+        TK_CONDITION = #{tkCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="cName != null">
+        C_NAME = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCourt != null">
+        LEGAL_COURT = #{legalCourt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ATTACHED = #{attached,jdbcType=VARCHAR}
+  </update>
+  <update id="updateCsmTbConAttachedInfo" parameterType="com.cdgit.loan.csm.po.TbConAttachedInfoPo">
+    update CRMS.TB_CON_ATTACHED_INFO
+    set CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      ARBITRATE_TYPE = #{arbitrateType,jdbcType=VARCHAR},
+      ARBITRATE_NAME = #{arbitrateName,jdbcType=VARCHAR},
+      ARBITRATE_ADDRESS = #{arbitrateAddress,jdbcType=VARCHAR},
+      OTHER = #{other,jdbcType=VARCHAR},
+      A_HOLD_COUNT = #{aHoldCount,jdbcType=DECIMAL},
+      B_HOLD_COUNT = #{bHoldCount,jdbcType=DECIMAL},
+      C_TYPE = #{cType,jdbcType=VARCHAR},
+      C_HOLD_COUNT = #{cHoldCount,jdbcType=DECIMAL},
+      TOTAL_COUNT = #{totalCount,jdbcType=DECIMAL},
+      ADD_CLAUSE = #{addClause,jdbcType=VARCHAR},
+      CONSTRAINT_INDEX = #{constraintIndex,jdbcType=VARCHAR},
+      D_HOLD_COUNT = #{dHoldCount,jdbcType=DECIMAL},
+      E_HOLD_COUNT = #{eHoldCount,jdbcType=DECIMAL},
+      TK_CONDITION = #{tkCondition,jdbcType=VARCHAR},
+      C_NAME = #{cName,jdbcType=VARCHAR},
+      LEGAL_COURT = #{legalCourt,jdbcType=VARCHAR}
+    where ATTACHED = #{attached,jdbcType=VARCHAR}
+  </update>
+    
+  
+  
+  
+
+
+</mapper>

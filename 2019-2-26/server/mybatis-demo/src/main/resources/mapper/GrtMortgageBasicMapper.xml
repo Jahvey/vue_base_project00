@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.guaranteevaluation.mapper.GrtMortgageBasicMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.guaranteevaluation.bean.GrtMortgageBasic">
+    <id column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+    <result column="SURETY_NO" jdbcType="VARCHAR" property="suretyNo" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="SORT_TYPE" jdbcType="VARCHAR" property="sortType" />
+    <result column="COLL_TYPE" jdbcType="VARCHAR" property="collType" />
+    <result column="ASSESS_FORM" jdbcType="VARCHAR" property="assessForm" />
+    <result column="ASSESS_DATE" jdbcType="TIMESTAMP" property="assessDate" />
+    <result column="ASSESS_END_DATE" jdbcType="TIMESTAMP" property="assessEndDate" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="ASSESS_VALUE" jdbcType="DECIMAL" property="assessValue" />
+    <result column="MORTGAGE_VALUE" jdbcType="DECIMAL" property="mortgageValue" />
+    <result column="MYBANK_SET_VALUE" jdbcType="DECIMAL" property="mybankSetValue" />
+    <result column="IF_OTHER_COMMON" jdbcType="VARCHAR" property="ifOtherCommon" />
+    <result column="MORTGAGE_STATUS" jdbcType="VARCHAR" property="mortgageStatus" />
+    <result column="MORTGAGE_GAIN_WAY" jdbcType="VARCHAR" property="mortgageGainWay" />
+    <result column="CASH_ABILITY" jdbcType="VARCHAR" property="cashAbility" />
+    <result column="MORTGAGE_MOBILITY" jdbcType="VARCHAR" property="mortgageMobility" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="MYBANK_AFFIRM_VALUE" jdbcType="DECIMAL" property="mybankAffirmValue" />
+    <result column="SURETY_AMT" jdbcType="DECIMAL" property="suretyAmt" />
+    <result column="MORTGAGE_RATE" jdbcType="DECIMAL" property="mortgageRate" />
+    <result column="TOTAL_AMT" jdbcType="DECIMAL" property="totalAmt" />
+    <result column="AVI_AMT" jdbcType="DECIMAL" property="aviAmt" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="OWNERSHIP_NUM" jdbcType="VARCHAR" property="ownershipNum" />
+    <result column="INSURANCE_CONDITION" jdbcType="VARCHAR" property="insuranceCondition" />
+    <result column="INSURANCE_COMPANY" jdbcType="VARCHAR" property="insuranceCompany" />
+    <result column="INSURANCE_NUM" jdbcType="VARCHAR" property="insuranceNum" />
+    <result column="SURETY_NAME" jdbcType="VARCHAR" property="suretyName" />
+    <result column="TRANS_FLAG" jdbcType="VARCHAR" property="transFlag" />
+    <result column="MORTGAGA_AMT" jdbcType="DECIMAL" property="mortgagaAmt" />
+    <result column="IS_DONE_ZYKH" jdbcType="VARCHAR" property="isDoneZykh" />
+    <result column="TOTAL_KH_AMT" jdbcType="DECIMAL" property="totalKhAmt" />
+  </resultMap>
+  <resultMap type="com.cdgit.loan.guaranteevaluation.bean.MortgageBasicBean" id="mortgageBasicBean">
+  	<result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+  	<result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+  	<result column="SURETY_NAME" jdbcType="VARCHAR" property="suretyName" />
+  	<result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="MARKET_VALUE" jdbcType="DECIMAL" property="marketValue" />
+    <result column="USED_AMT" jdbcType="DECIMAL" property="usedAmt" />
+    <result column="TOTAL_KH_AMT" jdbcType="DECIMAL" property="totalKhAmt" />
+    <result column="SURETY_AMT" jdbcType="DECIMAL" property="suretyAmt" />
+    <result column="MORTGAGE_RATE" jdbcType="DECIMAL" property="mortgageRate" />
+  	<result column="COLL_TYPE" jdbcType="VARCHAR" property="collType" />
+  	<result column="SURETY_NO" jdbcType="VARCHAR" property="suretyNo" />
+    <result column="TOTAL_AMT" jdbcType="DECIMAL" property="totalAmt" />
+  	<result column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+  	<result column="SORT_TYPE" jdbcType="VARCHAR" property="sortType" />
+    <result column="ASSESS_VALUE" jdbcType="DECIMAL" property="assessValue" />
+  	<result column="IF_OTHER_COMMON" jdbcType="VARCHAR" property="ifOtherCommon" />
+    <result column="MYBANK_SET_VALUE" jdbcType="DECIMAL" property="mybankSetValue" />
+  	<result column="RELATION_ID" jdbcType="VARCHAR" property="relationId" />
+  	<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SURETY_ID, SURETY_NO, PARTY_ID, SORT_TYPE, COLL_TYPE, ASSESS_FORM, ASSESS_DATE, ASSESS_END_DATE, 
+    CURRENCY_CD, ASSESS_VALUE, MORTGAGE_VALUE, MYBANK_SET_VALUE, IF_OTHER_COMMON, MORTGAGE_STATUS, 
+    MORTGAGE_GAIN_WAY, CASH_ABILITY, MORTGAGE_MOBILITY, ORG_NUM, USER_NUM, CREATE_TIME, 
+    UPDATE_TIME, MYBANK_AFFIRM_VALUE, SURETY_AMT, MORTGAGE_RATE, TOTAL_AMT, AVI_AMT, 
+    IF_DATA_MOVE, OWNERSHIP_NUM, INSURANCE_CONDITION, INSURANCE_COMPANY, INSURANCE_NUM, 
+    SURETY_NAME, TRANS_FLAG, MORTGAGA_AMT, IS_DONE_ZYKH, TOTAL_KH_AMT
+  </sql>
+  <select id="selectMortgageBasicBySuretyId" resultMap="mortgageBasicBean">
+	SELECT t3.PARTY_ID,t3.PARTY_NAME,t4.SURETY_NAME ,t1.CURRENCY_CD,t1.MARKET_VALUE,nvl(t2.USED_AMT,0)USED_AMT,
+		t4.COLL_TYPE,t1.GUARANTY_ID SURETY_ID,t1.COLLATERAL_NUM SURETY_NO,t4.SORT_TYPE,t4.ASSESS_VALUE ,t4.MORTGAGE_GAIN_WAY ,
+		t4.IF_OTHER_COMMON ,t4.MYBANK_SET_VALUE ,t4.CREATE_TIME,
+	t4.SURETY_AMT,t4.TOTAL_KH_AMT,t4.MORTGAGE_RATE,t4.SURETY_ID,t5.RELATION_ID
+	FROM TB_GRT_MORTGAGE_BASIC t4 LEFT JOIN TB_BIZ_GRT_REL t5 ON t5.SURETY_ID=t4.SURETY_ID
+	LEFT JOIN TB_GRT_COLLATERAL t1 ON t4.SURETY_ID=t1.GUARANTY_ID
+	LEFT JOIN (SELECT sum(a.TOTAL_KH_AMT)USED_AMT ,SURETY_ID from TB_GRT_MORTGAGE_BASIC a 
+	WHERE a.SURETY_ID!=#{suretyId} GROUP BY SURETY_ID) t2 ON t1.GUARANTY_ID=t2.SURETY_ID
+	LEFT JOIN V_CSM_PARTY t3 ON t3.PARTY_NUM=t1.CUSTOMER_NUM 
+	WHERE t4.SURETY_ID=#{suretyId}
+  </select>
+  <select id="getMortgageList" resultMap="mortgageBasicBean">
+	SELECT v.PARTY_NAME,t1.SURETY_NAME,t1.CURRENCY_CD,c.MARKET_VALUE,nvl(t2.USED_AMT,0)USED_AMT,t1.TOTAL_KH_AMT,t1.SURETY_AMT,
+	t1.MORTGAGE_RATE,t1.COLL_TYPE,t1.SURETY_NO,t1.TOTAL_AMT,t1.SURETY_ID,c.COLLATERAL_TYPE_CD SORT_TYPE
+	FROM TB_GRT_MORTGAGE_BASIC t1 
+	LEFT JOIN TB_BIZ_GRT_REL b ON t1.SURETY_ID=b.SURETY_ID
+	LEFT JOIN V_CSM_PARTY v ON t1.PARTY_ID=v.PARTY_ID
+	LEFT JOIN TB_GRT_COLLATERAL c ON t1.SURETY_ID=c.GUARANTY_ID
+	LEFT JOIN (SELECT sum(a.TOTAL_KH_AMT)USED_AMT ,SURETY_ID from TB_GRT_MORTGAGE_BASIC a GROUP BY SURETY_ID) t2 ON t2.SURETY_ID=t1.SURETY_ID
+	where  b.APPLY_ID=#{applyId} AND t1.COLL_TYPE=#{collType}
+  </select>
+  <select id="selectBySuretyIdAndApplyId" resultType="java.util.Map">
+  	SELECT * FROM TB_GRT_MORTGAGE_BASIC t1 LEFT JOIN TB_BIZ_GRT_REL t2 ON t1.SURETY_ID=t2.SURETY_ID
+	where t1.SURETY_ID=#{suretyId} AND t2.APPLY_ID=#{applyId}
+  </select>
+  <select id="getCollateralList" resultMap="mortgageBasicBean">
+	SELECT t3.PARTY_ID,t3.PARTY_NAME,t1.COLLATERAL_NAME SURETY_NAME,t1.CURRENCY_CD,t1.MARKET_VALUE,nvl(t2.USED_AMT,0)USED_AMT,
+	t1.MP_TYPE COLL_TYPE,t1.GUARANTY_ID SURETY_ID,t1.COLLATERAL_NUM SURETY_NO,t1.COLLATERAL_TYPE_CD SORT_TYPE,t1.EVAL_VALUE ASSESS_VALUE,t1.ACQUIRE_WAY_OF_COLLATERAL_CD MORTGAGE_GAIN_WAY,
+	t1.COMMON_ASSETS_IND IF_OTHER_COMMON,t1.SET_GUARANTY_AMT_IN_CCB MYBANK_SET_VALUE
+	from TB_GRT_COLLATERAL t1 LEFT JOIN
+	(SELECT sum(a.TOTAL_KH_AMT)USED_AMT ,SURETY_ID from TB_GRT_MORTGAGE_BASIC a GROUP BY SURETY_ID) t2
+	on t1.GUARANTY_ID=t2.SURETY_ID
+	LEFT JOIN V_CSM_PARTY t3 ON t3.PARTY_NUM=t1.CUSTOMER_NUM
+	where t1.MP_TYPE=#{collType} AND t1.CUSTOMER_TYPE=#{customerType} AND t1.MARKET_VALUE is not null
+	   <if test=" partyName != null and partyName != '' ">
+	   		 AND t3.PARTY_NAME LIKE '%'||#{partyName,jdbcType=VARCHAR}||'%' 
+	   </if>
+	    <if test=" certType != null and certType != '' ">
+	   		 AND t3.CERT_TYPE = #{certType,jdbcType=VARCHAR} 
+	   </if>
+	   <if test=" certNum != null and certNum != '' ">
+	   		 AND t3.CERT_NUM = #{certNum,jdbcType=VARCHAR} 
+	   </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_MORTGAGE_BASIC
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_MORTGAGE_BASIC
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtMortgageBasic">
+    insert into TB_GRT_MORTGAGE_BASIC (SURETY_ID, SURETY_NO, PARTY_ID, 
+      SORT_TYPE, COLL_TYPE, ASSESS_FORM, 
+      ASSESS_DATE, ASSESS_END_DATE, CURRENCY_CD, 
+      ASSESS_VALUE, MORTGAGE_VALUE, MYBANK_SET_VALUE, 
+      IF_OTHER_COMMON, MORTGAGE_STATUS, MORTGAGE_GAIN_WAY, 
+      CASH_ABILITY, MORTGAGE_MOBILITY, ORG_NUM, 
+      USER_NUM, CREATE_TIME, UPDATE_TIME, 
+      MYBANK_AFFIRM_VALUE, SURETY_AMT, MORTGAGE_RATE, 
+      TOTAL_AMT, AVI_AMT, IF_DATA_MOVE, 
+      OWNERSHIP_NUM, INSURANCE_CONDITION, INSURANCE_COMPANY, 
+      INSURANCE_NUM, SURETY_NAME, TRANS_FLAG, 
+      MORTGAGA_AMT, IS_DONE_ZYKH, TOTAL_KH_AMT
+      )
+    values (#{suretyId,jdbcType=VARCHAR}, #{suretyNo,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, 
+      #{sortType,jdbcType=VARCHAR}, #{collType,jdbcType=VARCHAR}, #{assessForm,jdbcType=VARCHAR}, 
+      #{assessDate,jdbcType=TIMESTAMP}, #{assessEndDate,jdbcType=TIMESTAMP}, #{currencyCd,jdbcType=VARCHAR}, 
+      #{assessValue,jdbcType=DECIMAL}, #{mortgageValue,jdbcType=DECIMAL}, #{mybankSetValue,jdbcType=DECIMAL}, 
+      #{ifOtherCommon,jdbcType=VARCHAR}, #{mortgageStatus,jdbcType=VARCHAR}, #{mortgageGainWay,jdbcType=VARCHAR}, 
+      #{cashAbility,jdbcType=VARCHAR}, #{mortgageMobility,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, 
+      #{userNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{mybankAffirmValue,jdbcType=DECIMAL}, #{suretyAmt,jdbcType=DECIMAL}, #{mortgageRate,jdbcType=DECIMAL}, 
+      #{totalAmt,jdbcType=DECIMAL}, #{aviAmt,jdbcType=DECIMAL}, #{ifDataMove,jdbcType=VARCHAR}, 
+      #{ownershipNum,jdbcType=VARCHAR}, #{insuranceCondition,jdbcType=VARCHAR}, #{insuranceCompany,jdbcType=VARCHAR}, 
+      #{insuranceNum,jdbcType=VARCHAR}, #{suretyName,jdbcType=VARCHAR}, #{transFlag,jdbcType=VARCHAR}, 
+      #{mortgagaAmt,jdbcType=DECIMAL}, #{isDoneZykh,jdbcType=VARCHAR}, #{totalKhAmt,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtMortgageBasic">
+    insert into TB_GRT_MORTGAGE_BASIC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="suretyId != null">
+        SURETY_ID,
+      </if>
+      <if test="suretyNo != null">
+        SURETY_NO,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="sortType != null">
+        SORT_TYPE,
+      </if>
+      <if test="collType != null">
+        COLL_TYPE,
+      </if>
+      <if test="assessForm != null">
+        ASSESS_FORM,
+      </if>
+      <if test="assessDate != null">
+        ASSESS_DATE,
+      </if>
+      <if test="assessEndDate != null">
+        ASSESS_END_DATE,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="assessValue != null">
+        ASSESS_VALUE,
+      </if>
+      <if test="mortgageValue != null">
+        MORTGAGE_VALUE,
+      </if>
+      <if test="mybankSetValue != null">
+        MYBANK_SET_VALUE,
+      </if>
+      <if test="ifOtherCommon != null">
+        IF_OTHER_COMMON,
+      </if>
+      <if test="mortgageStatus != null">
+        MORTGAGE_STATUS,
+      </if>
+      <if test="mortgageGainWay != null">
+        MORTGAGE_GAIN_WAY,
+      </if>
+      <if test="cashAbility != null">
+        CASH_ABILITY,
+      </if>
+      <if test="mortgageMobility != null">
+        MORTGAGE_MOBILITY,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="mybankAffirmValue != null">
+        MYBANK_AFFIRM_VALUE,
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT,
+      </if>
+      <if test="mortgageRate != null">
+        MORTGAGE_RATE,
+      </if>
+      <if test="totalAmt != null">
+        TOTAL_AMT,
+      </if>
+      <if test="aviAmt != null">
+        AVI_AMT,
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE,
+      </if>
+      <if test="ownershipNum != null">
+        OWNERSHIP_NUM,
+      </if>
+      <if test="insuranceCondition != null">
+        INSURANCE_CONDITION,
+      </if>
+      <if test="insuranceCompany != null">
+        INSURANCE_COMPANY,
+      </if>
+      <if test="insuranceNum != null">
+        INSURANCE_NUM,
+      </if>
+      <if test="suretyName != null">
+        SURETY_NAME,
+      </if>
+      <if test="transFlag != null">
+        TRANS_FLAG,
+      </if>
+      <if test="mortgagaAmt != null">
+        MORTGAGA_AMT,
+      </if>
+      <if test="isDoneZykh != null">
+        IS_DONE_ZYKH,
+      </if>
+      <if test="totalKhAmt != null">
+        TOTAL_KH_AMT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="suretyId != null">
+        #{suretyId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyNo != null">
+        #{suretyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sortType != null">
+        #{sortType,jdbcType=VARCHAR},
+      </if>
+      <if test="collType != null">
+        #{collType,jdbcType=VARCHAR},
+      </if>
+      <if test="assessForm != null">
+        #{assessForm,jdbcType=VARCHAR},
+      </if>
+      <if test="assessDate != null">
+        #{assessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assessEndDate != null">
+        #{assessEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="assessValue != null">
+        #{assessValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageValue != null">
+        #{mortgageValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mybankSetValue != null">
+        #{mybankSetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="ifOtherCommon != null">
+        #{ifOtherCommon,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageStatus != null">
+        #{mortgageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageGainWay != null">
+        #{mortgageGainWay,jdbcType=VARCHAR},
+      </if>
+      <if test="cashAbility != null">
+        #{cashAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageMobility != null">
+        #{mortgageMobility,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mybankAffirmValue != null">
+        #{mybankAffirmValue,jdbcType=DECIMAL},
+      </if>
+      <if test="suretyAmt != null">
+        #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageRate != null">
+        #{mortgageRate,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmt != null">
+        #{totalAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="aviAmt != null">
+        #{aviAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="ifDataMove != null">
+        #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="ownershipNum != null">
+        #{ownershipNum,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCondition != null">
+        #{insuranceCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompany != null">
+        #{insuranceCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceNum != null">
+        #{insuranceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyName != null">
+        #{suretyName,jdbcType=VARCHAR},
+      </if>
+      <if test="transFlag != null">
+        #{transFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgagaAmt != null">
+        #{mortgagaAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="isDoneZykh != null">
+        #{isDoneZykh,jdbcType=VARCHAR},
+      </if>
+      <if test="totalKhAmt != null">
+        #{totalKhAmt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtMortgageBasic">
+    update TB_GRT_MORTGAGE_BASIC
+    <set>
+      <if test="suretyNo != null">
+        SURETY_NO = #{suretyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sortType != null">
+        SORT_TYPE = #{sortType,jdbcType=VARCHAR},
+      </if>
+      <if test="collType != null">
+        COLL_TYPE = #{collType,jdbcType=VARCHAR},
+      </if>
+      <if test="assessForm != null">
+        ASSESS_FORM = #{assessForm,jdbcType=VARCHAR},
+      </if>
+      <if test="assessDate != null">
+        ASSESS_DATE = #{assessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assessEndDate != null">
+        ASSESS_END_DATE = #{assessEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="assessValue != null">
+        ASSESS_VALUE = #{assessValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageValue != null">
+        MORTGAGE_VALUE = #{mortgageValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mybankSetValue != null">
+        MYBANK_SET_VALUE = #{mybankSetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="ifOtherCommon != null">
+        IF_OTHER_COMMON = #{ifOtherCommon,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageStatus != null">
+        MORTGAGE_STATUS = #{mortgageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageGainWay != null">
+        MORTGAGE_GAIN_WAY = #{mortgageGainWay,jdbcType=VARCHAR},
+      </if>
+      <if test="cashAbility != null">
+        CASH_ABILITY = #{cashAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageMobility != null">
+        MORTGAGE_MOBILITY = #{mortgageMobility,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mybankAffirmValue != null">
+        MYBANK_AFFIRM_VALUE = #{mybankAffirmValue,jdbcType=DECIMAL},
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageRate != null">
+        MORTGAGE_RATE = #{mortgageRate,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmt != null">
+        TOTAL_AMT = #{totalAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="aviAmt != null">
+        AVI_AMT = #{aviAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="ownershipNum != null">
+        OWNERSHIP_NUM = #{ownershipNum,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCondition != null">
+        INSURANCE_CONDITION = #{insuranceCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompany != null">
+        INSURANCE_COMPANY = #{insuranceCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceNum != null">
+        INSURANCE_NUM = #{insuranceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyName != null">
+        SURETY_NAME = #{suretyName,jdbcType=VARCHAR},
+      </if>
+      <if test="transFlag != null">
+        TRANS_FLAG = #{transFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgagaAmt != null">
+        MORTGAGA_AMT = #{mortgagaAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="isDoneZykh != null">
+        IS_DONE_ZYKH = #{isDoneZykh,jdbcType=VARCHAR},
+      </if>
+      <if test="totalKhAmt != null">
+        TOTAL_KH_AMT = #{totalKhAmt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtMortgageBasic">
+    update TB_GRT_MORTGAGE_BASIC
+    set SURETY_NO = #{suretyNo,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      SORT_TYPE = #{sortType,jdbcType=VARCHAR},
+      COLL_TYPE = #{collType,jdbcType=VARCHAR},
+      ASSESS_FORM = #{assessForm,jdbcType=VARCHAR},
+      ASSESS_DATE = #{assessDate,jdbcType=TIMESTAMP},
+      ASSESS_END_DATE = #{assessEndDate,jdbcType=TIMESTAMP},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      ASSESS_VALUE = #{assessValue,jdbcType=DECIMAL},
+      MORTGAGE_VALUE = #{mortgageValue,jdbcType=DECIMAL},
+      MYBANK_SET_VALUE = #{mybankSetValue,jdbcType=DECIMAL},
+      IF_OTHER_COMMON = #{ifOtherCommon,jdbcType=VARCHAR},
+      MORTGAGE_STATUS = #{mortgageStatus,jdbcType=VARCHAR},
+      MORTGAGE_GAIN_WAY = #{mortgageGainWay,jdbcType=VARCHAR},
+      CASH_ABILITY = #{cashAbility,jdbcType=VARCHAR},
+      MORTGAGE_MOBILITY = #{mortgageMobility,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      MYBANK_AFFIRM_VALUE = #{mybankAffirmValue,jdbcType=DECIMAL},
+      SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      MORTGAGE_RATE = #{mortgageRate,jdbcType=DECIMAL},
+      TOTAL_AMT = #{totalAmt,jdbcType=DECIMAL},
+      AVI_AMT = #{aviAmt,jdbcType=DECIMAL},
+      IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      OWNERSHIP_NUM = #{ownershipNum,jdbcType=VARCHAR},
+      INSURANCE_CONDITION = #{insuranceCondition,jdbcType=VARCHAR},
+      INSURANCE_COMPANY = #{insuranceCompany,jdbcType=VARCHAR},
+      INSURANCE_NUM = #{insuranceNum,jdbcType=VARCHAR},
+      SURETY_NAME = #{suretyName,jdbcType=VARCHAR},
+      TRANS_FLAG = #{transFlag,jdbcType=VARCHAR},
+      MORTGAGA_AMT = #{mortgagaAmt,jdbcType=DECIMAL},
+      IS_DONE_ZYKH = #{isDoneZykh,jdbcType=VARCHAR},
+      TOTAL_KH_AMT = #{totalKhAmt,jdbcType=DECIMAL}
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

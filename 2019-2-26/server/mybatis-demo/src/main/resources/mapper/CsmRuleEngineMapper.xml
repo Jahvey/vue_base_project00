@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmRuleEngineMapper">
+
+
+	<!-- 移交申请未完成，包含的业务不允许处理 -->
+	<select id="ruleXFE_0003" parameterType="java.lang.String" resultType="java.lang.Integer">
+	SELECT
+	COUNT( 1 ) c 
+FROM
+	TB_CSMXFE_DETAIL xd 
+WHERE
+	xd.DETAIL_ID =#{approveId} 
+	AND xd.DETAIL_TYPE = 'A0' 
+	AND xd.ACTIVE = '0'
+
+	</select>
+
+	<select id="ruleRCON_0202" parameterType="java.lang.String" resultType="java.lang.Integer">
+	SELECT
+	count( * ) a 
+FROM
+	tb_con_contract_info 
+WHERE
+	amount_detail_id = #{amountDetailId} 
+	AND con_status IN (
+	'01',
+	'02')
+
+	</select>
+
+
+	<select id="ruleRCON_0203" parameterType="java.lang.String" resultType="java.lang.Integer">
+	select 
+	count(*) a 
+	from tb_con_contract_info ci 
+	where 
+	amount_detail_id = #{amountDetailId} 
+	AND con_status in ('03','04','05')
+	and ci.CREDIT_MODE IN ('03','05')
+	
+	</select>
+
+<!-- 注意目标是不是等于1,而不是0  判断条件：该业务已无可用额度 -->
+<select id="ruleRCON_0204" parameterType="java.lang.String" resultType="java.lang.Integer">
+SELECT
+	COUNT( 1 ) c 
+FROM
+	TB_BIZ_AMOUNT_DETAIL_APPROVE 
+WHERE
+
+	AMOUNT_DETAIL_ID =#{amountDetailId} 
+	AND CREDIT_STATUS = '01' 
+	AND BO_USE > 0
+</select>
+
+<!-- 存在在途批复调整时不得调整 -->
+<select id="ruleRBIZ_0046" parameterType="java.lang.String" resultType="java.lang.Integer">
+SELECT
+	count( * ) c 
+FROM
+	tb_biz_apply r 
+WHERE
+	r.status_type IN ( '01', '02' ) 
+	AND r.old_apply_id =#{applyId}
+</select>
+
+<!--存在在途授信调整  -->
+<select id="ruleRCRD_0212" parameterType="java.lang.String" resultType="java.lang.Integer">
+SELECT 
+	COUNT(1) c 
+FROM 
+	TB_CRD_APPLY 
+WHERE 
+	OLD_CRD_ID=#{crdId} 
+	AND 
+	STATUS_CD IN ('01','02')
+</select>
+
+
+<!-- 主合同调整 -->
+<!-- 该合同已被纳入[移交申请],在业务结束前无法处理 -->
+<select id="ruleXFE_0004" parameterType="java.lang.String" resultType="java.lang.Integer">
+SELECT
+	COUNT( 1 ) c 
+FROM
+	TB_CSMXFE_DETAIL xd 
+WHERE
+	xd.DETAIL_ID =#{contractId} 
+	AND xd.DETAIL_TYPE = 'C0' 
+	AND xd.ACTIVE = '0'
+
+</select>
+
+<!-- 有在途综合授信协议 -->
+<select id="ruleRCON_0024" parameterType="java.lang.String" resultType="java.lang.Integer">
+SELECT
+	count( * ) a 
+FROM
+	tb_con_credit_info 
+WHERE
+	con_status IN ( '01', '02' ) 
+	AND apply_id =  #{applyId}
+
+</select>
+
+<!-- 有在途批复调整时不能调整综合授信协议 -->
+<select id="ruleRCON_0058" parameterType="java.lang.String" resultType="java.lang.Integer">
+
+select count(*) c from tb_biz_apply r where r.old_apply_id = #{applyId} and r.status_type in ('01','02')
+
+
+</select>
+
+<select id="ruleRCON_0059" parameterType="java.lang.String" resultType="java.lang.Integer">
+	select count(1) c
+	  from tb_con_contract_info         r,
+	       tb_biz_amount_detail_approve t,
+	       tb_biz_amount_apply          a
+	 where r.amount_detail_id = t.amount_detail_id
+	   and t.amount_id = a.amount_id
+	   and a.apply_id = #{applyId}
+	   and r.con_status in ('01', '02')
+
+</select>
+
+<!-- 存在在途合同 -->
+<select id="ruleRCON_0026" parameterType="java.lang.String" resultType="java.lang.Integer">
+select count(*) a 
+from tb_con_contract_info 
+where 
+con_status in ('01','02') 
+and 
+amount_detail_id = #{amountDetailId} 
+
+</select>
+
+<!-- 有在途综合授信协议申请或调整时不能调整合同 -->
+<select id="ruleRCON_0060" parameterType="java.lang.String" resultType="java.lang.Integer">
+select count(*) c
+			  from tb_con_credit_info r, tb_con_contract_info t
+			 where r.old_contract_id = t.xy_id
+			   and t.contract_id = #{contractId}
+			   and r.con_status in ('01', '02')
+
+</select>
+
+
+<!-- 存在在途综合授信调整或单笔批复调整时不得调整业务合同 -->
+<select id="ruleRCON_0039" parameterType="java.lang.String" resultType="java.lang.Integer">
+select count(*) c 
+from tb_con_contract_info r ,tb_biz_amount_detail_approve a, tb_biz_amount_approve b,tb_biz_approve c,tb_biz_apply d
+						where r.amount_detail_id = a.amount_detail_id
+						and a.amount_id = b.amount_id
+						and b.approve_id = c.approve_id
+						and c.apply_id = d.old_apply_id
+						and d.status_type in ('01','02','09')
+						and r.contract_id =#{contractId} 
+
+
+</select>
+
+<!--  -->
+<select id="ruleRCON_0040" parameterType="java.lang.String" resultType="java.lang.Integer">
+select count(*) c 
+from tb_loan_info r  
+where r.loan_status in ('01','02')
+and r.contract_id = #{contractId}
+
+</select>
+
+<!-- 批复已冻结 -->
+<select id="ruleRBIZ_0024" parameterType="java.lang.String" resultType="java.lang.Integer">
+select count(*) c from tb_biz_approve r where r.BECOME_EFFECTIVE_MARK = '07' and r.apply_id = #{applyId}
+
+</select>
+
+<!-- 主合同下是否有在途的担保合同调整 -->
+<select id="ruleRGRT_0005" parameterType="java.lang.String" resultType="java.lang.Integer">
+select nvl(listagg(c.subcontract_num, ',') within
+			           group(order by c.subcontract_num),
+			           '0') as c
+			  from tb_con_contract_info   a,
+			       tb_con_subcontract_rel b,
+			       tb_con_subcontract_t   c
+			 where a.contract_id = b.contract_id
+			   and b.subcontract_id = c.subcontract_id
+			   and c.status in ('01', '02')
+			   and a.contract_id=#{contractId}
+
+</select>
+
+<!-- 合同调整的时候 added by shendl 如果合同下有在途的保证金追加  不允许做合同调整 -->
+<select id="ruleRGRT_0012" parameterType="java.lang.String" resultType="java.lang.Integer">
+select count(*)c
+from TB_ADJUST_MARGINCALLS t 
+where 
+t.contract_id=#{contractId} 
+and t.margin_status in('01','02')
+
+</select>
+
+<!-- 该笔合同下的存在未结清借据 -->
+<select id="ruleRCON_0043" parameterType="java.lang.String" resultType="java.lang.Integer">
+select count(*) c
+  from tb_loan_summary r, tb_loan_info t
+ where r.loan_id = t.loan_id
+   and r.summary_status_cd in ('01', '02', '03')
+   and t.contract_id  =#{contractId}
+
+</select>
+
+<!-- 合同是否循环 -->
+<select id="ruleRCON_0044" parameterType="java.lang.String" resultType="java.lang.Integer">
+
+select count(*) c
+  from tb_con_contract_info r
+ where nvl(r.cycle_ind_con, '0') = '1'
+   and r.contract_id  =#{contractId}
+</select>
+
+<!-- 合同失效的时候 added by shendl 如果合同下有临时出库的押品 不允许做合同失效 -->
+<select id="ruleRGRT_0017" parameterType="java.lang.String" resultType="java.lang.Integer">
+select count(*) c 
+ from TB_GRT_REG_CARD t1,
+ 	   TB_GRT_CARD_MORTAGAGE t2,
+         tb_con_contract_info t3,
+         tb_grt_out_detail t4,
+         tb_grt_out t5,
+            tb_grt_mortgage_basic t6
+ where t1.surety_key_id = t2.surety_key_id
+ and t2.contract_id = t3.contract_id
+ and t4.surety_key_id = t1.surety_key_id
+    and t4.out_id = t5.out_id
+    and t2.surety_id = t6.surety_id 
+    and t3.contract_id = #{contractId}
+ and t5.out_type = '22'
+ and t6.MORTGAGE_STATUS = '04'
+
+</select>
+
+<!-- 合同基本信息未保存 -->
+<select id="ruleRCON_0003" parameterType="java.lang.String" resultType="java.lang.Integer">
+
+select count(*) as c from tb_con_contract_info r where r.contract_id =#{contractId}  and r.update_time is not null 
+</select>
+
+
+
+
+</mapper>

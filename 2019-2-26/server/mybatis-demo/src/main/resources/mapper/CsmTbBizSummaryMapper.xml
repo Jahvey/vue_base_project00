@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizSummaryMapper">
+
+  <resultMap id="csmTbBizSummaryPo" type="com.cdgit.loan.csm.po.TbBizSummaryPo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+
+  </resultMap>
+  
+  
+  <select id="queryOneTbBizSummaryByApplyId" parameterType="java.lang.String" resultMap="csmTbBizSummaryPo">
+  
+  select *
+  from
+  TB_BIZ_SUMMARY
+  where
+  apply_id=#{applyId,jdbcType=VARCHAR}
+  
+  </select>
+  
+  
+  <select id="queryCsmTbBizSummaryById" parameterType="java.lang.String" resultMap="csmTbBizSummaryPo">
+    select 
+    *
+    from CRMS.TB_BIZ_SUMMARY
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteCsmTbBizSummaryById" parameterType="java.lang.String">
+    delete from CRMS.TB_BIZ_SUMMARY
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertCsmTbBizSummary" parameterType="com.cdgit.loan.csm.po.TbBizSummaryPo">
+    insert into CRMS.TB_BIZ_SUMMARY (ID, APPLY_ID, SUMMARY_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{summaryId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertCsmTbBizSummarySelective" parameterType="com.cdgit.loan.csm.po.TbBizSummaryPo">
+    insert into CRMS.TB_BIZ_SUMMARY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="summaryId != null">
+        SUMMARY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null">
+        #{summaryId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateCsmTbBizSummarySelective" parameterType="com.cdgit.loan.csm.po.TbBizSummaryPo">
+    update CRMS.TB_BIZ_SUMMARY
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null">
+        SUMMARY_ID = #{summaryId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateCsmTbBizSummary" parameterType="com.cdgit.loan.csm.po.TbBizSummaryPo">
+    update CRMS.TB_BIZ_SUMMARY
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      SUMMARY_ID = #{summaryId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+</mapper>
