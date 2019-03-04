@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.guaranteevaluation.mapper.GrtCreditsafeMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.guaranteevaluation.bean.GrtCreditsafe">
+    <id column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+    <result column="POLICY_HOLDER" jdbcType="VARCHAR" property="policyHolder" />
+    <result column="BENEFICIARY" jdbcType="VARCHAR" property="beneficiary" />
+    <result column="INSURER" jdbcType="VARCHAR" property="insurer" />
+    <result column="POLICY_NUM" jdbcType="VARCHAR" property="policyNum" />
+    <result column="NDEMNITY_NUM" jdbcType="VARCHAR" property="ndemnityNum" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="CREDIT_LIMIT" jdbcType="DECIMAL" property="creditLimit" />
+    <result column="EFFECTIVE_DATE" jdbcType="TIMESTAMP" property="effectiveDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="MIN_LOSS_RATE" jdbcType="DECIMAL" property="minLossRate" />
+    <result column="GUARANTEE_MONEY" jdbcType="DECIMAL" property="guaranteeMoney" />
+  </resultMap>
+  <resultMap type="com.cdgit.loan.guaranteevaluation.bean.CreditsafeBean" id="creditsafeBean">
+  	<result column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+ 	<result column="RELATION_ID" jdbcType="VARCHAR" property="relationId" />
+  	<result column="SURETY_TYPE" jdbcType="VARCHAR" property="suretyType" />
+  	<result column="POLICY_HOLDER" jdbcType="VARCHAR" property="policyHolder" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="CREDIT_LIMIT" jdbcType="DECIMAL" property="creditLimit" />  
+    <result column="EFFECTIVE_DATE" jdbcType="TIMESTAMP" property="effectiveDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />   
+    <result column="GUARANTEE_MONEY" jdbcType="DECIMAL" property="guaranteeMoney" />    
+  </resultMap>
+  <sql id="Base_Column_List">
+    SURETY_ID, POLICY_HOLDER, BENEFICIARY, INSURER, POLICY_NUM, NDEMNITY_NUM, CURRENCY_CD, 
+    CREDIT_LIMIT, EFFECTIVE_DATE, END_DATE, MIN_LOSS_RATE, GUARANTEE_MONEY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_CREDITSAFE
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </select>
+  <!--查询信用保险列表  -->
+    <select id="getCreditsafeList" resultMap="creditsafeBean">
+    	select  creditsafe.surety_id,rel.RELATION_ID, rel.SURETY_TYPE,creditsafe.POLICY_HOLDER,creditsafe.CURRENCY_CD,creditsafe.CREDIT_LIMIT,
+            creditsafe.EFFECTIVE_DATE, creditsafe.END_DATE,creditsafe.GUARANTEE_MONEY
+		    from TB_GRT_CREDITSAFE creditsafe,TB_BIZ_GRT_REL rel
+		    where creditsafe.surety_id=rel.surety_id
+		    and rel.apply_id=#{applyId}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_CREDITSAFE
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtCreditsafe">
+    insert into TB_GRT_CREDITSAFE (SURETY_ID, POLICY_HOLDER, BENEFICIARY, 
+      INSURER, POLICY_NUM, NDEMNITY_NUM, 
+      CURRENCY_CD, CREDIT_LIMIT, EFFECTIVE_DATE, 
+      END_DATE, MIN_LOSS_RATE, GUARANTEE_MONEY
+      )
+    values (#{suretyId,jdbcType=VARCHAR}, #{policyHolder,jdbcType=VARCHAR}, #{beneficiary,jdbcType=VARCHAR}, 
+      #{insurer,jdbcType=VARCHAR}, #{policyNum,jdbcType=VARCHAR}, #{ndemnityNum,jdbcType=VARCHAR}, 
+      #{currencyCd,jdbcType=VARCHAR}, #{creditLimit,jdbcType=DECIMAL}, #{effectiveDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{minLossRate,jdbcType=DECIMAL}, #{guaranteeMoney,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtCreditsafe">
+    insert into TB_GRT_CREDITSAFE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="suretyId != null">
+        SURETY_ID,
+      </if>
+      <if test="policyHolder != null">
+        POLICY_HOLDER,
+      </if>
+      <if test="beneficiary != null">
+        BENEFICIARY,
+      </if>
+      <if test="insurer != null">
+        INSURER,
+      </if>
+      <if test="policyNum != null">
+        POLICY_NUM,
+      </if>
+      <if test="ndemnityNum != null">
+        NDEMNITY_NUM,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="creditLimit != null">
+        CREDIT_LIMIT,
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="minLossRate != null">
+        MIN_LOSS_RATE,
+      </if>
+      <if test="guaranteeMoney != null">
+        GUARANTEE_MONEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="suretyId != null">
+        #{suretyId,jdbcType=VARCHAR},
+      </if>
+      <if test="policyHolder != null">
+        #{policyHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="beneficiary != null">
+        #{beneficiary,jdbcType=VARCHAR},
+      </if>
+      <if test="insurer != null">
+        #{insurer,jdbcType=VARCHAR},
+      </if>
+      <if test="policyNum != null">
+        #{policyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ndemnityNum != null">
+        #{ndemnityNum,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="creditLimit != null">
+        #{creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="effectiveDate != null">
+        #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="minLossRate != null">
+        #{minLossRate,jdbcType=DECIMAL},
+      </if>
+      <if test="guaranteeMoney != null">
+        #{guaranteeMoney,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtCreditsafe">
+    update TB_GRT_CREDITSAFE
+    <set>
+      <if test="policyHolder != null">
+        POLICY_HOLDER = #{policyHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="beneficiary != null">
+        BENEFICIARY = #{beneficiary,jdbcType=VARCHAR},
+      </if>
+      <if test="insurer != null">
+        INSURER = #{insurer,jdbcType=VARCHAR},
+      </if>
+      <if test="policyNum != null">
+        POLICY_NUM = #{policyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ndemnityNum != null">
+        NDEMNITY_NUM = #{ndemnityNum,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="creditLimit != null">
+        CREDIT_LIMIT = #{creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE = #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="minLossRate != null">
+        MIN_LOSS_RATE = #{minLossRate,jdbcType=DECIMAL},
+      </if>
+      <if test="guaranteeMoney != null">
+        GUARANTEE_MONEY = #{guaranteeMoney,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtCreditsafe">
+    update TB_GRT_CREDITSAFE
+    set POLICY_HOLDER = #{policyHolder,jdbcType=VARCHAR},
+      BENEFICIARY = #{beneficiary,jdbcType=VARCHAR},
+      INSURER = #{insurer,jdbcType=VARCHAR},
+      POLICY_NUM = #{policyNum,jdbcType=VARCHAR},
+      NDEMNITY_NUM = #{ndemnityNum,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      CREDIT_LIMIT = #{creditLimit,jdbcType=DECIMAL},
+      EFFECTIVE_DATE = #{effectiveDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      MIN_LOSS_RATE = #{minLossRate,jdbcType=DECIMAL},
+      GUARANTEE_MONEY = #{guaranteeMoney,jdbcType=DECIMAL}
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

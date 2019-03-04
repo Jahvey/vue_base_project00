@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConNoticeAddrsPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConNoticeAddrsPo">
+    <id column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="A_SEND_ADDR" jdbcType="VARCHAR" property="aSendAddr" />
+    <result column="A_POSTCODE" jdbcType="VARCHAR" property="aPostcode" />
+    <result column="A_RECEIVER" jdbcType="VARCHAR" property="aReceiver" />
+    <result column="A_PHONE" jdbcType="VARCHAR" property="aPhone" />
+    <result column="A_EMAIL" jdbcType="VARCHAR" property="aEmail" />
+    <result column="A_OTHER" jdbcType="VARCHAR" property="aOther" />
+    <result column="B_SEND_ADDR" jdbcType="VARCHAR" property="bSendAddr" />
+    <result column="B_POSTCODE" jdbcType="VARCHAR" property="bPostcode" />
+    <result column="B_RECEIVER" jdbcType="VARCHAR" property="bReceiver" />
+    <result column="B_PHONE" jdbcType="VARCHAR" property="bPhone" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="B_EMAIL" jdbcType="VARCHAR" property="bEmail" />
+    <result column="C_SEND_ADDR" jdbcType="VARCHAR" property="cSendAddr" />
+    <result column="C_POSTCODE" jdbcType="VARCHAR" property="cPostcode" />
+    <result column="C_RECEIVER" jdbcType="VARCHAR" property="cReceiver" />
+    <result column="C_PHONE" jdbcType="VARCHAR" property="cPhone" />
+    <result column="C_EMAIL" jdbcType="VARCHAR" property="cEmail" />
+    <result column="C_OTHER" jdbcType="VARCHAR" property="cOther" />
+    <result column="D_SEND_ADDR" jdbcType="VARCHAR" property="dSendAddr" />
+    <result column="D_POSTCODE" jdbcType="VARCHAR" property="dPostcode" />
+    <result column="D_RECEIVER" jdbcType="VARCHAR" property="dReceiver" />
+    <result column="D_PHONE" jdbcType="VARCHAR" property="dPhone" />
+    <result column="D_EMAIL" jdbcType="VARCHAR" property="dEmail" />
+    <result column="D_OTHER" jdbcType="VARCHAR" property="dOther" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UUID, CONTRACT_ID, A_SEND_ADDR, A_POSTCODE, A_RECEIVER, A_PHONE, A_EMAIL, A_OTHER, 
+    B_SEND_ADDR, B_POSTCODE, B_RECEIVER, B_PHONE, CREATE_TIME, UPDATE_TIME, B_EMAIL, 
+    C_SEND_ADDR, C_POSTCODE, C_RECEIVER, C_PHONE, C_EMAIL, C_OTHER, D_SEND_ADDR, D_POSTCODE, 
+    D_RECEIVER, D_PHONE, D_EMAIL, D_OTHER
+  </sql>
+  
+  <select id="queryByConId" parameterType="java.lang.String" resultMap="BaseResultMap">
+   select 
+    *
+    from CRMS.TB_CON_NOTICE_ADDRS a
+    where a.contract_id = #{contractId,jdbcType=VARCHAR}
+  
+  
+  
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    *
+    from CRMS.TB_CON_NOTICE_ADDRS
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_NOTICE_ADDRS
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConNoticeAddrsPo">
+    insert into CRMS.TB_CON_NOTICE_ADDRS (UUID, CONTRACT_ID, A_SEND_ADDR, 
+      A_POSTCODE, A_RECEIVER, A_PHONE, 
+      A_EMAIL, A_OTHER, B_SEND_ADDR, 
+      B_POSTCODE, B_RECEIVER, B_PHONE, 
+      CREATE_TIME, UPDATE_TIME, B_EMAIL, 
+      C_SEND_ADDR, C_POSTCODE, C_RECEIVER, 
+      C_PHONE, C_EMAIL, C_OTHER, 
+      D_SEND_ADDR, D_POSTCODE, D_RECEIVER, 
+      D_PHONE, D_EMAIL, D_OTHER
+      )
+    values (#{uuid,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{aSendAddr,jdbcType=VARCHAR}, 
+      #{aPostcode,jdbcType=VARCHAR}, #{aReceiver,jdbcType=VARCHAR}, #{aPhone,jdbcType=VARCHAR}, 
+      #{aEmail,jdbcType=VARCHAR}, #{aOther,jdbcType=VARCHAR}, #{bSendAddr,jdbcType=VARCHAR}, 
+      #{bPostcode,jdbcType=VARCHAR}, #{bReceiver,jdbcType=VARCHAR}, #{bPhone,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{bEmail,jdbcType=VARCHAR}, 
+      #{cSendAddr,jdbcType=VARCHAR}, #{cPostcode,jdbcType=VARCHAR}, #{cReceiver,jdbcType=VARCHAR}, 
+      #{cPhone,jdbcType=VARCHAR}, #{cEmail,jdbcType=VARCHAR}, #{cOther,jdbcType=VARCHAR}, 
+      #{dSendAddr,jdbcType=VARCHAR}, #{dPostcode,jdbcType=VARCHAR}, #{dReceiver,jdbcType=VARCHAR}, 
+      #{dPhone,jdbcType=VARCHAR}, #{dEmail,jdbcType=VARCHAR}, #{dOther,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConNoticeAddrsPo">
+    insert into CRMS.TB_CON_NOTICE_ADDRS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        UUID,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="aSendAddr != null">
+        A_SEND_ADDR,
+      </if>
+      <if test="aPostcode != null">
+        A_POSTCODE,
+      </if>
+      <if test="aReceiver != null">
+        A_RECEIVER,
+      </if>
+      <if test="aPhone != null">
+        A_PHONE,
+      </if>
+      <if test="aEmail != null">
+        A_EMAIL,
+      </if>
+      <if test="aOther != null">
+        A_OTHER,
+      </if>
+      <if test="bSendAddr != null">
+        B_SEND_ADDR,
+      </if>
+      <if test="bPostcode != null">
+        B_POSTCODE,
+      </if>
+      <if test="bReceiver != null">
+        B_RECEIVER,
+      </if>
+      <if test="bPhone != null">
+        B_PHONE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="bEmail != null">
+        B_EMAIL,
+      </if>
+      <if test="cSendAddr != null">
+        C_SEND_ADDR,
+      </if>
+      <if test="cPostcode != null">
+        C_POSTCODE,
+      </if>
+      <if test="cReceiver != null">
+        C_RECEIVER,
+      </if>
+      <if test="cPhone != null">
+        C_PHONE,
+      </if>
+      <if test="cEmail != null">
+        C_EMAIL,
+      </if>
+      <if test="cOther != null">
+        C_OTHER,
+      </if>
+      <if test="dSendAddr != null">
+        D_SEND_ADDR,
+      </if>
+      <if test="dPostcode != null">
+        D_POSTCODE,
+      </if>
+      <if test="dReceiver != null">
+        D_RECEIVER,
+      </if>
+      <if test="dPhone != null">
+        D_PHONE,
+      </if>
+      <if test="dEmail != null">
+        D_EMAIL,
+      </if>
+      <if test="dOther != null">
+        D_OTHER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="aSendAddr != null">
+        #{aSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="aPostcode != null">
+        #{aPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="aReceiver != null">
+        #{aReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="aPhone != null">
+        #{aPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="aEmail != null">
+        #{aEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="aOther != null">
+        #{aOther,jdbcType=VARCHAR},
+      </if>
+      <if test="bSendAddr != null">
+        #{bSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bPostcode != null">
+        #{bPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bReceiver != null">
+        #{bReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="bPhone != null">
+        #{bPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bEmail != null">
+        #{bEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="cSendAddr != null">
+        #{cSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="cPostcode != null">
+        #{cPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cReceiver != null">
+        #{cReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="cPhone != null">
+        #{cPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cEmail != null">
+        #{cEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="cOther != null">
+        #{cOther,jdbcType=VARCHAR},
+      </if>
+      <if test="dSendAddr != null">
+        #{dSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="dPostcode != null">
+        #{dPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dReceiver != null">
+        #{dReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="dPhone != null">
+        #{dPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dEmail != null">
+        #{dEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="dOther != null">
+        #{dOther,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConNoticeAddrsPo">
+    update CRMS.TB_CON_NOTICE_ADDRS
+    <set>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="aSendAddr != null">
+        A_SEND_ADDR = #{aSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="aPostcode != null">
+        A_POSTCODE = #{aPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="aReceiver != null">
+        A_RECEIVER = #{aReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="aPhone != null">
+        A_PHONE = #{aPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="aEmail != null">
+        A_EMAIL = #{aEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="aOther != null">
+        A_OTHER = #{aOther,jdbcType=VARCHAR},
+      </if>
+      <if test="bSendAddr != null">
+        B_SEND_ADDR = #{bSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bPostcode != null">
+        B_POSTCODE = #{bPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bReceiver != null">
+        B_RECEIVER = #{bReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="bPhone != null">
+        B_PHONE = #{bPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bEmail != null">
+        B_EMAIL = #{bEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="cSendAddr != null">
+        C_SEND_ADDR = #{cSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="cPostcode != null">
+        C_POSTCODE = #{cPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cReceiver != null">
+        C_RECEIVER = #{cReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="cPhone != null">
+        C_PHONE = #{cPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cEmail != null">
+        C_EMAIL = #{cEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="cOther != null">
+        C_OTHER = #{cOther,jdbcType=VARCHAR},
+      </if>
+      <if test="dSendAddr != null">
+        D_SEND_ADDR = #{dSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="dPostcode != null">
+        D_POSTCODE = #{dPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dReceiver != null">
+        D_RECEIVER = #{dReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="dPhone != null">
+        D_PHONE = #{dPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dEmail != null">
+        D_EMAIL = #{dEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="dOther != null">
+        D_OTHER = #{dOther,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConNoticeAddrsPo">
+    update CRMS.TB_CON_NOTICE_ADDRS
+    set CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      A_SEND_ADDR = #{aSendAddr,jdbcType=VARCHAR},
+      A_POSTCODE = #{aPostcode,jdbcType=VARCHAR},
+      A_RECEIVER = #{aReceiver,jdbcType=VARCHAR},
+      A_PHONE = #{aPhone,jdbcType=VARCHAR},
+      A_EMAIL = #{aEmail,jdbcType=VARCHAR},
+      A_OTHER = #{aOther,jdbcType=VARCHAR},
+      B_SEND_ADDR = #{bSendAddr,jdbcType=VARCHAR},
+      B_POSTCODE = #{bPostcode,jdbcType=VARCHAR},
+      B_RECEIVER = #{bReceiver,jdbcType=VARCHAR},
+      B_PHONE = #{bPhone,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      B_EMAIL = #{bEmail,jdbcType=VARCHAR},
+      C_SEND_ADDR = #{cSendAddr,jdbcType=VARCHAR},
+      C_POSTCODE = #{cPostcode,jdbcType=VARCHAR},
+      C_RECEIVER = #{cReceiver,jdbcType=VARCHAR},
+      C_PHONE = #{cPhone,jdbcType=VARCHAR},
+      C_EMAIL = #{cEmail,jdbcType=VARCHAR},
+      C_OTHER = #{cOther,jdbcType=VARCHAR},
+      D_SEND_ADDR = #{dSendAddr,jdbcType=VARCHAR},
+      D_POSTCODE = #{dPostcode,jdbcType=VARCHAR},
+      D_RECEIVER = #{dReceiver,jdbcType=VARCHAR},
+      D_PHONE = #{dPhone,jdbcType=VARCHAR},
+      D_EMAIL = #{dEmail,jdbcType=VARCHAR},
+      D_OTHER = #{dOther,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

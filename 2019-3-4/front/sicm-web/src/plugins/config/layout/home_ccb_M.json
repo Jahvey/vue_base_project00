@@ -1,0 +1,32 @@
+{
+	"page": {
+		"body": [
+			{
+				"row": [
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "main_pictures_1514385711188",
+									"datatype": "main_pictures",
+									"colspan": "12"
+								}
+							}
+						]
+					},
+					{
+						"col": [
+							{
+								"$": {
+									"widgetname": "image_text_1515083020390",
+									"datatype": "image_text",
+									"colspan": "12"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

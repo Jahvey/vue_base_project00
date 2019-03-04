@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConPayoutPlanPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConPayoutPlanPo">
+    <id column="PAYOUT_PLAN_ID" jdbcType="VARCHAR" property="payoutPlanId" />
+    <result column="PAYOUT_DATE" jdbcType="TIMESTAMP" property="payoutDate" />
+    <result column="PAYOUT_AMT" jdbcType="DECIMAL" property="payoutAmt" />
+    <result column="CONTRACT_DETAIL_ID" jdbcType="VARCHAR" property="contractDetailId" />
+    <result column="PERIODS_NUMBER" jdbcType="DECIMAL" property="periodsNumber" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="LOANUSE" jdbcType="VARCHAR" property="loanuse" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PAYOUT_PLAN_ID, PAYOUT_DATE, PAYOUT_AMT, CONTRACT_DETAIL_ID, PERIODS_NUMBER, CREATE_TIME, 
+    UPDATE_TIME, LOANUSE
+  </sql>
+  
+  <select id="queryListByConDetailId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  SELECT
+	* 
+FROM
+	Tb_Con_Payout_Plan b 
+WHERE
+	b.contract_detail_id = #{contractDetailId,jdbcType=VARCHAR}
+
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    *
+    from CRMS.TB_CON_PAYOUT_PLAN
+    where PAYOUT_PLAN_ID = #{payoutPlanId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_PAYOUT_PLAN
+    where PAYOUT_PLAN_ID = #{payoutPlanId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConPayoutPlanPo">
+    insert into CRMS.TB_CON_PAYOUT_PLAN (PAYOUT_PLAN_ID, PAYOUT_DATE, PAYOUT_AMT, 
+      CONTRACT_DETAIL_ID, PERIODS_NUMBER, CREATE_TIME, 
+      UPDATE_TIME, LOANUSE)
+    values (#{payoutPlanId,jdbcType=VARCHAR}, #{payoutDate,jdbcType=TIMESTAMP}, #{payoutAmt,jdbcType=DECIMAL}, 
+      #{contractDetailId,jdbcType=VARCHAR}, #{periodsNumber,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{loanuse,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConPayoutPlanPo">
+    insert into CRMS.TB_CON_PAYOUT_PLAN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payoutPlanId != null">
+        PAYOUT_PLAN_ID,
+      </if>
+      <if test="payoutDate != null">
+        PAYOUT_DATE,
+      </if>
+      <if test="payoutAmt != null">
+        PAYOUT_AMT,
+      </if>
+      <if test="contractDetailId != null">
+        CONTRACT_DETAIL_ID,
+      </if>
+      <if test="periodsNumber != null">
+        PERIODS_NUMBER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="loanuse != null">
+        LOANUSE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payoutPlanId != null">
+        #{payoutPlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="payoutDate != null">
+        #{payoutDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payoutAmt != null">
+        #{payoutAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="contractDetailId != null">
+        #{contractDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="periodsNumber != null">
+        #{periodsNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanuse != null">
+        #{loanuse,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConPayoutPlanPo">
+    update CRMS.TB_CON_PAYOUT_PLAN
+    <set>
+      <if test="payoutDate != null">
+        PAYOUT_DATE = #{payoutDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payoutAmt != null">
+        PAYOUT_AMT = #{payoutAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="contractDetailId != null">
+        CONTRACT_DETAIL_ID = #{contractDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="periodsNumber != null">
+        PERIODS_NUMBER = #{periodsNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanuse != null">
+        LOANUSE = #{loanuse,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PAYOUT_PLAN_ID = #{payoutPlanId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConPayoutPlanPo">
+    update CRMS.TB_CON_PAYOUT_PLAN
+    set PAYOUT_DATE = #{payoutDate,jdbcType=TIMESTAMP},
+      PAYOUT_AMT = #{payoutAmt,jdbcType=DECIMAL},
+      CONTRACT_DETAIL_ID = #{contractDetailId,jdbcType=VARCHAR},
+      PERIODS_NUMBER = #{periodsNumber,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      LOANUSE = #{loanuse,jdbcType=VARCHAR}
+    where PAYOUT_PLAN_ID = #{payoutPlanId,jdbcType=VARCHAR}
+  </update>
+</mapper>

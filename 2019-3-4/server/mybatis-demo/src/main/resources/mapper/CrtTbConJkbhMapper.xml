@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbConJkbhMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbConJkbh">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="BZJBLBDY" jdbcType="DECIMAL" property="bzjblbdy" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="BHYXQ" jdbcType="TIMESTAMP" property="bhyxq" />
+    <result column="SYRMC" jdbcType="VARCHAR" property="syrmc" />
+    <result column="BDBRMC" jdbcType="VARCHAR" property="bdbrmc" />
+    <result column="DKLL" jdbcType="DECIMAL" property="dkll" />
+    <result column="BHLX" jdbcType="VARCHAR" property="bhlx" />
+    <result column="KLRQ" jdbcType="TIMESTAMP" property="klrq" />
+    <result column="DQRQ" jdbcType="TIMESTAMP" property="dqrq" />
+    <result column="MYHTJE" jdbcType="DECIMAL" property="myhtje" />
+    <result column="MYHTH" jdbcType="VARCHAR" property="myhth" />
+    <result column="SYR" jdbcType="VARCHAR" property="syr" />
+    <result column="BZJZH" jdbcType="VARCHAR" property="bzjzh" />
+    <result column="BZJJE" jdbcType="DECIMAL" property="bzjje" />
+    <result column="BZJBZ" jdbcType="VARCHAR" property="bzjbz" />
+    <result column="JYQ" jdbcType="VARCHAR" property="jyq" />
+    <result column="YQTS" jdbcType="VARCHAR" property="yqts" />
+  </resultMap>
+
+  <select id="selectCrtTbConJkbhByapplyDetailId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_JKBH
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  <!-- 根据合同id和业务申请明细id获得一条国际保函信息 -->
+  <select id="selectCrtTbConJkbhByContractInfo" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_JKBH
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+    and amount_Detail_Id =#{amountDetailId,jdbcType=VARCHAR}
+  </select>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, BZJBLBDY, CONTRACT_ID, 
+    BHYXQ, SYRMC, BDBRMC, DKLL, BHLX, KLRQ, DQRQ, MYHTJE, MYHTH, SYR, BZJZH, BZJJE, BZJBZ, 
+    JYQ, YQTS
+  </sql>
+</mapper>

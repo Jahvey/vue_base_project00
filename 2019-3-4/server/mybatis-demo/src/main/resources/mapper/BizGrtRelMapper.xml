@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.guaranteevaluation.mapper.BizGrtRelMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.guaranteevaluation.bean.BizGrtRel">
+    <id column="RELATION_ID" jdbcType="VARCHAR" property="relationId" />
+    <result column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+    <result column="SURETY_TYPE" jdbcType="VARCHAR" property="suretyType" />
+    <result column="SURETY_AMT" jdbcType="DECIMAL" property="suretyAmt" />
+    <result column="MORTGAGE_RATE" jdbcType="DECIMAL" property="mortgageRate" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="MORTGAGE_VALUE" jdbcType="DECIMAL" property="mortgageValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RELATION_ID, APPROVE_ID, APPLY_ID, SURETY_ID, SURETY_TYPE, SURETY_AMT, MORTGAGE_RATE, 
+    CREATE_TIME, UPDATE_TIME, MORTGAGE_VALUE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_GRT_REL
+    where RELATION_ID = #{relationId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_GRT_REL
+    where RELATION_ID = #{relationId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteBySuretyId" parameterType="java.lang.String">
+    delete from TB_BIZ_GRT_REL
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizGrtRel">
+    insert into TB_BIZ_GRT_REL (RELATION_ID, APPROVE_ID, APPLY_ID, 
+      SURETY_ID, SURETY_TYPE, SURETY_AMT, 
+      MORTGAGE_RATE, CREATE_TIME, UPDATE_TIME, 
+      MORTGAGE_VALUE)
+    values (#{relationId,jdbcType=VARCHAR}, #{approveId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, 
+      #{suretyId,jdbcType=VARCHAR}, #{suretyType,jdbcType=VARCHAR}, #{suretyAmt,jdbcType=DECIMAL}, 
+      #{mortgageRate,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{mortgageValue,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizGrtRel">
+    insert into TB_BIZ_GRT_REL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="relationId != null">
+        RELATION_ID,
+      </if>
+      <if test="approveId != null">
+        APPROVE_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="suretyId != null">
+        SURETY_ID,
+      </if>
+      <if test="suretyType != null">
+        SURETY_TYPE,
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT,
+      </if>
+      <if test="mortgageRate != null">
+        MORTGAGE_RATE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="mortgageValue != null">
+        MORTGAGE_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="relationId != null">
+        #{relationId,jdbcType=VARCHAR},
+      </if>
+      <if test="approveId != null">
+        #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyId != null">
+        #{suretyId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyType != null">
+        #{suretyType,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyAmt != null">
+        #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageRate != null">
+        #{mortgageRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mortgageValue != null">
+        #{mortgageValue,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateBySuretyIdSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizGrtRel">
+    update TB_BIZ_GRT_REL
+    <set>
+      <if test="approveId != null">
+        APPROVE_ID = #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyType != null">
+        SURETY_TYPE = #{suretyType,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageRate != null">
+        MORTGAGE_RATE = #{mortgageRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mortgageValue != null">
+        MORTGAGE_VALUE = #{mortgageValue,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizGrtRel">
+    update TB_BIZ_GRT_REL
+    <set>
+      <if test="approveId != null">
+        APPROVE_ID = #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyId != null">
+        SURETY_ID = #{suretyId,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyType != null">
+        SURETY_TYPE = #{suretyType,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="mortgageRate != null">
+        MORTGAGE_RATE = #{mortgageRate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mortgageValue != null">
+        MORTGAGE_VALUE = #{mortgageValue,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where RELATION_ID = #{relationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizGrtRel">
+    update TB_BIZ_GRT_REL
+    set APPROVE_ID = #{approveId,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      SURETY_ID = #{suretyId,jdbcType=VARCHAR},
+      SURETY_TYPE = #{suretyType,jdbcType=VARCHAR},
+      SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      MORTGAGE_RATE = #{mortgageRate,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      MORTGAGE_VALUE = #{mortgageValue,jdbcType=DECIMAL}
+    where RELATION_ID = #{relationId,jdbcType=VARCHAR}
+  </update>
+</mapper>

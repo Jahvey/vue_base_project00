@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.mapper.AdditiveInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.bean.AdditiveInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="DETAIL_INFO" jdbcType="VARCHAR" property="detailInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARTY_ID, TITLE, DETAIL_INFO
+  </sql>
+  <select id="selectByPartyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    a.*,b.PARTY_NUM partyNum,b.PARTY_NAME partyName
+    from TB_CSM_ADDITIVE_INFO a left join TB_CSM_PARTY b on a.PARTY_ID = b.PARTY_ID
+    where a.PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_ADDITIVE_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_ADDITIVE_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.bean.AdditiveInfo">
+    insert into TB_CSM_ADDITIVE_INFO (ID, PARTY_ID, TITLE, 
+      DETAIL_INFO)
+    values (#{id,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{detailInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.bean.AdditiveInfo">
+    insert into TB_CSM_ADDITIVE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="detailInfo != null">
+        DETAIL_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="detailInfo != null">
+        #{detailInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.bean.AdditiveInfo">
+    update TB_CSM_ADDITIVE_INFO
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="detailInfo != null">
+        DETAIL_INFO = #{detailInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.bean.AdditiveInfo">
+    update TB_CSM_ADDITIVE_INFO
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      DETAIL_INFO = #{detailInfo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

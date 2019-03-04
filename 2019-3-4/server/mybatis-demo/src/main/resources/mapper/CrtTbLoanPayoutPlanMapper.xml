@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbLoanPayoutPlanMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbLoanPayoutPlan">
+    <id column="PAYOUT_PLAN_ID" jdbcType="VARCHAR" property="payoutPlanId" />
+    <result column="PAYOUT_DATE" jdbcType="TIMESTAMP" property="payoutDate" />
+    <result column="PAYOUT_AMT" jdbcType="DECIMAL" property="payoutAmt" />
+    <result column="CONTRACT_DETAIL_ID" jdbcType="VARCHAR" property="contractDetailId" />
+    <result column="PERIODS_NUMBER" jdbcType="DECIMAL" property="periodsNumber" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="LOANUSE" jdbcType="VARCHAR" property="loanuse" />
+    <result column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+  </resultMap>
+
+  <select id="selectLoanPayoutPlanByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_PAYOUT_PLAN
+    where PAYOUT_PLAN_ID = #{payoutPlanId,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 选择插入一条信息 -->
+  <insert id="insertLoanPayoutPlanSelective" parameterType="com.cdgit.loan.contract.bean.CrtTbLoanPayoutPlan">
+	  insert into CRMS.TB_LOAN_PAYOUT_PLAN
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="payoutPlanId != null">
+	        PAYOUT_PLAN_ID,
+	      </if>
+	      <if test="payoutDate != null">
+	        PAYOUT_DATE,
+	      </if>
+	      <if test="payoutAmt != null">
+	        PAYOUT_AMT,
+	      </if>
+	      <if test="contractDetailId != null">
+	        CONTRACT_DETAIL_ID,
+	      </if>
+	      <if test="periodsNumber != null">
+	        PERIODS_NUMBER,
+	      </if>
+	      <if test="createTime != null">
+	        CREATE_TIME,
+	      </if>
+	      <if test="updateTime != null">
+	        UPDATE_TIME,
+	      </if>
+	      <if test="loanuse != null">
+	        LOANUSE,
+	      </if>
+	      <if test="summaryId != null">
+	        SUMMARY_ID,
+	      </if>
+	      <if test="loanId != null">
+	        LOAN_ID,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="payoutPlanId != null">
+	        #{payoutPlanId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="payoutDate != null">
+	        #{payoutDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="payoutAmt != null">
+	        #{payoutAmt,jdbcType=DECIMAL},
+	      </if>
+	      <if test="contractDetailId != null">
+	        #{contractDetailId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="periodsNumber != null">
+	        #{periodsNumber,jdbcType=DECIMAL},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="updateTime != null">
+	        #{updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="loanuse != null">
+	        #{loanuse,jdbcType=VARCHAR},
+	      </if>
+	      <if test="summaryId != null">
+	        #{summaryId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="loanId != null">
+	        #{loanId,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+  </insert>
+  
+  <sql id="Base_Column_List">
+    PAYOUT_PLAN_ID, PAYOUT_DATE, PAYOUT_AMT, CONTRACT_DETAIL_ID, PERIODS_NUMBER, CREATE_TIME, 
+    UPDATE_TIME, LOANUSE, SUMMARY_ID, LOAN_ID
+  </sql>
+</mapper>

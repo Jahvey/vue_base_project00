@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.mapper.CreditInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.bean.CreditInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="INFO_SRC" jdbcType="VARCHAR" property="infoSrc" />
+    <result column="QUERY_DATE" jdbcType="TIMESTAMP" property="queryDate" />
+    <result column="LETTER_OF_PRESENTATION" jdbcType="VARCHAR" property="letterOfPresentation" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="DJK_LXYQ_TIMES" jdbcType="VARCHAR" property="djkLxyqTimes" />
+    <result column="DJK_LJYQ_TIMES" jdbcType="VARCHAR" property="djkLjyqTimes" />
+    <result column="DK_LXQX_TIMES" jdbcType="VARCHAR" property="dkLxqxTimes" />
+    <result column="DK_LJQX_TIMES" jdbcType="VARCHAR" property="dkLjqxTimes" />
+    <result column="SXBJ_YQ_CONDITION" jdbcType="VARCHAR" property="sxbjYqCondition" />
+    <result column="BRANCHBADRECORD" jdbcType="VARCHAR" property="branchbadrecord" />
+    <result column="NATIFLAG" jdbcType="VARCHAR" property="natiflag" />
+    <result column="NATURE_OF_UNIT" jdbcType="VARCHAR" property="natureOfUnit" />
+    <result column="SCALE_OF_UNIT" jdbcType="VARCHAR" property="scaleOfUnit" />
+    <result column="ISALERTCORP" jdbcType="VARCHAR" property="isalertcorp" />
+    <result column="HAVELAWSUIT" jdbcType="VARCHAR" property="havelawsuit" />
+    <result column="BADLEADERFLAG" jdbcType="VARCHAR" property="badleaderflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARTY_ID, INFO_SRC, QUERY_DATE, LETTER_OF_PRESENTATION, TITLE, DJK_LXYQ_TIMES, 
+    DJK_LJYQ_TIMES, DK_LXQX_TIMES, DK_LJQX_TIMES, SXBJ_YQ_CONDITION, BRANCHBADRECORD, 
+    NATIFLAG, NATURE_OF_UNIT, SCALE_OF_UNIT, ISALERTCORP, HAVELAWSUIT, BADLEADERFLAG
+  </sql>
+  <select id="selectByPartyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    a.*,b.PARTY_NAME partyName
+    from TB_CSM_CREDIT_INFO a left join TB_CSM_PARTY b on a.PARTY_ID = b.PARTY_ID
+    where a.PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_CREDIT_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_CREDIT_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.bean.CreditInfo">
+    insert into TB_CSM_CREDIT_INFO (ID, PARTY_ID, INFO_SRC, 
+      QUERY_DATE, LETTER_OF_PRESENTATION, TITLE, 
+      DJK_LXYQ_TIMES, DJK_LJYQ_TIMES, DK_LXQX_TIMES, 
+      DK_LJQX_TIMES, SXBJ_YQ_CONDITION, BRANCHBADRECORD, 
+      NATIFLAG, NATURE_OF_UNIT, SCALE_OF_UNIT, 
+      ISALERTCORP, HAVELAWSUIT, BADLEADERFLAG
+      )
+    values (#{id,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{infoSrc,jdbcType=VARCHAR}, 
+      #{queryDate,jdbcType=TIMESTAMP}, #{letterOfPresentation,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{djkLxyqTimes,jdbcType=VARCHAR}, #{djkLjyqTimes,jdbcType=VARCHAR}, #{dkLxqxTimes,jdbcType=VARCHAR}, 
+      #{dkLjqxTimes,jdbcType=VARCHAR}, #{sxbjYqCondition,jdbcType=VARCHAR}, #{branchbadrecord,jdbcType=VARCHAR}, 
+      #{natiflag,jdbcType=VARCHAR}, #{natureOfUnit,jdbcType=VARCHAR}, #{scaleOfUnit,jdbcType=VARCHAR}, 
+      #{isalertcorp,jdbcType=VARCHAR}, #{havelawsuit,jdbcType=VARCHAR}, #{badleaderflag,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.bean.CreditInfo">
+    insert into TB_CSM_CREDIT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="infoSrc != null">
+        INFO_SRC,
+      </if>
+      <if test="queryDate != null">
+        QUERY_DATE,
+      </if>
+      <if test="letterOfPresentation != null">
+        LETTER_OF_PRESENTATION,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="djkLxyqTimes != null">
+        DJK_LXYQ_TIMES,
+      </if>
+      <if test="djkLjyqTimes != null">
+        DJK_LJYQ_TIMES,
+      </if>
+      <if test="dkLxqxTimes != null">
+        DK_LXQX_TIMES,
+      </if>
+      <if test="dkLjqxTimes != null">
+        DK_LJQX_TIMES,
+      </if>
+      <if test="sxbjYqCondition != null">
+        SXBJ_YQ_CONDITION,
+      </if>
+      <if test="branchbadrecord != null">
+        BRANCHBADRECORD,
+      </if>
+      <if test="natiflag != null">
+        NATIFLAG,
+      </if>
+      <if test="natureOfUnit != null">
+        NATURE_OF_UNIT,
+      </if>
+      <if test="scaleOfUnit != null">
+        SCALE_OF_UNIT,
+      </if>
+      <if test="isalertcorp != null">
+        ISALERTCORP,
+      </if>
+      <if test="havelawsuit != null">
+        HAVELAWSUIT,
+      </if>
+      <if test="badleaderflag != null">
+        BADLEADERFLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="infoSrc != null">
+        #{infoSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="queryDate != null">
+        #{queryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="letterOfPresentation != null">
+        #{letterOfPresentation,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="djkLxyqTimes != null">
+        #{djkLxyqTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="djkLjyqTimes != null">
+        #{djkLjyqTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="dkLxqxTimes != null">
+        #{dkLxqxTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="dkLjqxTimes != null">
+        #{dkLjqxTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="sxbjYqCondition != null">
+        #{sxbjYqCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="branchbadrecord != null">
+        #{branchbadrecord,jdbcType=VARCHAR},
+      </if>
+      <if test="natiflag != null">
+        #{natiflag,jdbcType=VARCHAR},
+      </if>
+      <if test="natureOfUnit != null">
+        #{natureOfUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="scaleOfUnit != null">
+        #{scaleOfUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="isalertcorp != null">
+        #{isalertcorp,jdbcType=VARCHAR},
+      </if>
+      <if test="havelawsuit != null">
+        #{havelawsuit,jdbcType=VARCHAR},
+      </if>
+      <if test="badleaderflag != null">
+        #{badleaderflag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.bean.CreditInfo">
+    update TB_CSM_CREDIT_INFO
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="infoSrc != null">
+        INFO_SRC = #{infoSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="queryDate != null">
+        QUERY_DATE = #{queryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="letterOfPresentation != null">
+        LETTER_OF_PRESENTATION = #{letterOfPresentation,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="djkLxyqTimes != null">
+        DJK_LXYQ_TIMES = #{djkLxyqTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="djkLjyqTimes != null">
+        DJK_LJYQ_TIMES = #{djkLjyqTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="dkLxqxTimes != null">
+        DK_LXQX_TIMES = #{dkLxqxTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="dkLjqxTimes != null">
+        DK_LJQX_TIMES = #{dkLjqxTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="sxbjYqCondition != null">
+        SXBJ_YQ_CONDITION = #{sxbjYqCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="branchbadrecord != null">
+        BRANCHBADRECORD = #{branchbadrecord,jdbcType=VARCHAR},
+      </if>
+      <if test="natiflag != null">
+        NATIFLAG = #{natiflag,jdbcType=VARCHAR},
+      </if>
+      <if test="natureOfUnit != null">
+        NATURE_OF_UNIT = #{natureOfUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="scaleOfUnit != null">
+        SCALE_OF_UNIT = #{scaleOfUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="isalertcorp != null">
+        ISALERTCORP = #{isalertcorp,jdbcType=VARCHAR},
+      </if>
+      <if test="havelawsuit != null">
+        HAVELAWSUIT = #{havelawsuit,jdbcType=VARCHAR},
+      </if>
+      <if test="badleaderflag != null">
+        BADLEADERFLAG = #{badleaderflag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.bean.CreditInfo">
+    update TB_CSM_CREDIT_INFO
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      INFO_SRC = #{infoSrc,jdbcType=VARCHAR},
+      QUERY_DATE = #{queryDate,jdbcType=TIMESTAMP},
+      LETTER_OF_PRESENTATION = #{letterOfPresentation,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      DJK_LXYQ_TIMES = #{djkLxyqTimes,jdbcType=VARCHAR},
+      DJK_LJYQ_TIMES = #{djkLjyqTimes,jdbcType=VARCHAR},
+      DK_LXQX_TIMES = #{dkLxqxTimes,jdbcType=VARCHAR},
+      DK_LJQX_TIMES = #{dkLjqxTimes,jdbcType=VARCHAR},
+      SXBJ_YQ_CONDITION = #{sxbjYqCondition,jdbcType=VARCHAR},
+      BRANCHBADRECORD = #{branchbadrecord,jdbcType=VARCHAR},
+      NATIFLAG = #{natiflag,jdbcType=VARCHAR},
+      NATURE_OF_UNIT = #{natureOfUnit,jdbcType=VARCHAR},
+      SCALE_OF_UNIT = #{scaleOfUnit,jdbcType=VARCHAR},
+      ISALERTCORP = #{isalertcorp,jdbcType=VARCHAR},
+      HAVELAWSUIT = #{havelawsuit,jdbcType=VARCHAR},
+      BADLEADERFLAG = #{badleaderflag,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
