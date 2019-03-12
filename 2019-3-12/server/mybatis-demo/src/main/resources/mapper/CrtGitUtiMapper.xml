@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtGitUtilMapper">
+
+	<!-- 查询时间表 -->
+	<select id="queryOperatingDate" resultType="java.lang.String">
+		select
+		to_char(operating_date, 'yyyy-mm-dd') as operating_date from
+		tb_pub_date
+	</select>
+	
+	<!-- 查询序列号 -->
+	<select id="selectSeqByName" parameterType="java.util.HashMap" resultType="java.lang.String">
+		SELECT ${seqname} AS SEQNO FROM DUAL
+	</select>
+
+</mapper>

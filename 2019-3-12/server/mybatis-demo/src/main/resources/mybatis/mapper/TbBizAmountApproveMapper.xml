@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.loan.user.mapper.TbBizAmountApproveMapper">
+  <resultMap id="BaseResultMap" type="com.example.loan.user.bean.TbBizAmountApprove">
+    <id column="AMOUNT_ID" jdbcType="VARCHAR" property="amountId" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="AMOUNT_CLASSIFY" jdbcType="VARCHAR" property="amountClassify" />
+    <result column="CREDIT_TYPE" jdbcType="VARCHAR" property="creditType" />
+    <result column="CREDIT_AMOUNT" jdbcType="DECIMAL" property="creditAmount" />
+    <result column="CREDIT_TERM" jdbcType="DECIMAL" property="creditTerm" />
+    <result column="APPLY_DESC" jdbcType="VARCHAR" property="applyDesc" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CYCLE_UNIT" jdbcType="VARCHAR" property="cycleUnit" />
+    <result column="STATUS_CD" jdbcType="VARCHAR" property="statusCd" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="MAIN_GUARANTY_TYPE" jdbcType="VARCHAR" property="mainGuarantyType" />
+    <result column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+    <result column="CREDIT_AVI" jdbcType="DECIMAL" property="creditAvi" />
+    <result column="CREDIT_USED" jdbcType="DECIMAL" property="creditUsed" />
+    <result column="FRZ_NUM" jdbcType="VARCHAR" property="frzNum" />
+    <result column="FRZ_AMT" jdbcType="DECIMAL" property="frzAmt" />
+    <result column="OPER_FLAG" jdbcType="VARCHAR" property="operFlag" />
+    <result column="FRZ_END_DATE" jdbcType="VARCHAR" property="frzEndDate" />
+    <result column="FRZ_TYPE" jdbcType="VARCHAR" property="frzType" />
+    <result column="FRZ_STATUS" jdbcType="VARCHAR" property="frzStatus" />
+    <result column="FRZ_REASON" jdbcType="VARCHAR" property="frzReason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    AMOUNT_ID, GUARANTY_TYPE, PARTY_ID, AMOUNT_CLASSIFY, CREDIT_TYPE, CREDIT_AMOUNT, 
+    CREDIT_TERM, APPLY_DESC, CREATE_TIME, UPDATE_TIME, CYCLE_UNIT, STATUS_CD, CURRENCY_CD, 
+    MAIN_GUARANTY_TYPE, APPROVE_ID, CREDIT_AVI, CREDIT_USED, FRZ_NUM, FRZ_AMT, OPER_FLAG, 
+    FRZ_END_DATE, FRZ_TYPE, FRZ_STATUS, FRZ_REASON
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_AMOUNT_APPROVE
+    where AMOUNT_ID = #{amountId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_AMOUNT_APPROVE
+    where AMOUNT_ID = #{amountId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.loan.user.bean.TbBizAmountApprove">
+    insert into TB_BIZ_AMOUNT_APPROVE (AMOUNT_ID, GUARANTY_TYPE, PARTY_ID, 
+      AMOUNT_CLASSIFY, CREDIT_TYPE, CREDIT_AMOUNT, 
+      CREDIT_TERM, APPLY_DESC, CREATE_TIME, 
+      UPDATE_TIME, CYCLE_UNIT, STATUS_CD, 
+      CURRENCY_CD, MAIN_GUARANTY_TYPE, APPROVE_ID, 
+      CREDIT_AVI, CREDIT_USED, FRZ_NUM, 
+      FRZ_AMT, OPER_FLAG, FRZ_END_DATE, 
+      FRZ_TYPE, FRZ_STATUS, FRZ_REASON
+      )
+    values (#{amountId,jdbcType=VARCHAR}, #{guarantyType,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, 
+      #{amountClassify,jdbcType=VARCHAR}, #{creditType,jdbcType=VARCHAR}, #{creditAmount,jdbcType=DECIMAL}, 
+      #{creditTerm,jdbcType=DECIMAL}, #{applyDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{cycleUnit,jdbcType=VARCHAR}, #{statusCd,jdbcType=VARCHAR}, 
+      #{currencyCd,jdbcType=VARCHAR}, #{mainGuarantyType,jdbcType=VARCHAR}, #{approveId,jdbcType=VARCHAR}, 
+      #{creditAvi,jdbcType=DECIMAL}, #{creditUsed,jdbcType=DECIMAL}, #{frzNum,jdbcType=VARCHAR}, 
+      #{frzAmt,jdbcType=DECIMAL}, #{operFlag,jdbcType=VARCHAR}, #{frzEndDate,jdbcType=VARCHAR}, 
+      #{frzType,jdbcType=VARCHAR}, #{frzStatus,jdbcType=VARCHAR}, #{frzReason,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.loan.user.bean.TbBizAmountApprove">
+    insert into TB_BIZ_AMOUNT_APPROVE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="amountId != null">
+        AMOUNT_ID,
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="amountClassify != null">
+        AMOUNT_CLASSIFY,
+      </if>
+      <if test="creditType != null">
+        CREDIT_TYPE,
+      </if>
+      <if test="creditAmount != null">
+        CREDIT_AMOUNT,
+      </if>
+      <if test="creditTerm != null">
+        CREDIT_TERM,
+      </if>
+      <if test="applyDesc != null">
+        APPLY_DESC,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="cycleUnit != null">
+        CYCLE_UNIT,
+      </if>
+      <if test="statusCd != null">
+        STATUS_CD,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="mainGuarantyType != null">
+        MAIN_GUARANTY_TYPE,
+      </if>
+      <if test="approveId != null">
+        APPROVE_ID,
+      </if>
+      <if test="creditAvi != null">
+        CREDIT_AVI,
+      </if>
+      <if test="creditUsed != null">
+        CREDIT_USED,
+      </if>
+      <if test="frzNum != null">
+        FRZ_NUM,
+      </if>
+      <if test="frzAmt != null">
+        FRZ_AMT,
+      </if>
+      <if test="operFlag != null">
+        OPER_FLAG,
+      </if>
+      <if test="frzEndDate != null">
+        FRZ_END_DATE,
+      </if>
+      <if test="frzType != null">
+        FRZ_TYPE,
+      </if>
+      <if test="frzStatus != null">
+        FRZ_STATUS,
+      </if>
+      <if test="frzReason != null">
+        FRZ_REASON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="amountId != null">
+        #{amountId,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyType != null">
+        #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="amountClassify != null">
+        #{amountClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="creditType != null">
+        #{creditType,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmount != null">
+        #{creditAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="creditTerm != null">
+        #{creditTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDesc != null">
+        #{applyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cycleUnit != null">
+        #{cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCd != null">
+        #{statusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mainGuarantyType != null">
+        #{mainGuarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="approveId != null">
+        #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAvi != null">
+        #{creditAvi,jdbcType=DECIMAL},
+      </if>
+      <if test="creditUsed != null">
+        #{creditUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="frzNum != null">
+        #{frzNum,jdbcType=VARCHAR},
+      </if>
+      <if test="frzAmt != null">
+        #{frzAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="operFlag != null">
+        #{operFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="frzEndDate != null">
+        #{frzEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="frzType != null">
+        #{frzType,jdbcType=VARCHAR},
+      </if>
+      <if test="frzStatus != null">
+        #{frzStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="frzReason != null">
+        #{frzReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.loan.user.bean.TbBizAmountApprove">
+    update TB_BIZ_AMOUNT_APPROVE
+    <set>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="amountClassify != null">
+        AMOUNT_CLASSIFY = #{amountClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="creditType != null">
+        CREDIT_TYPE = #{creditType,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmount != null">
+        CREDIT_AMOUNT = #{creditAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="creditTerm != null">
+        CREDIT_TERM = #{creditTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDesc != null">
+        APPLY_DESC = #{applyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cycleUnit != null">
+        CYCLE_UNIT = #{cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCd != null">
+        STATUS_CD = #{statusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mainGuarantyType != null">
+        MAIN_GUARANTY_TYPE = #{mainGuarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="approveId != null">
+        APPROVE_ID = #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAvi != null">
+        CREDIT_AVI = #{creditAvi,jdbcType=DECIMAL},
+      </if>
+      <if test="creditUsed != null">
+        CREDIT_USED = #{creditUsed,jdbcType=DECIMAL},
+      </if>
+      <if test="frzNum != null">
+        FRZ_NUM = #{frzNum,jdbcType=VARCHAR},
+      </if>
+      <if test="frzAmt != null">
+        FRZ_AMT = #{frzAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="operFlag != null">
+        OPER_FLAG = #{operFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="frzEndDate != null">
+        FRZ_END_DATE = #{frzEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="frzType != null">
+        FRZ_TYPE = #{frzType,jdbcType=VARCHAR},
+      </if>
+      <if test="frzStatus != null">
+        FRZ_STATUS = #{frzStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="frzReason != null">
+        FRZ_REASON = #{frzReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AMOUNT_ID = #{amountId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.loan.user.bean.TbBizAmountApprove">
+    update TB_BIZ_AMOUNT_APPROVE
+    set GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      AMOUNT_CLASSIFY = #{amountClassify,jdbcType=VARCHAR},
+      CREDIT_TYPE = #{creditType,jdbcType=VARCHAR},
+      CREDIT_AMOUNT = #{creditAmount,jdbcType=DECIMAL},
+      CREDIT_TERM = #{creditTerm,jdbcType=DECIMAL},
+      APPLY_DESC = #{applyDesc,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CYCLE_UNIT = #{cycleUnit,jdbcType=VARCHAR},
+      STATUS_CD = #{statusCd,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      MAIN_GUARANTY_TYPE = #{mainGuarantyType,jdbcType=VARCHAR},
+      APPROVE_ID = #{approveId,jdbcType=VARCHAR},
+      CREDIT_AVI = #{creditAvi,jdbcType=DECIMAL},
+      CREDIT_USED = #{creditUsed,jdbcType=DECIMAL},
+      FRZ_NUM = #{frzNum,jdbcType=VARCHAR},
+      FRZ_AMT = #{frzAmt,jdbcType=DECIMAL},
+      OPER_FLAG = #{operFlag,jdbcType=VARCHAR},
+      FRZ_END_DATE = #{frzEndDate,jdbcType=VARCHAR},
+      FRZ_TYPE = #{frzType,jdbcType=VARCHAR},
+      FRZ_STATUS = #{frzStatus,jdbcType=VARCHAR},
+      FRZ_REASON = #{frzReason,jdbcType=VARCHAR}
+    where AMOUNT_ID = #{amountId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbConLdzjMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbConLdzj">
+	<id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="REST_RATE" jdbcType="DECIMAL" property="restRate" />
+    <result column="PAY_WAY" jdbcType="VARCHAR" property="payWay" />
+    <result column="PAY_DEPEND1" jdbcType="VARCHAR" property="payDepend1" />
+    <result column="PAY_DEPEND2" jdbcType="VARCHAR" property="payDepend2" />
+    <result column="PAY_DEPEND3" jdbcType="VARCHAR" property="payDepend3" />
+    <result column="LEAST_PREPAY_AMOUNT" jdbcType="DECIMAL" property="leastPrepayAmount" />
+    <result column="PREPAY_JS" jdbcType="DECIMAL" property="prepayJs" />
+    <result column="PREPAY_MAKEUP_RATE" jdbcType="DECIMAL" property="prepayMakeupRate" />
+    <result column="LEAST_SETTLE_RATE" jdbcType="DECIMAL" property="leastSettleRate" />
+    <result column="JMRHSX" jdbcType="VARCHAR" property="jmrhsx" />
+    <result column="SFJMRHSX" jdbcType="VARCHAR" property="sfjmrhsx" />
+    <result column="MIN_AMT" jdbcType="DECIMAL" property="minAmt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, CONTRACT_ID, REST_RATE, 
+    PAY_WAY, PAY_DEPEND1, PAY_DEPEND2, PAY_DEPEND3, LEAST_PREPAY_AMOUNT, PREPAY_JS, PREPAY_MAKEUP_RATE, 
+    LEAST_SETTLE_RATE, JMRHSX, SFJMRHSX, MIN_AMT
+  </sql>
+  <!-- 根据合同id查询多条信息 -->
+  <select id="selectConLdzjListByContractId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_LDZJ
+    where contract_Id = #{contractId,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

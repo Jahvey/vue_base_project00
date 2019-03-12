@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbLoanZhMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbLoanZh">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ZHBS" jdbcType="VARCHAR" property="zhbs" />
+    <result column="ZHLX" jdbcType="VARCHAR" property="zhlx" />
+    <result column="KZBS" jdbcType="VARCHAR" property="kzbs" />
+    <result column="ZH" jdbcType="VARCHAR" property="zh" />
+    <result column="ZHKHJG" jdbcType="VARCHAR" property="zhkhjg" />
+    <result column="ZHMC" jdbcType="VARCHAR" property="zhmc" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ZHBS, ZHLX, KZBS, ZH, ZHKHJG, ZHMC, LOAN_ID
+  </sql>
+  <!-- 根据主键查询一条出账账户信息 -->
+  <select id="selectLoanZhByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_ZH
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <!-- 根据出账id查询多条出账账户信息 -->
+  <select id="getLoanAccInfoList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_ZH
+    where loan_id = #{loanId,jdbcType=VARCHAR}
+  </select>
+  <!-- 插入一条出账账户信息 -->
+  <insert id="insertLoanZhSelective" parameterType="com.cdgit.loan.contract.bean.CrtTbLoanZh">
+    insert into CRMS.TB_LOAN_ZH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="zhbs != null">
+        ZHBS,
+      </if>
+      <if test="zhlx != null">
+        ZHLX,
+      </if>
+      <if test="kzbs != null">
+        KZBS,
+      </if>
+      <if test="zh != null">
+        ZH,
+      </if>
+      <if test="zhkhjg != null">
+        ZHKHJG,
+      </if>
+      <if test="zhmc != null">
+        ZHMC,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbs != null">
+        #{zhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx != null">
+        #{zhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="kzbs != null">
+        #{kzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="zh != null">
+        #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="zhkhjg != null">
+        #{zhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="zhmc != null">
+        #{zhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

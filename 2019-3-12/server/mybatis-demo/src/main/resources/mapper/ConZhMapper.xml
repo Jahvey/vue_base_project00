@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.guaranteevaluation.mapper.ConZhMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.guaranteevaluation.bean.ConZh">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ZHBS" jdbcType="VARCHAR" property="zhbs" />
+    <result column="ZHLX" jdbcType="VARCHAR" property="zhlx" />
+    <result column="KZBS" jdbcType="VARCHAR" property="kzbs" />
+    <result column="ZH" jdbcType="VARCHAR" property="zh" />
+    <result column="ZHKHJG" jdbcType="VARCHAR" property="zhkhjg" />
+    <result column="ZHMC" jdbcType="VARCHAR" property="zhmc" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="ACC_STATUS" jdbcType="VARCHAR" property="accStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ZHBS, ZHLX, KZBS, ZH, ZHKHJG, ZHMC, CONTRACT_ID, ACC_STATUS
+  </sql>
+  <select id="selectByContractId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CON_ZH
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CON_ZH
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CON_ZH
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConZh">
+    insert into TB_CON_ZH (ID, ZHBS, ZHLX, 
+      KZBS, ZH, ZHKHJG, ZHMC, 
+      CONTRACT_ID, ACC_STATUS)
+    values (#{id,jdbcType=VARCHAR}, #{zhbs,jdbcType=VARCHAR}, #{zhlx,jdbcType=VARCHAR}, 
+      #{kzbs,jdbcType=VARCHAR}, #{zh,jdbcType=VARCHAR}, #{zhkhjg,jdbcType=VARCHAR}, #{zhmc,jdbcType=VARCHAR}, 
+      #{contractId,jdbcType=VARCHAR}, #{accStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConZh">
+    insert into TB_CON_ZH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="zhbs != null">
+        ZHBS,
+      </if>
+      <if test="zhlx != null">
+        ZHLX,
+      </if>
+      <if test="kzbs != null">
+        KZBS,
+      </if>
+      <if test="zh != null">
+        ZH,
+      </if>
+      <if test="zhkhjg != null">
+        ZHKHJG,
+      </if>
+      <if test="zhmc != null">
+        ZHMC,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="accStatus != null">
+        ACC_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="zhbs != null">
+        #{zhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx != null">
+        #{zhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="kzbs != null">
+        #{kzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="zh != null">
+        #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="zhkhjg != null">
+        #{zhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="zhmc != null">
+        #{zhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="accStatus != null">
+        #{accStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConZh">
+    update TB_CON_ZH
+    <set>
+      <if test="zhbs != null">
+        ZHBS = #{zhbs,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx != null">
+        ZHLX = #{zhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="kzbs != null">
+        KZBS = #{kzbs,jdbcType=VARCHAR},
+      </if>
+      <if test="zh != null">
+        ZH = #{zh,jdbcType=VARCHAR},
+      </if>
+      <if test="zhkhjg != null">
+        ZHKHJG = #{zhkhjg,jdbcType=VARCHAR},
+      </if>
+      <if test="zhmc != null">
+        ZHMC = #{zhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="accStatus != null">
+        ACC_STATUS = #{accStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConZh">
+    update TB_CON_ZH
+    set ZHBS = #{zhbs,jdbcType=VARCHAR},
+      ZHLX = #{zhlx,jdbcType=VARCHAR},
+      KZBS = #{kzbs,jdbcType=VARCHAR},
+      ZH = #{zh,jdbcType=VARCHAR},
+      ZHKHJG = #{zhkhjg,jdbcType=VARCHAR},
+      ZHMC = #{zhmc,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      ACC_STATUS = #{accStatus,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

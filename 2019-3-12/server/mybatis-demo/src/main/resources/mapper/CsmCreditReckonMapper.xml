@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmCreditReckonMapper">
+
+<!-- CON -->
+  <select id="getConCredit" parameterType="java.lang.String" resultType="java.util.HashMap">
+SELECT
+	CON_STATUS,
+	CREDIT_STATUS,
+	CYCLE_IND_CON,
+	RMB_AMT,
+	CON_BALANCE BO_USE,
+	BZJBL ASSURE_PER,
+	PRODUCT_TYPE,
+	CON_OCCUPY,
+	CRD_DTL_ID,
+	AMOUNT_DETAIL_ID BIZ_DTL_ID 
+FROM
+	TB_CON_CONTRACT_INFO 
+WHERE
+	CONTRACT_ID =#{contractId}
+  
+  </select>
+  
+  <!-- BIZ_DTL -->
+  <select id="getBizDtlCredit" parameterType="java.lang.String" resultType="java.util.HashMap">
+  SELECT
+	CREDIT_STATUS,
+	RMB_AMT,
+	CYCLE_IND,
+	CREDIT_MODE,
+	BO_USE,
+	NO_USE,
+	CRD_DTL_ID,
+	ASSURE_PER 
+FROM
+	TB_BIZ_AMOUNT_DETAIL_APPROVE 
+WHERE
+	AMOUNT_DETAIL_ID =#{amountDetailId}
+  
+  </select>
+  
+ <!-- CRD_DTL -->
+ 
+ <select id="getCrdDtlCredit" parameterType="java.lang.String" resultType="java.util.HashMap">
+ 
+ SELECT
+	CREDIT_STATUS,
+	RMB_AMT,
+	BO_USE,
+	NO_USE,
+	CYCLE_IND,
+	CRD_ID,
+	CREDIT_MODE 
+FROM
+	TB_CRD_DETAIL_APPROVE 
+WHERE
+	CRD_DTL_ID =#{crdDtlId}
+ 
+ </select>
+  
+  
+</mapper>

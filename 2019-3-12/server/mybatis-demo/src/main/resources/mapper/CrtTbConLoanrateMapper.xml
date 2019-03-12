@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbConLoanrateMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbConLoanrate">
+    <id column="LOANRATE_ID" jdbcType="VARCHAR" property="loanrateId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="RATE_TYPE" jdbcType="VARCHAR" property="rateType" />
+    <result column="INTEREST_COLLECT_TYPE" jdbcType="VARCHAR" property="interestCollectType" />
+    <result column="RATE_FLOAT_PROPORTION" jdbcType="DECIMAL" property="rateFloatProportion" />
+    <result column="IR_UPDATE_FREQUENCY" jdbcType="VARCHAR" property="irUpdateFrequency" />
+    <result column="BASE_RATE_VALUE" jdbcType="DECIMAL" property="baseRateValue" />
+    <result column="RATE_FLOAT_MEMBER" jdbcType="DECIMAL" property="rateFloatMember" />
+    <result column="OVERDUE_RATE_UP_PROPORTION" jdbcType="VARCHAR" property="overdueRateUpProportion" />
+    <result column="YEAR_RATE" jdbcType="DECIMAL" property="yearRate" />
+    <result column="FLOAT_TYPE" jdbcType="VARCHAR" property="floatType" />
+    <result column="FLOAT_WAY" jdbcType="VARCHAR" property="floatWay" />
+    <result column="GRACE_PERIOD_DAY" jdbcType="DECIMAL" property="gracePeriodDay" />
+    <result column="GRACE_PERIOD_TYPE" jdbcType="VARCHAR" property="gracePeriodType" />
+    <result column="GRACE_COUNT_INT_FLAG" jdbcType="VARCHAR" property="graceCountIntFlag" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="HOLIDAY_FLG" jdbcType="VARCHAR" property="holidayFlg" />
+    <result column="HOLIDAY_INT_FLG" jdbcType="VARCHAR" property="holidayIntFlg" />
+    <result column="FEE_FLAG" jdbcType="VARCHAR" property="feeFlag" />
+    <result column="DISC_FLAG" jdbcType="VARCHAR" property="discFlag" />
+  </resultMap>
+  
+  <select id="selectAllConLoanrateByContractId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_LOANRATE
+    where contract_Id = #{contractId,jdbcType=VARCHAR}
+  </select>
+  
+ <sql id="Base_Column_List">
+    LOANRATE_ID, CREATE_TIME, UPDATE_TIME, RATE_TYPE, INTEREST_COLLECT_TYPE, RATE_FLOAT_PROPORTION, 
+    IR_UPDATE_FREQUENCY, BASE_RATE_VALUE, RATE_FLOAT_MEMBER, OVERDUE_RATE_UP_PROPORTION, 
+    YEAR_RATE, FLOAT_TYPE, FLOAT_WAY, GRACE_PERIOD_DAY, GRACE_PERIOD_TYPE, GRACE_COUNT_INT_FLAG, 
+    CONTRACT_ID, HOLIDAY_FLG, HOLIDAY_INT_FLG, FEE_FLAG, DISC_FLAG
+  </sql>
+</mapper>

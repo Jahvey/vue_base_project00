@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="templatedesigner/css/designer.css" />
+	<link href="js/fileupload/css/webuploader.min.css" rel="Stylesheet" type="text/css">
+	<link href="js/fileupload/css/diyUpload.min.css" rel="Stylesheet" type="text/css">
+</head>
+<body>
+	<div class="page popup-overlay modal-overlay-visible" data-page="district_popup" style="display: block;top:0;  position: absolute;left:6%;overflow-y: auto; width: 90%; padding: 8px;  border: 4px solid #E8E9F7;  background-color: white;  z-index:5002;">
+		<div class="content-block-title" style="font-size:18px;">区域设置</div>
+		<div class="list-block">
+			<ul>
+				<!--<li>
+					<div class="item-content">
+						<div class="item-input ">
+							<label><input type="checkbox" class="switchArea">搜索挂件中启用切换区域 </label>
+						</div>
+					</div>
+				</li>-->
+				<li>
+					<div class="item-content">
+						<div class="item-input ">
+							<label><input type="checkbox" class="firstStart">首次进入首页显示区域选择页面 </label>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="item-title label" style="left:30px;color: #444444;font-weight: bold;">区域选择页面样式：</div>
+				</li>
+			</ul>
+		</div>
+		<div class='list-block'>
+			<ul class="district_style">
+				<li>
+					<label><input type="radio" value='1' name="areaRadio">简易样式 </label>
+					<div class="bomb-box-content PhoneArea">
+						<div class="bomb-box-content-text views">
+							<div class="home-select-city">
+								<p class="home-select-title">
+									<label  class="areaInput" id="styleInput1"/></label>
+								</p>
+								<ul style="padding-left: 10px">
+									<li><a>上海</a></li>
+									<li><a>北京</a></li>
+									<li><a>天津</a></li>
+									<li><a>杭州</a></li>
+									<li><a>无锡</a></li>
+									<li><a>苏州</a></li>
+									<li><a>广州</a></li>
+									<li><a>深圳</a></li>
+								</ul>
+								<div style="padding:0 14px;">
+									<a href="javascript:void(0);" class="city-select-button">确定</a>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="item-content">
+							<div class="item-media"></div>
+							<div class="item-inner">
+								<div class="item-title label">每行显示：</div>
+								<div class="item-input">
+									<input id="shownumber" type="number" min="1" placeholder="请输入列数" value="4" class="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label><input type="radio" value='2' name="areaRadio">区域检索 </label>
+					<div class="cityDiv PhoneArea">
+						<div class="cityViews views">
+							<header>
+								<div class="s-topbar">
+									<h1><label id="districtChoose"/></label></h1>
+								</div>				
+							</header>
+							<section>
+							<div class="position-city J_citylist">
+								<p>当前定位城市</p>
+								<em>
+								<span class="text" id="GPSCityId">北京</span>
+								</em>
+							</div>
+							<div class="hot-trade modebox">
+								<div class="hd">热门城市</div>
+								<div class="home-place-list">
+                                    <ul class="J_citylist" style="padding-left: 5px">
+										<li><a>北京</a></li>
+										<li><a>上海</a></li>
+										<li><a>广州</a></li>
+										<li><a>天津</a></li>
+										<li><a>深圳</a></li>
+										<li><a>武汉</a></li>
+                                    </ul>
+                            	</div>
+							</div>
+							<div class="picker-box">
+								<div class="pro-picker">
+									<dl><dt id="A">A</dt><dd data-letter="A">安徽</dd></dl>
+									<dl><dt id="B">B</dt><dd data-letter="B">北京</dd></dl>
+									<dl><dt id="C">C</dt><dd data-letter="C">重庆</dd></dl>
+									<dl><dt id="F">F</dt><dd data-letter="F">福建</dd></dl>
+								</div>
+								<div class="navbarPinyin">
+									<i class="icon-search-01"></i>
+									<a href="#A">A</a>
+									<a href="#B">B</a>
+									<a href="#C">C</a>
+									<a href="#D">D</a>
+									<a href="#E">E</a>
+									<a href="#F">F</a>
+									<a href="#G">G</a>
+									<a href="#H">H</a>
+									<a href="#I">I</a>
+									<a href="#J">J</a>
+									<a href="#K">K</a>
+									<a href="#L">L</a>	
+									<a href="#M">M</a>	
+									<a href="#N">N</a>	
+									<a href="#O">O</a>	
+									<a href="#P">P</a>
+									<a href="#Q">Q</a>	
+									<a href="#R">R</a>										
+								</div>
+							</div>
+						</section>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label><input type="radio" value="3" name="areaRadio">二级区域选择 </label>
+					<div class="ui-content ui-bg PhoneArea">
+						<div class="views">
+							<header class="ui-header">
+							<p class="ui-tip" id="currentCitydesigner"></p>
+							<h1 data-url="" class="ui-locationCity" data-isopen="0" data-cityid="110100">北京</h1>
+							<section class="ui-selectCity">
+								<p class="ui-tip" id='currentCityTip'>请选择您当前的所在城市进入下单购买</p>
+								<div>
+									<div class="ui-input">
+										<input class="ui-input-select" id="fn-provinceCmp" placeholder="请选择省份">
+									</div>
+									<div class="ui-input">
+										<input class="ui-input-select" id="fn-cityCmp" data-isopen="0" data-cityid="110100" placeholder="请选择区域">
+									</div>
+									<div class="ui-input" id="fn-areaInput" style="display: none;">
+										<div class="ui-input-select" id="fn-areaCmp">请选择区域</div>
+									</div>
+									<button type="button" class="ui-confirmBtn" id="fn-confirmBtn">确&nbsp;&nbsp;定</button>
+								</div>
+							</section>
+						</header>
+						</div>
+					</div>
+					<div  style="position: relative">
+						<div id="uploadBackground" class="districtUpload"></div>
+						<span class="tip tip_block">接受 gif, jpg, jpeg, bmp, png格式 (单个文件不超过1M,总文件不超过5M)</span>
+					</div>
+				</li>
+			</ul>
+			
+		</div>
+		<div style="display: block;width:100%; margin: 0 auto 50px;text-align: center">
+			<div class="col-100">
+				<a href="#" class="button  button-fill color-blue closed" style="display: inline-block;width: 100px">关闭</a>
+				<a href="#" class="button  button-fill color-blue confirm" style="display: inline-block;width: 100px">确定</a>
+			</div>
+		</div>
+		
+	</div>
+<script src="templatedesigner/setting/district_popup_M.js" type="text/javascript"></script>
+<script src="js/fileupload/js/webuploader.js" type="text/javascript"></script>
+<script src="js/fileupload/js/diyUpload.js" type="text/javascript"></script>
+</body>
+</html>

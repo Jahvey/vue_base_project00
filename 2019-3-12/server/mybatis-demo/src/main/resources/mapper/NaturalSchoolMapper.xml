@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.mapper.NaturalSchoolMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.bean.NaturalSchool">
+    <id column="SCHOOL_ID" jdbcType="VARCHAR" property="schoolId" />
+    <result column="COLLEGENAME" jdbcType="VARCHAR" property="collegename" />
+    <result column="COLLEGEADDR" jdbcType="VARCHAR" property="collegeaddr" />
+    <result column="INSTITUTENAME" jdbcType="VARCHAR" property="institutename" />
+    <result column="COLLEGETYPE" jdbcType="VARCHAR" property="collegetype" />
+    <result column="EDUCSIGN" jdbcType="VARCHAR" property="educsign" />
+    <result column="SUBJECTNAME" jdbcType="VARCHAR" property="subjectname" />
+    <result column="GRADUATEYEAR" jdbcType="TIMESTAMP" property="graduateyear" />
+    <result column="LASTCHANDATE" jdbcType="VARCHAR" property="lastchandate" />
+    <result column="LASTCHANPERSON" jdbcType="VARCHAR" property="lastchanperson" />
+    <result column="AREACODE" jdbcType="VARCHAR" property="areacode" />
+    <result column="EMPNUM" jdbcType="VARCHAR" property="empnum" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="NATIONALITY_CD" jdbcType="VARCHAR" property="nationalityCd" />
+    <result column="PROVINCE_CD" jdbcType="VARCHAR" property="provinceCd" />
+    <result column="CITY_CD" jdbcType="VARCHAR" property="cityCd" />
+    <result column="DISTRICT" jdbcType="VARCHAR" property="district" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SCHOOL_ID, COLLEGENAME, COLLEGEADDR, INSTITUTENAME, COLLEGETYPE, EDUCSIGN, SUBJECTNAME, 
+    GRADUATEYEAR, LASTCHANDATE, LASTCHANPERSON, AREACODE, EMPNUM, PARTY_ID, NATIONALITY_CD, 
+    PROVINCE_CD, CITY_CD, DISTRICT
+  </sql>
+  <select id="selectByPartyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_NATURAL_SCHOOL
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_NATURAL_SCHOOL
+    where SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_NATURAL_SCHOOL
+    where SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.bean.NaturalSchool">
+    insert into TB_CSM_NATURAL_SCHOOL (SCHOOL_ID, COLLEGENAME, COLLEGEADDR, 
+      INSTITUTENAME, COLLEGETYPE, EDUCSIGN, 
+      SUBJECTNAME, GRADUATEYEAR, LASTCHANDATE, 
+      LASTCHANPERSON, AREACODE, EMPNUM, 
+      PARTY_ID, NATIONALITY_CD, PROVINCE_CD, 
+      CITY_CD, DISTRICT)
+    values (#{schoolId,jdbcType=VARCHAR}, #{collegename,jdbcType=VARCHAR}, #{collegeaddr,jdbcType=VARCHAR}, 
+      #{institutename,jdbcType=VARCHAR}, #{collegetype,jdbcType=VARCHAR}, #{educsign,jdbcType=VARCHAR}, 
+      #{subjectname,jdbcType=VARCHAR}, #{graduateyear,jdbcType=TIMESTAMP}, #{lastchandate,jdbcType=VARCHAR}, 
+      #{lastchanperson,jdbcType=VARCHAR}, #{areacode,jdbcType=VARCHAR}, #{empnum,jdbcType=VARCHAR}, 
+      #{partyId,jdbcType=VARCHAR}, #{nationalityCd,jdbcType=VARCHAR}, #{provinceCd,jdbcType=VARCHAR}, 
+      #{cityCd,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.bean.NaturalSchool">
+    insert into TB_CSM_NATURAL_SCHOOL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="schoolId != null">
+        SCHOOL_ID,
+      </if>
+      <if test="collegename != null">
+        COLLEGENAME,
+      </if>
+      <if test="collegeaddr != null">
+        COLLEGEADDR,
+      </if>
+      <if test="institutename != null">
+        INSTITUTENAME,
+      </if>
+      <if test="collegetype != null">
+        COLLEGETYPE,
+      </if>
+      <if test="educsign != null">
+        EDUCSIGN,
+      </if>
+      <if test="subjectname != null">
+        SUBJECTNAME,
+      </if>
+      <if test="graduateyear != null">
+        GRADUATEYEAR,
+      </if>
+      <if test="lastchandate != null">
+        LASTCHANDATE,
+      </if>
+      <if test="lastchanperson != null">
+        LASTCHANPERSON,
+      </if>
+      <if test="areacode != null">
+        AREACODE,
+      </if>
+      <if test="empnum != null">
+        EMPNUM,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="nationalityCd != null">
+        NATIONALITY_CD,
+      </if>
+      <if test="provinceCd != null">
+        PROVINCE_CD,
+      </if>
+      <if test="cityCd != null">
+        CITY_CD,
+      </if>
+      <if test="district != null">
+        DISTRICT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="collegename != null">
+        #{collegename,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeaddr != null">
+        #{collegeaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="institutename != null">
+        #{institutename,jdbcType=VARCHAR},
+      </if>
+      <if test="collegetype != null">
+        #{collegetype,jdbcType=VARCHAR},
+      </if>
+      <if test="educsign != null">
+        #{educsign,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectname != null">
+        #{subjectname,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateyear != null">
+        #{graduateyear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastchandate != null">
+        #{lastchandate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastchanperson != null">
+        #{lastchanperson,jdbcType=VARCHAR},
+      </if>
+      <if test="areacode != null">
+        #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="empnum != null">
+        #{empnum,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityCd != null">
+        #{nationalityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCd != null">
+        #{provinceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCd != null">
+        #{cityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.bean.NaturalSchool">
+    update TB_CSM_NATURAL_SCHOOL
+    <set>
+      <if test="collegename != null">
+        COLLEGENAME = #{collegename,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeaddr != null">
+        COLLEGEADDR = #{collegeaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="institutename != null">
+        INSTITUTENAME = #{institutename,jdbcType=VARCHAR},
+      </if>
+      <if test="collegetype != null">
+        COLLEGETYPE = #{collegetype,jdbcType=VARCHAR},
+      </if>
+      <if test="educsign != null">
+        EDUCSIGN = #{educsign,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectname != null">
+        SUBJECTNAME = #{subjectname,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateyear != null">
+        GRADUATEYEAR = #{graduateyear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastchandate != null">
+        LASTCHANDATE = #{lastchandate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastchanperson != null">
+        LASTCHANPERSON = #{lastchanperson,jdbcType=VARCHAR},
+      </if>
+      <if test="areacode != null">
+        AREACODE = #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="empnum != null">
+        EMPNUM = #{empnum,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityCd != null">
+        NATIONALITY_CD = #{nationalityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCd != null">
+        PROVINCE_CD = #{provinceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCd != null">
+        CITY_CD = #{cityCd,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        DISTRICT = #{district,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.bean.NaturalSchool">
+    update TB_CSM_NATURAL_SCHOOL
+    set COLLEGENAME = #{collegename,jdbcType=VARCHAR},
+      COLLEGEADDR = #{collegeaddr,jdbcType=VARCHAR},
+      INSTITUTENAME = #{institutename,jdbcType=VARCHAR},
+      COLLEGETYPE = #{collegetype,jdbcType=VARCHAR},
+      EDUCSIGN = #{educsign,jdbcType=VARCHAR},
+      SUBJECTNAME = #{subjectname,jdbcType=VARCHAR},
+      GRADUATEYEAR = #{graduateyear,jdbcType=TIMESTAMP},
+      LASTCHANDATE = #{lastchandate,jdbcType=VARCHAR},
+      LASTCHANPERSON = #{lastchanperson,jdbcType=VARCHAR},
+      AREACODE = #{areacode,jdbcType=VARCHAR},
+      EMPNUM = #{empnum,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      NATIONALITY_CD = #{nationalityCd,jdbcType=VARCHAR},
+      PROVINCE_CD = #{provinceCd,jdbcType=VARCHAR},
+      CITY_CD = #{cityCd,jdbcType=VARCHAR},
+      DISTRICT = #{district,jdbcType=VARCHAR}
+    where SCHOOL_ID = #{schoolId,jdbcType=VARCHAR}
+  </update>
+</mapper>

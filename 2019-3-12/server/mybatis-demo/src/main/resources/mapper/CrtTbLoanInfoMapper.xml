@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbLoanInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbLoanInfo">
+    <id column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="LOAN_NUM" jdbcType="VARCHAR" property="loanNum" />
+    <result column="LOAN_SUBJECT1" jdbcType="VARCHAR" property="loanSubject1" />
+    <result column="LOAN_AMT" jdbcType="DECIMAL" property="loanAmt" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="LOAN_TERM" jdbcType="DECIMAL" property="loanTerm" />
+    <result column="CYCLE_UNIT" jdbcType="VARCHAR" property="cycleUnit" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="LOAN_ORG" jdbcType="VARCHAR" property="loanOrg" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="LOAN_STATUS" jdbcType="VARCHAR" property="loanStatus" />
+    <result column="SPEC_PAYMENT_DATE" jdbcType="DECIMAL" property="specPaymentDate" />
+    <result column="HOLIDAY_FLG" jdbcType="VARCHAR" property="holidayFlg" />
+    <result column="HOLIDAY_ITR_WAY" jdbcType="VARCHAR" property="holidayItrWay" />
+    <result column="COUNTER_FLG" jdbcType="VARCHAR" property="counterFlg" />
+    <result column="BAT_FLG" jdbcType="VARCHAR" property="batFlg" />
+    <result column="TRUS_TO_PAY_FLG" jdbcType="VARCHAR" property="trusToPayFlg" />
+    <result column="STOP_PAY_FLG" jdbcType="VARCHAR" property="stopPayFlg" />
+    <result column="REPAY_TYPE" jdbcType="VARCHAR" property="repayType" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="EXCHANGE_RATE" jdbcType="DECIMAL" property="exchangeRate" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="FIRST_REPAY_TERM" jdbcType="VARCHAR" property="firstRepayTerm" />
+    <result column="HPZS" jdbcType="DECIMAL" property="hpzs" />
+    <result column="HPBH" jdbcType="VARCHAR" property="hpbh" />
+    <result column="PJZL" jdbcType="VARCHAR" property="pjzl" />
+    <result column="DRWE_BNK_NM" jdbcType="VARCHAR" property="drweBnkNm" />
+    <result column="DRWE_BNK_NO" jdbcType="VARCHAR" property="drweBnkNo" />
+    <result column="DRWE_BNK_ADR" jdbcType="VARCHAR" property="drweBnkAdr" />
+    <result column="TXZQ" jdbcType="TIMESTAMP" property="txzq" />
+    <result column="COM_AMT" jdbcType="DECIMAL" property="comAmt" />
+    <result column="TERM" jdbcType="VARCHAR" property="term" />
+    <result column="UNIT" jdbcType="VARCHAR" property="unit" />
+    <result column="PAY_OUT_FLAG" jdbcType="VARCHAR" property="payOutFlag" />
+    <result column="ORG_RCN_STAN" jdbcType="VARCHAR" property="orgRcnStan" />
+    <result column="MID_STATUS" jdbcType="VARCHAR" property="midStatus" />
+    <result column="RCN_STAN" jdbcType="VARCHAR" property="rcnStan" />
+  </resultMap>
+
+	<!-- 根据主键查询 -->
+  <select id="selectLoanInfoByloanId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_INFO
+    where LOAN_ID = #{loanId}
+  </select>
+  <!-- 其他条件查询 -->
+<!--   <select id="selectLoanInfoByOther" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_INFO
+    where LOAN_ID = #{loanId,jdbcType=VARCHAR}这里更改
+  </select> -->
+  <!-- 插入一条业务信息 -->
+  <insert id="insertLoanInfoSelective" parameterType="com.cdgit.loan.contract.bean.CrtTbLoanInfo">
+    insert into CRMS.TB_LOAN_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="loanNum != null">
+        LOAN_NUM,
+      </if>
+      <if test="loanSubject1 != null">
+        LOAN_SUBJECT1,
+      </if>
+      <if test="loanAmt != null">
+        LOAN_AMT,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="loanTerm != null">
+        LOAN_TERM,
+      </if>
+      <if test="cycleUnit != null">
+        CYCLE_UNIT,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="loanOrg != null">
+        LOAN_ORG,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="loanStatus != null">
+        LOAN_STATUS,
+      </if>
+      <if test="specPaymentDate != null">
+        SPEC_PAYMENT_DATE,
+      </if>
+      <if test="holidayFlg != null">
+        HOLIDAY_FLG,
+      </if>
+      <if test="holidayItrWay != null">
+        HOLIDAY_ITR_WAY,
+      </if>
+      <if test="counterFlg != null">
+        COUNTER_FLG,
+      </if>
+      <if test="batFlg != null">
+        BAT_FLG,
+      </if>
+      <if test="trusToPayFlg != null">
+        TRUS_TO_PAY_FLG,
+      </if>
+      <if test="stopPayFlg != null">
+        STOP_PAY_FLG,
+      </if>
+      <if test="repayType != null">
+        REPAY_TYPE,
+      </if>
+      <if test="summaryNum != null">
+        SUMMARY_NUM,
+      </if>
+      <if test="exchangeRate != null">
+        EXCHANGE_RATE,
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT,
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE,
+      </if>
+      <if test="firstRepayTerm != null">
+        FIRST_REPAY_TERM,
+      </if>
+      <if test="hpzs != null">
+        HPZS,
+      </if>
+      <if test="hpbh != null">
+        HPBH,
+      </if>
+      <if test="pjzl != null">
+        PJZL,
+      </if>
+      <if test="drweBnkNm != null">
+        DRWE_BNK_NM,
+      </if>
+      <if test="drweBnkNo != null">
+        DRWE_BNK_NO,
+      </if>
+      <if test="drweBnkAdr != null">
+        DRWE_BNK_ADR,
+      </if>
+      <if test="txzq != null">
+        TXZQ,
+      </if>
+      <if test="comAmt != null">
+        COM_AMT,
+      </if>
+      <if test="term != null">
+        TERM,
+      </if>
+      <if test="unit != null">
+        UNIT,
+      </if>
+      <if test="payOutFlag != null">
+        PAY_OUT_FLAG,
+      </if>
+      <if test="orgRcnStan != null">
+        ORG_RCN_STAN,
+      </if>
+      <if test="midStatus != null">
+        MID_STATUS,
+      </if>
+      <if test="rcnStan != null">
+        RCN_STAN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanNum != null">
+        #{loanNum,jdbcType=VARCHAR},
+      </if>
+      <if test="loanSubject1 != null">
+        #{loanSubject1,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        #{loanAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTerm != null">
+        #{loanTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="cycleUnit != null">
+        #{cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanOrg != null">
+        #{loanOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanStatus != null">
+        #{loanStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="specPaymentDate != null">
+        #{specPaymentDate,jdbcType=DECIMAL},
+      </if>
+      <if test="holidayFlg != null">
+        #{holidayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayItrWay != null">
+        #{holidayItrWay,jdbcType=VARCHAR},
+      </if>
+      <if test="counterFlg != null">
+        #{counterFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="batFlg != null">
+        #{batFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="trusToPayFlg != null">
+        #{trusToPayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPayFlg != null">
+        #{stopPayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null">
+        #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryNum != null">
+        #{summaryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeRate != null">
+        #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="rmbAmt != null">
+        #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="ifDataMove != null">
+        #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="firstRepayTerm != null">
+        #{firstRepayTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="hpzs != null">
+        #{hpzs,jdbcType=DECIMAL},
+      </if>
+      <if test="hpbh != null">
+        #{hpbh,jdbcType=VARCHAR},
+      </if>
+      <if test="pjzl != null">
+        #{pjzl,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkNm != null">
+        #{drweBnkNm,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkNo != null">
+        #{drweBnkNo,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkAdr != null">
+        #{drweBnkAdr,jdbcType=VARCHAR},
+      </if>
+      <if test="txzq != null">
+        #{txzq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comAmt != null">
+        #{comAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="payOutFlag != null">
+        #{payOutFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRcnStan != null">
+        #{orgRcnStan,jdbcType=VARCHAR},
+      </if>
+      <if test="midStatus != null">
+        #{midStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rcnStan != null">
+        #{rcnStan,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 修改一条业务信息 -->
+  <update id="updateLoanInfoBySelect" parameterType="com.cdgit.loan.contract.bean.CrtTbLoanInfo">
+    update CRMS.TB_LOAN_INFO
+    <set>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanNum != null">
+        LOAN_NUM = #{loanNum,jdbcType=VARCHAR},
+      </if>
+      <if test="loanSubject1 != null">
+        LOAN_SUBJECT1 = #{loanSubject1,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        LOAN_AMT = #{loanAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTerm != null">
+        LOAN_TERM = #{loanTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="cycleUnit != null">
+        CYCLE_UNIT = #{cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanOrg != null">
+        LOAN_ORG = #{loanOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanStatus != null">
+        LOAN_STATUS = #{loanStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="specPaymentDate != null">
+        SPEC_PAYMENT_DATE = #{specPaymentDate,jdbcType=DECIMAL},
+      </if>
+      <if test="holidayFlg != null">
+        HOLIDAY_FLG = #{holidayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayItrWay != null">
+        HOLIDAY_ITR_WAY = #{holidayItrWay,jdbcType=VARCHAR},
+      </if>
+      <if test="counterFlg != null">
+        COUNTER_FLG = #{counterFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="batFlg != null">
+        BAT_FLG = #{batFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="trusToPayFlg != null">
+        TRUS_TO_PAY_FLG = #{trusToPayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPayFlg != null">
+        STOP_PAY_FLG = #{stopPayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null">
+        REPAY_TYPE = #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryNum != null">
+        SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeRate != null">
+        EXCHANGE_RATE = #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="firstRepayTerm != null">
+        FIRST_REPAY_TERM = #{firstRepayTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="hpzs != null">
+        HPZS = #{hpzs,jdbcType=DECIMAL},
+      </if>
+      <if test="hpbh != null">
+        HPBH = #{hpbh,jdbcType=VARCHAR},
+      </if>
+      <if test="pjzl != null">
+        PJZL = #{pjzl,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkNm != null">
+        DRWE_BNK_NM = #{drweBnkNm,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkNo != null">
+        DRWE_BNK_NO = #{drweBnkNo,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkAdr != null">
+        DRWE_BNK_ADR = #{drweBnkAdr,jdbcType=VARCHAR},
+      </if>
+      <if test="txzq != null">
+        TXZQ = #{txzq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comAmt != null">
+        COM_AMT = #{comAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="term != null">
+        TERM = #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="payOutFlag != null">
+        PAY_OUT_FLAG = #{payOutFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="orgRcnStan != null">
+        ORG_RCN_STAN = #{orgRcnStan,jdbcType=VARCHAR},
+      </if>
+      <if test="midStatus != null">
+        MID_STATUS = #{midStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rcnStan != null">
+        RCN_STAN = #{rcnStan,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where 
+    	LOAN_ID = #{loanId,jdbcType=VARCHAR}
+  </update>
+  <sql id="Base_Column_List">
+    LOAN_ID, CONTRACT_ID, LOAN_NUM, LOAN_SUBJECT1, LOAN_AMT, CURRENCY_CD, LOAN_TERM, 
+    CYCLE_UNIT, BEGIN_DATE, END_DATE, LOAN_ORG, USER_NUM, ORG_NUM, CREATE_TIME, UPDATE_TIME, 
+    PRODUCT_TYPE, PARTY_ID, LOAN_STATUS, SPEC_PAYMENT_DATE, HOLIDAY_FLG, HOLIDAY_ITR_WAY, 
+    COUNTER_FLG, BAT_FLG, TRUS_TO_PAY_FLG, STOP_PAY_FLG, REPAY_TYPE, SUMMARY_NUM, EXCHANGE_RATE, 
+    RMB_AMT, IF_DATA_MOVE, FIRST_REPAY_TERM, HPZS, HPBH, PJZL, DRWE_BNK_NM, DRWE_BNK_NO, 
+    DRWE_BNK_ADR, TXZQ, COM_AMT, TERM, UNIT, PAY_OUT_FLAG, ORG_RCN_STAN, MID_STATUS, 
+    RCN_STAN
+  </sql>
+</mapper>
