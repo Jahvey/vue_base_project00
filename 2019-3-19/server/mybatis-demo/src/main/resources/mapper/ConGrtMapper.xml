@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.ConGrtMapper">
+<select id="getConDyList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+
+	  select ta.bz bz,
+           tc.party_name party_name,
+           ta.subcontract_num subcontract_num,
+           ta.if_top_subcon if_top_subcon,
+           decode(ta.if_top_subcon,'1',ta.zgbjxe,ta.subcontract_amt)as subcontract_amt,
+           decode(ta.if_top_subcon,'1',tb.surety_amt,ta.subcontract_amt)as surety_amt,
+           tb.con_subcon_id con_subcon_id,
+           t.relation_id relation_id,
+           ta.subcontract_id subcontract_id,
+           tb.operation_type
+      from tb_biz_subcontract_rel t,
+           tb_con_subcontract     ta,
+           tb_con_subcontract_rel tb,
+           tb_csm_party           tc
+   
+     where t.subcontract_id = ta.subcontract_id
+       and ta.subcontract_id = tb.subcontract_id
+       and ta.party_id = tc.party_id
+       and (tb.if_effective='1'  or tb.if_effective is null)
+
+        <!-- modi by shanmf:增加状态04的显示 20170921 -->
+       and ta.subcontract_status in ('01', '02', '03', '05','04')  
+		and ta.SUBCONTRACT_TYPE=#{subcontractType}
+		
+		<if test="applyId !=null and applyId !='' ">
+			and t.APPLY_ID = #{applyId}
+		</if>
+		
+		<if test="contractId !=null and contractId !='' ">
+			and tb.CONTRACT_ID = #{contractId}
+		</if>
+
+
+</select>
+
+  
+<!--合同失效处理非综合授信批复失效-->
+<update id="updateCancelPF" parameterType="java.lang.String" >
+UPDATE TB_BIZ_APPROVE a 
+SET a.BECOME_EFFECTIVE_MARK = '06' 
+WHERE
+	a.APPROVE_ID = ( SELECT ad.APPROVE_ID FROM TB_BIZ_AMOUNT_DETAIL_APPROVE ad WHERE ad.AMOUNT_DETAIL_ID = #{amountDetailId} ) 
+	AND a.CREDIT_MODE IN ( '03', '05' )
+
+</update>
+
+
+	<sql id="query_ApproveConsVo">
+	
+		<!-- <if test="userNum !=null and userNum !='' "> -->
+		
+			and t.user_num= '200555'
+			and t.org_num = '0700'
+		<!-- </if> -->
+		<if test="partyId !=null and partyId !='' ">
+			and t.PARTY_ID =#{partyId}
+		</if>
+
+		<if test="contractNum !=null and contractNum !='' "><!-- 合同编号 -->
+			and t.CONTRACT_NUM like '%'||#{contractNum}||'%'
+		</if>
+		
+		
+	</sql>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbCsmManagementTeamMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbCsmManagementTeam">
+    <id column="MANAGEMENT_TEAM_ID" jdbcType="VARCHAR" property="managementTeamId" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="USER_PLACING_CD" jdbcType="VARCHAR" property="userPlacingCd" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="PARTY_TYPE" jdbcType="VARCHAR" property="partyType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MANAGEMENT_TEAM_ID, USER_NUM, USER_PLACING_CD, STATUS, PARTY_ID, UPDATE_TIME, ORG_NUM, 
+    CREATE_TIME, PARTY_TYPE
+  </sql>
+  
+</mapper>

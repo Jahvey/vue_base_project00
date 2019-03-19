@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmConDetailVoMapper">
+
+  
+  <insert id="insert" parameterType="java.util.HashMap" >
+    insert into 
+    ${tarTableName}
+    (
+    APPLY_DETAIL_ID, 
+    CREATE_TIME, 
+    UPDATE_TIME, 
+    AMOUNT_DETAIL_ID
+
+     )
+      
+    select 
+    APPLY_DETAIL_ID, 
+    CREATE_TIME, 
+    UPDATE_TIME, 
+    AMOUNT_DETAIL_ID
+     from 
+   ${srcTableName}
+     c
+
+     where 
+    c.amount_detail_id=#{amountDetailId}
+       
+  </insert>
+  <insert id="insertSelective" parameterType="java.util.HashMap">
+    insert into 
+     ${tarTableName}
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID
+      </if>
+
+    </trim>
+    <trim prefix="select (" suffix=")" suffixOverrides=",">
+      <if test="applyDetailId != null">
+        #{applyDetailId},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId}
+      </if>
+  
+    </trim>
+    from 
+        ${srcTableName}
+         c
+       
+       where 
+       c.amount_detail_id=#{amountDetailId}
+    
+  </insert>
+  
+   <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbBizWtdkApprovePo">
+    update 
+     ${tarTableName}
+  
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId}
+      </if>
+
+    </set>
+    where APPLY_DETAIL_ID = #{applyDetailId}
+  </update>
+  
+  
+
+</mapper>

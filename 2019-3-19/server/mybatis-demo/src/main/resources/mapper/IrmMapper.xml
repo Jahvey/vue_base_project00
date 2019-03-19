@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.irm.mapper.IrmMapper">
+	<resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.bean.InternalRatingResult">
+	    <id column="IRA_APPLY_ID" jdbcType="VARCHAR" property="iraApplyId" />
+	    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+	    <result column="RATING_DT" jdbcType="VARCHAR" property="ratingDt" />
+	    <result column="RATING_TYPE" jdbcType="TIMESTAMP" property="ratingType" />
+	    <result column="CREDIT_RATING_CD" jdbcType="VARCHAR" property="creditRatingCd" />
+	    <result column="EFFECTIVE_START_DT" jdbcType="TIMESTAMP" property="effectiveStartDt" />
+	    <result column="EFFECTIVE_END_DT" jdbcType="TIMESTAMP" property="effectiveEndDt" />
+	    <result column="RATING_STATE" jdbcType="VARCHAR" property="ratingState" />
+	    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+	    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+  	</resultMap>
+  	
+  	<select id="queryPaginationIrm" parameterType="com.cdgit.loan.irm.bean.IrmCriteria" resultMap="BaseResultMap">
+		select 
+		a.ira_apply_id,
+		b.party_name,
+	       to_char(c.rating_dt,'yyyy-mm-dd') as RATING_DT,
+	       a.rating_type,
+	       c.credit_rating_cd,
+	       to_char(c.effective_start_dt,'yyyy-mm-dd') as EFFECTIVE_START_DT,
+	       to_char(c.effective_end_dt,'yyyy-mm-dd') as EFFECTIVE_END_DT,
+	       c.rating_state,
+	       c.user_num,
+	       c.org_num
+	  from tb_irm_internal_rating_apply  a,
+	       tb_irm_internal_rating_result c,
+	       tb_csm_party                  b
+	 where a.party_id = b.party_id
+   	and a.ira_apply_id = c.ira_apply_id
+      	and a.party_id = #{partyId,jdbcType=VARCHAR}
+   	and c.rating_state IN( '03')
+   	<if test="thirdPartyTypeCd == null">
+   		and a.rating_type in ('1','2','3')
+   	</if>
+   	<if test="thirdPartyTypeCd != null">
+   		and a.rating_type='4'
+   	</if>
+   	<if test="userNum != null">
+   		and c.USER_NUM= #{userNum,jdbcType=VARCHAR}
+   	</if>
+   	<if test="orgNum != null">
+   		and c.ORG_NUM= #{orgNum,jdbcType=VARCHAR}
+   	</if>
+	order by c.RATING_STATE 
+	</select>
+	<!-- 获取财报时间 -->
+	<select id="getFinancedate" parameterType="java.lang.String" resultType="java.lang.String">
+		select  
+			to_char(t1.FINANCE_DEADLINE,'yyyy-MM-dd') from    TB_ACC_CUSTOMER_FINANCE t1   
+		, TB_IRM_INTERNAL_RATING_APPLY t2 
+		
+		where 
+      
+			t2.IRA_APPLY_ID= 'ff8080815f398c7c015f473e72791289'
+			and  t1.FINANCE_DEADLINE =(select max( FINANCE_DEADLINE) from TB_ACC_CUSTOMER_FINANCE where PARTY_ID=t2.PARTY_ID and FINANCE_STATUS_CD='02'   and FINANCE_TYPE_CD='1')
+			and t1.FINANCE_STATUS_CD='02' and t1.PARTY_ID=t2.PARTY_ID and t1.FINANCE_TYPE_CD='1'
+	
+	</select>
+	<!-- 获取非财务信息 -->
+	<select id="queryReportNonFinanceinfo" parameterType="java.lang.String" resultType="com.cdgit.loan.irm.bean.irmReportNonFinanceInfo">
+		SELECT
+			c.T_COMMENT as remarks,
+			c.IRA_APPLY_ID as iraApplyId,
+		    a.INDEX_ID  as indexId,
+		    a.PROPERTY_TYPE_CD as propertyType ,
+		    a.INDEX_NAME as indexName ,
+		    '查看指标说明' as indexDesc,
+		    b.INDEX_NUM  indexNum,
+		    b.INDEX_NUM ||':'||b.INDEX_DESC as indexOption
+		FROM
+		    TB_IRM_INDEX_SCORE b,
+		    TB_IRM_MODEL_INDEX a,
+		    TB_IRM_NON_FINANCIAL_INFO c
+		WHERE
+		    1=1
+		AND a.INDEX_ID = b.INDEX_ID
+		and a.INDEX_ID = c.NON_FINANCIAL_INDEX_ID
+		and b.INDEX_NUM = c.NON_FINANCIAL_VALUE
+		and a.PROPERTY_TYPE_CD != '0204'
+        and c.IRA_APPLY_ID = #{iraApplyId,jdbcType=VARCHAR}
+    </select>
+    <!-- 获取通用评级调整项信息 -->
+    <resultMap type="com.cdgit.loan.irm.bean.AdjustOption" id="queryOpitionInfo_Map">
+        <result column="IRA_APPLY_ID" jdbcType="VARCHAR" property="iraApplyId"/> 						
+        <result column="adjustOrder" jdbcType="VARCHAR"  property="adjustOrder"/> 						
+        <result column="ADJUST_TYPE_CD" jdbcType="VARCHAR" property="adjustTypeCd"/> 							
+        <result column="ADJUST_OPTION_DESCRIPTION" jdbcType="VARCHAR" property="adjustOptionDescription"/>								
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/> 						
+        <result column="checked" jdbcType="VARCHAR" property="checked"/>
+    </resultMap>
+    <select id="queryOpitionInfo"  parameterType="java.lang.String"  resultMap="queryOpitionInfo_Map">
+		select 
+			IRA_APPLY_ID,
+			ROW_NUMBER() over(order by ADJUST_TYPE_CD) as adjustOrder,
+				'调整' as  ADJUST_TYPE_CD,
+			'手工调整' as ADJUST_OPTION_DESCRIPTION,
+			'1' as checked,
+			ADJUST_DESCRIBE as remarks
+			 from TB_IRM_ADJUST_OPTIONS
+			left join TB_IRM_ADJUST_OPTION
+			on ADJ_OPT_ID = AO_ID
+			where 1=1
+			   and IRA_APPLY_ID = #{iraApplyId,jdbcType=VARCHAR }
+     </select>
+     
+     <!-- 推翻历史信息 -->
+     <resultMap type="com.cdgit.loan.irm.bean.IrmOverRecordInfo" id="queryOverRecordInfo_Map">
+        <result column="IRA_APPLY_ID" jdbcType="VARCHAR" property="iraApplyId"/> 						
+        <result column="USER_NUM" jdbcType="VARCHAR" property="userNum"/> 		
+        <result column="SMALL_LTD_DISPLAY" jdbcType="VARCHAR" property="smallLtdDisplay"/> 						
+        <result column="CREDIT_RATING_DISPLAY" jdbcType="VARCHAR" property="creditRatingDisplay"/> 						
+        <result column="OVERTHROW_REASON" jdbcType="VARCHAR" property="overthrowReason"/> 							
+        <result column="AVAG_PD" jdbcType="VARCHAR" property="avagPD"/>								
+        <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum"/> 						
+        <result column="IS_OVERTHROW" jdbcType="VARCHAR" property="isOverthrow"/>				
+        <result column="OVERTHROW_DT" jdbcType="VARCHAR" property="overthrowDT"/>
+    </resultMap>
+     <select id="queryOverRecordInfo" parameterType="java.util.HashMap" resultMap="queryOverRecordInfo_Map">
+     	select  IRA_APPLY_ID, USER_NUM,SMALL_LTD_DISPLAY,USER_NUM,CREDIT_RATING_DISPLAY,OVERTHROW_REASON,AVAG_PD  as  AVAG_PD,ORG_NUM,IS_OVERTHROW, to_char(OVERTHROW_DT,'yyyy-MM-dd') as OVERTHROW_DT
+      from TB_IRM_OVERTHROW_RECORD,TB_IRM_SCALE_DEF
+      where 1=1
+            and AFTER_GRADE = CREDIT_RATING_CD
+              
+          and  ira_apply_id = #{iraApplyId,jdbcType=VARCHAR }
+    union 
+    select  ira_apply_id, USER_NUM,SMALL_LTD_DISPLAY,USER_NUM,CREDIT_RATING_DISPLAY,OVERTHROW_REASON,AVAG_PD as  AVAG_PD,ORG_NUM,IS_OVERTHROW,to_char(OVERTHROW_DT,'yyyy-MM-dd') as OVERTHROW_DT
+      from TB_IRM_OVERTHROW_RECORD,TB_IRM_SCALE_DEF
+      where 1=1
+            and AFTER_GRADE = CREDIT_RATING_CD
+            
+               and  ira_apply_id = #{oldApplyId,jdbcType=VARCHAR }
+       
+            order by OVERTHROW_DT desc  
+     </select>
+     <select id="queryOverRecordInfo2" parameterType="java.util.HashMap" resultMap="queryOverRecordInfo_Map">
+      select  IRA_APPLY_ID,USER_NUM,SMALL_LTD_DISPLAY,OVERTHROW_REASON,AVAG_PD as  AVAG_PD,ORG_NUM,IS_OVERTHROW,to_char(OVERTHROW_DT,'yyyy-MM-dd') as OVERTHROW_DT
+      from TB_IRM_OVERTHROW_RECORD,TB_IRM_SCALE_DEF
+      where 1=1
+            and AFTER_GRADE = SMALL_LTD_DISPLAY
+             and AFTER_GRADE !='aaa'  
+          and  ira_apply_id =#{iraApplyId,jdbcType=VARCHAR } 
+    union 
+    select IRA_APPLY_ID, USER_NUM,SMALL_LTD_DISPLAY,OVERTHROW_REASON,AVAG_PD as  AVAG_PD,ORG_NUM,IS_OVERTHROW,to_char(OVERTHROW_DT,'yyyy-MM-dd') as OVERTHROW_DT
+      from TB_IRM_OVERTHROW_RECORD,TB_IRM_SCALE_DEF
+      where 1=1
+            and AFTER_GRADE = SMALL_LTD_DISPLAY
+           and AFTER_GRADE !='aaa'  
+                          and  ira_apply_id =#{oldApplyId,jdbcType=VARCHAR } 
+       union
+     select distinct a.IRA_APPLY_ID, a.USER_NUM,b.SMALL_LTD_DISPLAY,a.OVERTHROW_REASON,  c.AVAG_PD as  AVAG_PD,a.ORG_NUM,a.IS_OVERTHROW,to_char(a.OVERTHROW_DT,'yyyy-MM-dd') as OVERTHROW_DT
+      from TB_IRM_OVERTHROW_RECORD a
+      left join TB_IRM_SCALE_DEF b on a.AFTER_GRADE = b.SMALL_LTD_DISPLAY
+      left join 
+           (select SMALL_LTD_DISPLAY , max(AVAG_PD) as AVAG_PD from TB_IRM_SCALE_DEF where SMALL_LTD_DISPLAY ='aaa' group by SMALL_LTD_DISPLAY) c
+           on a.AFTER_GRADE = c.SMALL_LTD_DISPLAY
+      where 1=1
+            and AFTER_GRADE ='aaa'		
+					and  ira_apply_id = #{iraApplyId,jdbcType=VARCHAR }
+		union 
+		select distinct a.IRA_APPLY_ID, a.USER_NUM,b.SMALL_LTD_DISPLAY,a.OVERTHROW_REASON,  c.AVAG_PD as  AVAG_PD,a.ORG_NUM,a.IS_OVERTHROW,to_char(a.OVERTHROW_DT,'yyyy-MM-dd') as OVERTHROW_DT
+			from TB_IRM_OVERTHROW_RECORD a
+			left join TB_IRM_SCALE_DEF b on a.AFTER_GRADE = b.SMALL_LTD_DISPLAY
+			left join 
+			     (select SMALL_LTD_DISPLAY , max(AVAG_PD) as AVAG_PD from TB_IRM_SCALE_DEF where SMALL_LTD_DISPLAY ='aaa' group by SMALL_LTD_DISPLAY) c
+			     on a.AFTER_GRADE = c.SMALL_LTD_DISPLAY
+			where 1=1
+		        and AFTER_GRADE ='aaa'
+	                        and  ira_apply_id = #{oldApplyId,jdbcType=VARCHAR }
+            order by OVERTHROW_DT desc ;
+     </select>
+     <!-- 非财务信息指标集合 -->
+     <select id="queryNonFinancialPropertyInfo" resultType="com.cdgit.loan.irm.bean.NonFinancialPropertyInfo" parameterType="java.lang.String">
+     	select 
+	     	TI.PROPERTY_TYPE_CD AS propertyTypeCd,
+			TN.IRA_APPLY_ID AS iraApplyId
+	 	from 
+	 		TB_IRM_MODEL_INDEX TI 
+		LEFT JOIN 
+			TB_IRM_NON_FINANCIAL_INFO TN 
+		ON 
+			TI.INDEX_ID = TN.NON_FINANCIAL_INDEX_ID 
+		where  TI.PROPERTY_TYPE_CD !='0204'
+		AND 
+			TN.NON_FINANCIAL_INDEX_ID IS NOT NULL
+		<if test="_parameter != null">
+	   		and TN.IRA_APPLY_ID= #{applyId,jdbcType=VARCHAR}
+	   	</if>
+     </select>
+     <resultMap id="tbIrmNonFinancialInfoMap" type="com.cdgit.loan.irm.bean.TbIrmNonFinancialInfo">
+	    <id column="IRA_APPLY_ID" jdbcType="VARCHAR" property="iraApplyId" />
+	    <result column="NON_FINANCIAL_INDEX_ID" jdbcType="VARCHAR" property="nonFinancialIndexId" />
+	    <result column="NON_FINANCIAL_VALUE" jdbcType="VARCHAR" property="nonFinancialValue" />
+	    <result column="T_COMMENT" jdbcType="VARCHAR" property="tComment" />
+	    <result column="FINANCE_ID" jdbcType="VARCHAR" property="financeId" />
+  	</resultMap>
+     <select id="queryTbIrmNonFinancialInfo" resultMap="tbIrmNonFinancialInfoMap" parameterType="java.util.HashMap">
+     	select 
+	     	IRA_APPLY_ID,
+			NON_FINANCIAL_INDEX_ID,
+			NON_FINANCIAL_VALUE,
+			T_COMMENT,
+			FINANCE_ID
+	 	from 
+	 		TB_IRM_NON_FINANCIAL_INFO 
+		where  1 = 1
+		AND IRA_APPLY_ID= #{iraApplyId,jdbcType=VARCHAR}
+		
+		<if test="nonFinancialIndexId != null and nonFinancialIndexId != ''">
+	   		AND NON_FINANCIAL_INDEX_ID= #{nonFinancialIndexId,jdbcType=VARCHAR}
+	   	</if>
+     </select>
+     <insert id="insertTbIrmNonFinancialInfo" parameterType="com.cdgit.loan.irm.bean.TbIrmNonFinancialInfo">
+     	insert into TB_IRM_NON_FINANCIAL_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="financeId != null">
+        FINANCE_ID,
+      </if>
+      <if test="iraApplyId != null">
+        IRA_APPLY_ID,
+      </if>
+      <if test="nonFinancialIndexId != null">
+        NON_FINANCIAL_INDEX_ID,
+      </if>
+      <if test="nonFinancialValue != null">
+        NON_FINANCIAL_VALUE,
+      </if>
+      <if test="tComment != null">
+        T_COMMENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="financeId != null">
+        #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="iraApplyId != null">
+        #{iraApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="nonFinancialIndexId != null">
+        #{nonFinancialIndexId,jdbcType=VARCHAR},
+      </if>
+      <if test="nonFinancialValue != null">
+        #{nonFinancialValue,jdbcType=VARCHAR},
+      </if>
+      <if test="tComment != null">
+        #{tComment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+     </insert>
+     <update id="updateTbIrmNonFinancialInfo" parameterType="com.cdgit.loan.irm.bean.TbIrmNonFinancialInfo">
+     	update 
+     		TB_IRM_NON_FINANCIAL_INFO
+     	<set>
+		      <if test="nonFinancialValue != null">
+		        NON_FINANCIAL_VALUE = #{nonFinancialValue,jdbcType=VARCHAR},
+		      </if>
+		      <if test="tComment != null">
+		        T_COMMENT = #{tComment,jdbcType=VARCHAR},
+		      </if>
+    	</set>
+    	where 
+    		FINANCE_ID= #{financeId,jdbcType=VARCHAR}
+     </update>
+     
+     <resultMap id="tbIrmRatingModelMap" type="com.cdgit.loan.irm.bean.TbIrmRatingModel">
+	    <id column="MODEL_ID" jdbcType="VARCHAR" property="modelId" />                  
+		<result column="MODEL_NAME" jdbcType="VARCHAR"   property="modelName"/>                 
+		<result column="MODEL_TYPE_CD" jdbcType="VARCHAR"   property="modelTypeCd"/>            
+		<result column="RATING_MODEL_VER" jdbcType="VARCHAR"   property="ratingModelVer"/>      
+		<result column="MODEL_STATE" jdbcType="VARCHAR"   property="modelState"/>               
+		<result column="START_DATE" jdbcType="TIMESTAMP"   property="startDate"/>                 
+		<result column="EXPIRATION_DT" jdbcType="TIMESTAMP"   property="expirationDt"/>           
+		<result column="MODEL_NUM" jdbcType="VARCHAR"   property="modelNum"/>                   
+		<result column="MODEL_SUIT_SCALE" jdbcType="VARCHAR"   property="modelSuitScale"/>      
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP"   property="createTime"/>               
+		<result column="APPROVAL_DATE" jdbcType="TIMESTAMP"   property="approvalDate"/>           
+		<result column="DEPLOY_DATE" jdbcType="TIMESTAMP"   property="deployDate"/>               
+		<result column="USER_NUM" jdbcType="VARCHAR"   property="userNum"/>                     
+		<result column="APPROVAL_USER_NUM" jdbcType="VARCHAR"  property="approvalUserNum"/>     
+		<result column="DEPLOY_USER_NUM" jdbcType="VARCHAR"   property="deployUserNum"/> 
+  	</resultMap>
+     <select id="queryTbIrmRatingModelMap" resultMap="tbIrmRatingModelMap" parameterType="java.util.HashMap">
+     	select 
+	     	MODEL_ID,
+			MODEL_NAME,
+			MODEL_TYPE_CD,
+			RATING_MODEL_VER,
+			MODEL_STATE,
+			START_DATE,
+			EXPIRATION_DT,
+			MODEL_NUM,
+			MODEL_SUIT_SCALE,
+			CREATE_TIME,
+			APPROVAL_DATE,
+			DEPLOY_DATE,
+			USER_NUM,
+			APPROVAL_USER_NUM,
+			DEPLOY_USER_NUM 
+	 	from 
+	 		TB_IRM_RATING_MODEL 
+		where  1 = 1
+		<if test="modelId != null and modelId != ''">
+	   		and MODEL_ID= #{modelId,jdbcType=VARCHAR}
+	   	</if>	
+		<if test="modelTypeCd != null and modelTypeCd != ''">
+	   		and MODEL_TYPE_CD= #{modelTypeCd,jdbcType=VARCHAR}
+	   	</if>	
+		<if test="ratingModelVer != null and ratingModelVer != ''">
+	   		and RATING_MODEL_VER= #{ratingModelVer,jdbcType=VARCHAR}
+	   	</if>	
+		<if test="modelState != null and modelState != ''">
+	   		and MODEL_STATE= #{modelState,jdbcType=VARCHAR}
+	   	</if>	
+     </select>       
+     
+     <resultMap id="tbIrmIndexMap" type="com.cdgit.loan.irm.bean.TbIrmModelIndex">
+	    <id column="INDEX_ID" jdbcType="VARCHAR" property="indexId" />                  
+		<result column="INDEX_DESC" jdbcType="VARCHAR"   property="indexDesc"/>                   
+		<result column="INDEX_TYPE" jdbcType="VARCHAR"   property="indexType"/>            
+		<result column="INDEX_NAME" jdbcType="VARCHAR"   property="indexName"/>      
+		<result column="INDEX_CODE" jdbcType="VARCHAR"   property="indexCode"/>               
+		<result column="MODEL_ID" jdbcType="VARCHAR"   property="modelId"/>              
+		<result column="INDEX_WEIGHT" jdbcType="DECIMAL"   property="indexWeight"/>                  
+		<result column="PROPERTY_TYPE_CD" jdbcType="VARCHAR"   property="propertyTypeCd"/>         
+		<result column="INDEX_NUM" jdbcType="VARCHAR"   property="indexNum"/> 
+  	</resultMap>
+  	<select id="queryTbIrmModelIndexMap" resultMap="tbIrmIndexMap" parameterType="java.util.HashMap">
+     	select 
+	     	INDEX_ID,
+			INDEX_DESC,
+			INDEX_TYPE,
+			INDEX_NAME,
+			INDEX_CODE,
+			MODEL_ID,
+			INDEX_WEIGHT,
+			PROPERTY_TYPE_CD
+	 	from 
+	 		TB_IRM_MODEL_INDEX
+		where  1 = 1
+		<if test="modelId != null and modelId != ''">
+	   		and MODEL_ID= #{modelId,jdbcType=VARCHAR}
+	   	</if>	
+	   	<if test="indexType != null and indexType != ''">
+	   		and INDEX_TYPE= #{indexType,jdbcType=VARCHAR}
+	   	</if>	
+	   	<if test="indexCode != null and indexCode != ''">
+	   		and INDEX_CODE= #{indexCode,jdbcType=VARCHAR}
+	   	</if>	
+     </select>   
+     
+     <resultMap type="com.cdgit.loan.irm.bean.TbIrmModelIndex" id="NonFinanceMaps">
+        <result column="INDEX_ID" jdbcType="VARCHAR" property="indexId"/>
+        <result column="PROPERTY_TYPE_CD" jdbcType="VARCHAR" property="propertyTypeCd"/>
+        <result column="INDEX_NAME"  jdbcType="VARCHAR" property="indexName"/>      
+        <result column="INDEX_NUM" jdbcType="VARCHAR" property="indexNum"/>
+        <result column="index_Desc1" jdbcType="VARCHAR" property="indexDesc1"/>        
+        <result column="index_Desc2" jdbcType="VARCHAR" property="indexDesc2"/>
+    </resultMap>
+     <select id="queryNonFinanceinfo" parameterType="java.util.HashMap" resultMap="tbIrmIndexMap">
+		select a.INDEX_ID,a.PROPERTY_TYPE_CD,a.INDEX_NAME,b.INDEX_NUM,a.INDEX_DESC
+			from TB_IRM_INDEX_SCORE b,TB_IRM_MODEL_INDEX a
+				where 1=1
+			       and a.INDEX_ID = b.INDEX_ID
+			       <if test="indexId != null and indexId != ''">
+				   		and a.INDEX_ID = #{indexId,jdbcType=VARCHAR}
+				   	</if>
+			       <if test="indexNum != null and indexNum != ''">
+				   		and b.INDEX_NUM = #{indexNum,jdbcType=VARCHAR}
+				   	</if>
+			       and a.PROPERTY_TYPE_CD != '0204'
+			       order by a.INDEX_ID desc
+     </select>
+     <select id="queryTbIrmIndexScore" parameterType="java.lang.String" resultType="com.cdgit.loan.irm.bean.TbIrmIndexScore">
+		select
+			INDEX_NUM as indexNum,
+			INDEX_SCORE as indexScore,
+			INDEX_ID as indexId,
+			INDEX_DESC as indexDesc,
+			SCORE_ID as scoreId,
+			INDEX_CALC_LOGIC as indexCalcLogic
+		FROM 
+			tb_irm_index_score
+		WHERE
+		 	INDEX_ID = #{indexId,jdbcType=VARCHAR} 
+		ORDER BY score_id
+     </select>
+     <!-- 获取财务指标 -->
+     <resultMap type="com.cdgit.loan.irm.bean.TbIrmRatingFinIndex" id="TbIrmRatingFinIndexMaps">
+        <result column="INDEX_ID" jdbcType="VARCHAR" property="indexId"/>
+        <result column="INDEX_NAME" jdbcType="VARCHAR" property="indexName"/>
+        <result column="INDEX_FORMULA"  jdbcType="VARCHAR" property="indexFormula"/>      
+        <result column="REMARKS" jdbcType="VARCHAR" property="remarks"/>
+        <result column="INDEX_CD" jdbcType="VARCHAR" property="indexCd"/>        
+        <result column="PROPERTY_TYPE_CD" jdbcType="VARCHAR" property="propertyTypeCd"/>
+        <result column="CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="customerTypeCd"/>
+    </resultMap>
+    <!-- 根据评级编号查询 -->
+     <select id="queryTbIrmRatingFinIndexByApplyID" parameterType="java.lang.String" resultMap="TbIrmRatingFinIndexMaps">
+     
+     select t4.* from TB_IRM_INTERNAL_RATING_APPLY t1,tb_irm_rating_model t2 ,TB_IRM_MODEL_INDEX t3,tb_irm_rating_fin_index t4
+ where t1.RATING_MODEL_CD=t2.MODEL_TYPE_CD and t2.MODEL_ID=t3.MODEL_ID and t4.INDEX_CD=t3.INDEX_CODE and 
+IRA_APPLY_ID= #{applyId,jdbcType=VARCHAR} 
+     </select>
+     <!-- 全量查询 -->
+     <select id="queryTbIrmRatingFinIndex" resultMap="TbIrmRatingFinIndexMaps">
+     
+     	select t4.* from tb_irm_rating_fin_index t4
+     </select>
+     <!-- 获取评级参数 -->
+     <resultMap type="com.cdgit.loan.irm.bean.TbIrmRatingPara" id="TbIrmRatingParaMaps">
+        <result column="RATING_PARA_ID" jdbcType="VARCHAR" property="ratingParaId"/>
+        <result column="PARA_TYPE" jdbcType="VARCHAR" property="paraType"/>
+        <result column="PARA_CONTENT"  jdbcType="VARCHAR" property="paraContent"/>  
+    </resultMap>
+     <select id="queryTbIrmRatingPara" parameterType="java.util.HashMap" resultMap="TbIrmRatingParaMaps">
+     
+     select RATING_PARA_ID,PARA_TYPE,PARA_CONTENT from TB_IRM_RATING_PARA 
+ 	where 1 = 1
+ 	<if test="ratingParaId != null and ratingParaId != ''">
+  		and RATING_PARA_ID = #{ratingParaId,jdbcType=VARCHAR}
+  	</if>
+  	<if test="paraType != null and paraType != ''">
+  		and PARA_TYPE = #{paraType,jdbcType=VARCHAR}
+  	</if>
+     </select>
+     <!-- 获取评级申请ID财务信息ID关系信息 -->
+     <resultMap type="com.cdgit.loan.irm.bean.TbIrmFinancialInfo" id="TbIrmFinancialInfoMaps">
+        <result column="FINANCIAL_INFO_ID" jdbcType="VARCHAR" property="financialInfoId"/>
+        <result column="REPORT_ID" jdbcType="VARCHAR" property="reportId"/>
+        <result column="IRA_APPLY_ID"  jdbcType="VARCHAR" property="iraApplyId"/>  
+        <result column="REMARK"  jdbcType="VARCHAR" property="remark"/>  
+    </resultMap>
+     <select id="queryTbIrmFinancialInfo" parameterType="java.util.HashMap" resultMap="TbIrmFinancialInfoMaps">
+     
+     select FINANCIAL_INFO_ID,REPORT_ID,IRA_APPLY_ID,REMARK from TB_IRM_FINANCIAL_INFO 
+ 	where 1 = 1
+ 	and
+ 	IRA_APPLY_ID= #{applyId,jdbcType=VARCHAR}
+     </select>
+     <update id="udateTbIrmFinancialInfo" parameterType="com.cdgit.loan.irm.bean.TbIrmFinancialInfo">
+     	update TB_IRM_FINANCIAL_INFO
+     <set>
+	      <if test="financialInfoId != null">
+	        FINANCIAL_INFO_ID = #{financialInfoId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="reportId != null">
+	        REPORT_ID = #{reportId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="remark != null">
+	        REMARK = #{remark,jdbcType=VARCHAR},
+	      </if>
+      
+    </set>
+    where IRA_APPLY_ID = #{iraApplyId,jdbcType=VARCHAR}
+     </update>
+     <insert id="insertTbIrmFinancialInfo" parameterType="com.cdgit.loan.irm.bean.TbIrmFinancialInfo">
+     	insert into TB_IRM_FINANCIAL_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="financialInfoId != null">
+        FINANCIAL_INFO_ID,
+      </if>
+      <if test="reportId != null">
+        REPORT_ID,
+      </if>
+      <if test="iraApplyId != null">
+        IRA_APPLY_ID,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="financialInfoId != null">
+        #{financialInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="reportId != null">
+        #{reportId,jdbcType=VARCHAR},
+      </if>
+      <if test="iraApplyId != null">
+        #{iraApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+     </insert>
+     
+     <insert id="insertTbIrmRatingIndexData" parameterType="com.cdgit.loan.irm.bean.TbIrmRatingIndexData">
+     	insert into TB_IRM_RATING_INDEX_DATA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indexDataId != null">
+        INDEX_DATA_ID,
+      </if>
+      <if test="financialInfoId != null">
+        FINANCIAL_INFO_ID,
+      </if>
+      <if test="financeId != null">
+        FINANCE_ID,
+      </if>
+      <if test="indexValueDataType != null">
+        INDEX_VALUE_DATA_TYPE,
+      </if>
+      <if test="stringType != null">
+        STRING_TYPE,
+      </if>
+      <if test="indexDisp != null">
+        INDEX_DISP,
+      </if>
+      <if test="indexCd != null">
+        INDEX_CD,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="indexDataId != null">
+        #{INDEX_DATA_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="financialInfoId != null">
+        #{FINANCIAL_INFO_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null">
+        #{FINANCE_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="indexValueDataType != null">
+        #{INDEX_VALUE_DATA_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="stringType != null">
+        #{STRING_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="indexDisp != null">
+        #{INDEX_DISP,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCd != null">
+        #{INDEX_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{CREATE_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{UPDATE_TIME,jdbcType=VARCHAR},
+      </if>
+    </trim>
+     </insert>
+     
+     <!-- 获取财务指标 -->
+     <resultMap type="com.cdgit.loan.irm.bean.TbAccFinanceIndexData" id="TbAccFinanceIndexDataMaps">
+        <result column="INDEX_DATA_ID" jdbcType="VARCHAR" property="indexDataId"/>
+        <result column="FINANCE_ID" jdbcType="VARCHAR" property="financeId"/>
+        <result column="INDEX_VALUE_DATA_TYPE"  jdbcType="DECIMAL" property="indexValueDataType"/>      
+        <result column="STRING_TYPE" jdbcType="VARCHAR" property="stringType"/>
+        <result column="INDEX_DISP" jdbcType="VARCHAR" property="indexDisp"/>        
+        <result column="INDEX_CD" jdbcType="VARCHAR" property="indexCd"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <select id="queryTbAccFinanceIndexData" parameterType="java.lang.String" resultMap="TbAccFinanceIndexDataMaps">
+     	select 
+     		INDEX_DATA_ID,FINANCE_ID,INDEX_VALUE_DATA_TYPE,STRING_TYPE,INDEX_DISP,INDEX_CD,CREATE_TIME,UPDATE_TIME
+     	from
+     		TB_ACC_FINANCE_INDEX_DATA
+     	where 
+     		FINANCE_ID= #{financeId,jdbcType=VARCHAR}
+     </select>
+     
+     <delete id="deleteTbIrmRatingIndexDataByFinancialInfoId" parameterType="java.lang.String">
+     	delete from TB_ACC_FINANCE_INDEX_DATA
+     	where
+     		FINANCIAL_INFO_IDD = #{financialInfoId,jdbcType=VARCHAR}
+     </delete>
+     <!-- 获取评级结果选项 -->
+     <select id="getModeScaleToCombobx" resultType="com.cdgit.loan.irm.bean.Selector" parameterType="java.lang.String">
+		<!-- SELECT CREDIT_RATING_CD key,CREDIT_RATING_CD value FROM TB_IRM_MODEL_SCALE 
+		WHERE MODEL_ID=(SELECT * FROM (
+			SELECT MODEL_ID FROM TB_IRM_RATING_MODEL WHERE MODEL_TYPE_CD=#{modelTypeCd,jdbcType=VARCHAR} 
+			AND RATING_MODEL_VER=#{ratingModelVer,jdbcType=VARCHAR} 
+			AND MODEL_STATE=#{modelState,jdbcType=VARCHAR} 
+			ORDER BY START_DATE
+			) WHERE rownum=1) 
+		ORDER BY MIN_VALUE DESC -->
+		SELECT CREDIT_RATING_CD as  key,CREDIT_RATING_CD as value FROM TB_IRM_MODEL_SCALE 
+		WHERE MODEL_ID=(
+			SELECT MODEL_ID FROM TB_IRM_RATING_MODEL WHERE MODEL_TYPE_CD=#{modelTypeCd,jdbcType=VARCHAR} 
+			) 
+		ORDER BY MIN_VALUE DESC 
+	 </select>
+	 
+	 <!-- getFinanceIndexScore -->
+	 <resultMap type="com.cdgit.loan.mycustomer.corporation.bean.TbAccFinanceStatementData" id="getFinanceIndexScoreMap">
+        <result column="PROJECT_CD" jdbcType="VARCHAR" property="projectCd"/>
+        <result column="PROJECT_NAME" jdbcType="VARCHAR" property="projectName"/>
+        <result column="PROJECT_VALUE"  jdbcType="DECIMAL" property="projectValue"/>      
+        <result column="CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="customerTypeCd"/>
+    </resultMap>
+	 <select id="getFinanceIndexScore" parameterType="java.util.HashMap" resultMap="getFinanceIndexScoreMap">
+	 	
+select t3.PROJECT_CD,
+       t4.PROJECT_NAME,
+       t3.PROJECT_VALUE,
+       nvl(t4.CUSTOMER_TYPE_CD, nvl(t1.CUSTOMER_TYPE_CD, '002')) as CUSTOMER_TYPE_CD
+  from TB_ACC_CUSTOMER_FINANCE t1
+  left join tb_acc_finance_statement_data t3
+    on t3.FINANCE_ID = t1.FINANCE_ID 
+  left join tb_acc_finance_statement_code t4 on t4.PROJECT_CD=t3.PROJECT_CD ,
+    TB_IRM_INTERNAL_RATING_APPLY t2
+ where 1 = 1
+   and t2.IRA_APPLY_ID = #{applyId,jdbcType=VARCHAR}
+   and t1.FINANCE_DEADLINE =
+       (select max(FINANCE_DEADLINE)
+          from TB_ACC_CUSTOMER_FINANCE
+         where PARTY_ID = t2.PARTY_ID
+           and FINANCE_STATUS_CD = '02'
+           and FINANCE_TYPE_CD = '1')
+   and t1.FINANCE_STATUS_CD = '02'
+   and t1.PARTY_ID = t2.PARTY_ID
+   and t1.FINANCE_TYPE_CD = '1'
+	 </select>
+	 
+	 <!-- getFinanceIndex -->
+	 <select id="getFinanceIndex" resultType="com.cdgit.loan.irm.bean.IndexEntity" parameterType="java.util.HashMap">
+	select 
+       c.index_id as indexId,
+		    c.index_code AS indexCode,
+		    c.index_name as indexName,
+		    c.index_type as indexType,
+ 		     c.property_type_cd as  propertyTypeCd,
+		    b.index_value_data_type as indexValueDataType,
+            d.INDEX_SCORE as indexScore,
+            d.INDEX_CALC_LOGIC as indexCalcLogic,
+             e.CUSTOMER_TYPE_CD as customerTypeCd,
+            e.REMARKS as remarks
+		    from tb_irm_model_index c left join (select   a.ira_apply_id,b.index_cd,b.index_value_data_type from tb_irm_financial_info a,tb_irm_rating_index_data b
+		    where  a.FINANCIAL_INFO_ID = b.FINANCIAL_INFO_ID and a.ira_apply_id= #{applyId,jdbcType=VARCHAR})b on c.index_code = b.index_cd
+            left join tb_irm_index_score d on d.INDEX_ID=c.INDEX_ID
+            left join TB_IRM_RATING_FIN_INDEX e on e.INDEX_CD=c.index_code
+		    where   c.model_id=#{modelId,jdbcType=VARCHAR}  and c.index_type ='01' and e.CUSTOMER_TYPE_CD=#{customerTypeCd,jdbcType=VARCHAR}
+	 </select>
+ 
+ 	<select id="getjlr" parameterType="java.lang.String" resultType="com.cdgit.loan.irm.bean.ScoreBean">
+	   select t3.PROJECT_VALUE from  TB_ACC_CUSTOMER_FINANCE t1   
+	  left join tb_acc_finance_statement_data t3 on t3.FINANCE_ID=t1.FINANCE_ID
+	  left join tb_acc_finance_statement_code t4 on t4.PROJECT_CD=t3.PROJECT_CD 
+	  ,TB_IRM_INTERNAL_RATING_APPLY t2
+	  where 
+	  t1.FINANCE_STATUS_CD='02' and t1.FINANCE_TYPE_CD='1' and 
+	  t1.PARTY_ID=t2.PARTY_ID   and t3.PROJECT_CD='00202017' and t2.IRA_APPLY_ID= #{applyId,jdbcType=VARCHAR}
+	  order by t1.FINANCE_DEADLINE desc
+	</select>
+	<select id="getyysr" parameterType="java.lang.String" resultType="com.cdgit.loan.irm.bean.ScoreBean">
+	   select t3.PROJECT_VALUE from    TB_ACC_CUSTOMER_FINANCE t1   
+	left join tb_acc_finance_statement_data t3 on t3.FINANCE_ID=t1.FINANCE_ID
+	left join tb_acc_finance_statement_code t4 on t4.PROJECT_CD=t3.PROJECT_CD 
+	,TB_IRM_INTERNAL_RATING_APPLY t2
+	where 
+     
+	   t1.FINANCE_STATUS_CD='02' and t1.FINANCE_TYPE_CD='1' and 
+	t1.PARTY_ID=t2.PARTY_ID  and t3.PROJECT_CD='00202001' and t2.IRA_APPLY_ID= #{applyId,jdbcType=VARCHAR}
+	order by t1.FINANCE_DEADLINE desc
+	</select>
+	<select id="getyysr1" parameterType="java.lang.String" resultType="com.cdgit.loan.irm.bean.ScoreBean">
+	   select t3.PROJECT_VALUE from    TB_ACC_CUSTOMER_FINANCE t1   
+  left join tb_acc_finance_statement_data t3 on t3.FINANCE_ID=t1.FINANCE_ID
+  left join tb_acc_finance_statement_code t4 on t4.PROJECT_CD=t3.PROJECT_CD 
+  ,TB_IRM_INTERNAL_RATING_APPLY t2
+  where 
+     t1.FINANCE_STATUS_CD='02' and t1.FINANCE_TYPE_CD='1' and 
+  t1.PARTY_ID=t2.PARTY_ID  and t3.PROJECT_CD='00201067' and t2.IRA_APPLY_ID= #{applyId,jdbcType=VARCHAR}
+  order by t1.FINANCE_DEADLINE desc
+	</select>
+	<select id="getdbje" parameterType="java.lang.String" resultType="com.cdgit.loan.irm.bean.ScoreBean">
+	   select t3.PROJECT_VALUE from    TB_ACC_CUSTOMER_FINANCE t1   
+  left join tb_acc_finance_statement_data t3 on t3.FINANCE_ID=t1.FINANCE_ID
+  left join tb_acc_finance_statement_code t4 on t4.PROJECT_CD=t3.PROJECT_CD 
+  ,TB_IRM_INTERNAL_RATING_APPLY t2
+  where 
+     t1.FINANCE_STATUS_CD='02' and t1.FINANCE_TYPE_CD='1' and 
+  t1.PARTY_ID=t2.PARTY_ID  and t3.PROJECT_CD='00204050' and t2.IRA_APPLY_ID= #{applyId,jdbcType=VARCHAR}
+  order by t1.FINANCE_DEADLINE desc
+	</select>
+	
+	<select id="getNonFinanceIndexScore" resultType="com.cdgit.loan.irm.bean.TbIrmIndexScore" parameterType="java.lang.String">
+		 select 
+		distinct c.index_id as indexId,
+		 c.index_code as indexCode,
+		 c.index_name as indexName,
+		 c.index_type as indexType,
+		 c.property_type_cd as propertyTypeCd,
+		  a.index_num as indexNum,
+		 a.index_score as indexScore,
+		 b.non_financial_value as nonFinancialValue,
+		 c.index_weight as indexWeight
+		 from tb_irm_index_score a ,tb_irm_non_financial_info b,tb_irm_model_index c 
+		 where  b.non_financial_index_id = a.index_id and b.non_financial_value = a.index_num and a.index_id = c.index_id
+	
+	    	and b.ira_apply_id= #{applyId,jdbcType=VARCHAR}
+	
+	</select>
+	<select id="queryTbIrmAdjustOptions" parameterType="java.lang.String" resultType="com.cdgit.loan.irm.bean.TbIrmAdjustOptions">
+		select 
+			ADJUST_OPTION_ID as adjustOptionId,
+			ADJUST_VALUE as adjustValue,
+			ADJUST_DESCRIBE as adjustDescribe,
+			IRA_APPLY_ID as iraApplyId,
+			IS_ADJUST as isAdjust,
+			ADJ_OPT_ID as adjOptId,
+			ADJUST_ORDER as adjustOrder
+		from tb_irm_adjust_options
+		where 
+		ira_apply_id= #{applyId,jdbcType=VARCHAR}
+	</select>
+	<update id="updateTbIrmAdjustOptions" parameterType="com.cdgit.loan.user.bean.TbIrmInternalRatingApply">
+    update tb_irm_adjust_options
+    <set>
+      <if test="adjustValue != null">
+        ADJUST_VALUE = #{adjustValue,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustDescribe != null">
+        ADJUST_DESCRIBE = #{adjustDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="iraApplyId != null">
+        IRA_APPLY_ID = #{iraApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdjust != null">
+        IS_ADJUST = #{isAdjust,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adjOptId != null">
+        ADJ_OPT_ID = #{adjOptId,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustOrder != null">
+        ADJUST_ORDER = #{adjustOrder,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ADJUST_OPTION_ID = #{adjustOptionId,jdbcType=VARCHAR}
+  </update>
+	<delete id="deleteTbIrmAdjustOptions" parameterType="java.lang.String">
+		DELETE FROM tb_irm_adjust_options 
+		where 
+		ira_apply_id= #{applyId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertTbIrmAdjustOptions" parameterType="com.cdgit.loan.irm.bean.TbIrmAdjustOptions">
+     	insert into tb_irm_adjust_options
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adjustOptionId != null">ADJUST_OPTION_ID,</if>
+      <if test="adjustValue != null">ADJUST_VALUE,</if>
+      <if test="adjustDescribe != null">ADJUST_DESCRIBE,</if>
+      <if test="iraApplyId != null">IRA_APPLY_ID,</if>
+      <if test="isAdjust != null">IS_ADJUST,</if>
+      <if test="adjOptId != null">ADJ_OPT_ID,</if>
+      <if test="adjustOrder != null">ADJUST_ORDER,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adjustOptionId != null">#{adjustOptionId,jdbcType=VARCHAR},</if>
+      <if test="adjustValue != null">#{adjustValue,jdbcType=VARCHAR},</if>
+      <if test="adjustDescribe != null">#{adjustDescribe,jdbcType=VARCHAR},</if>
+      <if test="iraApplyId != null">#{iraApplyId,jdbcType=VARCHAR},</if>
+      <if test="isAdjust != null">#{isAdjust,jdbcType=VARCHAR},</if>
+      <if test="adjOptId != null">#{adjOptId,jdbcType=VARCHAR},</if>
+      <if test="adjustOrder != null">#{adjustOrder,jdbcType=VARCHAR},</if>
+    </trim>
+    </insert>
+	<select id="getMaxAdjustValue"  parameterType="java.lang.String" resultType="com.cdgit.loan.irm.bean.TbIrmAdjustOptions">
+	    select max(a.adjust_value) as adjustValue  from tb_irm_adjust_options a,tb_irm_adjust_option b where a.adj_opt_id=b.ao_id and adjust_type_cd ='04' and is_adjust in(01,02) and ira_apply_id =#{applyId,jdbcType=VARCHAR}
+    	union all
+    	select max(a.adjust_value) as adjustValue from tb_irm_adjust_options a,tb_irm_adjust_option b where a.adj_opt_id=b.ao_id and adjust_type_cd ='04' and is_adjust in(03,04) and ira_apply_id =#{applyId,jdbcType=VARCHAR}
+    	union all
+    	select max(a.adjust_value) as adjustValue from tb_irm_adjust_options a,tb_irm_adjust_option b where a.adj_opt_id=b.ao_id and adjust_type_cd !='04' and is_adjust in(01,02) and ira_apply_id =#{applyId,jdbcType=VARCHAR}
+    	union all
+    	select max(a.adjust_value)  as adjustValue from tb_irm_adjust_options a,tb_irm_adjust_option b where a.adj_opt_id=b.ao_id and adjust_type_cd !='04' and is_adjust in(03,04) and ira_apply_id =#{applyId,jdbcType=VARCHAR}
+	</select>
+	<select id="getLoanMaxAndMinLevel"  resultType="java.util.HashMap">
+		select min(order_no) as min,max(order_no) as max from tb_irm_scale_def where IS_PROFESSIONAL_LOAN='1'
+	</select>
+	<select id="getNonLoanMaxAndMinLevel"  resultType="java.util.HashMap">
+		select min(order_no) as min,max(order_no) as max from tb_irm_scale_def where IS_PROFESSIONAL_LOAN='2'
+	</select>
+	<select id="queryTbIrmScaleDef"  parameterType="java.util.HashMap" resultType="com.cdgit.loan.irm.bean.TbIrmScaleDef">
+		select
+		 	SCALE_DEF_ID as scaleDefId,
+		 	CREDIT_RATING_CD as creditRatingCd,
+		 	CREDIT_RATING_DEF as creditRatingDef,
+		 	MIN_PD as minPd,
+		 	MAX_PD as maxPd,
+		 	AVAG_PD as avagPd,
+		 	CREDIT_RATING_DISPLAY as creditRatingDisplay,
+		 	SMALL_LTD_DISPLAY as smallLtdDisplay,
+		 	ORDER_NO as orderNo,
+		 	IS_PROFESSIONAL_LOAN as isProfessionalLoan
+		 from
+		 Tb_Irm_Scale_Def
+		where 1 = 1
+		<if test="creditRatingDisplay != null and creditRatingDisplay != ''">
+	   		and CREDIT_RATING_DISPLAY= #{creditRatingDisplay,jdbcType=VARCHAR}
+	   	</if>	
+	   	<if test="creditRatingCd != null and creditRatingCd != ''">
+	   		and CREDIT_RATING_CD= #{creditRatingCd,jdbcType=VARCHAR}
+	   	</if>	
+	   	<if test="smallLtdDisplay != null and smallLtdDisplay != ''">
+	   		and SMALL_LTD_DISPLAY= #{smallLtdDisplay,jdbcType=VARCHAR}
+	   	</if>	
+		<if test="orderNo != null and orderNo != ''">
+	   		and ORDER_NO= #{orderNo,jdbcType=VARCHAR}
+	   	</if>	
+	</select>
+	<select id="queryTbIrmRatingEngineCalc"  parameterType="java.util.HashMap" resultType="com.cdgit.loan.irm.bean.TbIrmRatingEngineCalc">
+		select
+		 	REC_ID as recId,
+		 	IRA_APPLY_ID as iraApplyId,
+		 	FINANCE_MODEL_WEIGHT as financeModelWeight,
+		 	FINANCE_MODEL_SCORE as financeModelScore,
+		 	NON_FINANCE_MODEL_WEIGH as nonFinanceModelWeigh,
+		 	RATING_TATAL_SCORE as ratingTatalScore,
+		 	INITIAL_RATING_CD as initialRatingCd,
+		 	GOVERNMENT_ADJUST_RATING_CD as governmentAdjustRatingCd,
+		 	GENERAL_ADJUST_RATING_CD as generalAdjustRatingCd,
+		 	EXECUTION_DATE as executionDate,
+		 	COMPLETE_DATE as completeDate,
+		 	NON_FINANCE_MODEL_SCORE as nonFinanceModelScore,
+		 	GOVERNMENT_ADJUST_SCORE as governmentAdjustScore
+		from TB_IRM_RATING_ENGINE_CALC
+		where 1 = 1
+		<if test="recId != null and recId != ''">
+	   		and REC_ID= #{recId,jdbcType=VARCHAR}
+	   	</if>	
+	</select>
+	<insert id="insertTbIrmRatingEngineCalc" parameterType="com.cdgit.loan.irm.bean.TbIrmRatingEngineCalc">
+     	insert into TB_IRM_RATING_ENGINE_CALC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recId != null">REC_ID,</if>
+      <if test="iraApplyId != null">IRA_APPLY_ID,</if>
+      <if test="financeModelWeight != null">FINANCE_MODEL_WEIGHT,</if>
+      <if test="financeModelScore != null">FINANCE_MODEL_SCORE,</if>
+      <if test="nonFinanceModelWeigh != null">NON_FINANCE_MODEL_WEIGH,</if>
+      <if test="ratingTatalScore != null">RATING_TATAL_SCORE,</if>
+      <if test="initialRatingCd != null">INITIAL_RATING_CD,</if>
+      <if test="governmentAdjustRatingCd != null">GOVERNMENT_ADJUST_RATING_CD,</if>
+      <if test="generalAdjustRatingCd != null">GENERAL_ADJUST_RATING_CD,</if>
+      <if test="executionDate != null">EXECUTION_DATE,</if>
+      <if test="completeDate != null">COMPLETE_DATE,</if>
+      <if test="governmentAdjustScore != null">GOVERNMENT_ADJUST_SCORE,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recId != null">#{recId,jdbcType=VARCHAR},</if>
+      <if test="iraApplyId != null">#{iraApplyId,jdbcType=VARCHAR},</if>
+      <if test="financeModelWeight != null">#{financeModelWeight,jdbcType=VARCHAR},</if>
+      <if test="financeModelScore != null">#{financeModelScore,jdbcType=VARCHAR},</if>
+      <if test="nonFinanceModelWeigh != null">#{nonFinanceModelWeigh,jdbcType=VARCHAR},</if>
+      <if test="ratingTatalScore != null">#{ratingTatalScore,jdbcType=VARCHAR},</if>
+      <if test="initialRatingCd != null">#{initialRatingCd,jdbcType=VARCHAR},</if>
+      <if test="governmentAdjustRatingCd != null">#{governmentAdjustRatingCd,jdbcType=VARCHAR},</if>
+      <if test="generalAdjustRatingCd != null">#{generalAdjustRatingCd,jdbcType=VARCHAR},</if>
+      <if test="executionDate != null">#{executionDate,jdbcType=VARCHAR},</if>
+      <if test="completeDate != null">#{completeDate,jdbcType=VARCHAR},</if>
+      <if test="governmentAdjustScore != null">#{governmentAdjustScore,jdbcType=VARCHAR},</if>
+    </trim>
+     </insert>
+     <select id="selectTbIrmIndexCalc" resultType="com.cdgit.loan.irm.bean.TbIrmIndexCalc" parameterType="java.util.HashMap">
+     	select 
+     		IDX_CALC_ID as idxCalcId,
+     		INDEX_ID as indexId,
+     		INDEX_TYPE as indexType,
+     		INDEX_SCORE as indexScore,
+     		INDEX_WEIGHT as indexWeight,
+     		INDEX_CLASS as indexClass,
+     		REC_ID as recId,
+     		INDEX_VALUE as indexValue
+     	from TB_IRM_INDEX_CALC
+     	where
+     	1 = 1
+     	<if test="recId != null and recId != ''">
+	   		and REC_ID= #{recId,jdbcType=VARCHAR}
+	   	</if>
+     	<if test="indexId != null and indexId != ''">
+	   		and INDEX_ID= #{recId,jdbcType=VARCHAR}
+	   	</if>
+     </select>
+	<insert id="insertTbIrmIndexCalc" parameterType="com.cdgit.loan.irm.bean.TbIrmIndexCalc">
+     	insert into TB_IRM_INDEX_CALC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idxCalcId != null">IDX_CALC_ID,</if>
+      <if test="indexId != null">INDEX_ID,</if>
+      <if test="indexType != null">INDEX_TYPE,</if>
+      <if test="indexScore != null">INDEX_SCORE,</if>
+      <if test="indexWeight != null">INDEX_WEIGHT,</if>
+      <if test="indexClass != null">INDEX_CLASS,</if>
+      <if test="recId != null">REC_ID,</if>
+      <if test="indexValue != null">INDEX_VALUE,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idxCalcId != null">#{idxCalcId,jdbcType=VARCHAR},</if>
+      <if test="indexId != null">#{indexId,jdbcType=VARCHAR},</if>
+      <if test="indexType != null">#{indexType,jdbcType=VARCHAR},</if>
+      <if test="indexScore != null">#{indexScore,jdbcType=VARCHAR},</if>
+      <if test="indexWeight != null">#{indexWeight,jdbcType=VARCHAR},</if>
+      <if test="indexClass != null">#{indexClass,jdbcType=VARCHAR},</if>
+      <if test="recId != null">#{recId,jdbcType=VARCHAR},</if>
+      <if test="indexValue != null">#{indexValue,jdbcType=VARCHAR},</if>
+    </trim>
+    </insert>
+    <select id="getRatingCd1" parameterType="java.lang.String" resultType="java.util.HashMap">
+	    
+			select 
+			(case when GENERAL_ADJUST_RATING_CD ='AAA' then '3'
+			when    GENERAL_ADJUST_RATING_CD ='AA'  or  GENERAL_ADJUST_RATING_CD ='AA+'  then '2'
+			else '1' end) as ratingCd
+			from TB_IRM_INTERNAL_RATING_APPLY where   IRA_APPLY_ID=#{applyId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getModelScale" parameterType="java.lang.String"  resultType="com.cdgit.loan.irm.bean.TbIrmModelScale">
+		 select  
+		 	credit_rating_cd as creditRatingCd,
+		 	credit_rating_display as creditRatingDisplay,
+		 	min_value as minValue,
+		 	max_value as maxValue
+		 from 
+		 	tb_irm_model_scale 
+		 where 
+		 	model_id= #{modelId,jdbcType=VARCHAR}
+	</select>
+	</mapper>

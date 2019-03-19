@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.user.mapper.TbCsmNaturalPersonMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.TbCsmNaturalPerson">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ENGLISH_NAME" jdbcType="VARCHAR" property="englishName" />
+    <result column="CHINESE_SHORT_NAME" jdbcType="VARCHAR" property="chineseShortName" />
+    <result column="ENGLISH_SHORT_NAME" jdbcType="VARCHAR" property="englishShortName" />
+    <result column="GENDER_CD" jdbcType="VARCHAR" property="genderCd" />
+    <result column="MARRIAGE_CD" jdbcType="VARCHAR" property="marriageCd" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="DEGREE_CD" jdbcType="VARCHAR" property="degreeCd" />
+    <result column="EDUCATION_BACKGROUD_CD" jdbcType="VARCHAR" property="educationBackgroudCd" />
+    <result column="NATION" jdbcType="VARCHAR" property="nation" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="NATURAL_PERSON_TYPE_CD" jdbcType="VARCHAR" property="naturalPersonTypeCd" />
+    <result column="WORK_UNIT" jdbcType="VARCHAR" property="workUnit" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="HUKOU_PROPERTY" jdbcType="VARCHAR" property="hukouProperty" />
+    <result column="IS_FARMER" jdbcType="VARCHAR" property="isFarmer" />
+    <result column="HUKOU_REGISTED" jdbcType="VARCHAR" property="hukouRegisted" />
+    <result column="STREET_POLICE_STATION" jdbcType="VARCHAR" property="streetPoliceStation" />
+    <result column="HEALTH_STATE" jdbcType="VARCHAR" property="healthState" />
+    <result column="PROFESSION" jdbcType="VARCHAR" property="profession" />
+    <result column="PROFESSIONAL_TITLE" jdbcType="VARCHAR" property="professionalTitle" />
+    <result column="ACCOUNTING_ASSISTANT" jdbcType="VARCHAR" property="accountingAssistant" />
+    <result column="POSITION_PROPERTY" jdbcType="VARCHAR" property="positionProperty" />
+    <result column="WORK_YEARS" jdbcType="VARCHAR" property="workYears" />
+    <result column="FAMILY_NUMBER" jdbcType="VARCHAR" property="familyNumber" />
+    <result column="PROVIDE_FOR_NUMBER" jdbcType="VARCHAR" property="provideForNumber" />
+    <result column="FAMILY_ADDRESS" jdbcType="VARCHAR" property="familyAddress" />
+    <result column="HOUSE_PROPERTY" jdbcType="VARCHAR" property="houseProperty" />
+    <result column="FAMILY_PHONE" jdbcType="VARCHAR" property="familyPhone" />
+    <result column="PHONE_NUMBER" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="UNIT_ADRESS" jdbcType="VARCHAR" property="unitAdress" />
+    <result column="UNIT_PHONE" jdbcType="VARCHAR" property="unitPhone" />
+    <result column="INDUSTRY" jdbcType="VARCHAR" property="industry" />
+    <result column="INDUSTRY_DESC" jdbcType="VARCHAR" property="industryDesc" />
+    <result column="JOINT_GUARANTEE" jdbcType="VARCHAR" property="jointGuarantee" />
+    <result column="STOCKHOLDER_OF_BANK" jdbcType="VARCHAR" property="stockholderOfBank" />
+    <result column="WHETHER_BLACK_LIST" jdbcType="VARCHAR" property="whetherBlackList" />
+    <result column="BLACK_LIST_REASON" jdbcType="VARCHAR" property="blackListReason" />
+    <result column="IS_BANK_EMPLOYEE" jdbcType="VARCHAR" property="isBankEmployee" />
+    <result column="EMPLOYEE_GRADE" jdbcType="VARCHAR" property="employeeGrade" />
+    <result column="IS_SAMLL_LOAND_EMP" jdbcType="VARCHAR" property="isSamllLoandEmp" />
+    <result column="COUNTRY_SIGN" jdbcType="VARCHAR" property="countrySign" />
+    <result column="IS_BASEBANK_RELA_CUST" jdbcType="VARCHAR" property="isBasebankRelaCust" />
+    <result column="IS_THIRD_CUST" jdbcType="VARCHAR" property="isThirdCust" />
+    <result column="THIRD_CUST_TYPE_CD" jdbcType="VARCHAR" property="thirdCustTypeCd" />
+    <result column="MIDDLE_CODE" jdbcType="VARCHAR" property="middleCode" />
+    <result column="WEIXIN_NUM" jdbcType="VARCHAR" property="weixinNum" />
+    <result column="COMMUNICATION_ADDRESS" jdbcType="VARCHAR" property="communicationAddress" />
+    <result column="COMMUNICATION_ADDRESS_CODE" jdbcType="VARCHAR" property="communicationAddressCode" />
+    <result column="LIVE_ADDRESS_CODE" jdbcType="VARCHAR" property="liveAddressCode" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="UNIT_ADDRESS_CODE" jdbcType="VARCHAR" property="unitAddressCode" />
+    <result column="ANNUALSALARY" jdbcType="VARCHAR" property="annualsalary" />
+    <result column="RESDNT_CHAR_CD" jdbcType="VARCHAR" property="resdntCharCd" />
+    <result column="SCH_NAME" jdbcType="VARCHAR" property="schName" />
+    <result column="CERT_CREATE_DATE" jdbcType="TIMESTAMP" property="certCreateDate" />
+    <result column="CERT_END_DATE" jdbcType="TIMESTAMP" property="certEndDate" />
+    <result column="IFCERTIFICATE" jdbcType="VARCHAR" property="ifcertificate" />
+    <result column="NATIFLAG" jdbcType="VARCHAR" property="natiflag" />
+    <result column="NATURE_OF_UNIT" jdbcType="VARCHAR" property="natureOfUnit" />
+    <result column="SCALE_OF_UNIT" jdbcType="VARCHAR" property="scaleOfUnit" />
+    <result column="FLG_SMS" jdbcType="VARCHAR" property="flgSms" />
+    <result column="CUST_TYPE" jdbcType="VARCHAR" property="custType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PARTY_ID, PARTY_NAME, ENGLISH_NAME, CHINESE_SHORT_NAME, ENGLISH_SHORT_NAME, GENDER_CD, 
+    MARRIAGE_CD, BIRTHDAY, DEGREE_CD, EDUCATION_BACKGROUD_CD, NATION, REMARK, CREATE_TIME, 
+    UPDATE_TIME, UPDATE_USER_NUM, UPDATE_ORG_NUM, NATURAL_PERSON_TYPE_CD, WORK_UNIT, 
+    CERT_TYPE, CERT_NUM, HUKOU_PROPERTY, IS_FARMER, HUKOU_REGISTED, STREET_POLICE_STATION, 
+    HEALTH_STATE, PROFESSION, PROFESSIONAL_TITLE, ACCOUNTING_ASSISTANT, POSITION_PROPERTY, 
+    WORK_YEARS, FAMILY_NUMBER, PROVIDE_FOR_NUMBER, FAMILY_ADDRESS, HOUSE_PROPERTY, FAMILY_PHONE, 
+    PHONE_NUMBER, UNIT_ADRESS, UNIT_PHONE, INDUSTRY, INDUSTRY_DESC, JOINT_GUARANTEE, 
+    STOCKHOLDER_OF_BANK, WHETHER_BLACK_LIST, BLACK_LIST_REASON, IS_BANK_EMPLOYEE, EMPLOYEE_GRADE, 
+    IS_SAMLL_LOAND_EMP, COUNTRY_SIGN, IS_BASEBANK_RELA_CUST, IS_THIRD_CUST, THIRD_CUST_TYPE_CD, 
+    MIDDLE_CODE, WEIXIN_NUM, COMMUNICATION_ADDRESS, COMMUNICATION_ADDRESS_CODE, LIVE_ADDRESS_CODE, 
+    EMAIL, UNIT_ADDRESS_CODE, ANNUALSALARY, RESDNT_CHAR_CD, SCH_NAME, CERT_CREATE_DATE, 
+    CERT_END_DATE, IFCERTIFICATE, NATIFLAG, NATURE_OF_UNIT, SCALE_OF_UNIT, FLG_SMS, CUST_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CSM_NATURAL_PERSON
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CSM_NATURAL_PERSON
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.user.bean.TbCsmNaturalPerson">
+    insert into TB_CSM_NATURAL_PERSON (PARTY_ID, PARTY_NAME, ENGLISH_NAME, 
+      CHINESE_SHORT_NAME, ENGLISH_SHORT_NAME, GENDER_CD, 
+      MARRIAGE_CD, BIRTHDAY, DEGREE_CD, 
+      EDUCATION_BACKGROUD_CD, NATION, REMARK, 
+      CREATE_TIME, UPDATE_TIME, UPDATE_USER_NUM, 
+      UPDATE_ORG_NUM, NATURAL_PERSON_TYPE_CD, WORK_UNIT, 
+      CERT_TYPE, CERT_NUM, HUKOU_PROPERTY, 
+      IS_FARMER, HUKOU_REGISTED, STREET_POLICE_STATION, 
+      HEALTH_STATE, PROFESSION, PROFESSIONAL_TITLE, 
+      ACCOUNTING_ASSISTANT, POSITION_PROPERTY, 
+      WORK_YEARS, FAMILY_NUMBER, PROVIDE_FOR_NUMBER, 
+      FAMILY_ADDRESS, HOUSE_PROPERTY, FAMILY_PHONE, 
+      PHONE_NUMBER, UNIT_ADRESS, UNIT_PHONE, 
+      INDUSTRY, INDUSTRY_DESC, JOINT_GUARANTEE, 
+      STOCKHOLDER_OF_BANK, WHETHER_BLACK_LIST, BLACK_LIST_REASON, 
+      IS_BANK_EMPLOYEE, EMPLOYEE_GRADE, IS_SAMLL_LOAND_EMP, 
+      COUNTRY_SIGN, IS_BASEBANK_RELA_CUST, IS_THIRD_CUST, 
+      THIRD_CUST_TYPE_CD, MIDDLE_CODE, WEIXIN_NUM, 
+      COMMUNICATION_ADDRESS, COMMUNICATION_ADDRESS_CODE, 
+      LIVE_ADDRESS_CODE, EMAIL, UNIT_ADDRESS_CODE, 
+      ANNUALSALARY, RESDNT_CHAR_CD, SCH_NAME, 
+      CERT_CREATE_DATE, CERT_END_DATE, IFCERTIFICATE, 
+      NATIFLAG, NATURE_OF_UNIT, SCALE_OF_UNIT, 
+      FLG_SMS, CUST_TYPE)
+    values (#{partyId,jdbcType=VARCHAR}, #{partyName,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR}, 
+      #{chineseShortName,jdbcType=VARCHAR}, #{englishShortName,jdbcType=VARCHAR}, #{genderCd,jdbcType=VARCHAR}, 
+      #{marriageCd,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{degreeCd,jdbcType=VARCHAR}, 
+      #{educationBackgroudCd,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUserNum,jdbcType=VARCHAR}, 
+      #{updateOrgNum,jdbcType=VARCHAR}, #{naturalPersonTypeCd,jdbcType=VARCHAR}, #{workUnit,jdbcType=VARCHAR}, 
+      #{certType,jdbcType=VARCHAR}, #{certNum,jdbcType=VARCHAR}, #{hukouProperty,jdbcType=VARCHAR}, 
+      #{isFarmer,jdbcType=VARCHAR}, #{hukouRegisted,jdbcType=VARCHAR}, #{streetPoliceStation,jdbcType=VARCHAR}, 
+      #{healthState,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR}, #{professionalTitle,jdbcType=VARCHAR}, 
+      #{accountingAssistant,jdbcType=VARCHAR}, #{positionProperty,jdbcType=VARCHAR}, 
+      #{workYears,jdbcType=VARCHAR}, #{familyNumber,jdbcType=VARCHAR}, #{provideForNumber,jdbcType=VARCHAR}, 
+      #{familyAddress,jdbcType=VARCHAR}, #{houseProperty,jdbcType=VARCHAR}, #{familyPhone,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{unitAdress,jdbcType=VARCHAR}, #{unitPhone,jdbcType=VARCHAR}, 
+      #{industry,jdbcType=VARCHAR}, #{industryDesc,jdbcType=VARCHAR}, #{jointGuarantee,jdbcType=VARCHAR}, 
+      #{stockholderOfBank,jdbcType=VARCHAR}, #{whetherBlackList,jdbcType=VARCHAR}, #{blackListReason,jdbcType=VARCHAR}, 
+      #{isBankEmployee,jdbcType=VARCHAR}, #{employeeGrade,jdbcType=VARCHAR}, #{isSamllLoandEmp,jdbcType=VARCHAR}, 
+      #{countrySign,jdbcType=VARCHAR}, #{isBasebankRelaCust,jdbcType=VARCHAR}, #{isThirdCust,jdbcType=VARCHAR}, 
+      #{thirdCustTypeCd,jdbcType=VARCHAR}, #{middleCode,jdbcType=VARCHAR}, #{weixinNum,jdbcType=VARCHAR}, 
+      #{communicationAddress,jdbcType=VARCHAR}, #{communicationAddressCode,jdbcType=VARCHAR}, 
+      #{liveAddressCode,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{unitAddressCode,jdbcType=VARCHAR}, 
+      #{annualsalary,jdbcType=VARCHAR}, #{resdntCharCd,jdbcType=VARCHAR}, #{schName,jdbcType=VARCHAR}, 
+      #{certCreateDate,jdbcType=TIMESTAMP}, #{certEndDate,jdbcType=TIMESTAMP}, #{ifcertificate,jdbcType=VARCHAR}, 
+      #{natiflag,jdbcType=VARCHAR}, #{natureOfUnit,jdbcType=VARCHAR}, #{scaleOfUnit,jdbcType=VARCHAR}, 
+      #{flgSms,jdbcType=VARCHAR}, #{custType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.user.bean.TbCsmNaturalPerson">
+    insert into TB_CSM_NATURAL_PERSON
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="partyName != null">
+        PARTY_NAME,
+      </if>
+      <if test="englishName != null">
+        ENGLISH_NAME,
+      </if>
+      <if test="chineseShortName != null">
+        CHINESE_SHORT_NAME,
+      </if>
+      <if test="englishShortName != null">
+        ENGLISH_SHORT_NAME,
+      </if>
+      <if test="genderCd != null">
+        GENDER_CD,
+      </if>
+      <if test="marriageCd != null">
+        MARRIAGE_CD,
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY,
+      </if>
+      <if test="degreeCd != null">
+        DEGREE_CD,
+      </if>
+      <if test="educationBackgroudCd != null">
+        EDUCATION_BACKGROUD_CD,
+      </if>
+      <if test="nation != null">
+        NATION,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM,
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM,
+      </if>
+      <if test="naturalPersonTypeCd != null">
+        NATURAL_PERSON_TYPE_CD,
+      </if>
+      <if test="workUnit != null">
+        WORK_UNIT,
+      </if>
+      <if test="certType != null">
+        CERT_TYPE,
+      </if>
+      <if test="certNum != null">
+        CERT_NUM,
+      </if>
+      <if test="hukouProperty != null">
+        HUKOU_PROPERTY,
+      </if>
+      <if test="isFarmer != null">
+        IS_FARMER,
+      </if>
+      <if test="hukouRegisted != null">
+        HUKOU_REGISTED,
+      </if>
+      <if test="streetPoliceStation != null">
+        STREET_POLICE_STATION,
+      </if>
+      <if test="healthState != null">
+        HEALTH_STATE,
+      </if>
+      <if test="profession != null">
+        PROFESSION,
+      </if>
+      <if test="professionalTitle != null">
+        PROFESSIONAL_TITLE,
+      </if>
+      <if test="accountingAssistant != null">
+        ACCOUNTING_ASSISTANT,
+      </if>
+      <if test="positionProperty != null">
+        POSITION_PROPERTY,
+      </if>
+      <if test="workYears != null">
+        WORK_YEARS,
+      </if>
+      <if test="familyNumber != null">
+        FAMILY_NUMBER,
+      </if>
+      <if test="provideForNumber != null">
+        PROVIDE_FOR_NUMBER,
+      </if>
+      <if test="familyAddress != null">
+        FAMILY_ADDRESS,
+      </if>
+      <if test="houseProperty != null">
+        HOUSE_PROPERTY,
+      </if>
+      <if test="familyPhone != null">
+        FAMILY_PHONE,
+      </if>
+      <if test="phoneNumber != null">
+        PHONE_NUMBER,
+      </if>
+      <if test="unitAdress != null">
+        UNIT_ADRESS,
+      </if>
+      <if test="unitPhone != null">
+        UNIT_PHONE,
+      </if>
+      <if test="industry != null">
+        INDUSTRY,
+      </if>
+      <if test="industryDesc != null">
+        INDUSTRY_DESC,
+      </if>
+      <if test="jointGuarantee != null">
+        JOINT_GUARANTEE,
+      </if>
+      <if test="stockholderOfBank != null">
+        STOCKHOLDER_OF_BANK,
+      </if>
+      <if test="whetherBlackList != null">
+        WHETHER_BLACK_LIST,
+      </if>
+      <if test="blackListReason != null">
+        BLACK_LIST_REASON,
+      </if>
+      <if test="isBankEmployee != null">
+        IS_BANK_EMPLOYEE,
+      </if>
+      <if test="employeeGrade != null">
+        EMPLOYEE_GRADE,
+      </if>
+      <if test="isSamllLoandEmp != null">
+        IS_SAMLL_LOAND_EMP,
+      </if>
+      <if test="countrySign != null">
+        COUNTRY_SIGN,
+      </if>
+      <if test="isBasebankRelaCust != null">
+        IS_BASEBANK_RELA_CUST,
+      </if>
+      <if test="isThirdCust != null">
+        IS_THIRD_CUST,
+      </if>
+      <if test="thirdCustTypeCd != null">
+        THIRD_CUST_TYPE_CD,
+      </if>
+      <if test="middleCode != null">
+        MIDDLE_CODE,
+      </if>
+      <if test="weixinNum != null">
+        WEIXIN_NUM,
+      </if>
+      <if test="communicationAddress != null">
+        COMMUNICATION_ADDRESS,
+      </if>
+      <if test="communicationAddressCode != null">
+        COMMUNICATION_ADDRESS_CODE,
+      </if>
+      <if test="liveAddressCode != null">
+        LIVE_ADDRESS_CODE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="unitAddressCode != null">
+        UNIT_ADDRESS_CODE,
+      </if>
+      <if test="annualsalary != null">
+        ANNUALSALARY,
+      </if>
+      <if test="resdntCharCd != null">
+        RESDNT_CHAR_CD,
+      </if>
+      <if test="schName != null">
+        SCH_NAME,
+      </if>
+      <if test="certCreateDate != null">
+        CERT_CREATE_DATE,
+      </if>
+      <if test="certEndDate != null">
+        CERT_END_DATE,
+      </if>
+      <if test="ifcertificate != null">
+        IFCERTIFICATE,
+      </if>
+      <if test="natiflag != null">
+        NATIFLAG,
+      </if>
+      <if test="natureOfUnit != null">
+        NATURE_OF_UNIT,
+      </if>
+      <if test="scaleOfUnit != null">
+        SCALE_OF_UNIT,
+      </if>
+      <if test="flgSms != null">
+        FLG_SMS,
+      </if>
+      <if test="custType != null">
+        CUST_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyName != null">
+        #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null">
+        #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="chineseShortName != null">
+        #{chineseShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="englishShortName != null">
+        #{englishShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="genderCd != null">
+        #{genderCd,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageCd != null">
+        #{marriageCd,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="degreeCd != null">
+        #{degreeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="educationBackgroudCd != null">
+        #{educationBackgroudCd,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserNum != null">
+        #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="naturalPersonTypeCd != null">
+        #{naturalPersonTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="workUnit != null">
+        #{workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNum != null">
+        #{certNum,jdbcType=VARCHAR},
+      </if>
+      <if test="hukouProperty != null">
+        #{hukouProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="isFarmer != null">
+        #{isFarmer,jdbcType=VARCHAR},
+      </if>
+      <if test="hukouRegisted != null">
+        #{hukouRegisted,jdbcType=VARCHAR},
+      </if>
+      <if test="streetPoliceStation != null">
+        #{streetPoliceStation,jdbcType=VARCHAR},
+      </if>
+      <if test="healthState != null">
+        #{healthState,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalTitle != null">
+        #{professionalTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingAssistant != null">
+        #{accountingAssistant,jdbcType=VARCHAR},
+      </if>
+      <if test="positionProperty != null">
+        #{positionProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="workYears != null">
+        #{workYears,jdbcType=VARCHAR},
+      </if>
+      <if test="familyNumber != null">
+        #{familyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="provideForNumber != null">
+        #{provideForNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="familyAddress != null">
+        #{familyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProperty != null">
+        #{houseProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="familyPhone != null">
+        #{familyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAdress != null">
+        #{unitAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPhone != null">
+        #{unitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="industryDesc != null">
+        #{industryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="jointGuarantee != null">
+        #{jointGuarantee,jdbcType=VARCHAR},
+      </if>
+      <if test="stockholderOfBank != null">
+        #{stockholderOfBank,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherBlackList != null">
+        #{whetherBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="blackListReason != null">
+        #{blackListReason,jdbcType=VARCHAR},
+      </if>
+      <if test="isBankEmployee != null">
+        #{isBankEmployee,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeGrade != null">
+        #{employeeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="isSamllLoandEmp != null">
+        #{isSamllLoandEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="countrySign != null">
+        #{countrySign,jdbcType=VARCHAR},
+      </if>
+      <if test="isBasebankRelaCust != null">
+        #{isBasebankRelaCust,jdbcType=VARCHAR},
+      </if>
+      <if test="isThirdCust != null">
+        #{isThirdCust,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCustTypeCd != null">
+        #{thirdCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="middleCode != null">
+        #{middleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinNum != null">
+        #{weixinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="communicationAddress != null">
+        #{communicationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="communicationAddressCode != null">
+        #{communicationAddressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddressCode != null">
+        #{liveAddressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAddressCode != null">
+        #{unitAddressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="annualsalary != null">
+        #{annualsalary,jdbcType=VARCHAR},
+      </if>
+      <if test="resdntCharCd != null">
+        #{resdntCharCd,jdbcType=VARCHAR},
+      </if>
+      <if test="schName != null">
+        #{schName,jdbcType=VARCHAR},
+      </if>
+      <if test="certCreateDate != null">
+        #{certCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certEndDate != null">
+        #{certEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifcertificate != null">
+        #{ifcertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="natiflag != null">
+        #{natiflag,jdbcType=VARCHAR},
+      </if>
+      <if test="natureOfUnit != null">
+        #{natureOfUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="scaleOfUnit != null">
+        #{scaleOfUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="flgSms != null">
+        #{flgSms,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null">
+        #{custType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.user.bean.TbCsmNaturalPerson">
+    update TB_CSM_NATURAL_PERSON
+    <set>
+      <if test="partyName != null">
+        PARTY_NAME = #{partyName,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null">
+        ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="chineseShortName != null">
+        CHINESE_SHORT_NAME = #{chineseShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="englishShortName != null">
+        ENGLISH_SHORT_NAME = #{englishShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="genderCd != null">
+        GENDER_CD = #{genderCd,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageCd != null">
+        MARRIAGE_CD = #{marriageCd,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="degreeCd != null">
+        DEGREE_CD = #{degreeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="educationBackgroudCd != null">
+        EDUCATION_BACKGROUD_CD = #{educationBackgroudCd,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        NATION = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="naturalPersonTypeCd != null">
+        NATURAL_PERSON_TYPE_CD = #{naturalPersonTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="workUnit != null">
+        WORK_UNIT = #{workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        CERT_TYPE = #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNum != null">
+        CERT_NUM = #{certNum,jdbcType=VARCHAR},
+      </if>
+      <if test="hukouProperty != null">
+        HUKOU_PROPERTY = #{hukouProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="isFarmer != null">
+        IS_FARMER = #{isFarmer,jdbcType=VARCHAR},
+      </if>
+      <if test="hukouRegisted != null">
+        HUKOU_REGISTED = #{hukouRegisted,jdbcType=VARCHAR},
+      </if>
+      <if test="streetPoliceStation != null">
+        STREET_POLICE_STATION = #{streetPoliceStation,jdbcType=VARCHAR},
+      </if>
+      <if test="healthState != null">
+        HEALTH_STATE = #{healthState,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        PROFESSION = #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalTitle != null">
+        PROFESSIONAL_TITLE = #{professionalTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingAssistant != null">
+        ACCOUNTING_ASSISTANT = #{accountingAssistant,jdbcType=VARCHAR},
+      </if>
+      <if test="positionProperty != null">
+        POSITION_PROPERTY = #{positionProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="workYears != null">
+        WORK_YEARS = #{workYears,jdbcType=VARCHAR},
+      </if>
+      <if test="familyNumber != null">
+        FAMILY_NUMBER = #{familyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="provideForNumber != null">
+        PROVIDE_FOR_NUMBER = #{provideForNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="familyAddress != null">
+        FAMILY_ADDRESS = #{familyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProperty != null">
+        HOUSE_PROPERTY = #{houseProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="familyPhone != null">
+        FAMILY_PHONE = #{familyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAdress != null">
+        UNIT_ADRESS = #{unitAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPhone != null">
+        UNIT_PHONE = #{unitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        INDUSTRY = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="industryDesc != null">
+        INDUSTRY_DESC = #{industryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="jointGuarantee != null">
+        JOINT_GUARANTEE = #{jointGuarantee,jdbcType=VARCHAR},
+      </if>
+      <if test="stockholderOfBank != null">
+        STOCKHOLDER_OF_BANK = #{stockholderOfBank,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherBlackList != null">
+        WHETHER_BLACK_LIST = #{whetherBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="blackListReason != null">
+        BLACK_LIST_REASON = #{blackListReason,jdbcType=VARCHAR},
+      </if>
+      <if test="isBankEmployee != null">
+        IS_BANK_EMPLOYEE = #{isBankEmployee,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeGrade != null">
+        EMPLOYEE_GRADE = #{employeeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="isSamllLoandEmp != null">
+        IS_SAMLL_LOAND_EMP = #{isSamllLoandEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="countrySign != null">
+        COUNTRY_SIGN = #{countrySign,jdbcType=VARCHAR},
+      </if>
+      <if test="isBasebankRelaCust != null">
+        IS_BASEBANK_RELA_CUST = #{isBasebankRelaCust,jdbcType=VARCHAR},
+      </if>
+      <if test="isThirdCust != null">
+        IS_THIRD_CUST = #{isThirdCust,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCustTypeCd != null">
+        THIRD_CUST_TYPE_CD = #{thirdCustTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="middleCode != null">
+        MIDDLE_CODE = #{middleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinNum != null">
+        WEIXIN_NUM = #{weixinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="communicationAddress != null">
+        COMMUNICATION_ADDRESS = #{communicationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="communicationAddressCode != null">
+        COMMUNICATION_ADDRESS_CODE = #{communicationAddressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddressCode != null">
+        LIVE_ADDRESS_CODE = #{liveAddressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAddressCode != null">
+        UNIT_ADDRESS_CODE = #{unitAddressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="annualsalary != null">
+        ANNUALSALARY = #{annualsalary,jdbcType=VARCHAR},
+      </if>
+      <if test="resdntCharCd != null">
+        RESDNT_CHAR_CD = #{resdntCharCd,jdbcType=VARCHAR},
+      </if>
+      <if test="schName != null">
+        SCH_NAME = #{schName,jdbcType=VARCHAR},
+      </if>
+      <if test="certCreateDate != null">
+        CERT_CREATE_DATE = #{certCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certEndDate != null">
+        CERT_END_DATE = #{certEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifcertificate != null">
+        IFCERTIFICATE = #{ifcertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="natiflag != null">
+        NATIFLAG = #{natiflag,jdbcType=VARCHAR},
+      </if>
+      <if test="natureOfUnit != null">
+        NATURE_OF_UNIT = #{natureOfUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="scaleOfUnit != null">
+        SCALE_OF_UNIT = #{scaleOfUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="flgSms != null">
+        FLG_SMS = #{flgSms,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null">
+        CUST_TYPE = #{custType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.user.bean.TbCsmNaturalPerson">
+    update TB_CSM_NATURAL_PERSON
+    set PARTY_NAME = #{partyName,jdbcType=VARCHAR},
+      ENGLISH_NAME = #{englishName,jdbcType=VARCHAR},
+      CHINESE_SHORT_NAME = #{chineseShortName,jdbcType=VARCHAR},
+      ENGLISH_SHORT_NAME = #{englishShortName,jdbcType=VARCHAR},
+      GENDER_CD = #{genderCd,jdbcType=VARCHAR},
+      MARRIAGE_CD = #{marriageCd,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      DEGREE_CD = #{degreeCd,jdbcType=VARCHAR},
+      EDUCATION_BACKGROUD_CD = #{educationBackgroudCd,jdbcType=VARCHAR},
+      NATION = #{nation,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      NATURAL_PERSON_TYPE_CD = #{naturalPersonTypeCd,jdbcType=VARCHAR},
+      WORK_UNIT = #{workUnit,jdbcType=VARCHAR},
+      CERT_TYPE = #{certType,jdbcType=VARCHAR},
+      CERT_NUM = #{certNum,jdbcType=VARCHAR},
+      HUKOU_PROPERTY = #{hukouProperty,jdbcType=VARCHAR},
+      IS_FARMER = #{isFarmer,jdbcType=VARCHAR},
+      HUKOU_REGISTED = #{hukouRegisted,jdbcType=VARCHAR},
+      STREET_POLICE_STATION = #{streetPoliceStation,jdbcType=VARCHAR},
+      HEALTH_STATE = #{healthState,jdbcType=VARCHAR},
+      PROFESSION = #{profession,jdbcType=VARCHAR},
+      PROFESSIONAL_TITLE = #{professionalTitle,jdbcType=VARCHAR},
+      ACCOUNTING_ASSISTANT = #{accountingAssistant,jdbcType=VARCHAR},
+      POSITION_PROPERTY = #{positionProperty,jdbcType=VARCHAR},
+      WORK_YEARS = #{workYears,jdbcType=VARCHAR},
+      FAMILY_NUMBER = #{familyNumber,jdbcType=VARCHAR},
+      PROVIDE_FOR_NUMBER = #{provideForNumber,jdbcType=VARCHAR},
+      FAMILY_ADDRESS = #{familyAddress,jdbcType=VARCHAR},
+      HOUSE_PROPERTY = #{houseProperty,jdbcType=VARCHAR},
+      FAMILY_PHONE = #{familyPhone,jdbcType=VARCHAR},
+      PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+      UNIT_ADRESS = #{unitAdress,jdbcType=VARCHAR},
+      UNIT_PHONE = #{unitPhone,jdbcType=VARCHAR},
+      INDUSTRY = #{industry,jdbcType=VARCHAR},
+      INDUSTRY_DESC = #{industryDesc,jdbcType=VARCHAR},
+      JOINT_GUARANTEE = #{jointGuarantee,jdbcType=VARCHAR},
+      STOCKHOLDER_OF_BANK = #{stockholderOfBank,jdbcType=VARCHAR},
+      WHETHER_BLACK_LIST = #{whetherBlackList,jdbcType=VARCHAR},
+      BLACK_LIST_REASON = #{blackListReason,jdbcType=VARCHAR},
+      IS_BANK_EMPLOYEE = #{isBankEmployee,jdbcType=VARCHAR},
+      EMPLOYEE_GRADE = #{employeeGrade,jdbcType=VARCHAR},
+      IS_SAMLL_LOAND_EMP = #{isSamllLoandEmp,jdbcType=VARCHAR},
+      COUNTRY_SIGN = #{countrySign,jdbcType=VARCHAR},
+      IS_BASEBANK_RELA_CUST = #{isBasebankRelaCust,jdbcType=VARCHAR},
+      IS_THIRD_CUST = #{isThirdCust,jdbcType=VARCHAR},
+      THIRD_CUST_TYPE_CD = #{thirdCustTypeCd,jdbcType=VARCHAR},
+      MIDDLE_CODE = #{middleCode,jdbcType=VARCHAR},
+      WEIXIN_NUM = #{weixinNum,jdbcType=VARCHAR},
+      COMMUNICATION_ADDRESS = #{communicationAddress,jdbcType=VARCHAR},
+      COMMUNICATION_ADDRESS_CODE = #{communicationAddressCode,jdbcType=VARCHAR},
+      LIVE_ADDRESS_CODE = #{liveAddressCode,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      UNIT_ADDRESS_CODE = #{unitAddressCode,jdbcType=VARCHAR},
+      ANNUALSALARY = #{annualsalary,jdbcType=VARCHAR},
+      RESDNT_CHAR_CD = #{resdntCharCd,jdbcType=VARCHAR},
+      SCH_NAME = #{schName,jdbcType=VARCHAR},
+      CERT_CREATE_DATE = #{certCreateDate,jdbcType=TIMESTAMP},
+      CERT_END_DATE = #{certEndDate,jdbcType=TIMESTAMP},
+      IFCERTIFICATE = #{ifcertificate,jdbcType=VARCHAR},
+      NATIFLAG = #{natiflag,jdbcType=VARCHAR},
+      NATURE_OF_UNIT = #{natureOfUnit,jdbcType=VARCHAR},
+      SCALE_OF_UNIT = #{scaleOfUnit,jdbcType=VARCHAR},
+      FLG_SMS = #{flgSms,jdbcType=VARCHAR},
+      CUST_TYPE = #{custType,jdbcType=VARCHAR}
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

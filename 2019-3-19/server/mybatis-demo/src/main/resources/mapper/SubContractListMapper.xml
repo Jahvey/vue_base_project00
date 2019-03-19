@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.SubContractManageMapper"><!-- mapper要记得该过来 -->
+
+  <resultMap id="SubContractListVo" type="com.cdgit.loan.csm.bean.CsmSubContractListVo">
+
+	<result column="SUBCONTRACT_ID" javaType="String" property="subcontractId" />
+	<result column="BZ" javaType="String" property="currencyCdn" /> <!-- 币种 -->
+	
+	<result column="PARTY_ID" javaType="String" property="partyId" />
+  	<result column="SUBCONTRACT_NUM" javaType="String" property="subcontractNum" />
+  	<result column="PARTY_NAME" javaType="String" property="partyName" />
+
+  	<result column="SUBCONTRACT_AMT" javaType="String" property="subcontractAmt" />
+  	<result column="SUBCONTRACT_TYPE_NAME" javaType="String" property="subcontractTypeName" />
+  	<result column="SUBCONTRACT_TYPE" javaType="String" property="subcontractType" />
+  	<result column="IF_TOP_SUBCON" javaType="String" property="ifTopSubcon" />
+  	<result column="BEGIN_DATE" javaType="String" property="beginDate" />
+  	<result column="END_DATE" javaType="String" property="endDate" />
+  	<result column="USER_NUM" javaType="String" property="userNum" />
+  	<result column="ORG_NUM" javaType="String" property="orgNum" />
+
+
+  </resultMap>
+  
+  
+  
+  <resultMap id="OldDbListVo" type="com.cdgit.loan.csm.bean.OldDbListVo">
+
+    <result column="SURETY_ID" javaType="String" property="suretyId" />
+	<result column="SUBCONTRACT_ID" javaType="String" property="subcontractId" />	
+	<result column="SURETY_AMT" javaType="String" property="suretyAmt" />
+  	<result column="PARTY_NAME" javaType="String" property="partyName" />
+  	<result column="SURETY_NO" javaType="String" property="suretyNo" />
+  	<result column="COLL_TYPE" javaType="String" property="subconractType" />
+  	<result column="SORT_TYPE" javaType="String" property="sortType" />
+	<result column="BZ" javaType="String" property="currencyCdn" /> <!-- 币种 -->
+	<result column="ASSESS_VALUE" javaType="String" property="assessValue" />	 
+	<result column="MORTGAGE_VALUE" javaType="String" property="mortgageValue" />
+	<result column="USED_AMT" javaType="String" property="usedAmt" />
+	<result column="MORTGAGE_STATUS" javaType="String" property="mortgageStatus" />
+  	<result column="SUBCONTRACT_NUM" javaType="String" property="subcontractNum" />
+  </resultMap>
+  
+  
+  
+  
+  <resultMap id="OldContractListVo" type="com.cdgit.loan.csm.bean.OldContractListVo">
+
+    <result column="CONTRACT_ID" javaType="String" property="contractId" />
+	<result column="SUBCONTRACT_ID" javaType="String" property="subcontractId" />	
+	<result column="CONTRACT_NUM" javaType="String" property="contractNum" />
+  	<result column="CONTRACT_AMT" javaType="String" property="contractAmt" />
+  	<result column="CON_YU_E" javaType="String" property="conYuE" />
+  	<result column="CURRENCY_CD" javaType="String" property="currencyCd" />
+  	<result column="BEGIN_DATE" javaType="String" property="beginDate" />
+	<result column="END_DATE" javaType="String" property="endDate" /> <!-- 币种 -->
+	<result column="PRODUCT_TYPE" javaType="String" property="productType" />	 
+	<result column="SUBCONTRACT_TYPE" javaType="String" property="subcontractType" />
+	<result column="SURETY_AMT" javaType="String" property="suretyAmt" />
+	
+  </resultMap>
+
+  
+  <select id="findSubContractList" parameterType="java.util.HashMap" resultMap="SubContractListVo">
+
+	select * from (select distinct ta.subcontract_id,
+                        ta.bz,
+                        decode(ta.subcontract_type,'04',tc.party_id,ta.party_id)as party_id,
+                        decode(ta.subcontract_type,'04',tc.party_name,tb.party_name)as party_name,
+                        ta.subcontract_num,
+                        decode(ta.if_top_subcon,'1',ta.zgbjxe,decode(ta.subcontract_type,'03',ta.bzjje,ta.subcontract_amt))as subcontract_amt,
+                        decode(ta.subcontract_type,'01','抵押','02','质押','03','保证金','04','保证','')as subcontract_type_name,
+                        ta.subcontract_type,
+                        ta.if_top_subcon,
+                        ta.user_num,
+                        ta.org_num,
+                        to_char(ta.begin_date, 'YYYY-MM-DD') as begin_date,
+                        to_char(ta.end_date, 'YYYY-MM-DD') as end_date
+          from tb_con_subcontract ta
+          left join tb_csm_party tb on ta.party_id=tb.party_id
+          left join (
+        select listagg(tx.party_name,',') within group(order by party_name) as party_name,
+                listagg(tx.party_id,',') within group(order by party_name) as party_id, ty.subcontract_id  
+            from tb_grt_guarantee_basic tz,tb_con_sub_grt_rel ty,tb_csm_party tx
+            where tz.surety_id=ty.surety_id
+            and tz.party_id=tx.party_id
+            and (ty.grt_status !='04' or ty.grt_status is null)
+            group by ty.subcontract_id
+            ) tc on ta.subcontract_id=tc.subcontract_id
+            where ta.subcontract_status='03'
+      
+     	 <include refid="query_SubContractListVo"></include>
+         )r where 1=1 
+         
+          <include refid="query_SubContractListVo_byPartyName"></include>
+  </select>
+  
+  
+  
+  <!--获取原担保合同中 对应的押品信息 -->
+    <select id="findOldDbList" parameterType="java.util.HashMap" resultMap="OldDbListVo">
+	   select tb.surety_id,
+     	t.subcontract_id,    
+         ta.SURETY_AMT,
+         tc.PARTY_NAME,
+         tb.SURETY_NO,
+         tb.COLL_TYPE,
+         tb.SORT_TYPE,
+         t.BZ,
+         tb.ASSESS_VALUE,
+         tb.MORTGAGE_VALUE,
+         (nvl(tb.MORTGAGE_VALUE, 0) - nvl(tb.avi_amt, 0)) as used_AMT,
+         tb.mortgage_status
+   	 from TB_CON_SUBCONTRACT    t,
+        tb_con_sub_grt_rel   ta,
+         TB_GRT_MORTGAGE_BASIC tb,
+         TB_CSM_PARTY          tc
+   	where t.SUBCONTRACT_ID = ta.SUBCONTRACT_ID
+     and ta.SURETY_ID = tb.SURETY_ID 
+     and (ta.grt_status !='04' or ta.grt_status is null)
+     and tb.PARTY_ID = tc.PARTY_ID
+
+		<include refid="query_findOldDbList"></include>
+    </select>
+  
+  	<!--查找原担保合同对应的主合同信息-->
+<select id="findOldContractList" parameterType="java.util.HashMap" resultMap="OldContractListVo">
+  select tc.contract_id,
+        rel.subcontract_id,
+        tc.contract_num,
+        tc.contract_amt,
+        tc.con_yu_e,
+        tc.currency_cd,
+        to_char(tc.begin_date, 'YYYY-MM-DD') as begin_date,
+        to_char(tc.end_date, 'YYYY-MM-DD') as end_date,
+        tc.product_type,
+        tb.subcontract_type,
+        decode(tb.if_top_subcon,'1',rel.surety_amt,decode(tb.subcontract_type,'04',tc.contract_amt,'03',tb.bzjje,tb.subcontract_amt))surety_amt
+   from tb_con_subcontract_rel rel, tb_con_contract_info tc,tb_con_subcontract tb
+  where rel.contract_id = tc.contract_id
+  and rel.subcontract_id=tb.subcontract_id
+    and tc.con_status = '03'
+    and rel.if_effective='1'
+    <include refid="query_findOldContractList"></include>
+  
+    </select>
+  
+  
+  
+  
+  <sql id="query_findOldContractList">
+
+  	
+  		<if test="subcontractId !=null and subcontractId !='' ">
+			 and tb.subcontract_id=#{subcontractId}
+			
+		</if>
+
+  	</sql>
+  
+  	<sql id="query_findOldDbList">
+
+  	
+  		<if test="subcontractId !=null and subcontractId !='' ">
+
+			 and t.SUBCONTRACT_ID=#{subcontractId}
+		</if>
+  	
+  		<if test="subcontractNum !=null and subcontractNum !='' ">
+
+			 and t.SUBCONTRACT_NUM=#{subcontractNum}
+		</if>
+		<if test="subconractType !=null and subconractType !='' ">
+
+			 and tb.COLL_TYPE=#{subconractType}
+		</if>
+  	</sql>
+
+  
+  	<sql id="query_SubContractListVo_byPartyName">
+  	
+  		<if test="partyName !=null and partyName !='' ">
+
+			 and r.party_name like '%'||#{partyName}||'%'
+		</if>
+		
+		<!-- 一下的内容原来的sql语句没有，现在为了程序添加的 -->
+			 and r.user_num='200555'
+	 		 and r.org_num='0700'
+  	
+  	</sql>
+	<sql id="query_SubContractListVo">
+
+	<!-- 
+		担保合同类型(XD_YWDB0131)
+	 -->
+		<if test="subcontractType !=null and subcontractType !='' ">
+			and ta.subcontract_type =#{subcontractType}	
+		</if>
+
+
+		<if test="subcontractNum !=null and subcontractNum !='' "><!-- 担保合同号 -->
+			and ta.subcontract_Num like '%'||#{subcontractNum}||'%'
+		</if>
+		
+		
+		<if test="contractNum !=null and contractNum !='' ">
+		
+		and ta.SUBCONTRACT_ID in (
+        	select t2.SUBCONTRACT_ID from tb_con_contract_info t1,tb_con_subcontract_rel t2 
+        	where t1.CONTRACT_ID=t2.CONTRACT_ID  <!-- 贷款合同ID -->
+       		and t1.CONTRACT_NUM = #{contractNum}  <!-- 业务合同信息表合同编号 -->
+        )
+		</if>
+		
+		<if test="partyId !=null and partyId !='' ">
+		
+			 and ta.con_party_id = #{partyId}
+		</if>
+
+	</sql>
+</mapper>

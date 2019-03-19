@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.irm.mapper.TbAccCustomerFinanceMapper">
+	<resultMap id="BaseResultMap" type="com.cdgit.loan.irm.bean.TbAccCustomerFinance">
+	    <id column="FINANCE_ID" jdbcType="VARCHAR" property="financeId" />
+	    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+	    <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+	    <result column="CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="customerTypeCd" />
+	    <result column="FINANCE_DEADLINE" jdbcType="TIMESTAMP" property="financeDeadline" />
+	    <result column="FINANCE_STATUS_CD" jdbcType="VARCHAR" property="financeStatusCd" />
+	    <result column="FINANCE_TYPE_CD" jdbcType="VARCHAR" property="financeTypeCd" />
+	    <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+	    <result column="REGULATED_IND" jdbcType="VARCHAR" property="regulatedInd" />
+	    <result column="REGULATED_REASON" jdbcType="VARCHAR" property="regulatedReason" />
+	    <result column="ACCOUNTING_PRINCIPLE" jdbcType="VARCHAR" property="accountingPrinciple" />
+	    <result column="AUDITED_IND" jdbcType="VARCHAR" property="auditedInd" />
+	    <result column="AUDIT_COMMENT_TYPE_CD" jdbcType="VARCHAR" property="auditCommentTypeCd" />
+	    <result column="BIZ_LICENSE_NUM" jdbcType="VARCHAR" property="bizLicenseNum" />
+	    <result column="AUDIT_DEPT" jdbcType="VARCHAR" property="auditDept" />
+	    <result column="AUDIT_CO_NAME" jdbcType="VARCHAR" property="auditCoName" />
+	    <result column="AUDIT_DEPT_COMMENT_CD" jdbcType="VARCHAR" property="auditDeptCommentCd" />
+	    <result column="AUDIT_TIME" jdbcType="TIMESTAMP" property="auditTime" />
+	    <result column="CALIBER_CD" jdbcType="VARCHAR" property="caliberCd" />
+	    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+	    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+	    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+  	</resultMap>
+  	<sql id="Base_Column_List">
+    	FINANCE_ID, PARTY_TYPE_CD, PARTY_NUM, CUSTOMER_TYPE_CD, FINANCE_DEADLINE, 
+    	FINANCE_STATUS_CD, FINANCE_TYPE_CD, CURRENCY, REGULATED_IND, REGULATED_REASON,
+    	ACCOUNTING_PRINCIPLE, AUDITED_IND, AUDIT_COMMENT_TYPE_CD, BIZ_LICENSE_NUM, AUDIT_DEPT,
+    	AUDIT_CO_NAME, AUDIT_DEPT_COMMENT_CD, AUDIT_TIME, CALIBER_CD, REMARK, 
+    	PARTY_ID, USER_NUM, ORG_NUM
+  	</sql>
+  	<select id="queryTbAccCustomerFinanceMapperByParams" parameterType="com.cdgit.loan.irm.bean.TbAccCustomerFinance" resultMap="BaseResultMap">
+		SELECT 
+    <include refid="Base_Column_List" />
+    	FROM 
+    		Tb_Acc_Customer_Finance
+    	where 
+    	 	1 = 1
+    	<if test="partyId != null and '' != partyId">
+      		AND PARTY_ID = #{partyId,jdbcType=VARCHAR}
+    	</if>
+    	<if test="financeStatusCd != null and ''!= financeStatusCd">
+      		AND FINANCE_STATUS_CD = #{financeStatusCd,jdbcType=VARCHAR}
+    	</if>
+    	<if test="financeStatusCd != null and ''!= financeStatusCd">
+      		AND FINANCE_STATUS_CD = #{financeStatusCd,jdbcType=VARCHAR}
+    	</if>
+    	<if test="financeTypeCd != null and ''!= financeTypeCd">
+      		AND FINANCE_TYPE_CD = #{financeTypeCd,jdbcType=VARCHAR}
+    	</if>
+    	<if test="customerTypeCd != null and ''!= customerTypeCd">
+      		AND CUSTOMER_TYPE_CD = #{customerTypeCd,jdbcType=VARCHAR}
+    	</if>
+	</select>
+</mapper>

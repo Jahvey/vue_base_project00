@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbCrdDetailApproveMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbCrdDetailApprove">
+    <id column="CRD_DTL_ID" jdbcType="VARCHAR" property="crdDtlId" />
+    <result column="CRD_ID" jdbcType="VARCHAR" property="crdId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="EXCHANGE_RATE" jdbcType="DECIMAL" property="exchangeRate" />
+    <result column="EXCHANGE_RATE_DATE" jdbcType="TIMESTAMP" property="exchangeRateDate" />
+    <result column="DTL_AMT" jdbcType="DECIMAL" property="dtlAmt" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="BO_USE" jdbcType="DECIMAL" property="boUse" />
+    <result column="NO_USE" jdbcType="DECIMAL" property="noUse" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="TERM_NUM" jdbcType="VARCHAR" property="termNum" />
+    <result column="TERM_UNIT" jdbcType="VARCHAR" property="termUnit" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CYCLE_IND" jdbcType="VARCHAR" property="cycleInd" />
+    <result column="CREDIT_STATUS" jdbcType="VARCHAR" property="creditStatus" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="ASSURE_PER" jdbcType="DECIMAL" property="assurePer" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CRD_DTL_ID, CRD_ID, CREDIT_MODE, PRODUCT_TYPE, CURRENCY_CD, EXCHANGE_RATE, EXCHANGE_RATE_DATE, 
+    DTL_AMT, RMB_AMT, BO_USE, NO_USE, APPLY_DATE, TERM_NUM, TERM_UNIT, UPDATE_TIME, CYCLE_IND, 
+    CREDIT_STATUS, END_DATE, BEGIN_DATE, ASSURE_PER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRD_DETAIL_APPROVE
+    where CRD_DTL_ID = #{crdDtlId,jdbcType=VARCHAR}
+  </select>
+  <select id="getCrdDtlIds" parameterType="java.lang.String" resultMap="BaseResultMap">
+   SELECT CRD_DTL_ID FROM TB_CRD_DETAIL_APPROVE WHERE CRD_ID=#{crdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CRD_DETAIL_APPROVE
+    where CRD_DTL_ID = #{crdDtlId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.CsmTbCrdDetailApprove">
+    insert into TB_CRD_DETAIL_APPROVE (CRD_DTL_ID, CRD_ID, CREDIT_MODE, 
+      PRODUCT_TYPE, CURRENCY_CD, EXCHANGE_RATE, 
+      EXCHANGE_RATE_DATE, DTL_AMT, RMB_AMT, 
+      BO_USE, NO_USE, APPLY_DATE, 
+      TERM_NUM, TERM_UNIT, UPDATE_TIME, 
+      CYCLE_IND, CREDIT_STATUS, END_DATE, 
+      BEGIN_DATE, ASSURE_PER)
+    values (#{crdDtlId,jdbcType=VARCHAR}, #{crdId,jdbcType=VARCHAR}, #{creditMode,jdbcType=VARCHAR}, 
+      #{productType,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, #{exchangeRate,jdbcType=DECIMAL}, 
+      #{exchangeRateDate,jdbcType=TIMESTAMP}, #{dtlAmt,jdbcType=DECIMAL}, #{rmbAmt,jdbcType=DECIMAL}, 
+      #{boUse,jdbcType=DECIMAL}, #{noUse,jdbcType=DECIMAL}, #{applyDate,jdbcType=TIMESTAMP}, 
+      #{termNum,jdbcType=VARCHAR}, #{termUnit,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{cycleInd,jdbcType=VARCHAR}, #{creditStatus,jdbcType=VARCHAR}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{beginDate,jdbcType=TIMESTAMP}, #{assurePer,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.CsmTbCrdDetailApprove">
+    insert into TB_CRD_DETAIL_APPROVE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="crdDtlId != null">
+        CRD_DTL_ID,
+      </if>
+      <if test="crdId != null">
+        CRD_ID,
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE,
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="exchangeRate != null">
+        EXCHANGE_RATE,
+      </if>
+      <if test="exchangeRateDate != null">
+        EXCHANGE_RATE_DATE,
+      </if>
+      <if test="dtlAmt != null">
+        DTL_AMT,
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT,
+      </if>
+      <if test="boUse != null">
+        BO_USE,
+      </if>
+      <if test="noUse != null">
+        NO_USE,
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE,
+      </if>
+      <if test="termNum != null">
+        TERM_NUM,
+      </if>
+      <if test="termUnit != null">
+        TERM_UNIT,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="cycleInd != null">
+        CYCLE_IND,
+      </if>
+      <if test="creditStatus != null">
+        CREDIT_STATUS,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="assurePer != null">
+        ASSURE_PER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="crdDtlId != null">
+        #{crdDtlId,jdbcType=VARCHAR},
+      </if>
+      <if test="crdId != null">
+        #{crdId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeRate != null">
+        #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeRateDate != null">
+        #{exchangeRateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dtlAmt != null">
+        #{dtlAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="rmbAmt != null">
+        #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="boUse != null">
+        #{boUse,jdbcType=DECIMAL},
+      </if>
+      <if test="noUse != null">
+        #{noUse,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="termNum != null">
+        #{termNum,jdbcType=VARCHAR},
+      </if>
+      <if test="termUnit != null">
+        #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cycleInd != null">
+        #{cycleInd,jdbcType=VARCHAR},
+      </if>
+      <if test="creditStatus != null">
+        #{creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assurePer != null">
+        #{assurePer,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.CsmTbCrdDetailApprove">
+    update TB_CRD_DETAIL_APPROVE
+    <set>
+      <if test="crdId != null">
+        CRD_ID = #{crdId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE = #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeRate != null">
+        EXCHANGE_RATE = #{exchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeRateDate != null">
+        EXCHANGE_RATE_DATE = #{exchangeRateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dtlAmt != null">
+        DTL_AMT = #{dtlAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="boUse != null">
+        BO_USE = #{boUse,jdbcType=DECIMAL},
+      </if>
+      <if test="noUse != null">
+        NO_USE = #{noUse,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="termNum != null">
+        TERM_NUM = #{termNum,jdbcType=VARCHAR},
+      </if>
+      <if test="termUnit != null">
+        TERM_UNIT = #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cycleInd != null">
+        CYCLE_IND = #{cycleInd,jdbcType=VARCHAR},
+      </if>
+      <if test="creditStatus != null">
+        CREDIT_STATUS = #{creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assurePer != null">
+        ASSURE_PER = #{assurePer,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CRD_DTL_ID = #{crdDtlId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.CsmTbCrdDetailApprove">
+    update TB_CRD_DETAIL_APPROVE
+    set CRD_ID = #{crdId,jdbcType=VARCHAR},
+      CREDIT_MODE = #{creditMode,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      EXCHANGE_RATE = #{exchangeRate,jdbcType=DECIMAL},
+      EXCHANGE_RATE_DATE = #{exchangeRateDate,jdbcType=TIMESTAMP},
+      DTL_AMT = #{dtlAmt,jdbcType=DECIMAL},
+      RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      BO_USE = #{boUse,jdbcType=DECIMAL},
+      NO_USE = #{noUse,jdbcType=DECIMAL},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      TERM_NUM = #{termNum,jdbcType=VARCHAR},
+      TERM_UNIT = #{termUnit,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CYCLE_IND = #{cycleInd,jdbcType=VARCHAR},
+      CREDIT_STATUS = #{creditStatus,jdbcType=VARCHAR},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      ASSURE_PER = #{assurePer,jdbcType=DECIMAL}
+    where CRD_DTL_ID = #{crdDtlId,jdbcType=VARCHAR}
+  </update>
+</mapper>

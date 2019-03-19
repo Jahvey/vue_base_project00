@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtOrganizationMapper">
+  <resultMap id="CrtTbOrgAccRelResultMap" type="com.cdgit.loan.contract.bean.CrtTbOrgAccRel">
+    <id column="ORG_REL_ID" jdbcType="VARCHAR" property="orgRelId" />
+    <result column="ACC_ORG_ID" jdbcType="VARCHAR" property="accOrgId" />
+    <result column="ACC_ORG_NO" jdbcType="VARCHAR" property="accOrgNo" />
+    <result column="OPR_ORG_ID" jdbcType="VARCHAR" property="oprOrgId" />
+    <result column="OPR_ORG_NO" jdbcType="VARCHAR" property="oprOrgNo" />
+    <result column="OPR_USER_ID" jdbcType="VARCHAR" property="oprUserId" />
+    <result column="OPR_USER_NO" jdbcType="VARCHAR" property="oprUserNo" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="PRODUCT_NO" jdbcType="VARCHAR" property="productNo" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="COL1" jdbcType="VARCHAR" property="col1" />
+    <result column="COL2" jdbcType="VARCHAR" property="col2" />
+    <result column="COL3" jdbcType="VARCHAR" property="col3" />
+  </resultMap>
+
+  <!-- 根据传入的参数查询对应的会计机构 -->
+  <select id="searchOrgAccRelList" parameterType="java.util.HashMap" resultMap="CrtTbOrgAccRelResultMap">
+	SELECT * FROM TB_ORG_ACC_REL 
+	<where>
+		<if test="oprOrgId !=null and oprOrgId !='' ">
+			and (OPR_ORG_ID = #{oprOrgId} OR OPR_ORG_NO = #{oprOrgId})
+		</if>
+		<if test="accOrgId !=null and accOrgId !='' ">
+			and (ACC_ORG_ID = #{accOrgId} OR ACC_ORG_NO = #{accOrgId})
+		</if>
+		<if test="productId !=null and productId !='' ">
+			and (PRODUCT_ID = #{productId} OR PRODUCT_NO = #{productId})
+		</if>
+		<if test="status !=null and status !='' ">
+			and STATUS = #{status}
+		</if>
+		<if test="col1 !=null and col1 !='' ">
+			and COL1 = #{col1}
+		</if>
+		<if test="col2 !=null and col2 !='' ">
+			and COL2 = #{col2}
+		</if>
+	</where>
+	 
+
+  </select>
+  <sql id="Base_Column_List">
+    ORG_REL_ID, ACC_ORG_ID, ACC_ORG_NO, OPR_ORG_ID, OPR_ORG_NO, OPR_USER_ID, OPR_USER_NO, 
+    PRODUCT_ID, PRODUCT_NO, STATUS, CREATE_TIME, UPDATE_TIME, COL1, COL2, COL3
+  </sql>
+</mapper>

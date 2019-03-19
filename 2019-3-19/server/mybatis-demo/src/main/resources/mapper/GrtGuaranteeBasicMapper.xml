@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.guaranteevaluation.mapper.GrtGuaranteeBasicMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.guaranteevaluation.bean.GrtGuaranteeBasic">
+    <id column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="GUARANTEE_TYPE" jdbcType="VARCHAR" property="guaranteeType" />
+    <result column="SURETY_AMT" jdbcType="DECIMAL" property="suretyAmt" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="IS_GUARANTEE_COMPANY" jdbcType="VARCHAR" property="isGuaranteeCompany" />
+    <result column="IF_TOP_AMT" jdbcType="VARCHAR" property="ifTopAmt" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="GUARANTEE_FORM" jdbcType="VARCHAR" property="guaranteeForm" />
+    <result column="GUARANTEE_WAY" jdbcType="VARCHAR" property="guaranteeWay" />
+    <result column="USABLE_GUARANTEE_LIMIT" jdbcType="DECIMAL" property="usableGuaranteeLimit" />
+    <result column="PARTY_NO" jdbcType="VARCHAR" property="partyNo" />
+    <result column="ACCNO_WAY" jdbcType="VARCHAR" property="accnoWay" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SURETY_ID, PARTY_ID, GUARANTEE_TYPE, SURETY_AMT, CURRENCY_CD, USER_NUM, ORG_NUM, 
+    CREATE_TIME, UPDATE_TIME, IS_GUARANTEE_COMPANY, IF_TOP_AMT, IF_DATA_MOVE, GUARANTEE_FORM, 
+    GUARANTEE_WAY, USABLE_GUARANTEE_LIMIT, PARTY_NO, ACCNO_WAY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_GRT_GUARANTEE_BASIC
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_GRT_GUARANTEE_BASIC
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtGuaranteeBasic">
+    insert into TB_GRT_GUARANTEE_BASIC (SURETY_ID, PARTY_ID, GUARANTEE_TYPE, 
+      SURETY_AMT, CURRENCY_CD, USER_NUM, 
+      ORG_NUM, CREATE_TIME, UPDATE_TIME, 
+      IS_GUARANTEE_COMPANY, IF_TOP_AMT, IF_DATA_MOVE, 
+      GUARANTEE_FORM, GUARANTEE_WAY, USABLE_GUARANTEE_LIMIT, 
+      PARTY_NO, ACCNO_WAY)
+    values (#{suretyId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{guaranteeType,jdbcType=VARCHAR}, 
+      #{suretyAmt,jdbcType=DECIMAL}, #{currencyCd,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, 
+      #{orgNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isGuaranteeCompany,jdbcType=VARCHAR}, #{ifTopAmt,jdbcType=VARCHAR}, #{ifDataMove,jdbcType=VARCHAR}, 
+      #{guaranteeForm,jdbcType=VARCHAR}, #{guaranteeWay,jdbcType=VARCHAR}, #{usableGuaranteeLimit,jdbcType=DECIMAL}, 
+      #{partyNo,jdbcType=VARCHAR}, #{accnoWay,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtGuaranteeBasic">
+    insert into TB_GRT_GUARANTEE_BASIC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="suretyId != null">
+        SURETY_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="guaranteeType != null">
+        GUARANTEE_TYPE,
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="isGuaranteeCompany != null">
+        IS_GUARANTEE_COMPANY,
+      </if>
+      <if test="ifTopAmt != null">
+        IF_TOP_AMT,
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE,
+      </if>
+      <if test="guaranteeForm != null">
+        GUARANTEE_FORM,
+      </if>
+      <if test="guaranteeWay != null">
+        GUARANTEE_WAY,
+      </if>
+      <if test="usableGuaranteeLimit != null">
+        USABLE_GUARANTEE_LIMIT,
+      </if>
+      <if test="partyNo != null">
+        PARTY_NO,
+      </if>
+      <if test="accnoWay != null">
+        ACCNO_WAY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="suretyId != null">
+        #{suretyId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeType != null">
+        #{guaranteeType,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyAmt != null">
+        #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isGuaranteeCompany != null">
+        #{isGuaranteeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="ifTopAmt != null">
+        #{ifTopAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeForm != null">
+        #{guaranteeForm,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeWay != null">
+        #{guaranteeWay,jdbcType=VARCHAR},
+      </if>
+      <if test="usableGuaranteeLimit != null">
+        #{usableGuaranteeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="partyNo != null">
+        #{partyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accnoWay != null">
+        #{accnoWay,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtGuaranteeBasic">
+    update TB_GRT_GUARANTEE_BASIC
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeType != null">
+        GUARANTEE_TYPE = #{guaranteeType,jdbcType=VARCHAR},
+      </if>
+      <if test="suretyAmt != null">
+        SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isGuaranteeCompany != null">
+        IS_GUARANTEE_COMPANY = #{isGuaranteeCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="ifTopAmt != null">
+        IF_TOP_AMT = #{ifTopAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDataMove != null">
+        IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeForm != null">
+        GUARANTEE_FORM = #{guaranteeForm,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeWay != null">
+        GUARANTEE_WAY = #{guaranteeWay,jdbcType=VARCHAR},
+      </if>
+      <if test="usableGuaranteeLimit != null">
+        USABLE_GUARANTEE_LIMIT = #{usableGuaranteeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="partyNo != null">
+        PARTY_NO = #{partyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accnoWay != null">
+        ACCNO_WAY = #{accnoWay,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.GrtGuaranteeBasic">
+    update TB_GRT_GUARANTEE_BASIC
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      GUARANTEE_TYPE = #{guaranteeType,jdbcType=VARCHAR},
+      SURETY_AMT = #{suretyAmt,jdbcType=DECIMAL},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      IS_GUARANTEE_COMPANY = #{isGuaranteeCompany,jdbcType=VARCHAR},
+      IF_TOP_AMT = #{ifTopAmt,jdbcType=VARCHAR},
+      IF_DATA_MOVE = #{ifDataMove,jdbcType=VARCHAR},
+      GUARANTEE_FORM = #{guaranteeForm,jdbcType=VARCHAR},
+      GUARANTEE_WAY = #{guaranteeWay,jdbcType=VARCHAR},
+      USABLE_GUARANTEE_LIMIT = #{usableGuaranteeLimit,jdbcType=DECIMAL},
+      PARTY_NO = #{partyNo,jdbcType=VARCHAR},
+      ACCNO_WAY = #{accnoWay,jdbcType=VARCHAR}
+    where SURETY_ID = #{suretyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

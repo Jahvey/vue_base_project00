@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.user.mapper.TbIrmInternalRatingApplyMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.user.bean.TbIrmInternalRatingApply">
+    <id column="IRA_APPLY_ID" jdbcType="VARCHAR" property="IRA_APPLY_ID" />
+    <result column="RATING_MODEL_CD" jdbcType="VARCHAR" property="RATING_MODEL_CD" />
+    <result column="RATING_MODEL_VER" jdbcType="VARCHAR" property="RATING_MODEL_VER" />
+    <result column="RATING_STATE" jdbcType="VARCHAR" property="RATING_STATE" />
+    <result column="PROJECT_ID" jdbcType="VARCHAR" property="PROJECT_ID" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="APPLY_DATE" />
+    <result column="APPLY_NATURE_CD" jdbcType="VARCHAR" property="APPLY_NATURE_CD" />
+    <result column="TRIGGER_TYPE_CD" jdbcType="VARCHAR" property="TRIGGER_TYPE_CD" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="ORG_NUM" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="USER_NUM" />
+    <result column="ORIGINAL_IRA_APPLY_ID" jdbcType="VARCHAR" property="ORIGINAL_IRA_APPLY_ID" />
+    <result column="IS_AUDIT" jdbcType="VARCHAR" property="IS_AUDIT" />
+    <result column="ALLOW_TIMES" jdbcType="DECIMAL" property="ALLOW_TIMES" />
+    <result column="IS_GOVERNMENT_PLATFORM" jdbcType="VARCHAR" property="IS_GOVERNMENT_PLATFORM" />
+    <result column="GP_MODEL_VER" jdbcType="VARCHAR" property="GP_MODEL_VER" />
+    <result column="ALLOW_MODIFY_FLAG" jdbcType="VARCHAR" property="ALLOW_MODIFY_FLAG" />
+    <result column="GOVERNMENT_ADJUST_RATING_CD" jdbcType="VARCHAR" property="GOVERNMENT_ADJUST_RATING_CD" />
+    <result column="GENERAL_ADJUST_RATING_CD" jdbcType="VARCHAR" property="GENERAL_ADJUST_RATING_CD" />
+    <result column="RATING_TYPE" jdbcType="VARCHAR" property="RATING_TYPE" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="PARTY_ID" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    IRA_APPLY_ID, RATING_MODEL_CD, RATING_MODEL_VER, RATING_STATE, PROJECT_ID, APPLY_DATE, 
+    APPLY_NATURE_CD, TRIGGER_TYPE_CD, ORG_NUM, USER_NUM, ORIGINAL_IRA_APPLY_ID, IS_AUDIT, 
+    ALLOW_TIMES, IS_GOVERNMENT_PLATFORM, GP_MODEL_VER, ALLOW_MODIFY_FLAG, GOVERNMENT_ADJUST_RATING_CD, 
+    GENERAL_ADJUST_RATING_CD, RATING_TYPE, PARTY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_IRM_INTERNAL_RATING_APPLY
+    where IRA_APPLY_ID = #{IRA_APPLY_ID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_IRM_INTERNAL_RATING_APPLY
+    where IRA_APPLY_ID = #{IRA_APPLY_ID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.user.bean.TbIrmInternalRatingApply">
+    insert into TB_IRM_INTERNAL_RATING_APPLY (IRA_APPLY_ID, RATING_MODEL_CD, RATING_MODEL_VER, 
+      RATING_STATE, PROJECT_ID, APPLY_DATE, 
+      APPLY_NATURE_CD, TRIGGER_TYPE_CD, ORG_NUM, 
+      USER_NUM, ORIGINAL_IRA_APPLY_ID, IS_AUDIT, 
+      ALLOW_TIMES, IS_GOVERNMENT_PLATFORM, GP_MODEL_VER, 
+      ALLOW_MODIFY_FLAG, GOVERNMENT_ADJUST_RATING_CD, 
+      GENERAL_ADJUST_RATING_CD, RATING_TYPE, 
+      PARTY_ID)
+    values (#{IRA_APPLY_ID,jdbcType=VARCHAR}, #{RATING_MODEL_CD,jdbcType=VARCHAR}, #{RATING_MODEL_VER,jdbcType=VARCHAR}, 
+      #{RATING_STATE,jdbcType=VARCHAR}, #{PROJECT_ID,jdbcType=VARCHAR}, #{APPLY_DATE,jdbcType=TIMESTAMP}, 
+      #{APPLY_NATURE_CD,jdbcType=VARCHAR}, #{TRIGGER_TYPE_CD,jdbcType=VARCHAR}, #{ORG_NUM,jdbcType=VARCHAR}, 
+      #{USER_NUM,jdbcType=VARCHAR}, #{ORIGINAL_IRA_APPLY_ID,jdbcType=VARCHAR}, #{IS_AUDIT,jdbcType=VARCHAR}, 
+      #{ALLOW_TIMES,jdbcType=DECIMAL}, #{IS_GOVERNMENT_PLATFORM,jdbcType=VARCHAR}, #{GP_MODEL_VER,jdbcType=VARCHAR}, 
+      #{ALLOW_MODIFY_FLAG,jdbcType=VARCHAR}, #{GOVERNMENT_ADJUST_RATING_CD,jdbcType=VARCHAR}, 
+      #{GENERAL_ADJUST_RATING_CD,jdbcType=VARCHAR}, #{RATING_TYPE,jdbcType=VARCHAR}, 
+      #{PARTY_ID,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.user.bean.TbIrmInternalRatingApply">
+    insert into TB_IRM_INTERNAL_RATING_APPLY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="IRA_APPLY_ID != null">
+        IRA_APPLY_ID,
+      </if>
+      <if test="RATING_MODEL_CD != null">
+        RATING_MODEL_CD,
+      </if>
+      <if test="RATING_MODEL_VER != null">
+        RATING_MODEL_VER,
+      </if>
+      <if test="RATING_STATE != null">
+        RATING_STATE,
+      </if>
+      <if test="PROJECT_ID != null">
+        PROJECT_ID,
+      </if>
+      <if test="APPLY_DATE != null">
+        APPLY_DATE,
+      </if>
+      <if test="APPLY_NATURE_CD != null">
+        APPLY_NATURE_CD,
+      </if>
+      <if test="TRIGGER_TYPE_CD != null">
+        TRIGGER_TYPE_CD,
+      </if>
+      <if test="ORG_NUM != null">
+        ORG_NUM,
+      </if>
+      <if test="USER_NUM != null">
+        USER_NUM,
+      </if>
+      <if test="ORIGINAL_IRA_APPLY_ID != null">
+        ORIGINAL_IRA_APPLY_ID,
+      </if>
+      <if test="IS_AUDIT != null">
+        IS_AUDIT,
+      </if>
+      <if test="ALLOW_TIMES != null">
+        ALLOW_TIMES,
+      </if>
+      <if test="IS_GOVERNMENT_PLATFORM != null">
+        IS_GOVERNMENT_PLATFORM,
+      </if>
+      <if test="GP_MODEL_VER != null">
+        GP_MODEL_VER,
+      </if>
+      <if test="ALLOW_MODIFY_FLAG != null">
+        ALLOW_MODIFY_FLAG,
+      </if>
+      <if test="GOVERNMENT_ADJUST_RATING_CD != null">
+        GOVERNMENT_ADJUST_RATING_CD,
+      </if>
+      <if test="GENERAL_ADJUST_RATING_CD != null">
+        GENERAL_ADJUST_RATING_CD,
+      </if>
+      <if test="RATING_TYPE != null">
+        RATING_TYPE,
+      </if>
+      <if test="PARTY_ID != null">
+        PARTY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="IRA_APPLY_ID != null">
+        #{IRA_APPLY_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="RATING_MODEL_CD != null">
+        #{RATING_MODEL_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="RATING_MODEL_VER != null">
+        #{RATING_MODEL_VER,jdbcType=VARCHAR},
+      </if>
+      <if test="RATING_STATE != null">
+        #{RATING_STATE,jdbcType=VARCHAR},
+      </if>
+      <if test="PROJECT_ID != null">
+        #{PROJECT_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="APPLY_DATE != null">
+        #{APPLY_DATE,jdbcType=TIMESTAMP},
+      </if>
+      <if test="APPLY_NATURE_CD != null">
+        #{APPLY_NATURE_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="TRIGGER_TYPE_CD != null">
+        #{TRIGGER_TYPE_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="ORG_NUM != null">
+        #{ORG_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="USER_NUM != null">
+        #{USER_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="ORIGINAL_IRA_APPLY_ID != null">
+        #{ORIGINAL_IRA_APPLY_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="IS_AUDIT != null">
+        #{IS_AUDIT,jdbcType=VARCHAR},
+      </if>
+      <if test="ALLOW_TIMES != null">
+        #{ALLOW_TIMES,jdbcType=DECIMAL},
+      </if>
+      <if test="IS_GOVERNMENT_PLATFORM != null">
+        #{IS_GOVERNMENT_PLATFORM,jdbcType=VARCHAR},
+      </if>
+      <if test="GP_MODEL_VER != null">
+        #{GP_MODEL_VER,jdbcType=VARCHAR},
+      </if>
+      <if test="ALLOW_MODIFY_FLAG != null">
+        #{ALLOW_MODIFY_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="GOVERNMENT_ADJUST_RATING_CD != null">
+        #{GOVERNMENT_ADJUST_RATING_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="GENERAL_ADJUST_RATING_CD != null">
+        #{GENERAL_ADJUST_RATING_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="RATING_TYPE != null">
+        #{RATING_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="PARTY_ID != null">
+        #{PARTY_ID,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.user.bean.TbIrmInternalRatingApply">
+    update TB_IRM_INTERNAL_RATING_APPLY
+    <set>
+      <if test="RATING_MODEL_CD != null">
+        RATING_MODEL_CD = #{RATING_MODEL_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="RATING_MODEL_VER != null">
+        RATING_MODEL_VER = #{RATING_MODEL_VER,jdbcType=VARCHAR},
+      </if>
+      <if test="RATING_STATE != null">
+        RATING_STATE = #{RATING_STATE,jdbcType=VARCHAR},
+      </if>
+      <if test="PROJECT_ID != null">
+        PROJECT_ID = #{PROJECT_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="APPLY_DATE != null">
+        APPLY_DATE = #{APPLY_DATE,jdbcType=TIMESTAMP},
+      </if>
+      <if test="APPLY_NATURE_CD != null">
+        APPLY_NATURE_CD = #{APPLY_NATURE_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="TRIGGER_TYPE_CD != null">
+        TRIGGER_TYPE_CD = #{TRIGGER_TYPE_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="ORG_NUM != null">
+        ORG_NUM = #{ORG_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="USER_NUM != null">
+        USER_NUM = #{USER_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="ORIGINAL_IRA_APPLY_ID != null">
+        ORIGINAL_IRA_APPLY_ID = #{ORIGINAL_IRA_APPLY_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="IS_AUDIT != null">
+        IS_AUDIT = #{IS_AUDIT,jdbcType=VARCHAR},
+      </if>
+      <if test="ALLOW_TIMES != null">
+        ALLOW_TIMES = #{ALLOW_TIMES,jdbcType=DECIMAL},
+      </if>
+      <if test="IS_GOVERNMENT_PLATFORM != null">
+        IS_GOVERNMENT_PLATFORM = #{IS_GOVERNMENT_PLATFORM,jdbcType=VARCHAR},
+      </if>
+      <if test="GP_MODEL_VER != null">
+        GP_MODEL_VER = #{GP_MODEL_VER,jdbcType=VARCHAR},
+      </if>
+      <if test="ALLOW_MODIFY_FLAG != null">
+        ALLOW_MODIFY_FLAG = #{ALLOW_MODIFY_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="GOVERNMENT_ADJUST_RATING_CD != null">
+        GOVERNMENT_ADJUST_RATING_CD = #{GOVERNMENT_ADJUST_RATING_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="GENERAL_ADJUST_RATING_CD != null">
+        GENERAL_ADJUST_RATING_CD = #{GENERAL_ADJUST_RATING_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="RATING_TYPE != null">
+        RATING_TYPE = #{RATING_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="PARTY_ID != null">
+        PARTY_ID = #{PARTY_ID,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where IRA_APPLY_ID = #{IRA_APPLY_ID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.user.bean.TbIrmInternalRatingApply">
+    update TB_IRM_INTERNAL_RATING_APPLY
+    set RATING_MODEL_CD = #{RATING_MODEL_CD,jdbcType=VARCHAR},
+      RATING_MODEL_VER = #{RATING_MODEL_VER,jdbcType=VARCHAR},
+      RATING_STATE = #{RATING_STATE,jdbcType=VARCHAR},
+      PROJECT_ID = #{PROJECT_ID,jdbcType=VARCHAR},
+      APPLY_DATE = #{APPLY_DATE,jdbcType=TIMESTAMP},
+      APPLY_NATURE_CD = #{APPLY_NATURE_CD,jdbcType=VARCHAR},
+      TRIGGER_TYPE_CD = #{TRIGGER_TYPE_CD,jdbcType=VARCHAR},
+      ORG_NUM = #{ORG_NUM,jdbcType=VARCHAR},
+      USER_NUM = #{USER_NUM,jdbcType=VARCHAR},
+      ORIGINAL_IRA_APPLY_ID = #{ORIGINAL_IRA_APPLY_ID,jdbcType=VARCHAR},
+      IS_AUDIT = #{IS_AUDIT,jdbcType=VARCHAR},
+      ALLOW_TIMES = #{ALLOW_TIMES,jdbcType=DECIMAL},
+      IS_GOVERNMENT_PLATFORM = #{IS_GOVERNMENT_PLATFORM,jdbcType=VARCHAR},
+      GP_MODEL_VER = #{GP_MODEL_VER,jdbcType=VARCHAR},
+      ALLOW_MODIFY_FLAG = #{ALLOW_MODIFY_FLAG,jdbcType=VARCHAR},
+      GOVERNMENT_ADJUST_RATING_CD = #{GOVERNMENT_ADJUST_RATING_CD,jdbcType=VARCHAR},
+      GENERAL_ADJUST_RATING_CD = #{GENERAL_ADJUST_RATING_CD,jdbcType=VARCHAR},
+      RATING_TYPE = #{RATING_TYPE,jdbcType=VARCHAR},
+      PARTY_ID = #{PARTY_ID,jdbcType=VARCHAR}
+    where IRA_APPLY_ID = #{IRA_APPLY_ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

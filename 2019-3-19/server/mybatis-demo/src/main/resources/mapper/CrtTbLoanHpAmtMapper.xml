@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbLoanHpAmtMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbLoanHpAmt">
+    <id column="MONEY_USE_ID" jdbcType="VARCHAR" property="moneyUseId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="LOAN_AMT" jdbcType="DECIMAL" property="loanAmt" />
+    <result column="ORD_NUMBER" jdbcType="VARCHAR" property="ordNumber" />
+    <result column="PYE_ACCT_NM" jdbcType="VARCHAR" property="pyeAcctNm" />
+    <result column="PYE_ACCT_NO" jdbcType="VARCHAR" property="pyeAcctNo" />
+    <result column="PYE_OPEN_ACCT_BNK_NM" jdbcType="VARCHAR" property="pyeOpenAcctBnkNm" />
+    <result column="DRFT_EXP_DT" jdbcType="TIMESTAMP" property="drftExpDt" />
+    <result column="ISSU_DT" jdbcType="TIMESTAMP" property="issuDt" />
+    <result column="BILL_NO" jdbcType="VARCHAR" property="billNo" />
+    <result column="BILL_STATE" jdbcType="VARCHAR" property="billState" />
+    <result column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="DRWE_BNK_NM" jdbcType="VARCHAR" property="drweBnkNm" />
+    <result column="DRWE_BNK_NO" jdbcType="VARCHAR" property="drweBnkNo" />
+    <result column="DRWE_BNK_ADR" jdbcType="VARCHAR" property="drweBnkAdr" />
+    <result column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="HP_BILL_STATUS" jdbcType="VARCHAR" property="hpBillStatus" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="SORT_ORDER" jdbcType="DECIMAL" property="sortOrder" />
+  </resultMap>
+  <resultMap type="com.cdgit.loan.contract.query.HpxxsQuery" id="queryHpxxsresult">
+        <result column="apply_detail_id" javaType="String" property="applyDetailId"/>
+        <result column="pye_acct_nm" javaType="String" property="pyeAcctNm"/>
+        <result column="pye_acct_no" javaType="String" property="pyeAcctNo"/>
+        <result column="pye_open_acct_bnk_nm" javaType="String" property="pyeOpenAcctBnkNm"/>
+        <result column="drwe_bnk_nm" javaType="String" property="drweBnkNm"/>
+        <result column="drwe_bnk_adr" javaType="String" property="drweBnkAdr"/>
+        <result column="drwe_bnk_no" javaType="String" property="drweBnkNo"/>
+        <result column="drft_exp_dt" javaType="String" property="drftExpDt"/>
+        <result column="issu_dt" javaType="String" property="issuDt"/>
+        <result column="bill_no" javaType="String" property="billNo"/>
+        <result column="money_use_id" javaType="String" property="moneyUseId"/>
+        <result column="loan_id" javaType="String" property="loanId"/>
+        <result column="loan_amt" javaType="String" property="loanAmt"/>
+        <result column="bill_state" javaType="String" property="billState"/>
+        <result column="pjhm" javaType="String" property="pjhm"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    MONEY_USE_ID, LOAN_ID, LOAN_AMT, ORD_NUMBER, PYE_ACCT_NM, PYE_ACCT_NO, PYE_OPEN_ACCT_BNK_NM, 
+    DRFT_EXP_DT, ISSU_DT, BILL_NO, BILL_STATE, SUMMARY_ID, SUMMARY_NUM, DRWE_BNK_NM, 
+    DRWE_BNK_NO, DRWE_BNK_ADR, APPLY_DETAIL_ID, HP_BILL_STATUS, UPDATE_TIME, SORT_ORDER
+  </sql>
+  <!-- 根据主键查询一条汇票金额信息 -->
+  <select id="selectCrtTbLoanHpAmtByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_LOAN_HP_AMT
+    where MONEY_USE_ID = #{moneyUseId,jdbcType=VARCHAR}
+  </select>
+  <!-- 根据出账id查询出账汇票金额总和 -->
+  <select id="queryForLoanAmt" parameterType="java.lang.String" resultType="java.math.BigDecimal" >
+	select sum(r.loan_amt) AS loan_amt  from tb_loan_hp_amt r where r.loan_id=#{loanId}
+  </select>
+  <!-- 根据出账id查询多条汇票信息 -->
+  <select id="queryHpxxs" parameterType="java.lang.String" resultMap="queryHpxxsresult" >
+	select 
+		r.money_use_id,
+		r.loan_id,
+       	r.loan_amt,
+       	r.pye_acct_nm,
+       	r.pye_acct_no,
+       	r.pye_open_acct_bnk_nm,
+       	r.drwe_bnk_nm,
+       	r.drwe_bnk_no,
+       	r.drwe_bnk_adr,
+       	r.drft_exp_dt,
+       	r.issu_dt,
+       	r.bill_no,
+       	r.apply_detail_id,
+       	r.bill_state,
+       	t.pjhm
+	from 
+		tb_loan_hp_amt r
+	left join 
+		(select b.summary_num, b.summary_status_cd, a.pjhm
+			               from tb_biz_pjxx_apply a, tb_loan_summary b
+			              where a.amount_detail_id = b.summary_id ) t
+	on 
+		r.summary_num = t.summary_num
+	where 
+		r.loan_id = #{loanId} 
+	order by r.sort_order
+  </select>
+  <!-- 插入一条数据 -->
+  <insert id="insertCrtTbLoanHpAmtSelective" parameterType="com.cdgit.loan.contract.bean.CrtTbLoanHpAmt">
+    insert into CRMS.TB_LOAN_HP_AMT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="moneyUseId != null">
+        MONEY_USE_ID,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="loanAmt != null">
+        LOAN_AMT,
+      </if>
+      <if test="ordNumber != null">
+        ORD_NUMBER,
+      </if>
+      <if test="pyeAcctNm != null">
+        PYE_ACCT_NM,
+      </if>
+      <if test="pyeAcctNo != null">
+        PYE_ACCT_NO,
+      </if>
+      <if test="pyeOpenAcctBnkNm != null">
+        PYE_OPEN_ACCT_BNK_NM,
+      </if>
+      <if test="drftExpDt != null">
+        DRFT_EXP_DT,
+      </if>
+      <if test="issuDt != null">
+        ISSU_DT,
+      </if>
+      <if test="billNo != null">
+        BILL_NO,
+      </if>
+      <if test="billState != null">
+        BILL_STATE,
+      </if>
+      <if test="summaryId != null">
+        SUMMARY_ID,
+      </if>
+      <if test="summaryNum != null">
+        SUMMARY_NUM,
+      </if>
+      <if test="drweBnkNm != null">
+        DRWE_BNK_NM,
+      </if>
+      <if test="drweBnkNo != null">
+        DRWE_BNK_NO,
+      </if>
+      <if test="drweBnkAdr != null">
+        DRWE_BNK_ADR,
+      </if>
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="hpBillStatus != null">
+        HP_BILL_STATUS,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="sortOrder != null">
+        SORT_ORDER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="moneyUseId != null">
+        #{moneyUseId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        #{loanAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="ordNumber != null">
+        #{ordNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="pyeAcctNm != null">
+        #{pyeAcctNm,jdbcType=VARCHAR},
+      </if>
+      <if test="pyeAcctNo != null">
+        #{pyeAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="pyeOpenAcctBnkNm != null">
+        #{pyeOpenAcctBnkNm,jdbcType=VARCHAR},
+      </if>
+      <if test="drftExpDt != null">
+        #{drftExpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="issuDt != null">
+        #{issuDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billNo != null">
+        #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="billState != null">
+        #{billState,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryId != null">
+        #{summaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryNum != null">
+        #{summaryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkNm != null">
+        #{drweBnkNm,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkNo != null">
+        #{drweBnkNo,jdbcType=VARCHAR},
+      </if>
+      <if test="drweBnkAdr != null">
+        #{drweBnkAdr,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="hpBillStatus != null">
+        #{hpBillStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateHpEndDate" parameterType="java.lang.String">
+  	merge into 
+  		tb_loan_hp_amt a
+	using (
+		select x.loan_id,x.begin_date, x.end_date from tb_loan_info x 
+			where x.loan_id = #{loanId} and x.product_type like '01008%' and x.pjzl = '01'
+		) b on (a.loan_id = b.loan_id)
+	when matched then 
+		update set a.issu_dt=b.begin_date,a.drft_exp_dt=b.end_date
+  </update>
+</mapper>

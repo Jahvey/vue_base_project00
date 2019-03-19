@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbConRepayPlanMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbConRepayPlan">
+    <id column="REPAY_PLAN_ID" jdbcType="VARCHAR" property="repayPlanId" />
+    <result column="REPAY_DATE" jdbcType="TIMESTAMP" property="repayDate" />
+    <result column="REPAY_AMT" jdbcType="DECIMAL" property="repayAmt" />
+    <result column="PERIODS_NUMBER" jdbcType="DECIMAL" property="periodsNumber" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+  </resultMap>
+
+  <select id="selectAllConRepayPlanByContractId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_REPAY_PLAN
+    where contract_Id = #{contractId,jdbcType=VARCHAR}
+  </select>
+  <sql id="Base_Column_List">
+    REPAY_PLAN_ID, REPAY_DATE, REPAY_AMT, PERIODS_NUMBER, CREATE_TIME, UPDATE_TIME, CONTRACT_ID
+  </sql>
+</mapper>

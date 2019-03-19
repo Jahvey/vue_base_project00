@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbBizProductInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbBizProductInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PRODUCT_CD" jdbcType="VARCHAR" property="productCd" />
+    <result column="ENTITY_NAME" jdbcType="VARCHAR" property="entityName" />
+    <result column="JSP_NAME" jdbcType="VARCHAR" property="jspName" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName" />
+    <result column="RATE" jdbcType="VARCHAR" property="rate" />
+    <result column="BIZ_DON" jdbcType="VARCHAR" property="bizDon" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PRODUCT_CD, ENTITY_NAME, JSP_NAME, PRODUCT_NAME, TABLE_NAME, RATE, BIZ_DON
+  </sql>
+  
+  <!-- 根据产品类型查询多条符合条件的数据 -->
+  <select id="selectBizProductInfoByProductCd" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_BIZ_PRODUCT_INFO
+    where product_cd = #{productCd,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectBizProductInfoByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_BIZ_PRODUCT_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <insert id="insertBizProductInfoSelective" parameterType="com.cdgit.loan.contract.bean.CrtTbBizProductInfo">
+    insert into CRMS.TB_BIZ_PRODUCT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="productCd != null">
+        PRODUCT_CD,
+      </if>
+      <if test="entityName != null">
+        ENTITY_NAME,
+      </if>
+      <if test="jspName != null">
+        JSP_NAME,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="tableName != null">
+        TABLE_NAME,
+      </if>
+      <if test="rate != null">
+        RATE,
+      </if>
+      <if test="bizDon != null">
+        BIZ_DON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="productCd != null">
+        #{productCd,jdbcType=VARCHAR},
+      </if>
+      <if test="entityName != null">
+        #{entityName,jdbcType=VARCHAR},
+      </if>
+      <if test="jspName != null">
+        #{jspName,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="bizDon != null">
+        #{bizDon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateBizProductInfoByPrimaryKeySelective" parameterType="com.cdgit.loan.contract.bean.CrtTbBizProductInfo">
+    update CRMS.TB_BIZ_PRODUCT_INFO
+    <set>
+      <if test="productCd != null">
+        PRODUCT_CD = #{productCd,jdbcType=VARCHAR},
+      </if>
+      <if test="entityName != null">
+        ENTITY_NAME = #{entityName,jdbcType=VARCHAR},
+      </if>
+      <if test="jspName != null">
+        JSP_NAME = #{jspName,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null">
+        TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        RATE = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="bizDon != null">
+        BIZ_DON = #{bizDon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbCrdApproveMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbCrdApprove">
+    <id column="CRD_ID" jdbcType="VARCHAR" property="crdId" />
+    <result column="CRD_NUM" jdbcType="VARCHAR" property="crdNum" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="STATUS_CD" jdbcType="VARCHAR" property="statusCd" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="VALID_DATE" jdbcType="TIMESTAMP" property="validDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="TERM_NUM" jdbcType="DECIMAL" property="termNum" />
+    <result column="TERM_UNIT" jdbcType="VARCHAR" property="termUnit" />
+    <result column="HAPPEN_NATURE" jdbcType="VARCHAR" property="happenNature" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="BIZ_ID" jdbcType="VARCHAR" property="bizId" />
+    <result column="BO_USE" jdbcType="DECIMAL" property="boUse" />
+    <result column="NO_USE" jdbcType="DECIMAL" property="noUse" />
+    <result column="CSM_CRD_LEVEL" jdbcType="VARCHAR" property="csmCrdLevel" />
+    <result column="HAPPEN_TYPE" jdbcType="VARCHAR" property="happenType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CRD_ID, CRD_NUM, CREDIT_MODE, PARTY_ID, STATUS_CD, ORG_NUM, USER_NUM, APPLY_DATE, 
+    VALID_DATE, END_DATE, UPDATE_TIME, GUARANTY_TYPE, TERM_NUM, TERM_UNIT, HAPPEN_NATURE, 
+    RMB_AMT, APPLY_ID, BIZ_ID, BO_USE, NO_USE, CSM_CRD_LEVEL, HAPPEN_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRD_APPROVE
+    where CRD_ID = #{crdId,jdbcType=VARCHAR}
+  </select>
+  <select id="getCrdCredit" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT STATUS_CD,BO_USE,NO_USE,RMB_AMT OCCUPY FROM TB_CRD_APPROVE WHERE CRD_ID = #{crdId,jdbcType=VARCHAR}
+  </select>
+  <select id="getBizId" parameterType="java.lang.String"  resultMap="BaseResultMap">
+    SELECT BIZ_ID FROM TB_CRD_APPROVE WHERE CRD_ID=#{crdId,jdbcType=VARCHAR}
+  </select>
+  <update id="updateCrdCredit" parameterType="java.lang.String">
+	UPDATE TB_CRD_APPROVE a SET (BO_USE,NO_USE)=
+	(SELECT SUM(BO_USE) BO_USE, SUM(NO_USE)NO_USE FROM TB_CRD_DETAIL_APPROVE ad WHERE ad.CRD_ID=a.CRD_ID)
+	WHERE a.CRD_ID = #{crdId,jdbcType=VARCHAR}
+   </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CRD_APPROVE
+    where CRD_ID = #{crdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.CsmTbCrdApprove">
+    insert into TB_CRD_APPROVE (CRD_ID, CRD_NUM, CREDIT_MODE, 
+      PARTY_ID, STATUS_CD, ORG_NUM, 
+      USER_NUM, APPLY_DATE, VALID_DATE, 
+      END_DATE, UPDATE_TIME, GUARANTY_TYPE, 
+      TERM_NUM, TERM_UNIT, HAPPEN_NATURE, 
+      RMB_AMT, APPLY_ID, BIZ_ID, 
+      BO_USE, NO_USE, CSM_CRD_LEVEL, 
+      HAPPEN_TYPE)
+    values (#{crdId,jdbcType=VARCHAR}, #{crdNum,jdbcType=VARCHAR}, #{creditMode,jdbcType=VARCHAR}, 
+      #{partyId,jdbcType=VARCHAR}, #{statusCd,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, 
+      #{userNum,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, #{validDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{guarantyType,jdbcType=VARCHAR}, 
+      #{termNum,jdbcType=DECIMAL}, #{termUnit,jdbcType=VARCHAR}, #{happenNature,jdbcType=VARCHAR}, 
+      #{rmbAmt,jdbcType=DECIMAL}, #{applyId,jdbcType=VARCHAR}, #{bizId,jdbcType=VARCHAR}, 
+      #{boUse,jdbcType=DECIMAL}, #{noUse,jdbcType=DECIMAL}, #{csmCrdLevel,jdbcType=VARCHAR}, 
+      #{happenType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.CsmTbCrdApprove">
+    insert into TB_CRD_APPROVE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="crdId != null">
+        CRD_ID,
+      </if>
+      <if test="crdNum != null">
+        CRD_NUM,
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="statusCd != null">
+        STATUS_CD,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE,
+      </if>
+      <if test="validDate != null">
+        VALID_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE,
+      </if>
+      <if test="termNum != null">
+        TERM_NUM,
+      </if>
+      <if test="termUnit != null">
+        TERM_UNIT,
+      </if>
+      <if test="happenNature != null">
+        HAPPEN_NATURE,
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="bizId != null">
+        BIZ_ID,
+      </if>
+      <if test="boUse != null">
+        BO_USE,
+      </if>
+      <if test="noUse != null">
+        NO_USE,
+      </if>
+      <if test="csmCrdLevel != null">
+        CSM_CRD_LEVEL,
+      </if>
+      <if test="happenType != null">
+        HAPPEN_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="crdId != null">
+        #{crdId,jdbcType=VARCHAR},
+      </if>
+      <if test="crdNum != null">
+        #{crdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCd != null">
+        #{statusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validDate != null">
+        #{validDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="guarantyType != null">
+        #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="termNum != null">
+        #{termNum,jdbcType=DECIMAL},
+      </if>
+      <if test="termUnit != null">
+        #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="happenNature != null">
+        #{happenNature,jdbcType=VARCHAR},
+      </if>
+      <if test="rmbAmt != null">
+        #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizId != null">
+        #{bizId,jdbcType=VARCHAR},
+      </if>
+      <if test="boUse != null">
+        #{boUse,jdbcType=DECIMAL},
+      </if>
+      <if test="noUse != null">
+        #{noUse,jdbcType=DECIMAL},
+      </if>
+      <if test="csmCrdLevel != null">
+        #{csmCrdLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="happenType != null">
+        #{happenType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.CsmTbCrdApprove">
+    update TB_CRD_APPROVE
+    <set>
+      <if test="crdNum != null">
+        CRD_NUM = #{crdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE = #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCd != null">
+        STATUS_CD = #{statusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validDate != null">
+        VALID_DATE = #{validDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="termNum != null">
+        TERM_NUM = #{termNum,jdbcType=DECIMAL},
+      </if>
+      <if test="termUnit != null">
+        TERM_UNIT = #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="happenNature != null">
+        HAPPEN_NATURE = #{happenNature,jdbcType=VARCHAR},
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizId != null">
+        BIZ_ID = #{bizId,jdbcType=VARCHAR},
+      </if>
+      <if test="boUse != null">
+        BO_USE = #{boUse,jdbcType=DECIMAL},
+      </if>
+      <if test="noUse != null">
+        NO_USE = #{noUse,jdbcType=DECIMAL},
+      </if>
+      <if test="csmCrdLevel != null">
+        CSM_CRD_LEVEL = #{csmCrdLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="happenType != null">
+        HAPPEN_TYPE = #{happenType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CRD_ID = #{crdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.CsmTbCrdApprove">
+    update TB_CRD_APPROVE
+    set CRD_NUM = #{crdNum,jdbcType=VARCHAR},
+      CREDIT_MODE = #{creditMode,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      STATUS_CD = #{statusCd,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      VALID_DATE = #{validDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      TERM_NUM = #{termNum,jdbcType=DECIMAL},
+      TERM_UNIT = #{termUnit,jdbcType=VARCHAR},
+      HAPPEN_NATURE = #{happenNature,jdbcType=VARCHAR},
+      RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      BIZ_ID = #{bizId,jdbcType=VARCHAR},
+      BO_USE = #{boUse,jdbcType=DECIMAL},
+      NO_USE = #{noUse,jdbcType=DECIMAL},
+      CSM_CRD_LEVEL = #{csmCrdLevel,jdbcType=VARCHAR},
+      HAPPEN_TYPE = #{happenType,jdbcType=VARCHAR}
+    where CRD_ID = #{crdId,jdbcType=VARCHAR}
+  </update>
+</mapper>

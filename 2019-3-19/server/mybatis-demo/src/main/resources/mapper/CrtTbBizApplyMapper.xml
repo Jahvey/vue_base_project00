@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbBizApplyMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbBizApply">
+    <id column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="BIZ_NUM" jdbcType="VARCHAR" property="bizNum" />
+    <result column="BIZ_TYPE" jdbcType="VARCHAR" property="bizType" />
+    <result column="STATUS_TYPE" jdbcType="VARCHAR" property="statusType" />
+    <result column="LOW_RISK_BIZ_TYPE" jdbcType="VARCHAR" property="lowRiskBizType" />
+    <result column="BIZ_HAPPEN_TYPE" jdbcType="VARCHAR" property="bizHappenType" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="IS_BANK_TEAM_LOAN" jdbcType="VARCHAR" property="isBankTeamLoan" />
+    <result column="OLD_APPLY_ID" jdbcType="VARCHAR" property="oldApplyId" />
+    <result column="IF_DATA_MOVE" jdbcType="VARCHAR" property="ifDataMove" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="APPLY_MODE_TYPE" jdbcType="VARCHAR" property="applyModeType" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="BIZ_HAPPEN_NATURE" jdbcType="VARCHAR" property="bizHappenNature" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="IS_GREEN_LOAN" jdbcType="VARCHAR" property="isGreenLoan" />
+    <result column="LOAN_TYPE" jdbcType="VARCHAR" property="loanType" />
+    <result column="BUSI_PARTNER" jdbcType="VARCHAR" property="busiPartner" />
+    <result column="BIZ_TYPE_FLAG" jdbcType="VARCHAR" property="bizTypeFlag" />
+    <result column="WHETHER_BZXZFDK" jdbcType="VARCHAR" property="whetherBzxzfdk" />
+    <result column="ZDFXQY_TYPE" jdbcType="VARCHAR" property="zdfxqyType" />
+    <result column="GREEN_LOAN" jdbcType="VARCHAR" property="greenLoan" />
+    <result column="SJHJBHWFWG_TYPE" jdbcType="VARCHAR" property="sjhjbhwfwgType" />
+    <result column="AQSCWFWG_TYPE" jdbcType="VARCHAR" property="aqscwfwgType" />
+    <result column="ZYBYFKZBDB_TYPE" jdbcType="VARCHAR" property="zybyfkzbdbType" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="TERM_NUM" jdbcType="DECIMAL" property="termNum" />
+    <result column="TERM_UNIT" jdbcType="VARCHAR" property="termUnit" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="CRD_ID" jdbcType="VARCHAR" property="crdId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+    <result column="CSM_CRD_LEVEL" jdbcType="VARCHAR" property="csmCrdLevel" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_ID, BIZ_NUM, BIZ_TYPE, STATUS_TYPE, LOW_RISK_BIZ_TYPE, BIZ_HAPPEN_TYPE, ORG_NUM, 
+    USER_NUM, CREATE_TIME, UPDATE_TIME, IS_BANK_TEAM_LOAN, OLD_APPLY_ID, IF_DATA_MOVE, 
+    APPLY_DATE, APPLY_MODE_TYPE, PARTY_ID, BIZ_HAPPEN_NATURE, PRODUCT_TYPE, IS_GREEN_LOAN, 
+    LOAN_TYPE, BUSI_PARTNER, BIZ_TYPE_FLAG, WHETHER_BZXZFDK, ZDFXQY_TYPE, GREEN_LOAN, 
+    SJHJBHWFWG_TYPE, AQSCWFWG_TYPE, ZYBYFKZBDB_TYPE, GUARANTY_TYPE, TERM_NUM, TERM_UNIT, 
+    RMB_AMT, CRD_ID, CREDIT_MODE, CSM_CRD_LEVEL, PROC_INST_ID
+  </sql>
+  <!-- 根据主键查询一条信息 -->
+  <select id="selectBizApplyByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_BIZ_APPLY
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <!-- 根据起止期算期限 -->
+  <select id="selectLoanlength" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+	select (case
+	       when months_between(to_date(TO_CHAR(#{endDate} / (1000 * 60 * 60 * 24)+ 
+	TO_DATE('1970-01-01', 'YYYY-MM-DD'), 'YYYY-MM-DD'),'yyyy-MM-dd'),to_date(TO_CHAR(#{beginDate} / (1000 * 60 * 60 * 24)+ 
+	TO_DATE('1970-01-01', 'YYYY-MM-DD'), 'YYYY-MM-DD'),'yyyy-MM-dd')) >60 then
+	        80
+	       when months_between(to_date(TO_CHAR(#{endDate} / (1000 * 60 * 60 * 24)+ 
+	TO_DATE('1970-01-01', 'YYYY-MM-DD'), 'YYYY-MM-DD'),'yyyy-MM-dd'),to_date(TO_CHAR(#{beginDate} / (1000 * 60 * 60 * 24)+ 
+	TO_DATE('1970-01-01', 'YYYY-MM-DD'), 'YYYY-MM-DD'),'yyyy-MM-dd')) >36 then
+	        55
+	       when months_between(to_date(TO_CHAR(#{endDate} / (1000 * 60 * 60 * 24)+ 
+	TO_DATE('1970-01-01', 'YYYY-MM-DD'), 'YYYY-MM-DD'),'yyyy-MM-dd'),to_date(TO_CHAR(#{beginDate} / (1000 * 60 * 60 * 24)+ 
+	TO_DATE('1970-01-01', 'YYYY-MM-DD'), 'YYYY-MM-DD'),'yyyy-MM-dd')) >12 then
+	        33
+	       when months_between(to_date(TO_CHAR(#{endDate} / (1000 * 60 * 60 * 24)+ 
+	TO_DATE('1970-01-01', 'YYYY-MM-DD'), 'YYYY-MM-DD'),'yyyy-MM-dd'),to_date(TO_CHAR(#{beginDate} / (1000 * 60 * 60 * 24)+ 
+	TO_DATE('1970-01-01', 'YYYY-MM-DD'), 'YYYY-MM-DD'),'yyyy-MM-dd')) >6 then
+	        11
+	       else
+	        4
+	     end) loanlength
+	from dual
+	<!-- 	select (case
+	       when months_between(#{endDate},#{beginDate}) >60 then
+	        80
+	       when months_between(#{endDate},#{beginDate}) >36 then
+	        55
+	       when months_between(#{endDate},#{beginDate}) >12 then
+	        33
+	       when months_between(#{endDate},#{beginDate}) >6 then
+	        11
+	       else
+	        4
+	     end) loanlength
+		from dual -->
+  </select>
+</mapper>

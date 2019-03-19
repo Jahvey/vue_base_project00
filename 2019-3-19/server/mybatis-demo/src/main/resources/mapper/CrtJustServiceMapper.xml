@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtJustServiceMapper">
+  <!-- EOS：JustService.xml -->
+  
+  	<!-- 二手房按揭贷款 -->
+	<select id="getConXwAmountId" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select 
+		   a.check_flg,
+		   c.house_contract_num 
+		from 
+		   tb_biz_flg a ,tb_biz_amount_detail_apply b ,tb_con_xw c
+		where b.amount_detail_id=#{amountDetailId}
+		   and a.apply_id = b.apply_id 
+		   and b.amount_detail_id = c.amount_detail_id
+	   and c.contract_id=#{contractId}
+	</select>
+  
+</mapper>
