@@ -1,0 +1,154 @@
+ .search_box_t {
+  height: 37px;
+}
+.search_box_t > input {
+  width: 85%;
+  height: 37px;
+  line-height: 37px;
+  border: 0px;
+  float: left;
+  padding-left: 8px;
+  border: 2px solid #ef524d;
+  border-right: none;
+  outline: none;
+}
+.search_box_t > button {
+  width: 15%;
+  height: 37px;
+  background: #ef524d;
+  border: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+.input_search {
+  width: 255px;
+}
+.search_left {
+  background: url(../images/search_icon.gif) no-repeat left center;
+}
+.ex_search {
+  height: 26px;
+  border: 2px solid #cccccc;
+}
+.SearchBar table td {
+  padding: 0 0px;
+  vertical-align: middle;
+}
+.ex_btn_search {
+  background: url(../images/search_btn.gif) no-repeat left center;
+  width: 63px;
+  height: 24px;
+  border: 0px;
+  font-size: 12px;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 1px;
+}
+.icon-search {
+  background-position: -48px 0;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("../images/search_icon.gif");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+.add-on {
+  margin-left: -1px;
+}
+.search_box_b {
+  padding-top: 5px;
+  padding-left: 5px;
+}
+.search_box_b h3 {
+  font-size: 12px;
+  font-weight: normal;
+  display: block;
+  float: left;
+  margin-top: 1px;
+  color: #000;
+}
+.key_words a {
+  color: #adaeae;
+}
+.key_words a:hover {
+  color: #ef524d;
+}
+.color1 {
+  color: #ff6400;
+}
+.search_box_b span {
+  float: left;
+  display: block;
+  height: 15px;
+  line-height: 15px;
+  overflow: hidden;
+}
+.search_box_b span ul li {
+  float: left;
+  padding: 0px 5px;
+  border-left: 1px solid black;
+}
+.search_box_b span ul li:first-child {
+  border-left: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0px;
+  margin: 0px;
+}
+li {
+  list-style-type: none;
+  font-size: 12px;
+}
+ul {
+  margin-left: 0px;
+  margin-top: 0px;
+  padding-left: 0px;
+}
+.SearchBar .inputstyle.ex_s_input {
+  padding: 0px;
+  padding-left: 25px;
+}
+.SearchBar .inputstyle {
+  padding: 0 2px;
+}
+.ex_s_input {
+  width: 265px;
+  height: 26px;
+  line-height: 26px;
+  vertical-align: middle;
+  background: none;
+  background: url(../images/search_icon.gif) no-repeat 4px 6px;
+  border: 0px;
+  color: #999999;
+}
+.search-triggers {
+  height: 25px;
+  overflow: hidden;
+}
+.search-triggers .active {
+  color: #FFF;
+  font-weight: 700;
+  background-color: #ef524d;
+}
+.search-triggers li {
+  color: #ef524d;
+  text-align: center;
+  float: left;
+  width: 50px;
+  height: 25px;
+  line-height: 25px;
+  cursor: pointer;
+}
+.search-triggers li:not(.active):hover {
+  background-color: #eee;
+}

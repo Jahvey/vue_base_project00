@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbPubConfigMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbPubConfig">
+    <id column="CFG_GROUP" jdbcType="VARCHAR" property="cfgGroup" />
+    <id column="CFG_KEY" jdbcType="VARCHAR" property="cfgKey" />
+    <result column="CFG_VALUE" jdbcType="VARCHAR" property="cfgValue" />
+    <result column="CFG_STATUS" jdbcType="VARCHAR" property="cfgStatus" />
+    <result column="OTHER1" jdbcType="VARCHAR" property="other1" />
+    <result column="OTHER2" jdbcType="VARCHAR" property="other2" />
+    <result column="OTHER3" jdbcType="VARCHAR" property="other3" />
+  </resultMap>
+  
+  	<select id="queryPubConfig" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+	
+		SELECT 
+			cfg_group, 
+			cfg_key, 
+			cfg_value, 
+			cfg_status
+		FROM 
+			tb_pub_config 
+		WHERE 
+			cfg_status = '1'
+			AND cfg_group = #{cfgGroup,jdbcType=VARCHAR} 
+			AND cfg_key = #{cfgKey,jdbcType=VARCHAR}
+	
+	</select>
+  
+</mapper>

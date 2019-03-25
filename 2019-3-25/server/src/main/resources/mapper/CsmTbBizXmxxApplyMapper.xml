@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizXmxxApplyMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbBizXmxxApply">
+    <id column="RELATE_ID" jdbcType="VARCHAR" property="relateId" />
+    <result column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="PROJECT_ID" jdbcType="VARCHAR" property="projectId" />
+    <result column="PROJECT_LOAN_TYPE" jdbcType="VARCHAR" property="projectLoanType" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="PAY_DIRECTION" jdbcType="VARCHAR" property="payDirection" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RELATE_ID, APPLY_DETAIL_ID, PROJECT_ID, PROJECT_LOAN_TYPE, CREATE_TIME, UPDATE_TIME, 
+    AMOUNT_DETAIL_ID, PAY_DIRECTION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_XMXX_APPLY
+    where RELATE_ID = #{relateId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_XMXX_APPLY
+    where RELATE_ID = #{relateId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.CsmTbBizXmxxApply">
+    insert into TB_BIZ_XMXX_APPLY (RELATE_ID, APPLY_DETAIL_ID, PROJECT_ID, 
+      PROJECT_LOAN_TYPE, CREATE_TIME, UPDATE_TIME, 
+      AMOUNT_DETAIL_ID, PAY_DIRECTION)
+    values (#{relateId,jdbcType=VARCHAR}, #{applyDetailId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{projectLoanType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountDetailId,jdbcType=VARCHAR}, #{payDirection,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.CsmTbBizXmxxApply">
+    insert into TB_BIZ_XMXX_APPLY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="relateId != null">
+        RELATE_ID,
+      </if>
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID,
+      </if>
+      <if test="projectId != null">
+        PROJECT_ID,
+      </if>
+      <if test="projectLoanType != null">
+        PROJECT_LOAN_TYPE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID,
+      </if>
+      <if test="payDirection != null">
+        PAY_DIRECTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="relateId != null">
+        #{relateId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDetailId != null">
+        #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectLoanType != null">
+        #{projectLoanType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="payDirection != null">
+        #{payDirection,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.CsmTbBizXmxxApply">
+    update TB_BIZ_XMXX_APPLY
+    <set>
+      <if test="applyDetailId != null">
+        APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectLoanType != null">
+        PROJECT_LOAN_TYPE = #{projectLoanType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountDetailId != null">
+        AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="payDirection != null">
+        PAY_DIRECTION = #{payDirection,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RELATE_ID = #{relateId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.CsmTbBizXmxxApply">
+    update TB_BIZ_XMXX_APPLY
+    set APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR},
+      PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      PROJECT_LOAN_TYPE = #{projectLoanType,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      AMOUNT_DETAIL_ID = #{amountDetailId,jdbcType=VARCHAR},
+      PAY_DIRECTION = #{payDirection,jdbcType=VARCHAR}
+    where RELATE_ID = #{relateId,jdbcType=VARCHAR}
+  </update>
+</mapper>

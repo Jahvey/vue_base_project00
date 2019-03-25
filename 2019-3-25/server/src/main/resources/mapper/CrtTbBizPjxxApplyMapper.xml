@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbBizPjxxApplyMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbBizPjxxApply">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="CPRQC" jdbcType="VARCHAR" property="cprqc" />
+    <result column="CPRZH" jdbcType="VARCHAR" property="cprzh" />
+    <result column="SKRQC" jdbcType="VARCHAR" property="skrqc" />
+    <result column="SKRZH" jdbcType="VARCHAR" property="skrzh" />
+    <result column="SKRKHH" jdbcType="VARCHAR" property="skrkhh" />
+    <result column="PJHM" jdbcType="VARCHAR" property="pjhm" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="HPJE" jdbcType="DECIMAL" property="hpje" />
+    <result column="HPXS" jdbcType="VARCHAR" property="hpxs" />
+    <result column="HPCPRQ" jdbcType="TIMESTAMP" property="hpcprq" />
+    <result column="HPDQRQ" jdbcType="TIMESTAMP" property="hpdqrq" />
+    <result column="DFDZ" jdbcType="VARCHAR" property="dfdz" />
+    <result column="HTBH" jdbcType="VARCHAR" property="htbh" />
+    <result column="JLZT" jdbcType="VARCHAR" property="jlzt" />
+    <result column="REMITTERBANKNAME" jdbcType="VARCHAR" property="remitterbankname" />
+    <result column="REMITTERBANKNO" jdbcType="VARCHAR" property="remitterbankno" />
+    <result column="PAYEEBANKNAME" jdbcType="VARCHAR" property="payeebankname" />
+    <result column="PAYEEBANKNO" jdbcType="VARCHAR" property="payeebankno" />
+    <result column="ACCEPTORBANKNAME" jdbcType="VARCHAR" property="acceptorbankname" />
+    <result column="ACCEPTORBANKNO" jdbcType="VARCHAR" property="acceptorbankno" />
+    <result column="BILLID" jdbcType="VARCHAR" property="billid" />
+    <result column="FORBIDFLAG" jdbcType="VARCHAR" property="forbidflag" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="SORT_ORDER" jdbcType="DECIMAL" property="sortOrder" />
+  </resultMap>
+
+  <!-- 根据合同编号、合同id、业务明细id返回多条票据申请信息 -->
+  <select id="queryPJXX" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    	CRMS.TB_BIZ_PJXX_APPLY
+    where 
+    	amount_Detail_Id = #{amountDetailId} 
+    and htbh = #{contractNum}
+    <if test="contractId !=null and contractId !='' ">
+		and contract_Id=#{contractId}
+	</if>
+  </select>
+  
+  <!-- 根据业务明细id和合同编号批量更新部分票据信息 -->
+  <update id="updateAcceptorbank" parameterType="java.util.List">
+  	<foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+    	update CRMS.TB_BIZ_PJXX_APPLY
+		    <set>
+			  <if test="item.acceptorbankname != null">
+		        ACCEPTORBANKNAME = #{item.acceptorbankname,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.acceptorbankno != null">
+		        ACCEPTORBANKNO = #{item.acceptorbankno,jdbcType=VARCHAR},
+		      </if>
+			  <if test="item.remitterbankname != null">
+		        REMITTERBANKNAME = #{item.remitterbankname,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.remitterbankno != null">
+		        REMITTERBANKNO = #{item.remitterbankno,jdbcType=VARCHAR},
+		      </if>
+		    </set>
+	    where 
+	    	AMOUNT_DETAIL_ID = #{item.amountDetailId} 
+	    AND 
+	    	HTBH = #{item.htbh}<!-- 合同编号：contractNum -->
+    </foreach>
+  </update>
+  <!-- <update id="updateAcceptorbank" parameterType="java.util.List">
+  	<foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+    	update CRMS.TB_BIZ_PJXX_APPLY
+		    <set>
+		      <if test="item.createTime != null">
+		        CREATE_TIME = #{item.createTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="item.updateTime != null">
+		        UPDATE_TIME = #{item.updateTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="item.amountDetailId != null">
+		        AMOUNT_DETAIL_ID = #{item.amountDetailId,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.cprqc != null">
+		        CPRQC = #{item.cprqc,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.cprzh != null">
+		        CPRZH = #{item.cprzh,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.skrqc != null">
+		        SKRQC = #{item.skrqc,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.skrzh != null">
+		        SKRZH = #{item.skrzh,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.skrkhh != null">
+		        SKRKHH = #{item.skrkhh,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.pjhm != null">
+		        PJHM = #{item.pjhm,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.currencyCd != null">
+		        CURRENCY_CD = #{item.currencyCd,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.hpje != null">
+		        HPJE = #{item.hpje,jdbcType=DECIMAL},
+		      </if>
+		      <if test="item.hpxs != null">
+		        HPXS = #{item.hpxs,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.hpcprq != null">
+		        HPCPRQ = #{item.hpcprq,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="item.hpdqrq != null">
+		        HPDQRQ = #{item.hpdqrq,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="item.dfdz != null">
+		        DFDZ = #{item.dfdz,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.htbh != null">
+		        HTBH = #{item.htbh,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.jlzt != null">
+		        JLZT = #{item.jlzt,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.remitterbankname != null">
+		        REMITTERBANKNAME = #{item.remitterbankname,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.remitterbankno != null">
+		        REMITTERBANKNO = #{item.remitterbankno,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.payeebankname != null">
+		        PAYEEBANKNAME = #{item.payeebankname,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.payeebankno != null">
+		        PAYEEBANKNO = #{item.payeebankno,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.acceptorbankname != null">
+		        ACCEPTORBANKNAME = #{item.acceptorbankname,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.acceptorbankno != null">
+		        ACCEPTORBANKNO = #{item.acceptorbankno,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.billid != null">
+		        BILLID = #{item.billid,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.forbidflag != null">
+		        FORBIDFLAG = #{item.forbidflag,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.contractId != null">
+		        CONTRACT_ID = #{item.contractId,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.sortOrder != null">
+		        SORT_ORDER = #{item.sortOrder,jdbcType=DECIMAL},
+		      </if>
+		    </set>
+	    where 
+	    	AMOUNT_DETAIL_ID = #{item.amountDetailId} 
+	    AND 
+	    	HTBH = #{item.contractNum}
+    </foreach>
+  </update> -->
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, CREATE_TIME, UPDATE_TIME, AMOUNT_DETAIL_ID, CPRQC, CPRZH, SKRQC, 
+    SKRZH, SKRKHH, PJHM, CURRENCY_CD, HPJE, HPXS, HPCPRQ, HPDQRQ, DFDZ, HTBH, JLZT, REMITTERBANKNAME, 
+    REMITTERBANKNO, PAYEEBANKNAME, PAYEEBANKNO, ACCEPTORBANKNAME, ACCEPTORBANKNO, BILLID, 
+    FORBIDFLAG, CONTRACT_ID, SORT_ORDER
+  </sql>
+</mapper>

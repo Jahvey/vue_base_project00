@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.guaranteevaluation.mapper.ConGuarantOrgInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.guaranteevaluation.bean.ConGuarantOrgInfo">
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="KHH" jdbcType="VARCHAR" property="khh" />
+    <result column="ZHHM" jdbcType="VARCHAR" property="zhhm" />
+    <result column="ZHZH" jdbcType="VARCHAR" property="zhzh" />
+    <result column="FDBS" jdbcType="DECIMAL" property="fdbs" />
+    <result column="BZJBL" jdbcType="DECIMAL" property="bzjbl" />
+    <result column="YE" jdbcType="DECIMAL" property="ye" />
+    <result column="STATUS_CD" jdbcType="VARCHAR" property="statusCd" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CREDIT_AMOUNT" jdbcType="DECIMAL" property="creditAmount" />
+    <result column="SIMPLE_AMOUNT" jdbcType="DECIMAL" property="simpleAmount" />
+    <result column="ACCNO_WAY" jdbcType="VARCHAR" property="accnoWay" />
+    <result column="CREDIT_TYPE" jdbcType="VARCHAR" property="creditType" />
+    <result column="CREDIT_STATUS" jdbcType="VARCHAR" property="creditStatus" />
+    <result column="CREDIT_APPORT" jdbcType="DECIMAL" property="creditApport" />
+    <result column="CREDIT_ABROAD" jdbcType="DECIMAL" property="creditAbroad" />
+    <result column="CREDIT_ONE_REPAY" jdbcType="DECIMAL" property="creditOneRepay" />
+    <result column="CREDIT_TWO_REPAY" jdbcType="DECIMAL" property="creditTwoRepay" />
+    <result column="CREDIT_TWO_OTHER_REPAY" jdbcType="DECIMAL" property="creditTwoOtherRepay" />
+    <result column="CREDIT_LOAN" jdbcType="DECIMAL" property="creditLoan" />
+    <result column="CREDIT_OTHER_AMOUNT" jdbcType="DECIMAL" property="creditOtherAmount" />
+    <result column="INNER_CRET" jdbcType="VARCHAR" property="innerCret" />
+    <result column="DEFER_ASSETS" jdbcType="DECIMAL" property="deferAssets" />
+    <result column="WAIT_ASSETS" jdbcType="DECIMAL" property="waitAssets" />
+    <result column="GOODS_STOCK" jdbcType="DECIMAL" property="goodsStock" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="DECIMAL" property="orgNum" />
+    <result column="DEAL_TIME" jdbcType="VARCHAR" property="dealTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREDIT_TWO_PAYABLE" jdbcType="DECIMAL" property="creditTwoPayable" />
+    <result column="LAST_YEAR_AMOUNT" jdbcType="DECIMAL" property="lastYearAmount" />
+    <result column="OUTER_ASSETS" jdbcType="DECIMAL" property="outerAssets" />
+    <result column="FIXED_ASSETS" jdbcType="DECIMAL" property="fixedAssets" />
+    <result column="INVISIBLE_ASSETS" jdbcType="DECIMAL" property="invisibleAssets" />
+    <result column="PRINT_MODEL" jdbcType="VARCHAR" property="printModel" />
+  </resultMap>
+  
+  <resultMap type="com.cdgit.loan.guaranteevaluation.bean.GuarantorBean" id="guarantorBean">
+  	<result column="GUARANTEE_TYPE" jdbcType="VARCHAR" property="guaranteeType" />
+  	<result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+  	<result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+  	<result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+  	<result column="SURETY_ID" jdbcType="VARCHAR" property="suretyId" />
+  	<result column="RELATION_ID" jdbcType="VARCHAR" property="relationId" />
+  	<result column="SURETY_AMT" jdbcType="DECIMAL" property="suretyAmt" />
+  	<result column="USABLE_GUARANTEE_LIMIT" jdbcType="DECIMAL" property="usableGuaranteeLimit" />
+  	<result column="USEDGUARANTEELIMIT" jdbcType="DECIMAL" property="usedGuaranteeLimit" />
+  </resultMap>
+  <!--查询业务申请下关联 保证人--> 
+    <select id="getGuaranteerList" resultMap="guarantorBean">
+    	SELECT 
+	       G.GUARANTEE_TYPE,
+	       G.CURRENCY_CD ,
+	       G.SURETY_AMT,
+	       G.USABLE_GUARANTEE_LIMIT,
+	       (G.SURETY_AMT-G.USABLE_GUARANTEE_LIMIT) AS usedGuaranteeLimit,
+	       T.PARTY_NAME ,
+	       G.PARTY_ID ,
+	       G.SURETY_ID ,
+	       REL.RELATION_ID 
+	  FROM TB_GRT_GUARANTEE_BASIC G, TB_BIZ_GRT_REL REL, TB_CSM_PARTY T
+	 WHERE G.SURETY_ID = REL.SURETY_ID
+	   AND T.PARTY_ID = G.PARTY_ID
+	   AND REL.APPLY_ID =#{applyId}
+	   and g.guarantee_Type='04'
+    </select> 
+  
+  	<!--该担保公司未包含该保证金存储方式,未按照普元方式  -->
+  	<select id="RBIZ_0217" resultType="java.util.Map">
+	 	SELECT  ACCNO_WAY FROM tb_con_guarant_org_info gua
+		 WHERE gua.PARTY_ID =#{partyId}
+		   and gua.status_cd='03'
+  	</select>
+    
+    
+    <!--查询该客户在担保公司已用的的担保金额-->
+    <select id="getConPartyAmt" resultType="java.util.Map">
+		select sum(a.surety_amt) use_amt,b.con_party_id 
+		      from tb_con_subcontract_rel a,
+		      tb_con_subcontract b,
+		      tb_con_sub_grt_rel c,
+		      tb_grt_guarantee_basic d,
+		      tb_csm_corporation e
+			  where a.subcontract_id=b.subcontract_id 
+			  and b.subcontract_type='04' 
+			  and b.subcontract_status='03'
+		      and b.subcontract_id=c.subcontract_id
+		      and c.surety_id=d.surety_id
+		      and (c.grt_status != '04' or c.grt_status is null)
+		      and d.party_id=e.party_id
+		      and e.is_third_cust='1'
+		      and e.third_cust_type_cd='1'
+			  and b.con_party_id=#{conPartyId}
+			  group by b.con_party_id
+    </select>
+    	<!--是否是专业担保公司-->
+     <select id="isZYDBGS" resultType="java.util.Map">
+	 select t.party_id,
+        nvl(ta.FDBS, 0) amplify_ind,
+        t.guarant_org_real
+   from tb_crd_third_party_limit t, tb_con_guarant_org_info ta
+  where t.party_id = ta.party_id
+    and t.status_cd = '03'
+    and ta.status_cd = '03'
+	and t.PARTY_ID=#{partyId}
+	</select>
+<!--查询担保公司预用额度-->
+     <select id="comMoney" resultType="java.util.Map">
+	  <!--select sum(m.surety_amt) useAmt  from tb_grt_guarantee_basic m,tb_biz_grt_rel n
+	  where m.surety_id=n.surety_id and n.surety_type='04'
+	  and m.party_id=#partyId#  -->
+	 select nvl(sum(a.surety_amt),0) useAmt 
+		      from tb_con_subcontract_rel a,
+		      tb_con_subcontract b,
+		      tb_con_sub_grt_rel c,
+		      tb_grt_guarantee_basic d,
+		      tb_csm_corporation e
+			  where a.subcontract_id=b.subcontract_id 
+			  and b.subcontract_type='04' 
+			  and b.subcontract_status='03'
+		      and b.subcontract_id=c.subcontract_id
+		      and c.surety_id=d.surety_id
+		      and (c.grt_status != '04' or c.grt_status is null)
+		      and d.party_id=e.party_id
+		      and e.is_third_cust='1'
+		      and e.third_cust_type_cd='1'
+			  and d.party_id=#{partyId}
+	</select>
+	<!--查询担保公司已用额度-->
+     <select id="comMoney1" resultType="java.util.Map">
+      <!--select sum(b.surety_amt) usedAmt from tb_con_subcontract a,tb_con_subcontract_rel b
+	  where a.subcontract_id=b.subcontract_id and a.subcontract_type='04'
+	  and a.subcontract_status='03' and a.party_id=#partyId#-->
+	  
+	  select nvl(sum(a.surety_amt),0) usedAmt 
+		      from tb_con_subcontract_rel a,
+		      tb_con_subcontract b,
+		      tb_con_sub_grt_rel c,
+		      tb_grt_guarantee_basic d,
+		      tb_csm_corporation e
+			  where a.subcontract_id=b.subcontract_id 
+			  and b.subcontract_type='04' 
+			  and b.subcontract_status='03'
+		      and b.subcontract_id=c.subcontract_id
+		      and c.surety_id=d.surety_id
+		      and (c.grt_status != '04' or c.grt_status is null)
+		      and d.party_id=e.party_id
+		      and e.is_third_cust='1'
+		      and e.third_cust_type_cd='1'
+			  and d.party_id=#{partyId}
+	</select>
+  <!--获取担保公司信息，协议状态必须是已经生效  -->
+  <select id="selectByPartyId" resultMap="BaseResultMap">
+  
+  	select * from TB_CON_GUARANT_ORG_INFO  where STATUS_CD='03' and PARTY_ID=#{partyId}
+  
+  </select>
+  
+  
+  <insert id="insert" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConGuarantOrgInfo">
+    insert into TB_CON_GUARANT_ORG_INFO (CONTRACT_ID, PARTY_ID, KHH, 
+      ZHHM, ZHZH, FDBS, BZJBL, 
+      YE, STATUS_CD, CREATE_TIME, 
+      UPDATE_TIME, CREDIT_AMOUNT, SIMPLE_AMOUNT, 
+      ACCNO_WAY, CREDIT_TYPE, CREDIT_STATUS, 
+      CREDIT_APPORT, CREDIT_ABROAD, CREDIT_ONE_REPAY, 
+      CREDIT_TWO_REPAY, CREDIT_TWO_OTHER_REPAY, CREDIT_LOAN, 
+      CREDIT_OTHER_AMOUNT, INNER_CRET, DEFER_ASSETS, 
+      WAIT_ASSETS, GOODS_STOCK, USER_NUM, 
+      ORG_NUM, DEAL_TIME, REMARK, 
+      CREDIT_TWO_PAYABLE, LAST_YEAR_AMOUNT, OUTER_ASSETS, 
+      FIXED_ASSETS, INVISIBLE_ASSETS, PRINT_MODEL
+      )
+    values (#{contractId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{khh,jdbcType=VARCHAR}, 
+      #{zhhm,jdbcType=VARCHAR}, #{zhzh,jdbcType=VARCHAR}, #{fdbs,jdbcType=DECIMAL}, #{bzjbl,jdbcType=DECIMAL}, 
+      #{ye,jdbcType=DECIMAL}, #{statusCd,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{creditAmount,jdbcType=DECIMAL}, #{simpleAmount,jdbcType=DECIMAL}, 
+      #{accnoWay,jdbcType=VARCHAR}, #{creditType,jdbcType=VARCHAR}, #{creditStatus,jdbcType=VARCHAR}, 
+      #{creditApport,jdbcType=DECIMAL}, #{creditAbroad,jdbcType=DECIMAL}, #{creditOneRepay,jdbcType=DECIMAL}, 
+      #{creditTwoRepay,jdbcType=DECIMAL}, #{creditTwoOtherRepay,jdbcType=DECIMAL}, #{creditLoan,jdbcType=DECIMAL}, 
+      #{creditOtherAmount,jdbcType=DECIMAL}, #{innerCret,jdbcType=VARCHAR}, #{deferAssets,jdbcType=DECIMAL}, 
+      #{waitAssets,jdbcType=DECIMAL}, #{goodsStock,jdbcType=DECIMAL}, #{userNum,jdbcType=VARCHAR}, 
+      #{orgNum,jdbcType=DECIMAL}, #{dealTime,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{creditTwoPayable,jdbcType=DECIMAL}, #{lastYearAmount,jdbcType=DECIMAL}, #{outerAssets,jdbcType=DECIMAL}, 
+      #{fixedAssets,jdbcType=DECIMAL}, #{invisibleAssets,jdbcType=DECIMAL}, #{printModel,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.ConGuarantOrgInfo">
+    insert into TB_CON_GUARANT_ORG_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="khh != null">
+        KHH,
+      </if>
+      <if test="zhhm != null">
+        ZHHM,
+      </if>
+      <if test="zhzh != null">
+        ZHZH,
+      </if>
+      <if test="fdbs != null">
+        FDBS,
+      </if>
+      <if test="bzjbl != null">
+        BZJBL,
+      </if>
+      <if test="ye != null">
+        YE,
+      </if>
+      <if test="statusCd != null">
+        STATUS_CD,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="creditAmount != null">
+        CREDIT_AMOUNT,
+      </if>
+      <if test="simpleAmount != null">
+        SIMPLE_AMOUNT,
+      </if>
+      <if test="accnoWay != null">
+        ACCNO_WAY,
+      </if>
+      <if test="creditType != null">
+        CREDIT_TYPE,
+      </if>
+      <if test="creditStatus != null">
+        CREDIT_STATUS,
+      </if>
+      <if test="creditApport != null">
+        CREDIT_APPORT,
+      </if>
+      <if test="creditAbroad != null">
+        CREDIT_ABROAD,
+      </if>
+      <if test="creditOneRepay != null">
+        CREDIT_ONE_REPAY,
+      </if>
+      <if test="creditTwoRepay != null">
+        CREDIT_TWO_REPAY,
+      </if>
+      <if test="creditTwoOtherRepay != null">
+        CREDIT_TWO_OTHER_REPAY,
+      </if>
+      <if test="creditLoan != null">
+        CREDIT_LOAN,
+      </if>
+      <if test="creditOtherAmount != null">
+        CREDIT_OTHER_AMOUNT,
+      </if>
+      <if test="innerCret != null">
+        INNER_CRET,
+      </if>
+      <if test="deferAssets != null">
+        DEFER_ASSETS,
+      </if>
+      <if test="waitAssets != null">
+        WAIT_ASSETS,
+      </if>
+      <if test="goodsStock != null">
+        GOODS_STOCK,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="dealTime != null">
+        DEAL_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="creditTwoPayable != null">
+        CREDIT_TWO_PAYABLE,
+      </if>
+      <if test="lastYearAmount != null">
+        LAST_YEAR_AMOUNT,
+      </if>
+      <if test="outerAssets != null">
+        OUTER_ASSETS,
+      </if>
+      <if test="fixedAssets != null">
+        FIXED_ASSETS,
+      </if>
+      <if test="invisibleAssets != null">
+        INVISIBLE_ASSETS,
+      </if>
+      <if test="printModel != null">
+        PRINT_MODEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="khh != null">
+        #{khh,jdbcType=VARCHAR},
+      </if>
+      <if test="zhhm != null">
+        #{zhhm,jdbcType=VARCHAR},
+      </if>
+      <if test="zhzh != null">
+        #{zhzh,jdbcType=VARCHAR},
+      </if>
+      <if test="fdbs != null">
+        #{fdbs,jdbcType=DECIMAL},
+      </if>
+      <if test="bzjbl != null">
+        #{bzjbl,jdbcType=DECIMAL},
+      </if>
+      <if test="ye != null">
+        #{ye,jdbcType=DECIMAL},
+      </if>
+      <if test="statusCd != null">
+        #{statusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creditAmount != null">
+        #{creditAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="simpleAmount != null">
+        #{simpleAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="accnoWay != null">
+        #{accnoWay,jdbcType=VARCHAR},
+      </if>
+      <if test="creditType != null">
+        #{creditType,jdbcType=VARCHAR},
+      </if>
+      <if test="creditStatus != null">
+        #{creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="creditApport != null">
+        #{creditApport,jdbcType=DECIMAL},
+      </if>
+      <if test="creditAbroad != null">
+        #{creditAbroad,jdbcType=DECIMAL},
+      </if>
+      <if test="creditOneRepay != null">
+        #{creditOneRepay,jdbcType=DECIMAL},
+      </if>
+      <if test="creditTwoRepay != null">
+        #{creditTwoRepay,jdbcType=DECIMAL},
+      </if>
+      <if test="creditTwoOtherRepay != null">
+        #{creditTwoOtherRepay,jdbcType=DECIMAL},
+      </if>
+      <if test="creditLoan != null">
+        #{creditLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="creditOtherAmount != null">
+        #{creditOtherAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="innerCret != null">
+        #{innerCret,jdbcType=VARCHAR},
+      </if>
+      <if test="deferAssets != null">
+        #{deferAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="waitAssets != null">
+        #{waitAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsStock != null">
+        #{goodsStock,jdbcType=DECIMAL},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=DECIMAL},
+      </if>
+      <if test="dealTime != null">
+        #{dealTime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="creditTwoPayable != null">
+        #{creditTwoPayable,jdbcType=DECIMAL},
+      </if>
+      <if test="lastYearAmount != null">
+        #{lastYearAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="outerAssets != null">
+        #{outerAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="fixedAssets != null">
+        #{fixedAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="invisibleAssets != null">
+        #{invisibleAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="printModel != null">
+        #{printModel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

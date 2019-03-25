@@ -1,0 +1,206 @@
+body {
+  font-family: "Microsoft Yahei", "微软雅黑";
+  font-size: 12px;
+}
+a {
+  color: #494848;
+}
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+  color: #03bfff;
+}
+a:visited {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+.border-top-f2 {
+  border-top: 1px solid #f2f2f2;
+  margin-top: 50px !important;
+}
+.bg-2d {
+  background: #2d2d2d;
+}
+.bg-fd {
+  background: #fefdfd;
+}
+.bg-fa {
+  background: #fafafa;
+}
+.fl {
+  float: left;
+}
+/*[data-controller="HomeViewController"] .row>div[class^="col-xs-"]:first-child{
+    padding-left: 0;
+}
+[data-controller="HomeViewController"] .row>div[class^="col-xs-"]:last-child{
+    padding-right: 0;
+}
+[data-controller="HomeViewController"] .row>.col-xs-12{
+    padding-left: 0;
+}*/
+.container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.main {
+  background: #fff;
+  border: 1px solid #f3f3f3;
+}
+.container > .row,
+.w {
+  width: 98%;
+  min-width: 1010px;
+  max-width: 1230px;
+  margin: 0 auto;
+  clear: both;
+  position: relative;
+}
+.up-header {
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #eee;
+  background: #f5f5f5;
+  margin-bottom: 0;
+  font-size: 12px;
+  color: #666;
+}
+.up-header a {
+  color: #666;
+  margin-left: 10px;
+}
+.up-searchBox {
+  padding: 25px 0;
+  padding-bottom: 10px;
+  display: block;
+  background-color: #fefdfd;
+  width: 100%;
+  float: left;
+}
+[data-type="Navigation"] {
+  width: 100%;
+  overflow: hidden;
+  height: 40px;
+  background: #FF8400;
+}
+[data-type="Navigation"] ul {
+  background: #FF8400;
+}
+.container > .up-nav-box {
+  width: 100%;
+  background: #FF8400;
+  height: 40px;
+  display: block;
+  clear: both;
+  margin-bottom: 15px;
+}
+.container > .up-nav-box ul.nav {
+  margin-left: 40px;
+}
+.container > .up-nav-box ul.nav > li {
+  float: left;
+}
+.container > .up-nav-box ul.nav > li > a {
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px 15px;
+}
+.container > .up-nav-box ul.nav > li > a:focus,
+.container > .up-nav-box ul.nav > li > a:hover,
+.container > .up-nav-box ul.nav > li > a:active {
+  background-color: #d66f00 !important;
+}
+.container > .up-nav-box .nav.navbar-left > li {
+  border-right: none !important;
+}
+[data-type="Navigation"] ul.nav > li {
+  float: left;
+}
+[data-type="Navigation"] ul.nav > li > a {
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px 15px;
+}
+[data-type="Navigation"] ul.nav > li > a:focus,
+[data-type="Navigation"] ul.nav > li > a:hover,
+[data-type="Navigation"] ul.nav > li > a:active {
+  background: #c6423d !important;
+}
+/*会员中心页面头部与tab标签样式======很多地方可共用*/
+.main_title {
+  float: left;
+  width: 100%;
+  clear: both;
+}
+.mymessage {
+  font-size: 14px;
+  line-height: 30px;
+  color: #333333;
+  height: 30px;
+}
+.main_tabs {
+  padding: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #e6e6e6;
+  background-color: #fafafa;
+  height: 42px;
+  display: block;
+  zoom: 1;
+  clear: both;
+}
+.main_tabs li {
+  min-width: 100px;
+  height: 42px;
+  line-height: 42px;
+  float: left;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+.main_tabs li a {
+  color: #333333;
+}
+.main_tabs li.active,
+.main_tabs li.tabactive {
+  color: #03bfff;
+  background-color: #FFFFFF;
+  border: 1px solid #e6e6e6;
+  border-top: 2px solid #03bfff;
+  margin-top: -1px;
+  border-bottom: none;
+  border-radius: 0;
+}
+.main_tabs li.active a,
+.main_tabs li.tabactive a {
+  color: #03bfff;
+}
+.main_tabs li:first-child {
+  border-left: none;
+}
+#logo {
+  width: 270px;
+  height: 70px;
+  line-height: 70px;
+  position: relative;
+  overflow: hidden;
+  top: -11px;
+}
+#logo > div,
+#logo > div > a {
+  display: block;
+  height: 100%;
+  vertical-align: middle;
+}
+#logo > div img,
+#logo > div > a img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: inherit;
+}

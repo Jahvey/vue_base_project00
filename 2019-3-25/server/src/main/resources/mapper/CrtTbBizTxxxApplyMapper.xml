@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbBizTxxxApplyMapper">
+  <!-- 贴现票据信息 -->
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbBizTxxxApply">
+    <id column="APPLY_DETAIL_ID" jdbcType="VARCHAR" property="applyDetailId" />
+    <result column="LOANID" jdbcType="VARCHAR" property="loanid" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="BILLBATCH" jdbcType="VARCHAR" property="billbatch" />
+    <result column="BILLNO" jdbcType="VARCHAR" property="billno" />
+    <result column="CURRSIGN" jdbcType="VARCHAR" property="currsign" />
+    <result column="BILLAMT" jdbcType="DECIMAL" property="billamt" />
+    <result column="BILLBEGINDATE" jdbcType="TIMESTAMP" property="billbegindate" />
+    <result column="BILLENDDATE" jdbcType="TIMESTAMP" property="billenddate" />
+    <result column="BILLADDTYPE" jdbcType="VARCHAR" property="billaddtype" />
+    <result column="TAKEOUTACNAME" jdbcType="VARCHAR" property="takeoutacname" />
+    <result column="TAKEOUTACBANKNO" jdbcType="VARCHAR" property="takeoutacbankno" />
+    <result column="TAKEOUTACBANKNAME" jdbcType="VARCHAR" property="takeoutacbankname" />
+    <result column="TAKEOUTACNO" jdbcType="VARCHAR" property="takeoutacno" />
+    <result column="BENENAME" jdbcType="VARCHAR" property="benename" />
+    <result column="BENEBANKNO" jdbcType="VARCHAR" property="benebankno" />
+    <result column="BENEBANKNAME" jdbcType="VARCHAR" property="benebankname" />
+    <result column="BENENO" jdbcType="VARCHAR" property="beneno" />
+    <result column="BILLBANKTYPE" jdbcType="VARCHAR" property="billbanktype" />
+    <result column="BILLBANKNO" jdbcType="VARCHAR" property="billbankno" />
+    <result column="BILLBANKNAME" jdbcType="VARCHAR" property="billbankname" />
+    <result column="DIREFRONTNAME" jdbcType="VARCHAR" property="direfrontname" />
+    <result column="DISCBENUM" jdbcType="DECIMAL" property="discbenum" />
+    <result column="CONTIMAGENO" jdbcType="VARCHAR" property="contimageno" />
+    <result column="QUERYRESULT" jdbcType="VARCHAR" property="queryresult" />
+    <result column="REVIEWRESULT" jdbcType="VARCHAR" property="reviewresult" />
+    <result column="REVIEWOPTION" jdbcType="VARCHAR" property="reviewoption" />
+    <result column="REVIEWER" jdbcType="VARCHAR" property="reviewer" />
+    <result column="REVIEWERORG" jdbcType="VARCHAR" property="reviewerorg" />
+    <result column="LASTCHANPERSON" jdbcType="VARCHAR" property="lastchanperson" />
+    <result column="LASTCHANBANKID" jdbcType="VARCHAR" property="lastchanbankid" />
+    <result column="LASTCHANDATE" jdbcType="TIMESTAMP" property="lastchandate" />
+    <result column="BILLTYPE" jdbcType="VARCHAR" property="billtype" />
+    <result column="BILLMODEL" jdbcType="VARCHAR" property="billmodel" />
+    <result column="ADJUSTNUM" jdbcType="DECIMAL" property="adjustnum" />
+    <result column="BILLTRUEENDDATE" jdbcType="TIMESTAMP" property="billtrueenddate" />
+    <result column="INTERATE" jdbcType="DECIMAL" property="interate" />
+    <result column="ONLINEMARK" jdbcType="CHAR" property="onlinemark" />
+    <result column="BILLACNO" jdbcType="VARCHAR" property="billacno" />
+    <result column="FORBIDFLAG" jdbcType="CHAR" property="forbidflag" />
+    <result column="BILLACNAME" jdbcType="VARCHAR" property="billacname" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AMOUNT_DETAIL_ID" jdbcType="VARCHAR" property="amountDetailId" />
+    <result column="IF_SAME_CITY" jdbcType="VARCHAR" property="ifSameCity" />
+    <result column="SORT_ORDER" jdbcType="DECIMAL" property="sortOrder" />
+  </resultMap>
+
+  <select id="selectTbBizTxxxApplyByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_BIZ_TXXX_APPLY
+    where APPLY_DETAIL_ID = #{applyDetailId,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 插入贴现信息 -->
+  <select id="queryTXXX" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_BIZ_TXXX_APPLY
+    where amount_Detail_Id = #{amountDetailId,jdbcType=VARCHAR}
+  </select>
+  
+  <sql id="Base_Column_List">
+    APPLY_DETAIL_ID, LOANID, CONTRACT_ID, BILLBATCH, BILLNO, CURRSIGN, BILLAMT, BILLBEGINDATE, 
+    BILLENDDATE, BILLADDTYPE, TAKEOUTACNAME, TAKEOUTACBANKNO, TAKEOUTACBANKNAME, TAKEOUTACNO, 
+    BENENAME, BENEBANKNO, BENEBANKNAME, BENENO, BILLBANKTYPE, BILLBANKNO, BILLBANKNAME, 
+    DIREFRONTNAME, DISCBENUM, CONTIMAGENO, QUERYRESULT, REVIEWRESULT, REVIEWOPTION, REVIEWER, 
+    REVIEWERORG, LASTCHANPERSON, LASTCHANBANKID, LASTCHANDATE, BILLTYPE, BILLMODEL, ADJUSTNUM, 
+    BILLTRUEENDDATE, INTERATE, ONLINEMARK, BILLACNO, FORBIDFLAG, BILLACNAME, CREATE_TIME, 
+    UPDATE_TIME, AMOUNT_DETAIL_ID, IF_SAME_CITY, SORT_ORDER
+  </sql>
+</mapper>

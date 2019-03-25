@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbConPayoutPlanMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbConPayoutPlan">
+    <id column="PAYOUT_PLAN_ID" jdbcType="VARCHAR" property="payoutPlanId" />
+    <result column="PAYOUT_DATE" jdbcType="TIMESTAMP" property="payoutDate" />
+    <result column="PAYOUT_AMT" jdbcType="DECIMAL" property="payoutAmt" />
+    <result column="CONTRACT_DETAIL_ID" jdbcType="VARCHAR" property="contractDetailId" />
+    <result column="PERIODS_NUMBER" jdbcType="DECIMAL" property="periodsNumber" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="LOANUSE" jdbcType="VARCHAR" property="loanuse" />
+  </resultMap>
+
+  <select id="selectAllConPayoutPlanByContractId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_PAYOUT_PLAN
+    where contract_Detail_Id = #{contractId,jdbcType=VARCHAR}
+  </select>
+  
+  <sql id="Base_Column_List">
+    PAYOUT_PLAN_ID, PAYOUT_DATE, PAYOUT_AMT, CONTRACT_DETAIL_ID, PERIODS_NUMBER, CREATE_TIME, 
+    UPDATE_TIME, LOANUSE
+  </sql>
+</mapper>

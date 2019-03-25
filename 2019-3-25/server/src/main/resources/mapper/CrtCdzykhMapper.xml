@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtCdzykhMapper">
+  
+  <!-- 查询是否是会计复核岗 -->
+  <select id="queryPostNum" parameterType="java.lang.String" resultType="java.lang.Integer">
+  		select count(*) as postNum
+		from ac_operator a,om_empposition b,om_position c
+		where a.userid= #{userNum}
+		  and a.operatorid=b.empid
+		  and b.positionid=c.positionid
+		  and c.posicode in ('P1534','P1229')
+  </select>
+  
+  
+</mapper>

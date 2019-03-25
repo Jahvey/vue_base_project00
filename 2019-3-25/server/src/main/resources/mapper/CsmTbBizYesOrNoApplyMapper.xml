@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizYesOrNoApplyMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbBizYesOrNoApply">
+    <id column="YESORNO_ID" jdbcType="VARCHAR" property="yesornoId" />
+    <result column="IS_PHOTOVOLTAIC" jdbcType="VARCHAR" property="isPhotovoltaic" />
+    <result column="IS_STEEL_TRADE" jdbcType="VARCHAR" property="isSteelTrade" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="IS_STEEL" jdbcType="VARCHAR" property="isSteel" />
+    <result column="IS_CEMENT" jdbcType="VARCHAR" property="isCement" />
+    <result column="IS_WIND_POWER" jdbcType="VARCHAR" property="isWindPower" />
+    <result column="IS_BDO" jdbcType="VARCHAR" property="isBdo" />
+    <result column="IS_CAPACITOR" jdbcType="VARCHAR" property="isCapacitor" />
+    <result column="IS_OVER_CAPACITY" jdbcType="VARCHAR" property="isOverCapacity" />
+    <result column="IS_SHIPBUILDING" jdbcType="VARCHAR" property="isShipbuilding" />
+    <result column="IS_FZ" jdbcType="VARCHAR" property="isFz" />
+    <result column="IS_OFF_SITE" jdbcType="VARCHAR" property="isOffSite" />
+    <result column="CUS_TYPE" jdbcType="VARCHAR" property="cusType" />
+    <result column="HOUSE_SUM" jdbcType="VARCHAR" property="houseSum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    YESORNO_ID, IS_PHOTOVOLTAIC, IS_STEEL_TRADE, APPLY_ID, IS_STEEL, IS_CEMENT, IS_WIND_POWER, 
+    IS_BDO, IS_CAPACITOR, IS_OVER_CAPACITY, IS_SHIPBUILDING, IS_FZ, IS_OFF_SITE, CUS_TYPE, 
+    HOUSE_SUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_YESORNO_APPLY
+    where YESORNO_ID = #{yesornoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_YESORNO_APPLY
+    where YESORNO_ID = #{yesornoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.CsmTbBizYesOrNoApply">
+    insert into TB_BIZ_YESORNO_APPLY (YESORNO_ID, IS_PHOTOVOLTAIC, IS_STEEL_TRADE, 
+      APPLY_ID, IS_STEEL, IS_CEMENT, 
+      IS_WIND_POWER, IS_BDO, IS_CAPACITOR, 
+      IS_OVER_CAPACITY, IS_SHIPBUILDING, IS_FZ, 
+      IS_OFF_SITE, CUS_TYPE, HOUSE_SUM
+      )
+    values (#{yesornoId,jdbcType=VARCHAR}, #{isPhotovoltaic,jdbcType=VARCHAR}, #{isSteelTrade,jdbcType=VARCHAR}, 
+      #{applyId,jdbcType=VARCHAR}, #{isSteel,jdbcType=VARCHAR}, #{isCement,jdbcType=VARCHAR}, 
+      #{isWindPower,jdbcType=VARCHAR}, #{isBdo,jdbcType=VARCHAR}, #{isCapacitor,jdbcType=VARCHAR}, 
+      #{isOverCapacity,jdbcType=VARCHAR}, #{isShipbuilding,jdbcType=VARCHAR}, #{isFz,jdbcType=VARCHAR}, 
+      #{isOffSite,jdbcType=VARCHAR}, #{cusType,jdbcType=VARCHAR}, #{houseSum,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.CsmTbBizYesOrNoApply">
+    insert into TB_BIZ_YESORNO_APPLY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="yesornoId != null">
+        YESORNO_ID,
+      </if>
+      <if test="isPhotovoltaic != null">
+        IS_PHOTOVOLTAIC,
+      </if>
+      <if test="isSteelTrade != null">
+        IS_STEEL_TRADE,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="isSteel != null">
+        IS_STEEL,
+      </if>
+      <if test="isCement != null">
+        IS_CEMENT,
+      </if>
+      <if test="isWindPower != null">
+        IS_WIND_POWER,
+      </if>
+      <if test="isBdo != null">
+        IS_BDO,
+      </if>
+      <if test="isCapacitor != null">
+        IS_CAPACITOR,
+      </if>
+      <if test="isOverCapacity != null">
+        IS_OVER_CAPACITY,
+      </if>
+      <if test="isShipbuilding != null">
+        IS_SHIPBUILDING,
+      </if>
+      <if test="isFz != null">
+        IS_FZ,
+      </if>
+      <if test="isOffSite != null">
+        IS_OFF_SITE,
+      </if>
+      <if test="cusType != null">
+        CUS_TYPE,
+      </if>
+      <if test="houseSum != null">
+        HOUSE_SUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="yesornoId != null">
+        #{yesornoId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPhotovoltaic != null">
+        #{isPhotovoltaic,jdbcType=VARCHAR},
+      </if>
+      <if test="isSteelTrade != null">
+        #{isSteelTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSteel != null">
+        #{isSteel,jdbcType=VARCHAR},
+      </if>
+      <if test="isCement != null">
+        #{isCement,jdbcType=VARCHAR},
+      </if>
+      <if test="isWindPower != null">
+        #{isWindPower,jdbcType=VARCHAR},
+      </if>
+      <if test="isBdo != null">
+        #{isBdo,jdbcType=VARCHAR},
+      </if>
+      <if test="isCapacitor != null">
+        #{isCapacitor,jdbcType=VARCHAR},
+      </if>
+      <if test="isOverCapacity != null">
+        #{isOverCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="isShipbuilding != null">
+        #{isShipbuilding,jdbcType=VARCHAR},
+      </if>
+      <if test="isFz != null">
+        #{isFz,jdbcType=VARCHAR},
+      </if>
+      <if test="isOffSite != null">
+        #{isOffSite,jdbcType=VARCHAR},
+      </if>
+      <if test="cusType != null">
+        #{cusType,jdbcType=VARCHAR},
+      </if>
+      <if test="houseSum != null">
+        #{houseSum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.CsmTbBizYesOrNoApply">
+    update TB_BIZ_YESORNO_APPLY
+    <set>
+      <if test="isPhotovoltaic != null">
+        IS_PHOTOVOLTAIC = #{isPhotovoltaic,jdbcType=VARCHAR},
+      </if>
+      <if test="isSteelTrade != null">
+        IS_STEEL_TRADE = #{isSteelTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSteel != null">
+        IS_STEEL = #{isSteel,jdbcType=VARCHAR},
+      </if>
+      <if test="isCement != null">
+        IS_CEMENT = #{isCement,jdbcType=VARCHAR},
+      </if>
+      <if test="isWindPower != null">
+        IS_WIND_POWER = #{isWindPower,jdbcType=VARCHAR},
+      </if>
+      <if test="isBdo != null">
+        IS_BDO = #{isBdo,jdbcType=VARCHAR},
+      </if>
+      <if test="isCapacitor != null">
+        IS_CAPACITOR = #{isCapacitor,jdbcType=VARCHAR},
+      </if>
+      <if test="isOverCapacity != null">
+        IS_OVER_CAPACITY = #{isOverCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="isShipbuilding != null">
+        IS_SHIPBUILDING = #{isShipbuilding,jdbcType=VARCHAR},
+      </if>
+      <if test="isFz != null">
+        IS_FZ = #{isFz,jdbcType=VARCHAR},
+      </if>
+      <if test="isOffSite != null">
+        IS_OFF_SITE = #{isOffSite,jdbcType=VARCHAR},
+      </if>
+      <if test="cusType != null">
+        CUS_TYPE = #{cusType,jdbcType=VARCHAR},
+      </if>
+      <if test="houseSum != null">
+        HOUSE_SUM = #{houseSum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where YESORNO_ID = #{yesornoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.CsmTbBizYesOrNoApply">
+    update TB_BIZ_YESORNO_APPLY
+    set IS_PHOTOVOLTAIC = #{isPhotovoltaic,jdbcType=VARCHAR},
+      IS_STEEL_TRADE = #{isSteelTrade,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      IS_STEEL = #{isSteel,jdbcType=VARCHAR},
+      IS_CEMENT = #{isCement,jdbcType=VARCHAR},
+      IS_WIND_POWER = #{isWindPower,jdbcType=VARCHAR},
+      IS_BDO = #{isBdo,jdbcType=VARCHAR},
+      IS_CAPACITOR = #{isCapacitor,jdbcType=VARCHAR},
+      IS_OVER_CAPACITY = #{isOverCapacity,jdbcType=VARCHAR},
+      IS_SHIPBUILDING = #{isShipbuilding,jdbcType=VARCHAR},
+      IS_FZ = #{isFz,jdbcType=VARCHAR},
+      IS_OFF_SITE = #{isOffSite,jdbcType=VARCHAR},
+      CUS_TYPE = #{cusType,jdbcType=VARCHAR},
+      HOUSE_SUM = #{houseSum,jdbcType=VARCHAR}
+    where YESORNO_ID = #{yesornoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

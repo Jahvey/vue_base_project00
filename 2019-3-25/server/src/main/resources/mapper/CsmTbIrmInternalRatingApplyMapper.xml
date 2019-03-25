@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbIrmInternalRatingApplyMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbIrmInternalRatingApply">
+    <id column="IRA_APPLY_ID" jdbcType="VARCHAR" property="iraApplyId" />
+    <result column="RATING_MODEL_CD" jdbcType="VARCHAR" property="ratingModelCd" />
+    <result column="RATING_MODEL_VER" jdbcType="VARCHAR" property="ratingModelVer" />
+    <result column="RATING_STATE" jdbcType="VARCHAR" property="ratingState" />
+    <result column="PROJECT_ID" jdbcType="VARCHAR" property="projectId" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="APPLY_NATURE_CD" jdbcType="VARCHAR" property="applyNatureCd" />
+    <result column="TRIGGER_TYPE_CD" jdbcType="VARCHAR" property="triggerTypeCd" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORIGINAL_IRA_APPLY_ID" jdbcType="VARCHAR" property="originalIraApplyId" />
+    <result column="IS_AUDIT" jdbcType="VARCHAR" property="isAudit" />
+    <result column="ALLOW_TIMES" jdbcType="DECIMAL" property="allowTimes" />
+    <result column="IS_GOVERNMENT_PLATFORM" jdbcType="VARCHAR" property="isGovernmentPlatform" />
+    <result column="GP_MODEL_VER" jdbcType="VARCHAR" property="gpModelVer" />
+    <result column="ALLOW_MODIFY_FLAG" jdbcType="VARCHAR" property="allowModifyFlag" />
+    <result column="GOVERNMENT_ADJUST_RATING_CD" jdbcType="VARCHAR" property="governmentAdjustRatingCd" />
+    <result column="GENERAL_ADJUST_RATING_CD" jdbcType="VARCHAR" property="generalAdjustRatingCd" />
+    <result column="RATING_TYPE" jdbcType="VARCHAR" property="ratingType" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    IRA_APPLY_ID, RATING_MODEL_CD, RATING_MODEL_VER, RATING_STATE, PROJECT_ID, APPLY_DATE, 
+    APPLY_NATURE_CD, TRIGGER_TYPE_CD, ORG_NUM, USER_NUM, ORIGINAL_IRA_APPLY_ID, IS_AUDIT, 
+    ALLOW_TIMES, IS_GOVERNMENT_PLATFORM, GP_MODEL_VER, ALLOW_MODIFY_FLAG, GOVERNMENT_ADJUST_RATING_CD, 
+    GENERAL_ADJUST_RATING_CD, RATING_TYPE, PARTY_ID
+  </sql>
+  
+</mapper>

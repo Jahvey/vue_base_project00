@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.mapper.IllegalRecordMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.bean.IllegalRecord">
+    <id column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <id column="CURR_PERI" jdbcType="VARCHAR" property="currPeri" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="OVERDUE_DATE" jdbcType="TIMESTAMP" property="overdueDate" />
+    <result column="REPAY_DATE" jdbcType="TIMESTAMP" property="repayDate" />
+    <result column="RCV_PRN" jdbcType="DECIMAL" property="rcvPrn" />
+    <result column="PAD_UP_PRN" jdbcType="DECIMAL" property="padUpPrn" />
+    <result column="RCV_NOR_ITR" jdbcType="DECIMAL" property="rcvNorItr" />
+    <result column="PAD_UP_NOR_ITR" jdbcType="DECIMAL" property="padUpNorItr" />
+    <result column="RCV_DFT_ITR" jdbcType="DECIMAL" property="rcvDftItr" />
+    <result column="PAD_UP_DFT_ITR" jdbcType="DECIMAL" property="padUpDftItr" />
+    <result column="RCV_PNS_ITR" jdbcType="DECIMAL" property="rcvPnsItr" />
+    <result column="PAD_UP_PNS_ITR" jdbcType="DECIMAL" property="padUpPnsItr" />
+    <result column="DFT_OTD_ITR" jdbcType="DECIMAL" property="dftOtdItr" />
+    <result column="OVERDUE_CAPI" jdbcType="DECIMAL" property="overdueCapi" />
+    <result column="OVERDUE_ITR" jdbcType="DECIMAL" property="overdueItr" />
+    <result column="OVERDUE_PNS_ITR" jdbcType="DECIMAL" property="overduePnsItr" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SUMMARY_NUM, CURR_PERI, STATUS, PARTY_ID, BEGIN_DATE, END_DATE, OVERDUE_DATE, REPAY_DATE, 
+    RCV_PRN, PAD_UP_PRN, RCV_NOR_ITR, PAD_UP_NOR_ITR, RCV_DFT_ITR, PAD_UP_DFT_ITR, RCV_PNS_ITR, 
+    PAD_UP_PNS_ITR, DFT_OTD_ITR, OVERDUE_CAPI, OVERDUE_ITR, OVERDUE_PNS_ITR, USER_NUM, 
+    ORG_NUM, CREATE_TIME, UPDATE_TIME, REMARK
+  </sql>
+  <!--违约记录-->
+  <select id="illegalList" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	       a.party_id,
+	       d.party_num partyNum,
+	       d.party_name partyName,
+	       c.contract_num contractNum,
+	       a.summary_num,
+	       a.overdue_capi+a.overdue_itr + a.overdue_pns_itr + a.dft_otd_itr as yqAmt,
+	       to_char(a.overdue_date,'yyyy-mm-dd') overdue_date,
+	       to_char(a.repay_date, 'yyyy-mm-dd') repay_date,
+	       a.remark,
+	       a.user_num,
+	       a.org_num
+	  from tb_loan_illegal_record a,
+	       tb_loan_summary        b,
+	       tb_con_contract_info   c,
+	       tb_csm_party           d
+	 where a.summary_num = b.summary_num
+	   and b.contract_id = c.contract_id
+	   and a.party_id = d.party_id
+	   and a.party_id = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.cdgit.loan.customerManage.bean.IllegalRecordKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_LOAN_ILLEGAL_RECORD
+    where SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR}
+      and CURR_PERI = #{currPeri,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cdgit.loan.customerManage.bean.IllegalRecordKey">
+    delete from TB_LOAN_ILLEGAL_RECORD
+    where SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR}
+      and CURR_PERI = #{currPeri,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.customerManage.bean.IllegalRecord">
+    insert into TB_LOAN_ILLEGAL_RECORD (SUMMARY_NUM, CURR_PERI, STATUS, 
+      PARTY_ID, BEGIN_DATE, END_DATE, 
+      OVERDUE_DATE, REPAY_DATE, RCV_PRN, 
+      PAD_UP_PRN, RCV_NOR_ITR, PAD_UP_NOR_ITR, 
+      RCV_DFT_ITR, PAD_UP_DFT_ITR, RCV_PNS_ITR, 
+      PAD_UP_PNS_ITR, DFT_OTD_ITR, OVERDUE_CAPI, 
+      OVERDUE_ITR, OVERDUE_PNS_ITR, USER_NUM, 
+      ORG_NUM, CREATE_TIME, UPDATE_TIME, 
+      REMARK)
+    values (#{summaryNum,jdbcType=VARCHAR}, #{currPeri,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{partyId,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{overdueDate,jdbcType=TIMESTAMP}, #{repayDate,jdbcType=TIMESTAMP}, #{rcvPrn,jdbcType=DECIMAL}, 
+      #{padUpPrn,jdbcType=DECIMAL}, #{rcvNorItr,jdbcType=DECIMAL}, #{padUpNorItr,jdbcType=DECIMAL}, 
+      #{rcvDftItr,jdbcType=DECIMAL}, #{padUpDftItr,jdbcType=DECIMAL}, #{rcvPnsItr,jdbcType=DECIMAL}, 
+      #{padUpPnsItr,jdbcType=DECIMAL}, #{dftOtdItr,jdbcType=DECIMAL}, #{overdueCapi,jdbcType=DECIMAL}, 
+      #{overdueItr,jdbcType=DECIMAL}, #{overduePnsItr,jdbcType=DECIMAL}, #{userNum,jdbcType=VARCHAR}, 
+      #{orgNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.customerManage.bean.IllegalRecord">
+    insert into TB_LOAN_ILLEGAL_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="summaryNum != null">
+        SUMMARY_NUM,
+      </if>
+      <if test="currPeri != null">
+        CURR_PERI,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="overdueDate != null">
+        OVERDUE_DATE,
+      </if>
+      <if test="repayDate != null">
+        REPAY_DATE,
+      </if>
+      <if test="rcvPrn != null">
+        RCV_PRN,
+      </if>
+      <if test="padUpPrn != null">
+        PAD_UP_PRN,
+      </if>
+      <if test="rcvNorItr != null">
+        RCV_NOR_ITR,
+      </if>
+      <if test="padUpNorItr != null">
+        PAD_UP_NOR_ITR,
+      </if>
+      <if test="rcvDftItr != null">
+        RCV_DFT_ITR,
+      </if>
+      <if test="padUpDftItr != null">
+        PAD_UP_DFT_ITR,
+      </if>
+      <if test="rcvPnsItr != null">
+        RCV_PNS_ITR,
+      </if>
+      <if test="padUpPnsItr != null">
+        PAD_UP_PNS_ITR,
+      </if>
+      <if test="dftOtdItr != null">
+        DFT_OTD_ITR,
+      </if>
+      <if test="overdueCapi != null">
+        OVERDUE_CAPI,
+      </if>
+      <if test="overdueItr != null">
+        OVERDUE_ITR,
+      </if>
+      <if test="overduePnsItr != null">
+        OVERDUE_PNS_ITR,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="summaryNum != null">
+        #{summaryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="currPeri != null">
+        #{currPeri,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overdueDate != null">
+        #{overdueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayDate != null">
+        #{repayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rcvPrn != null">
+        #{rcvPrn,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpPrn != null">
+        #{padUpPrn,jdbcType=DECIMAL},
+      </if>
+      <if test="rcvNorItr != null">
+        #{rcvNorItr,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpNorItr != null">
+        #{padUpNorItr,jdbcType=DECIMAL},
+      </if>
+      <if test="rcvDftItr != null">
+        #{rcvDftItr,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpDftItr != null">
+        #{padUpDftItr,jdbcType=DECIMAL},
+      </if>
+      <if test="rcvPnsItr != null">
+        #{rcvPnsItr,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpPnsItr != null">
+        #{padUpPnsItr,jdbcType=DECIMAL},
+      </if>
+      <if test="dftOtdItr != null">
+        #{dftOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueCapi != null">
+        #{overdueCapi,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueItr != null">
+        #{overdueItr,jdbcType=DECIMAL},
+      </if>
+      <if test="overduePnsItr != null">
+        #{overduePnsItr,jdbcType=DECIMAL},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.customerManage.bean.IllegalRecord">
+    update TB_LOAN_ILLEGAL_RECORD
+    <set>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null">
+        BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overdueDate != null">
+        OVERDUE_DATE = #{overdueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayDate != null">
+        REPAY_DATE = #{repayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rcvPrn != null">
+        RCV_PRN = #{rcvPrn,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpPrn != null">
+        PAD_UP_PRN = #{padUpPrn,jdbcType=DECIMAL},
+      </if>
+      <if test="rcvNorItr != null">
+        RCV_NOR_ITR = #{rcvNorItr,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpNorItr != null">
+        PAD_UP_NOR_ITR = #{padUpNorItr,jdbcType=DECIMAL},
+      </if>
+      <if test="rcvDftItr != null">
+        RCV_DFT_ITR = #{rcvDftItr,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpDftItr != null">
+        PAD_UP_DFT_ITR = #{padUpDftItr,jdbcType=DECIMAL},
+      </if>
+      <if test="rcvPnsItr != null">
+        RCV_PNS_ITR = #{rcvPnsItr,jdbcType=DECIMAL},
+      </if>
+      <if test="padUpPnsItr != null">
+        PAD_UP_PNS_ITR = #{padUpPnsItr,jdbcType=DECIMAL},
+      </if>
+      <if test="dftOtdItr != null">
+        DFT_OTD_ITR = #{dftOtdItr,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueCapi != null">
+        OVERDUE_CAPI = #{overdueCapi,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueItr != null">
+        OVERDUE_ITR = #{overdueItr,jdbcType=DECIMAL},
+      </if>
+      <if test="overduePnsItr != null">
+        OVERDUE_PNS_ITR = #{overduePnsItr,jdbcType=DECIMAL},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR}
+      and CURR_PERI = #{currPeri,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.customerManage.bean.IllegalRecord">
+    update TB_LOAN_ILLEGAL_RECORD
+    set STATUS = #{status,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      OVERDUE_DATE = #{overdueDate,jdbcType=TIMESTAMP},
+      REPAY_DATE = #{repayDate,jdbcType=TIMESTAMP},
+      RCV_PRN = #{rcvPrn,jdbcType=DECIMAL},
+      PAD_UP_PRN = #{padUpPrn,jdbcType=DECIMAL},
+      RCV_NOR_ITR = #{rcvNorItr,jdbcType=DECIMAL},
+      PAD_UP_NOR_ITR = #{padUpNorItr,jdbcType=DECIMAL},
+      RCV_DFT_ITR = #{rcvDftItr,jdbcType=DECIMAL},
+      PAD_UP_DFT_ITR = #{padUpDftItr,jdbcType=DECIMAL},
+      RCV_PNS_ITR = #{rcvPnsItr,jdbcType=DECIMAL},
+      PAD_UP_PNS_ITR = #{padUpPnsItr,jdbcType=DECIMAL},
+      DFT_OTD_ITR = #{dftOtdItr,jdbcType=DECIMAL},
+      OVERDUE_CAPI = #{overdueCapi,jdbcType=DECIMAL},
+      OVERDUE_ITR = #{overdueItr,jdbcType=DECIMAL},
+      OVERDUE_PNS_ITR = #{overduePnsItr,jdbcType=DECIMAL},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR}
+      and CURR_PERI = #{currPeri,jdbcType=VARCHAR}
+  </update>
+</mapper>

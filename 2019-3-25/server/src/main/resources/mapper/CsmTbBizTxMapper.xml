@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizTxMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbBizTx">
+    <id column="TX_ID" jdbcType="VARCHAR" property="txId" />
+    <result column="TXFS" jdbcType="VARCHAR" property="txfs" />
+    <result column="TXBL" jdbcType="DECIMAL" property="txbl" />
+    <result column="GDJE" jdbcType="DECIMAL" property="gdje" />
+    <result column="XE" jdbcType="DECIMAL" property="xe" />
+    <result column="QXDW" jdbcType="VARCHAR" property="qxdw" />
+    <result column="TXZT1" jdbcType="VARCHAR" property="txzt1" />
+    <result column="TXZH1" jdbcType="VARCHAR" property="txzh1" />
+    <result column="TXZT2" jdbcType="VARCHAR" property="txzt2" />
+    <result column="TXZH2" jdbcType="VARCHAR" property="txzh2" />
+    <result column="TXZT3" jdbcType="VARCHAR" property="txzt3" />
+    <result column="TXZH3" jdbcType="VARCHAR" property="txzh3" />
+    <result column="TXZH4" jdbcType="VARCHAR" property="txzh4" />
+    <result column="TXZT4" jdbcType="VARCHAR" property="txzt4" />
+    <result column="QX" jdbcType="DECIMAL" property="qx" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="TXJG1" jdbcType="VARCHAR" property="txjg1" />
+    <result column="TXJG2" jdbcType="VARCHAR" property="txjg2" />
+    <result column="TXJG3" jdbcType="VARCHAR" property="txjg3" />
+    <result column="TXJG4" jdbcType="VARCHAR" property="txjg4" />
+    <result column="ZHLX1" jdbcType="VARCHAR" property="zhlx1" />
+    <result column="ZHLX2" jdbcType="VARCHAR" property="zhlx2" />
+    <result column="ZHLX3" jdbcType="VARCHAR" property="zhlx3" />
+    <result column="ZHLX4" jdbcType="VARCHAR" property="zhlx4" />
+    <result column="TXZQ" jdbcType="TIMESTAMP" property="txzq" />
+    <result column="TX_MARK" jdbcType="VARCHAR" property="txMark" />
+    <result column="TX_BEGIN_DATE" jdbcType="TIMESTAMP" property="txBeginDate" />
+    <result column="TX_END_DATE" jdbcType="TIMESTAMP" property="txEndDate" />
+    <result column="TX_ZH_NAME" jdbcType="VARCHAR" property="txZhName" />
+    <result column="XYH1" jdbcType="VARCHAR" property="xyh1" />
+    <result column="YSTXJE" jdbcType="DECIMAL" property="ystxje" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TX_ID, TXFS, TXBL, GDJE, XE, QXDW, TXZT1, TXZH1, TXZT2, TXZH2, TXZT3, TXZH3, TXZH4, 
+    TXZT4, QX, APPLY_ID, TXJG1, TXJG2, TXJG3, TXJG4, ZHLX1, ZHLX2, ZHLX3, ZHLX4, TXZQ, 
+    TX_MARK, TX_BEGIN_DATE, TX_END_DATE, TX_ZH_NAME, XYH1, YSTXJE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_TX
+    where TX_ID = #{txId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_TX
+    where TX_ID = #{txId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.CsmTbBizTx">
+    insert into TB_BIZ_TX (TX_ID, TXFS, TXBL, 
+      GDJE, XE, QXDW, TXZT1, 
+      TXZH1, TXZT2, TXZH2, 
+      TXZT3, TXZH3, TXZH4, 
+      TXZT4, QX, APPLY_ID, 
+      TXJG1, TXJG2, TXJG3, 
+      TXJG4, ZHLX1, ZHLX2, 
+      ZHLX3, ZHLX4, TXZQ, 
+      TX_MARK, TX_BEGIN_DATE, TX_END_DATE, 
+      TX_ZH_NAME, XYH1, YSTXJE
+      )
+    values (#{txId,jdbcType=VARCHAR}, #{txfs,jdbcType=VARCHAR}, #{txbl,jdbcType=DECIMAL}, 
+      #{gdje,jdbcType=DECIMAL}, #{xe,jdbcType=DECIMAL}, #{qxdw,jdbcType=VARCHAR}, #{txzt1,jdbcType=VARCHAR}, 
+      #{txzh1,jdbcType=VARCHAR}, #{txzt2,jdbcType=VARCHAR}, #{txzh2,jdbcType=VARCHAR}, 
+      #{txzt3,jdbcType=VARCHAR}, #{txzh3,jdbcType=VARCHAR}, #{txzh4,jdbcType=VARCHAR}, 
+      #{txzt4,jdbcType=VARCHAR}, #{qx,jdbcType=DECIMAL}, #{applyId,jdbcType=VARCHAR}, 
+      #{txjg1,jdbcType=VARCHAR}, #{txjg2,jdbcType=VARCHAR}, #{txjg3,jdbcType=VARCHAR}, 
+      #{txjg4,jdbcType=VARCHAR}, #{zhlx1,jdbcType=VARCHAR}, #{zhlx2,jdbcType=VARCHAR}, 
+      #{zhlx3,jdbcType=VARCHAR}, #{zhlx4,jdbcType=VARCHAR}, #{txzq,jdbcType=TIMESTAMP}, 
+      #{txMark,jdbcType=VARCHAR}, #{txBeginDate,jdbcType=TIMESTAMP}, #{txEndDate,jdbcType=TIMESTAMP}, 
+      #{txZhName,jdbcType=VARCHAR}, #{xyh1,jdbcType=VARCHAR}, #{ystxje,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.CsmTbBizTx">
+    insert into TB_BIZ_TX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="txId != null">
+        TX_ID,
+      </if>
+      <if test="txfs != null">
+        TXFS,
+      </if>
+      <if test="txbl != null">
+        TXBL,
+      </if>
+      <if test="gdje != null">
+        GDJE,
+      </if>
+      <if test="xe != null">
+        XE,
+      </if>
+      <if test="qxdw != null">
+        QXDW,
+      </if>
+      <if test="txzt1 != null">
+        TXZT1,
+      </if>
+      <if test="txzh1 != null">
+        TXZH1,
+      </if>
+      <if test="txzt2 != null">
+        TXZT2,
+      </if>
+      <if test="txzh2 != null">
+        TXZH2,
+      </if>
+      <if test="txzt3 != null">
+        TXZT3,
+      </if>
+      <if test="txzh3 != null">
+        TXZH3,
+      </if>
+      <if test="txzh4 != null">
+        TXZH4,
+      </if>
+      <if test="txzt4 != null">
+        TXZT4,
+      </if>
+      <if test="qx != null">
+        QX,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="txjg1 != null">
+        TXJG1,
+      </if>
+      <if test="txjg2 != null">
+        TXJG2,
+      </if>
+      <if test="txjg3 != null">
+        TXJG3,
+      </if>
+      <if test="txjg4 != null">
+        TXJG4,
+      </if>
+      <if test="zhlx1 != null">
+        ZHLX1,
+      </if>
+      <if test="zhlx2 != null">
+        ZHLX2,
+      </if>
+      <if test="zhlx3 != null">
+        ZHLX3,
+      </if>
+      <if test="zhlx4 != null">
+        ZHLX4,
+      </if>
+      <if test="txzq != null">
+        TXZQ,
+      </if>
+      <if test="txMark != null">
+        TX_MARK,
+      </if>
+      <if test="txBeginDate != null">
+        TX_BEGIN_DATE,
+      </if>
+      <if test="txEndDate != null">
+        TX_END_DATE,
+      </if>
+      <if test="txZhName != null">
+        TX_ZH_NAME,
+      </if>
+      <if test="xyh1 != null">
+        XYH1,
+      </if>
+      <if test="ystxje != null">
+        YSTXJE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="txId != null">
+        #{txId,jdbcType=VARCHAR},
+      </if>
+      <if test="txfs != null">
+        #{txfs,jdbcType=VARCHAR},
+      </if>
+      <if test="txbl != null">
+        #{txbl,jdbcType=DECIMAL},
+      </if>
+      <if test="gdje != null">
+        #{gdje,jdbcType=DECIMAL},
+      </if>
+      <if test="xe != null">
+        #{xe,jdbcType=DECIMAL},
+      </if>
+      <if test="qxdw != null">
+        #{qxdw,jdbcType=VARCHAR},
+      </if>
+      <if test="txzt1 != null">
+        #{txzt1,jdbcType=VARCHAR},
+      </if>
+      <if test="txzh1 != null">
+        #{txzh1,jdbcType=VARCHAR},
+      </if>
+      <if test="txzt2 != null">
+        #{txzt2,jdbcType=VARCHAR},
+      </if>
+      <if test="txzh2 != null">
+        #{txzh2,jdbcType=VARCHAR},
+      </if>
+      <if test="txzt3 != null">
+        #{txzt3,jdbcType=VARCHAR},
+      </if>
+      <if test="txzh3 != null">
+        #{txzh3,jdbcType=VARCHAR},
+      </if>
+      <if test="txzh4 != null">
+        #{txzh4,jdbcType=VARCHAR},
+      </if>
+      <if test="txzt4 != null">
+        #{txzt4,jdbcType=VARCHAR},
+      </if>
+      <if test="qx != null">
+        #{qx,jdbcType=DECIMAL},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="txjg1 != null">
+        #{txjg1,jdbcType=VARCHAR},
+      </if>
+      <if test="txjg2 != null">
+        #{txjg2,jdbcType=VARCHAR},
+      </if>
+      <if test="txjg3 != null">
+        #{txjg3,jdbcType=VARCHAR},
+      </if>
+      <if test="txjg4 != null">
+        #{txjg4,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx1 != null">
+        #{zhlx1,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx2 != null">
+        #{zhlx2,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx3 != null">
+        #{zhlx3,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx4 != null">
+        #{zhlx4,jdbcType=VARCHAR},
+      </if>
+      <if test="txzq != null">
+        #{txzq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txMark != null">
+        #{txMark,jdbcType=VARCHAR},
+      </if>
+      <if test="txBeginDate != null">
+        #{txBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txEndDate != null">
+        #{txEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txZhName != null">
+        #{txZhName,jdbcType=VARCHAR},
+      </if>
+      <if test="xyh1 != null">
+        #{xyh1,jdbcType=VARCHAR},
+      </if>
+      <if test="ystxje != null">
+        #{ystxje,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.CsmTbBizTx">
+    update TB_BIZ_TX
+    <set>
+      <if test="txfs != null">
+        TXFS = #{txfs,jdbcType=VARCHAR},
+      </if>
+      <if test="txbl != null">
+        TXBL = #{txbl,jdbcType=DECIMAL},
+      </if>
+      <if test="gdje != null">
+        GDJE = #{gdje,jdbcType=DECIMAL},
+      </if>
+      <if test="xe != null">
+        XE = #{xe,jdbcType=DECIMAL},
+      </if>
+      <if test="qxdw != null">
+        QXDW = #{qxdw,jdbcType=VARCHAR},
+      </if>
+      <if test="txzt1 != null">
+        TXZT1 = #{txzt1,jdbcType=VARCHAR},
+      </if>
+      <if test="txzh1 != null">
+        TXZH1 = #{txzh1,jdbcType=VARCHAR},
+      </if>
+      <if test="txzt2 != null">
+        TXZT2 = #{txzt2,jdbcType=VARCHAR},
+      </if>
+      <if test="txzh2 != null">
+        TXZH2 = #{txzh2,jdbcType=VARCHAR},
+      </if>
+      <if test="txzt3 != null">
+        TXZT3 = #{txzt3,jdbcType=VARCHAR},
+      </if>
+      <if test="txzh3 != null">
+        TXZH3 = #{txzh3,jdbcType=VARCHAR},
+      </if>
+      <if test="txzh4 != null">
+        TXZH4 = #{txzh4,jdbcType=VARCHAR},
+      </if>
+      <if test="txzt4 != null">
+        TXZT4 = #{txzt4,jdbcType=VARCHAR},
+      </if>
+      <if test="qx != null">
+        QX = #{qx,jdbcType=DECIMAL},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="txjg1 != null">
+        TXJG1 = #{txjg1,jdbcType=VARCHAR},
+      </if>
+      <if test="txjg2 != null">
+        TXJG2 = #{txjg2,jdbcType=VARCHAR},
+      </if>
+      <if test="txjg3 != null">
+        TXJG3 = #{txjg3,jdbcType=VARCHAR},
+      </if>
+      <if test="txjg4 != null">
+        TXJG4 = #{txjg4,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx1 != null">
+        ZHLX1 = #{zhlx1,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx2 != null">
+        ZHLX2 = #{zhlx2,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx3 != null">
+        ZHLX3 = #{zhlx3,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlx4 != null">
+        ZHLX4 = #{zhlx4,jdbcType=VARCHAR},
+      </if>
+      <if test="txzq != null">
+        TXZQ = #{txzq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txMark != null">
+        TX_MARK = #{txMark,jdbcType=VARCHAR},
+      </if>
+      <if test="txBeginDate != null">
+        TX_BEGIN_DATE = #{txBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txEndDate != null">
+        TX_END_DATE = #{txEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txZhName != null">
+        TX_ZH_NAME = #{txZhName,jdbcType=VARCHAR},
+      </if>
+      <if test="xyh1 != null">
+        XYH1 = #{xyh1,jdbcType=VARCHAR},
+      </if>
+      <if test="ystxje != null">
+        YSTXJE = #{ystxje,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where TX_ID = #{txId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.CsmTbBizTx">
+    update TB_BIZ_TX
+    set TXFS = #{txfs,jdbcType=VARCHAR},
+      TXBL = #{txbl,jdbcType=DECIMAL},
+      GDJE = #{gdje,jdbcType=DECIMAL},
+      XE = #{xe,jdbcType=DECIMAL},
+      QXDW = #{qxdw,jdbcType=VARCHAR},
+      TXZT1 = #{txzt1,jdbcType=VARCHAR},
+      TXZH1 = #{txzh1,jdbcType=VARCHAR},
+      TXZT2 = #{txzt2,jdbcType=VARCHAR},
+      TXZH2 = #{txzh2,jdbcType=VARCHAR},
+      TXZT3 = #{txzt3,jdbcType=VARCHAR},
+      TXZH3 = #{txzh3,jdbcType=VARCHAR},
+      TXZH4 = #{txzh4,jdbcType=VARCHAR},
+      TXZT4 = #{txzt4,jdbcType=VARCHAR},
+      QX = #{qx,jdbcType=DECIMAL},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      TXJG1 = #{txjg1,jdbcType=VARCHAR},
+      TXJG2 = #{txjg2,jdbcType=VARCHAR},
+      TXJG3 = #{txjg3,jdbcType=VARCHAR},
+      TXJG4 = #{txjg4,jdbcType=VARCHAR},
+      ZHLX1 = #{zhlx1,jdbcType=VARCHAR},
+      ZHLX2 = #{zhlx2,jdbcType=VARCHAR},
+      ZHLX3 = #{zhlx3,jdbcType=VARCHAR},
+      ZHLX4 = #{zhlx4,jdbcType=VARCHAR},
+      TXZQ = #{txzq,jdbcType=TIMESTAMP},
+      TX_MARK = #{txMark,jdbcType=VARCHAR},
+      TX_BEGIN_DATE = #{txBeginDate,jdbcType=TIMESTAMP},
+      TX_END_DATE = #{txEndDate,jdbcType=TIMESTAMP},
+      TX_ZH_NAME = #{txZhName,jdbcType=VARCHAR},
+      XYH1 = #{xyh1,jdbcType=VARCHAR},
+      YSTXJE = #{ystxje,jdbcType=DECIMAL}
+    where TX_ID = #{txId,jdbcType=VARCHAR}
+  </update>
+</mapper>

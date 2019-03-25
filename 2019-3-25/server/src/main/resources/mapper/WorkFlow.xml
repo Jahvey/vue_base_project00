@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.workflow.mapper.WorkFlowMapper">
+  
+  <resultMap type="java.util.HashMap" id="resultMapGroup">
+        <result column="REMIND_TYPE" javaType="string" property="remindType"/>
+        <result column="REMIND_NAME" javaType="string" property="remindName"/>
+        <result column="NUMS" javaType="string" property="num"/>
+  </resultMap>
+  
+  <!--风险预警提示列表：客户经理查询  条数统计   select_id_jl_count-->
+    <select id="countRemindInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	    select 1
+		  from tb_csm_party       a,
+		       tb_tab_remind_info b
+				  left join tb_loan_summary s
+				    on s.summary_id = b.business_id, 
+		    ${tableName}		 c, 
+		    tb_csm_management_team t
+		 where a.party_id = b.party_id
+		       and t.party_id = b.party_id
+		       and b.remind_id = c.remind_id
+		       and b.remind_status != '00' <!--排除 待提醒 状态-->
+			   and t.org_num = #{orgCode}
+		       and t.user_num = #{userCode} 
+			   <if test="partyName !=null and partyName !=''">
+         	and a.party_name like '%$partyName$%'
+         	</if>
+			   <if test="remindStatus != null and remindStatus !=''">
+			   and b.remind_status='$remindStatus$'
+			   </if>
+			   <if test="stDate != null and stDate !=''">
+			   and b.begin_date &gt;= to_date(substr(#{stDate},0,10),'yyyy-MM-dd')
+			   </if>
+			   
+			   <if test="enDate != null and enDate !=''">
+			   and b.begin_date &lt;= to_date(substr(#{enDate},0,10),'yyyy-MM-dd')
+			   </if>
+			   order by s.yqts
+    </select>
+  
+  <!--第一步 总数查询 select_group_id-->
+    <select id="queryRemindInfoGroup" parameterType="java.util.HashMap" resultMap="resultMapGroup">
+		select a.dictid as remind_type,
+		 	   a.dictname as remind_name,
+		       nvl(b.nums, 0) as nums
+		  from eos_dict_entry a
+		  left join (select remind_type,
+		                    count(r.remind_id) as nums
+		               from tb_tab_remind_info r,
+		               		tb_csm_management_team t
+		              where r.party_id = t.party_id
+		              and r.remind_status = '01' <!--待处理-->
+		              <!--and t.org_num = #orgCode# -->
+				      and (r.remind_user_num = #{userCode} or exists (
+                           select 1
+                            from om_organization a
+                             start with a.orgid in (select d.orgid
+                                                     from om_organization d
+                                                    where d.PARENTORGID = #{orgId}
+                                                   )
+                            connect by prior a.orgid = a.parentorgid)
+			               ) <!-- 负责人岗  行长岗-->
+		              group by remind_type
+		              union
+		                select g.warn_tp_cd as remind_type,count(g.remind_id) as nums
+                  		 from tb_tab_remind_guar g, tb_csm_management_team t where g.owner_id = t.party_id 
+                  		 and g.warn_sts_cd = '01' <!--and t.org_num = #orgCode# -->
+                  		 and (g.OPR_USER_NO = #{userCode} or exists (
+                  		      select 1
+                              from om_organization a
+                              start with a.orgid in (select d.orgid
+                                                     from om_organization d
+                                                    where d.PARENTORGID = #{orgId}
+                                                   )
+                             connect by prior a.orgid = a.parentorgid ))
+                  		 group by g.warn_tp_cd
+		              
+		              ) b
+		    on b.remind_type = a.dictid
+		 where a.dicttypeid = 'XD_DHCD0015' AND a.DICTID !='09'
+		 order by a.SORTNO
+    </select>
+  
+  <!--通用检查-->
+    <select id="select_id" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	    select a.party_id,
+		       a.party_name,
+		       b.remind_id,
+		       b.remind_type,
+		       b.create_date,
+		       b.begin_date,
+		       b.end_date,
+		       b.remind_status,
+		       t.org_num       team_org_num,
+		       t.user_num      team_user_num,
+		       s.summary_amt   new_summary_amt,
+		       s.jjyqbj        new_jjyqbj,
+		       s.arrear_itr    new_arrear_itr,
+		       s.punish_itr    new_punish_itr,
+		       s.end_date      new_end_date,
+		       s.yqts          new_yqts,
+		       c.*
+		  from tb_csm_party       a,
+		       tb_tab_remind_info b
+				  left join tb_loan_summary s
+				    on s.summary_id = b.business_id, 
+		    $tableName$		 c, 
+		    tb_csm_management_team t
+		 where a.party_id = b.party_id
+		       and t.party_id = b.party_id
+		       and b.remind_id = c.remind_id
+		       and b.remind_status != '00' <!--排除 待提醒 状态-->
+		       and (t.user_num = #{userCode} or t.org_num in (select a.orgcode
+           from om_organization a
+          start with a.orgid in (select d.orgid
+                                  from 
+                                  om_organization d
+                                 where d.parentorgid = #{orgId}
+                                  )
+         connect by prior a.orgid = a.parentorgid)
+        <!-- or t.org_num in (#orgCode#) -->)
+			   
+			   <if test="partyName !=null and partyName !=''">
+         	and a.party_name like '%$partyName$%'
+         	</if>
+			   <if test="remindStatus != null and remindStatus !=''">
+			   and b.remind_status='$remindStatus$'
+			   </if>
+			   <if test="stDate != null and stDate !=''">
+			   and b.begin_date &gt;= to_date(substr(#{stDate},0,10),'yyyy-MM-dd')
+			   </if>
+			   
+			   <if test="enDate != null and enDate !=''">
+			   and b.begin_date &lt;= to_date(substr(#{enDate},0,10),'yyyy-MM-dd')
+			   </if>
+			   
+			    
+			   order by s.yqts
+    </select>
+  
+  <!--通用检查 条数统计select_id_count-->
+    <select id="countRemindInfoAdmin" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	    select 1
+		  from tb_csm_party       a,
+		       tb_tab_remind_info b
+				  left join tb_loan_summary s
+				    on s.summary_id = b.business_id,
+		    ${tableName}	c,
+		    tb_csm_management_team t
+		 where a.party_id = b.party_id
+		       and t.party_id = b.party_id
+		       and b.remind_id = c.remind_id
+		       and b.remind_status != '00' <!--排除 待提醒 状态-->
+		       and (t.user_num = #{userCode} or t.org_num in (select a.orgcode
+           from om_organization a
+          start with a.orgid in (select d.orgid
+                                  from 
+                                  om_organization d
+                                 where d.parentorgid = #{orgId}
+                                  )
+         connect by prior a.orgid = a.parentorgid)
+         or t.org_num in (#{orgCode}))
+         	<if test="partyName !=null and partyName !=''">
+         	and a.party_name like '%$partyName$%'
+         	</if>
+			   <if test="remindStatus != null and remindStatus !=''">
+			   and b.remind_status='$remindStatus$'
+			   </if>
+			   <if test="stDate != null and stDate !=''">
+			   and b.begin_date &gt;= to_date(substr(#{stDate},0,10),'yyyy-MM-dd')
+			   </if>
+			   
+			   <if test="enDate != null and enDate !=''">
+			   and b.begin_date &lt;= to_date(substr(#{enDate},0,10),'yyyy-MM-dd')
+			   </if>
+			   order by s.yqts
+    </select>
+  <!-- 创建流程的时候 信贷记录  TB_WFM_PROCESSINSTANCE-->
+  <insert id="insertProcessinstance" parameterType="com.cdgit.loan.workflow.bean.TbWfmProcessinstance">
+    insert into TB_WFM_PROCESSINSTANCE (PROCESS_ID, PRODUCT_CD, PRODUCT_ID, 
+      CREATE_POST_NAME, CREATE_POST_CD, CREATE_USER_NAME, 
+      CREATE_USER_NUM, CREATE_ORG_NAME, CREATE_ORG_NUM, 
+      CREATE_TIME, FINISH_TIME, ACTIVITY_NAME, 
+      POST_CD, APPOINT_USER_NAME, APPOINT_USER_NUM, 
+      APPOINT_ORG_CD, APPOINT_ORG_NAME, TEMPLATE_VERSION, 
+      PROCESS_STATUS, APP_TYPE, CUS_NAME, 
+      BIZ_STATUS, PRODUCT_NAME, BIZ_VIEW_URL, 
+      LASTUPDATETIME, PROCESSDEFNAME, PROCESSINSTANCENAME, 
+      CUST_ID)
+    values (#{processId,jdbcType=VARCHAR}, #{productCd,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{createPostName,jdbcType=VARCHAR}, #{createPostCd,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, 
+      #{createUserNum,jdbcType=VARCHAR}, #{createOrgName,jdbcType=VARCHAR}, #{createOrgNum,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, #{activityName,jdbcType=VARCHAR}, 
+      #{postCd,jdbcType=VARCHAR}, #{appointUserName,jdbcType=VARCHAR}, #{appointUserNum,jdbcType=VARCHAR}, 
+      #{appointOrgCd,jdbcType=VARCHAR}, #{appointOrgName,jdbcType=VARCHAR}, #{templateVersion,jdbcType=VARCHAR}, 
+      #{processStatus,jdbcType=VARCHAR}, #{appType,jdbcType=VARCHAR}, #{cusName,jdbcType=VARCHAR}, 
+      #{bizStatus,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{bizViewUrl,jdbcType=VARCHAR}, 
+      #{lastupdatetime,jdbcType=TIMESTAMP}, #{processdefname,jdbcType=VARCHAR}, #{processinstancename,jdbcType=VARCHAR}, 
+      #{custId,jdbcType=VARCHAR})
+  </insert>
+  <!-- 当工作是认领执行时执行这个方法 -->
+  <update id="updateProcessinstance" parameterType="java.util.HashMap">
+  	update tb_wfm_processinstance 
+  	set appoint_org_cd=#{appointOrgCd,jdbcType=VARCHAR},
+  	appoint_org_name=#{appointOrgName,jdbcType=VARCHAR},
+  	appoint_user_name=#{appointUserName,jdbcType=VARCHAR},
+  	appoint_user_num=#{appointUserNum}
+  	<if test="processStatus!=null and processStatus !='' ">
+  	,process_status=#{processStatus,jdbcType=VARCHAR},
+  	</if>
+  	<if test="finishTime != null and finishTime !=''">
+  	finish_time=#{finishTime},
+  	</if>
+  	<if test="lastupdatetime != null and lastupdatetime != ''">
+  	lastupdatetime=#{lastupdatetime}
+  	</if>
+  	where process_id=#{processId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 点击执行 或者 认领执行时插入  对流程发起人而言也可在创建流程后直接意见页面提交时插入-->
+  <insert id="insertWorkiteminstance" parameterType="com.cdgit.loan.workflow.bean.TbWfmWorkiteminstance">
+    insert into TB_WFM_WORKITEMINSTANCE (WORK_INSTANCE_ID, ACTIVITY_NAME, USER_NAME, 
+      USER_NUM, ORG_NAME, ORG_NUM, 
+      POST_NAME, POST_CD, RECEIVE_TIME, 
+      FINISH_TIME, NEXT_USERS_NUM, NEXT_USERS_NAME, 
+      NEXT_ORG_NAME, NEXT_ORG_NUM, NEXT_POST_NAME, 
+      NEXT_POST_NUM, CONCLUSION, WORKITEM_NUM, 
+      IS_SIGN, TAG, STATUS, 
+      SUBMIT_TYPE, ACTIVITY_ID, PROCESS_ID, 
+      PERFORMTIME, ID, OPINION, 
+      EXAMINE_KEY, RISK_ANALYZE, LOAN_CONDITION_AGO, 
+      SPECIAL_REQUEST, LOAN_CONDITION_LATER)
+    values (#{workInstanceId,jdbcType=VARCHAR}, #{activityName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userNum,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, 
+      #{postName,jdbcType=VARCHAR}, #{postCd,jdbcType=VARCHAR}, #{receiveTime,jdbcType=TIMESTAMP}, 
+      #{finishTime,jdbcType=TIMESTAMP}, #{nextUsersNum,jdbcType=VARCHAR}, #{nextUsersName,jdbcType=VARCHAR}, 
+      #{nextOrgName,jdbcType=VARCHAR}, #{nextOrgNum,jdbcType=VARCHAR}, #{nextPostName,jdbcType=VARCHAR}, 
+      #{nextPostNum,jdbcType=VARCHAR}, #{conclusion,jdbcType=VARCHAR}, #{workitemNum,jdbcType=VARCHAR}, 
+      #{isSign,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{submitType,jdbcType=VARCHAR}, #{activityId,jdbcType=VARCHAR}, #{processId,jdbcType=VARCHAR}, 
+      #{performtime,jdbcType=TIMESTAMP}, #{id,jdbcType=VARCHAR}, #{opinion,jdbcType=VARCHAR}, 
+      #{examineKey,jdbcType=VARCHAR}, #{riskAnalyze,jdbcType=VARCHAR}, #{loanConditionAgo,jdbcType=VARCHAR}, 
+      #{specialRequest,jdbcType=VARCHAR}, #{loanConditionLater,jdbcType=VARCHAR})
+  </insert>
+  
+  
+  <insert id="insertParticipant" parameterType="com.cdgit.loan.workflow.bean.TbWfmParticipant">
+    insert into TB_WFM_PARTICIPANT (P_ID, ID, USER_NUM
+      )
+    values (#{pId,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  	<!-- 查询是否已有工作项实例 -->
+  	<select id="queryWorkiteminstance" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+  	select count(1) from tb_wfm_workiteminstance where 1=1
+  	<if test="workInstanceId !=null and workInstanceId !='' ">
+  	and work_instance_id==#{workInstanceId}
+  	</if>
+  	<if test="status != null and status!='' ">
+  	and status=#{status}
+  	</if>
+  	<if test="processId != null and processId != '' ">
+  	and process_id=#{processId}
+  	</if>
+  	</select>
+  
+  	<!-- 查询流程模板映射表 -->
+  	<select id="queryProcessmapping" parameterType="java.util.HashMap" resultType="com.cdgit.loan.workflow.bean.TbWfmProcessmapping">
+  	select * from tb_wfm_processmapping where 1=1
+  	<if test="templateVersion != null and templateVersion !='' ">
+  	and templage_version=#{templateVersion}
+  	</if>
+  	<if test="processDefName!= null and processDefName != '' ">
+  	and template_name=#{processDefName}
+  	</if>
+  	</select>
+  	
+  	
+  	<resultMap id="BaseInstanceResultMap" type="com.cdgit.loan.workflow.bean.TbWfmProcessinstance">
+    <id column="PROCESS_ID" jdbcType="VARCHAR" property="processId" />
+    <result column="PRODUCT_CD" jdbcType="VARCHAR" property="productCd" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="CREATE_POST_NAME" jdbcType="VARCHAR" property="createPostName" />
+    <result column="CREATE_POST_CD" jdbcType="VARCHAR" property="createPostCd" />
+    <result column="CREATE_USER_NAME" jdbcType="VARCHAR" property="createUserName" />
+    <result column="CREATE_USER_NUM" jdbcType="VARCHAR" property="createUserNum" />
+    <result column="CREATE_ORG_NAME" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="CREATE_ORG_NUM" jdbcType="VARCHAR" property="createOrgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="FINISH_TIME" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="ACTIVITY_NAME" jdbcType="VARCHAR" property="activityName" />
+    <result column="POST_CD" jdbcType="VARCHAR" property="postCd" />
+    <result column="APPOINT_USER_NAME" jdbcType="VARCHAR" property="appointUserName" />
+    <result column="APPOINT_USER_NUM" jdbcType="VARCHAR" property="appointUserNum" />
+    <result column="APPOINT_ORG_CD" jdbcType="VARCHAR" property="appointOrgCd" />
+    <result column="APPOINT_ORG_NAME" jdbcType="VARCHAR" property="appointOrgName" />
+    <result column="TEMPLATE_VERSION" jdbcType="VARCHAR" property="templateVersion" />
+    <result column="PROCESS_STATUS" jdbcType="VARCHAR" property="processStatus" />
+    <result column="APP_TYPE" jdbcType="VARCHAR" property="appType" />
+    <result column="CUS_NAME" jdbcType="VARCHAR" property="cusName" />
+    <result column="BIZ_STATUS" jdbcType="VARCHAR" property="bizStatus" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="BIZ_VIEW_URL" jdbcType="VARCHAR" property="bizViewUrl" />
+    <result column="LASTUPDATETIME" jdbcType="TIMESTAMP" property="lastupdatetime" />
+    <result column="PROCESSDEFNAME" jdbcType="VARCHAR" property="processdefname" />
+    <result column="PROCESSINSTANCENAME" jdbcType="VARCHAR" property="processinstancename" />
+    <result column="CUST_ID" jdbcType="VARCHAR" property="custId" />
+  </resultMap>
+  	
+  <!-- 贷后变更专用 -->
+  <select id="findPro" parameterType="java.util.HashMap" resultMap="BaseInstanceResultMap">
+            select p.product_id from TB_WFM_PROCESSINSTANCE p where p.process_id = #{processInstId}
+  </select>
+    
+   <select id="queryLoanInfo" parameterType="java.lang.String" resultType="java.util.HashMap">
+	    select 
+	       b.due_num,
+	       b.sts, <!--贷款状态-->
+	       b.ceas_flg, <!--停息标志-->
+	       b.prm_cls, <!--主类别-->
+	       b.ast_cls, <!--子类别-->
+	       b.deva_sts, <!--减值状态-->
+	       b.nor_itr_rate, <!--利率-->
+	       nvl(c.nor_bal_101, 0) + nvl(c.dvl_bal_102, 0) - nvl(c.res_nor, 0) as overdueCapital, <!--逾期本金-->
+	       nvl(c.out_nor_bal_209, 0) as out_nor_bal_09, <!--表外正常利息-->
+	       nvl(c.out_dft_bal_210, 0) as out_dft_bal_10, <!--表外拖欠利息-->
+	       nvl(c.in_dft_bal_207, 0) as in_dft_bal_07, <!--表内拖欠利息-->
+	       nvl(c.out_pns_bal_211, 0) as out_pns_bal_11, <!--表外罚息-->
+	       nvl(c.in_pns_bal_208, 0) as in_pns_bal_08, <!--表内罚息-->
+	       nvl(c.in_nor_bal_206, 0) as in_nor_bal_06, <!--表内正常利息-->
+	       nvl(c.nor_bal_101, 0) as nor_bal_01, <!--正常本金-->
+	       nvl(c.dvl_bal_102, 0) as dvl_bal_02, <!--减值本金本金-->
+	       nvl(c.nor_bal_101, 0) + nvl(c.dvl_bal_102, 0) as v_jjye,
+	       nvl(d.dft_prn_otd_itr, 0) as dft_prn_otd_itr,
+	       nvl(d.dft_itr_out_otd_itr, 0) as dft_itr_out_otd_itr,
+	       nvl(d.nor_itr_out_otd_itr, 0) as nor_itr_out_otd_itr,
+	       nvl(d.dft_itr_in_otd_itr, 0) as dft_itr_in_otd_itr,
+	       nvl(d.nor_itr_in_otd_itr, 0) as nor_itr_in_otd_itr
+	  from tb_sup_loan_info    b,
+	       tb_sup_account_info c
+	  left join (select due_num,
+	                    sum(dft_prn_otd_itr) dft_prn_otd_itr,
+	                    sum(dft_itr_out_otd_itr) dft_itr_out_otd_itr,
+	                    sum(nor_itr_out_otd_itr) nor_itr_out_otd_itr,
+	                    sum(dft_itr_in_otd_itr) dft_itr_in_otd_itr,
+	                    sum(nor_itr_in_otd_itr) nor_itr_in_otd_itr
+	               from tb_sup_debt_info_n
+	              group by due_num) d
+	    on d.due_num = c.due_num
+	 where c.due_num = b.due_num
+	       and b.due_num = #dueNum#
+    </select>
+  
+  <select id="queryDebtInfo" parameterType="java.lang.String" resultType="java.util.HashMap">
+    	 select due_num,
+                beg_date, <!--开始日期-->
+                end_date, <!--应还款日-->
+                pay_date, <!--最后一次还款日-->
+                curr_peri, <!--当前期次-->
+                rcv_prn, <!--应收本金金额-->
+                pad_up_prn, <!--实收本金金额-->
+                rcv_nor_itr_in + rcv_nor_itr_out as rcv_nor_itr, <!--应收正常利息-->
+                pad_up_nor_itr_in + pad_up_nor_itr_out as pad_up_nor_itr, <!--实收正常利息-->
+                rcv_dft_itr_in + rcv_dft_itr_out as rcv_dft_itr, <!--应收拖欠利息-->
+                pad_up_dft_itr_in + pad_up_dft_itr_out as pad_up_dft_itr, <!--实收拖欠利息-->
+                rcv_pns_itr_in + rcv_pns_itr_out as rcv_pns_itr, <!--应收罚息-->
+                pad_up_pns_itr_in + pad_up_pns_itr_out as pad_up_pns_itr, <!--实收罚息-->
+                dft_prn_otd_itr + dft_itr_in_otd_itr + dft_itr_out_otd_itr as dft_otd_itr <!--累计未结计罚息-->
+           from tb_sup_debt_info_n
+          where due_num = #dueNum#
+                and curr_peri != -1
+                and (rcv_nor_itr_in - pad_up_nor_itr_in + rcv_nor_itr_out -	pad_up_nor_itr_out) = 0
+                and nvl(gra_prn_flag, '0') = '0' <!--本金节假日非宽限期-->
+                and nvl(gra_itr_flag, '0') = '0' <!--利息节假日非宽限期-->
+          		and ((end_date != (select tran_date from tc_sup_sys_date  where leg_per_cod='9999') and beg_date != end_date)
+          		or beg_date = end_date )
+
+    </select>
+    
+    <resultMap id="BaseEmpResultMap" type="com.cdgit.loan.sysManage.empManage.bean.OmEmployee">
+    <id column="EMPID" jdbcType="DECIMAL" property="empid" />
+    <result column="EMPCODE" jdbcType="VARCHAR" property="empcode" />
+    <result column="OPERATORID" jdbcType="DECIMAL" property="operatorid" />
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="EMPNAME" jdbcType="VARCHAR" property="empname" />
+    <result column="REALNAME" jdbcType="VARCHAR" property="realname" />
+    <result column="GENDER" jdbcType="VARCHAR" property="gender" />
+    <result column="BIRTHDATE" jdbcType="TIMESTAMP" property="birthdate" />
+    <result column="POSITION" jdbcType="DECIMAL" property="position" />
+    <result column="EMPSTATUS" jdbcType="VARCHAR" property="empstatus" />
+    <result column="CARDTYPE" jdbcType="VARCHAR" property="cardtype" />
+    <result column="CARDNO" jdbcType="VARCHAR" property="cardno" />
+    <result column="INDATE" jdbcType="TIMESTAMP" property="indate" />
+    <result column="OUTDATE" jdbcType="TIMESTAMP" property="outdate" />
+    <result column="OTEL" jdbcType="VARCHAR" property="otel" />
+    <result column="OADDRESS" jdbcType="VARCHAR" property="oaddress" />
+    <result column="OZIPCODE" jdbcType="VARCHAR" property="ozipcode" />
+    <result column="OEMAIL" jdbcType="VARCHAR" property="oemail" />
+    <result column="FAXNO" jdbcType="VARCHAR" property="faxno" />
+    <result column="MOBILENO" jdbcType="VARCHAR" property="mobileno" />
+    <result column="MSN" jdbcType="VARCHAR" property="msn" />
+    <result column="HTEL" jdbcType="VARCHAR" property="htel" />
+    <result column="HADDRESS" jdbcType="VARCHAR" property="haddress" />
+    <result column="HZIPCODE" jdbcType="VARCHAR" property="hzipcode" />
+    <result column="PEMAIL" jdbcType="VARCHAR" property="pemail" />
+    <result column="PARTY" jdbcType="VARCHAR" property="party" />
+    <result column="DEGREE" jdbcType="VARCHAR" property="degree" />
+    <result column="MAJOR" jdbcType="DECIMAL" property="major" />
+    <result column="SPECIALTY" jdbcType="VARCHAR" property="specialty" />
+    <result column="WORKEXP" jdbcType="VARCHAR" property="workexp" />
+    <result column="REGDATE" jdbcType="TIMESTAMP" property="regdate" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="LASTMODYTIME" jdbcType="TIMESTAMP" property="lastmodytime" />
+    <result column="ORGIDLIST" jdbcType="VARCHAR" property="orgidlist" />
+    <result column="ORGID" jdbcType="DECIMAL" property="orgid" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+    <result column="LICENSENO" jdbcType="VARCHAR" property="licenseno" />
+    <result column="INTOTRADEDATE" jdbcType="TIMESTAMP" property="intotradedate" />
+    <result column="RUNMARKDATE" jdbcType="TIMESTAMP" property="runmarkdate" />
+    <result column="EMPLEVEL" jdbcType="VARCHAR" property="emplevel" />
+    <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId" />
+    <result column="INORGID" jdbcType="NUMERIC" property="inorgid" />
+    <result column="INORGNAME" jdbcType="VARCHAR" property="inorgname" />
+    <result column="ORGLEVEL" jdbcType="NUMERIC" property="orglevel" />
+    <result column="ORGCODE" jdbcType="VARCHAR" property="orgcode" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="LASTLOGIN" jdbcType="VARCHAR" property="lastlogin" />
+  </resultMap>
+    
+  <!-- 根据岗位id查询人员 -->
+  <select id="getPositionCodeInfo" parameterType="java.util.HashMap" resultMap="BaseEmpResultMap">
+  select oe.* from om_empposition oep,om_employee oe 
+  where oep.empid=oe.empid
+  <if test="positionid != null and positionid != ''">
+  and oep.positionid=#{positionid}
+  </if> 
+  <if test="orgid != null and orgid != ''">
+  and oep.orgid=#{orgid}
+  </if>
+  </select>
+  
+  <!-- 流程撤销时 判断流程是否有退回 -->
+  <select id="RBPS_0004">
+  SELECT COUNT(*) c FROM TB_WFM_WORKITEMINSTANCE w
+INNER JOIN TB_WFM_PROCESSINSTANCE p ON w.PROCESS_ID=p.PROCESS_ID
+WHERE p.PROCESS_ID=#{processInstId} AND p.PROCESSDEFNAME NOT LIKE 'com.bos.bps.pay%'
+  </select>
+  <!-- 删除流程实例 -->
+  <delete id="deleteWorkiteminstance" parameterType="java.lang.String">
+    delete from TB_WFM_PROCESSINSTANCE
+    where PROCESS_ID = #{processId,jdbcType=VARCHAR}
+  </delete>
+  
+  <!-- 删除工作项实例 -->
+  <delete id="deleteProcessinstance" parameterType="java.lang.String">
+   delete from tb_wfm_workiteminstance where PROCESS_ID = #{processId,jdbcType=VARCHAR} 
+  </delete>
+  
+  <!-- 查询 流程节点映射表-->
+  <select id="queryItemmapping" parameterType="java.util.HashMap" resultType="com.cdgit.loan.workflow.bean.TbWfmWorkitemmapping">
+  select * from tb_wfm_workitemmapping where 1=1
+  <if test="processMappingId !=null and processMappingId !=''">
+  and process_mapping_id=#{processMappingId}
+  </if>
+  <if test="activityDefId !=null and activityDefId !=''">
+  and activity_def_id=#{activityDefId}
+  </if>
+  </select>
+  
+</mapper>
