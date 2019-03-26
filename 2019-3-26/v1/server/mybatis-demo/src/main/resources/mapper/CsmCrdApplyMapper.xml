@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmCrdApplyMapper">
+
+  <resultMap id="CsmCrdApplyCorpHisVo" type="com.cdgit.loan.csm.bean.CsmCrdApplyCorpHisVo">
+	<result column="PARTY_ID" javaType="String" property="partyId" />
+	<result column="LIMIT_ID" javaType="String" property="limitId" />
+	<result column="LIMIT_TYPE" javaType="String" property="limitType" />
+	<result column="CREDIT_AMT" javaType="String" property="creditAmt" />
+	<result column="USED_AMT" javaType="String" property="usedAmt" />
+	<result column="USED_AMT_REAL" javaType="String" property="usedAmtReal" />
+	<result column="AVAILABLE_AMT" javaType="String" property="availableAmt" />
+	<result column="AVAILABLE_AMT_REAL" javaType="String" property="availableAmtReal" />
+	<result column="PARTY_NAME" javaType="String" property="partyName" />
+	<result column="CERT_TYPE" javaType="String" property="certType" />
+	<result column="CERT_NUM" javaType="String" property="certNum" />
+	<result column="USER_NUM" javaType="String" property="userNum" />
+
+  	<result column="ORG_NUM" javaType="String" property="orgNum" />
+  	<result column="BEGIN_DATE" javaType="String" property="beginDate" />
+  	<result column="END_DATE" javaType="String" property="endDate" />
+
+
+  </resultMap>
+  
+
+  
+  
+  <!--查询对公、自然人、同业额度历史列表-->
+    <select id="queryCorpHis" parameterType="java.util.HashMap" resultMap="CsmCrdApplyCorpHisVo">
+
+
+	SELECT
+		* 
+	FROM
+		v_crd_party_limit 
+	WHERE
+		limit_type IN ( '01', '02', '04', '05' ) 
+    <include refid="query_CorpHis"></include>
+
+		
+		         
+
+  </select>
+  
+  
+
+  
+	<sql id="query_CorpHis">
+
+		<if test="partyId !=null and partyId !='' ">
+			 AND party_id = #{partyId}
+		</if>
+
+
+	</sql>
+</mapper>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.sysManage.position.mapper.OmPositionMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.sysManage.position.bean.OmPosition">
+    <id column="POSITIONID" jdbcType="DECIMAL" property="positionid" />
+    <result column="POSICODE" jdbcType="VARCHAR" property="posicode" />
+    <result column="POSINAME" jdbcType="VARCHAR" property="posiname" />
+    <result column="POSILEVEL" jdbcType="DECIMAL" property="posilevel" />
+    <result column="MANAPOSI" jdbcType="DECIMAL" property="manaposi" />
+    <result column="DUTYID" jdbcType="DECIMAL" property="dutyid" />
+    <result column="ORGID" jdbcType="DECIMAL" property="orgid" />
+    <result column="POSITIONSEQ" jdbcType="VARCHAR" property="positionseq" />
+    <result column="POSITYPE" jdbcType="VARCHAR" property="positype" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="LASTUPDATE" jdbcType="TIMESTAMP" property="lastupdate" />
+    <result column="UPDATOR" jdbcType="DECIMAL" property="updator" />
+    <result column="STARTDATE" jdbcType="TIMESTAMP" property="startdate" />
+    <result column="ENDDATE" jdbcType="TIMESTAMP" property="enddate" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="ISLEAF" jdbcType="CHAR" property="isleaf" />
+    <result column="SUBCOUNT" jdbcType="DECIMAL" property="subcount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    POSITIONID, POSICODE, POSINAME, POSILEVEL, MANAPOSI, DUTYID, ORGID, POSITIONSEQ, 
+    POSITYPE, CREATETIME, LASTUPDATE, UPDATOR, STARTDATE, ENDDATE, STATUS, ISLEAF, SUBCOUNT
+  </sql>
+  <resultMap type="com.cdgit.loan.sysManage.position.bean.OmPosition" id="PositionInfo">
+    <result property="posicode" column="POSICODE" jdbcType="VARCHAR"/>
+	<result property="posiname" column="POSINAME" jdbcType="VARCHAR"/>
+	<result property="positionid" column="POSITIONID" jdbcType="DECIMAL"/>
+	<result property="posistate" column="POSISTATE" jdbcType="VARCHAR"/>
+   </resultMap>
+  <select id="queryPositionInfo" parameterType="java.lang.String" resultMap="PositionInfo">
+      select 
+      	posicode,posiname,positionid,posistate<!-- ,
+      	to_char(createtime,'yyyy/mm/dd HH:mm:ss') as createtime,
+      	to_char(lastupdate,'yyyy/mm/dd HH:mm:ss') as lastupdate -->
+      from om_position where 1=1 
+	  <if test="posiname != null and posiname != '' " > 
+          and posiname like '%'||#{posiname}||'%'
+      </if>
+	  <!-- <isNotNull property="superadmin">
+		  and (leg_org=#{legorg} or leg_org is null)
+      </isNotNull> -->
+      order by posicode
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from OM_POSITION
+    where POSITIONID = #{positionid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from OM_POSITION
+    where POSITIONID = #{positionid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.sysManage.position.bean.OmPosition">
+    insert into OM_POSITION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        POSITIONID,
+      <if test="posicode != null and posicode != ''">
+        POSICODE,
+      </if>
+      <if test="posiname != null and posiname != ''">
+        POSINAME,
+      </if>
+      <if test='posistate != null and posistate != ""'>
+        POSISTATE,
+      </if>
+      <if test="createtime != null and createtime != ''">
+        CREATETIME,
+      </if>
+      <if test="lastupdate != null and lastupdate != ''">
+        LASTUPDATE,
+      </if>
+      <if test="updator != null and updator != ''">
+        UPDATOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      SEQ_OM_POSITION.NEXTVAL,
+      <if test="posicode != null and posicode != ''">
+        #{posicode,jdbcType=VARCHAR},
+      </if>
+      <if test="posiname != null and posiname != ''">
+        #{posiname,jdbcType=VARCHAR},
+      </if>
+      <if test="posistate != null and posistate != ''">
+        #{posistate,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null and createtime != ''">
+        to_timestamp(#{createtime,jdbcType=TIMESTAMP},'yyyy-MM-dd hh24:mi:ss'),
+      </if>
+      <if test="lastupdate != null and lastupdate != ''">
+        to_timestamp(#{lastupdate,jdbcType=TIMESTAMP},'yyyy-MM-dd hh24:mi:ss'),
+      </if>
+      <if test="updator != null and updator != ''">
+        #{updator,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.sysManage.position.bean.OmPosition">
+    update OM_POSITION
+    <set>
+      <if test="posicode != null and posicode != ''">
+        POSICODE = #{posicode,jdbcType=VARCHAR},
+      </if>
+      <if test="posiname != null and posiname != ''">
+        POSINAME = #{posiname,jdbcType=VARCHAR},
+      </if>
+      <if test="posistate != null and posistate != ''">
+        POSISTATE = #{posistate,jdbcType=DECIMAL},
+      </if>
+      <if test="lastupdate != null and lastupdate != ''">
+        LASTUPDATE = to_timestamp(#{lastupdate,jdbcType=TIMESTAMP},'yyyy-MM-dd hh24:mi:ss')
+      </if>
+      <if test="updator != null and updator != ''">
+        UPDATOR = #{updator,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where POSITIONID = #{positionid,jdbcType=DECIMAL}
+  </update>
+</mapper>

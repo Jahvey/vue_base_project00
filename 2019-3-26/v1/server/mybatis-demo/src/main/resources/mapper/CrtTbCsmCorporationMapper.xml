@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbCsmCorporationMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbCsmCorporation">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="ENGLISH_NAME" jdbcType="VARCHAR" property="englishName" />
+    <result column="ECONOMIC_SECTOR_CODE" jdbcType="VARCHAR" property="economicSectorCode" />
+    <result column="INDUSTRIAL_TYPE_CD" jdbcType="VARCHAR" property="industrialTypeCd" />
+    <result column="LISTING_CORPORATION" jdbcType="VARCHAR" property="listingCorporation" />
+    <result column="REGISTER_ASSETS" jdbcType="DECIMAL" property="registerAssets" />
+    <result column="REGISTER_ASSETS_CURRENCY_CD" jdbcType="VARCHAR" property="registerAssetsCurrencyCd" />
+    <result column="EMPLOYEES_NUMBER" jdbcType="DECIMAL" property="employeesNumber" />
+    <result column="GOVERNMENT_TENT_NO" jdbcType="VARCHAR" property="governmentTentNo" />
+    <result column="CREDIT_RELATIONSHIP_TIME" jdbcType="TIMESTAMP" property="creditRelationshipTime" />
+    <result column="REGISTER_DATE" jdbcType="TIMESTAMP" property="registerDate" />
+    <result column="LEGAL_CERTIFICATE_NO" jdbcType="VARCHAR" property="legalCertificateNo" />
+    <result column="LEGAL_CERTIFICATE_END_DATE" jdbcType="TIMESTAMP" property="legalCertificateEndDate" />
+    <result column="REGISTRATION_TYPE" jdbcType="VARCHAR" property="registrationType" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="AREA_TYPE" jdbcType="VARCHAR" property="areaType" />
+    <result column="CONTRY_REGION_CD" jdbcType="VARCHAR" property="contryRegionCd" />
+    <result column="LEGAL_NAME" jdbcType="VARCHAR" property="legalName" />
+    <result column="LEGAL_CERT_TYPE" jdbcType="VARCHAR" property="legalCertType" />
+    <result column="REGISTR_CD" jdbcType="VARCHAR" property="registrCd" />
+    <result column="REGISTER_END_DATE" jdbcType="TIMESTAMP" property="registerEndDate" />
+    <result column="BUSINESS_SCOPE" jdbcType="VARCHAR" property="businessScope" />
+    <result column="ORG_REGISTER_CD" jdbcType="VARCHAR" property="orgRegisterCd" />
+    <result column="ORG_REGISTER_END_DATE" jdbcType="TIMESTAMP" property="orgRegisterEndDate" />
+    <result column="MIDDEL_CODE" jdbcType="VARCHAR" property="middelCode" />
+    <result column="ORG_CREDIT_CODE" jdbcType="VARCHAR" property="orgCreditCode" />
+    <result column="NATIONAL_TAX_NO" jdbcType="VARCHAR" property="nationalTaxNo" />
+    <result column="INDUSTRIAL_TYPE_BIG_CD" jdbcType="VARCHAR" property="industrialTypeBigCd" />
+    <result column="INDUSTRIAL_TYPE_MID_CD" jdbcType="VARCHAR" property="industrialTypeMidCd" />
+    <result column="INDUSTRIAL_TYPE_SAMLL_CD" jdbcType="VARCHAR" property="industrialTypeSamllCd" />
+    <result column="ENTERPRISE_SCALE_GX" jdbcType="VARCHAR" property="enterpriseScaleGx" />
+    <result column="COUNT_BORE_ENTER_SCALE" jdbcType="VARCHAR" property="countBoreEnterScale" />
+    <result column="IS_GROUP_CUST" jdbcType="VARCHAR" property="isGroupCust" />
+    <result column="ATTACH_GROUP_NAME" jdbcType="VARCHAR" property="attachGroupName" />
+    <result column="WHETHER_IMP_EXP" jdbcType="VARCHAR" property="whetherImpExp" />
+    <result column="STOCKHOLDER_OF_BANK" jdbcType="VARCHAR" property="stockholderOfBank" />
+    <result column="JOINT_GUARANTEE" jdbcType="VARCHAR" property="jointGuarantee" />
+    <result column="FAMILY_ENTERPRISE" jdbcType="VARCHAR" property="familyEnterprise" />
+    <result column="WHETHER_GOVERNMENT_FINANCE_COR" jdbcType="VARCHAR" property="whetherGovernmentFinanceCor" />
+    <result column="COUNTRYSIDE_ENTERPRISE" jdbcType="VARCHAR" property="countrysideEnterprise" />
+    <result column="WHETHER_BLACK_LIST" jdbcType="VARCHAR" property="whetherBlackList" />
+    <result column="FOCUS_CUSTOMER" jdbcType="VARCHAR" property="focusCustomer" />
+    <result column="IS_REAL_ESTATE_DEV" jdbcType="VARCHAR" property="isRealEstateDev" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="FUND_SRC" jdbcType="VARCHAR" property="fundSrc" />
+    <result column="OPEN_FUND" jdbcType="DECIMAL" property="openFund" />
+    <result column="IS_BASEBANK_RELA_CUST" jdbcType="VARCHAR" property="isBasebankRelaCust" />
+    <result column="THIRD_CUST_TYPE_CD" jdbcType="VARCHAR" property="thirdCustTypeCd" />
+    <result column="IS_THIRD_CUST" jdbcType="VARCHAR" property="isThirdCust" />
+    <result column="ENTERPRISE_CERT_END_DATE" jdbcType="TIMESTAMP" property="enterpriseCertEndDate" />
+    <result column="ENTERPRISE_CERT_NUM" jdbcType="VARCHAR" property="enterpriseCertNum" />
+    <result column="UNIFY_SOCIETY_CREDIT_NUM" jdbcType="VARCHAR" property="unifySocietyCreditNum" />
+    <result column="SINGLE_LP_CUST_IND" jdbcType="VARCHAR" property="singleLpCustInd" />
+    <result column="STOP_CORP_IND" jdbcType="VARCHAR" property="stopCorpInd" />
+    <result column="LEGAL_CONTRY" jdbcType="VARCHAR" property="legalContry" />
+    <result column="BANK_SCALE_IDENTIFY" jdbcType="VARCHAR" property="bankScaleIdentify" />
+    <result column="LEGAL_PHONE_NUMBER" jdbcType="VARCHAR" property="legalPhoneNumber" />
+    <result column="LEGAL_REGIST_DATE" jdbcType="TIMESTAMP" property="legalRegistDate" />
+    <result column="LEGAL_CONTRY_SIGN" jdbcType="VARCHAR" property="legalContrySign" />
+    <result column="WHETHER_TECHNIC" jdbcType="VARCHAR" property="whetherTechnic" />
+    <result column="WHETHER_GREEN_GROUP" jdbcType="VARCHAR" property="whetherGreenGroup" />
+    <result column="WHETHER_JMRH" jdbcType="VARCHAR" property="whetherJmrh" />
+    <result column="WHETHER_ARG_RELATED" jdbcType="VARCHAR" property="whetherArgRelated" />
+    <result column="WHETHER_OPEN_ACCT" jdbcType="VARCHAR" property="whetherOpenAcct" />
+    <result column="WHETHER_POVERTY_ADD" jdbcType="VARCHAR" property="whetherPovertyAdd" />
+    <result column="AREA" jdbcType="VARCHAR" property="area" />
+    <result column="OWNER" jdbcType="VARCHAR" property="owner" />
+    <result column="NATIONAL_ECONOMY_TYPE" jdbcType="VARCHAR" property="nationalEconomyType" />
+    <result column="CHAIN_SIGN" jdbcType="VARCHAR" property="chainSign" />
+    <result column="MAIN_CUST_TYPE_CD" jdbcType="VARCHAR" property="mainCustTypeCd" />
+    <result column="ORG_STATUS" jdbcType="VARCHAR" property="orgStatus" />
+    <result column="IF_CSY" jdbcType="VARCHAR" property="ifCsy" />
+    <result column="LOAN_TURN" jdbcType="VARCHAR" property="loanTurn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PARTY_ID, CORP_CUSTOMER_TYPE_CD, ENGLISH_NAME, ECONOMIC_SECTOR_CODE, INDUSTRIAL_TYPE_CD, 
+    LISTING_CORPORATION, REGISTER_ASSETS, REGISTER_ASSETS_CURRENCY_CD, EMPLOYEES_NUMBER, 
+    GOVERNMENT_TENT_NO, CREDIT_RELATIONSHIP_TIME, REGISTER_DATE, LEGAL_CERTIFICATE_NO, 
+    LEGAL_CERTIFICATE_END_DATE, REGISTRATION_TYPE, UPDATE_USER_NUM, UPDATE_ORG_NUM, UPDATE_TIME, 
+    AREA_TYPE, CONTRY_REGION_CD, LEGAL_NAME, LEGAL_CERT_TYPE, REGISTR_CD, REGISTER_END_DATE, 
+    BUSINESS_SCOPE, ORG_REGISTER_CD, ORG_REGISTER_END_DATE, MIDDEL_CODE, ORG_CREDIT_CODE, 
+    NATIONAL_TAX_NO, INDUSTRIAL_TYPE_BIG_CD, INDUSTRIAL_TYPE_MID_CD, INDUSTRIAL_TYPE_SAMLL_CD, 
+    ENTERPRISE_SCALE_GX, COUNT_BORE_ENTER_SCALE, IS_GROUP_CUST, ATTACH_GROUP_NAME, WHETHER_IMP_EXP, 
+    STOCKHOLDER_OF_BANK, JOINT_GUARANTEE, FAMILY_ENTERPRISE, WHETHER_GOVERNMENT_FINANCE_COR, 
+    COUNTRYSIDE_ENTERPRISE, WHETHER_BLACK_LIST, FOCUS_CUSTOMER, IS_REAL_ESTATE_DEV, CREATETIME, 
+    FUND_SRC, OPEN_FUND, IS_BASEBANK_RELA_CUST, THIRD_CUST_TYPE_CD, IS_THIRD_CUST, ENTERPRISE_CERT_END_DATE, 
+    ENTERPRISE_CERT_NUM, UNIFY_SOCIETY_CREDIT_NUM, SINGLE_LP_CUST_IND, STOP_CORP_IND, 
+    LEGAL_CONTRY, BANK_SCALE_IDENTIFY, LEGAL_PHONE_NUMBER, LEGAL_REGIST_DATE, LEGAL_CONTRY_SIGN, 
+    WHETHER_TECHNIC, WHETHER_GREEN_GROUP, WHETHER_JMRH, WHETHER_ARG_RELATED, WHETHER_OPEN_ACCT, 
+    WHETHER_POVERTY_ADD, AREA, OWNER, NATIONAL_ECONOMY_TYPE, CHAIN_SIGN, MAIN_CUST_TYPE_CD, 
+    ORG_STATUS, IF_CSY, LOAN_TURN
+  </sql>
+  <!-- 根据partyId查询一条公司客户信息 -->
+  <select id="selectCsmCorporationByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CSM_CORPORATION
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+</mapper>

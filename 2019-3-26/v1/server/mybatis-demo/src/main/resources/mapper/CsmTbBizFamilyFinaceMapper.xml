@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbBizFamilyFinaceMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbBizFamilyFinace">
+    <id column="FINANCE_ID" jdbcType="VARCHAR" property="financeId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="FINANCE_DATE" jdbcType="TIMESTAMP" property="financeDate" />
+    <result column="PERSON_MONTHLY_INCOME" jdbcType="DECIMAL" property="personMonthlyIncome" />
+    <result column="FAMILY_STEADY_INCOME" jdbcType="DECIMAL" property="familySteadyIncome" />
+    <result column="FAMILY_RENT_INCOME" jdbcType="DECIMAL" property="familyRentIncome" />
+    <result column="FAMILY_INVESTMENT_SHARE" jdbcType="DECIMAL" property="familyInvestmentShare" />
+    <result column="FAMILY_OTHER_INCOME" jdbcType="DECIMAL" property="familyOtherIncome" />
+    <result column="FINANCIAL_ASSETS" jdbcType="DECIMAL" property="financialAssets" />
+    <result column="FIXED_ASSETS" jdbcType="DECIMAL" property="fixedAssets" />
+    <result column="OTHER_ASSET" jdbcType="DECIMAL" property="otherAsset" />
+    <result column="INCUR_DEBTS" jdbcType="DECIMAL" property="incurDebts" />
+    <result column="MONTH_DEBT_PAY" jdbcType="DECIMAL" property="monthDebtPay" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="DEAL_DATE" jdbcType="TIMESTAMP" property="dealDate" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    FINANCE_ID, PARTY_ID, APPLY_ID, FINANCE_DATE, PERSON_MONTHLY_INCOME, FAMILY_STEADY_INCOME, 
+    FAMILY_RENT_INCOME, FAMILY_INVESTMENT_SHARE, FAMILY_OTHER_INCOME, FINANCIAL_ASSETS, 
+    FIXED_ASSETS, OTHER_ASSET, INCUR_DEBTS, MONTH_DEBT_PAY, REMARK, ORG_NUM, USER_NUM, 
+    DEAL_DATE, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_FAMILY_FINANCE
+    where FINANCE_ID = #{financeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_FAMILY_FINANCE
+    where FINANCE_ID = #{financeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.CsmTbBizFamilyFinace">
+    insert into TB_BIZ_FAMILY_FINANCE (FINANCE_ID, PARTY_ID, APPLY_ID, 
+      FINANCE_DATE, PERSON_MONTHLY_INCOME, FAMILY_STEADY_INCOME, 
+      FAMILY_RENT_INCOME, FAMILY_INVESTMENT_SHARE, 
+      FAMILY_OTHER_INCOME, FINANCIAL_ASSETS, FIXED_ASSETS, 
+      OTHER_ASSET, INCUR_DEBTS, MONTH_DEBT_PAY, 
+      REMARK, ORG_NUM, USER_NUM, 
+      DEAL_DATE, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{financeId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, 
+      #{financeDate,jdbcType=TIMESTAMP}, #{personMonthlyIncome,jdbcType=DECIMAL}, #{familySteadyIncome,jdbcType=DECIMAL}, 
+      #{familyRentIncome,jdbcType=DECIMAL}, #{familyInvestmentShare,jdbcType=DECIMAL}, 
+      #{familyOtherIncome,jdbcType=DECIMAL}, #{financialAssets,jdbcType=DECIMAL}, #{fixedAssets,jdbcType=DECIMAL}, 
+      #{otherAsset,jdbcType=DECIMAL}, #{incurDebts,jdbcType=DECIMAL}, #{monthDebtPay,jdbcType=DECIMAL}, 
+      #{remark,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, 
+      #{dealDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.CsmTbBizFamilyFinace">
+    insert into TB_BIZ_FAMILY_FINANCE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="financeId != null">
+        FINANCE_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="financeDate != null">
+        FINANCE_DATE,
+      </if>
+      <if test="personMonthlyIncome != null">
+        PERSON_MONTHLY_INCOME,
+      </if>
+      <if test="familySteadyIncome != null">
+        FAMILY_STEADY_INCOME,
+      </if>
+      <if test="familyRentIncome != null">
+        FAMILY_RENT_INCOME,
+      </if>
+      <if test="familyInvestmentShare != null">
+        FAMILY_INVESTMENT_SHARE,
+      </if>
+      <if test="familyOtherIncome != null">
+        FAMILY_OTHER_INCOME,
+      </if>
+      <if test="financialAssets != null">
+        FINANCIAL_ASSETS,
+      </if>
+      <if test="fixedAssets != null">
+        FIXED_ASSETS,
+      </if>
+      <if test="otherAsset != null">
+        OTHER_ASSET,
+      </if>
+      <if test="incurDebts != null">
+        INCUR_DEBTS,
+      </if>
+      <if test="monthDebtPay != null">
+        MONTH_DEBT_PAY,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="dealDate != null">
+        DEAL_DATE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="financeId != null">
+        #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeDate != null">
+        #{financeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personMonthlyIncome != null">
+        #{personMonthlyIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="familySteadyIncome != null">
+        #{familySteadyIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="familyRentIncome != null">
+        #{familyRentIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="familyInvestmentShare != null">
+        #{familyInvestmentShare,jdbcType=DECIMAL},
+      </if>
+      <if test="familyOtherIncome != null">
+        #{familyOtherIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="financialAssets != null">
+        #{financialAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="fixedAssets != null">
+        #{fixedAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="otherAsset != null">
+        #{otherAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="incurDebts != null">
+        #{incurDebts,jdbcType=DECIMAL},
+      </if>
+      <if test="monthDebtPay != null">
+        #{monthDebtPay,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="dealDate != null">
+        #{dealDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.CsmTbBizFamilyFinace">
+    update TB_BIZ_FAMILY_FINANCE
+    <set>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeDate != null">
+        FINANCE_DATE = #{financeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personMonthlyIncome != null">
+        PERSON_MONTHLY_INCOME = #{personMonthlyIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="familySteadyIncome != null">
+        FAMILY_STEADY_INCOME = #{familySteadyIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="familyRentIncome != null">
+        FAMILY_RENT_INCOME = #{familyRentIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="familyInvestmentShare != null">
+        FAMILY_INVESTMENT_SHARE = #{familyInvestmentShare,jdbcType=DECIMAL},
+      </if>
+      <if test="familyOtherIncome != null">
+        FAMILY_OTHER_INCOME = #{familyOtherIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="financialAssets != null">
+        FINANCIAL_ASSETS = #{financialAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="fixedAssets != null">
+        FIXED_ASSETS = #{fixedAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="otherAsset != null">
+        OTHER_ASSET = #{otherAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="incurDebts != null">
+        INCUR_DEBTS = #{incurDebts,jdbcType=DECIMAL},
+      </if>
+      <if test="monthDebtPay != null">
+        MONTH_DEBT_PAY = #{monthDebtPay,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="dealDate != null">
+        DEAL_DATE = #{dealDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where FINANCE_ID = #{financeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.CsmTbBizFamilyFinace">
+    update TB_BIZ_FAMILY_FINANCE
+    set PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      FINANCE_DATE = #{financeDate,jdbcType=TIMESTAMP},
+      PERSON_MONTHLY_INCOME = #{personMonthlyIncome,jdbcType=DECIMAL},
+      FAMILY_STEADY_INCOME = #{familySteadyIncome,jdbcType=DECIMAL},
+      FAMILY_RENT_INCOME = #{familyRentIncome,jdbcType=DECIMAL},
+      FAMILY_INVESTMENT_SHARE = #{familyInvestmentShare,jdbcType=DECIMAL},
+      FAMILY_OTHER_INCOME = #{familyOtherIncome,jdbcType=DECIMAL},
+      FINANCIAL_ASSETS = #{financialAssets,jdbcType=DECIMAL},
+      FIXED_ASSETS = #{fixedAssets,jdbcType=DECIMAL},
+      OTHER_ASSET = #{otherAsset,jdbcType=DECIMAL},
+      INCUR_DEBTS = #{incurDebts,jdbcType=DECIMAL},
+      MONTH_DEBT_PAY = #{monthDebtPay,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      DEAL_DATE = #{dealDate,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where FINANCE_ID = #{financeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

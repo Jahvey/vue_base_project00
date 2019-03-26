@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.afterloan.afterloancheck.mapper.ChTbAftFirstCheckMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.afterloan.afterloancheck.resultbean.BorListResult">
+    <id column="FIRST_CHECK_ID" jdbcType="VARCHAR" property="firstCheckId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+   	<result column="CHECK_PERSON" jdbcType="VARCHAR" property="checkPerson" />
+	<result column="CHECK_COUNT" jdbcType="VARCHAR" property="checkCount" />
+    <result column="PARTY_NUM" jdbcType="VARCHAR" property="partyNum" />
+    <result column="CORP_CUSTOMER_TYPE_CD" jdbcType="VARCHAR" property="corpCustomerTypeCd" />
+    <result column="PARTY_TYPE_CD" jdbcType="VARCHAR" property="partyTypeCd" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="ENGLISH_NAME" jdbcType="VARCHAR" property="englishName" />
+    <result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+    <result column="CERT_NUM" jdbcType="VARCHAR" property="certNum" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+    <result column="SUMMARY_NUM" jdbcType="VARCHAR" property="summaryNum" />
+    <result column="SUMMARY_AMT" jdbcType="DECIMAL" property="summaryAmt" />
+    <result column="JJYE" jdbcType="DECIMAL" property="jjye" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CHECK_STATUS" jdbcType="VARCHAR" property="checkStatus" />
+    <result column="FINISH_DES" jdbcType="VARCHAR" property="finishDes" />
+   <!--  <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" /> -->
+    <!-- <result column="RECEIPT_NUM" jdbcType="VARCHAR" property="receiptNum" /> -->
+   <result column="LOAN_USE" jdbcType="VARCHAR" property="loanUse" />	       
+  </resultMap>
+	<!-- 贷后首次检查列表 -->
+	<!--  PARTY_ID,A.CHECK_STATUS,A.FIRST_CHECK_ID,A.CHECK_PERSON,A.CHECK_COUNT -->
+  <select id="selectBorList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+    
+     
+      SELECT 
+     *
+      FROM (
+    	SELECT P.PARTY_ID,
+		       P.PARTY_NUM,
+		       CC.CORP_CUSTOMER_TYPE_CD,
+		       P.PARTY_TYPE_CD,
+		       P.PARTY_NAME,
+		       CC.ENGLISH_NAME,
+		       (CASE
+		         WHEN P.PARTY_TYPE_CD = '01' THEN
+		          '202'
+		         WHEN P.PARTY_TYPE_CD = '02' THEN
+		          NP.CERT_TYPE
+		         ELSE
+		          ''
+		       END) AS CERT_TYPE,
+		       (CASE
+		         WHEN P.PARTY_TYPE_CD = '01' THEN
+		          CC.ORG_REGISTER_CD
+		         WHEN P.PARTY_TYPE_CD = '02' THEN
+		          NP.CERT_NUM
+		         ELSE
+		          ''
+		       END) AS CERT_NUM,
+		       LI.LOAN_ID,
+		       LI.PRODUCT_TYPE,
+		       SP.PRODUCT_NAME,
+		       LS.SUMMARY_ID,
+		       LS.SUMMARY_NUM,
+		       LS.SUMMARY_AMT,
+		       LS.JJYE,
+		       LS.BEGIN_DATE,
+		       LS.END_DATE,
+		       CI.LOAN_USE,
+		       CI.CONTRACT_ID,
+		       CI.CONTRACT_NUM,
+		       FC.CHECK_STATUS,
+               FC.FIRST_CHECK_ID,
+		       FC.CHECK_PERSON,
+		       FC.CHECK_COUNT,
+		       (CASE
+		         WHEN FC.CHECK_STATUS = '03' THEN
+		          '是'
+		         ELSE
+		          '否'
+		       END) AS FINISH_DES
+		  FROM TB_LOAN_INFO LI, TB_LOAN_SUMMARY LS
+		  LEFT JOIN TB_AFT_FIRST_CHECK FC ON FC.SUMMARY_ID = LS.SUMMARY_ID
+		                                 AND FC.CHECK_STATUS = '03',
+		 TB_CON_CONTRACT_INFO CI, TB_CSM_PARTY P
+		  LEFT JOIN TB_CSM_CORPORATION CC ON CC.PARTY_ID = P.PARTY_ID
+		  LEFT JOIN TB_CSM_NATURAL_PERSON NP ON NP.PARTY_ID = P.PARTY_ID,
+		  TB_SYS_PRODUCT SP
+		 WHERE LI.LOAN_ID = LS.LOAN_ID
+		   AND LI.CONTRACT_ID = CI.CONTRACT_ID
+		   AND LI.PARTY_ID = P.PARTY_ID
+		   AND LI.PRODUCT_TYPE = SP.PRODUCT_CD
+		   AND LS.SUMMARY_STATUS_CD IN ('02','03')
+		   AND LI.USER_NUM = '200555'
+		   AND LI.ORG_NUM = '0700'
+		
+ 		 ) A WHERE 1=1    
+ 		 <if test=" partyName != null and partyName != '' ">
+ 		 	and A.PARTY_NAME like '%'||#{partyName,jdbcType=VARCHAR}||'%'
+ 		 </if>
+ 		 <if test=" certType != null and certType != '' ">
+ 		 	and A.CERT_TYPE = #{certType,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" certNum != null and certNum != '' ">
+ 		 	and A.CERT_NUM = #{certNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" summaryNum != null and summaryNum != '' ">
+ 		 	and A.SUMMARY_NUM = #{summaryNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" contractNum != null and contractNum != '' ">
+ 		 	and A.CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR}
+ 		 </if>
+ 		 <if test=" receiptNum != null and receiptNum != '' ">
+ 		 	and A.SUMMARY_NUM = #{receiptNum,jdbcType=VARCHAR}
+ 		 </if>
+ 
+
+ 		 
+  </select>
+ 	<!-- 首次检查授信资金使用用途列表 -->
+  <select id="queryMoneyUse" parameterType="java.lang.String" resultType="com.cdgit.loan.afterloan.afterloancheck.bean.ChTbLoanMoneyUse">
+  		select 
+  			t.money_use_id,
+  			t.pay_use,
+  			t.pay_object,
+  			to_char(t.pay_time,'yyyy-mm-dd') as pay_time ,
+  			t.pay_way,
+			t.apply_amount,
+			t.is_fit_deal,
+				  (CASE
+			         WHEN t.is_fit_deal = '1' THEN
+			          '是'
+			         ELSE
+			          '否'
+			       END) is_fit
+			  from tb_aft_first_check a , tb_loan_money_use t 
+			  where a.party_id=t.party_id and a.summary_id=t.summary_id 
+			  and a.first_check_id = #{firstCheckId,jdbcType=VARCHAR}
+			  <if test=" checkStatus != null and checkStatus != '' ">
+			  	and a.check_status in (#{checkStatus},'03')
+			  </if>
+			 <!--  <isNotNull property="checkStatus">  and a.check_status in (#checkStatus#,'03') </isNotNull> -->
+  
+  </select>
+ 
+   <!-- 增加授信资金用途 -->
+ 	<insert id="insertMoneyUse" parameterType="com.cdgit.loan.afterloan.afterloancheck.bean.ChTbLoanMoneyUse" >
+       INSERT INTO 
+            TB_LOAN_MONEY_USE
+            (
+            MONEY_USE_ID,
+            PAY_TIME,
+            APPLY_AMOUNT,
+            PAY_OBJECT,
+            PAY_USE,
+            PAY_WAY,
+            IS_FIT_DEAL
+            ) 
+        VALUES
+            (
+             'fasd3434gdg577xfgg3358888',
+             #{payTime,jdbcType=VARCHAR},
+             #{applyAmount,jdbcType=VARCHAR},
+             #{payObject,jdbcType=VARCHAR},
+             #{payUse,jdbcType=VARCHAR},
+             #{payWay,jdbcType=VARCHAR},
+             #{isFitDeal,jdbcType=VARCHAR}
+             )
+    </insert>
+ 	<!-- 查询首次检查信息 -->
+  	<select id="queryFirstCheckInfoBySummaryId" parameterType="java.lang.String" resultType="com.cdgit.loan.afterloan.afterloancheck.bean.ChTbAftFirstCheck">
+  		select * from tb_aft_first_check tb
+  		where tb.summary_id = #{summaryId,jdbcType=VARCHAR}
+  	</select>
+ 
+ 
+</mapper>

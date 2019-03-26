@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.sysManage.login.mapper.LoginMapper">
+  	
+  	<resultMap id="AcOperatorResultMap" type="com.cdgit.loan.sysManage.empManage.bean.AcOperator">
+	    <id column="OPERATORID" jdbcType="DECIMAL" property="operatorid" />
+	    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+	    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+	    <result column="INVALDATE" jdbcType="TIMESTAMP" property="invaldate" />
+	    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+	    <result column="AUTHMODE" jdbcType="VARCHAR" property="authmode" />
+	    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+	    <result column="UNLOCKTIME" jdbcType="TIMESTAMP" property="unlocktime" />
+	    <result column="MENUTYPE" jdbcType="VARCHAR" property="menutype" />
+	    <result column="LASTLOGIN" jdbcType="TIMESTAMP" property="lastlogin" />
+	    <result column="ERRCOUNT" jdbcType="DECIMAL" property="errcount" />
+	    <result column="STARTDATE" jdbcType="TIMESTAMP" property="startdate" />
+	    <result column="ENDDATE" jdbcType="TIMESTAMP" property="enddate" />
+	    <result column="VALIDTIME" jdbcType="VARCHAR" property="validtime" />
+	    <result column="MACCODE" jdbcType="VARCHAR" property="maccode" />
+	    <result column="IPADDRESS" jdbcType="VARCHAR" property="ipaddress" />
+	    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+	    <result column="PASSWORD1" jdbcType="VARCHAR" property="password1" />
+	    <result column="USERIDMAP" jdbcType="VARCHAR" property="useridmap" />
+	    <result column="DYNAMICSWITCH" jdbcType="VARCHAR" property="dynamicswitch" />
+	 </resultMap>
+	 <resultMap id="OmEmployeeResultMap" type="com.cdgit.loan.sysManage.empManage.bean.OmEmployee">
+	    <id column="EMPID" jdbcType="DECIMAL" property="empid" />
+	    <result column="EMPCODE" jdbcType="VARCHAR" property="empcode" />
+	    <result column="OPERATORID" jdbcType="DECIMAL" property="operatorid" />
+	    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+	    <result column="EMPNAME" jdbcType="VARCHAR" property="empname" />
+	    <result column="REALNAME" jdbcType="VARCHAR" property="realname" />
+	    <result column="GENDER" jdbcType="VARCHAR" property="gender" />
+	    <result column="BIRTHDATE" jdbcType="TIMESTAMP" property="birthdate" />
+	    <result column="POSITION" jdbcType="DECIMAL" property="position" />
+	    <result column="EMPSTATUS" jdbcType="VARCHAR" property="empstatus" />
+	    <result column="CARDTYPE" jdbcType="VARCHAR" property="cardtype" />
+	    <result column="CARDNO" jdbcType="VARCHAR" property="cardno" />
+	    <result column="INDATE" jdbcType="TIMESTAMP" property="indate" />
+	    <result column="OUTDATE" jdbcType="TIMESTAMP" property="outdate" />
+	    <result column="OTEL" jdbcType="VARCHAR" property="otel" />
+	    <result column="OADDRESS" jdbcType="VARCHAR" property="oaddress" />
+	    <result column="OZIPCODE" jdbcType="VARCHAR" property="ozipcode" />
+	    <result column="OEMAIL" jdbcType="VARCHAR" property="oemail" />
+	    <result column="FAXNO" jdbcType="VARCHAR" property="faxno" />
+	    <result column="MOBILENO" jdbcType="VARCHAR" property="mobileno" />
+	    <result column="MSN" jdbcType="VARCHAR" property="msn" />
+	    <result column="HTEL" jdbcType="VARCHAR" property="htel" />
+	    <result column="HADDRESS" jdbcType="VARCHAR" property="haddress" />
+	    <result column="HZIPCODE" jdbcType="VARCHAR" property="hzipcode" />
+	    <result column="PEMAIL" jdbcType="VARCHAR" property="pemail" />
+	    <result column="PARTY" jdbcType="VARCHAR" property="party" />
+	    <result column="DEGREE" jdbcType="VARCHAR" property="degree" />
+	    <result column="MAJOR" jdbcType="DECIMAL" property="major" />
+	    <result column="SPECIALTY" jdbcType="VARCHAR" property="specialty" />
+	    <result column="WORKEXP" jdbcType="VARCHAR" property="workexp" />
+	    <result column="REGDATE" jdbcType="TIMESTAMP" property="regdate" />
+	    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+	    <result column="LASTMODYTIME" jdbcType="TIMESTAMP" property="lastmodytime" />
+	    <result column="ORGIDLIST" jdbcType="VARCHAR" property="orgidlist" />
+	    <result column="ORGID" jdbcType="DECIMAL" property="orgid" />
+	    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	    <result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+	    <result column="LICENSENO" jdbcType="VARCHAR" property="licenseno" />
+	    <result column="INTOTRADEDATE" jdbcType="TIMESTAMP" property="intotradedate" />
+	    <result column="RUNMARKDATE" jdbcType="TIMESTAMP" property="runmarkdate" />
+	    <result column="EMPLEVEL" jdbcType="VARCHAR" property="emplevel" />
+	    <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId" />
+	    <result column="INORGID" jdbcType="NUMERIC" property="inorgid" />
+	    <result column="INORGNAME" jdbcType="VARCHAR" property="inorgname" />
+	    <result column="ORGLEVEL" jdbcType="NUMERIC" property="orglevel" />
+	    <result column="ORGCODE" jdbcType="VARCHAR" property="orgcode" />
+	    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+	    <result column="LASTLOGIN" jdbcType="VARCHAR" property="lastlogin" />
+	  </resultMap>
+	 <sql id="Ac_Operator_Column_List">
+	    OPERATORID, USERID, PASSWORD, INVALDATE, OPERATORNAME, AUTHMODE, STATUS, UNLOCKTIME, 
+	    MENUTYPE, LASTLOGIN, ERRCOUNT, STARTDATE, ENDDATE, VALIDTIME, MACCODE, IPADDRESS, 
+	    EMAIL, PASSWORD1, USERIDMAP, DYNAMICSWITCH
+	 </sql>
+	 <sql id="Om_Employee_Column_List">
+	    EMPID, EMPCODE, OPERATORID, USERID, EMPNAME, REALNAME, GENDER, BIRTHDATE, POSITION, 
+	    EMPSTATUS, CARDTYPE, CARDNO, INDATE, OUTDATE, OTEL, OADDRESS, OZIPCODE, OEMAIL, FAXNO, 
+	    MOBILENO, MSN, HTEL, HADDRESS, HZIPCODE, PEMAIL, PARTY, DEGREE, MAJOR, SPECIALTY, 
+	    WORKEXP, REGDATE, CREATETIME, LASTMODYTIME, ORGIDLIST, ORGID, REMARK, EDUCATION, 
+	    LICENSENO, INTOTRADEDATE, RUNMARKDATE, EMPLEVEL, DEPARTMENT_ID
+	  </sql>
+  	<select id="getOperatorByAccount" resultMap="AcOperatorResultMap" parameterType="java.lang.String">
+  		select 
+    		<include refid="Ac_Operator_Column_List" />
+    	from 
+    		AC_OPERATOR
+    	where 
+    		USERID = #{userid,jdbcType=DECIMAL}
+  	</select>
+  	
+  	<select id="getUserInfoByUserId" resultMap="OmEmployeeResultMap" parameterType="java.lang.String">
+  		select 
+    		<include refid="Om_Employee_Column_List" />
+    	from 
+    		om_employee
+    	where 
+    		USERID = #{userid,jdbcType=DECIMAL}
+  	</select>
+  	
+  	<select id="getRoleListByUserId" resultType="com.cdgit.loan.sysManage.login.bean.RoleBean" parameterType="java.lang.String">
+  		select t1.roleid, t2.rolename
+		  from ac_operatorrole t1
+		 inner join ac_operator t3
+		    on t1.operatorid = t3.operatorid
+		  left join ac_role t2
+		    on t1.roleid = t2.roleid
+		 where t3.userid = #{userid,jdbcType=DECIMAL}
+  	</select>
+  	
+  	<update id="loginFailProcess" parameterType="com.cdgit.loan.sysManage.empManage.bean.AcOperator">
+  		update AC_OPERATOR
+    <set>
+      <if test="unlocktime != null">
+        UNLOCKTIME = #{unlocktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errcount != null">
+        ERRCOUNT = #{errcount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=DECIMAL}
+  	</update>
+</mapper>

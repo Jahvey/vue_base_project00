@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.common.mapper.CommonUtilMapper">
+
+	<!-- 初始化营业日期缓存 -->
+	<select id="queryInitBusiDate" resultType="java.util.Date">
+		select operating_date from tb_pub_date
+	</select>
+	
+	<!-- 根据机构查询法人标识 -->
+	<select id="getLegorgByOrgCd" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT LEG_ORG FROM OM_ORGANIZATION WHERE ORGCODE=#{value}
+	</select>
+	<!-- 根据PARTYID查询法人标识 -->
+	<select id="getLegorgByPartyId" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT LEG_ORG FROM TB_CSM_PARTY WHERE PARTY_ID=#{value}
+	</select>
+
+	<resultMap id="csmTbSysApplyDaoConfigPo" type="com.cdgit.loan.csm.po.TbSysApplyDaoConfigPo">
+    <id column="CONFIG_ID" jdbcType="VARCHAR" property="configId" />
+    <result column="PHASE" jdbcType="VARCHAR" property="phase" />
+    <result column="LEG_ORG" jdbcType="VARCHAR" property="legOrg" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CLASS_NAME" jdbcType="VARCHAR" property="className" />
+    <result column="FLOW_NAME" jdbcType="VARCHAR" property="flowName" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="PARTY_TYPE" jdbcType="VARCHAR" property="partyType" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="PRODUCT_CD" jdbcType="VARCHAR" property="productCd" />
+
+  </resultMap>
+
+
+	<select id="queryTbSysApplyDaoConfigList" resultMap="csmTbSysApplyDaoConfigPo">
+	select *
+	from 
+	TB_SYS_APPLY_DAO_CONFIG
+	</select>
+
+</mapper>

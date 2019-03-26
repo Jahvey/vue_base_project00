@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConCreditInfoPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConCreditInfoPo">
+    <id column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="CONTRACT_NUM" jdbcType="VARCHAR" property="contractNum" />
+    <result column="CONTRACT_DATE" jdbcType="TIMESTAMP" property="contractDate" />
+    <result column="CONTRACT_ADDRESS" jdbcType="VARCHAR" property="contractAddress" />
+    <result column="OLD_CONTRACT_ID" jdbcType="VARCHAR" property="oldContractId" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CON_STATUS" jdbcType="VARCHAR" property="conStatus" />
+    <result column="PAPER_CON_NUM" jdbcType="VARCHAR" property="paperConNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CONTRACT_ID, APPLY_ID, PARTY_ID, CONTRACT_NUM, CONTRACT_DATE, CONTRACT_ADDRESS, OLD_CONTRACT_ID, 
+    USER_NUM, ORG_NUM, CREATE_TIME, UPDATE_TIME, CON_STATUS, PAPER_CON_NUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    *
+    from CRMS.TB_CON_CREDIT_INFO
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_CREDIT_INFO
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConCreditInfoPo">
+    insert into CRMS.TB_CON_CREDIT_INFO (CONTRACT_ID, APPLY_ID, PARTY_ID, 
+      CONTRACT_NUM, CONTRACT_DATE, CONTRACT_ADDRESS, 
+      OLD_CONTRACT_ID, USER_NUM, ORG_NUM, 
+      CREATE_TIME, UPDATE_TIME, CON_STATUS, 
+      PAPER_CON_NUM)
+    values (#{contractId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, 
+      #{contractNum,jdbcType=VARCHAR}, #{contractDate,jdbcType=TIMESTAMP}, #{contractAddress,jdbcType=VARCHAR}, 
+      #{oldContractId,jdbcType=VARCHAR}, #{userNum,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{conStatus,jdbcType=VARCHAR}, 
+      #{paperConNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConCreditInfoPo">
+    insert into CRMS.TB_CON_CREDIT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="contractNum != null">
+        CONTRACT_NUM,
+      </if>
+      <if test="contractDate != null">
+        CONTRACT_DATE,
+      </if>
+      <if test="contractAddress != null">
+        CONTRACT_ADDRESS,
+      </if>
+      <if test="oldContractId != null">
+        OLD_CONTRACT_ID,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="conStatus != null">
+        CON_STATUS,
+      </if>
+      <if test="paperConNum != null">
+        PAPER_CON_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNum != null">
+        #{contractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="contractDate != null">
+        #{contractDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractAddress != null">
+        #{contractAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="oldContractId != null">
+        #{oldContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="conStatus != null">
+        #{conStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paperConNum != null">
+        #{paperConNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConCreditInfoPo">
+    update CRMS.TB_CON_CREDIT_INFO
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNum != null">
+        CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="contractDate != null">
+        CONTRACT_DATE = #{contractDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractAddress != null">
+        CONTRACT_ADDRESS = #{contractAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="oldContractId != null">
+        OLD_CONTRACT_ID = #{oldContractId,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="conStatus != null">
+        CON_STATUS = #{conStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paperConNum != null">
+        PAPER_CON_NUM = #{paperConNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConCreditInfoPo">
+    update CRMS.TB_CON_CREDIT_INFO
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      CONTRACT_NUM = #{contractNum,jdbcType=VARCHAR},
+      CONTRACT_DATE = #{contractDate,jdbcType=TIMESTAMP},
+      CONTRACT_ADDRESS = #{contractAddress,jdbcType=VARCHAR},
+      OLD_CONTRACT_ID = #{oldContractId,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CON_STATUS = #{conStatus,jdbcType=VARCHAR},
+      PAPER_CON_NUM = #{paperConNum,jdbcType=VARCHAR}
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

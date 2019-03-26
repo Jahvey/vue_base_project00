@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmGrtMapper">
+
+
+<!--根据contractId取质押物信息  -->
+<select id="selCollInfo" parameterType="java.lang.String" resultType="java.util.HashMap" >
+SELECT
+	tc.relation_id,
+	ta.subcontract_num,
+	td.surety_no 
+FROM
+	tb_con_subcontract ta,
+	tb_con_subcontract_rel tb,
+	TB_CON_SUB_GRT_REL tc,
+	tb_grt_mortgage_basic td 
+WHERE
+	ta.subcontract_id = tb.subcontract_id 
+	AND tb.subcontract_id = tc.subcontract_id 
+	AND tc.surety_id = td.surety_id 
+	AND tb.contract_id =#{contractId}
+
+</select>
+
+<!-- 根据contractId取担保合同信息：缺 pb_guar_tp_cd保证担保类型:pbGuarTpCd，可以不要 -->
+<select id="selGuarInfo" parameterType="java.lang.String" resultType="java.util.HashMap" >
+SELECT
+	ta.subcontract_num,
+	ta.bz,
+	to_char( ta.subcontract_amt ) AS subcontract_amt,
+	ta.subcontract_status,
+	ta.subcontract_type,
+	tc.party_num,
+	tc.party_name,
+	to_char( ta.begin_date, 'yyyymmdd' ) AS begin_date,
+	to_char( ta.end_date, 'yyyymmdd' ) AS end_date,
+	ta.if_top_subcon,
+	to_char( ta.zgbjxe ) AS zgbjxe 
+FROM
+	tb_con_subcontract ta,
+	tb_con_subcontract_rel tb,
+	tb_csm_party tc 
+WHERE
+	ta.subcontract_id = tb.subcontract_id 
+	AND ta.party_id = tc.party_id 
+	AND tb.contract_id =#{contractId}
+
+</select>
+
+
+<!-- 根据contractId取合同信息 -->
+<select id="selConInfo" parameterType="java.lang.String" resultType="java.util.HashMap" >
+
+SELECT
+  con.contract_num contractNum,
+  con.product_type productType,
+  to_char( con.begin_date, 'yyyymmdd' ) AS beginDate,
+  to_char( con.end_date, 'yyyymmdd' ) AS endDate,
+  to_char( con.contract_amt ) AS contractAmt,
+  con.currency_cd currencyCd,
+  con.guaranty_type guarantyType,
+  con.main_guaranty_type mainGuarantyType,
+  con.con_status conStatus,
+  con.user_num userNum,
+  con.org_num  orgNum
+FROM
+  tb_con_contract_info con 
+WHERE
+  con.contract_id =#{contractId} 
+
+</select>
+  
+ <delete id="delTbBizGrtRel" parameterType="java.util.HashMap">
+ 
+ delete from 
+ crms.tb_biz_grt_rel 
+ where 
+ surety_id =#{suretyId} 
+ and apply_id = #{applyId}
+ 
+ </delete> 
+
+</mapper>

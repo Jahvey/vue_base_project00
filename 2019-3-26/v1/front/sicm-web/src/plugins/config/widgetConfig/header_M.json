@@ -1,0 +1,74 @@
+{
+	"view": {
+		"widget": [
+			{
+				"$": {
+					"name": "district",
+					"type": "district"
+				}
+			},
+			{
+				"$": {
+					"name": "platform_search",
+					"type": "platform_search"
+				},
+				"config": [
+					{
+						"$": {
+							"key": "home"
+						},
+						"item": [
+							{
+								"$": {
+									"allContent": "搜索商品",
+									"bgcolorObj": {
+										"bgcolor": "#ff00ff",
+										"_r": 255,
+										"_g": 0,
+										"_b": 255
+									}
+								}
+							}
+						]
+					},
+					{
+						"$": {
+							"key": "supplier_38"
+						},
+						"item": [
+							{
+								"$": {
+									"allContent": "爱鲜蜂",
+									"bgcolorObj": {
+										"bgcolor": "#000000",
+										"_r": 0,
+										"_g": 0,
+										"_b": 0
+									}
+								}
+							}
+						]
+					},
+					{
+						"$": {
+							"key": "supplier_6"
+						},
+						"item": [
+							{
+								"$": {
+									"allContent": "康奈",
+									"bgcolorObj": {
+										"bgcolor": "#9900ff",
+										"_r": 153,
+										"_g": 0,
+										"_b": 255
+									}
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

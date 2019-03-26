@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbSysExchangeRatePoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbSysExchangeRatePo">
+    <id column="EXCHANGE_RATE_ID" jdbcType="VARCHAR" property="exchangeRateId" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="DISCOUNT_RATE_OF_RMB" jdbcType="DECIMAL" property="discountRateOfRmb" />
+    <result column="DISCOUNT_UNIT" jdbcType="VARCHAR" property="discountUnit" />
+    <result column="VALIDITY_IND" jdbcType="VARCHAR" property="validityInd" />
+    <result column="ACTUAL_EXCHANGE_RATE" jdbcType="DECIMAL" property="actualExchangeRate" />
+    <result column="DISCOUNT_DATE" jdbcType="TIMESTAMP" property="discountDate" />
+    <result column="UNIT_CURRENCY_CD" jdbcType="VARCHAR" property="unitCurrencyCd" />
+    <result column="VALUATION_CURRENCY_CD" jdbcType="VARCHAR" property="valuationCurrencyCd" />
+    <result column="BUYING_PRICE" jdbcType="DECIMAL" property="buyingPrice" />
+    <result column="SELLING_PRICE" jdbcType="DECIMAL" property="sellingPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EXCHANGE_RATE_ID, CURRENCY_CD, DISCOUNT_RATE_OF_RMB, DISCOUNT_UNIT, VALIDITY_IND, 
+    ACTUAL_EXCHANGE_RATE, DISCOUNT_DATE, UNIT_CURRENCY_CD, VALUATION_CURRENCY_CD, BUYING_PRICE, 
+    SELLING_PRICE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    *
+    from CRMS.TB_SYS_EXCHANGE_RATE
+    where EXCHANGE_RATE_ID = #{exchangeRateId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_SYS_EXCHANGE_RATE
+    where EXCHANGE_RATE_ID = #{exchangeRateId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbSysExchangeRatePo">
+    insert into CRMS.TB_SYS_EXCHANGE_RATE (EXCHANGE_RATE_ID, CURRENCY_CD, DISCOUNT_RATE_OF_RMB, 
+      DISCOUNT_UNIT, VALIDITY_IND, ACTUAL_EXCHANGE_RATE, 
+      DISCOUNT_DATE, UNIT_CURRENCY_CD, VALUATION_CURRENCY_CD, 
+      BUYING_PRICE, SELLING_PRICE)
+    values (#{exchangeRateId,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, #{discountRateOfRmb,jdbcType=DECIMAL}, 
+      #{discountUnit,jdbcType=VARCHAR}, #{validityInd,jdbcType=VARCHAR}, #{actualExchangeRate,jdbcType=DECIMAL}, 
+      #{discountDate,jdbcType=TIMESTAMP}, #{unitCurrencyCd,jdbcType=VARCHAR}, #{valuationCurrencyCd,jdbcType=VARCHAR}, 
+      #{buyingPrice,jdbcType=DECIMAL}, #{sellingPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbSysExchangeRatePo">
+    insert into CRMS.TB_SYS_EXCHANGE_RATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="exchangeRateId != null">
+        EXCHANGE_RATE_ID,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="discountRateOfRmb != null">
+        DISCOUNT_RATE_OF_RMB,
+      </if>
+      <if test="discountUnit != null">
+        DISCOUNT_UNIT,
+      </if>
+      <if test="validityInd != null">
+        VALIDITY_IND,
+      </if>
+      <if test="actualExchangeRate != null">
+        ACTUAL_EXCHANGE_RATE,
+      </if>
+      <if test="discountDate != null">
+        DISCOUNT_DATE,
+      </if>
+      <if test="unitCurrencyCd != null">
+        UNIT_CURRENCY_CD,
+      </if>
+      <if test="valuationCurrencyCd != null">
+        VALUATION_CURRENCY_CD,
+      </if>
+      <if test="buyingPrice != null">
+        BUYING_PRICE,
+      </if>
+      <if test="sellingPrice != null">
+        SELLING_PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="exchangeRateId != null">
+        #{exchangeRateId,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="discountRateOfRmb != null">
+        #{discountRateOfRmb,jdbcType=DECIMAL},
+      </if>
+      <if test="discountUnit != null">
+        #{discountUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="validityInd != null">
+        #{validityInd,jdbcType=VARCHAR},
+      </if>
+      <if test="actualExchangeRate != null">
+        #{actualExchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="discountDate != null">
+        #{discountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitCurrencyCd != null">
+        #{unitCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="valuationCurrencyCd != null">
+        #{valuationCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="buyingPrice != null">
+        #{buyingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellingPrice != null">
+        #{sellingPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbSysExchangeRatePo">
+    update CRMS.TB_SYS_EXCHANGE_RATE
+    <set>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="discountRateOfRmb != null">
+        DISCOUNT_RATE_OF_RMB = #{discountRateOfRmb,jdbcType=DECIMAL},
+      </if>
+      <if test="discountUnit != null">
+        DISCOUNT_UNIT = #{discountUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="validityInd != null">
+        VALIDITY_IND = #{validityInd,jdbcType=VARCHAR},
+      </if>
+      <if test="actualExchangeRate != null">
+        ACTUAL_EXCHANGE_RATE = #{actualExchangeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="discountDate != null">
+        DISCOUNT_DATE = #{discountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitCurrencyCd != null">
+        UNIT_CURRENCY_CD = #{unitCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="valuationCurrencyCd != null">
+        VALUATION_CURRENCY_CD = #{valuationCurrencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="buyingPrice != null">
+        BUYING_PRICE = #{buyingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellingPrice != null">
+        SELLING_PRICE = #{sellingPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where EXCHANGE_RATE_ID = #{exchangeRateId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbSysExchangeRatePo">
+    update CRMS.TB_SYS_EXCHANGE_RATE
+    set CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      DISCOUNT_RATE_OF_RMB = #{discountRateOfRmb,jdbcType=DECIMAL},
+      DISCOUNT_UNIT = #{discountUnit,jdbcType=VARCHAR},
+      VALIDITY_IND = #{validityInd,jdbcType=VARCHAR},
+      ACTUAL_EXCHANGE_RATE = #{actualExchangeRate,jdbcType=DECIMAL},
+      DISCOUNT_DATE = #{discountDate,jdbcType=TIMESTAMP},
+      UNIT_CURRENCY_CD = #{unitCurrencyCd,jdbcType=VARCHAR},
+      VALUATION_CURRENCY_CD = #{valuationCurrencyCd,jdbcType=VARCHAR},
+      BUYING_PRICE = #{buyingPrice,jdbcType=DECIMAL},
+      SELLING_PRICE = #{sellingPrice,jdbcType=DECIMAL}
+    where EXCHANGE_RATE_ID = #{exchangeRateId,jdbcType=VARCHAR}
+  </update>
+</mapper>

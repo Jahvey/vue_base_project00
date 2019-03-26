@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConLoanChangeMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbConLoanChange">
+    <id column="CHANGE_ID" jdbcType="VARCHAR" property="changeId" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="SUMMARY_ID" jdbcType="VARCHAR" property="summaryId" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="CON_CHANGE_TYPE" jdbcType="VARCHAR" property="conChangeType" />
+    <result column="LOAN_CHANGE_TYPE" jdbcType="VARCHAR" property="loanChangeType" />
+    <result column="CHANGE_REASON" jdbcType="VARCHAR" property="changeReason" />
+    <result column="CHANGE_DATE" jdbcType="TIMESTAMP" property="changeDate" />
+    <result column="CHANGE_STATUS" jdbcType="VARCHAR" property="changeStatus" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="OLD_RATE_TYPE" jdbcType="VARCHAR" property="oldRateType" />
+    <result column="OLD_FLOAT_TYPE" jdbcType="VARCHAR" property="oldFloatType" />
+    <result column="OLD_FLOAT_WAY" jdbcType="VARCHAR" property="oldFloatWay" />
+    <result column="OLD_BASE_RATE_VALUE" jdbcType="DECIMAL" property="oldBaseRateValue" />
+    <result column="OLD_RATE_FLOAT_PROPORTION" jdbcType="DECIMAL" property="oldRateFloatProportion" />
+    <result column="OLD_YEAR_RATE" jdbcType="DECIMAL" property="oldYearRate" />
+    <result column="OLD_IR_UPDATE_FREQUENCY" jdbcType="VARCHAR" property="oldIrUpdateFrequency" />
+    <result column="OLD_INTEREST_COLLECT_TYPE" jdbcType="VARCHAR" property="oldInterestCollectType" />
+    <result column="NEW_RATE_TYPE" jdbcType="VARCHAR" property="newRateType" />
+    <result column="NEW_FLOAT_TYPE" jdbcType="VARCHAR" property="newFloatType" />
+    <result column="NEW_FLOAT_WAY" jdbcType="VARCHAR" property="newFloatWay" />
+    <result column="NEW_BASE_RATE_VALUE" jdbcType="DECIMAL" property="newBaseRateValue" />
+    <result column="NEW_RATE_FLOAT_PROPORTION" jdbcType="DECIMAL" property="newRateFloatProportion" />
+    <result column="NEW_YEAR_RATE" jdbcType="DECIMAL" property="newYearRate" />
+    <result column="NEW_IR_UPDATE_FREQUENCY" jdbcType="VARCHAR" property="newIrUpdateFrequency" />
+    <result column="NEW_INTEREST_COLLECT_TYPE" jdbcType="VARCHAR" property="newInterestCollectType" />
+    <result column="OLD_TERM" jdbcType="DECIMAL" property="oldTerm" />
+    <result column="OLD_END_DATE" jdbcType="TIMESTAMP" property="oldEndDate" />
+    <result column="TERM_CHANGE_WAY" jdbcType="VARCHAR" property="termChangeWay" />
+    <result column="NEW_TERM" jdbcType="DECIMAL" property="newTerm" />
+    <result column="NEW_END_DATE" jdbcType="TIMESTAMP" property="newEndDate" />
+    <result column="OLD_REPAY_WAY" jdbcType="VARCHAR" property="oldRepayWay" />
+    <result column="NEW_REPAY_WAY" jdbcType="VARCHAR" property="newRepayWay" />
+    <result column="OLD_REPAY_DAY" jdbcType="DECIMAL" property="oldRepayDay" />
+    <result column="NEW_REPAY_DAY" jdbcType="DECIMAL" property="newRepayDay" />
+    <result column="OLD_REPAY_ACCOUNT" jdbcType="VARCHAR" property="oldRepayAccount" />
+    <result column="NEW_REPAY_ACCOUNT" jdbcType="VARCHAR" property="newRepayAccount" />
+    <result column="OLD_GUARANTY_TYPE" jdbcType="VARCHAR" property="oldGuarantyType" />
+    <result column="NEW_GUARANTY_TYPE" jdbcType="VARCHAR" property="newGuarantyType" />
+    <result column="IS_SETTLE" jdbcType="VARCHAR" property="isSettle" />
+    <result column="REPAY_AMT" jdbcType="DECIMAL" property="repayAmt" />
+    <result column="REPAY_CAPITAL" jdbcType="DECIMAL" property="repayCapital" />
+    <result column="DEAL_WAY" jdbcType="VARCHAR" property="dealWay" />
+    <result column="IS_MODIFY_PLAN" jdbcType="VARCHAR" property="isModifyPlan" />
+    <result column="OLD_SUMMARYAMT" jdbcType="DECIMAL" property="oldSummaryamt" />
+    <result column="NEW_SUMMARYAMT" jdbcType="DECIMAL" property="newSummaryamt" />
+    <result column="OLD_RATE_UP" jdbcType="DECIMAL" property="oldRateUp" />
+    <result column="NEW_RATE_UP" jdbcType="DECIMAL" property="newRateUp" />
+    <result column="OLD_RATE_DOWN" jdbcType="DECIMAL" property="oldRateDown" />
+    <result column="NEW_RATE_DOWN" jdbcType="DECIMAL" property="newRateDown" />
+    <result column="IS_SMALL" jdbcType="VARCHAR" property="isSmall" />
+    <result column="REPAY_TYPE" jdbcType="VARCHAR" property="repayType" />
+    <result column="YHZCLX" jdbcType="DECIMAL" property="yhzclx" />
+    <result column="YHTQLX" jdbcType="DECIMAL" property="yhtqlx" />
+    <result column="YHFX" jdbcType="DECIMAL" property="yhfx" />
+    <result column="OLD_TIEXI_STATUS" jdbcType="VARCHAR" property="oldTiexiStatus" />
+    <result column="NEW_TIEXI_STATUS" jdbcType="VARCHAR" property="newTiexiStatus" />
+    <result column="OLD_TINGXI_STATUS" jdbcType="VARCHAR" property="oldTingxiStatus" />
+    <result column="NEW_TINGXI_STATUS" jdbcType="VARCHAR" property="newTingxiStatus" />
+    <result column="REPAY_ORDER" jdbcType="VARCHAR" property="repayOrder" />
+    <result column="CHANGE_NUM" jdbcType="VARCHAR" property="changeNum" />
+    <result column="STOP_RATE_TYPE" jdbcType="VARCHAR" property="stopRateType" />
+    <result column="STOP_ZC_RATE" jdbcType="DECIMAL" property="stopZcRate" />
+    <result column="STOP_TQ_RATE" jdbcType="DECIMAL" property="stopTqRate" />
+    <result column="STOP_FX" jdbcType="DECIMAL" property="stopFx" />
+    <result column="STOP_ZC_RATE_OUT" jdbcType="DECIMAL" property="stopZcRateOut" />
+    <result column="STOP_TQ_RATE_OUT" jdbcType="DECIMAL" property="stopTqRateOut" />
+    <result column="STOP_FX_OUT" jdbcType="DECIMAL" property="stopFxOut" />
+    <result column="OLD_ZHMC" jdbcType="VARCHAR" property="oldZhmc" />
+    <result column="OLD_KZBS" jdbcType="VARCHAR" property="oldKzbs" />
+    <result column="OLD_ZHKHJG" jdbcType="VARCHAR" property="oldZhkhjg" />
+    <result column="OLD_ZHBS" jdbcType="VARCHAR" property="oldZhbs" />
+    <result column="NEW_ZHMC" jdbcType="VARCHAR" property="newZhmc" />
+    <result column="NEW_KZBS" jdbcType="VARCHAR" property="newKzbs" />
+    <result column="NEW_ZHKHJG" jdbcType="VARCHAR" property="newZhkhjg" />
+    <result column="NEW_ZHBS" jdbcType="VARCHAR" property="newZhbs" />
+    <result column="FIRST_PERIODS" jdbcType="DECIMAL" property="firstPeriods" />
+    <result column="YHBJ" jdbcType="DECIMAL" property="yhbj" />
+    <result column="YHZE" jdbcType="DECIMAL" property="yhze" />
+    <result column="NEW_WTRHBZH" jdbcType="VARCHAR" property="newWtrhbzh" />
+    <result column="NEW_WTRHXZH" jdbcType="VARCHAR" property="newWtrhxzh" />
+    <result column="WTRNM" jdbcType="VARCHAR" property="wtrnm" />
+    <result column="HZSNM" jdbcType="VARCHAR" property="hzsnm" />
+    <result column="HZSZH" jdbcType="VARCHAR" property="hzszh" />
+    <result column="ADJ_ITR_FLG" jdbcType="VARCHAR" property="adjItrFlg" />
+    <result column="NOR_ITR_IN" jdbcType="DECIMAL" property="norItrIn" />
+    <result column="DFT_ITR_IN" jdbcType="DECIMAL" property="dftItrIn" />
+    <result column="PNS_ITR_IN" jdbcType="DECIMAL" property="pnsItrIn" />
+    <result column="NOR_OTD_ITR" jdbcType="DECIMAL" property="norOtdItr" />
+    <result column="PNS_OTD_ITR" jdbcType="DECIMAL" property="pnsOtdItr" />
+    <result column="BE_NOR_ITR_IN" jdbcType="DECIMAL" property="beNorItrIn" />
+    <result column="BE_DFT_ITR_IN" jdbcType="DECIMAL" property="beDftItrIn" />
+    <result column="BE_PNS_ITR_IN" jdbcType="DECIMAL" property="bePnsItrIn" />
+    <result column="BE_NOR_OTD_ITR" jdbcType="DECIMAL" property="beNorOtdItr" />
+    <result column="BE_PNS_OTD_ITR" jdbcType="DECIMAL" property="bePnsOtdItr" />
+    <result column="OLD_WTRHBZH" jdbcType="VARCHAR" property="oldWtrhbzh" />
+    <result column="OLD_WTRHXZH" jdbcType="VARCHAR" property="oldWtrhxzh" />
+    <result column="NOR_ITR_OUT" jdbcType="DECIMAL" property="norItrOut" />
+    <result column="DFT_ITR_OUT" jdbcType="DECIMAL" property="dftItrOut" />
+    <result column="PNS_ITR_OUT" jdbcType="DECIMAL" property="pnsItrOut" />
+    <result column="CPD_ITR_OUT" jdbcType="DECIMAL" property="cpdItrOut" />
+    <result column="BE_NOR_ITR_OUT" jdbcType="DECIMAL" property="beNorItrOut" />
+    <result column="BE_DFT_ITR_OUT" jdbcType="DECIMAL" property="beDftItrOut" />
+    <result column="BE_PNS_ITR_OUT" jdbcType="DECIMAL" property="bePnsItrOut" />
+    <result column="BE_CPD_ITR_OUT" jdbcType="DECIMAL" property="beCpdItrOut" />
+    <result column="CPD_ITR_IN" jdbcType="DECIMAL" property="cpdItrIn" />
+    <result column="BE_CPD_ITR_IN" jdbcType="DECIMAL" property="beCpdItrIn" />
+    <result column="OTD_CPD" jdbcType="DECIMAL" property="otdCpd" />
+    <result column="BE_OTD_CPD" jdbcType="DECIMAL" property="beOtdCpd" />
+    <result column="OTD_ITR_IN" jdbcType="DECIMAL" property="otdItrIn" />
+    <result column="BE_OTD_ITR_IN" jdbcType="DECIMAL" property="beOtdItrIn" />
+    <result column="STOP_FL" jdbcType="DECIMAL" property="stopFl" />
+    <result column="OLD_OVERDUE_RATE" jdbcType="DECIMAL" property="oldOverdueRate" />
+    <result column="NEW_OVERDUE_RATE" jdbcType="DECIMAL" property="newOverdueRate" />
+    <result column="OLD_BZJBLBDY" jdbcType="DECIMAL" property="oldBzjblbdy" />
+    <result column="NEW_BZJBLBDY" jdbcType="DECIMAL" property="newBzjblbdy" />
+    <result column="OLD_BZJJE" jdbcType="DECIMAL" property="oldBzjje" />
+    <result column="NEW_BZJJE" jdbcType="DECIMAL" property="newBzjje" />
+    <result column="OLD_XYZ_DQRQ" jdbcType="TIMESTAMP" property="oldXyzDqrq" />
+    <result column="NEW_XYZ_DQRQ" jdbcType="TIMESTAMP" property="newXyzDqrq" />
+    <result column="OLD_BH_DQRQ" jdbcType="TIMESTAMP" property="oldBhDqrq" />
+    <result column="NEW_BH_DQRQ" jdbcType="TIMESTAMP" property="newBhDqrq" />
+    <result column="OLD_BH_BZJBLBDY" jdbcType="DECIMAL" property="oldBhBzjblbdy" />
+    <result column="NEW_BH_BZJBLBDY" jdbcType="DECIMAL" property="newBhBzjblbdy" />
+    <result column="OLD_BH_BZJJE" jdbcType="DECIMAL" property="oldBhBzjje" />
+    <result column="NEW_BH_BZJJE" jdbcType="DECIMAL" property="newBhBzjje" />
+    <result column="OLD_XYZ_JYQ" jdbcType="VARCHAR" property="oldXyzJyq" />
+    <result column="NEW_XYZ_JYQ" jdbcType="VARCHAR" property="newXyzJyq" />
+    <result column="OLD_XYZ_YQTS" jdbcType="VARCHAR" property="oldXyzYqts" />
+    <result column="NEW_XYZ_YQTS" jdbcType="VARCHAR" property="newXyzYqts" />
+    <result column="OLD_BH_BHLX" jdbcType="VARCHAR" property="oldBhBhlx" />
+    <result column="NEW_BH_BHLX" jdbcType="VARCHAR" property="newBhBhlx" />
+    <result column="GJ_FLOW_NO" jdbcType="VARCHAR" property="gjFlowNo" />
+    <result column="YHFL" jdbcType="DECIMAL" property="yhfl" />
+    <result column="OLD_KZJE" jdbcType="DECIMAL" property="oldKzje" />
+    <result column="NEW_KZJE" jdbcType="DECIMAL" property="newKzje" />
+    <result column="PERIOD_NUM" jdbcType="VARCHAR" property="periodNum" />
+    <result column="PERIOD_STATE" jdbcType="VARCHAR" property="periodState" />
+    <result column="SHBJ" jdbcType="DECIMAL" property="shbj" />
+    <result column="SHZCLX" jdbcType="DECIMAL" property="shzclx" />
+    <result column="SHTQLX" jdbcType="DECIMAL" property="shtqlx" />
+    <result column="SHFX" jdbcType="DECIMAL" property="shfx" />
+    <result column="SHFL" jdbcType="DECIMAL" property="shfl" />
+    <result column="ADJ_OTD_PNS" jdbcType="DECIMAL" property="adjOtdPns" />
+    <result column="ADJ_OTD_CPD" jdbcType="DECIMAL" property="adjOtdCpd" />
+    <result column="PAD_UP_ADJ_OTD_ITR" jdbcType="DECIMAL" property="padUpAdjOtdItr" />
+    <result column="PAD_UP_ADJ_OTD_PNS" jdbcType="DECIMAL" property="padUpAdjOtdPns" />
+    <result column="PAD_UP_ADJ_OTD_CPD" jdbcType="DECIMAL" property="padUpAdjOtdCpd" />
+    <result column="PAD_UP_ADJ_OTD_ITR_PRE" jdbcType="DECIMAL" property="padUpAdjOtdItrPre" />
+    <result column="OLD_SECOND_REPAY_ACCOUNT" jdbcType="VARCHAR" property="oldSecondRepayAccount" />
+    <result column="OLD_SECOND_ZHMC" jdbcType="VARCHAR" property="oldSecondZhmc" />
+    <result column="OLD_SECOND_KZBS" jdbcType="VARCHAR" property="oldSecondKzbs" />
+    <result column="OLD_SECOND_ZHKHJG" jdbcType="VARCHAR" property="oldSecondZhkhjg" />
+    <result column="OLD_SECOND_ZHBS" jdbcType="VARCHAR" property="oldSecondZhbs" />
+    <result column="NEW_SECOND_REPAY_ACCOUNT" jdbcType="VARCHAR" property="newSecondRepayAccount" />
+    <result column="NEW_SECOND_ZHMC" jdbcType="VARCHAR" property="newSecondZhmc" />
+    <result column="NEW_SECOND_KZBS" jdbcType="VARCHAR" property="newSecondKzbs" />
+    <result column="NEW_SECOND_ZHKHJG" jdbcType="VARCHAR" property="newSecondZhkhjg" />
+    <result column="NEW_SECOND_ZHBS" jdbcType="VARCHAR" property="newSecondZhbs" />
+    <result column="OLD_THIRD_REPAY_ACCOUNT" jdbcType="VARCHAR" property="oldThirdRepayAccount" />
+    <result column="OLD_THIRD_ZHMC" jdbcType="VARCHAR" property="oldThirdZhmc" />
+    <result column="OLD_THIRD_KZBS" jdbcType="VARCHAR" property="oldThirdKzbs" />
+    <result column="OLD_THIRD_ZHKHJG" jdbcType="VARCHAR" property="oldThirdZhkhjg" />
+    <result column="OLD_THIRD_ZHBS" jdbcType="VARCHAR" property="oldThirdZhbs" />
+    <result column="NEW_THIRD_REPAY_ACCOUNT" jdbcType="VARCHAR" property="newThirdRepayAccount" />
+    <result column="NEW_THIRD_ZHMC" jdbcType="VARCHAR" property="newThirdZhmc" />
+    <result column="NEW_THIRD_KZBS" jdbcType="VARCHAR" property="newThirdKzbs" />
+    <result column="NEW_THIRD_ZHKHJG" jdbcType="VARCHAR" property="newThirdZhkhjg" />
+    <result column="NEW_THIRD_ZHBS" jdbcType="VARCHAR" property="newThirdZhbs" />
+    <result column="IS_CREDIT" jdbcType="VARCHAR" property="isCredit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CHANGE_ID, CONTRACT_ID, SUMMARY_ID, PARTY_ID, CON_CHANGE_TYPE, LOAN_CHANGE_TYPE, 
+    CHANGE_REASON, CHANGE_DATE, CHANGE_STATUS, USER_NUM, ORG_NUM, OLD_RATE_TYPE, OLD_FLOAT_TYPE, 
+    OLD_FLOAT_WAY, OLD_BASE_RATE_VALUE, OLD_RATE_FLOAT_PROPORTION, OLD_YEAR_RATE, OLD_IR_UPDATE_FREQUENCY, 
+    OLD_INTEREST_COLLECT_TYPE, NEW_RATE_TYPE, NEW_FLOAT_TYPE, NEW_FLOAT_WAY, NEW_BASE_RATE_VALUE, 
+    NEW_RATE_FLOAT_PROPORTION, NEW_YEAR_RATE, NEW_IR_UPDATE_FREQUENCY, NEW_INTEREST_COLLECT_TYPE, 
+    OLD_TERM, OLD_END_DATE, TERM_CHANGE_WAY, NEW_TERM, NEW_END_DATE, OLD_REPAY_WAY, NEW_REPAY_WAY, 
+    OLD_REPAY_DAY, NEW_REPAY_DAY, OLD_REPAY_ACCOUNT, NEW_REPAY_ACCOUNT, OLD_GUARANTY_TYPE, 
+    NEW_GUARANTY_TYPE, IS_SETTLE, REPAY_AMT, REPAY_CAPITAL, DEAL_WAY, IS_MODIFY_PLAN, 
+    OLD_SUMMARYAMT, NEW_SUMMARYAMT, OLD_RATE_UP, NEW_RATE_UP, OLD_RATE_DOWN, NEW_RATE_DOWN, 
+    IS_SMALL, REPAY_TYPE, YHZCLX, YHTQLX, YHFX, OLD_TIEXI_STATUS, NEW_TIEXI_STATUS, OLD_TINGXI_STATUS, 
+    NEW_TINGXI_STATUS, REPAY_ORDER, CHANGE_NUM, STOP_RATE_TYPE, STOP_ZC_RATE, STOP_TQ_RATE, 
+    STOP_FX, STOP_ZC_RATE_OUT, STOP_TQ_RATE_OUT, STOP_FX_OUT, OLD_ZHMC, OLD_KZBS, OLD_ZHKHJG, 
+    OLD_ZHBS, NEW_ZHMC, NEW_KZBS, NEW_ZHKHJG, NEW_ZHBS, FIRST_PERIODS, YHBJ, YHZE, NEW_WTRHBZH, 
+    NEW_WTRHXZH, WTRNM, HZSNM, HZSZH, ADJ_ITR_FLG, NOR_ITR_IN, DFT_ITR_IN, PNS_ITR_IN, 
+    NOR_OTD_ITR, PNS_OTD_ITR, BE_NOR_ITR_IN, BE_DFT_ITR_IN, BE_PNS_ITR_IN, BE_NOR_OTD_ITR, 
+    BE_PNS_OTD_ITR, OLD_WTRHBZH, OLD_WTRHXZH, NOR_ITR_OUT, DFT_ITR_OUT, PNS_ITR_OUT, 
+    CPD_ITR_OUT, BE_NOR_ITR_OUT, BE_DFT_ITR_OUT, BE_PNS_ITR_OUT, BE_CPD_ITR_OUT, CPD_ITR_IN, 
+    BE_CPD_ITR_IN, OTD_CPD, BE_OTD_CPD, OTD_ITR_IN, BE_OTD_ITR_IN, STOP_FL, OLD_OVERDUE_RATE, 
+    NEW_OVERDUE_RATE, OLD_BZJBLBDY, NEW_BZJBLBDY, OLD_BZJJE, NEW_BZJJE, OLD_XYZ_DQRQ, 
+    NEW_XYZ_DQRQ, OLD_BH_DQRQ, NEW_BH_DQRQ, OLD_BH_BZJBLBDY, NEW_BH_BZJBLBDY, OLD_BH_BZJJE, 
+    NEW_BH_BZJJE, OLD_XYZ_JYQ, NEW_XYZ_JYQ, OLD_XYZ_YQTS, NEW_XYZ_YQTS, OLD_BH_BHLX, 
+    NEW_BH_BHLX, GJ_FLOW_NO, YHFL, OLD_KZJE, NEW_KZJE, PERIOD_NUM, PERIOD_STATE, SHBJ, 
+    SHZCLX, SHTQLX, SHFX, SHFL, ADJ_OTD_PNS, ADJ_OTD_CPD, PAD_UP_ADJ_OTD_ITR, PAD_UP_ADJ_OTD_PNS, 
+    PAD_UP_ADJ_OTD_CPD, PAD_UP_ADJ_OTD_ITR_PRE, OLD_SECOND_REPAY_ACCOUNT, OLD_SECOND_ZHMC, 
+    OLD_SECOND_KZBS, OLD_SECOND_ZHKHJG, OLD_SECOND_ZHBS, NEW_SECOND_REPAY_ACCOUNT, NEW_SECOND_ZHMC, 
+    NEW_SECOND_KZBS, NEW_SECOND_ZHKHJG, NEW_SECOND_ZHBS, OLD_THIRD_REPAY_ACCOUNT, OLD_THIRD_ZHMC, 
+    OLD_THIRD_KZBS, OLD_THIRD_ZHKHJG, OLD_THIRD_ZHBS, NEW_THIRD_REPAY_ACCOUNT, NEW_THIRD_ZHMC, 
+    NEW_THIRD_KZBS, NEW_THIRD_ZHKHJG, NEW_THIRD_ZHBS, IS_CREDIT
+  </sql>
+ 
+</mapper>

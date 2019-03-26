@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbIrmInternalRatingResultMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbIrmInternalRatingResult">
+    <id column="IRR_RESULT_ID" jdbcType="VARCHAR" property="irrResultId" />
+    <result column="IRA_APPLY_ID" jdbcType="VARCHAR" property="iraApplyId" />
+    <result column="CREDIT_RATING_CD" jdbcType="VARCHAR" property="creditRatingCd" />
+    <result column="EFFECTIVE_START_DT" jdbcType="TIMESTAMP" property="effectiveStartDt" />
+    <result column="RATING_STATE" jdbcType="VARCHAR" property="ratingState" />
+    <result column="EFFECTIVE_END_DT" jdbcType="TIMESTAMP" property="effectiveEndDt" />
+    <result column="RATING_DT" jdbcType="TIMESTAMP" property="ratingDt" />
+    <result column="PROJECT_ID" jdbcType="VARCHAR" property="projectId" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="IS_PROFESSIONAL" jdbcType="VARCHAR" property="isProfessional" />
+    <result column="CREDIT_RATING_CD_OLD" jdbcType="VARCHAR" property="creditRatingCdOld" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    IRR_RESULT_ID, IRA_APPLY_ID, CREDIT_RATING_CD, EFFECTIVE_START_DT, RATING_STATE, 
+    EFFECTIVE_END_DT, RATING_DT, PROJECT_ID, ORG_NUM, USER_NUM, IS_PROFESSIONAL, CREDIT_RATING_CD_OLD, 
+    PARTY_ID
+  </sql>
+  <select id="getPartyCreditLevel" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT CREDIT_RATING_CD FROM TB_IRM_INTERNAL_RATING_RESULT r
+	INNER JOIN TB_IRM_INTERNAL_RATING_APPLY a ON a.IRA_APPLY_ID=r.IRA_APPLY_ID
+	WHERE r.PARTY_ID =#{partyId,jdbcType=VARCHAR} AND r.RATING_STATE='03' AND a.RATING_TYPE='3'
+	ORDER BY r.RATING_DT DESC
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_IRM_INTERNAL_RATING_RESULT
+    where IRR_RESULT_ID = #{irrResultId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_IRM_INTERNAL_RATING_RESULT
+    where IRR_RESULT_ID = #{irrResultId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.CsmTbIrmInternalRatingResult">
+    insert into TB_IRM_INTERNAL_RATING_RESULT (IRR_RESULT_ID, IRA_APPLY_ID, CREDIT_RATING_CD, 
+      EFFECTIVE_START_DT, RATING_STATE, EFFECTIVE_END_DT, 
+      RATING_DT, PROJECT_ID, ORG_NUM, 
+      USER_NUM, IS_PROFESSIONAL, CREDIT_RATING_CD_OLD, 
+      PARTY_ID)
+    values (#{irrResultId,jdbcType=VARCHAR}, #{iraApplyId,jdbcType=VARCHAR}, #{creditRatingCd,jdbcType=VARCHAR}, 
+      #{effectiveStartDt,jdbcType=TIMESTAMP}, #{ratingState,jdbcType=VARCHAR}, #{effectiveEndDt,jdbcType=TIMESTAMP}, 
+      #{ratingDt,jdbcType=TIMESTAMP}, #{projectId,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, 
+      #{userNum,jdbcType=VARCHAR}, #{isProfessional,jdbcType=VARCHAR}, #{creditRatingCdOld,jdbcType=VARCHAR}, 
+      #{partyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.CsmTbIrmInternalRatingResult">
+    insert into TB_IRM_INTERNAL_RATING_RESULT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="irrResultId != null">
+        IRR_RESULT_ID,
+      </if>
+      <if test="iraApplyId != null">
+        IRA_APPLY_ID,
+      </if>
+      <if test="creditRatingCd != null">
+        CREDIT_RATING_CD,
+      </if>
+      <if test="effectiveStartDt != null">
+        EFFECTIVE_START_DT,
+      </if>
+      <if test="ratingState != null">
+        RATING_STATE,
+      </if>
+      <if test="effectiveEndDt != null">
+        EFFECTIVE_END_DT,
+      </if>
+      <if test="ratingDt != null">
+        RATING_DT,
+      </if>
+      <if test="projectId != null">
+        PROJECT_ID,
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM,
+      </if>
+      <if test="userNum != null">
+        USER_NUM,
+      </if>
+      <if test="isProfessional != null">
+        IS_PROFESSIONAL,
+      </if>
+      <if test="creditRatingCdOld != null">
+        CREDIT_RATING_CD_OLD,
+      </if>
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="irrResultId != null">
+        #{irrResultId,jdbcType=VARCHAR},
+      </if>
+      <if test="iraApplyId != null">
+        #{iraApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRatingCd != null">
+        #{creditRatingCd,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveStartDt != null">
+        #{effectiveStartDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ratingState != null">
+        #{ratingState,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveEndDt != null">
+        #{effectiveEndDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ratingDt != null">
+        #{ratingDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="isProfessional != null">
+        #{isProfessional,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRatingCdOld != null">
+        #{creditRatingCdOld,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.CsmTbIrmInternalRatingResult">
+    update TB_IRM_INTERNAL_RATING_RESULT
+    <set>
+      <if test="iraApplyId != null">
+        IRA_APPLY_ID = #{iraApplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRatingCd != null">
+        CREDIT_RATING_CD = #{creditRatingCd,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveStartDt != null">
+        EFFECTIVE_START_DT = #{effectiveStartDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ratingState != null">
+        RATING_STATE = #{ratingState,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveEndDt != null">
+        EFFECTIVE_END_DT = #{effectiveEndDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ratingDt != null">
+        RATING_DT = #{ratingDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectId != null">
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="isProfessional != null">
+        IS_PROFESSIONAL = #{isProfessional,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRatingCdOld != null">
+        CREDIT_RATING_CD_OLD = #{creditRatingCdOld,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where IRR_RESULT_ID = #{irrResultId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.CsmTbIrmInternalRatingResult">
+    update TB_IRM_INTERNAL_RATING_RESULT
+    set IRA_APPLY_ID = #{iraApplyId,jdbcType=VARCHAR},
+      CREDIT_RATING_CD = #{creditRatingCd,jdbcType=VARCHAR},
+      EFFECTIVE_START_DT = #{effectiveStartDt,jdbcType=TIMESTAMP},
+      RATING_STATE = #{ratingState,jdbcType=VARCHAR},
+      EFFECTIVE_END_DT = #{effectiveEndDt,jdbcType=TIMESTAMP},
+      RATING_DT = #{ratingDt,jdbcType=TIMESTAMP},
+      PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      IS_PROFESSIONAL = #{isProfessional,jdbcType=VARCHAR},
+      CREDIT_RATING_CD_OLD = #{creditRatingCdOld,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR}
+    where IRR_RESULT_ID = #{irrResultId,jdbcType=VARCHAR}
+  </update>
+</mapper>

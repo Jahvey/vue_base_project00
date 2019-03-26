@@ -1,0 +1,95 @@
+﻿#member_nav{
+	margin-left: -15px;
+}
+.nav_title {
+color:red;
+font-size:17px;
+}
+.member-siderbar i.icon {
+width:10px;
+height:8px;
+display:inline-block;
+background:url('../images/triangle_down.png') no-repeat;
+background-size:10px 8px;
+}
+.member-siderbar i.icon1 {
+width:8px;
+height:10px;
+display:inline-block;
+background:url('../images/triangle_right.png') no-repeat;
+background-size:8px 10px;
+}
+.nav_list {
+padding:0px;
+padding-bottom: 20px;
+}
+.nav_list > li:first-child > a > span{
+	color: #ef524d;
+	display: block;
+	font-size: 18px;
+	border-bottom: 1px solid #e8e8e8;
+	line-height: 30px;
+	padding-left: 5px;
+
+}
+.nav_list  a  span{
+color:#0000bb;
+}
+.nav_list span{
+color:#0000bb;
+}
+.nav_list li {
+    margin-top:15px;
+}
+.nav_list li span{
+cursor:pointer;
+}
+.nav_Imgplaceholder {
+    width:10px;
+    height:8px;
+    display:inline-block;
+}
+.member-siderbar .secondUl {
+color:black;
+margin-left:10px;
+}
+.member-siderbar .secondUl  li{
+margin-top:7px;
+cursor:pointer;
+}
+.nav_list > li > ul{
+	position: relative;
+	font-size: 14px;
+}
+.nav_list > li:before{
+	content: "";
+	width: 5px;
+	height: 5px;
+	position: absolute;
+	background: #bcbaba;
+	top: 7px
+
+}
+.nav_list > li:first-child:before{
+	display: none;
+	width: 0;
+	height: 0;
+}
+
+.nav_list > li > a > span
+{
+	font-size: 14px;
+	color: #434343;
+}
+.nav_list > li > ul >  li,
+.nav_list > li > ul > li > ul > li{
+	padding-left: 0;
+}
+.nav_list > li > ul >  li > a > span,
+.nav_list > li > ul > li > ul > li > a > span{
+	color: #828080;
+	font-size: 14px;
+}
+a:visited,a:focus {
+text-decoration:none;
+}
