@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.pub.gitUtils.CsmGitUtilsMapper">
+
+	<!-- 初始化营业日期缓存 -->
+	<select id="queryInitBusiDate" resultType="java.util.Date">
+		select operating_date from tb_pub_date
+	</select>
+	
+	
+	<!-- 查询序列号 -->
+	<select id="querySeqByName" parameterType="java.util.HashMap" resultType="java.lang.String">
+		SELECT ${seqname} AS SEQNO FROM DUAL
+	</select>
+
+	<!-- 根据机构查询法人标识 -->
+	<select id="getLegorgByOrgCd" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT LEG_ORG FROM OM_ORGANIZATION WHERE ORGCODE=#{value}
+	</select>
+	<!-- 根据PARTYID查询法人标识 -->
+	<select id="getLegorgByPartyId" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT LEG_ORG FROM TB_CSM_PARTY WHERE PARTY_ID=#{value}
+	</select>
+
+</mapper>

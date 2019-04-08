@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbSysBasicRatePoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbSysBasicRatePo">
+    <id column="INT_RATE_ID" jdbcType="VARCHAR" property="intRateId" />
+    <result column="INT_RATE" jdbcType="DECIMAL" property="intRate" />
+    <result column="VALID_DATE" jdbcType="TIMESTAMP" property="validDate" />
+    <result column="DATA_DATE" jdbcType="TIMESTAMP" property="dataDate" />
+    <result column="INVALID_DATE" jdbcType="TIMESTAMP" property="invalidDate" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="INT_RATE_CD" jdbcType="VARCHAR" property="intRateCd" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="INT_RATE_NAME" jdbcType="VARCHAR" property="intRateName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    INT_RATE_ID, INT_RATE, VALID_DATE, DATA_DATE, INVALID_DATE, STATUS, INT_RATE_CD, 
+    CURRENCY_CD, INT_RATE_NAME
+  </sql>
+  
+  <select id="selectByIntRateCd" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select 
+    *
+    from CRMS.TB_SYS_BASIC_RATE
+    where INT_RATE_CD = #{intRateCd,jdbcType=VARCHAR}
+  
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_SYS_BASIC_RATE
+    where INT_RATE_ID = #{intRateId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_SYS_BASIC_RATE
+    where INT_RATE_ID = #{intRateId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbSysBasicRatePo">
+    insert into CRMS.TB_SYS_BASIC_RATE (INT_RATE_ID, INT_RATE, VALID_DATE, 
+      DATA_DATE, INVALID_DATE, STATUS, 
+      INT_RATE_CD, CURRENCY_CD, INT_RATE_NAME
+      )
+    values (#{intRateId,jdbcType=VARCHAR}, #{intRate,jdbcType=DECIMAL}, #{validDate,jdbcType=TIMESTAMP}, 
+      #{dataDate,jdbcType=TIMESTAMP}, #{invalidDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{intRateCd,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, #{intRateName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbSysBasicRatePo">
+    insert into CRMS.TB_SYS_BASIC_RATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="intRateId != null">
+        INT_RATE_ID,
+      </if>
+      <if test="intRate != null">
+        INT_RATE,
+      </if>
+      <if test="validDate != null">
+        VALID_DATE,
+      </if>
+      <if test="dataDate != null">
+        DATA_DATE,
+      </if>
+      <if test="invalidDate != null">
+        INVALID_DATE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="intRateCd != null">
+        INT_RATE_CD,
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD,
+      </if>
+      <if test="intRateName != null">
+        INT_RATE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="intRateId != null">
+        #{intRateId,jdbcType=VARCHAR},
+      </if>
+      <if test="intRate != null">
+        #{intRate,jdbcType=DECIMAL},
+      </if>
+      <if test="validDate != null">
+        #{validDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null">
+        #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidDate != null">
+        #{invalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="intRateCd != null">
+        #{intRateCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="intRateName != null">
+        #{intRateName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbSysBasicRatePo">
+    update CRMS.TB_SYS_BASIC_RATE
+    <set>
+      <if test="intRate != null">
+        INT_RATE = #{intRate,jdbcType=DECIMAL},
+      </if>
+      <if test="validDate != null">
+        VALID_DATE = #{validDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataDate != null">
+        DATA_DATE = #{dataDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidDate != null">
+        INVALID_DATE = #{invalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="intRateCd != null">
+        INT_RATE_CD = #{intRateCd,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCd != null">
+        CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="intRateName != null">
+        INT_RATE_NAME = #{intRateName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INT_RATE_ID = #{intRateId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbSysBasicRatePo">
+    update CRMS.TB_SYS_BASIC_RATE
+    set INT_RATE = #{intRate,jdbcType=DECIMAL},
+      VALID_DATE = #{validDate,jdbcType=TIMESTAMP},
+      DATA_DATE = #{dataDate,jdbcType=TIMESTAMP},
+      INVALID_DATE = #{invalidDate,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      INT_RATE_CD = #{intRateCd,jdbcType=VARCHAR},
+      CURRENCY_CD = #{currencyCd,jdbcType=VARCHAR},
+      INT_RATE_NAME = #{intRateName,jdbcType=VARCHAR}
+    where INT_RATE_ID = #{intRateId,jdbcType=VARCHAR}
+  </update>
+</mapper>

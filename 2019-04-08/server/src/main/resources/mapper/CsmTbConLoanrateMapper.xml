@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConLoanrateMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.bean.CsmTbConLoanrate">
+    <id column="LOANRATE_ID" jdbcType="VARCHAR" property="loanrateId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="RATE_TYPE" jdbcType="VARCHAR" property="rateType" />
+    <result column="INTEREST_COLLECT_TYPE" jdbcType="VARCHAR" property="interestCollectType" />
+    <result column="RATE_FLOAT_PROPORTION" jdbcType="DECIMAL" property="rateFloatProportion" />
+    <result column="IR_UPDATE_FREQUENCY" jdbcType="VARCHAR" property="irUpdateFrequency" />
+    <result column="BASE_RATE_VALUE" jdbcType="DECIMAL" property="baseRateValue" />
+    <result column="RATE_FLOAT_MEMBER" jdbcType="DECIMAL" property="rateFloatMember" />
+    <result column="OVERDUE_RATE_UP_PROPORTION" jdbcType="VARCHAR" property="overdueRateUpProportion" />
+    <result column="YEAR_RATE" jdbcType="DECIMAL" property="yearRate" />
+    <result column="FLOAT_TYPE" jdbcType="VARCHAR" property="floatType" />
+    <result column="FLOAT_WAY" jdbcType="VARCHAR" property="floatWay" />
+    <result column="GRACE_PERIOD_DAY" jdbcType="DECIMAL" property="gracePeriodDay" />
+    <result column="GRACE_PERIOD_TYPE" jdbcType="VARCHAR" property="gracePeriodType" />
+    <result column="GRACE_COUNT_INT_FLAG" jdbcType="VARCHAR" property="graceCountIntFlag" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="HOLIDAY_FLG" jdbcType="VARCHAR" property="holidayFlg" />
+    <result column="HOLIDAY_INT_FLG" jdbcType="VARCHAR" property="holidayIntFlg" />
+    <result column="FEE_FLAG" jdbcType="VARCHAR" property="feeFlag" />
+    <result column="DISC_FLAG" jdbcType="VARCHAR" property="discFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LOANRATE_ID, CREATE_TIME, UPDATE_TIME, RATE_TYPE, INTEREST_COLLECT_TYPE, RATE_FLOAT_PROPORTION, 
+    IR_UPDATE_FREQUENCY, BASE_RATE_VALUE, RATE_FLOAT_MEMBER, OVERDUE_RATE_UP_PROPORTION, 
+    YEAR_RATE, FLOAT_TYPE, FLOAT_WAY, GRACE_PERIOD_DAY, GRACE_PERIOD_TYPE, GRACE_COUNT_INT_FLAG, 
+    CONTRACT_ID, HOLIDAY_FLG, HOLIDAY_INT_FLG, FEE_FLAG, DISC_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CON_LOANRATE
+    where LOANRATE_ID = #{loanrateId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_CON_LOANRATE
+    where LOANRATE_ID = #{loanrateId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.bean.CsmTbConLoanrate">
+    insert into TB_CON_LOANRATE (LOANRATE_ID, CREATE_TIME, UPDATE_TIME, 
+      RATE_TYPE, INTEREST_COLLECT_TYPE, RATE_FLOAT_PROPORTION, 
+      IR_UPDATE_FREQUENCY, BASE_RATE_VALUE, RATE_FLOAT_MEMBER, 
+      OVERDUE_RATE_UP_PROPORTION, YEAR_RATE, FLOAT_TYPE, 
+      FLOAT_WAY, GRACE_PERIOD_DAY, GRACE_PERIOD_TYPE, 
+      GRACE_COUNT_INT_FLAG, CONTRACT_ID, HOLIDAY_FLG, 
+      HOLIDAY_INT_FLG, FEE_FLAG, DISC_FLAG
+      )
+    values (#{loanrateId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{rateType,jdbcType=VARCHAR}, #{interestCollectType,jdbcType=VARCHAR}, #{rateFloatProportion,jdbcType=DECIMAL}, 
+      #{irUpdateFrequency,jdbcType=VARCHAR}, #{baseRateValue,jdbcType=DECIMAL}, #{rateFloatMember,jdbcType=DECIMAL}, 
+      #{overdueRateUpProportion,jdbcType=VARCHAR}, #{yearRate,jdbcType=DECIMAL}, #{floatType,jdbcType=VARCHAR}, 
+      #{floatWay,jdbcType=VARCHAR}, #{gracePeriodDay,jdbcType=DECIMAL}, #{gracePeriodType,jdbcType=VARCHAR}, 
+      #{graceCountIntFlag,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{holidayFlg,jdbcType=VARCHAR}, 
+      #{holidayIntFlg,jdbcType=VARCHAR}, #{feeFlag,jdbcType=VARCHAR}, #{discFlag,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.bean.CsmTbConLoanrate">
+    insert into TB_CON_LOANRATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loanrateId != null">
+        LOANRATE_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE,
+      </if>
+      <if test="interestCollectType != null">
+        INTEREST_COLLECT_TYPE,
+      </if>
+      <if test="rateFloatProportion != null">
+        RATE_FLOAT_PROPORTION,
+      </if>
+      <if test="irUpdateFrequency != null">
+        IR_UPDATE_FREQUENCY,
+      </if>
+      <if test="baseRateValue != null">
+        BASE_RATE_VALUE,
+      </if>
+      <if test="rateFloatMember != null">
+        RATE_FLOAT_MEMBER,
+      </if>
+      <if test="overdueRateUpProportion != null">
+        OVERDUE_RATE_UP_PROPORTION,
+      </if>
+      <if test="yearRate != null">
+        YEAR_RATE,
+      </if>
+      <if test="floatType != null">
+        FLOAT_TYPE,
+      </if>
+      <if test="floatWay != null">
+        FLOAT_WAY,
+      </if>
+      <if test="gracePeriodDay != null">
+        GRACE_PERIOD_DAY,
+      </if>
+      <if test="gracePeriodType != null">
+        GRACE_PERIOD_TYPE,
+      </if>
+      <if test="graceCountIntFlag != null">
+        GRACE_COUNT_INT_FLAG,
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="holidayFlg != null">
+        HOLIDAY_FLG,
+      </if>
+      <if test="holidayIntFlg != null">
+        HOLIDAY_INT_FLG,
+      </if>
+      <if test="feeFlag != null">
+        FEE_FLAG,
+      </if>
+      <if test="discFlag != null">
+        DISC_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loanrateId != null">
+        #{loanrateId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rateType != null">
+        #{rateType,jdbcType=VARCHAR},
+      </if>
+      <if test="interestCollectType != null">
+        #{interestCollectType,jdbcType=VARCHAR},
+      </if>
+      <if test="rateFloatProportion != null">
+        #{rateFloatProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="irUpdateFrequency != null">
+        #{irUpdateFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="baseRateValue != null">
+        #{baseRateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="rateFloatMember != null">
+        #{rateFloatMember,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueRateUpProportion != null">
+        #{overdueRateUpProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="yearRate != null">
+        #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="floatType != null">
+        #{floatType,jdbcType=VARCHAR},
+      </if>
+      <if test="floatWay != null">
+        #{floatWay,jdbcType=VARCHAR},
+      </if>
+      <if test="gracePeriodDay != null">
+        #{gracePeriodDay,jdbcType=DECIMAL},
+      </if>
+      <if test="gracePeriodType != null">
+        #{gracePeriodType,jdbcType=VARCHAR},
+      </if>
+      <if test="graceCountIntFlag != null">
+        #{graceCountIntFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayFlg != null">
+        #{holidayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayIntFlg != null">
+        #{holidayIntFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="feeFlag != null">
+        #{feeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="discFlag != null">
+        #{discFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.bean.CsmTbConLoanrate">
+    update TB_CON_LOANRATE
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rateType != null">
+        RATE_TYPE = #{rateType,jdbcType=VARCHAR},
+      </if>
+      <if test="interestCollectType != null">
+        INTEREST_COLLECT_TYPE = #{interestCollectType,jdbcType=VARCHAR},
+      </if>
+      <if test="rateFloatProportion != null">
+        RATE_FLOAT_PROPORTION = #{rateFloatProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="irUpdateFrequency != null">
+        IR_UPDATE_FREQUENCY = #{irUpdateFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="baseRateValue != null">
+        BASE_RATE_VALUE = #{baseRateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="rateFloatMember != null">
+        RATE_FLOAT_MEMBER = #{rateFloatMember,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueRateUpProportion != null">
+        OVERDUE_RATE_UP_PROPORTION = #{overdueRateUpProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="yearRate != null">
+        YEAR_RATE = #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="floatType != null">
+        FLOAT_TYPE = #{floatType,jdbcType=VARCHAR},
+      </if>
+      <if test="floatWay != null">
+        FLOAT_WAY = #{floatWay,jdbcType=VARCHAR},
+      </if>
+      <if test="gracePeriodDay != null">
+        GRACE_PERIOD_DAY = #{gracePeriodDay,jdbcType=DECIMAL},
+      </if>
+      <if test="gracePeriodType != null">
+        GRACE_PERIOD_TYPE = #{gracePeriodType,jdbcType=VARCHAR},
+      </if>
+      <if test="graceCountIntFlag != null">
+        GRACE_COUNT_INT_FLAG = #{graceCountIntFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayFlg != null">
+        HOLIDAY_FLG = #{holidayFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayIntFlg != null">
+        HOLIDAY_INT_FLG = #{holidayIntFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="feeFlag != null">
+        FEE_FLAG = #{feeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="discFlag != null">
+        DISC_FLAG = #{discFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOANRATE_ID = #{loanrateId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.bean.CsmTbConLoanrate">
+    update TB_CON_LOANRATE
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      RATE_TYPE = #{rateType,jdbcType=VARCHAR},
+      INTEREST_COLLECT_TYPE = #{interestCollectType,jdbcType=VARCHAR},
+      RATE_FLOAT_PROPORTION = #{rateFloatProportion,jdbcType=DECIMAL},
+      IR_UPDATE_FREQUENCY = #{irUpdateFrequency,jdbcType=VARCHAR},
+      BASE_RATE_VALUE = #{baseRateValue,jdbcType=DECIMAL},
+      RATE_FLOAT_MEMBER = #{rateFloatMember,jdbcType=DECIMAL},
+      OVERDUE_RATE_UP_PROPORTION = #{overdueRateUpProportion,jdbcType=VARCHAR},
+      YEAR_RATE = #{yearRate,jdbcType=DECIMAL},
+      FLOAT_TYPE = #{floatType,jdbcType=VARCHAR},
+      FLOAT_WAY = #{floatWay,jdbcType=VARCHAR},
+      GRACE_PERIOD_DAY = #{gracePeriodDay,jdbcType=DECIMAL},
+      GRACE_PERIOD_TYPE = #{gracePeriodType,jdbcType=VARCHAR},
+      GRACE_COUNT_INT_FLAG = #{graceCountIntFlag,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      HOLIDAY_FLG = #{holidayFlg,jdbcType=VARCHAR},
+      HOLIDAY_INT_FLG = #{holidayIntFlg,jdbcType=VARCHAR},
+      FEE_FLAG = #{feeFlag,jdbcType=VARCHAR},
+      DISC_FLAG = #{discFlag,jdbcType=VARCHAR}
+    where LOANRATE_ID = #{loanrateId,jdbcType=VARCHAR}
+  </update>
+</mapper>

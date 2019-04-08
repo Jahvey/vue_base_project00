@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmBizInfoVoMapper">
+
+<resultMap type="com.cdgit.loan.csm.bean.CsmPartyBasisVo" id="CsmPartyBasisVo">
+	<result column="PARTY_ID" javaType="String" property="partyId" />
+	<result column="PARTY_NAME" javaType="String" property="partyName" />
+	<result column="PARTY_NUM" javaType="String" property="partyNum" />
+	<result column="PARTY_TYPE_CD" javaType="String" property="partyTypeCd" />
+	<result column="CERT_TYPE" javaType="String" property="certType" />
+	<result column="CERT_NUM" javaType="String" property="certNum" />
+	<result column="CORP_CUSTOMER_TYPE_CD" javaType="String"
+		property="corpCustomerTypeCd" />
+	<result column="ECIF_PARTY_NUM" javaType="String" property="ecifPartyNum" />
+
+
+</resultMap>
+
+<resultMap id="bizInfoVo" type="com.cdgit.loan.csm.bean.CsmTbBizApprove">
+	<result column="APPROVE_ID" javaType="String" property="approveId" />
+	<result column="CSM_CRD_LEVEL" javaType="String" property="csmCrdLevel" />
+	<result column="PRODUCT_TYPE" javaType="String" property="productType" />
+	<result column="BIZ_HAPPEN_TYPE" javaType="String" property="bizHappenType" />
+	<result column="BIZ_NUM" javaType="String" property="bizNum" />
+	<result column="RMB_AMT" javaType="String" property="rmbAmt" />
+	<result column="TERM_NUM" javaType="String" property="termNum" />
+	<result column="TERM_UNIT" javaType="String" property="termUnit" />
+	<result column="GUARANTY_TYPE" javaType="String" property="guarantyType" />
+	<result column="IS_BANK_TEAM_LOAN" javaType="String" property="isBankTeamLoan" />
+	<result column="BECOME_EFFECTIVE_MARK" javaType="String"
+		property="becomeEffectiveMark" />
+	<result column="LOW_RISK_BIZ_TYPE" javaType="String" property="lowRiskBizType" />
+	<result column="busiPartner" javaType="String" property="busiPartner" />
+	<result column="whetherBzxzfdk" javaType="String" property="whetherBzxzfdk" />
+
+	<result column="ORG_NUM" javaType="String" property="orgNum" />
+	<result column="USER_NUM" javaType="String" property="userNum" />
+	<result column="APPLY_DATE" javaType="String" property="applyDate" />
+
+	<result column="PARTY_ID" javaType="String" property="partyId" />
+	
+	<result column="APPLY_ID" javaType="String" property="applyId" />
+	<result column="AMOUNT_ID" javaType="String" property="amountId" />
+	
+	
+	<!-- 需要用到的字段 -->
+	<result column="biz_Type" javaType="String" property="bizType" />
+	<result column="apply_Mode_Type" javaType="String" property="applyModeType" />
+
+</resultMap>
+
+<resultMap type="com.cdgit.loan.csm.bean.CsmBizMainVo" id="CsmBizMainVo">
+
+	<result column="STATUS_TYPE" javaType="String" property="statusType" />
+	<result column="AMOUNT_ID" javaType="String" property="amountId" />
+	<result column="AMOUNT_DETAIL_ID" javaType="String" property="amountDetailId" />
+	<result column="PRODUCT_TYPE" javaType="String" property="productType" />
+	<result column="RMB_AMT" javaType="String" property="rmbAmt" />
+
+</resultMap>
+
+
+    <!--业务详情页面-->
+  
+    <select id="getBizApproveBasic" parameterType="java.lang.String" resultMap="bizInfoVo">
+	  SELECT
+	a.approve_id,
+	a.biz_num,
+	a.biz_type,
+	a.low_risk_biz_type,
+	a.apply_mode_type,
+	a.biz_happen_type,
+	a.org_num,
+	a.user_num,
+	a.party_id,
+	a.business_product,
+	a.product_type,
+	
+	
+	to_char(to_timestamp(trunc(a.handing_date)), 'YYYY-MM-DD hh24:mi:ss.ff6') as handing_date,
+	a.amount_type,
+	to_char(to_timestamp(trunc(a.create_time)), 'YYYY-MM-DD hh24:mi:ss.ff6') as create_time,
+	to_char(to_timestamp(trunc(a.update_time)), 'YYYY-MM-DD hh24:mi:ss.ff6') as update_time,
+	a.csm_crd_level,
+	a.approval_num,
+	a.become_effective_mark,
+	a.original_approve_id,
+	a.is_bank_team_loan,
+	a.loan_inspection_fre,
+	a.policy_decision_idea,
+	a.valid_date,
+	a.policy_decision_num,
+	a.apply_type_mark,
+	a.approve_conclusion,
+	a.end_org_num,
+	a.end_date,
+	a.if_data_move,
+	a.apply_id,
+	a.biz_happen_nature,
+	a.is_green_loan,
+	a.loan_type,
+	a.biz_type_flag,
+	a.guaranty_type,
+	a.term_num,
+	a.term_unit,
+	a.rmb_amt,
+	a.bo_use,
+	a.no_use,
+	a.crd_id,
+	a.credit_mode,
+	
+  	TO_CHAR( a.apply_date, 'YYYY-MM-DD' ) AS apply_date
+		 
+	FROM
+		TB_BIZ_APPROVE a
+	WHERE
+	
+		 a.APPROVE_ID =#{approveId}
+
+  </select>
+  
+  <select id="getBizMain" parameterType="java.lang.String" resultMap="CsmBizMainVo">
+  SELECT
+	a.BECOME_EFFECTIVE_MARK STATUS_TYPE,
+	aa.AMOUNT_ID,
+	ad.AMOUNT_DETAIL_ID,
+	ad.PRODUCT_TYPE,
+	ad.RMB_AMT 
+FROM
+	TB_BIZ_APPROVE a
+	INNER JOIN TB_BIZ_AMOUNT_APPROVE aa ON a.APPROVE_ID = aa.APPROVE_ID
+	INNER JOIN TB_BIZ_AMOUNT_DETAIL_APPROVE ad ON a.APPROVE_ID = ad.APPROVE_ID 
+WHERE
+	
+	 a.APPROVE_ID =#{approveId}
+	
+  </select>
+  
+  
+  <select id="getPartyBasis" parameterType="java.lang.String" resultMap="CsmPartyBasisVo">
+  
+  SELECT
+	p.PARTY_ID,
+	p.PARTY_NAME,
+	p.PARTY_NUM,
+	p.PARTY_TYPE_CD,
+	DECODE( p.PARTY_TYPE_CD, '02', pn.CERT_TYPE, '202' ) CERT_TYPE,
+	DECODE( p.PARTY_TYPE_CD, '02', pn.CERT_NUM, pc.ORG_REGISTER_CD ) CERT_NUM,
+	pc.CORP_CUSTOMER_TYPE_CD,
+	P.ECIF_PARTY_NUM 
+FROM
+	TB_CSM_PARTY p
+	LEFT JOIN TB_CSM_NATURAL_PERSON pn ON p.PARTY_ID = pn.PARTY_ID
+	LEFT JOIN TB_CSM_CORPORATION pc ON p.PARTY_ID = pc.PARTY_ID 
+WHERE
+
+	 p.PARTY_ID =#{partyId}
+	
+
+  </select>
+
+
+</mapper>

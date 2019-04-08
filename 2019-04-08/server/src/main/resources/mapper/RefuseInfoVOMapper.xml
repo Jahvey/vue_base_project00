@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.customerManage.mapper.RefuseInfoVOMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.customerManage.bean.RefuseInfoVO">
+    <result column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="CREDIT_TERM" jdbcType="VARCHAR" property="creditTerm" />
+    <result column="CREDIT_AMOUNT" jdbcType="VARCHAR" property="creditAmount" />
+    <result column="LOAN_USE" jdbcType="VARCHAR" property="loanUse" />
+    <result column="VALID_DATE" jdbcType="VARCHAR" property="validDate" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="PARTY_NAME" jdbcType="VARCHAR" property="partyName" />
+    <result column="REFUSE" jdbcType="VARCHAR" property="refuse" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <select id="refuseList" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT TB.APPROVE_ID,
+		        TB.APPLY_DATE,
+		        Td.CREDIT_TERM,
+		        TD.CREDIT_AMOUNT,
+		        TE.LOAN_USE,
+		        TO_CHAR(W.FINISH_TIME, 'yyyy-MM-dd') AS VALID_DATE,
+		        V.PARTY_ID,
+		        V.PARTY_NAME,
+		        '1' AS REFUSE,
+		        W.OPINION AS REMARK
+		  FROM TB_WFM_PROCESSINSTANCE       P,
+		        TB_WFM_WORKITEMINSTANCE      W,
+		        TB_BIZ_APPROVE               TB,
+		        TB_BIZ_AMOUNT_APPROVE        TD,
+		        TB_BIZ_AMOUNT_DETAIL_APPROVE TE,
+		        V_CSM_PARTY                  V
+		 WHERE P.PROCESS_ID = W.PROCESS_ID
+		   AND W.CONCLUSION = '2'
+		   AND P.PRODUCT_ID = TB.APPLY_ID
+		   AND TB.APPROVE_ID = TD.APPROVE_ID
+		   AND TD.AMOUNT_ID = TE.AMOUNT_ID
+		   AND TB.PARTY_ID = V.PARTY_ID
+		   and tb.party_Id = #{partyId,jdbcType=VARCHAR}
+   </select>
+</mapper>

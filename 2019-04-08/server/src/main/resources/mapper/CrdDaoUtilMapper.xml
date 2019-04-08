@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.creditLimit.mapper.CrdDaoUtilMapper">
+  
+<select id="getAvailConToCrdDtl" parameterType="java.util.Map"  resultType="java.util.HashMap">
+SELECT ad.APPROVE_ID,p.PRODUCT_CD,p.SUPERIOR_ID,ci.RMB_AMT,NVL(ci.BZJBL,0)ASSURE_PER,ci.CON_OCCUPY
+FROM TB_BIZ_AMOUNT_DETAIL_APPROVE ad
+INNER JOIN TB_BIZ_APPROVE a ON a.APPROVE_ID=ad.APPROVE_ID
+INNER JOIN TB_CON_CONTRACT_INFO ci ON ci.AMOUNT_DETAIL_ID=ad.AMOUNT_DETAIL_ID
+INNER JOIN TB_SYS_PRODUCT p ON p.PRODUCT_CD=ad.PRODUCT_TYPE
+WHERE a.PARTY_ID=#{partyId}
+AND ci.CON_STATUS='03'
+AND (NVL( a.IS_BANK_TEAM_LOAN, '0' ) != '1' AND a.LOW_RISK_BIZ_TYPE IS NULL)  
+</select>
+    <select id="getCrdDtlList" parameterType="java.util.HashMap"  resultType="java.util.HashMap">
+SELECT CRD_DTL_ID,PRODUCT_TYPE,CURRENCY_CD,DTL_AMT,CYCLE_IND,CREDIT_MODE,ASSURE_PER,BO_USE
+FROM TB_CRD_DETAIL_APPLY
+WHERE CRD_ID = #{crdId}
+    </select>
+    <select id="getBizId" parameterType="java.util.HashMap"  resultType="java.lang.String">
+	SELECT APPLY_ID FROM TB_BIZ_APPLY a WHERE CRD_ID=#{crdId}
+	<if test="searchMode == haveDtl">
+	AND EXISTS (SELECT 1 FROM TB_BIZ_AMOUNT_DETAIL_APPLY ad WHERE ad.APPLY_ID=a.APPLY_ID)
+	</if>
+
+    </select>
+    <select id="getBizIdAndHaveDtl" parameterType="java.util.HashMap"  resultType="java.util.HashMap">
+SELECT APPLY_ID
+,NVL((SELECT MAX(1) FROM TB_BIZ_AMOUNT_DETAIL_APPLY ad WHERE ad.APPLY_ID=a.APPLY_ID),0)HAVE_BIZ_DTL 
+FROM TB_BIZ_APPLY a WHERE CRD_ID=#{crdId}
+    </select>
+    <select id="getBizInfo" parameterType="java.lang.String"  resultType="java.util.HashMap">
+SELECT a.APPLY_ID,a.APPLY_DATE,aa.AMOUNT_ID FROM TB_BIZ_APPLY a 
+INNER JOIN TB_BIZ_AMOUNT_APPLY aa ON a.APPLY_ID=aa.APPLY_ID 
+WHERE a.CRD_ID=#{value}
+    </select>
+    <select id="getBizDtlId" parameterType="java.lang.String"  resultType="java.lang.String">
+SELECT AMOUNT_DETAIL_ID FROM TB_BIZ_AMOUNT_DETAIL_APPLY WHERE CRD_DTL_ID=#value# AND CREDIT_MODE='02'
+    </select>
+	<select id="getCrdLockAll" parameterType="java.lang.String"  resultType="java.util.HashMap">
+SELECT al.*,bd.AMOUNT_DETAIL_ID,ci.CONTRACT_ID FROM TB_CRD_DETAIL_APPLY ad
+INNER JOIN TB_BIZ_APPLY_LOCKING al ON al.APPLY_ID=ad.CRD_DTL_ID
+INNER JOIN TB_BIZ_AMOUNT_DETAIL_APPROVE bd ON bd.APPROVE_ID=al.LOCK_BIZ_ID
+INNER JOIN TB_CON_CONTRACT_INFO ci ON ci.AMOUNT_DETAIL_ID=bd.AMOUNT_DETAIL_ID
+WHERE ad.CRD_ID =#value# AND al.LOCK_TYPE='crdApp'
+    </select>
+    <select id="getGrtType" parameterType="java.util.HashMap" resultType="java.lang.String">
+SELECT A.PARTY_ID FROM TB_CRD_APPLY A WHERE A.CRD_ID=#{applyId} AND A.GUARANTY_TYPE LIKE '%'||#guarantyType#||'%'
+    </select>
+    <select id="haveGjProduct" parameterType="java.lang.String" resultType="java.lang.String">
+SELECT p.PRODUCT_CD FROM TB_CRD_DETAIL_APPLY cd
+INNER JOIN TB_SYS_PRODUCT p ON p.PRODUCT_CD=cd.PRODUCT_TYPE
+WHERE CRD_ID=#{value} AND p.PRODUCT_DEPARTMENT='4'
+    </select>
+    <update id="updateBizCrdId"  parameterType="java.util.HashMap">
+UPDATE TB_BIZ_APPROVE SET CRD_ID=#crdId#,CREDIT_MODE='00',BIZ_TYPE='02',BIZ_TYPE_FLAG='10',AMOUNT_TYPE='01' WHERE APPROVE_ID=#{bizId}
+    </update>
+    <update id="updateBizDtlCrdDtlId"  parameterType="java.util.HashMap">
+UPDATE TB_BIZ_AMOUNT_DETAIL_APPROVE SET CRD_DTL_ID=#crdDtlId#,CREDIT_MODE='00',CREDIT_STATUS='59' WHERE AMOUNT_DETAIL_ID=#{bizDtlId}
+    </update>
+    <update id="updateConCrdDtlId"  parameterType="java.util.HashMap">
+UPDATE TB_CON_CONTRACT_INFO SET CRD_DTL_ID=#{crdDtlId},CREDIT_MODE='00' WHERE CONTRACT_ID=#{conId}
+    </update>
+    <delete id="removeCrdDtlAll"  parameterType="java.lang.String">
+DELETE FROM TB_CRD_DETAIL_APPLY WHERE CRD_ID=#{value}
+    </delete>
+    
+   <!--  <select id="getIsSXcrd" parameterType="java.util.HashMap" resultType="commonj.sdo.DataObject">
+		select decode(count(1),0,'0','1') as isApply from Tb_Crd_Detail_Apply a 
+		  where a.crd_id=#{crdId} and a.credit_mode='02'
+    </select>
+    
+    <select id="getIsSXProcess" parameterType="java.util.HashMap" resultType="commonj.sdo.DataObject">
+		select decode(count(1),0,'0','1') as examRecord from tb_wfm_processinstance 
+			where product_id=#{crdId}
+			  and process_status = 'finish'
+    </select> -->
+  
+  <insert id="insertCrd" parameterType="com.cdgit.loan.creditLimit.bean.TbCrdApply">
+    insert into CRMS.TB_CRD_APPLY (CRD_ID, CRD_NUM, CREDIT_MODE, 
+      PARTY_ID, STATUS_CD, ORG_NUM, 
+      USER_NUM, APPLY_DATE, UPDATE_TIME, 
+      GUARANTY_TYPE, TERM_NUM, TERM_UNIT, 
+      HAPPEN_NATURE, HAPPEN_TYPE, RMB_AMT, 
+      OLD_CRD_ID, BIZ_ID, CSM_CRD_LEVEL
+      )
+    values (#{crdId,jdbcType=VARCHAR}, #{crdNum,jdbcType=VARCHAR}, #{creditMode,jdbcType=VARCHAR}, 
+      #{partyId,jdbcType=VARCHAR}, #{statusCd,jdbcType=VARCHAR}, #{orgNum,jdbcType=VARCHAR}, 
+      #{userNum,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{guarantyType,jdbcType=VARCHAR}, #{termNum,jdbcType=DECIMAL}, #{termUnit,jdbcType=VARCHAR}, 
+      #{happenNature,jdbcType=VARCHAR}, #{happenType,jdbcType=VARCHAR}, #{rmbAmt,jdbcType=DECIMAL}, 
+      #{oldCrdId,jdbcType=VARCHAR}, #{bizId,jdbcType=VARCHAR}, #{csmCrdLevel,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertCrdDtl" parameterType="com.cdgit.loan.creditLimit.bean.TbCrdDetailApply">
+    insert into CRMS.TB_CRD_DETAIL_APPLY (CRD_DTL_ID, CRD_ID, CREDIT_MODE, 
+      PRODUCT_TYPE, CURRENCY_CD, EXCHANGE_RATE, 
+      EXCHANGE_RATE_DATE, DTL_AMT, RMB_AMT, 
+      BO_USE, TERM_NUM, TERM_UNIT, 
+      UPDATE_TIME, CYCLE_IND, OLD_CRD_DTL_ID, 
+      BEGIN_DATE, END_DATE, ASSURE_PER
+      )
+    values (#{crdDtlId,jdbcType=VARCHAR}, #{crdId,jdbcType=VARCHAR}, #{creditMode,jdbcType=VARCHAR}, 
+      #{productType,jdbcType=VARCHAR}, #{currencyCd,jdbcType=VARCHAR}, #{exchangeRate,jdbcType=DECIMAL}, 
+      #{exchangeRateDate,jdbcType=TIMESTAMP}, #{dtlAmt,jdbcType=DECIMAL}, #{rmbAmt,jdbcType=DECIMAL}, 
+      #{boUse,jdbcType=DECIMAL}, #{termNum,jdbcType=VARCHAR}, #{termUnit,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{cycleInd,jdbcType=VARCHAR}, #{oldCrdDtlId,jdbcType=VARCHAR}, 
+      #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{assurePer,jdbcType=DECIMAL}
+      )
+  </insert>
+  
+  <!-- CreditReckonSql =========CRD_APP=========  -->
+    <update id="updateCrdAppCredit" parameterType="java.lang.String">
+		UPDATE TB_CRD_APPLY a SET RMB_AMT = 
+		(SELECT SUM(RMB_AMT) FROM TB_CRD_DETAIL_APPLY ad WHERE ad.CRD_ID=a.CRD_ID) 
+		WHERE a.CRD_ID=#{value}
+	</update>
+  
+  <!-- <update id="updateCrdApp" parameterType="com.cdgit.loan.creditLimit.bean.TbCrdApply">
+    update TB_CRD_APPLY
+    set CRD_NUM = #{crdNum,jdbcType=VARCHAR},
+      CREDIT_MODE = #{creditMode,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      STATUS_CD = #{statusCd,jdbcType=VARCHAR},
+      ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      USER_NUM = #{userNum,jdbcType=VARCHAR},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      TERM_NUM = #{termNum,jdbcType=DECIMAL},
+      TERM_UNIT = #{termUnit,jdbcType=VARCHAR},
+      HAPPEN_NATURE = #{happenNature,jdbcType=VARCHAR},
+      HAPPEN_TYPE = #{happenType,jdbcType=VARCHAR},
+      RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      OLD_CRD_ID = #{oldCrdId,jdbcType=VARCHAR},
+      BIZ_ID = #{bizId,jdbcType=VARCHAR},
+      CSM_CRD_LEVEL = #{csmCrdLevel,jdbcType=VARCHAR}
+    where CRD_ID = #{crdId,jdbcType=VARCHAR}
+  </update> -->
+  
+  <resultMap id="BaseCrdAppResultMap" type="com.cdgit.loan.creditLimit.bean.TbCrdApply">
+    <id column="CRD_ID" jdbcType="VARCHAR" property="crdId" />
+    <result column="CRD_NUM" jdbcType="VARCHAR" property="crdNum" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+    <result column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="STATUS_CD" jdbcType="VARCHAR" property="statusCd" />
+    <result column="ORG_NUM" jdbcType="VARCHAR" property="orgNum" />
+    <result column="USER_NUM" jdbcType="VARCHAR" property="userNum" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="GUARANTY_TYPE" jdbcType="VARCHAR" property="guarantyType" />
+    <result column="TERM_NUM" jdbcType="DECIMAL" property="termNum" />
+    <result column="TERM_UNIT" jdbcType="VARCHAR" property="termUnit" />
+    <result column="HAPPEN_NATURE" jdbcType="VARCHAR" property="happenNature" />
+    <result column="HAPPEN_TYPE" jdbcType="VARCHAR" property="happenType" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="OLD_CRD_ID" jdbcType="VARCHAR" property="oldCrdId" />
+    <result column="BIZ_ID" jdbcType="VARCHAR" property="bizId" />
+    <result column="CSM_CRD_LEVEL" jdbcType="VARCHAR" property="csmCrdLevel" />
+  </resultMap>
+  <sql id="Base_Crd_App_Column_List">
+    CRD_ID, CRD_NUM, CREDIT_MODE, PARTY_ID, STATUS_CD, ORG_NUM, USER_NUM, APPLY_DATE, 
+    UPDATE_TIME, GUARANTY_TYPE, TERM_NUM, TERM_UNIT, HAPPEN_NATURE, HAPPEN_TYPE, RMB_AMT, 
+    OLD_CRD_ID, BIZ_ID, CSM_CRD_LEVEL
+  </sql>
+  <select id="selectCrdAppByPrimaryKey" parameterType="java.lang.String" resultMap="BaseCrdAppResultMap">
+    select 
+    <include refid="Base_Crd_App_Column_List" />
+    from TB_CRD_APPLY
+    where CRD_ID = #{crdId,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateCrdApp" parameterType="com.cdgit.loan.creditLimit.bean.TbCrdApply">
+    update TB_CRD_APPLY
+    <set>
+      <if test="crdNum != null">
+        CRD_NUM = #{crdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="creditMode != null">
+        CREDIT_MODE = #{creditMode,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCd != null">
+        STATUS_CD = #{statusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNum != null">
+        ORG_NUM = #{orgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userNum != null">
+        USER_NUM = #{userNum,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="guarantyType != null">
+        GUARANTY_TYPE = #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="termNum != null">
+        TERM_NUM = #{termNum,jdbcType=DECIMAL},
+      </if>
+      <if test="termUnit != null">
+        TERM_UNIT = #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="happenNature != null">
+        HAPPEN_NATURE = #{happenNature,jdbcType=VARCHAR},
+      </if>
+      <if test="happenType != null">
+        HAPPEN_TYPE = #{happenType,jdbcType=VARCHAR},
+      </if>
+      <if test="rmbAmt != null">
+        RMB_AMT = #{rmbAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="oldCrdId != null">
+        OLD_CRD_ID = #{oldCrdId,jdbcType=VARCHAR},
+      </if>
+      <if test="bizId != null">
+        BIZ_ID = #{bizId,jdbcType=VARCHAR},
+      </if>
+      <if test="csmCrdLevel != null">
+        CSM_CRD_LEVEL = #{csmCrdLevel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CRD_ID = #{crdId,jdbcType=VARCHAR}
+  </update>
+  
+   <resultMap id="BaseCrdDtlResultMap" type="com.cdgit.loan.creditLimit.bean.TbCrdDetailApply">
+    <id column="CRD_DTL_ID" jdbcType="VARCHAR" property="crdDtlId" />
+    <result column="CRD_ID" jdbcType="VARCHAR" property="crdId" />
+    <result column="CREDIT_MODE" jdbcType="VARCHAR" property="creditMode" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="CURRENCY_CD" jdbcType="VARCHAR" property="currencyCd" />
+    <result column="EXCHANGE_RATE" jdbcType="DECIMAL" property="exchangeRate" />
+    <result column="EXCHANGE_RATE_DATE" jdbcType="TIMESTAMP" property="exchangeRateDate" />
+    <result column="DTL_AMT" jdbcType="DECIMAL" property="dtlAmt" />
+    <result column="RMB_AMT" jdbcType="DECIMAL" property="rmbAmt" />
+    <result column="BO_USE" jdbcType="DECIMAL" property="boUse" />
+    <result column="TERM_NUM" jdbcType="VARCHAR" property="termNum" />
+    <result column="TERM_UNIT" jdbcType="VARCHAR" property="termUnit" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CYCLE_IND" jdbcType="VARCHAR" property="cycleInd" />
+    <result column="OLD_CRD_DTL_ID" jdbcType="VARCHAR" property="oldCrdDtlId" />
+    <result column="BEGIN_DATE" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="ASSURE_PER" jdbcType="DECIMAL" property="assurePer" />
+  </resultMap>
+  <sql id="Base_Crd_Dtl_App_Column_List">
+    CRD_DTL_ID, CRD_ID, CREDIT_MODE, PRODUCT_TYPE, CURRENCY_CD, EXCHANGE_RATE, EXCHANGE_RATE_DATE, 
+    DTL_AMT, RMB_AMT, BO_USE, TERM_NUM, TERM_UNIT, UPDATE_TIME, CYCLE_IND, OLD_CRD_DTL_ID, 
+    BEGIN_DATE, END_DATE, ASSURE_PER
+  </sql>
+  <select id="selectCrdDtlApp" parameterType="java.lang.String" resultMap="BaseCrdDtlResultMap">
+    select 
+    <include refid="Base_Crd_Dtl_App_Column_List" />
+    from TB_CRD_DETAIL_APPLY
+    where CRD_DTL_ID = #{crdDtlId,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

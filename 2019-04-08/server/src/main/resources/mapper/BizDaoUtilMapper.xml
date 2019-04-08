@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.common.mapper.BizDaoUtilMapper">
+  
+<delete id="removeTbBizAmountApply" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_AMOUNT_APPLY WHERE APPLY_ID=#{value}
+    </delete>
+    <delete id="removeTbBizAmountDetailApply" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_AMOUNT_DETAIL_APPLY WHERE APPLY_ID=#{value}
+    </delete>
+   	<delete id="removeBizDtlProductInfo" parameterType="java.util.Map">
+    	DELETE FROM $tableName$ WHERE AMOUNT_DETAIL_ID = #{amountDetailId}
+    </delete>
+    <delete id="removeTbBizTx" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_TX WHERE APPLY_ID=#{value}    
+    </delete>
+    <delete id="removeTbBizTxxxApply" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_TXXX_APPLY tx WHERE tx.AMOUNT_DETAIL_ID=#{value} 
+    	AND NOT EXISTS (SELECT 1 FROM TB_LOAN_HP_AMT hp WHERE hp.APPLY_DETAIL_ID=tx.APPLY_DETAIL_ID)
+    </delete>
+    <delete id="removeTbBizPjxxApply" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_PJXX_APPLY WHERE AMOUNT_DETAIL_ID=#{value}
+    </delete>
+    <delete id="removeTbBizXmxxApply" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_XMXX_APPLY WHERE AMOUNT_DETAIL_ID=#{value}
+    </delete>
+    <delete id="removeTbBizWyxxApply" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_WYXX_APPLY WHERE AMOUNT_DETAIL_ID=#{value}
+    </delete>
+    <delete id="removeTbBizApplyLocking" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_APPLY_LOCKING WHERE APPLY_ID=#{value}
+    </delete>
+    <delete id="removeTbBizAmountLoanrateApply" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_AMOUNT_LOANRATE_APPLY WHERE AMOUNT_DETAIL_ID=#{value}
+    </delete>
+    <delete id="removeTbBizXwHkjh" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_XW_HKJH WHERE AMOUNT_DETAIL_ID=#{value}
+    </delete>
+    <delete id="removeTbSysFlowTest" parameterType="java.lang.String">
+    	DELETE FROM TB_SYS_FLOW_TEST WHERE APPLY_ID=#{value}    
+    </delete>
+    <delete id="removeTbBizYesornoApply" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_YESORNO_APPLY WHERE APPLY_ID=#{value}
+    </delete>
+    <delete id="removeTbBizSummary" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_SUMMARY WHERE APPLY_ID=#{value}
+    </delete>
+    <delete id="removeTbBizGrtMaxloanconApply" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_GRT_MAXLOANCON_APPLY WHERE APPLY_ID=#{value}
+    </delete>
+    <delete id="removeTbBizBankMemberApply" parameterType="java.lang.String">
+    	<!-- DELETE FROM TB_BIZ_BANK_MEMBER_APPLY WHERE SYNDICATED_STRUCT_ID=#{value} -->
+    	
+    	DELETE FROM TB_BIZ_BANK_MEMBER_APPLY WHERE SYNDICATED_STRUCT_ID=(select syndicated_struct_id from tb_biz_bank_struct_apply where apply_id=#{value})
+    	
+    </delete>
+    <delete id="removeTbBizXb" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_XB WHERE BIZ_ID=#{value}
+    </delete>
+    <delete id="removeTbBizCreditLineMeasure" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_CREDIT_LINE_MEASURE WHERE ID=#{value}    
+    </delete>
+    <delete id="removeTbBizFamilyFinance" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_FAMILY_FINANCE WHERE APPLY_ID=#{value}    
+    </delete>
+    <!-- 待处理 -->
+ 	<delete id="removeTbBizMyhtxxApply" parameterType="java.lang.String">
+    	DELETE FROM TB_BIZ_MYHTXX_APPLY WHERE AMOUNT_DETAIL_ID=#{value}
+    </delete>
+    <delete id="removeTbBizFpxxApply" parameterType="java.lang.String">
+    	DELETE TB_BIZ_FPXX_APPLY WHERE AMOUNT_DETAIL_ID=#{value}
+    </delete>
+  	<!--  -->
+  	<select id="getPartyBizIds" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(APPROVE_ID) FROM TB_BIZ_APPROVE WHERE PARTY_ID=#{value}
+    </select>
+  <!-- BizSql -->
+  	<select id="getCrdByProduct" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT a.CRD_ID,ad.CRD_DTL_ID,ad.CREDIT_MODE,ad.CURRENCY_CD FROM TB_CRD_APPROVE a
+		INNER JOIN TB_CRD_DETAIL_APPROVE ad ON a.CRD_ID=ad.CRD_ID
+		INNER JOIN TB_SYS_PRODUCT p ON p.PRODUCT_CD = #{productCd}
+		WHERE a.PARTY_ID=#{partyId} AND ad.CREDIT_STATUS='01'
+		AND DECODE(ad.CREDIT_MODE,'00',p.SUPERIOR_ID,p.PRODUCT_TYPE) = ad.PRODUCT_TYPE
+    </select>
+  
+</mapper>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbConGjInfoPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbConGjInfoPo">
+    <id column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="YWBH" jdbcType="VARCHAR" property="ywbh" />
+    <result column="LOAN_CUR" jdbcType="VARCHAR" property="loanCur" />
+    <result column="LOAN_AMT" jdbcType="DECIMAL" property="loanAmt" />
+    <result column="LOAN_DAY" jdbcType="VARCHAR" property="loanDay" />
+    <result column="KNOT_MSG" jdbcType="VARCHAR" property="knotMsg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CONTRACT_ID, CREATE_TIME, UPDATE_TIME, YWBH, LOAN_CUR, LOAN_AMT, LOAN_DAY, KNOT_MSG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_GJ_INFO
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CON_GJ_INFO
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbConGjInfoPo">
+    insert into CRMS.TB_CON_GJ_INFO (CONTRACT_ID, CREATE_TIME, UPDATE_TIME, 
+      YWBH, LOAN_CUR, LOAN_AMT, 
+      LOAN_DAY, KNOT_MSG)
+    values (#{contractId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{ywbh,jdbcType=VARCHAR}, #{loanCur,jdbcType=VARCHAR}, #{loanAmt,jdbcType=DECIMAL}, 
+      #{loanDay,jdbcType=VARCHAR}, #{knotMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbConGjInfoPo">
+    insert into CRMS.TB_CON_GJ_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="ywbh != null">
+        YWBH,
+      </if>
+      <if test="loanCur != null">
+        LOAN_CUR,
+      </if>
+      <if test="loanAmt != null">
+        LOAN_AMT,
+      </if>
+      <if test="loanDay != null">
+        LOAN_DAY,
+      </if>
+      <if test="knotMsg != null">
+        KNOT_MSG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ywbh != null">
+        #{ywbh,jdbcType=VARCHAR},
+      </if>
+      <if test="loanCur != null">
+        #{loanCur,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        #{loanAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="loanDay != null">
+        #{loanDay,jdbcType=VARCHAR},
+      </if>
+      <if test="knotMsg != null">
+        #{knotMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbConGjInfoPo">
+    update CRMS.TB_CON_GJ_INFO
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ywbh != null">
+        YWBH = #{ywbh,jdbcType=VARCHAR},
+      </if>
+      <if test="loanCur != null">
+        LOAN_CUR = #{loanCur,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        LOAN_AMT = #{loanAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="loanDay != null">
+        LOAN_DAY = #{loanDay,jdbcType=VARCHAR},
+      </if>
+      <if test="knotMsg != null">
+        KNOT_MSG = #{knotMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbConGjInfoPo">
+    update CRMS.TB_CON_GJ_INFO
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      YWBH = #{ywbh,jdbcType=VARCHAR},
+      LOAN_CUR = #{loanCur,jdbcType=VARCHAR},
+      LOAN_AMT = #{loanAmt,jdbcType=DECIMAL},
+      LOAN_DAY = #{loanDay,jdbcType=VARCHAR},
+      KNOT_MSG = #{knotMsg,jdbcType=VARCHAR}
+    where CONTRACT_ID = #{contractId,jdbcType=VARCHAR}
+  </update>
+</mapper>

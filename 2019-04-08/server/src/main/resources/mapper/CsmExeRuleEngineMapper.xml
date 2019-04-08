@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmExeRuleEngineMapper">
+
+<!-- 移交申请未完成，包含的业务不允许处理    errmsg:该押品合同已被纳入[移交申请],在业务结束前无法处理  -->
+<select id="ruleEngine_XFE_0006" parameterType="java.lang.String" resultType="java.lang.Integer">
+
+SELECT COUNT(1)c FROM TB_CSMXFE_DETAIL xd WHERE xd.DETAIL_ID=#{subcontractId} AND xd.DETAIL_TYPE='G0' AND xd.ACTIVE = '0'
+
+</select>
+
+<!--判断是否有在途的担保合同调整    errMsg:该笔担保合同已经在调整流程中，请不要重复提交 -->
+<select id="ruleEngine_SUBCON_FLOW" parameterType="java.lang.String" resultType="java.lang.Integer">
+
+	 select count(*)c
+	from tb_con_subcontract_t t where t.subcontract_id=#{subcontractId} and t.status in('01','02')
+
+
+</select>
+
+<!--担保合同关联的主合同有在途调整    errMsg:担保合同下有在途的主合同$[c]调整流程 -->
+<select id="ruleEngine_RGRT_0006" parameterType="java.lang.String" resultType="java.lang.Integer">
+
+select nvl(listagg(a.contract_num, ',') within
+           group(order by a.contract_num),
+           '0') as c
+  from (select distinct a.contract_num
+          from (select a.contract_num,
+                       a.contract_id,
+                       a.con_status,
+                       a.old_contract_id
+                  from tb_con_contract_info a
+                union all
+                select a.contract_num,
+                       a.contract_id,
+                       a.con_status,
+                       a.old_contract_id
+                  from tb_con_credit_info a) a,
+               tb_con_subcontract_rel b,
+               tb_con_subcontract c
+         where (a.contract_id = b.contract_id or
+               a.old_contract_id = b.contract_id)
+           and b.subcontract_id = c.subcontract_id
+           and a.con_status in ('01', '02')
+           and c.subcontract_id =#{subcontractId}) a
+
+</select>
+
+
+
+
+<!--判断是否有在途的保证金追加 added by shendl   errMsg:该合同有在途的保证金追加 -->
+<select id="ruleEngine_SUBCON_0009" parameterType="java.lang.String" resultType="java.lang.Integer">
+select count(*) c
+from TB_ADJUST_MARGINCALLS t 
+where 
+1=1
+ and t.margin_status in('01','02')
+and t.subcontract_id=#{subcontractId}
+
+</select>
+
+
+
+</mapper>

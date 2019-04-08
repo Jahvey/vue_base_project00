@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.guaranteevaluation.mapper.BizGrtMaxloanconApplyMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.guaranteevaluation.bean.BizGrtMaxloanconApply">
+    <id column="MAXLOANCON_ID" jdbcType="VARCHAR" property="maxloanconId" />
+    <result column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+    <result column="SUBCONTRACT_ID" jdbcType="VARCHAR" property="subcontractId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="RE_TYPE" jdbcType="VARCHAR" property="reType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MAXLOANCON_ID, APPROVE_ID, SUBCONTRACT_ID, CREATE_TIME, UPDATE_TIME, APPLY_ID, RE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_GRT_MAXLOANCON_APPLY
+    where MAXLOANCON_ID = #{maxloanconId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByConditions" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BIZ_GRT_MAXLOANCON_APPLY
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR} and RE_TYPE=#{reType} and SUBCONTRACT_ID=#{subcontractId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BIZ_GRT_MAXLOANCON_APPLY
+    where MAXLOANCON_ID = #{maxloanconId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizGrtMaxloanconApply">
+    insert into TB_BIZ_GRT_MAXLOANCON_APPLY (MAXLOANCON_ID, APPROVE_ID, SUBCONTRACT_ID, 
+      CREATE_TIME, UPDATE_TIME, APPLY_ID, 
+      RE_TYPE)
+    values (#{maxloanconId,jdbcType=VARCHAR}, #{approveId,jdbcType=VARCHAR}, #{subcontractId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{applyId,jdbcType=VARCHAR}, 
+      #{reType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizGrtMaxloanconApply">
+    insert into TB_BIZ_GRT_MAXLOANCON_APPLY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="maxloanconId != null">
+        MAXLOANCON_ID,
+      </if>
+      <if test="approveId != null">
+        APPROVE_ID,
+      </if>
+      <if test="subcontractId != null">
+        SUBCONTRACT_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="reType != null">
+        RE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="maxloanconId != null">
+        #{maxloanconId,jdbcType=VARCHAR},
+      </if>
+      <if test="approveId != null">
+        #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractId != null">
+        #{subcontractId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="reType != null">
+        #{reType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizGrtMaxloanconApply">
+    update TB_BIZ_GRT_MAXLOANCON_APPLY
+    <set>
+      <if test="approveId != null">
+        APPROVE_ID = #{approveId,jdbcType=VARCHAR},
+      </if>
+      <if test="subcontractId != null">
+        SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="reType != null">
+        RE_TYPE = #{reType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MAXLOANCON_ID = #{maxloanconId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.guaranteevaluation.bean.BizGrtMaxloanconApply">
+    update TB_BIZ_GRT_MAXLOANCON_APPLY
+    set APPROVE_ID = #{approveId,jdbcType=VARCHAR},
+      SUBCONTRACT_ID = #{subcontractId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      RE_TYPE = #{reType,jdbcType=VARCHAR}
+    where MAXLOANCON_ID = #{maxloanconId,jdbcType=VARCHAR}
+  </update>
+</mapper>

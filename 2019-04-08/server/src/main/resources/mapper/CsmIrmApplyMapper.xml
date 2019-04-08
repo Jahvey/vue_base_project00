@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//com.order.test.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmIrmApplyMapper">
+
+  <resultMap id="csmHisIrmVo" type="com.cdgit.loan.csm.bean.CsmHisIrmVo">
+	<result column="ira_apply_id" javaType="String" property="iraApplyId" />
+	<result column="party_name" javaType="String" property="partyName" />
+	<result column="rating_dt" javaType="String" property="ratingDt" />
+	<result column="rating_type" javaType="String" property="ratingType" />
+	<result column="credit_rating_cd" javaType="String" property="creditRatingCd" />
+	<result column="effective_start_dt" javaType="String" property="effectiveStartDt" />
+	<result column="effective_end_dt" javaType="String" property="effectiveEndDt" />
+	<result column="rating_state" javaType="String" property="ratingState" />
+
+	<result column="USER_NUM" javaType="String" property="userNum" />
+  	<result column="ORG_NUM" javaType="String" property="orgNum" />
+
+  </resultMap>
+  
+  
+    <resultMap id="csmImpornantEventVo" type="com.cdgit.loan.csm.bean.CsmImpornantEventVo">
+	<result column="important_event_id" javaType="String" property="importantEventId" />
+	<result column="party_id" javaType="String" property="partyId" />
+	<result column="event_type_cd" javaType="String" property="eventTypeCd" />
+	<result column="happen_date" javaType="String" property="happenDate" />
+	<result column="event_state" javaType="String" property="eventState" />
+	<result column="remark" javaType="String" property="remark" />
+	<result column="event_num" javaType="String" property="eventNum" />
+	<result column="event_name" javaType="String" property="eventName" />
+	<result column="group_impornant_event" javaType="String" property="groupImpornantEvent" />
+
+	<result column="create_time" javaType="String" property="createTime" />
+  	<result column="update_time" javaType="String" property="updateTime" />
+
+  </resultMap>
+  
+
+
+	<select id="getCsmImpornantEventInfo" parameterType="java.util.HashMap" resultMap="csmImpornantEventVo" >
+	
+	SELECT
+	a.* 
+	FROM
+		Tb_Csm_Impornant_Event a 
+	WHERE
+	1 =1
+	
+	<if test="partyId !=null and partyId !='' ">
+		and a.party_id=#{partyId}
+	</if>
+
+	
+	</select>
+  
+  
+  <!--评级历史列表查询生效的评级信息-->
+    <select id="getHisIrmByParty" parameterType="java.util.HashMap" resultMap="csmHisIrmVo">
+	select 
+		a.ira_apply_id,
+		b.party_name,
+	       c.rating_dt,
+	       a.rating_type,
+	       c.credit_rating_cd,
+	       c.effective_start_dt,
+	       c.effective_end_dt,
+	       c.rating_state,
+	       c.user_num,
+	       c.org_num
+	  from tb_irm_internal_rating_apply  a,
+	       tb_irm_internal_rating_result c,
+	       tb_csm_party                  b
+	 where a.party_id = b.party_id
+   		  and a.ira_apply_id = c.ira_apply_id
+		  <if test="partyId !=null and partyId !='' ">
+		  		and a.party_id = #{partyId}
+		  
+		  </if>
+      	
+   			and c.rating_state IN( '03','04')
+   	<if test="thirdPartyTypeCd ==null || thirdPartyTypeCd =='' ">
+  			and a.rating_type in ('1','2','3')    	
+   	</if>
+
+   	<if test="thirdPartyTypeCd !=null and thirdPartyTypeCd !='' ">
+   			 and a.rating_type='4'
+   	</if>
+   	
+   	<if test="userNum !=null and userNum !='' ">	
+   			and c.USER_NUM=#{userNum}
+   	</if>
+   	<if test="orgNum !=null and orgNum !='' ">  	
+   			and c.ORG_NUM=#{orgNum}
+   	</if>
+
+		order by c.RATING_STATE 
+  </select>
+
+</mapper>

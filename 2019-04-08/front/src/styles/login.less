@@ -1,0 +1,43 @@
+.login {
+  width: 100%;
+  min-width: 1000px;
+  height: 100%;
+  min-height: 540px;
+  overflow: auto;
+  background-size: cover;
+  position: relative;
+  .login-container {
+    position: absolute;
+    top: 0;
+    right: 16%;
+    background: #f2f5fa;
+    width: 320px;
+    height: 100%;
+    border-left: 1px solid #405580;
+    border-right: 1px solid #405580;
+    .login-box{
+      height:-moz-calc(100% - 30%);
+      height:-webkit-calc(100% - 30%);
+      height: calc(100% - 30%);
+      margin-top: 30%;
+      padding: 0 30px 0 30px;
+      .login-logo {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .title {
+        margin: 0 auto 20px auto;
+        font-size: 16px;
+        color: #505458;
+        text-align: center;
+      }
+      .remember {
+        margin: 0 0 10px 0;
+      }
+      .validate-code{
+        cursor: pointer;
+        font-size: 12px;
+      }
+    }
+  }
+}

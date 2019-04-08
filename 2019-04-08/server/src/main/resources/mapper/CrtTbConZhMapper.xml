@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.contract.mapper.CrtTbConZhMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.contract.bean.CrtTbConZh">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ZHBS" jdbcType="VARCHAR" property="zhbs" />
+    <result column="ZHLX" jdbcType="VARCHAR" property="zhlx" />
+    <result column="KZBS" jdbcType="VARCHAR" property="kzbs" />
+    <result column="ZH" jdbcType="VARCHAR" property="zh" />
+    <result column="ZHKHJG" jdbcType="VARCHAR" property="zhkhjg" />
+    <result column="ZHMC" jdbcType="VARCHAR" property="zhmc" />
+    <result column="CONTRACT_ID" jdbcType="VARCHAR" property="contractId" />
+    <result column="ACC_STATUS" jdbcType="VARCHAR" property="accStatus" />
+  </resultMap>
+
+  <select id="selectAllConZhByContractId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CON_ZH
+    where contract_Id = #{contractId,jdbcType=VARCHAR}
+  </select>
+  <sql id="Base_Column_List">
+    ID, ZHBS, ZHLX, KZBS, ZH, ZHKHJG, ZHMC, CONTRACT_ID, ACC_STATUS
+  </sql>
+</mapper>

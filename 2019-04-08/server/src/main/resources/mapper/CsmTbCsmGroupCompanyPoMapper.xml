@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.csm.mapper.CsmTbCsmGroupCompanyPoMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.csm.po.CsmTbCsmGroupCompanyPo">
+    <id column="PARTY_ID" jdbcType="VARCHAR" property="partyId" />
+    <result column="GROUP_NATURE_CD" jdbcType="VARCHAR" property="groupNatureCd" />
+    <result column="REGISTER_NUM" jdbcType="VARCHAR" property="registerNum" />
+    <result column="GROUP_MANAGE_WAY_CD" jdbcType="VARCHAR" property="groupManageWayCd" />
+    <result column="BALANCE_SHEET_DATE" jdbcType="TIMESTAMP" property="balanceSheetDate" />
+    <result column="TOTAL_ASSETS" jdbcType="DECIMAL" property="totalAssets" />
+    <result column="LIABILITY_SUM" jdbcType="DECIMAL" property="liabilitySum" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="CHANNEL" jdbcType="VARCHAR" property="channel" />
+    <result column="ENTMARK" jdbcType="VARCHAR" property="entmark" />
+    <result column="TMPENTMARK" jdbcType="VARCHAR" property="tmpentmark" />
+    <result column="GROUP_MEMBER_NUM" jdbcType="DECIMAL" property="groupMemberNum" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_ORG_NUM" jdbcType="VARCHAR" property="updateOrgNum" />
+    <result column="UPDATE_USER_NUM" jdbcType="VARCHAR" property="updateUserNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PARTY_ID, GROUP_NATURE_CD, REGISTER_NUM, GROUP_MANAGE_WAY_CD, BALANCE_SHEET_DATE, 
+    TOTAL_ASSETS, LIABILITY_SUM, STATUS, CHANNEL, ENTMARK, TMPENTMARK, GROUP_MEMBER_NUM, 
+    CREATE_TIME, UPDATE_TIME, UPDATE_ORG_NUM, UPDATE_USER_NUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CRMS.TB_CSM_GROUP_COMPANY
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CRMS.TB_CSM_GROUP_COMPANY
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cdgit.loan.csm.po.CsmTbCsmGroupCompanyPo">
+    insert into CRMS.TB_CSM_GROUP_COMPANY (PARTY_ID, GROUP_NATURE_CD, REGISTER_NUM, 
+      GROUP_MANAGE_WAY_CD, BALANCE_SHEET_DATE, TOTAL_ASSETS, 
+      LIABILITY_SUM, STATUS, CHANNEL, 
+      ENTMARK, TMPENTMARK, GROUP_MEMBER_NUM, 
+      CREATE_TIME, UPDATE_TIME, UPDATE_ORG_NUM, 
+      UPDATE_USER_NUM)
+    values (#{partyId,jdbcType=VARCHAR}, #{groupNatureCd,jdbcType=VARCHAR}, #{registerNum,jdbcType=VARCHAR}, 
+      #{groupManageWayCd,jdbcType=VARCHAR}, #{balanceSheetDate,jdbcType=TIMESTAMP}, #{totalAssets,jdbcType=DECIMAL}, 
+      #{liabilitySum,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, 
+      #{entmark,jdbcType=VARCHAR}, #{tmpentmark,jdbcType=VARCHAR}, #{groupMemberNum,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateOrgNum,jdbcType=VARCHAR}, 
+      #{updateUserNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdgit.loan.csm.po.CsmTbCsmGroupCompanyPo">
+    insert into CRMS.TB_CSM_GROUP_COMPANY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        PARTY_ID,
+      </if>
+      <if test="groupNatureCd != null">
+        GROUP_NATURE_CD,
+      </if>
+      <if test="registerNum != null">
+        REGISTER_NUM,
+      </if>
+      <if test="groupManageWayCd != null">
+        GROUP_MANAGE_WAY_CD,
+      </if>
+      <if test="balanceSheetDate != null">
+        BALANCE_SHEET_DATE,
+      </if>
+      <if test="totalAssets != null">
+        TOTAL_ASSETS,
+      </if>
+      <if test="liabilitySum != null">
+        LIABILITY_SUM,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="channel != null">
+        CHANNEL,
+      </if>
+      <if test="entmark != null">
+        ENTMARK,
+      </if>
+      <if test="tmpentmark != null">
+        TMPENTMARK,
+      </if>
+      <if test="groupMemberNum != null">
+        GROUP_MEMBER_NUM,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM,
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyId != null">
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupNatureCd != null">
+        #{groupNatureCd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerNum != null">
+        #{registerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="groupManageWayCd != null">
+        #{groupManageWayCd,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceSheetDate != null">
+        #{balanceSheetDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalAssets != null">
+        #{totalAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="liabilitySum != null">
+        #{liabilitySum,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="entmark != null">
+        #{entmark,jdbcType=VARCHAR},
+      </if>
+      <if test="tmpentmark != null">
+        #{tmpentmark,jdbcType=VARCHAR},
+      </if>
+      <if test="groupMemberNum != null">
+        #{groupMemberNum,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateOrgNum != null">
+        #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNum != null">
+        #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdgit.loan.csm.po.CsmTbCsmGroupCompanyPo">
+    update CRMS.TB_CSM_GROUP_COMPANY
+    <set>
+      <if test="groupNatureCd != null">
+        GROUP_NATURE_CD = #{groupNatureCd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerNum != null">
+        REGISTER_NUM = #{registerNum,jdbcType=VARCHAR},
+      </if>
+      <if test="groupManageWayCd != null">
+        GROUP_MANAGE_WAY_CD = #{groupManageWayCd,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceSheetDate != null">
+        BALANCE_SHEET_DATE = #{balanceSheetDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalAssets != null">
+        TOTAL_ASSETS = #{totalAssets,jdbcType=DECIMAL},
+      </if>
+      <if test="liabilitySum != null">
+        LIABILITY_SUM = #{liabilitySum,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        CHANNEL = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="entmark != null">
+        ENTMARK = #{entmark,jdbcType=VARCHAR},
+      </if>
+      <if test="tmpentmark != null">
+        TMPENTMARK = #{tmpentmark,jdbcType=VARCHAR},
+      </if>
+      <if test="groupMemberNum != null">
+        GROUP_MEMBER_NUM = #{groupMemberNum,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateOrgNum != null">
+        UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserNum != null">
+        UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdgit.loan.csm.po.CsmTbCsmGroupCompanyPo">
+    update CRMS.TB_CSM_GROUP_COMPANY
+    set GROUP_NATURE_CD = #{groupNatureCd,jdbcType=VARCHAR},
+      REGISTER_NUM = #{registerNum,jdbcType=VARCHAR},
+      GROUP_MANAGE_WAY_CD = #{groupManageWayCd,jdbcType=VARCHAR},
+      BALANCE_SHEET_DATE = #{balanceSheetDate,jdbcType=TIMESTAMP},
+      TOTAL_ASSETS = #{totalAssets,jdbcType=DECIMAL},
+      LIABILITY_SUM = #{liabilitySum,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CHANNEL = #{channel,jdbcType=VARCHAR},
+      ENTMARK = #{entmark,jdbcType=VARCHAR},
+      TMPENTMARK = #{tmpentmark,jdbcType=VARCHAR},
+      GROUP_MEMBER_NUM = #{groupMemberNum,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_ORG_NUM = #{updateOrgNum,jdbcType=VARCHAR},
+      UPDATE_USER_NUM = #{updateUserNum,jdbcType=VARCHAR}
+    where PARTY_ID = #{partyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdgit.loan.afterloan.riskclass.mapper.ChQuarterAdjustMapper">
+  <resultMap id="BaseResultMap" type="com.cdgit.loan.afterloan.riskclass.resultbean.QuarSmallNaturalResult">
+		<result property="partyName" column="party_name" jdbcType="VARCHAR" />
+		<result property="certType" column="cert_type" jdbcType="VARCHAR" />
+		<result property="certNum" column="cert_num" jdbcType="VARCHAR" />
+		<result property="totalCredAmt" column="available_amt" jdbcType="VARCHAR" />
+		<result property="sortResult" column="sortResult" jdbcType="VARCHAR" />
+		<result property="sortStatus" column="sortStatus" jdbcType="VARCHAR" />
+		<result property="custtype" column="custtype" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 风险分类-季度调整-小企业自然人 -->
+  <select id="selectQuarSmallNatural" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+   select  t.custtype,
+			       t.party_id,
+			       t.party_name,
+			       t.party_type_cd,
+			       t.cert_type,
+			       t.cert_num,
+			       t.available_amt,
+			       t.sortResult,
+			       t.claCount,
+			       case
+			         when t.claCount is null
+			              or t.claCount = 0 then
+			          '未分类'
+			         else
+			          '已分类'
+			       end sortStatus
+			  from (select t2.cust_property_status custtype,
+			               t1.party_id,
+			               t2.party_name,
+			               t2.party_type_cd,
+			               t1.cert_type,
+			               t1.cert_num,
+			               t3.user_num,
+			               t3.org_num,
+			               (select sum(a.jjye)
+			                  from tb_loan_summary a
+			                 where a.summary_status_cd in ('02', '03')
+			                       and a.party_id = t1.party_id) available_amt,
+			               (select '0' || max(to_number(cls_result))
+			                  from tb_con_contract_info
+			                 where con_status = '03'
+			                       and party_id = t1.party_id) sortResult,
+			               (select count(*)
+			                  from tb_cla_debt_detailinfo a
+			                 where a.create_time between bt_get_quar_date('begin', bt_get_workdate) and
+			                       bt_get_quar_date('end', bt_get_workdate)
+			                       and a.cla_method = 'quar'
+			                       and a.status in ('0', '2')
+			                       and a.party_id = t2.party_id) claCount
+			          from (select a.party_id,
+			                       '202' cert_type,
+			                       org_register_cd cert_num
+			                  from tb_csm_corporation a
+			                union all
+			                select a.party_id,
+			                       cert_type,
+			                       cert_num
+			                  from tb_csm_natural_person a) t1,
+			               tb_csm_party t2,
+			               tb_csm_management_team t3
+			         where t1.party_id = t3.party_id
+			               and t1.party_id = t2.party_id
+			               and exists (select 1
+			                  from tb_loan_summary c
+			                 where c.summary_status_cd in ('02', '03')
+			                       and c.party_id = t2.party_id)) t
+          where (t.user_num='200555'
+			     or t.org_num in (select a.orgcode
+		           from om_organization a
+		          start with a.orgid = (select d.orgid
+		                                  from om_empposition  a,
+		                                       om_position     b,
+		                                       om_employee     c,
+		                                       om_organization d
+		                                 where a.positionid = b.positionid
+		                                   and c.empid = a.empid
+		                                   and d.orgid = a.orgid
+		                                   and d.orgcode = '0700'
+		                                   and c.empcode = '200555'
+		                                   and b.posicode in ('P1211'))
+		         connect by prior a.orgid = a.parentorgid))
+		        <if test=" custtype!= null and custtype!= '' ">
+		         	AND t.custtype = #{custtype,jdbcType=VARCHAR}
+		        </if>
+		        <if test="certType != null and certType != '' ">
+		        	AND t.cert_type = #{certType,jdbcType=VARCHAR}
+		        </if>
+		        <if test="certNum !=null and certNum !='' ">
+		 			AND t.cert_num LIKE '%'||#{certNum}||'%' 
+		  		</if>
+		  		<if test="partyName !=null and partyName !='' ">
+		 			AND t.party_name LIKE '%'||#{partyName}||'%' 
+		  		</if>
+				<!-- <isNotNull property="certType">
+					AND t.cert_type = '$certType$'
+				</isNotNull>
+				<isNotNull property="certNum">
+					AND t.cert_num = '$certNum$'
+				</isNotNull>
+				<isNotNull property="partyName">
+					AND t.party_name LIKE '%$partyName$%'
+				</isNotNull> -->
+  </select>
+
+</mapper>
